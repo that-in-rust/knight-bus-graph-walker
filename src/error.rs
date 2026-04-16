@@ -60,6 +60,10 @@ pub enum KnightBusError {
     InvalidHopCount { value: u8 },
     #[error("invalid walk direction `{value}`; expected `forward` or `backward`")]
     InvalidWalkDirection { value: String },
+    #[error(
+        "invalid corpus family `{value}`; expected `forward_one`, `reverse_one`, or `reverse_two`"
+    )]
+    InvalidCorpusFamily { value: String },
     #[error("unknown entity `{entity}`")]
     UnknownEntity { entity: String },
     #[error("node count {node_count} exceeds u32 capacity")]

@@ -158,3 +158,13 @@ correctness or nanosecond hop timing.
 - The tiny checked-in toy remains a correctness-only tier.
 - `peak_rss_bytes` is now logged together with `peak_rss_source` so the measurement provenance is explicit.
 - This corrected entry supersedes the `2026-04-16 14:45:02 IST` ladder run for count accuracy; that earlier run had a tiny-tier `+1` row-count bug from trailing blank-line handling.
+
+## 2026-04-16 15:11:58 IST - Rust vs Neo4j Fresh Rerun
+
+| stage | raw_csv_bytes | node_count | edge_count | snapshot_size_bytes | rust_status | neo4j_status | query_corpus_size | rust_p50_ms | rust_p95_ms | rust_p99_ms | rust_mean_ms | rust_rss_bytes | neo4j_p50_ms | neo4j_p95_ms | neo4j_p99_ms | neo4j_mean_ms | neo4j_rss_bytes | import_duration_ms | report_path |
+| --- | ---: | ---: | ---: | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| neo4j_smoke_1mb | 1068156 | 1949 | 17722 | 251390 | ok | ok | 18 | 0.001667 | 0.018646 | 0.025692 | 0.005155 | 12926976 | 4.557187 | 7.070831 | 9.375404 | 4.316184 | 74481664 | 3216.179334 | /Users/neetipatni/Desktop/Codex202604/knight-bus-graph-walker/reports/neo4j_smoke_1mb/report.json |
+| neo4j_preflight_50mb | 53412207 | 97606 | 886085 | 12555088 | ok | ok | 60 | 0.002063 | 0.019935 | 0.037531 | 0.006136 | 388546560 | 25.29675 | 50.787884 | 55.434319 | 31.163228 | 75104256 | 5661.278292 | /Users/neetipatni/Desktop/Codex202604/knight-bus-graph-walker/reports/neo4j_preflight_50mb/report.json |
+
+- verdict: fresh rerun completed through `neo4j_smoke_1mb` and `neo4j_preflight_50mb` using the Rust binary for the Knight Bus side.
+- caveat: this ledger entry is a `1 MB` / `50 MB` benchmark comparison only.

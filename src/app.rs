@@ -1,7 +1,7 @@
-use std::{fs, path::Path};
+use std::{fs, path::Path, time::Instant};
 
 use crate::{
-    bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner},
+    bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpusBenchmarkRunner},
     error::KnightBusError,
     graph::normalize_truth_graph_data,
     parity::run_parity_verification,
@@ -9,8 +9,8 @@ use crate::{
     snapshot::{FilesystemSnapshotWriter, SnapshotArtifactWriter},
     truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource},
     types::{
-        BenchmarkRunSummary, HopCount, NodeKey, QueryResult, SnapshotBuildSummary,
-        VerificationSummary, WalkDirection,
+        BenchmarkRunSummary, CorpusBenchmarkRunSummary, HopCount, NodeKey, QueryResult,
+        SnapshotBuildSummary, VerificationSummary, WalkDirection,
     },
 };
 
@@ -66,5 +66,42 @@ pub fn run_snapshot_benchmark(
     Ok(BenchmarkRunSummary {
         report_path,
         report: benchmark_report,
+    })
+}
+
+pub fn run_corpus_benchmark_from_paths(
+    snapshot_dir: &Path,
+    nodes_path: &Path,
+    edges_path: &Path,
+    corpus_path: &Path,
+    report_path: &Path,
+) -> Result<CorpusBenchmarkRunSummary, KnightBusError> {
+    if let Some(parent_dir) = report_path.parent() {
+        fs::create_dir_all(parent_dir).map_err(|source| KnightBusError::io(parent_dir, source))?;
+    }
+
+    let truth_source = CsvTruthGraphSource::new(nodes_path, edges_path);
+    let truth_graph = truth_source.load_truth_graph_rows()?;
+    let truth_index = TruthGraphIndex::from_truth_graph_rows(&truth_graph);
+
+    let started_at = Instant::now();
+    let runtime = MmapWalkRuntime::open(snapshot_dir)?;
+    let open_start_ms = started_at.elapsed().as_secs_f64() * 1_000.0;
+
+    let outcome = SnapshotCorpusBenchmarkRunner::default().run_corpus_benchmark(
+        &runtime,
+        &truth_index,
+        corpus_path,
+        open_start_ms,
+    )?;
+    let report_bytes = serde_json::to_vec_pretty(&outcome.measurement)
+        .map_err(|source| KnightBusError::json(report_path, source))?;
+    fs::write(report_path, report_bytes)
+        .map_err(|source| KnightBusError::io(report_path, source))?;
+
+    Ok(CorpusBenchmarkRunSummary {
+        report_path: report_path.to_path_buf(),
+        measurement: outcome.measurement,
+        query_corpus_size: outcome.query_corpus_size,
     })
 }

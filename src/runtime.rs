@@ -90,6 +90,10 @@ impl MmapWalkRuntime {
         self.manifest.node_count
     }
 
+    pub fn manifest_version(&self) -> u32 {
+        self.manifest.version
+    }
+
     pub fn resolve_dense_id(&self, entity_key: &NodeKey) -> Result<DenseNodeId, KnightBusError> {
         let mut low = 0_usize;
         let mut high = self.manifest.node_count as usize;

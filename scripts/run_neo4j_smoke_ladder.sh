@@ -16,6 +16,8 @@ load_runtime_paths_now() {
   INSTALL_SCRIPT="$REPO_ROOT/scripts/install_neo4j_brew.sh"
   REQUIREMENTS_FILE="$REPO_ROOT/benchmarks/walk_hopper_v1/requirements.txt"
   PYTHON_BIN="${KNIGHT_BUS_PYTHON_BIN:-python3}"
+  KNIGHT_BUS_BIN_PATH="${KNIGHT_BUS_BIN_PATH:-$REPO_ROOT/target/release/knight-bus}"
+  FINAL_JOURNAL_SCRIPT="$REPO_ROOT/scripts/render_final_testing_journal.py"
   export BENCH_VENV_DIR ARTIFACTS_DIR REPORTS_DIR BENCH_ENV_FILE INSTALL_SCRIPT REQUIREMENTS_FILE PYTHON_BIN
 }
 
@@ -101,6 +103,14 @@ create_benchmark_venv_now() {
   "$BENCH_VENV_DIR/bin/python" -m pip install -r "$REQUIREMENTS_FILE"
 }
 
+build_knight_bus_binary_now() {
+  cargo build --release --manifest-path "$REPO_ROOT/Cargo.toml"
+  if [[ ! -x "$KNIGHT_BUS_BIN_PATH" ]]; then
+    echo "knight-bus binary not found at $KNIGHT_BUS_BIN_PATH" >&2
+    exit 1
+  fi
+}
+
 find_neo4j_admin_now() {
   local formula_prefix
   formula_prefix="$(/opt/homebrew/bin/brew --prefix neo4j 2>/dev/null || true)"
@@ -123,10 +133,12 @@ run_single_stage_now() {
   local seed="$4"
   local artifact_dir="$ARTIFACTS_DIR/$stage_name"
   local snapshot_dir="$artifact_dir/snapshot"
+  local corpus_snapshot_dir="$artifact_dir/query_corpus_snapshot"
   local neo4j_import_dir="$artifact_dir/neo4j_import"
   local report_dir="$REPORTS_DIR/$stage_name"
   local neo4j_admin_bin
 
+  rm -rf "$artifact_dir" "$report_dir"
   mkdir -p "$artifact_dir" "$report_dir"
   "$BENCH_VENV_DIR/bin/python" "$REPO_ROOT/benchmarks/walk_hopper_v1/generate_code_sparse_data.py" \
     --target-raw-mb "$target_mb" \
@@ -134,6 +146,10 @@ run_single_stage_now() {
     --output "$artifact_dir"
   "$BENCH_VENV_DIR/bin/python" "$REPO_ROOT/benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py" \
     --dataset "$artifact_dir" \
+    --output "$corpus_snapshot_dir"
+  "$KNIGHT_BUS_BIN_PATH" build \
+    --nodes-csv "$artifact_dir/nodes.csv" \
+    --edges-csv "$artifact_dir/edges.csv" \
     --output "$snapshot_dir"
   "$BENCH_VENV_DIR/bin/python" "$REPO_ROOT/benchmarks/walk_hopper_v1/export_neo4j_import.py" \
     --dataset "$artifact_dir" \
@@ -141,7 +157,7 @@ run_single_stage_now() {
   "$BENCH_VENV_DIR/bin/python" - <<PY
 from pathlib import Path
 from benchmarks.walk_hopper_v1.query_walk_snapshot import build_query_corpus_now
-build_query_corpus_now(Path("$snapshot_dir"), Path("$artifact_dir/query_corpus.csv"), per_family=$per_family)
+build_query_corpus_now(Path("$corpus_snapshot_dir"), Path("$artifact_dir/query_corpus.csv"), per_family=$per_family)
 PY
 
   neo4j_admin_bin="$(find_neo4j_admin_now)"
@@ -160,18 +176,41 @@ PY
     neo4j \
     --nodes="$neo4j_import_dir/nodes.header.csv,$neo4j_import_dir/nodes.data.csv" \
     --relationships="$neo4j_import_dir/relationships.header.csv,$neo4j_import_dir/relationships.data.csv"
+  local import_started_ns
+  import_started_ns="$("$PYTHON_BIN" - <<'PY'
+import time
+print(time.perf_counter_ns())
+PY
+)"
   "$neo4j_admin_bin" database import full \
     --overwrite-destination=true \
     --report-file "$report_dir/import-report.txt" \
     neo4j \
     --nodes="$neo4j_import_dir/nodes.header.csv,$neo4j_import_dir/nodes.data.csv" \
     --relationships="$neo4j_import_dir/relationships.header.csv,$neo4j_import_dir/relationships.data.csv"
+  local import_finished_ns
+  import_finished_ns="$("$PYTHON_BIN" - <<'PY'
+import time
+print(time.perf_counter_ns())
+PY
+)"
+  "$PYTHON_BIN" - <<PY
+import json
+from pathlib import Path
+started = int("$import_started_ns")
+finished = int("$import_finished_ns")
+payload = {
+    "import_duration_ms": round((finished - started) / 1_000_000.0, 6),
+}
+Path("$report_dir/import-meta.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+PY
   start_neo4j_service_now
   wait_for_neo4j_ready_now 90
 
   "$BENCH_VENV_DIR/bin/python" "$REPO_ROOT/benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py" \
     --dataset "$artifact_dir" \
     --snapshot "$snapshot_dir" \
+    --knight-bus-bin "$KNIGHT_BUS_BIN_PATH" \
     --neo4j-uri "$NEO4J_URI" \
     --neo4j-user "$NEO4J_USER" \
     --neo4j-password "$NEO4J_PASSWORD" \
@@ -186,9 +225,13 @@ main() {
   ensure_local_env_now
   source_local_env_now
   create_benchmark_venv_now
+  build_knight_bus_binary_now
   mkdir -p "$ARTIFACTS_DIR" "$REPORTS_DIR"
   run_single_stage_now "neo4j_smoke_1mb" "1" "6" "7"
   run_single_stage_now "neo4j_preflight_50mb" "50" "20" "7"
+  "$BENCH_VENV_DIR/bin/python" "$FINAL_JOURNAL_SCRIPT" \
+    --repo-root "$REPO_ROOT" \
+    --reports-dir "$REPORTS_DIR"
 }
 
 main "$@"

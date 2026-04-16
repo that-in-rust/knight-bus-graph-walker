@@ -4,7 +4,8 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use knight_bus::{
     BENCH_REPORT_FILE_NAME, HopCount, WalkDirection, build_snapshot_from_paths,
-    query_snapshot_from_path, run_snapshot_benchmark, verify_snapshot_against_paths,
+    query_snapshot_from_path, run_corpus_benchmark_from_paths, run_snapshot_benchmark,
+    verify_snapshot_against_paths,
 };
 
 #[derive(Parser, Debug)]
@@ -48,6 +49,18 @@ enum Commands {
     Bench {
         #[arg(long)]
         snapshot: PathBuf,
+        #[arg(long)]
+        report: PathBuf,
+    },
+    BenchCorpus {
+        #[arg(long)]
+        snapshot: PathBuf,
+        #[arg(long)]
+        nodes_csv: PathBuf,
+        #[arg(long)]
+        edges_csv: PathBuf,
+        #[arg(long)]
+        corpus: PathBuf,
         #[arg(long)]
         report: PathBuf,
     },
@@ -154,6 +167,43 @@ fn try_main() -> Result<()> {
                 );
             }
             println!("report_file_name: {BENCH_REPORT_FILE_NAME}");
+        }
+        Commands::BenchCorpus {
+            snapshot,
+            nodes_csv,
+            edges_csv,
+            corpus,
+            report,
+        } => {
+            let summary = run_corpus_benchmark_from_paths(
+                &snapshot, &nodes_csv, &edges_csv, &corpus, &report,
+            )
+            .with_context(|| format!("failed to benchmark corpus at {}", snapshot.display()))?;
+            println!("report: {}", summary.report_path.display());
+            println!("status: {}", summary.measurement.status);
+            println!("query_corpus_size: {}", summary.query_corpus_size);
+            println!("operation_count: {}", summary.measurement.operation_count);
+            if let Some(open_start_ms) = summary.measurement.open_start_ms {
+                println!("open_start_ms: {open_start_ms}");
+            }
+            if let Some(p50_ms) = summary.measurement.p50_ms {
+                println!("p50_ms: {p50_ms}");
+            }
+            if let Some(p95_ms) = summary.measurement.p95_ms {
+                println!("p95_ms: {p95_ms}");
+            }
+            if let Some(p99_ms) = summary.measurement.p99_ms {
+                println!("p99_ms: {p99_ms}");
+            }
+            if let Some(mean_ms) = summary.measurement.mean_ms {
+                println!("mean_ms: {mean_ms}");
+            }
+            if let Some(rss_bytes) = summary.measurement.rss_bytes {
+                println!("rss_bytes: {rss_bytes}");
+            }
+            if let Some(version) = &summary.measurement.version {
+                println!("version: {version}");
+            }
         }
     }
     Ok(())

@@ -1,0 +1,4 @@
+family_name,node_id,hops,direction,degree_bucket
+forward_one,fn:login_user_flow_now,1,forward,medium
+reverse_one,fn:save_session_record_now,1,reverse,high
+reverse_two,fn:write_audit_entry_now,2,reverse,high

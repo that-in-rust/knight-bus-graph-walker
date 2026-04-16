@@ -10,9 +10,9 @@ pub mod types;
 
 pub use app::{
     BENCH_REPORT_FILE_NAME, build_snapshot_from_paths, query_snapshot_from_path,
-    run_snapshot_benchmark, verify_snapshot_against_paths,
+    run_corpus_benchmark_from_paths, run_snapshot_benchmark, verify_snapshot_against_paths,
 };
-pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner};
+pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpusBenchmarkRunner};
 pub use error::KnightBusError;
 pub use graph::{
     collect_neighbors_within_hops, flatten_adjacency_lists_now, normalize_truth_graph_data,
@@ -23,8 +23,9 @@ pub use runtime::{MmapWalkRuntime, WalkQueryRuntime};
 pub use snapshot::{FilesystemSnapshotWriter, SnapshotArtifactWriter, compute_snapshot_size_bytes};
 pub use truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource};
 pub use types::{
-    BenchmarkFamilyReport, BenchmarkReport, BenchmarkRunSummary, CsvEdgeRow, CsvNodeRow,
-    DenseNodeId, HopCount, NodeKey, NodeRecord, NormalizedGraphData, PeakRssSource, QueryFamily,
-    QueryResult, SnapshotBuildSummary, SnapshotManifest, ValidatedTruthGraph,
-    VerificationFamilySummary, VerificationSummary, WalkDirection,
+    BenchmarkFamilyReport, BenchmarkReport, BenchmarkRunSummary, CorpusBenchmarkRunSummary,
+    CorpusFamily, CorpusQueryRow, CsvEdgeRow, CsvNodeRow, DenseNodeId, EngineMeasurement, HopCount,
+    NodeKey, NodeRecord, NormalizedGraphData, PeakRssSource, QueryFamily, QueryResult,
+    SnapshotBuildSummary, SnapshotManifest, ValidatedTruthGraph, VerificationFamilySummary,
+    VerificationSummary, WalkDirection,
 };

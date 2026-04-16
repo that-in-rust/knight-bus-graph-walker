@@ -183,6 +183,55 @@ impl QueryFamily {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CorpusFamily {
+    ForwardOne,
+    ReverseOne,
+    ReverseTwo,
+}
+
+impl CorpusFamily {
+    pub const ALL: [Self; 3] = [Self::ForwardOne, Self::ReverseOne, Self::ReverseTwo];
+
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::ForwardOne => "forward_one",
+            Self::ReverseOne => "reverse_one",
+            Self::ReverseTwo => "reverse_two",
+        }
+    }
+
+    pub fn direction(self) -> WalkDirection {
+        match self {
+            Self::ForwardOne => WalkDirection::Forward,
+            Self::ReverseOne | Self::ReverseTwo => WalkDirection::Backward,
+        }
+    }
+
+    pub fn hops(self) -> HopCount {
+        match self {
+            Self::ForwardOne | Self::ReverseOne => HopCount::One,
+            Self::ReverseTwo => HopCount::Two,
+        }
+    }
+}
+
+impl FromStr for CorpusFamily {
+    type Err = KnightBusError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        match value {
+            "forward_one" => Ok(Self::ForwardOne),
+            "reverse_one" => Ok(Self::ReverseOne),
+            "reverse_two" => Ok(Self::ReverseTwo),
+            other => Err(KnightBusError::InvalidCorpusFamily {
+                value: other.to_owned(),
+            }),
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CsvNodeRow {
     pub node_id: NodeKey,
@@ -204,6 +253,12 @@ pub struct CsvEdgeRow {
 pub struct ValidatedTruthGraph {
     pub nodes: Vec<CsvNodeRow>,
     pub edges: Vec<CsvEdgeRow>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct CorpusQueryRow {
+    pub family: CorpusFamily,
+    pub node_id: NodeKey,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -345,4 +400,27 @@ pub struct BenchmarkReport {
 pub struct BenchmarkRunSummary {
     pub report_path: PathBuf,
     pub report: BenchmarkReport,
+}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct EngineMeasurement {
+    pub engine_name: String,
+    pub status: String,
+    pub reason: Option<String>,
+    pub open_start_ms: Option<f64>,
+    pub operation_count: usize,
+    pub mean_ms: Option<f64>,
+    pub p50_ms: Option<f64>,
+    pub p95_ms: Option<f64>,
+    pub p99_ms: Option<f64>,
+    pub rss_bytes: Option<u64>,
+    pub version: Option<String>,
+    pub cold_run: bool,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct CorpusBenchmarkRunSummary {
+    pub report_path: PathBuf,
+    pub measurement: EngineMeasurement,
+    pub query_corpus_size: usize,
 }

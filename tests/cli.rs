@@ -162,3 +162,50 @@ fn bench_writes_report_now() {
     assert!(report_json.contains("\"p50_nanos\""));
     assert!(report_json.contains("\"p95_nanos\""));
 }
+
+#[test]
+fn bench_corpus_writes_engine_measurement_now() {
+    let temp_dir = tempfile::TempDir::new().expect("temp dir");
+    let snapshot_dir = temp_dir.path().join("snapshot");
+    let report_path = temp_dir.path().join("corpus-report.json");
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "build",
+            "--nodes-csv",
+            support::valid_nodes_path().to_str().expect("utf8 path"),
+            "--edges-csv",
+            support::valid_edges_path().to_str().expect("utf8 path"),
+            "--output",
+            snapshot_dir.to_str().expect("utf8 path"),
+        ])
+        .assert()
+        .success();
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "bench-corpus",
+            "--snapshot",
+            snapshot_dir.to_str().expect("utf8 path"),
+            "--nodes-csv",
+            support::valid_nodes_path().to_str().expect("utf8 path"),
+            "--edges-csv",
+            support::valid_edges_path().to_str().expect("utf8 path"),
+            "--corpus",
+            support::valid_corpus_path().to_str().expect("utf8 path"),
+            "--report",
+            report_path.to_str().expect("utf8 path"),
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("status: ok"))
+        .stdout(predicate::str::contains("operation_count"))
+        .stdout(predicate::str::contains("rss_bytes"));
+
+    let report_json = fs::read_to_string(&report_path).expect("report exists");
+    assert!(report_json.contains("\"engine_name\": \"knight_bus_rust\""));
+    assert!(report_json.contains("\"mean_ms\""));
+    assert!(report_json.contains("\"p95_ms\""));
+}

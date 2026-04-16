@@ -2,7 +2,7 @@ use crate::{
     error::KnightBusError,
     runtime::{MmapWalkRuntime, WalkQueryRuntime},
     truth::TruthGraphIndex,
-    types::{VerificationFamilySummary, VerificationSummary},
+    types::{CorpusQueryRow, VerificationFamilySummary, VerificationSummary},
 };
 
 pub fn run_parity_verification(
@@ -45,4 +45,32 @@ pub fn run_parity_verification(
         total_checked_queries,
         families: family_summaries,
     })
+}
+
+pub fn run_corpus_parity_verification(
+    truth_index: &TruthGraphIndex,
+    runtime: &MmapWalkRuntime,
+    corpus_rows: &[CorpusQueryRow],
+) -> Result<(), KnightBusError> {
+    for row in corpus_rows {
+        let expected = truth_index
+            .neighbors_within(&row.node_id, row.family.direction(), row.family.hops())?
+            .into_iter()
+            .map(|key| key.to_string())
+            .collect::<Vec<_>>();
+        let actual = runtime
+            .query_entity_neighbors(&row.node_id, row.family.direction(), row.family.hops())?
+            .neighbors;
+
+        if expected != actual {
+            return Err(KnightBusError::ParityMismatch {
+                family: row.family.label().to_owned(),
+                entity: row.node_id.to_string(),
+                expected,
+                actual,
+            });
+        }
+    }
+
+    Ok(())
 }

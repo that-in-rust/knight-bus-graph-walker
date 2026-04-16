@@ -1,6 +1,6 @@
 # Neo4j Smoke Runbook
 
-This repo owns the local smoke ladder for the Python benchmark harness in `benchmarks/walk_hopper_v1`.
+This repo owns the local smoke ladder for the Rust `knight-bus` binary versus Neo4j, orchestrated by the Python harness in `benchmarks/walk_hopper_v1`.
 
 ## What It Does
 
@@ -9,11 +9,12 @@ The smoke ladder:
 1. installs Neo4j Community with Homebrew if it is missing
 2. creates a repo-local benchmark virtualenv
 3. generates a `1 MB` synthetic graph
-4. builds the WALK snapshot
+4. builds the Knight Bus snapshot
 5. exports Neo4j header/data CSV files
 6. runs `neo4j-admin database import full` into the default `neo4j` database
-7. benchmarks WALK Hopper vs Neo4j on the same query corpus
+7. benchmarks `knight-bus bench-corpus` vs Neo4j on the same query corpus
 8. if green, repeats the process at `50 MB`
+9. renders `Final-Testing-Journal.md` plus an appended truth entry in `docs/journal-tests-202604.md`
 
 ## Files And Paths
 

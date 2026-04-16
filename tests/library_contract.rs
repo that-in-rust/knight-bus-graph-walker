@@ -4,8 +4,8 @@ use std::fs;
 
 use knight_bus::{
     CsvTruthGraphSource, KnightBusError, MmapWalkRuntime, QueryFamily, TruthGraphIndex,
-    TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path, run_snapshot_benchmark,
-    verify_snapshot_against_paths,
+    TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path,
+    run_corpus_benchmark_from_paths, run_snapshot_benchmark, verify_snapshot_against_paths,
 };
 
 #[test]
@@ -160,4 +160,36 @@ fn benchmark_report_records_peak_rss_source_now() {
     let report_json =
         serde_json::to_string(&benchmark_summary.report).expect("report serializes as json");
     assert!(report_json.contains("\"peak_rss_source\""));
+}
+
+#[test]
+fn corpus_benchmark_report_serializes_engine_measurement_now() {
+    let temp_dir = tempfile::TempDir::new().expect("temp dir");
+    let snapshot_dir = temp_dir.path().join("snapshot");
+    let report_path = temp_dir.path().join("corpus-report.json");
+
+    build_snapshot_from_paths(
+        &support::valid_nodes_path(),
+        &support::valid_edges_path(),
+        &snapshot_dir,
+    )
+    .expect("snapshot builds");
+
+    let benchmark_summary = run_corpus_benchmark_from_paths(
+        &snapshot_dir,
+        &support::valid_nodes_path(),
+        &support::valid_edges_path(),
+        &support::valid_corpus_path(),
+        &report_path,
+    )
+    .expect("corpus benchmark works");
+
+    assert_eq!(benchmark_summary.measurement.engine_name, "knight_bus_rust");
+    assert_eq!(benchmark_summary.measurement.status, "ok");
+    assert_eq!(benchmark_summary.query_corpus_size, 3);
+    let report_json = fs::read_to_string(&report_path).expect("report file");
+    assert!(report_json.contains("\"engine_name\": \"knight_bus_rust\""));
+    assert!(report_json.contains("\"operation_count\""));
+    assert!(report_json.contains("\"p99_ms\""));
+    assert!(report_json.contains("\"rss_bytes\""));
 }

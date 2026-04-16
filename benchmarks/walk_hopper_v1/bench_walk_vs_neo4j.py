@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -150,6 +151,69 @@ def open_walk_engine_now(snapshot_dir: Path) -> tuple[Any, float, str]:
     return snapshot_graph, open_start_ms, f"snapshot-v{snapshot_graph.manifest['version']}"
 
 
+def default_knight_bus_bin_now() -> Path:
+    return Path(__file__).resolve().parents[2] / "target" / "release" / "knight-bus"
+
+
+def run_knight_bus_rust_measurement_now(
+    dataset_dir: Path,
+    snapshot_dir: Path,
+    corpus_path: Path,
+    report_dir: Path,
+    knight_bus_bin: Path,
+) -> EngineMeasurement:
+    report_path = report_dir / "knight_bus_rust_report.json"
+    command = [
+        str(knight_bus_bin),
+        "bench-corpus",
+        "--snapshot",
+        str(snapshot_dir),
+        "--nodes-csv",
+        str(dataset_dir / "nodes.csv"),
+        "--edges-csv",
+        str(dataset_dir / "edges.csv"),
+        "--corpus",
+        str(corpus_path),
+        "--report",
+        str(report_path),
+    ]
+    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        reason = (result.stdout + "\n" + result.stderr).strip() or "knight_bus_rust failed"
+        return EngineMeasurement(
+            engine_name="knight_bus_rust",
+            status="failed",
+            reason=reason,
+            open_start_ms=None,
+            operation_count=0,
+            mean_ms=None,
+            p50_ms=None,
+            p95_ms=None,
+            p99_ms=None,
+            rss_bytes=None,
+            version=None,
+            cold_run=False,
+        )
+    try:
+        payload = json.loads(report_path.read_text(encoding="utf-8"))
+        return EngineMeasurement(**payload)
+    except Exception as exc:
+        return EngineMeasurement(
+            engine_name="knight_bus_rust",
+            status="failed",
+            reason=f"failed to load Rust report: {exc}",
+            open_start_ms=None,
+            operation_count=0,
+            mean_ms=None,
+            p50_ms=None,
+            p95_ms=None,
+            p99_ms=None,
+            rss_bytes=None,
+            version=None,
+            cold_run=False,
+        )
+
+
 def open_neo4j_engine_now(
     uri: str,
     user: str,
@@ -214,7 +278,7 @@ def write_report_bundle_now(
     write_json_file_now(report_dir / "report.json", payload)
 
     summary_lines = [
-        "# WALK Hopper vs Neo4j",
+        "# Knight Bus Rust vs Neo4j",
         "",
         f"- dataset raw bytes: {dataset_manifest.get('actual_raw_bytes')}",
         f"- snapshot bytes: {snapshot_manifest.get('snapshot_bytes')}",
@@ -254,35 +318,15 @@ def run_benchmark_now(args: argparse.Namespace) -> dict[str, Any]:
     query_rows = load_query_corpus_now(corpus_path)
     truth_answers = collect_truth_answers_now(dataset_dir, query_rows)
 
-    measurements: list[EngineMeasurement] = []
-
-    walk_graph, walk_open_ms, walk_version = open_walk_engine_now(snapshot_dir)
-    walk_runner = lambda family_name, node_id: query_snapshot_family_now(walk_graph, family_name, node_id)
-    validate_engine_parity_now("walk_hopper", walk_runner, query_rows, truth_answers)
-    walk_metrics = measure_engine_latency_now(
-        engine_name="walk_hopper",
-        query_runner=walk_runner,
-        query_rows=query_rows,
-        warmup_passes=args.warmup_passes,
-        measure_passes=args.measure_passes,
-        rss_limit_bytes=args.rss_limit_bytes,
-    )
-    measurements.append(
-        EngineMeasurement(
-            engine_name="walk_hopper",
-            status=walk_metrics["status"],
-            reason=walk_metrics["reason"],
-            open_start_ms=walk_open_ms,
-            operation_count=walk_metrics["operation_count"],
-            mean_ms=walk_metrics["mean_ms"],
-            p50_ms=walk_metrics["p50_ms"],
-            p95_ms=walk_metrics["p95_ms"],
-            p99_ms=walk_metrics["p99_ms"],
-            rss_bytes=walk_metrics["rss_bytes"],
-            version=walk_version,
-            cold_run=args.cold_run,
+    measurements: list[EngineMeasurement] = [
+        run_knight_bus_rust_measurement_now(
+            dataset_dir=dataset_dir,
+            snapshot_dir=snapshot_dir,
+            corpus_path=corpus_path,
+            report_dir=report_dir,
+            knight_bus_bin=args.knight_bus_bin,
         )
-    )
+    ]
 
     neo4j_measurement: EngineMeasurement
     try:
@@ -358,6 +402,7 @@ def build_arg_parser_now() -> argparse.ArgumentParser:
     parser.add_argument("--neo4j-password", type=str, required=True)
     parser.add_argument("--neo4j-database", type=str, default=None)
     parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument("--knight-bus-bin", type=Path, default=default_knight_bus_bin_now())
     parser.add_argument("--per-family", type=int, default=200)
     parser.add_argument("--warmup-passes", type=int, default=1)
     parser.add_argument("--measure-passes", type=int, default=3)

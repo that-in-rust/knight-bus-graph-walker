@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -30,6 +31,7 @@ from benchmarks.walk_hopper_v1.query_walk_snapshot import (
 
 
 FIXTURE_DIR = Path(__file__).resolve().parents[1] / "fixtures" / "tiny_graph"
+REPO_ROOT = FIXTURE_DIR.parents[3]
 
 
 def materialize_fixture_dataset_now(target_dir: Path) -> Path:
@@ -182,7 +184,7 @@ def test_req_bench_006_export_headers_now(tmp_path: Path) -> None:
     dataset_dir = materialize_fixture_dataset_now(tmp_path)
     export_dir = tmp_path / "neo4j_export"
     manifest = export_neo4j_import_files(dataset_dir, export_dir)
-    with (export_dir / "nodes.neo4j.csv").open("r", encoding="utf-8", newline="") as handle:
+    with (export_dir / "nodes.header.csv").open("r", encoding="utf-8", newline="") as handle:
         assert next(csv.reader(handle)) == [
             "node_id:ID",
             ":LABEL",
@@ -192,10 +194,14 @@ def test_req_bench_006_export_headers_now(tmp_path: Path) -> None:
             "file_path",
             "span",
         ]
-    with (export_dir / "relationships.neo4j.csv").open("r", encoding="utf-8", newline="") as handle:
+    with (export_dir / "relationships.header.csv").open("r", encoding="utf-8", newline="") as handle:
         assert next(csv.reader(handle)) == [":START_ID", ":END_ID", ":TYPE", "edge_type"]
-    assert manifest["nodes_sha256"]
-    assert manifest["relationships_sha256"]
+    assert (export_dir / "nodes.data.csv").exists()
+    assert (export_dir / "relationships.data.csv").exists()
+    assert manifest["nodes_header_sha256"]
+    assert manifest["nodes_data_sha256"]
+    assert manifest["relationships_header_sha256"]
+    assert manifest["relationships_data_sha256"]
 
 
 @pytest.mark.skipif(
@@ -303,3 +309,58 @@ def test_req_bench_009_measurement_reports_failure_now() -> None:
         rss_limit_bytes=1,
     )
     assert degraded_metrics["status"] in {"degraded", "failed"}
+
+
+def test_req_neo4j_001_gitignore_covers_local_runtime_now() -> None:
+    ignore_text = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+    for expected_line in (".venv-bench/", "artifacts/", "reports/", ".env.neo4j.local"):
+        assert expected_line in ignore_text
+
+
+def test_req_neo4j_001_requirements_exists_now() -> None:
+    requirements_path = REPO_ROOT / "benchmarks" / "walk_hopper_v1" / "requirements.txt"
+    requirements_text = requirements_path.read_text(encoding="utf-8")
+    for expected_package in ("numpy==", "psutil==", "neo4j==", "pytest=="):
+        assert expected_package in requirements_text
+
+
+def test_req_neo4j_002_scripts_and_runbook_exist_now() -> None:
+    assert (REPO_ROOT / "scripts" / "install_neo4j_brew.sh").exists()
+    assert (REPO_ROOT / "scripts" / "run_neo4j_smoke_ladder.sh").exists()
+    assert (REPO_ROOT / "docs" / "neo4j-smoke-runbook.md").exists()
+
+
+def test_req_neo4j_007_corpus_sizes_now(tmp_path: Path) -> None:
+    dataset_dir = tmp_path / "generated"
+    generate_sparse_code_graph(
+        target_raw_bytes=1_200_000,
+        seed=17,
+        output_dir=dataset_dir,
+        layer_count=18,
+    )
+    snapshot_dir = tmp_path / "snapshot"
+    build_dual_csr_snapshot(dataset_dir, snapshot_dir)
+    smoke_rows = build_query_corpus_now(snapshot_dir, tmp_path / "smoke_query_corpus.csv", per_family=6)
+    preflight_rows = build_query_corpus_now(snapshot_dir, tmp_path / "preflight_query_corpus.csv", per_family=20)
+    assert len(smoke_rows) == 18
+    assert len(preflight_rows) == 60
+
+
+def test_req_neo4j_009_smoke_runner_stops_after_forced_failure_now(tmp_path: Path) -> None:
+    env = os.environ.copy()
+    env["KNIGHT_BUS_SKIP_NEO4J_INSTALL"] = "1"
+    env["KNIGHT_BUS_FORCE_SMOKE_FAILURE"] = "1"
+    env["KNIGHT_BUS_ARTIFACTS_DIR"] = str(tmp_path / "artifacts")
+    env["KNIGHT_BUS_REPORTS_DIR"] = str(tmp_path / "reports")
+    env["KNIGHT_BUS_ENV_FILE"] = str(tmp_path / ".env.neo4j.local")
+    result = subprocess.run(
+        [str(REPO_ROOT / "scripts" / "run_neo4j_smoke_ladder.sh")],
+        cwd=REPO_ROOT,
+        env=env,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode != 0
+    assert "forced smoke failure" in (result.stdout + result.stderr).lower()
+    assert not (tmp_path / "artifacts" / "neo4j_preflight_50mb").exists()

@@ -17,16 +17,24 @@ def export_neo4j_import_files(dataset_dir: Path, output_dir: Path) -> dict[str, 
     output_dir.mkdir(parents=True, exist_ok=True)
     nodes_path = dataset_dir / "nodes.csv"
     edges_path = dataset_dir / "edges.csv"
-    neo4j_nodes_path = output_dir / "nodes.neo4j.csv"
-    neo4j_edges_path = output_dir / "relationships.neo4j.csv"
+    neo4j_nodes_header_path = output_dir / "nodes.header.csv"
+    neo4j_nodes_data_path = output_dir / "nodes.data.csv"
+    neo4j_edges_header_path = output_dir / "relationships.header.csv"
+    neo4j_edges_data_path = output_dir / "relationships.data.csv"
+
+    with neo4j_nodes_header_path.open("w", encoding="utf-8", newline="") as handle:
+        csv.writer(handle).writerow(
+            ("node_id:ID", ":LABEL", "node_type", "label", "parent_id", "file_path", "span")
+        )
+    with neo4j_edges_header_path.open("w", encoding="utf-8", newline="") as handle:
+        csv.writer(handle).writerow((":START_ID", ":END_ID", ":TYPE", "edge_type"))
 
     node_count = 0
-    with nodes_path.open("r", encoding="utf-8", newline="") as source_handle, neo4j_nodes_path.open(
+    with nodes_path.open("r", encoding="utf-8", newline="") as source_handle, neo4j_nodes_data_path.open(
         "w", encoding="utf-8", newline=""
     ) as target_handle:
         reader = csv.DictReader(source_handle)
         writer = csv.writer(target_handle)
-        writer.writerow(("node_id:ID", ":LABEL", "node_type", "label", "parent_id", "file_path", "span"))
         for row in reader:
             node_count += 1
             writer.writerow(
@@ -42,12 +50,11 @@ def export_neo4j_import_files(dataset_dir: Path, output_dir: Path) -> dict[str, 
             )
 
     edge_count = 0
-    with edges_path.open("r", encoding="utf-8", newline="") as source_handle, neo4j_edges_path.open(
+    with edges_path.open("r", encoding="utf-8", newline="") as source_handle, neo4j_edges_data_path.open(
         "w", encoding="utf-8", newline=""
     ) as target_handle:
         reader = csv.DictReader(source_handle)
         writer = csv.writer(target_handle)
-        writer.writerow((":START_ID", ":END_ID", ":TYPE", "edge_type"))
         for row in reader:
             if row["edge_type"] != EDGE_TYPE_DEPENDS_ON:
                 continue
@@ -57,10 +64,14 @@ def export_neo4j_import_files(dataset_dir: Path, output_dir: Path) -> dict[str, 
     export_manifest = {
         "node_count": node_count,
         "edge_count": edge_count,
-        "nodes_file": neo4j_nodes_path.name,
-        "relationships_file": neo4j_edges_path.name,
-        "nodes_sha256": sha256_file_hex_now(neo4j_nodes_path),
-        "relationships_sha256": sha256_file_hex_now(neo4j_edges_path),
+        "nodes_header_file": neo4j_nodes_header_path.name,
+        "nodes_data_file": neo4j_nodes_data_path.name,
+        "relationships_header_file": neo4j_edges_header_path.name,
+        "relationships_data_file": neo4j_edges_data_path.name,
+        "nodes_header_sha256": sha256_file_hex_now(neo4j_nodes_header_path),
+        "nodes_data_sha256": sha256_file_hex_now(neo4j_nodes_data_path),
+        "relationships_header_sha256": sha256_file_hex_now(neo4j_edges_header_path),
+        "relationships_data_sha256": sha256_file_hex_now(neo4j_edges_data_path),
     }
     write_json_file_now(output_dir / "neo4j_export_manifest.json", export_manifest)
     return export_manifest
@@ -82,4 +93,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

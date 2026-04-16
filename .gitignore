@@ -2,3 +2,7 @@ ref-repo-folder/
 target/
 .DS_Store
 __pycache__/
+.venv-bench/
+artifacts/
+reports/
+.env.neo4j.local

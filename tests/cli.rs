@@ -157,4 +157,6 @@ fn bench_writes_report_now() {
     let report_json = String::from_utf8(report_bytes).expect("utf8 report");
     assert!(report_json.contains("\"snapshot_size_bytes\""));
     assert!(report_json.contains("\"peak_rss_bytes\""));
+    assert!(report_json.contains("\"p50_nanos\""));
+    assert!(report_json.contains("\"p95_nanos\""));
 }

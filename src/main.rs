@@ -142,11 +142,11 @@ fn try_main() -> Result<()> {
             println!("peak_rss_bytes: {}", summary.report.peak_rss_bytes);
             for family_report in summary.report.families {
                 println!(
-                    "{} sample_count={} p50_micros={} p95_micros={}",
+                    "{} sample_count={} p50_nanos={} p95_nanos={}",
                     family_report.family.label(),
                     family_report.sample_count,
-                    family_report.p50_micros,
-                    family_report.p95_micros
+                    family_report.p50_nanos,
+                    family_report.p95_nanos
                 );
             }
             println!("report_file_name: {BENCH_REPORT_FILE_NAME}");

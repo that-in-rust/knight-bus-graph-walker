@@ -42,22 +42,22 @@ impl BenchmarkScenarioRunner for SnapshotBenchmarkRunner {
 
         for family in QueryFamily::ALL {
             let seed_keys = select_benchmark_seeds(runtime, family, self.sample_limit)?;
-            let mut latencies_micros = Vec::with_capacity(seed_keys.len());
+            let mut latencies_nanos = Vec::with_capacity(seed_keys.len());
 
             for seed_key in &seed_keys {
                 let started_at = Instant::now();
                 let _ = runtime.query_keys_for_family(seed_key, family)?;
-                let elapsed = started_at.elapsed().as_micros() as u64;
-                latencies_micros.push(elapsed);
+                let elapsed = u64::try_from(started_at.elapsed().as_nanos()).unwrap_or(u64::MAX);
+                latencies_nanos.push(elapsed);
                 peak_rss_bytes =
                     peak_rss_bytes.max(current_process_rss_bytes(&mut system, process_id));
             }
 
             family_reports.push(BenchmarkFamilyReport {
                 family,
-                sample_count: latencies_micros.len(),
-                p50_micros: percentile_micros(&latencies_micros, 50),
-                p95_micros: percentile_micros(&latencies_micros, 95),
+                sample_count: latencies_nanos.len(),
+                p50_nanos: percentile_nanos(&latencies_nanos, 50),
+                p95_nanos: percentile_nanos(&latencies_nanos, 95),
             });
         }
 
@@ -89,12 +89,12 @@ fn select_benchmark_seeds(
     Ok(seed_keys)
 }
 
-fn percentile_micros(latencies_micros: &[u64], percentile: usize) -> u64 {
-    if latencies_micros.is_empty() {
+fn percentile_nanos(latencies_nanos: &[u64], percentile: usize) -> u64 {
+    if latencies_nanos.is_empty() {
         return 0;
     }
 
-    let mut sorted_latencies = latencies_micros.to_vec();
+    let mut sorted_latencies = latencies_nanos.to_vec();
     sorted_latencies.sort_unstable();
 
     let index = ((sorted_latencies.len() - 1) * percentile) / 100;

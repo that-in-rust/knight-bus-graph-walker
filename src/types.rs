@@ -312,8 +312,8 @@ pub struct SnapshotBuildSummary {
 pub struct BenchmarkFamilyReport {
     pub family: QueryFamily,
     pub sample_count: usize,
-    pub p50_micros: u64,
-    pub p95_micros: u64,
+    pub p50_nanos: u64,
+    pub p95_nanos: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]

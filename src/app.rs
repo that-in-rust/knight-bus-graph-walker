@@ -3,14 +3,13 @@ use std::{fs, path::Path, time::Instant};
 use crate::{
     bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpusBenchmarkRunner},
     error::KnightBusError,
-    graph::normalize_truth_graph_data,
-    parity::run_parity_verification,
+    low_ram::{build_snapshot_from_paths_low_ram, verify_snapshot_against_paths_low_ram},
     runtime::{MmapWalkRuntime, WalkQueryRuntime},
-    snapshot::{FilesystemSnapshotWriter, SnapshotArtifactWriter},
     truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource},
     types::{
         BenchmarkRunSummary, CorpusBenchmarkRunSummary, HopCount, NodeKey, QueryResult,
-        SnapshotBuildSummary, VerificationSummary, WalkDirection,
+        SnapshotBuildOptions, SnapshotBuildSummary, SnapshotVerifyOptions, VerificationSummary,
+        WalkDirection,
     },
 };
 
@@ -21,10 +20,21 @@ pub fn build_snapshot_from_paths(
     edges_path: &Path,
     output_dir: &Path,
 ) -> Result<SnapshotBuildSummary, KnightBusError> {
-    let truth_source = CsvTruthGraphSource::new(nodes_path, edges_path);
-    let truth_graph = truth_source.load_truth_graph_rows()?;
-    let normalized_graph = normalize_truth_graph_data(&truth_graph)?;
-    FilesystemSnapshotWriter.write_snapshot_artifacts(&normalized_graph, output_dir)
+    build_snapshot_from_paths_with_options(
+        nodes_path,
+        edges_path,
+        output_dir,
+        &SnapshotBuildOptions::default(),
+    )
+}
+
+pub fn build_snapshot_from_paths_with_options(
+    nodes_path: &Path,
+    edges_path: &Path,
+    output_dir: &Path,
+    options: &SnapshotBuildOptions,
+) -> Result<SnapshotBuildSummary, KnightBusError> {
+    build_snapshot_from_paths_low_ram(nodes_path, edges_path, output_dir, options)
 }
 
 pub fn verify_snapshot_against_paths(
@@ -32,11 +42,21 @@ pub fn verify_snapshot_against_paths(
     nodes_path: &Path,
     edges_path: &Path,
 ) -> Result<VerificationSummary, KnightBusError> {
-    let truth_source = CsvTruthGraphSource::new(nodes_path, edges_path);
-    let truth_graph = truth_source.load_truth_graph_rows()?;
-    let truth_index = TruthGraphIndex::from_truth_graph_rows(&truth_graph);
-    let runtime = MmapWalkRuntime::open(snapshot_dir)?;
-    run_parity_verification(&truth_index, &runtime)
+    verify_snapshot_against_paths_with_options(
+        snapshot_dir,
+        nodes_path,
+        edges_path,
+        &SnapshotVerifyOptions::default(),
+    )
+}
+
+pub fn verify_snapshot_against_paths_with_options(
+    snapshot_dir: &Path,
+    nodes_path: &Path,
+    edges_path: &Path,
+    options: &SnapshotVerifyOptions,
+) -> Result<VerificationSummary, KnightBusError> {
+    verify_snapshot_against_paths_low_ram(snapshot_dir, nodes_path, edges_path, options)
 }
 
 pub fn query_snapshot_from_path(

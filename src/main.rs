@@ -3,9 +3,10 @@ use std::{path::PathBuf, process::ExitCode};
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use knight_bus::{
-    BENCH_REPORT_FILE_NAME, HopCount, WalkDirection, build_snapshot_from_paths,
+    BENCH_REPORT_FILE_NAME, BuildMemoryBudget, HopCount, SnapshotBuildOptions,
+    SnapshotVerifyOptions, WalkDirection, build_snapshot_from_paths_with_options,
     query_snapshot_from_path, run_corpus_benchmark_from_paths, run_snapshot_benchmark,
-    verify_snapshot_against_paths,
+    verify_snapshot_against_paths_with_options,
 };
 
 #[derive(Parser, Debug)]
@@ -25,6 +26,10 @@ enum Commands {
         edges_csv: PathBuf,
         #[arg(long)]
         output: PathBuf,
+        #[arg(long)]
+        memory_budget_mb: Option<u64>,
+        #[arg(long)]
+        scratch_dir: Option<PathBuf>,
     },
     Verify {
         #[arg(long)]
@@ -33,6 +38,10 @@ enum Commands {
         nodes_csv: PathBuf,
         #[arg(long)]
         edges_csv: PathBuf,
+        #[arg(long)]
+        memory_budget_mb: Option<u64>,
+        #[arg(long)]
+        scratch_dir: Option<PathBuf>,
     },
     Query {
         #[arg(long)]
@@ -89,28 +98,65 @@ fn try_main() -> Result<()> {
             nodes_csv,
             edges_csv,
             output,
+            memory_budget_mb,
+            scratch_dir,
         } => {
-            let summary = build_snapshot_from_paths(&nodes_csv, &edges_csv, &output)
-                .with_context(|| format!("failed to build snapshot at {}", output.display()))?;
+            let build_options = build_snapshot_options_now(memory_budget_mb, scratch_dir)?;
+            let summary = build_snapshot_from_paths_with_options(
+                &nodes_csv,
+                &edges_csv,
+                &output,
+                &build_options,
+            )
+            .with_context(|| format!("failed to build snapshot at {}", output.display()))?;
             println!("snapshot: {}", summary.output_dir.display());
             println!("nodes: {}", summary.node_count);
             println!("edges: {}", summary.edge_count);
             println!("snapshot_size_bytes: {}", summary.snapshot_size_bytes);
+            println!("peak_rss_bytes: {}", summary.peak_rss_bytes);
+            println!("peak_rss_source: {}", summary.peak_rss_source.label());
+            for phase_peak in summary.phase_peaks {
+                println!(
+                    "phase_peak {} {}",
+                    phase_peak.phase.label(),
+                    phase_peak.peak_rss_bytes
+                );
+            }
         }
         Commands::Verify {
             snapshot,
             nodes_csv,
             edges_csv,
+            memory_budget_mb,
+            scratch_dir,
         } => {
-            let summary = verify_snapshot_against_paths(&snapshot, &nodes_csv, &edges_csv)
-                .with_context(|| format!("failed to verify snapshot at {}", snapshot.display()))?;
+            let verify_options = build_verify_options_now(memory_budget_mb, scratch_dir)?;
+            let summary = verify_snapshot_against_paths_with_options(
+                &snapshot,
+                &nodes_csv,
+                &edges_csv,
+                &verify_options,
+            )
+            .with_context(|| format!("failed to verify snapshot at {}", snapshot.display()))?;
             println!("verification: ok");
             println!("checked_queries: {}", summary.total_checked_queries);
+            println!("checked_nodes: {}", summary.checked_nodes);
+            println!("checked_forward_edges: {}", summary.checked_forward_edges);
+            println!("checked_reverse_edges: {}", summary.checked_reverse_edges);
+            println!("peak_rss_bytes: {}", summary.peak_rss_bytes);
+            println!("peak_rss_source: {}", summary.peak_rss_source.label());
             for family_summary in summary.families {
                 println!(
                     "{}: {}",
                     family_summary.family.label(),
                     family_summary.checked_queries
+                );
+            }
+            for phase_peak in summary.phase_peaks {
+                println!(
+                    "phase_peak {} {}",
+                    phase_peak.phase.label(),
+                    phase_peak.peak_rss_bytes
                 );
             }
         }
@@ -217,4 +263,31 @@ fn parse_walk_direction(value: &str) -> Result<WalkDirection, String> {
 
 fn parse_hop_count(value: &str) -> Result<HopCount, String> {
     value.parse::<HopCount>().map_err(|error| error.to_string())
+}
+
+fn build_snapshot_options_now(
+    memory_budget_mb: Option<u64>,
+    scratch_dir: Option<PathBuf>,
+) -> Result<SnapshotBuildOptions> {
+    Ok(SnapshotBuildOptions {
+        memory_budget: parse_memory_budget_now(memory_budget_mb)?,
+        scratch_dir,
+    })
+}
+
+fn build_verify_options_now(
+    memory_budget_mb: Option<u64>,
+    scratch_dir: Option<PathBuf>,
+) -> Result<SnapshotVerifyOptions> {
+    Ok(SnapshotVerifyOptions {
+        memory_budget: parse_memory_budget_now(memory_budget_mb)?,
+        scratch_dir,
+    })
+}
+
+fn parse_memory_budget_now(memory_budget_mb: Option<u64>) -> Result<Option<BuildMemoryBudget>> {
+    memory_budget_mb
+        .map(BuildMemoryBudget::from_megabytes)
+        .transpose()
+        .context("failed to parse memory budget")
 }

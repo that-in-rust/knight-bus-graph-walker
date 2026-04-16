@@ -6,7 +6,9 @@ use std::{
 
 use crate::{
     error::KnightBusError,
-    types::{NodeRecord, NormalizedGraphData, SnapshotBuildSummary, SnapshotManifest},
+    types::{
+        NodeRecord, NormalizedGraphData, PeakRssSource, SnapshotBuildSummary, SnapshotManifest,
+    },
 };
 
 pub const MANIFEST_FILE_NAME: &str = "manifest.json";
@@ -68,6 +70,9 @@ impl SnapshotArtifactWriter for FilesystemSnapshotWriter {
             node_count: graph_data.node_count(),
             edge_count: graph_data.edge_count(),
             snapshot_size_bytes,
+            peak_rss_bytes: 0,
+            peak_rss_source: PeakRssSource::SampledCurrentRssBytes,
+            phase_peaks: Vec::new(),
         })
     }
 }

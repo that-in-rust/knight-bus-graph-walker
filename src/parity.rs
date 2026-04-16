@@ -2,7 +2,7 @@ use crate::{
     error::KnightBusError,
     runtime::{MmapWalkRuntime, WalkQueryRuntime},
     truth::TruthGraphIndex,
-    types::{CorpusQueryRow, VerificationFamilySummary, VerificationSummary},
+    types::{CorpusQueryRow, PeakRssSource, VerificationFamilySummary, VerificationSummary},
 };
 
 pub fn run_parity_verification(
@@ -44,6 +44,12 @@ pub fn run_parity_verification(
     Ok(VerificationSummary {
         total_checked_queries,
         families: family_summaries,
+        checked_nodes: truth_index.all_node_keys().len(),
+        checked_forward_edges: 0,
+        checked_reverse_edges: 0,
+        peak_rss_bytes: 0,
+        peak_rss_source: PeakRssSource::SampledCurrentRssBytes,
+        phase_peaks: Vec::new(),
     })
 }
 

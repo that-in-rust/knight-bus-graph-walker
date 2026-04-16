@@ -3,8 +3,8 @@ mod support;
 use std::fs;
 
 use knight_bus::{
-    CsvTruthGraphSource, KnightBusError, MmapWalkRuntime, QueryFamily, TruthGraphIndex,
-    TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path,
+    CsvTruthGraphSource, KnightBusError, MmapWalkRuntime, QueryFamily, SnapshotPhase,
+    TruthGraphIndex, TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path,
     run_corpus_benchmark_from_paths, run_snapshot_benchmark, verify_snapshot_against_paths,
 };
 
@@ -160,6 +160,55 @@ fn benchmark_report_records_peak_rss_source_now() {
     let report_json =
         serde_json::to_string(&benchmark_summary.report).expect("report serializes as json");
     assert!(report_json.contains("\"peak_rss_source\""));
+}
+
+#[test]
+fn low_ram_build_and_verify_record_phase_peaks_now() {
+    let temp_dir = tempfile::TempDir::new().expect("temp dir");
+    let snapshot_dir = temp_dir.path().join("snapshot");
+
+    let build_summary = build_snapshot_from_paths(
+        &support::valid_nodes_path(),
+        &support::valid_edges_path(),
+        &snapshot_dir,
+    )
+    .expect("snapshot builds");
+    assert!(build_summary.peak_rss_bytes > 0);
+    assert!(
+        build_summary
+            .phase_peaks
+            .iter()
+            .any(|phase_peak| phase_peak.phase == SnapshotPhase::BuildNodeRuns)
+    );
+    assert!(
+        build_summary
+            .phase_peaks
+            .iter()
+            .any(|phase_peak| phase_peak.phase == SnapshotPhase::EmitForwardCsr)
+    );
+
+    let verification_summary = verify_snapshot_against_paths(
+        &snapshot_dir,
+        &support::valid_nodes_path(),
+        &support::valid_edges_path(),
+    )
+    .expect("verification works");
+    assert!(verification_summary.checked_nodes > 0);
+    assert!(verification_summary.checked_forward_edges > 0);
+    assert!(verification_summary.checked_reverse_edges > 0);
+    assert!(verification_summary.peak_rss_bytes > 0);
+    assert!(
+        verification_summary
+            .phase_peaks
+            .iter()
+            .any(|phase_peak| phase_peak.phase == SnapshotPhase::VerifyForwardCsr)
+    );
+    assert!(
+        verification_summary
+            .phase_peaks
+            .iter()
+            .any(|phase_peak| phase_peak.phase == SnapshotPhase::QuerySmokeChecks)
+    );
 }
 
 #[test]

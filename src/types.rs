@@ -353,6 +353,12 @@ pub struct VerificationFamilySummary {
 pub struct VerificationSummary {
     pub total_checked_queries: usize,
     pub families: Vec<VerificationFamilySummary>,
+    pub checked_nodes: usize,
+    pub checked_forward_edges: u64,
+    pub checked_reverse_edges: u64,
+    pub peak_rss_bytes: u64,
+    pub peak_rss_source: PeakRssSource,
+    pub phase_peaks: Vec<PhasePeakReport>,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
@@ -361,6 +367,125 @@ pub struct SnapshotBuildSummary {
     pub node_count: u32,
     pub edge_count: u64,
     pub snapshot_size_bytes: u64,
+    pub peak_rss_bytes: u64,
+    pub peak_rss_source: PeakRssSource,
+    pub phase_peaks: Vec<PhasePeakReport>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SnapshotPhase {
+    BuildNodeRuns,
+    WriteNodeCatalog,
+    BuildEdgeRuns,
+    ResolveFromKeys,
+    ResolveToKeys,
+    EmitForwardCsr,
+    EmitReverseCsr,
+    ValidateOpenPath,
+    VerifyNodeCatalog,
+    VerifyForwardCsr,
+    VerifyReverseCsr,
+    QuerySmokeChecks,
+}
+
+impl SnapshotPhase {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::BuildNodeRuns => "build_node_runs",
+            Self::WriteNodeCatalog => "write_node_catalog",
+            Self::BuildEdgeRuns => "build_edge_runs",
+            Self::ResolveFromKeys => "resolve_from_keys",
+            Self::ResolveToKeys => "resolve_to_keys",
+            Self::EmitForwardCsr => "emit_forward_csr",
+            Self::EmitReverseCsr => "emit_reverse_csr",
+            Self::ValidateOpenPath => "validate_open_path",
+            Self::VerifyNodeCatalog => "verify_node_catalog",
+            Self::VerifyForwardCsr => "verify_forward_csr",
+            Self::VerifyReverseCsr => "verify_reverse_csr",
+            Self::QuerySmokeChecks => "query_smoke_checks",
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct PhasePeakReport {
+    pub phase: SnapshotPhase,
+    pub peak_rss_bytes: u64,
+    pub peak_rss_source: PeakRssSource,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct BuildMemoryBudget {
+    bytes: usize,
+}
+
+impl BuildMemoryBudget {
+    const MIN_BUFFER_BYTES: usize = 1 << 20;
+    const DEFAULT_BYTES: usize = 64 << 20;
+
+    pub fn from_megabytes(megabytes: u64) -> Result<Self, KnightBusError> {
+        let bytes = usize::try_from(megabytes.saturating_mul(1_048_576)).map_err(|_| {
+            KnightBusError::InvalidMemoryBudget {
+                value: megabytes,
+                detail: "memory budget exceeded usize capacity".to_owned(),
+            }
+        })?;
+        Self::from_bytes(bytes)
+    }
+
+    pub fn from_bytes(bytes: usize) -> Result<Self, KnightBusError> {
+        if bytes < Self::MIN_BUFFER_BYTES {
+            return Err(KnightBusError::InvalidMemoryBudget {
+                value: bytes as u64,
+                detail: format!(
+                    "memory budget must be at least {} bytes",
+                    Self::MIN_BUFFER_BYTES
+                ),
+            });
+        }
+        Ok(Self { bytes })
+    }
+
+    pub fn bytes(self) -> usize {
+        self.bytes
+    }
+
+    pub fn spill_buffer_bytes(self) -> usize {
+        (self.bytes / 4).max(Self::MIN_BUFFER_BYTES)
+    }
+}
+
+impl Default for BuildMemoryBudget {
+    fn default() -> Self {
+        Self {
+            bytes: Self::DEFAULT_BYTES,
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Default)]
+pub struct SnapshotBuildOptions {
+    pub memory_budget: Option<BuildMemoryBudget>,
+    pub scratch_dir: Option<PathBuf>,
+}
+
+impl SnapshotBuildOptions {
+    pub fn resolved_budget(&self) -> BuildMemoryBudget {
+        self.memory_budget.unwrap_or_default()
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Default)]
+pub struct SnapshotVerifyOptions {
+    pub memory_budget: Option<BuildMemoryBudget>,
+    pub scratch_dir: Option<PathBuf>,
+}
+
+impl SnapshotVerifyOptions {
+    pub fn resolved_budget(&self) -> BuildMemoryBudget {
+        self.memory_budget.unwrap_or_default()
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]

@@ -64,6 +64,8 @@ pub enum KnightBusError {
         "invalid corpus family `{value}`; expected `forward_one`, `reverse_one`, or `reverse_two`"
     )]
     InvalidCorpusFamily { value: String },
+    #[error("invalid memory budget `{value}`: {detail}")]
+    InvalidMemoryBudget { value: u64, detail: String },
     #[error("unknown entity `{entity}`")]
     UnknownEntity { entity: String },
     #[error("node count {node_count} exceeds u32 capacity")]
@@ -89,6 +91,8 @@ pub enum KnightBusError {
         expected: Vec<String>,
         actual: Vec<String>,
     },
+    #[error("structural verification mismatch: {detail}")]
+    StructuralMismatch { detail: String },
 }
 
 impl KnightBusError {

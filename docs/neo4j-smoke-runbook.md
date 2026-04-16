@@ -14,7 +14,7 @@ The smoke ladder:
 6. runs `neo4j-admin database import full` into the default `neo4j` database
 7. benchmarks `knight-bus bench-corpus` vs Neo4j on the same query corpus
 8. if green, repeats the process at `50 MB`
-9. renders `Final-Testing-Journal.md` plus an appended truth entry in `docs/journal-tests-202604.md`
+9. renders `v001-learnings/Final-Testing-Journal.md` plus an appended truth entry in `v001-learnings/journal-tests-202604.md`
 
 ## Files And Paths
 

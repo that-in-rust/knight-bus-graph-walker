@@ -56,8 +56,8 @@ We also changed the smoke ladder so it now:
 - keeps a separate Python-format snapshot only to generate the old query corpus format
 - imports the same CSV truth into Neo4j
 - benchmarks both engines on the same corpus
-- writes a root-level `Final-Testing-Journal.md`
-- appends the same facts into `docs/journal-tests-202604.md`
+- writes `v001-learnings/Final-Testing-Journal.md`
+- appends the same facts into `v001-learnings/journal-tests-202604.md`
 
 That middle trick is important.
 

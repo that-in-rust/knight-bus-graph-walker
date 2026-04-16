@@ -16,7 +16,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RUN_ROOT = Path(tempfile.gettempdir()) / "knight-bus-three-tier-202604"
-JOURNAL_PATH = REPO_ROOT / "docs" / "journal-tests-202604.md"
+JOURNAL_PATH = REPO_ROOT / "v001-learnings" / "journal-tests-202604.md"
 GENERATOR_PATH = REPO_ROOT / "benchmarks" / "walk_hopper_v1" / "generate_code_sparse_data.py"
 BINARY_PATH = REPO_ROOT / "target" / "release" / "knight-bus"
 

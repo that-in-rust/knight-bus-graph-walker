@@ -241,8 +241,8 @@ def main() -> None:
     repo_root = args.repo_root.resolve()
     reports_dir = args.reports_dir.resolve()
 
-    final_journal_path = repo_root / "Final-Testing-Journal.md"
-    truth_journal_path = repo_root / "docs" / "journal-tests-202604.md"
+    final_journal_path = repo_root / "v001-learnings" / "Final-Testing-Journal.md"
+    truth_journal_path = repo_root / "v001-learnings" / "journal-tests-202604.md"
 
     final_journal_path.write_text(
         build_final_journal_now(repo_root, reports_dir) + "\n",

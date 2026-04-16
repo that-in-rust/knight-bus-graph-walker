@@ -1,1 +1,4 @@
 ref-repo-folder/
+target/
+.DS_Store
+__pycache__/

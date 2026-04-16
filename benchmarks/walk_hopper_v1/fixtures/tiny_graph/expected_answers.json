@@ -1,0 +1,30 @@
+{
+  "forward_one|fn:node_000000000000": [
+    "fn:node_000000000002",
+    "fn:node_000000000003"
+  ],
+  "forward_one|fn:node_000000000002": [
+    "fn:node_000000000004",
+    "fn:node_000000000005"
+  ],
+  "reverse_one|fn:node_000000000005": [
+    "fn:node_000000000002",
+    "fn:node_000000000003"
+  ],
+  "reverse_one|fn:node_000000000006": [
+    "fn:node_000000000004",
+    "fn:node_000000000005"
+  ],
+  "reverse_two|fn:node_000000000005": [
+    "fn:node_000000000000",
+    "fn:node_000000000001",
+    "fn:node_000000000002",
+    "fn:node_000000000003"
+  ],
+  "reverse_two|fn:node_000000000006": [
+    "fn:node_000000000002",
+    "fn:node_000000000003",
+    "fn:node_000000000004",
+    "fn:node_000000000005"
+  ]
+}

@@ -1,0 +1,8 @@
+family_name,node_id,hops,direction,degree_bucket
+forward_one,fn:node_000000000000,1,forward,high
+forward_one,fn:node_000000000002,1,forward,medium
+reverse_one,fn:node_000000000005,1,reverse,medium
+reverse_one,fn:node_000000000006,1,reverse,high
+reverse_two,fn:node_000000000005,2,reverse,medium
+reverse_two,fn:node_000000000006,2,reverse,high
+

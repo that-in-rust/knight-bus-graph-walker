@@ -1,0 +1,10 @@
+from_id,edge_type,to_id
+fn:node_000000000000,depends_on,fn:node_000000000002
+fn:node_000000000000,depends_on,fn:node_000000000003
+fn:node_000000000001,depends_on,fn:node_000000000003
+fn:node_000000000002,depends_on,fn:node_000000000004
+fn:node_000000000002,depends_on,fn:node_000000000005
+fn:node_000000000003,depends_on,fn:node_000000000005
+fn:node_000000000004,depends_on,fn:node_000000000006
+fn:node_000000000005,depends_on,fn:node_000000000006
+

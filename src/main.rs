@@ -12,6 +12,7 @@ use knight_bus::{
 #[derive(Parser, Debug)]
 #[command(name = "knight-bus")]
 #[command(about = "CSV-first graph snapshot builder and walker")]
+#[command(version)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,

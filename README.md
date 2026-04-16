@@ -16,6 +16,24 @@ Knight Bus Rust is dramatically faster on walk latency across all three datasets
 
 The main honesty point in `v002` is that runtime RSS is no longer mixed together with CSV truth loading and parity machinery.
 
+## Key Insights
+
+Answer:
+
+- Under the corrected `v002` runtime-only benchmark contract, Knight Bus Rust uses less runtime RAM than Neo4j on all three datasets and remains dramatically faster on traversal latency.
+
+Why this matters:
+
+- The memory story now measures the walker itself, not the old mixed process that also carried CSV truth loading and parity state.
+- The result is not just "Rust is fast." The result is that the mmap + dual-CSR walker stays materially lighter at runtime while still answering the same fixed corpus correctly.
+
+Evidence:
+
+- `1 MB`: Knight Bus runtime RSS is `78.9x` lower than Neo4j, and mean traversal latency is `833.6x` faster.
+- `50 MB`: Knight Bus runtime RSS is `42.5x` lower than Neo4j, and mean traversal latency is `6113.8x` faster.
+- `2 GB`: Knight Bus runtime RSS is `4.5x` lower than Neo4j, and mean traversal latency is `127498.8x` faster.
+- The one important counterpoint is startup: Neo4j still opens faster on the `2 GB` run, so Knight Bus wins the walk path much more strongly than the cold-open path.
+
 ## v002 Runtime Comparison
 
 | Dataset | Query corpus | Rust status | Neo4j status | Rust open ms | Neo4j open ms | Rust p50 ms | Neo4j p50 ms | Rust p95 ms | Neo4j p95 ms | Rust p99 ms | Neo4j p99 ms | Rust mean ms | Neo4j mean ms | Rust RSS bytes | Neo4j RSS bytes | Neo4j import ms |

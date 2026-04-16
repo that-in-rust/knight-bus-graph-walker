@@ -1,3 +1,5 @@
+![What is the main problem](docs/assets/knight-bus-main-problem.jpg)
+
 # Knight Bus Graph Walker v002
 
 `v002` is the current benchmark record for Knight Bus Graph Walker.
@@ -40,7 +42,7 @@ Evidence:
 ### Latency
 
 | Dataset | Query corpus | Rust status | Neo4j status | Rust open ms | Neo4j open ms | Rust p50 ms | Neo4j p50 ms | Rust p95 ms | Neo4j p95 ms | Rust p99 ms | Neo4j p99 ms | Rust mean ms | Neo4j mean ms |
-| --- | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| --- | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 MB | 18 | ok | ok | 0.258083 | 37.685375 | 0.00175 | 2.974563 | 0.018477 | 10.504973 | 0.02555 | 12.611896 | 0.005261 | 4.385152 |
 | 50 MB | 60 | ok | ok | 4.32775 | 61.926542 | 0.002125 | 37.208291 | 0.020296 | 43.710169 | 0.0363 | 52.235973 | 0.006249 | 38.203163 |
 | 2 GB | 60 | ok | ok | 189.978958 | 90.446458 | 0.004458 | 1096.492583 | 0.028146 | 1382.781209 | 0.044948 | 1514.533206 | 0.008815 | 1123.882205 |

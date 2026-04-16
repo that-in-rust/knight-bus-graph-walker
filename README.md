@@ -59,11 +59,11 @@ Table 2
 
 ### RAM
 
-| Dataset | Rust RAM needed while running (bytes) | Neo4j RAM needed while running (bytes) | Neo4j import ms |
-| --- | ---: | ---: | ---: |
-| 1 MB | 6668288 | 525926400 | 3063.740125 |
-| 50 MB | 14499840 | 616054784 | 5887.129583 |
-| 2 GB | 234340352 | 1065615360 | 42080.808125 |
+| Dataset | Rust RAM needed while running (bytes) | Neo4j RAM needed while running (bytes) |
+| --- | ---: | ---: |
+| 1 MB | 6668288 | 525926400 |
+| 50 MB | 14499840 | 616054784 |
+| 2 GB | 234340352 | 1065615360 |
 
 ## Knight Bus Phase Costs
 

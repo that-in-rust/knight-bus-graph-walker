@@ -140,6 +140,10 @@ fn try_main() -> Result<()> {
                 summary.report.snapshot_size_bytes
             );
             println!("peak_rss_bytes: {}", summary.report.peak_rss_bytes);
+            println!(
+                "peak_rss_source: {}",
+                summary.report.peak_rss_source.label()
+            );
             for family_report in summary.report.families {
                 println!(
                     "{} sample_count={} p50_nanos={} p95_nanos={}",

@@ -105,3 +105,56 @@ OS-level sanity check from `/usr/bin/time -l`:
 
 The remaining known issue from this pass is the macOS RSS reporting path, not the graph walk
 correctness or nanosecond hop timing.
+
+---
+
+## 2026-04-16 14:45:02 IST — Three-Tier Dataset Validation
+
+### Runner Defaults
+
+- generator seed: `7`
+- generator layer count: `64`
+- generator degree palette: `6,8,10,12,14`
+- preflight verify timeout: `300s`
+- run root: `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604`
+
+### Result Table
+
+| tier | source | raw_csv_bytes | nodes | edges | snapshot_bytes | build_s | verify_status | checked_queries | forward_one ns p50/p95 | backward_one ns p50/p95 | forward_two ns p50/p95 | backward_two ns p50/p95 | peak_rss_bytes | peak_rss_source | verdict |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| tiny_checked_in_toy | `benchmarks/walk_hopper_v1/fixtures/tiny_graph` | 1052 | 8 | 9 | 919 | 0.641 | ok | 22 | 625/791 | 583/667 | 750/1000 | 792/958 | 6963200 | `getrusage_self` | correctness only, latency not representative |
+| real_smoke_dataset | `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604/real_smoke_dataset/dataset` | 1142922 | 2085 | 18963 | 268934 | 0.020 | ok | 8178 | 1666/2708 | 625/1250 | 14334/20709 | 959/2875 | 7454720 | `getrusage_self` | representative smoke tier |
+| planned_preflight_dataset | `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604/planned_preflight_dataset/dataset` | 55976085 | 102290 | 928620 | 13157673 | 0.948 | ok | 400920 | 1917/2792 | 750/1625 | 15958/24625 | 708/1125 | 28721152 | `getrusage_self` | preflight tier |
+
+### Notes
+
+- The smoke and preflight tiers use raw CSV size as the canonical target. The logged node and edge counts are the actual measured outputs of the deterministic generator.
+- The tiny checked-in toy remains a correctness-only tier.
+- `peak_rss_bytes` is now logged together with `peak_rss_source` so the measurement provenance is explicit.
+
+---
+
+## 2026-04-16 14:45:44 IST — Three-Tier Dataset Validation
+
+### Runner Defaults
+
+- generator seed: `7`
+- generator layer count: `64`
+- generator degree palette: `6,8,10,12,14`
+- preflight verify timeout: `300s`
+- run root: `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604`
+
+### Result Table
+
+| tier | source | raw_csv_bytes | nodes | edges | snapshot_bytes | build_s | verify_status | checked_queries | forward_one ns p50/p95 | backward_one ns p50/p95 | forward_two ns p50/p95 | backward_two ns p50/p95 | peak_rss_bytes | peak_rss_source | verdict |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| tiny_checked_in_toy | `benchmarks/walk_hopper_v1/fixtures/tiny_graph` | 1052 | 7 | 8 | 919 | 0.197 | ok | 22 | 917/1083 | 875/916 | 1167/1334 | 1000/1416 | 6799360 | `getrusage_self` | correctness only, latency not representative |
+| real_smoke_dataset | `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604/real_smoke_dataset/dataset` | 1142922 | 2085 | 18963 | 268934 | 0.059 | ok | 8178 | 3834/21209 | 958/1750 | 14958/31791 | 917/3875 | 7520256 | `getrusage_self` | representative smoke tier |
+| planned_preflight_dataset | `/var/folders/9g/583rs5gx46932lgqrh6_wq600000gn/T/knight-bus-three-tier-202604/planned_preflight_dataset/dataset` | 55976085 | 102290 | 928620 | 13157673 | 0.944 | ok | 400920 | 1750/2458 | 667/1000 | 13250/20292 | 708/1000 | 21725184 | `getrusage_self` | preflight tier |
+
+### Notes
+
+- The smoke and preflight tiers use raw CSV size as the canonical target. The logged node and edge counts are the actual measured outputs of the deterministic generator.
+- The tiny checked-in toy remains a correctness-only tier.
+- `peak_rss_bytes` is now logged together with `peak_rss_source` so the measurement provenance is explicit.
+- This corrected entry supersedes the `2026-04-16 14:45:02 IST` ladder run for count accuracy; that earlier run had a tiny-tier `+1` row-count bug from trailing blank-line handling.

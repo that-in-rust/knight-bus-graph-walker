@@ -316,11 +316,28 @@ pub struct BenchmarkFamilyReport {
     pub p95_nanos: u64,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum PeakRssSource {
+    GetrusageSelf,
+    SampledCurrentRssBytes,
+}
+
+impl PeakRssSource {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::GetrusageSelf => "getrusage_self",
+            Self::SampledCurrentRssBytes => "sampled_current_rss_bytes",
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct BenchmarkReport {
     pub snapshot_path: PathBuf,
     pub snapshot_size_bytes: u64,
     pub peak_rss_bytes: u64,
+    pub peak_rss_source: PeakRssSource,
     pub families: Vec<BenchmarkFamilyReport>,
 }
 

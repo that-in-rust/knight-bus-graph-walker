@@ -24,7 +24,7 @@ pub use snapshot::{FilesystemSnapshotWriter, SnapshotArtifactWriter, compute_sna
 pub use truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource};
 pub use types::{
     BenchmarkFamilyReport, BenchmarkReport, BenchmarkRunSummary, CsvEdgeRow, CsvNodeRow,
-    DenseNodeId, HopCount, NodeKey, NodeRecord, NormalizedGraphData, QueryFamily, QueryResult,
-    SnapshotBuildSummary, SnapshotManifest, ValidatedTruthGraph, VerificationFamilySummary,
-    VerificationSummary, WalkDirection,
+    DenseNodeId, HopCount, NodeKey, NodeRecord, NormalizedGraphData, PeakRssSource, QueryFamily,
+    QueryResult, SnapshotBuildSummary, SnapshotManifest, ValidatedTruthGraph,
+    VerificationFamilySummary, VerificationSummary, WalkDirection,
 };

@@ -150,13 +150,15 @@ fn bench_writes_report_now() {
         ])
         .assert()
         .success()
-        .stdout(predicate::str::contains("peak_rss_bytes"));
+        .stdout(predicate::str::contains("peak_rss_bytes"))
+        .stdout(predicate::str::contains("peak_rss_source"));
 
     let report_path = report_dir.join("bench-report.json");
     let report_bytes = fs::read(&report_path).expect("report exists");
     let report_json = String::from_utf8(report_bytes).expect("utf8 report");
     assert!(report_json.contains("\"snapshot_size_bytes\""));
     assert!(report_json.contains("\"peak_rss_bytes\""));
+    assert!(report_json.contains("\"peak_rss_source\""));
     assert!(report_json.contains("\"p50_nanos\""));
     assert!(report_json.contains("\"p95_nanos\""));
 }

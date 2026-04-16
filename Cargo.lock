@@ -363,6 +363,7 @@ dependencies = [
  "assert_cmd",
  "clap",
  "csv",
+ "libc",
  "memmap2",
  "predicates",
  "proptest",

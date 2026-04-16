@@ -4,7 +4,7 @@ use std::fs;
 
 use knight_bus::{
     CsvTruthGraphSource, KnightBusError, MmapWalkRuntime, QueryFamily, TruthGraphIndex,
-    TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path,
+    TruthGraphSource, build_snapshot_from_paths, query_snapshot_from_path, run_snapshot_benchmark,
     verify_snapshot_against_paths,
 };
 
@@ -138,4 +138,26 @@ fn parity_uses_all_expected_families_now() {
             family.label()
         );
     }
+}
+
+#[test]
+fn benchmark_report_records_peak_rss_source_now() {
+    let temp_dir = tempfile::TempDir::new().expect("temp dir");
+    let snapshot_dir = temp_dir.path().join("snapshot");
+    let report_dir = temp_dir.path().join("report");
+
+    build_snapshot_from_paths(
+        &support::valid_nodes_path(),
+        &support::valid_edges_path(),
+        &snapshot_dir,
+    )
+    .expect("snapshot builds");
+
+    let benchmark_summary =
+        run_snapshot_benchmark(&snapshot_dir, &report_dir).expect("benchmark works");
+
+    assert!(benchmark_summary.report.peak_rss_bytes > 0);
+    let report_json =
+        serde_json::to_string(&benchmark_summary.report).expect("report serializes as json");
+    assert!(report_json.contains("\"peak_rss_source\""));
 }

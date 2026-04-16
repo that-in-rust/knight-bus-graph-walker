@@ -45,3 +45,31 @@
 - Both engines are considered `ok` only if parity passed on the selected corpus.
 - Neo4j import duration is listed only because it was captured during this rerun.
 
+## 2 GB Rerun Addendum
+
+- timestamp: 2026-04-16 15:33:09 IST
+- dataset: `/Users/neetipatni/Desktop/Codex202604/knight-bus-graph-walker/artifacts/code_sparse_2gb`
+- raw CSV bytes: `2187775971`
+- node count: `3997988`
+- edge count: `36294270`
+- snapshot bytes: `514241964`
+- query corpus rows: `60`
+
+| Dataset | Metric | Knight Bus Rust | Neo4j | Winner | Delta |
+| --- | --- | ---: | ---: | --- | --- |
+| 2 GB | Status | ok | ok | tie | parity passed |
+| 2 GB | Query corpus | 60 | 60 | tie | same workload |
+| 2 GB | Open/start ms | 985.431209 | 95.438417 | Neo4j | Neo4j ~10.3x faster |
+| 2 GB | p50 hop ms | 0.002583 | 1259.3009995 | Knight Bus Rust | ~487534.3x faster |
+| 2 GB | p95 hop ms | 0.02178335 | 1361.3762521 | Knight Bus Rust | ~62496.2x faster |
+| 2 GB | p99 hop ms | 0.04646525 | 1384.8436655 | Knight Bus Rust | ~29803.9x faster |
+| 2 GB | Mean hop ms | 0.0068893278 | 1258.9580388722 | Knight Bus Rust | ~182740.3x faster |
+| 2 GB | RSS bytes | 3541794816 | 70057984 | Neo4j | Neo4j ~50.6x lower |
+| 2 GB | Neo4j import ms | n/a | 36449.204916 | Neo4j | captured during rerun |
+
+### Honest Caveats
+
+- This addendum is a `~2 GB` proof on the fixed `code_sparse_2gb` dataset, not a `20 GB` proof.
+- The shared workload is the selected corpus of `forward_one`, `reverse_one`, and `reverse_two` queries.
+- Both engines are considered `ok` only because parity passed on the selected corpus.
+- The current Rust `rss_bytes` for this path still includes CSV truth loading and parity machinery inside `bench-corpus`; it is not a pure walker-only memory number.

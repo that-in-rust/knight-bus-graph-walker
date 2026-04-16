@@ -168,3 +168,12 @@ correctness or nanosecond hop timing.
 
 - verdict: fresh rerun completed through `neo4j_smoke_1mb` and `neo4j_preflight_50mb` using the Rust binary for the Knight Bus side.
 - caveat: this ledger entry is a `1 MB` / `50 MB` benchmark comparison only.
+
+## 2026-04-16 15:33:09 IST - Rust vs Neo4j 2 GB Rerun
+
+| stage | raw_csv_bytes | node_count | edge_count | snapshot_size_bytes | rust_status | neo4j_status | query_corpus_size | rust_open_ms | rust_p50_ms | rust_p95_ms | rust_p99_ms | rust_mean_ms | rust_rss_bytes | neo4j_open_ms | neo4j_p50_ms | neo4j_p95_ms | neo4j_p99_ms | neo4j_mean_ms | neo4j_rss_bytes | import_duration_ms | report_path |
+| --- | ---: | ---: | ---: | ---: | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| neo4j_code_sparse_2gb | 2187775971 | 3997988 | 36294270 | 514241964 | ok | ok | 60 | 985.431209 | 0.002583 | 0.02178335 | 0.04646525 | 0.0068893278 | 3541794816 | 95.438417 | 1259.3009995 | 1361.3762521 | 1384.8436655 | 1258.9580388722 | 70057984 | 36449.204916 | /Users/neetipatni/Desktop/Codex202604/knight-bus-graph-walker/reports/neo4j_code_sparse_2gb/report.json |
+
+- verdict: fresh rerun completed on the fixed `artifacts/code_sparse_2gb` dataset using the Rust binary for the Knight Bus side and Neo4j `2026.03.1` for the comparison side.
+- caveat: Rust won hop latency by a very large margin, but Neo4j won open/start time and reported much lower RSS on this run; the current Rust `rss_bytes` still includes truth/parity machinery inside `bench-corpus`.

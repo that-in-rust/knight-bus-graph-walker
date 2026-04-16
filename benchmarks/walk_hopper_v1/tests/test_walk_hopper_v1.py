@@ -269,6 +269,8 @@ def test_req_bench_008_report_contains_metrics_now(tmp_path: Path) -> None:
         report_dir=tmp_path / "report",
         dataset_manifest=json.loads((dataset_dir / "manifest.json").read_text(encoding="utf-8")),
         snapshot_manifest=snapshot_manifest,
+        snapshot_dir=snapshot_dir,
+        corpus_path=dataset_dir / "query_corpus.csv",
         query_rows=query_rows,
         measurements=[
             EngineMeasurement(
@@ -282,6 +284,8 @@ def test_req_bench_008_report_contains_metrics_now(tmp_path: Path) -> None:
                 p95_ms=0.4,
                 p99_ms=0.6,
                 rss_bytes=1024,
+                rss_scope="runtime_process_only",
+                rss_source="sampled_current_rss_bytes",
                 version="snapshot-v1",
                 cold_run=False,
             )
@@ -290,6 +294,8 @@ def test_req_bench_008_report_contains_metrics_now(tmp_path: Path) -> None:
     assert payload["environment"]["python_version"]
     assert payload["dataset_manifest"]["actual_raw_bytes"]
     assert payload["measurements"][0]["p95_ms"] == 0.4
+    assert payload["measurements"][0]["rss_scope"] == "runtime_process_only"
+    assert payload["measurements"][0]["rss_source"] == "sampled_current_rss_bytes"
     assert (tmp_path / "report" / "summary.md").exists()
 
 
@@ -327,7 +333,120 @@ def test_req_neo4j_001_requirements_exists_now() -> None:
 def test_req_neo4j_002_scripts_and_runbook_exist_now() -> None:
     assert (REPO_ROOT / "scripts" / "install_neo4j_brew.sh").exists()
     assert (REPO_ROOT / "scripts" / "run_neo4j_smoke_ladder.sh").exists()
+    assert (REPO_ROOT / "scripts" / "run_neo4j_fresh_check.sh").exists()
     assert (REPO_ROOT / "docs" / "neo4j-smoke-runbook.md").exists()
+
+
+def test_req_neo4j_003_fresh_runner_reuses_fixed_inputs_now() -> None:
+    script_text = (REPO_ROOT / "scripts" / "run_neo4j_fresh_check.sh").read_text(encoding="utf-8")
+    assert "generate_code_sparse_data.py" not in script_text
+    assert "build_query_corpus_now" not in script_text
+    assert "neo4j_smoke_1mb" in script_text
+    assert "neo4j_preflight_50mb" in script_text
+    assert "code_sparse_2gb" in script_text
+
+
+def test_req_neo4j_004_renderer_supports_explicit_v002_outputs_now(tmp_path: Path) -> None:
+    reports_dir = tmp_path / "reports"
+    final_journal = tmp_path / "Final-Testing-Journal-v002.md"
+    truth_journal = tmp_path / "journal-tests-202604-v002.md"
+    stage_payload = {
+        "dataset_manifest": {
+            "actual_raw_bytes": 1024,
+            "node_count": 8,
+            "edge_count": 13,
+        },
+        "snapshot_manifest": {
+            "version": 1,
+        },
+        "snapshot_size_bytes": 512,
+        "query_corpus_size": 6,
+        "environment": {"python_version": "3.11"},
+        "measurements": [
+            {
+                "engine_name": "knight_bus_rust",
+                "status": "ok",
+                "reason": None,
+                "open_start_ms": 1.0,
+                "operation_count": 18,
+                "mean_ms": 0.2,
+                "p50_ms": 0.1,
+                "p95_ms": 0.3,
+                "p99_ms": 0.4,
+                "rss_bytes": 2048,
+                "rss_scope": "runtime_process_only",
+                "rss_source": "getrusage_self",
+                "version": "snapshot-v1",
+                "cold_run": False,
+            },
+            {
+                "engine_name": "neo4j",
+                "status": "ok",
+                "reason": None,
+                "open_start_ms": 4.0,
+                "operation_count": 18,
+                "mean_ms": 2.0,
+                "p50_ms": 1.5,
+                "p95_ms": 2.5,
+                "p99_ms": 3.0,
+                "rss_bytes": 4096,
+                "rss_scope": "server_process_only",
+                "rss_source": "psutil_server_process",
+                "version": "5.x",
+                "cold_run": False,
+            },
+        ],
+        "rust_verify": {
+            "status": "ok",
+            "checked_nodes": 8,
+            "checked_forward_edges": 13,
+            "checked_reverse_edges": 13,
+            "peak_rss_bytes": 3072,
+            "peak_rss_source": "getrusage_self",
+        },
+    }
+    for stage_name in (
+        "freshcheck_neo4j_smoke_1mb",
+        "freshcheck_neo4j_preflight_50mb",
+        "freshcheck_code_sparse_2gb",
+    ):
+        stage_dir = reports_dir / stage_name
+        stage_dir.mkdir(parents=True)
+        write_json_file_now(stage_dir / "report.json", stage_payload)
+        write_json_file_now(stage_dir / "import-meta.json", {"import_duration_ms": 12.5})
+        (stage_dir / "rust-build.txt").write_text(
+            "peak_rss_bytes: 4096\npeak_rss_source: getrusage_self\n",
+            encoding="utf-8",
+        )
+
+    result = subprocess.run(
+        [
+            "python3",
+            str(REPO_ROOT / "scripts" / "render_final_testing_journal.py"),
+            "--repo-root",
+            str(REPO_ROOT),
+            "--reports-dir",
+            str(reports_dir),
+            "--final-journal",
+            str(final_journal),
+            "--truth-journal",
+            str(truth_journal),
+            "--stage",
+            "freshcheck_neo4j_smoke_1mb=1 MB",
+            "--stage",
+            "freshcheck_neo4j_preflight_50mb=50 MB",
+            "--stage",
+            "freshcheck_code_sparse_2gb=2 GB",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "runtime-only" in final_journal.read_text(encoding="utf-8")
+    assert "server_process_only" in truth_journal.read_text(encoding="utf-8")
+    assert "2 GB" in final_journal.read_text(encoding="utf-8")
 
 
 def test_req_neo4j_007_corpus_sizes_now(tmp_path: Path) -> None:

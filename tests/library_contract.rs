@@ -236,9 +236,15 @@ fn corpus_benchmark_report_serializes_engine_measurement_now() {
     assert_eq!(benchmark_summary.measurement.engine_name, "knight_bus_rust");
     assert_eq!(benchmark_summary.measurement.status, "ok");
     assert_eq!(benchmark_summary.query_corpus_size, 3);
+    assert_eq!(
+        benchmark_summary.measurement.rss_scope,
+        knight_bus::MeasurementRssScope::RuntimeProcessOnly
+    );
     let report_json = fs::read_to_string(&report_path).expect("report file");
     assert!(report_json.contains("\"engine_name\": \"knight_bus_rust\""));
     assert!(report_json.contains("\"operation_count\""));
     assert!(report_json.contains("\"p99_ms\""));
     assert!(report_json.contains("\"rss_bytes\""));
+    assert!(report_json.contains("\"rss_scope\": \"runtime_process_only\""));
+    assert!(report_json.contains("\"rss_source\""));
 }

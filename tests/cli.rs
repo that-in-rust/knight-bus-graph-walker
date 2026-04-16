@@ -189,6 +189,53 @@ fn bench_corpus_writes_engine_measurement_now() {
             "bench-corpus",
             "--snapshot",
             snapshot_dir.to_str().expect("utf8 path"),
+            "--corpus",
+            support::valid_corpus_path().to_str().expect("utf8 path"),
+            "--report",
+            report_path.to_str().expect("utf8 path"),
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("status: ok"))
+        .stdout(predicate::str::contains("operation_count"))
+        .stdout(predicate::str::contains("rss_bytes"))
+        .stdout(predicate::str::contains("rss_scope"))
+        .stdout(predicate::str::contains("rss_source"));
+
+    let report_json = fs::read_to_string(&report_path).expect("report exists");
+    assert!(report_json.contains("\"engine_name\": \"knight_bus_rust\""));
+    assert!(report_json.contains("\"mean_ms\""));
+    assert!(report_json.contains("\"p95_ms\""));
+    assert!(report_json.contains("\"rss_scope\": \"runtime_process_only\""));
+    assert!(report_json.contains("\"rss_source\""));
+}
+
+#[test]
+fn bench_corpus_accepts_deprecated_csv_flags_now() {
+    let temp_dir = tempfile::TempDir::new().expect("temp dir");
+    let snapshot_dir = temp_dir.path().join("snapshot");
+    let report_path = temp_dir.path().join("corpus-report.json");
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "build",
+            "--nodes-csv",
+            support::valid_nodes_path().to_str().expect("utf8 path"),
+            "--edges-csv",
+            support::valid_edges_path().to_str().expect("utf8 path"),
+            "--output",
+            snapshot_dir.to_str().expect("utf8 path"),
+        ])
+        .assert()
+        .success();
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "bench-corpus",
+            "--snapshot",
+            snapshot_dir.to_str().expect("utf8 path"),
             "--nodes-csv",
             support::valid_nodes_path().to_str().expect("utf8 path"),
             "--edges-csv",
@@ -200,12 +247,8 @@ fn bench_corpus_writes_engine_measurement_now() {
         ])
         .assert()
         .success()
-        .stdout(predicate::str::contains("status: ok"))
-        .stdout(predicate::str::contains("operation_count"))
-        .stdout(predicate::str::contains("rss_bytes"));
+        .stderr(predicate::str::contains("ignored"));
 
     let report_json = fs::read_to_string(&report_path).expect("report exists");
     assert!(report_json.contains("\"engine_name\": \"knight_bus_rust\""));
-    assert!(report_json.contains("\"mean_ms\""));
-    assert!(report_json.contains("\"p95_ms\""));
 }

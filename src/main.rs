@@ -5,7 +5,7 @@ use clap::{Parser, Subcommand, ValueEnum};
 use knight_bus::{
     BENCH_REPORT_FILE_NAME, BuildMemoryBudget, HopCount, SnapshotBuildOptions,
     SnapshotVerifyOptions, WalkDirection, build_snapshot_from_paths_with_options,
-    query_snapshot_from_path, run_corpus_benchmark_from_paths, run_snapshot_benchmark,
+    query_snapshot_from_path, run_corpus_benchmark_from_snapshot_path, run_snapshot_benchmark,
     verify_snapshot_against_paths_with_options,
 };
 
@@ -65,9 +65,9 @@ enum Commands {
         #[arg(long)]
         snapshot: PathBuf,
         #[arg(long)]
-        nodes_csv: PathBuf,
+        nodes_csv: Option<PathBuf>,
         #[arg(long)]
-        edges_csv: PathBuf,
+        edges_csv: Option<PathBuf>,
         #[arg(long)]
         corpus: PathBuf,
         #[arg(long)]
@@ -221,10 +221,9 @@ fn try_main() -> Result<()> {
             corpus,
             report,
         } => {
-            let summary = run_corpus_benchmark_from_paths(
-                &snapshot, &nodes_csv, &edges_csv, &corpus, &report,
-            )
-            .with_context(|| format!("failed to benchmark corpus at {}", snapshot.display()))?;
+            emit_bench_corpus_deprecation_now(nodes_csv.as_ref(), edges_csv.as_ref());
+            let summary = run_corpus_benchmark_from_snapshot_path(&snapshot, &corpus, &report)
+                .with_context(|| format!("failed to benchmark corpus at {}", snapshot.display()))?;
             println!("report: {}", summary.report_path.display());
             println!("status: {}", summary.measurement.status);
             println!("query_corpus_size: {}", summary.query_corpus_size);
@@ -247,6 +246,8 @@ fn try_main() -> Result<()> {
             if let Some(rss_bytes) = summary.measurement.rss_bytes {
                 println!("rss_bytes: {rss_bytes}");
             }
+            println!("rss_scope: {}", summary.measurement.rss_scope.label());
+            println!("rss_source: {}", summary.measurement.rss_source.label());
             if let Some(version) = &summary.measurement.version {
                 println!("version: {version}");
             }
@@ -290,4 +291,14 @@ fn parse_memory_budget_now(memory_budget_mb: Option<u64>) -> Result<Option<Build
         .map(BuildMemoryBudget::from_megabytes)
         .transpose()
         .context("failed to parse memory budget")
+}
+
+fn emit_bench_corpus_deprecation_now(nodes_csv: Option<&PathBuf>, edges_csv: Option<&PathBuf>) {
+    if nodes_csv.is_some() || edges_csv.is_some() {
+        eprintln!(
+            "warning: `bench-corpus` now measures runtime-only snapshot replay; \
+             `--nodes-csv` and `--edges-csv` are ignored. Run `knight-bus verify --snapshot ... \
+             --nodes-csv ... --edges-csv ...` separately for correctness."
+        );
+    }
 }

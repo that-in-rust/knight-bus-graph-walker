@@ -5,7 +5,6 @@ use crate::{
     error::KnightBusError,
     low_ram::{build_snapshot_from_paths_low_ram, verify_snapshot_against_paths_low_ram},
     runtime::{MmapWalkRuntime, WalkQueryRuntime},
-    truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource},
     types::{
         BenchmarkRunSummary, CorpusBenchmarkRunSummary, HopCount, NodeKey, QueryResult,
         SnapshotBuildOptions, SnapshotBuildSummary, SnapshotVerifyOptions, VerificationSummary,
@@ -91,8 +90,16 @@ pub fn run_snapshot_benchmark(
 
 pub fn run_corpus_benchmark_from_paths(
     snapshot_dir: &Path,
-    nodes_path: &Path,
-    edges_path: &Path,
+    _nodes_path: &Path,
+    _edges_path: &Path,
+    corpus_path: &Path,
+    report_path: &Path,
+) -> Result<CorpusBenchmarkRunSummary, KnightBusError> {
+    run_corpus_benchmark_from_snapshot_path(snapshot_dir, corpus_path, report_path)
+}
+
+pub fn run_corpus_benchmark_from_snapshot_path(
+    snapshot_dir: &Path,
     corpus_path: &Path,
     report_path: &Path,
 ) -> Result<CorpusBenchmarkRunSummary, KnightBusError> {
@@ -100,17 +107,12 @@ pub fn run_corpus_benchmark_from_paths(
         fs::create_dir_all(parent_dir).map_err(|source| KnightBusError::io(parent_dir, source))?;
     }
 
-    let truth_source = CsvTruthGraphSource::new(nodes_path, edges_path);
-    let truth_graph = truth_source.load_truth_graph_rows()?;
-    let truth_index = TruthGraphIndex::from_truth_graph_rows(&truth_graph);
-
     let started_at = Instant::now();
     let runtime = MmapWalkRuntime::open(snapshot_dir)?;
     let open_start_ms = started_at.elapsed().as_secs_f64() * 1_000.0;
 
     let outcome = SnapshotCorpusBenchmarkRunner::default().run_corpus_benchmark(
         &runtime,
-        &truth_index,
         corpus_path,
         open_start_ms,
     )?;

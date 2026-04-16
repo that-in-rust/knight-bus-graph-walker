@@ -8,12 +8,10 @@ use sysinfo::{Pid, System};
 
 use crate::{
     error::KnightBusError,
-    parity::run_corpus_parity_verification,
     runtime::{MmapWalkRuntime, WalkQueryRuntime},
-    truth::TruthGraphIndex,
     types::{
         BenchmarkFamilyReport, BenchmarkReport, CorpusFamily, CorpusQueryRow, EngineMeasurement,
-        NodeKey, PeakRssSource, QueryFamily,
+        MeasurementRssScope, MeasurementRssSource, NodeKey, PeakRssSource, QueryFamily,
     },
 };
 
@@ -116,12 +114,10 @@ impl SnapshotCorpusBenchmarkRunner {
     pub fn run_corpus_benchmark(
         &self,
         runtime: &MmapWalkRuntime,
-        truth_index: &TruthGraphIndex,
         corpus_path: &Path,
         open_start_ms: f64,
     ) -> Result<CorpusBenchmarkOutcome, KnightBusError> {
         let corpus_rows = load_corpus_query_rows(corpus_path)?;
-        run_corpus_parity_verification(truth_index, runtime, &corpus_rows)?;
 
         let mut system = System::new_all();
         let process_id = Pid::from_u32(std::process::id());
@@ -158,6 +154,8 @@ impl SnapshotCorpusBenchmarkRunner {
                 p95_ms: percentile_value_ms(&latency_samples_ms, 0.95),
                 p99_ms: percentile_value_ms(&latency_samples_ms, 0.99),
                 rss_bytes: Some(peak_rss_measurement.bytes),
+                rss_scope: MeasurementRssScope::RuntimeProcessOnly,
+                rss_source: MeasurementRssSource::from(peak_rss_measurement.source),
                 version: Some(format!("snapshot-v{}", runtime.manifest_version())),
                 cold_run: false,
             },
@@ -371,10 +369,7 @@ mod tests {
     use super::{
         CorpusFamily, SnapshotCorpusBenchmarkRunner, current_process_rss_bytes, percentile_value_ms,
     };
-    use crate::{
-        CsvTruthGraphSource, PeakRssSource, TruthGraphIndex, TruthGraphSource,
-        build_snapshot_from_paths,
-    };
+    use crate::{PeakRssSource, build_snapshot_from_paths};
     use sysinfo::{Pid, System};
 
     #[test]
@@ -442,13 +437,9 @@ mod tests {
 
         build_snapshot_from_paths(&nodes_path, &edges_path, &snapshot_dir)
             .expect("snapshot builds");
-        let truth_rows = CsvTruthGraphSource::new(&nodes_path, &edges_path)
-            .load_truth_graph_rows()
-            .expect("truth rows load");
-        let truth_index = TruthGraphIndex::from_truth_graph_rows(&truth_rows);
         let runtime = crate::MmapWalkRuntime::open(&snapshot_dir).expect("runtime opens");
         let outcome = SnapshotCorpusBenchmarkRunner::default()
-            .run_corpus_benchmark(&runtime, &truth_index, &corpus_path, 1.0)
+            .run_corpus_benchmark(&runtime, &corpus_path, 1.0)
             .expect("corpus benchmark works");
 
         assert_eq!(outcome.measurement.engine_name, "knight_bus_rust");
@@ -458,6 +449,10 @@ mod tests {
         assert!(outcome.measurement.p95_ms.is_some());
         assert!(outcome.measurement.p99_ms.is_some());
         assert!(outcome.measurement.rss_bytes.is_some());
+        assert_eq!(
+            outcome.measurement.rss_scope,
+            crate::MeasurementRssScope::RuntimeProcessOnly
+        );
         assert!(outcome.query_corpus_size > 0);
     }
 }

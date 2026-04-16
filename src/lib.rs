@@ -11,8 +11,9 @@ pub mod types;
 
 pub use app::{
     BENCH_REPORT_FILE_NAME, build_snapshot_from_paths, build_snapshot_from_paths_with_options,
-    query_snapshot_from_path, run_corpus_benchmark_from_paths, run_snapshot_benchmark,
-    verify_snapshot_against_paths, verify_snapshot_against_paths_with_options,
+    query_snapshot_from_path, run_corpus_benchmark_from_paths,
+    run_corpus_benchmark_from_snapshot_path, run_snapshot_benchmark, verify_snapshot_against_paths,
+    verify_snapshot_against_paths_with_options,
 };
 pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpusBenchmarkRunner};
 pub use error::KnightBusError;
@@ -27,8 +28,9 @@ pub use truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource};
 pub use types::{
     BenchmarkFamilyReport, BenchmarkReport, BenchmarkRunSummary, BuildMemoryBudget,
     CorpusBenchmarkRunSummary, CorpusFamily, CorpusQueryRow, CsvEdgeRow, CsvNodeRow, DenseNodeId,
-    EngineMeasurement, HopCount, NodeKey, NodeRecord, NormalizedGraphData, PeakRssSource,
-    PhasePeakReport, QueryFamily, QueryResult, SnapshotBuildOptions, SnapshotBuildSummary,
-    SnapshotManifest, SnapshotPhase, SnapshotVerifyOptions, ValidatedTruthGraph,
-    VerificationFamilySummary, VerificationSummary, WalkDirection,
+    EngineMeasurement, HopCount, MeasurementRssScope, MeasurementRssSource, NodeKey, NodeRecord,
+    NormalizedGraphData, PeakRssSource, PhasePeakReport, QueryFamily, QueryResult,
+    SnapshotBuildOptions, SnapshotBuildSummary, SnapshotManifest, SnapshotPhase,
+    SnapshotVerifyOptions, ValidatedTruthGraph, VerificationFamilySummary, VerificationSummary,
+    WalkDirection,
 };

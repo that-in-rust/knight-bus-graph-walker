@@ -512,6 +512,49 @@ impl PeakRssSource {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum MeasurementRssScope {
+    RuntimeProcessOnly,
+    ServerProcessOnly,
+}
+
+impl MeasurementRssScope {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::RuntimeProcessOnly => "runtime_process_only",
+            Self::ServerProcessOnly => "server_process_only",
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum MeasurementRssSource {
+    GetrusageSelf,
+    SampledCurrentRssBytes,
+    PsutilServerProcess,
+}
+
+impl MeasurementRssSource {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::GetrusageSelf => "getrusage_self",
+            Self::SampledCurrentRssBytes => "sampled_current_rss_bytes",
+            Self::PsutilServerProcess => "psutil_server_process",
+        }
+    }
+}
+
+impl From<PeakRssSource> for MeasurementRssSource {
+    fn from(value: PeakRssSource) -> Self {
+        match value {
+            PeakRssSource::GetrusageSelf => Self::GetrusageSelf,
+            PeakRssSource::SampledCurrentRssBytes => Self::SampledCurrentRssBytes,
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub struct BenchmarkReport {
     pub snapshot_path: PathBuf,
@@ -539,6 +582,8 @@ pub struct EngineMeasurement {
     pub p95_ms: Option<f64>,
     pub p99_ms: Option<f64>,
     pub rss_bytes: Option<u64>,
+    pub rss_scope: MeasurementRssScope,
+    pub rss_source: MeasurementRssSource,
     pub version: Option<String>,
     pub cold_run: bool,
 }

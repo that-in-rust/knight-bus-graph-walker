@@ -1,4 +1,8 @@
+This repo was created in 5 hours for a codex hackathon
+
 ![What is the main problem](docs/assets/knight-bus-main-problem.jpg)
+
+
 
 # Knight Bus Graph Walker v002
 

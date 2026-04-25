@@ -1,100 +1,76 @@
-This repo was created in 5 hours for a codex hackathon
+# What Knight Bus Is Proving
 
-![What is the main problem](docs/assets/knight-bus-main-problem.jpg)
+Knight Bus proves that a storage-specialized Rust walk runtime can answer the
+same fixed graph corpus as Neo4j while keeping `p99` latency and runtime RAM
+far lower on the tracked `1 MB`, `50 MB`, and `2 GB` datasets.
 
+Neo4j still opens the `2 GB` run faster, so this README is strongest on the
+walk path, not every cold-start path.
 
+These numbers come from the current tracked benchmark record.
+This repo itself was created in 5 hours for a Codex hackathon.
 
-# Knight Bus Graph Walker v002
+## What This Comparison Proves
 
-`v002` is the current benchmark record for Knight Bus Graph Walker.
+This benchmark is proving three things at once:
 
-The point of `v002` is simple:
+- Knight Bus and Neo4j return the same answers on the tracked corpus.
+- Knight Bus keeps tail latency dramatically lower on every tracked dataset.
+- Knight Bus keeps runtime RAM materially lower while answering queries.
 
-- keep the Rust runtime in the immutable dual-CSR + mmap shape
-- measure the RAM needed by the Rust walker process itself
-- measure the RAM needed by the Neo4j server process itself
-- prove Rust correctness separately through `verify`
-- reuse the fixed `1 MB`, `50 MB`, and `2 GB` datasets without regenerating them
+| Dataset | Same answers | Rust p99 | Neo4j p99 | p99 win | Rust runtime RAM | Neo4j runtime RAM | RAM win |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| `1 MB` | `yes` | `26 µs` | `12.6 ms` | `494x` | `6.7 MB` | `525.9 MB` | `78.9x lower` |
+| `50 MB` | `yes` | `36 µs` | `52.2 ms` | `1,439x` | `14.5 MB` | `616.1 MB` | `42.5x lower` |
+| `2 GB` | `yes` | `45 µs` | `1.51 s` | `33,695x` | `234.3 MB` | `1.07 GB` | `4.5x lower` |
 
-## What v002 Says
+## Why This Comparison Is Fair
 
-In `v002`, Knight Bus Rust is dramatically faster on walk latency across all three datasets and needs less RAM while running than Neo4j on all three datasets.
+- same fixed shared datasets
+- same fixed shared query corpus
+- correctness checked before timing
+- one Rust walker process measured against one Neo4j server process
+- tracked datasets only: `1 MB`, `50 MB`, `2 GB`
 
-`RSS` means `resident set size`. In plain English here, read it as: `how much RAM the running process is holding onto`.
+## Tail Latency Is The Main Win
 
-## Key Insights
+The percentile view makes the shape of the win easy to see.
 
-Answer:
-
-- In `v002`, Knight Bus Rust needs less RAM than Neo4j on all three datasets and remains dramatically faster on traversal latency.
-
-Why this matters:
-
-- The memory number here is the RAM needed by the running walker process itself.
-- Build cost and verify cost are listed separately below, so the query-time RAM number stays easy to read.
-- The result is not just "Rust is fast." The result is that the mmap + dual-CSR walker stays materially lighter at runtime while still answering the same fixed corpus correctly.
-
-Evidence:
-
-- `1 MB`: Knight Bus RAM needed while running is `78.9x` lower than Neo4j, and mean traversal latency is `833.6x` faster.
-- `50 MB`: Knight Bus RAM needed while running is `42.5x` lower than Neo4j, and mean traversal latency is `6113.8x` faster.
-- `2 GB`: Knight Bus RAM needed while running is `4.5x` lower than Neo4j, and mean traversal latency is `127498.8x` faster.
-- The one important counterpoint is startup: Neo4j still opens faster on the `2 GB` run, so Knight Bus wins the walk path much more strongly than the cold-open path.
-
-## v002 Runtime Comparison
-
-### Latency
-
-Table 1
-
-| Dataset | Query corpus | Rust status | Neo4j status | Rust open ms | Neo4j open ms | Rust p50 ms | Neo4j p50 ms |
-| --- | ---: | --- | --- | ---: | ---: | ---: | ---: |
-| 1 MB | 18 | ok | ok | 0.258083 | 37.685375 | 0.00175 | 2.974563 |
-| 50 MB | 60 | ok | ok | 4.32775 | 61.926542 | 0.002125 | 37.208291 |
-| 2 GB | 60 | ok | ok | 189.978958 | 90.446458 | 0.004458 | 1096.492583 |
-
-Table 2
-
-| Dataset | Rust p95 ms | Neo4j p95 ms | Rust p99 ms | Neo4j p99 ms | Rust mean ms | Neo4j mean ms |
+| Dataset | Rust p50 | Neo4j p50 | Rust p95 | Neo4j p95 | Rust p99 | Neo4j p99 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 MB | 0.018477 | 10.504973 | 0.02555 | 12.611896 | 0.005261 | 4.385152 |
-| 50 MB | 0.020296 | 43.710169 | 0.0363 | 52.235973 | 0.006249 | 38.203163 |
-| 2 GB | 0.028146 | 1382.781209 | 0.044948 | 1514.533206 | 0.008815 | 1123.882205 |
+| `1 MB` | `1.8 µs` | `3.0 ms` | `18.5 µs` | `10.5 ms` | `26 µs` | `12.6 ms` |
+| `50 MB` | `2.1 µs` | `37.2 ms` | `20.3 µs` | `43.7 ms` | `36 µs` | `52.2 ms` |
+| `2 GB` | `4.5 µs` | `1.10 s` | `28.1 µs` | `1.38 s` | `45 µs` | `1.51 s` |
 
-### RAM
+## Runtime RAM Is The Second Win
 
-| Dataset | Rust RAM needed while running (bytes) | Neo4j RAM needed while running (bytes) |
-| --- | ---: | ---: |
-| 1 MB | 6668288 | 525926400 |
-| 50 MB | 14499840 | 616054784 |
-| 2 GB | 234340352 | 1065615360 |
+`RSS` here means the RAM the running process is holding onto while answering
+queries.
 
-## Knight Bus Phase Costs
+The query-time RAM number is intentionally narrower than build and verify RAM.
 
-These are separate on purpose. They are not the same thing as the RAM needed while answering queries.
-
-| Dataset | Build peak RAM needed (bytes) | Verify peak RAM needed (bytes) | Query-time RAM needed (bytes) |
+| Dataset | Build peak RAM | Verify peak RAM | Query-time RAM |
 | --- | ---: | ---: | ---: |
-| 1 MB | 10977280 | 11059200 | 6668288 |
-| 50 MB | 75300864 | 107954176 | 14499840 |
-| 2 GB | 235143168 | 409452544 | 234340352 |
+| `1 MB` | `11.0 MB` | `11.1 MB` | `6.7 MB` |
+| `50 MB` | `75.3 MB` | `108.0 MB` | `14.5 MB` |
+| `2 GB` | `235.1 MB` | `409.5 MB` | `234.3 MB` |
 
-## Measurement Contract
+## Neo4j Still Wins One Startup Case
 
-- Rust `bench-corpus` loads only the snapshot and fixed query corpus
-- Rust correctness is enforced before timing with `knight-bus verify`
-- Neo4j correctness is enforced on the same fixed shared corpus
-- `RSS` is the operating system memory number for the running process
-- in this README, `RSS` means `RAM needed while running`
-- the Rust RAM number is for the Rust walker process itself
-- the Neo4j RAM number is for the Neo4j server process itself
+Startup is the visible caveat, and it only flips at the `2 GB` tier.
 
-## Main Records
+| Dataset | Rust open | Neo4j open | Winner |
+| --- | ---: | ---: | --- |
+| `1 MB` | `0.3 ms` | `37.7 ms` | `Rust` |
+| `50 MB` | `4.3 ms` | `61.9 ms` | `Rust` |
+| `2 GB` | `190.0 ms` | `90.4 ms` | `Neo4j` |
+
+## Exact Records Stay Linked
+
+Use the journals for exact raw values; the README keeps the numbers
+human-readable on purpose.
 
 - [Final-Testing-Journal-v002.md](./Final-Testing-Journal-v002.md)
 - [journal-tests-202604-v002.md](./journal-tests-202604-v002.md)
-
-## Release Links
-
 - [v002 release](https://github.com/that-in-rust/knight-bus-graph-walker/releases/tag/v002)
 - [v0.0.2 binary release](https://github.com/that-in-rust/knight-bus-graph-walker/releases/tag/v0.0.2)

@@ -334,7 +334,10 @@ def test_req_neo4j_002_scripts_and_runbook_exist_now() -> None:
     assert (REPO_ROOT / "scripts" / "install_neo4j_brew.sh").exists()
     assert (REPO_ROOT / "scripts" / "run_neo4j_smoke_ladder.sh").exists()
     assert (REPO_ROOT / "scripts" / "run_neo4j_fresh_check.sh").exists()
-    assert (REPO_ROOT / "docs" / "neo4j-smoke-runbook.md").exists()
+    assert (
+        (REPO_ROOT / "docs" / "neo4j-smoke-runbook.md").exists()
+        or (REPO_ROOT / "docs" / "pre-v002" / "neo4j-smoke-runbook.md").exists()
+    )
 
 
 def test_req_neo4j_003_fresh_runner_reuses_fixed_inputs_now() -> None:

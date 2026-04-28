@@ -32,6 +32,86 @@ This benchmark is proving three things at once:
 - one Rust walker process measured against one Neo4j server process
 - tracked datasets only: `1 MB`, `50 MB`, `2 GB`
 
+## Why The CSR-Style Walk Works
+
+Knight Bus does the expensive graph organization work ahead of time. At query
+time it does not go hunting through scattered edge records. It jumps straight
+to a precompiled neighbor window by using sorted keys, dense ids, offsets, and
+one contiguous peer slice.
+
+```text
+Level 1: The Essence
+
+A graph hop is turned into:
+
+    find key  -->  get dense id  -->  read one neighbor window
+
+
+query(node_key)
+     |
+     v
++------------------+
+| sorted key_index |
++------------------+
+     |
+     v
+  dense_id
+     |
+     v
++-----------------------+
+| start = offsets[id]   |
+| end   = offsets[id+1] |
++-----------------------+
+     |
+     v
++------------------------------+
+| peers[start .. end]          |
+| one contiguous neighbor run  |
++------------------------------+
+     |
+     v
+neighbor dense ids -> node keys
+
+
+Level 2: Why It Feels Different
+
+Generic graph engine                      Knight Bus walk path
+
++---------------------------+            +---------------------------+
+| find node                 |            | find dense_id             |
+| follow relationship idx   |            | read offsets[id]          |
+| chase edge/node pointers  |            | read offsets[id + 1]      |
+| gather scattered rows     |            | read peers[start..end]    |
++---------------------------+            +---------------------------+
+
+left side  = discover links dynamically
+right side = jump to a precompiled neighbor window
+
+
+Level 3: Why Dual CSR Helps
+
+forward walk                               reverse walk
+
+node                                       node
+ |                                          |
+ v                                          v
+forward_offsets[id..id+1]                  reverse_offsets[id..id+1]
+ |                                          |
+ v                                          v
+forward_peers[start..end]                  reverse_peers[start..end]
+
+No reverse scan over forward edges.
+No rebuild of backlinks at query time.
+```
+
+Why this works in practice:
+
+- dense ids turn each node into an array position instead of a hash-chase target
+- offsets turn adjacency lookup into arithmetic
+- peers are stored contiguously, so the hot read is a slice, not a scatter-gather
+- forward and reverse CSR remove the need to derive the other direction on demand
+- mmap lets the operating system page in only the touched parts of the snapshot
+
 ## Tail Latency Is The Main Win
 
 The percentile view makes the shape of the win easy to see.
@@ -64,6 +144,19 @@ Startup is the visible caveat, and it only flips at the `2 GB` tier.
 | `1 MB` | `0.3 ms` | `37.7 ms` | `Rust` |
 | `50 MB` | `4.3 ms` | `61.9 ms` | `Rust` |
 | `2 GB` | `190.0 ms` | `90.4 ms` | `Neo4j` |
+
+## Benchmark Code Stays Tracked
+
+The repo keeps the benchmark machinery in Git and keeps the heavyweight outputs
+out of Git.
+
+- tracked: `benchmarks/walk_hopper_v1/...`, `scripts/...`, tests, and tiny
+  committed fixtures under `benchmarks/walk_hopper_v1/fixtures/...`
+- ignored: generated raw datasets under `artifacts/...`, benchmark reports
+  under `reports/...`, local Neo4j state, and local virtualenv/runtime
+  byproducts
+- rule: the generator script is tracked, but generated `code_sparse_*` graph
+  data is not
 
 ## Exact Records Stay Linked
 

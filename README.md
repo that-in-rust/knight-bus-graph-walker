@@ -167,3 +167,9 @@ human-readable on purpose.
 - [journal-tests-202604-v002.md](./journal-tests-202604-v002.md)
 - [v002 release](https://github.com/that-in-rust/knight-bus-graph-walker/releases/tag/v002)
 - [v0.0.2 binary release](https://github.com/that-in-rust/knight-bus-graph-walker/releases/tag/v0.0.2)
+
+## License
+
+Knight Bus is available under the terms of the MIT License.
+
+See [LICENSE](./LICENSE) for the full text.

@@ -2,6 +2,8 @@ ref-repo-folder/
 target/
 .DS_Store
 __pycache__/
+**/__pycache__/
+*.pyc
 .venv-bench/
 artifacts/
 reports/

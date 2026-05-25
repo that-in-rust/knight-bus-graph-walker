@@ -16,12 +16,17 @@ L3 will be even longer and detailed
 ```
 Neo4j rewritten in Rust
 
-- similar performance for OLTP queries
-- lowest RAM for OLAP queries
 - exact same APIs or surface area with ZERO changes so that the same code can be used
+- identical architecture for OLTP queries
+- lowest RAM custom storage formats for OLAP queries
 - community edition hence single node
 
 ```
+
+## Supporting Documents (in docs_PRD02/)
+
+- `Architecture-Dual-Engine.md` — Full dual-engine architecture (OLTP identical + OLAP lowest RAM)
+- `1000IQ-OLAP-Architecture-Deep-Think.md` — Deep analysis: why 13 custom formats hurt "lowest RAM"
 
 ---
 

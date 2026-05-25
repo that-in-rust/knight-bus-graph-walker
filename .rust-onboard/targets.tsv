@@ -1,0 +1,5 @@
+package_name	manifest_path	workspace_status	target_kind	target_name	crate_types	src_path	required_features	discovery_source
+knight-bus	Cargo.toml	workspace-member	bin	knight-bus	bin	src/main.rs		workspace-metadata
+knight-bus	Cargo.toml	workspace-member	lib	knight_bus	lib	src/lib.rs		workspace-metadata
+knight-bus	Cargo.toml	workspace-member	test	cli	bin	tests/cli.rs		workspace-metadata
+knight-bus	Cargo.toml	workspace-member	test	library_contract	bin	tests/library_contract.rs		workspace-metadata

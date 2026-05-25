@@ -1,0 +1,12 @@
+[
+  {
+    "package_name": "knight-bus",
+    "manifest_path": "Cargo.toml",
+    "package_dir": ".",
+    "workspace_status": "workspace-member",
+    "publish_status": "default",
+    "edition": "2024",
+    "version": "0.0.2",
+    "discovery_source": "workspace-metadata"
+  }
+]

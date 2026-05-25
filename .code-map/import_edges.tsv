@@ -1,0 +1,121 @@
+source_file	source_line	target_ref	edge_kind
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	2	__future__	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	4	argparse	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	5	json	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	6	subprocess	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	7	time	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	8	dataclasses	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	9	pathlib	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	10	typing	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	13	sys	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	17	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	24	benchmarks.walk_hopper_v1.query_walk_snapshot	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	32	psutil	import
+benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py	40	neo4j	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	2	__future__	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	4	argparse	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	5	csv	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	6	pathlib	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	9	sys	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	13	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py	27	numpy as np	import
+benchmarks/walk_hopper_v1/common.py	1	__future__	import
+benchmarks/walk_hopper_v1/common.py	3	csv	import
+benchmarks/walk_hopper_v1/common.py	4	hashlib	import
+benchmarks/walk_hopper_v1/common.py	5	json	import
+benchmarks/walk_hopper_v1/common.py	6	math	import
+benchmarks/walk_hopper_v1/common.py	7	platform	import
+benchmarks/walk_hopper_v1/common.py	8	pathlib	import
+benchmarks/walk_hopper_v1/common.py	9	typing	import
+benchmarks/walk_hopper_v1/common.py	272	psutil	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	2	__future__	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	4	argparse	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	5	csv	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	6	pathlib	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	9	sys	import
+benchmarks/walk_hopper_v1/export_neo4j_import.py	13	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	2	__future__	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	4	argparse	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	5	csv	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	6	pathlib	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	9	sys	import
+benchmarks/walk_hopper_v1/generate_code_sparse_data.py	13	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	2	__future__	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	4	argparse	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	5	csv	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	6	json	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	7	collections	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	8	dataclasses	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	9	pathlib	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	10	typing	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	13	sys	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	17	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/query_walk_snapshot.py	28	numpy as np	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	1	__future__	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	3	csv	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	4	hashlib	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	5	json	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	6	os	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	7	shutil	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	8	subprocess	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	9	pathlib	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	11	pytest	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	13	benchmarks.walk_hopper_v1.bench_walk_vs_neo4j	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	20	benchmarks.walk_hopper_v1.build_dual_csr_snapshot	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	21	benchmarks.walk_hopper_v1.common	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	22	benchmarks.walk_hopper_v1.export_neo4j_import	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	23	benchmarks.walk_hopper_v1.generate_code_sparse_data	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	24	benchmarks.walk_hopper_v1.query_walk_snapshot	import
+benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py	212	neo4j	import
+scripts/render_final_testing_journal.py	2	__future__	import
+scripts/render_final_testing_journal.py	4	argparse	import
+scripts/render_final_testing_journal.py	5	datetime as dt	import
+scripts/render_final_testing_journal.py	6	json	import
+scripts/render_final_testing_journal.py	7	platform	import
+scripts/render_final_testing_journal.py	8	subprocess	import
+scripts/render_final_testing_journal.py	9	pathlib	import
+scripts/render_final_testing_journal.py	10	typing	import
+scripts/run_three_tier_validation.py	2	__future__	import
+scripts/run_three_tier_validation.py	4	csv	import
+scripts/run_three_tier_validation.py	5	json	import
+scripts/run_three_tier_validation.py	6	shutil	import
+scripts/run_three_tier_validation.py	7	subprocess	import
+scripts/run_three_tier_validation.py	8	sys	import
+scripts/run_three_tier_validation.py	9	tempfile	import
+scripts/run_three_tier_validation.py	10	time	import
+scripts/run_three_tier_validation.py	11	dataclasses	import
+scripts/run_three_tier_validation.py	12	datetime	import
+scripts/run_three_tier_validation.py	13	pathlib	import
+scripts/run_three_tier_validation.py	14	typing	import
+src/app.rs	1	std::{fs, path::Path, time::Instant}	import
+src/bench.rs	6	csv::{ReaderBuilder, StringRecord}	import
+src/bench.rs	7	sysinfo::{Pid, System}	import
+src/bench.rs	372	crate::{PeakRssSource, build_snapshot_from_paths}	import
+src/bench.rs	373	sysinfo::{Pid, System}	import
+src/error.rs	1	std::{io, path::PathBuf}	import
+src/error.rs	3	thiserror::Error	import
+src/graph.rs	1	std::collections::{BTreeMap, BTreeSet}	import
+src/graph.rs	149	super::{normalize_truth_graph_data, query_normalized_graph}	import
+src/low_ram.rs	10	csv::{ReaderBuilder, StringRecord}	import
+src/low_ram.rs	11	memmap2::Mmap	import
+src/low_ram.rs	12	sysinfo::{Pid, System}	import
+src/low_ram.rs	13	tempfile::{Builder as TempDirBuilder, TempDir}	import
+src/main.rs	1	std::{path::PathBuf, process::ExitCode}	import
+src/main.rs	3	anyhow::{Context, Result}	import
+src/main.rs	4	clap::{Parser, Subcommand, ValueEnum}	import
+src/runtime.rs	6	memmap2::Mmap	import
+src/truth.rs	6	csv::{ReaderBuilder, StringRecord}	import
+src/truth.rs	369	std::fs	import
+src/truth.rs	371	tempfile::TempDir	import
+src/truth.rs	373	crate::error::KnightBusError	import
+src/truth.rs	375	super::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource}	import
+src/types.rs	7	serde::{Deserialize, Serialize}	import
+src/types.rs	9	crate::error::KnightBusError	import
+tests/cli.rs	1	support	module
+tests/cli.rs	3	std::fs	import
+tests/cli.rs	5	assert_cmd::Command	import
+tests/cli.rs	6	predicates::prelude::*	import
+tests/library_contract.rs	1	support	module
+tests/library_contract.rs	3	std::fs	import
+tests/support/mod.rs	1	std::path::PathBuf	import
+tests/support/mod.rs	3	tempfile::TempDir	import

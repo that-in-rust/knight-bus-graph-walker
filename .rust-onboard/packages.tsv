@@ -1,0 +1,2 @@
+package_name	manifest_path	package_dir	workspace_status	publish_status	edition	version	discovery_source
+knight-bus	Cargo.toml	.	workspace-member	default	2024	0.0.2	workspace-metadata

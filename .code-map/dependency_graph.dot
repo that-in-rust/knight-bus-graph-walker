@@ -1,0 +1,16 @@
+digraph G {
+  rankdir="LR";
+  node [shape="box", style="rounded", fontsize=10];
+  "('benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py', 'benchmarks/walk_hopper_v1/query_walk_snapshot.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/export_neo4j_import.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/generate_code_sparse_data.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/query_walk_snapshot.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/bench_walk_vs_neo4j.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/build_dual_csr_snapshot.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/common.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/export_neo4j_import.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/generate_code_sparse_data.py')" -> "1";
+  "('benchmarks/walk_hopper_v1/tests/test_walk_hopper_v1.py', 'benchmarks/walk_hopper_v1/query_walk_snapshot.py')" -> "1";
+}

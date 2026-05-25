@@ -1,0 +1,54 @@
+[
+  {
+    "package_name": "knight-bus",
+    "manifest_path": "Cargo.toml",
+    "workspace_status": "workspace-member",
+    "target_kind": "bin",
+    "target_name": "knight-bus",
+    "crate_types": [
+      "bin"
+    ],
+    "src_path": "src/main.rs",
+    "required_features": [],
+    "discovery_source": "workspace-metadata"
+  },
+  {
+    "package_name": "knight-bus",
+    "manifest_path": "Cargo.toml",
+    "workspace_status": "workspace-member",
+    "target_kind": "lib",
+    "target_name": "knight_bus",
+    "crate_types": [
+      "lib"
+    ],
+    "src_path": "src/lib.rs",
+    "required_features": [],
+    "discovery_source": "workspace-metadata"
+  },
+  {
+    "package_name": "knight-bus",
+    "manifest_path": "Cargo.toml",
+    "workspace_status": "workspace-member",
+    "target_kind": "test",
+    "target_name": "cli",
+    "crate_types": [
+      "bin"
+    ],
+    "src_path": "tests/cli.rs",
+    "required_features": [],
+    "discovery_source": "workspace-metadata"
+  },
+  {
+    "package_name": "knight-bus",
+    "manifest_path": "Cargo.toml",
+    "workspace_status": "workspace-member",
+    "target_kind": "test",
+    "target_name": "library_contract",
+    "crate_types": [
+      "bin"
+    ],
+    "src_path": "tests/library_contract.rs",
+    "required_features": [],
+    "discovery_source": "workspace-metadata"
+  }
+]

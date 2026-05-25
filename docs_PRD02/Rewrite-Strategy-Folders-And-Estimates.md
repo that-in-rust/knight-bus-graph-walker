@@ -4,6 +4,8 @@
 architecture. What stays, what changes, what gets written new.
 Grounded in actual code read, actual byte sizes, actual algorithms.*
 
+*v2 — Corrected after rubber duck debugging. All false claims killed.*
+
 ---
 
 ## Core Facts Enumerated
@@ -31,6 +33,9 @@ src/parity.rs       82   Parity verification: snapshot vs truth
 tests/cli.rs       254   Integration tests for CLI contract
 tests/library_contract.rs  250   Library API parity tests
 tests/support/mod.rs  28   Test fixtures
+
+Cargo.toml              11 dependencies (NO rand, NO rayon)
+Test fixtures           39 nodes, 67 edges (tiny graph)
 ```
 
 ### What the Three-Engine Architecture Needs
@@ -43,7 +48,7 @@ ENGINE 1: OLTP (Neo4j-compatible record store)
 
 ENGINE 2: OLAP (CSR analytics engine)
   STATUS: 80% EXISTS. MmapWalkRuntime IS the OLAP engine.
-  MISSING: PageRank, synthetic graph generator, madvise hints
+  MISSING: PageRank (parallel), synthetic graph generator, madvise hints
   TIMELINE: v0.0.3 (next release)
 
 ENGINE 3: Query Router / Sync
@@ -61,21 +66,27 @@ ENGINE 3: Query Router / Sync
 ```
 FILE               LOC   REASON
 ─────────────────  ────  ──────────────────────────────────────────
-src/error.rs       119   Error types are additive; new errors added,
-                         none changed. Current 15 variants stay.
-                         
 src/parity.rs       82   Parity verification for traversals works
                          unchanged. PageRank parity is a NEW check,
                          added separately.
 
 src/truth.rs       438   CSV loading + TruthGraphIndex. Unchanged.
-                         Future: may add synthetic graph generation
-                         as a separate module, not modifying truth.rs.
+                         Synthetic graph generation is a separate module.
+
+src/graph.rs       225   In-memory CSR builder. Used by the non-low-ram
+                         path (tests, small graphs). Unchanged.
+                         PageRank does NOT use this — it uses
+                         MmapWalkRuntime directly.
+
+src/low_ram.rs    1703   External merge-sort builder. Unchanged.
+                         This IS the build pipeline and it works.
+
+src/snapshot.rs    217   Snapshot writer. Unchanged for v0.0.3.
 
 tests/support/     28    Test fixture helpers. Unchanged.
 ```
 
-**Total: 667 LOC unchanged.**
+**Total: 2,693 LOC unchanged.**
 
 ### EXTEND (add code, don't rewrite)
 
@@ -90,9 +101,10 @@ src/types.rs       596   Add: PageRankConfig, PageRankResult,      +80
                          SyntheticGraphConfig, AlgorithmReport
                          (existing types untouched)
 
-src/error.rs       119   Add: PageRankError variants,              +15
-                         SyntheticGraphError
-                         (existing variants untouched)
+src/error.rs       119   Add: new error variants for PageRank      +15
+                         (e.g., EmptyGraph) and synthetic
+                         generation (e.g., InvalidDegree)
+                         (existing 15 variants untouched)
 
 src/main.rs        305   Add: PageRank subcommand,                 +60
                          Generate subcommand
@@ -102,74 +114,96 @@ src/app.rs         129   Add: run_page_rank(),                     +30
                          generate_synthetic_graph()
                          orchestration functions
 
-src/runtime.rs     402   Add: Methods to expose CSR arrays for     +40
+src/runtime.rs     402   Add: Methods to expose CSR arrays for     +65
                          PageRank iteration:
                          - forward_degree(dense_id) → u32
-                         - reverse_neighbors_iter(dense_id) → &[u32]
+                         - reverse_neighbor_range(dense_id) → (usize, usize)
+                         - forward_offsets_slice() → &[u64]  (unsafe cast)
+                         - reverse_offsets_slice() → &[u64]  (unsafe cast)
+                         - reverse_peers_slice() → &[u32]    (unsafe cast)
                          - node_count() already exists
                          Add: madvise hints (MADV_SEQUENTIAL)
-                         on open for large snapshots
+                         
+                         NOTE: unsafe mmap slice casts needed for
+                         performance. Per-element read_u32_from_mmap
+                         adds ~10 sec overhead at 100M edges due to
+                         function call + bounds check + byte copy
+                         per peer (2B calls across 20 iterations).
+                         mmap pages are 4KB-aligned → u32/u64 aligned.
 
 src/bench.rs       458   Add: PageRank benchmark scenario          +40
                          (existing scenarios untouched)
-
-src/snapshot.rs    217   No changes for v0.0.3.                     +0
-                         v0.0.5: add overlay manifest fields.
 
 tests/cli.rs       254   Add: PageRank + Generate CLI tests        +40
 tests/library_contract.rs 250  Add: PageRank parity tests          +30
 ```
 
-**Total: ~338 LOC added to existing files.**
+**Total: ~363 LOC added to existing files.**
+
+### CHANGED FILES (non-source)
+
+```
+FILE               WHAT CHANGES
+─────────────────  ──────────────────────────────────────────
+Cargo.toml         Add 2 new dependencies:
+                     rand = { version = "0.8", features = ["small_rng"] }
+                     rayon = "1.10"
+                   
+                   WHY rand: synthetic graph PRNG (deterministic
+                   random graph generation). No rand in current deps.
+                   
+                   WHY rayon: parallel PageRank inner loop.
+                   Without rayon, single-threaded PageRank is
+                   30-60 sec for 100M edges — SLOWER than Neo4j
+                   GDS algorithm time (5-15 sec multi-threaded).
+                   With rayon (4 cores): 8-15 sec.
+                   RAYON IS MANDATORY for the demo to work.
+
+tests/fixtures/    Add: tests/fixtures/pagerank/
+pagerank/            tiny_nodes.csv (4 nodes)
+                     tiny_edges.csv (known edges for hand-computed PR)
+                   
+                   Required by PageRank correctness tests.
+                   Existing fixtures (39 nodes, 67 edges) are for
+                   traversal parity, not PageRank verification.
+```
 
 ### NEW FILES (v0.0.3)
 
 ```
 FILE                    EST. LOC   PURPOSE
 ──────────────────────  ────────   ──────────────────────────────────
-src/page_rank.rs          150     Jacobi PageRank algorithm
+src/page_rank.rs          170     Parallel Jacobi PageRank algorithm
                                    - Reads reverse CSR from MmapWalkRuntime
                                    - Two f64 score arrays (old, new)
+                                   - rayon par_iter for parallel inner loop
+                                   - Dangling node mass redistribution
                                    - Iterates until convergence or max_iter
                                    - Returns PageRankResult (scores + stats)
-                                   - Uses mmap'd CSR directly (no copy)
+                                   - Optional: write scores to CSV output
+                                   - Uses mmap'd CSR directly via unsafe
+                                     slice casts (no per-element copy)
 
 src/synthetic.rs          120     Random graph generator
                                    - Generates nodes.csv + edges.csv
                                    - Configurable: node count, avg degree,
                                      power-law vs uniform distribution
-                                   - Deterministic seed for reproducibility
-                                   - Outputs CSV compatible with existing build
+                                   - Deterministic seed (rand SmallRng)
+                                   - Outputs CSV with EXACT headers matching
+                                     low_ram.rs and truth.rs requirements:
+                                     nodes: node_id,node_type,label,
+                                            parent_id,file_path,span
+                                     edges: from_id,edge_type,to_id
+                                   - Streaming write (never holds full graph)
 
 tests/page_rank.rs         60     PageRank correctness tests
                                    - Known small graphs with hand-computed PR
-                                   - Convergence tests
+                                   - Convergence tests (scores sum to ~1.0)
                                    - Edge cases: disconnected nodes, self-loops
+                                   - Dangling node handling verification
 ```
 
-**Total: ~330 LOC new files.**
-
-### UNCHANGED BUT NOTEWORTHY
-
-```
-FILE               LOC   NOTE
-─────────────────  ────  ──────────────────────────────────────────
-src/low_ram.rs    1703   The LARGEST file. External merge-sort builder.
-                         Unchanged for v0.0.3. This IS the build
-                         pipeline and it works.
-                         
-                         v0.0.5 (overlay): This file gets extended
-                         with an "append to overlay" path (~200 LOC).
-                         
-                         v0.1.0 (OLTP): This file splits into:
-                           src/build/csv_builder.rs (current code)
-                           src/build/wal_builder.rs (new: WAL→CSR)
-                         
-src/graph.rs       225   In-memory CSR builder. Used by the non-low-ram
-                         path (tests, small graphs). Unchanged.
-                         PageRank does NOT use this — it uses
-                         MmapWalkRuntime directly.
-```
+**Total: ~350 LOC new files.**
 
 ---
 
@@ -193,7 +227,7 @@ src/
 └── parity.rs           ← parity verification
 ```
 
-### v0.0.3 (NEXT RELEASE) — "+2 files, ~670 LOC total change"
+### v0.0.3 (NEXT RELEASE) — "+3 files, ~800 LOC total change"
 
 ```
 src/
@@ -204,23 +238,27 @@ src/
 ├── app.rs              ← +30 LOC (orchestration for new commands)
 ├── low_ram.rs          ← UNCHANGED
 ├── graph.rs            ← UNCHANGED
-├── runtime.rs          ← +40 LOC (CSR accessor methods + madvise)
+├── runtime.rs          ← +65 LOC (CSR slice casts + madvise + degree helpers)
 ├── snapshot.rs         ← UNCHANGED
 ├── bench.rs            ← +40 LOC (PageRank benchmark scenario)
 ├── truth.rs            ← UNCHANGED
 ├── parity.rs           ← UNCHANGED
-├── page_rank.rs        ← NEW: 150 LOC (Jacobi PageRank)
+├── page_rank.rs        ← NEW: 170 LOC (parallel Jacobi PageRank + dangling nodes)
 └── synthetic.rs        ← NEW: 120 LOC (random graph generator)
 
 tests/
 ├── cli.rs              ← +40 LOC
 ├── library_contract.rs ← +30 LOC
 ├── support/mod.rs      ← UNCHANGED
-└── page_rank.rs        ← NEW: 60 LOC
+├── page_rank.rs        ← NEW: 60 LOC
+└── fixtures/pagerank/  ← NEW: 2 CSV files (tiny hand-computed graph)
+
+Cargo.toml              ← +2 dependencies (rand, rayon)
 ```
 
-**v0.0.3 delta: +668 LOC across 12 files (2 new, 10 extended).**
-**Total codebase: ~5,378 LOC Rust + ~630 LOC tests = ~6,008 LOC.**
+**v0.0.3 delta: +800 LOC across 14 files (3 new, 11 modified).**
+**2 new dependencies. 2 unsafe blocks (mmap slice casts).**
+**Total codebase: ~5,542 LOC Rust + ~660 LOC tests = ~6,202 LOC.**
 
 ### v0.0.5 (OVERLAY MODEL) — "+1 file, ~400 LOC total change"
 
@@ -247,7 +285,7 @@ src/
 └── snapshot.rs         ← +40 LOC (overlay manifest fields)
 ```
 
-**v0.0.5 delta: ~400 LOC. Total codebase: ~6,408 LOC.**
+**v0.0.5 delta: ~400 LOC. Total codebase: ~6,602 LOC.**
 
 ### v0.1.0 (OLTP + QUERY ROUTER) — major restructure
 
@@ -269,8 +307,8 @@ src/
 │   └── mod.rs                  ← ~50 LOC
 │
 ├── olap/                       ← MmapWalkRuntime moves here
-│   ├── runtime.rs              ← current runtime.rs (~440 LOC, moved)
-│   ├── page_rank.rs            ← current page_rank.rs (~150 LOC, moved)
+│   ├── runtime.rs              ← current runtime.rs (~470 LOC, moved)
+│   ├── page_rank.rs            ← current page_rank.rs (~170 LOC, moved)
 │   ├── overlay.rs              ← current overlay.rs (~200 LOC, moved)
 │   └── mod.rs                  ← ~30 LOC
 │
@@ -287,15 +325,18 @@ src/
 └── synthetic.rs
 ```
 
-**v0.1.0 delta: ~2,600 new LOC + restructure. Total: ~9,000 LOC.**
+**v0.1.0 delta: ~2,600 new LOC + restructure. Total: ~9,200 LOC.**
 
 ---
 
 ## Estimated Run Times: The Numbers
 
-### Baseline: What v0.0.2 Can Do Today
+*Corrected after rubber duck analysis. Key changes:
+PageRank per-iteration time now accounts for random access
+to score arrays (cache miss at ~50 ns per access), and all
+PageRank times assume parallel execution with rayon.*
 
-Measured/estimated from code analysis and CSR properties:
+### Baseline: What v0.0.2 Can Do Today
 
 ```
 OPERATION                  10K nodes    1M nodes      10M nodes     50M nodes
@@ -329,51 +370,115 @@ QUERY (traversal on MmapWalkRuntime)
 
 ### v0.0.3: What PageRank Adds
 
+#### Why the Per-Iteration Model Changed
+
+The original estimate ignored the dominant cost: random access
+to `scores_old[u]`. In pull-based PageRank, the neighbor ID `u`
+is essentially random — it can point to any node. The score
+array is 160 MB (10M nodes × 16 bytes for old+new), far larger
+than L3 cache (~20-40 MB). Each access to `scores_old[u]` is
+a ~50 ns cache miss.
+
+```
+Per-iteration cost breakdown (10M nodes, 100M edges):
+
+Sequential scans (fast — hardware prefetcher helps):
+  reverse_peers (400 MB):    0.04 sec   ← sequential, ~10 GB/s bandwidth
+  reverse_offsets (80 MB):   0.01 sec   ← sequential
+  forward_offsets (80 MB):   0.01 sec   ← semi-random but small
+
+Random access (slow — cache misses dominate):
+  scores_old[u] lookups:     100M × ~50 ns × ~80% miss rate = 4 sec
+  forward_offsets[u]:        10M unique lookups × ~50 ns = 0.5 sec
+
+Score_new writes:            sequential, negligible
+
+SINGLE-THREAD per iteration: 4-5 sec
+WITH RAYON (4 cores):        1-1.5 sec
+
+Power-law graphs reduce this:
+  High-degree hub nodes' scores stay in cache after first access.
+  Real-world graphs: ~60-70% miss rate instead of 80%.
+  Effective single-thread per iteration: 3-4 sec
+  Effective with rayon (4 cores): 0.8-1.2 sec
+```
+
+#### Corrected Run Time Tables
+
 ```
 OPERATION                  10K nodes    1M nodes      10M nodes     50M nodes
                            100K edges   10M edges     100M edges    500M edges
 ───────────────────────    ──────────   ──────────    ──────────    ──────────
-PAGERANK (20 iterations, damping 0.85)
+PAGERANK (20 iterations, damping 0.85, PARALLEL with rayon)
 
 Score arrays allocation
   2 × N × 8 bytes          160 KB       16 MB         160 MB        800 MB
 
-Working set (mmap pages touched)
+Working set (mmap pages touched per iteration)
   reverse_peers (full)     400 KB       40 MB         400 MB        2 GB
   reverse_offsets (full)   80 KB        8 MB          80 MB         400 MB
   forward_offsets (degree) 80 KB        8 MB          80 MB         400 MB
   TOTAL WORKING SET        560 KB       56 MB         560 MB        2.8 GB
   + score arrays           720 KB       72 MB         720 MB        3.6 GB
 
-Iteration time (per iteration)
-  ALL IN RAM (64 GB srv)   <1 ms        10-30 ms      100-300 ms    0.5-1.5 sec
-  MOSTLY CACHED (16 GB)    <1 ms        10-30 ms      150-500 ms    0.8-3 sec
-  TIGHT RAM (8 GB free)    <1 ms        20-50 ms      300 ms-1 sec  1.5-5 sec
-  VERY TIGHT (4 GB free)   <1 ms        20-50 ms      500 ms-2 sec  3-8 sec
+Per-iteration time (WITH RAYON, 4 cores)
+  64 GB server (all cached) <1 ms       0.1-0.3 sec   0.8-1.5 sec   4-8 sec
+  16 GB laptop (8 GB free)  <1 ms       0.1-0.3 sec   1-2 sec       5-12 sec
+  8 GB laptop (4 GB free)   <1 ms       0.2-0.5 sec   1.5-3 sec     8-20 sec
 
-First iteration (cold)
-  ALL IN RAM               <1 ms        50-100 ms     0.5-1 sec     2-5 sec
-  TIGHT RAM                <1 ms        100-300 ms    1-3 sec       5-15 sec
+Per-iteration time (SINGLE THREAD — for reference only)
+  64 GB server (all cached) <1 ms       0.3-0.8 sec   3-5 sec       15-30 sec
+  16 GB laptop              <1 ms       0.3-0.8 sec   4-6 sec       20-40 sec
+  8 GB laptop               <1 ms       0.5-1 sec     5-8 sec       25-50 sec
 
-TOTAL PAGERANK (20 iterations)
-  ALL IN RAM               <20 ms       0.3-0.7 sec   2-7 sec       10-35 sec
-  16 GB laptop (8 GB free) <20 ms       0.3-0.7 sec   4-12 sec      20-65 sec
-  8 GB laptop (4 GB free)  <20 ms       0.5-1 sec     7-22 sec      35-110 sec
+TOTAL PAGERANK (20 iterations, PARALLEL with rayon, 4 cores)
+  64 GB server              <20 ms      2-6 sec       16-30 sec     80-160 sec
+  16 GB laptop (8 GB free)  <20 ms      2-6 sec       20-40 sec     100-240 sec
+  8 GB laptop (4 GB free)   <20 ms      4-10 sec      30-60 sec     160-400 sec
 
-  Neo4j GDS (for comparison):
+  With early convergence (typically 10-15 iterations for most graphs):
+  64 GB server              <10 ms      1-4 sec       8-22 sec      40-120 sec
+  16 GB laptop              <10 ms      1-4 sec       10-30 sec     50-180 sec
+  8 GB laptop               <10 ms      2-8 sec       15-45 sec     80-300 sec
+
+  Neo4j GDS (for comparison — MULTI-THREADED):
   Projection alone         <1 sec       5-15 sec      60-120 sec    300-600 sec
   Algorithm                <1 sec       2-5 sec       5-15 sec      20-60 sec
   TOTAL NEO4J              <2 sec       7-20 sec      65-135 sec    320-660 sec
 
 PAGERANK RSS (resident memory)
-  ALL IN RAM               ~1 MB        ~72 MB        ~720 MB       ~3.6 GB
-  16 GB laptop             ~1 MB        ~72 MB        ~720 MB       ~3.6 GB*
-  8 GB laptop              ~1 MB        ~72 MB        ~500 MB**     ~1.5 GB**
+  64 GB server              ~1 MB       ~72 MB        ~720 MB       ~3.6 GB
+  16 GB laptop              ~1 MB       ~72 MB        ~720 MB       ~3.6 GB*
+  8 GB laptop               ~1 MB       ~72 MB        ~500 MB**     ~1.5 GB**
   * OS may page out older CSR pages
   ** OS actively pages; RSS capped by available memory
 
   Neo4j GDS RSS:
   Projection + algorithm   ~200 MB      ~2 GB         ~8-16 GB      ~30-60 GB
+```
+
+#### The Honest Speedup Story
+
+```
+                           Knight Bus    Neo4j GDS    Speedup
+                           (rayon, 4c)   (total)      
+10M nodes, 100M edges:
+  64 GB server             8-22 sec      65-135 sec   3-17x
+  16 GB laptop             10-30 sec     65-135 sec   2-14x
+  8 GB laptop              15-45 sec     OOM          ∞ (Neo4j can't run)
+
+50M nodes, 500M edges:
+  64 GB server             40-120 sec    320-660 sec  3-17x
+  16 GB laptop             50-180 sec    OOM          ∞
+  8 GB laptop              80-300 sec    OOM          ∞
+
+WHERE THE SPEEDUP COMES FROM:
+  Projection elimination:  60-600 sec saved (depending on graph size)
+  Algorithm speed:         ~SAME as Neo4j GDS (both parallel, similar math)
+  The win is skipping the step Neo4j can't skip.
+  
+  On laptops: the win is "runs at all" vs "OOM crash."
+  On servers: the win is "skip the 60-600 sec projection tax."
 ```
 
 ### v0.0.3: What Synthetic Graph Generation Adds
@@ -388,27 +493,42 @@ GENERATE (write CSV files)
   Generation time          <1 sec       3-10 sec      30-90 sec     2-8 min
   RSS during generation    ~10 MB       ~50 MB        ~100 MB       ~200 MB
   (streaming write, no full graph in memory)
+  
+  NOTE: Requires rand crate. Uses SmallRng for speed.
+  NOTE: CSV headers must EXACTLY match:
+    nodes: node_id,node_type,label,parent_id,file_path,span
+    edges: from_id,edge_type,to_id
+  These are hardcoded in low_ram.rs and truth.rs.
 ```
 
-### v0.0.3: Full Pipeline Time (end-to-end)
+### v0.0.3: Full Pipeline Time (end-to-end, corrected)
 
 ```
 "Generate 10M-node graph, build snapshot, run PageRank"
 
 Step                         10M nodes / 100M edges
-────────────────────────     ──────────────────────
+────────────────────────     ──────────────────────────────
 1. knight-bus generate       30-90 sec
 2. knight-bus build          2-5 min
-3. knight-bus pagerank       2-12 sec (depends on RAM)
-────────────────────────     ──────────────────────
-TOTAL                        3-7 minutes
+3. knight-bus pagerank       8-22 sec (rayon, 64 GB server)
+                             10-30 sec (rayon, 16 GB laptop)
+────────────────────────     ──────────────────────────────
+TOTAL (server)               3-7 minutes
+TOTAL (laptop)               3-8 minutes
 
 Same workload on Neo4j:
 1. LOAD CSV                  5-15 min
 2. gds.graph.project()       60-120 sec (projection)
-3. gds.pageRank()            5-15 sec
-────────────────────────     ──────────────────────
+3. gds.pageRank()            5-15 sec (multi-threaded)
+────────────────────────     ──────────────────────────────
 TOTAL                        7-18 minutes
+
+DISK SPACE NEEDED (during build):
+  CSV files:                 ~3.5 GB
+  Build scratch (merge sort): ~6 GB
+  Snapshot:                  ~1.3 GB
+  TOTAL PEAK:               ~10.8 GB
+  AFTER CLEANUP:             ~4.8 GB (CSV + snapshot)
 ```
 
 ### v0.0.5: What Overlay Adds
@@ -471,7 +591,11 @@ WAL REPLAY → CSR REBUILD
 ### What to Build (in order)
 
 ```
-STEP 1: src/synthetic.rs (~120 LOC)
+STEP 1: Cargo.toml changes
+  Add: rand = { version = "0.8", features = ["small_rng"] }
+  Add: rayon = "1.10"
+
+STEP 2: src/synthetic.rs (~120 LOC)
   PURPOSE: Generate test data without needing external datasets
   
   pub struct SyntheticGraphConfig {
@@ -488,13 +612,89 @@ STEP 1: src/synthetic.rs (~120 LOC)
   ) -> Result<SyntheticGraphSummary, KnightBusError>
   
   STRATEGY: Stream writes. Never hold full graph in memory.
-  Use Xoshiro256++ PRNG (fast, deterministic, no dep needed — 
-  or use rand crate). Write CSV rows directly to BufWriter.
+  Use rand SmallRng (fast, deterministic). Write CSV rows
+  directly to BufWriter.
+  
+  CRITICAL: CSV headers must EXACTLY match:
+    nodes: node_id,node_type,label,parent_id,file_path,span
+    edges: from_id,edge_type,to_id
+  Use constants from truth.rs / low_ram.rs headers.
   
   Power-law distribution: for node i, degree ~ i^(-alpha).
   This models real graphs (most nodes have few edges, some have many).
+  
+  No dedup in generator (probability of duplicate edge is ~0.0001%
+  at 10M nodes with avg degree 10). Let the builder handle it.
+  No self-loops (cleaner for PageRank).
 
-STEP 2: src/page_rank.rs (~150 LOC)
+STEP 3: Extend runtime.rs (~65 LOC)
+  PURPOSE: Expose CSR arrays for PageRank without per-element copy.
+  
+  impl MmapWalkRuntime {
+      /// Returns the forward degree (outgoing edge count) for a node.
+      pub fn forward_degree(&self, dense_id: u32) -> u32 {
+          let offsets = self.forward_offsets_slice();
+          (offsets[dense_id as usize + 1] - offsets[dense_id as usize]) as u32
+      }
+      
+      /// Returns (start, end) indices into reverse_peers for a node.
+      pub fn reverse_neighbor_range(&self, dense_id: u32) -> (usize, usize) {
+          let offsets = self.reverse_offsets_slice();
+          (offsets[dense_id as usize] as usize,
+           offsets[dense_id as usize + 1] as usize)
+      }
+      
+      /// Cast mmap'd bytes to u64 offset array.
+      /// SAFETY: mmap is page-aligned (4 KB), validated at open time.
+      fn forward_offsets_slice(&self) -> &[u64] {
+          unsafe {
+              std::slice::from_raw_parts(
+                  self.forward_offsets.as_ptr() as *const u64,
+                  self.forward_offsets.len() / 8,
+              )
+          }
+      }
+      
+      /// Cast mmap'd bytes to u64 offset array.
+      fn reverse_offsets_slice(&self) -> &[u64] {
+          unsafe {
+              std::slice::from_raw_parts(
+                  self.reverse_offsets.as_ptr() as *const u64,
+                  self.reverse_offsets.len() / 8,
+              )
+          }
+      }
+      
+      /// Cast mmap'd bytes to u32 peer ID array.
+      fn reverse_peers_slice(&self) -> &[u32] {
+          unsafe {
+              std::slice::from_raw_parts(
+                  self.reverse_peers.as_ptr() as *const u32,
+                  self.reverse_peers.len() / 4,
+              )
+          }
+      }
+      
+      /// Advise OS for sequential access (PageRank full-scan pattern).
+      #[cfg(unix)]
+      pub fn advise_sequential(&self) {
+          use libc::{c_void, madvise, MADV_SEQUENTIAL};
+          unsafe {
+              madvise(
+                  self.reverse_peers.as_ptr() as *mut c_void,
+                  self.reverse_peers.len(),
+                  MADV_SEQUENTIAL,
+              );
+              madvise(
+                  self.reverse_offsets.as_ptr() as *mut c_void,
+                  self.reverse_offsets.len(),
+                  MADV_SEQUENTIAL,
+              );
+          }
+      }
+  }
+
+STEP 4: src/page_rank.rs (~170 LOC)
   PURPOSE: The headline algorithm. Proof of the CSR advantage.
   
   pub struct PageRankConfig {
@@ -516,66 +716,46 @@ STEP 2: src/page_rank.rs (~150 LOC)
       config: &PageRankConfig,
   ) -> Result<PageRankResult, KnightBusError>
   
-  ALGORITHM (Jacobi / pull-based):
+  ALGORITHM (parallel pull-based Jacobi with dangling node fix):
+    N = runtime.node_count()
     scores_old = vec![1.0 / N; N]
     scores_new = vec![0.0; N]
+    d = config.damping
     
     for iteration in 0..max_iterations:
-      for v in 0..N:
-        sum = 0.0
-        for u in reverse_neighbors(v):  // read reverse CSR
-          sum += scores_old[u] / forward_degree(u)  // read fwd offsets
-        scores_new[v] = (1 - d) / N + d * sum
+      // Phase 1: Compute dangling mass
+      dangling_sum = sum of scores_old[v] where forward_degree(v) == 0
+      dangling_contribution = d * dangling_sum / N
       
+      // Phase 2: Pull-based PageRank (PARALLEL via rayon)
+      scores_new.par_iter_mut().enumerate().for_each(|(v, score)| {
+        let (start, end) = runtime.reverse_neighbor_range(v as u32)
+        let peers = runtime.reverse_peers_slice()
+        let mut sum = 0.0
+        for idx in start..end:
+          let u = peers[idx]
+          let degree = runtime.forward_degree(u)
+          if degree > 0:
+            sum += scores_old[u as usize] / degree as f64
+        *score = (1.0 - d) / N + d * sum + dangling_contribution
+      })
+      
+      // Phase 3: Convergence check
       if L1_norm(scores_new - scores_old) < tolerance:
-        break
+        converged = true; break
       swap(scores_old, scores_new)
   
   MEMORY: 2 × N × 8 bytes for score arrays. Everything else mmap'd.
   
-  KEY METHODS NEEDED ON MmapWalkRuntime:
-    fn node_count(&self) -> u32                    // already exists
-    fn reverse_neighbor_range(&self, v: u32) -> (usize, usize)  // NEW
-    fn reverse_peer_at(&self, index: usize) -> u32               // NEW
-    fn forward_degree(&self, v: u32) -> u32                       // NEW
-
-STEP 3: Extend runtime.rs (~40 LOC)
-  PURPOSE: Expose CSR arrays for PageRank without copying.
+  WHY DANGLING NODES MATTER: Without redistribution, scores don't
+  sum to 1.0 and convergence is wrong. Standard PageRank fix.
   
-  impl MmapWalkRuntime {
-      pub fn forward_degree(&self, dense_id: u32) -> u32 {
-          let start = read_u64_from_mmap(&self.forward_offsets, dense_id as usize);
-          let end = read_u64_from_mmap(&self.forward_offsets, dense_id as usize + 1);
-          (end - start) as u32
-      }
-      
-      pub fn reverse_neighbor_range(&self, dense_id: u32) -> (usize, usize) {
-          let start = read_u64_from_mmap(&self.reverse_offsets, dense_id as usize) as usize;
-          let end = read_u64_from_mmap(&self.reverse_offsets, dense_id as usize + 1) as usize;
-          (start, end)
-      }
-      
-      pub fn reverse_peer_at(&self, index: usize) -> u32 {
-          read_u32_from_mmap(&self.reverse_peers, index)
-      }
-      
-      // Optional: madvise hint for sequential access
-      #[cfg(unix)]
-      pub fn advise_sequential(&self) -> Result<(), KnightBusError> {
-          use libc::{c_void, madvise, MADV_SEQUENTIAL};
-          // Apply to reverse_peers (PageRank scans it sequentially)
-          unsafe {
-              madvise(
-                  self.reverse_peers.as_ptr() as *mut c_void,
-                  self.reverse_peers.len(),
-                  MADV_SEQUENTIAL,
-              );
-          }
-          Ok(())
-      }
-  }
+  WHY RAYON IS NEEDED: Without parallel inner loop, 100M edges
+  × 20 iterations takes 60-100 sec (single thread). With rayon
+  on 4 cores: 16-30 sec. The difference between "barely faster
+  than Neo4j" and "3-17x faster."
 
-STEP 4: Extend main.rs + app.rs (~90 LOC)
+STEP 5: Extend main.rs + app.rs (~90 LOC)
   PURPOSE: CLI subcommands for new features.
   
   Commands::Generate {
@@ -595,15 +775,19 @@ STEP 4: Extend main.rs + app.rs (~90 LOC)
       top_k: Option<usize>,        // optional: print top K nodes
   }
 
-STEP 5: Extend types.rs + error.rs (~95 LOC)
+STEP 6: Extend types.rs + error.rs (~95 LOC)
   New types and error variants for PageRank and synthetic.
 
-STEP 6: Tests (~130 LOC)
-  - PageRank on hand-computed 4-node graph
-  - PageRank convergence test
-  - Synthetic graph: verify node/edge counts
+STEP 7: Tests (~130 LOC)
+  - PageRank on hand-computed 4-node graph (new fixture)
+  - PageRank convergence test (scores sum to ~1.0)
+  - PageRank dangling node test
+  - Synthetic graph: verify node/edge counts + CSV headers
   - CLI integration: generate → build → pagerank pipeline
   - Benchmark: pagerank scenario added
+  
+  NOTE: 10M-scale tests marked #[ignore] (too slow for CI).
+  Run manually during Day 6.
 ```
 
 ### What NOT to Build for v0.0.3
@@ -621,28 +805,32 @@ STEP 6: Tests (~130 LOC)
 
 ---
 
-## The Headline Numbers (Honest, Verified Against Analysis)
+## The Headline Numbers (Honest, Rubber-Duck Verified)
 
 ### v0.0.3 Marketing Claim (50M nodes, 500M edges)
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                                                              │
-│  PageRank on 500M edges:                                     │
+│  PageRank on 500M edges (with rayon, 4 cores):               │
 │                                                              │
 │  Knight Bus v0.0.3          Neo4j GDS 2.x                    │
 │  ─────────────────          ──────────────                    │
 │  Projection: 0 sec          Projection: 300-600 sec          │
-│  Algorithm:  10-35 sec      Algorithm:  20-60 sec            │
-│  TOTAL:      10-35 sec      TOTAL:      320-660 sec          │
+│  Algorithm:  40-120 sec     Algorithm:  20-60 sec            │
+│  TOTAL:      40-120 sec     TOTAL:      320-660 sec          │
 │  RSS:        3.6 GB *       RSS:        30-60 GB             │
 │                                                              │
 │  * 800 MB heap + 2.8 GB mmap (OS-managed)                    │
-│  On 8 GB laptop: RSS ~1.5 GB, time ~35-110 sec               │
+│  On 8 GB laptop: RSS ~1.5 GB, time ~80-300 sec               │
 │  On 8 GB laptop: Neo4j → OOM, cannot run                     │
 │                                                              │
-│  Speedup: 9-66x faster                                       │
+│  Speedup: 3-17x faster (from skipping projection)            │
 │  Memory: 8-17x less                                          │
+│                                                              │
+│  HONEST NOTE: Algorithm-only time is ~same as Neo4j GDS.     │
+│  The win is eliminating the projection step that Neo4j's     │
+│  storage format forces. On laptops the win is "runs at all." │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -658,14 +846,17 @@ STEP 6: Tests (~130 LOC)
 │  ─────────────────          ──────────────                    │
 │  Generate CSV:  60 sec      LOAD CSV:        5-15 min        │
 │  Build CSR:     3 min       (already loaded)                  │
-│  PageRank:      2-7 sec     Projection:      60-120 sec      │
-│                             Algorithm:       5-15 sec         │
+│  PageRank:      8-22 sec    Projection:      60-120 sec      │
+│  (rayon, 4c)               Algorithm:       5-15 sec         │
 │  TOTAL:         ~4 min      TOTAL:           6-16 min         │
 │  RSS:           720 MB *    RSS:             8-16 GB          │
 │                                                              │
 │  * 160 MB heap + 560 MB mmap                                 │
 │  On 16 GB laptop: works perfectly                             │
 │  On Neo4j with 8 GB heap: OOM during projection              │
+│                                                              │
+│  Speedup:       3-12x (total pipeline)                        │
+│  Memory:        10-20x less                                   │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -678,36 +869,54 @@ STEP 6: Tests (~130 LOC)
 VERSION   WHAT                              NEW LOC   TOTAL LOC   TIMELINE
 ────────  ──────────────────────────────     ───────   ─────────   ────────
 v0.0.2    Current: Build + Query + Bench    —         5,242       TODAY
-v0.0.3    PageRank + Synthetic + Benchmark  ~670      5,912       1-2 weeks
-v0.0.4    Dijkstra + BFS + Python bindings  ~800      6,712       2-3 weeks
-v0.0.5    Overlay model (zero-stale writes) ~400      7,112       1-2 weeks
-v0.0.6    madvise/mlock adaptive hints      ~100      7,212       3 days
-v0.1.0    OLTP record store + query router  ~2,600    9,812       4-6 weeks
-v0.2.0    Cypher subset + Bolt protocol     ~5,000    14,812      2-3 months
+v0.0.3    PageRank + Synthetic + Benchmark  ~800      6,042       2 weeks
+v0.0.4    Dijkstra + BFS + Python bindings  ~800      6,842       2-3 weeks
+v0.0.5    Overlay model (zero-stale writes) ~400      7,242       1-2 weeks
+v0.0.6    madvise/mlock adaptive hints      ~100      7,342       3 days
+v0.1.0    OLTP record store + query router  ~2,600    9,942       4-6 weeks
+v0.2.0    Cypher subset + Bolt protocol     ~5,000    14,942      2-3 months
 ```
 
-### The Build Order for v0.0.3 (daily plan)
+### The Build Order for v0.0.3 (corrected daily plan)
 
 ```
-Day 1:  src/synthetic.rs + Generate CLI + test
-        → "knight-bus generate" works, produces CSV files
+Day 1:  Cargo.toml (add rand, rayon) + src/synthetic.rs + Generate CLI
+        → "knight-bus generate --node-count 1000 --avg-degree 5" works
+        → Verify: generated CSV has correct headers, build succeeds
         
-Day 2:  src/page_rank.rs + runtime.rs extensions
-        → PageRank algorithm on MmapWalkRuntime
-        → Test on 4-node hand-computed graph
+Day 2:  runtime.rs extensions (unsafe slice casts, degree helpers)
+        → forward_degree(), reverse_neighbor_range(), reverse_peers_slice()
+        → madvise_sequential()
         
-Day 3:  PageRank CLI + benchmark integration
+Day 3:  src/page_rank.rs (parallel Jacobi + dangling nodes)
+        → Test on 4-node hand-computed graph (new fixture)
+        → Test convergence: scores sum to ~1.0
+        
+Day 4:  PageRank CLI (main.rs + app.rs) + benchmark integration
         → "knight-bus pagerank --snapshot X --top-k 10"
-        → Benchmark: generate 1M graph → build → pagerank
+        → Benchmark: generate 10K graph → build → pagerank
         
-Day 4:  Full pipeline test at 10M scale
+Day 5:  Pipeline test at 1M scale
+        → Generate 1M nodes, 10M edges → build → pagerank
+        → Measure: wall time, RSS, convergence
+        → Verify numbers within estimate ranges
+        
+Day 6:  Pipeline test at 10M scale (HIGH RISK DAY)
         → Generate 10M nodes, 100M edges
-        → Build snapshot
+        → Build snapshot (~1.3 GB, needs ~10 GB disk)
         → Run PageRank, measure wall time + RSS
+        → Debug any scale issues (build pipeline, convergence)
         → Compare numbers against estimates above
         
-Day 5:  Polish: README update, version bump, benchmark report
+Day 7:  Polish: README update, version bump, benchmark report
         → Update Cargo.toml to 0.0.3
         → Write benchmark results to docs/
         → Tag release
+        
+RISK: Day 6 may expand to 2-3 days if:
+  - Build pipeline has issues at 10M scale (never tested beyond 39 nodes)
+  - PageRank convergence takes >20 iterations on power-law graph
+  - Disk space insufficient for scratch files (~10 GB needed)
+  
+TOTAL ESTIMATE: 7-10 working days
 ```

@@ -500,3 +500,782 @@ Summarized honestly:
   aggregation, filtering, Neo4j import, or the 100x speed claim.
 
 That's the honest TDD-verified inventory.
+
+---
+
+## Appendix A: The Knight Bus Storage Format Story
+
+*Integrated from cross-session research notes. These ideas evolved
+across multiple conversations and tools. They are included here
+WITHOUT filtering because the user requested "don't lose the
+diversity of ideas."*
+
+### The Governing Thought
+
+The repeated Knight Bus thesis is:
+
+> Store the graph in the shape the runtime wants to walk, so the
+> hot path becomes direct indexed reads instead of dynamic graph
+> reconstruction.
+
+Everything else is downstream from that.
+
+### The Six Stable Design Ideas
+
+These are the most-repeated and most-stable ideas across all
+accessible notes. They are not claims — they are design principles
+that keep reappearing.
+
+#### 1. Truth layer and runtime layer must stay separate
+
+- `truth layer`: readable source inputs (`nodes.csv`, `edges.csv`)
+- `runtime layer`: compact compiled snapshot optimized for walking
+
+The point is not merely performance. The point is also intellectual
+honesty:
+
+- truth remains inspectable
+- parity can be checked against truth
+- the runtime is free to throw away semantic baggage the hot path
+  does not need
+
+Short form: **CSV is truth, not hot path.**
+
+**TDD verdict:** This separation IS contractual in Knight Bus.
+`TruthGraphSource` loads truth. `SnapshotArtifactWriter` builds
+runtime. `parity.rs` verifies them against each other. This is the
+strongest-proven design idea.
+
+#### 2. The winning base shape is dual CSR plus exact lookup
+
+The dominant repeated base format is:
+
+- dense integer node IDs (`u32`)
+- forward adjacency (`offsets + peers`)
+- reverse adjacency (`offsets + peers`)
+- sorted exact-key lookup (`key_index.bin`)
+- memory-mapped file access (`mmap`)
+
+The concrete snapshot shape that repeats most often:
+
+```text
+snapshot/
+  manifest.json
+  node_table.bin
+  strings.bin
+  forward.offsets.bin
+  forward.peers.bin
+  reverse.offsets.bin
+  reverse.peers.bin
+  key_index.bin
+```
+
+The key lookup and walk path are intentionally different concerns:
+
+- key lookup finds the dense ID
+- offsets and peers answer the walk
+
+**TDD verdict:** This IS the implemented format. Every file above
+exists in `snapshot.rs` constants. Every file is tested in the
+round-trip test. This is fully proven.
+
+#### 3. The runtime must be build-heavy and walk-light
+
+Build-time work is allowed to do:
+
+- counting, sorting, dense-ID assignment
+- forward/reverse adjacency materialization
+- validation and manifest writing
+
+Runtime work should mostly do:
+
+- read manifest
+- validate shape
+- `mmap` fixed files
+- resolve key
+- read one slice
+
+Short form: **build-time heavy, walk-time boring.**
+
+**TDD verdict:** The `low_ram.rs` builder (1,703 LOC) does all the
+heavy lifting. The `MmapWalkRuntime` query path is ~50 lines of
+binary search + offset arithmetic. The principle is PROVEN in code.
+
+#### 4. Storage is aligned only when the hot path is visible in the bytes
+
+This is the sharpest sentence in the whole note family:
+
+> Storage is only aligned to runtime when the runtime can almost
+> directly "see" its hot path inside the stored bytes.
+
+In practice, that means:
+
+- no reverse-edge reconstruction at query time
+- no edge-table rescans for one-hop queries
+- no row-materialization machinery in the walk path
+- no query planner in the narrow runtime
+- no generalized graph-database semantics on the hot path
+
+**TDD verdict:** This IS what `MmapWalkRuntime` does. Dense ID →
+offset slice → peer array. The hot path is literally visible in
+the bytes. PROVEN for the narrow traversal case.
+
+#### 5. mmap is part of the format story, not just an implementation detail
+
+Why:
+
+- lets the OS page in only touched regions
+- keeps startup simple (no heap reconstruction of the whole graph)
+- avoids managed buffer pools
+- pairs naturally with contiguous `offsets + peers` slices
+
+This is why the native runtime story was preferred over a Wasm-first
+story in the repo notes.
+
+**TDD verdict:** `MmapWalkRuntime` uses `memmap2` for 7 binary
+files. `open_detects_truncated_offsets_now` tests that mmap validates
+file sizes. PROVEN.
+
+#### 6. Exact-key search should stay tiny and off the traversal hot path
+
+Another repeated rule:
+
+- search is okay
+- search in every hop is not okay
+
+So the design keeps:
+
+- one compact exact-key entry path (binary search on `key_index.bin`)
+- one separate adjacency walk path (offset → peer slice)
+
+This is why `key_index.bin` is treated as a sidecar, not as the
+center of the engine.
+
+**TDD verdict:** `resolve_dense_id` does binary search once. After
+that, all traversal is dense-ID arithmetic with zero key lookups
+per hop. PROVEN.
+
+### The Hot Path Mental Model
+
+The recurring mental model is NOT "query a graph database."
+
+It is:
+
+```text
+find key
+  → get dense id
+  → read start offset
+  → read end offset
+  → slice contiguous peers
+```
+
+The repeated contrast:
+
+- Neo4j: generalized property graph, planner, traversal machinery,
+  row materialization, process boundaries
+- Knight Bus: fixed graph world, fixed relationship semantics,
+  direct slice replay
+
+The fairest repeated claim is NOT "Knight Bus beats Neo4j everywhere."
+
+It is:
+
+> Knight Bus is dramatically better when the workload is exact-anchor,
+> fixed-hop replay over a static snapshot.
+
+### The Four Guardrails
+
+These are the repeated "do not mess this up" rules:
+
+1. **Do not turn it into a generic graph database too early.**
+   Repeated non-goals: not a query-language project first, not a
+   graph database first, not a broker-backed graph reader, not a
+   per-hop RPC system, not a Wasm-first showcase.
+
+2. **Do not let lookup and traversal collapse into one heavy path.**
+   Once search, row decoding, planner work, reverse-edge derivation,
+   and traversal are mixed together, the narrow runtime loses its edge.
+
+3. **Do not overclaim benchmark generality.** Current proofs are
+   about fixed-hop traversal. Comparisons were against Cypher over
+   Bolt, not every Neo4j subsystem. GDS and broader algorithm
+   families need separate, fair comparisons.
+
+4. **Do not optimize for beautiful storage if it mismatches the
+   operation.** The real criterion is not elegance. It is whether
+   the bytes match the operation tightly enough that the CPU mostly
+   performs direct arithmetic and contiguous reads.
+
+### The Four Stages of Evolution
+
+The ideas evolved through four stages across sessions:
+
+**Stage 1: Prove a narrow win.**
+Static graph, exact-key anchor lookup, 1-2 hop traversal, dual CSR
+snapshot. This is where Knight Bus is today.
+
+**Stage 2: Formalize the storage-runtime doctrine.**
+Truth layer vs runtime layer. Parseltongue for graph shape. Iggy
+for durability discipline. Immutable sealed artifact. The
+`STORAGE_RUNTIME_ALIGNMENT.md` and `KNIGHT_BUS_THESIS.md` docs
+capture this.
+
+**Stage 3: Generalize to other workloads.**
+Single-node Rust compute thesis. Archive-memory graph retrieval
+(Tweet Scrolls). Other fixed-structure workloads. The same format
+idea applied beyond code-dependency graphs.
+
+**Stage 4: Generalize to backend families.**
+Algorithm-specific layout families. Bespoke contracts over reusable
+runtime families. `FormatSelectionProfile` plus result sidecars.
+Backend-only specialization. Neo4j-compatible frontend. This is the
+Algorithm Storage Atlas stage.
+
+### What the Chats Added Beyond the Repo Docs
+
+Four extensions emerged from the broader conversation traces:
+
+#### Extension 1: The same thesis was generalized beyond code graphs
+
+The format idea was applied to:
+- single-node Rust compute/storage systems
+- Tweet Scrolls archive memory retrieval
+- Neo4j algorithm-specific backend formats
+
+"Knight Bus-style" became a broader design pattern:
+> Make storage vibe with the exact operation being run.
+
+#### Extension 2: Tweet Scrolls reused the same split
+
+In the Tweet Scrolls architecture prompts:
+- archive records = truth layer
+- compiled memory snapshot = runtime layer
+- nodes: `tweet`, `DM`, `participant`, `thread`, `topic`, `time bucket`
+- fixed-hop traversal for memory questions
+
+The storage idea escaped the original code-dependency benchmark and
+became a generic "memory graph runtime" pattern.
+
+#### Extension 3: The storage thesis expanded into algorithm-specific layouts
+
+The biggest expansion appears in the Atlas. The crucial nuance:
+
+> "Bespoke" is the right publication model for the contract, but
+> not the right implementation model for the engine.
+
+In practice:
+- the product publishes specific contracts (`PageRankInboundPowerSnapshotV1`)
+- the runtime reuses a smaller set of internal layout families
+- a `FormatSelectionProfile` chooses the family + required planes
+  + result sidecars for the requested algorithm
+- the base graph stays immutable and sealed
+- exact-key lookup remains separate from traversal or compute
+
+The later internal vocabulary became more explicit:
+
+| Concept | Role |
+|---|---|
+| `BaseGraphSnapshot` | sealed topology artifact |
+| `PropertyPlane` | typed numeric or categorical planes |
+| `AlgorithmArtifact` | algorithm-specific open-time view |
+| `ComputeScratch` | temporary arrays, heaps, queues, buckets, tensors |
+| `ResultSidecar` | persisted scores, paths, flows, clusters, embeddings |
+| `FormatSelectionProfile` | algorithm → layout family mapping + sidecars |
+
+**TDD verdict:** NONE of these concepts exist as Rust code. They
+are design vocabulary, not contracts. Zero traits, zero tests.
+
+#### Extension 4: The Neo4j-compatible thinking imposed a boundary
+
+The faithful-port dossier adds the guardrail:
+- the **usage interface** should stay Neo4j-like
+- the **backend** can diverge aggressively
+
+That means the layout-family vocabulary is good **engine language**
+but not necessarily good **product language**.
+
+### The Family Taxonomy: What It's Really Saying
+
+The later conversation stopped treating "graph algorithms" as one
+storage class and instead grouped them by the primitive their inner
+loop actually needs:
+
+| Layout family | Dominant primitive | Algorithms |
+|---|---|---:|
+| `AnchorDualCsrLayoutV1` | exact anchor → adjacency slices | 4 |
+| `InboundPowerLayoutV1` | repeated inbound score accumulation | 4 |
+| `ConnectivityLowlinkLayoutV1` | DFS numbering, lowlinks, reverse-pass replay | 4 |
+| `OrderedWedgeLayoutV1` | sorted-neighbor intersection, wedge counting | 9 |
+| `PartitionRefinementLayoutV1` | community assignment updates and evaluation | 9 |
+| `PeelBucketLayoutV1` | low-degree peeling, bucket discipline | 3 |
+| `RelaxationFrontierLayoutV1` | weighted frontier relaxation | 10 |
+| `EdgeOrderForestLayoutV1` | globally ordered edge scan + union-find | 2 |
+| `FlowResidualLayoutV1` | mutable residual arc updates | 4 |
+| `FeatureMetricLayoutV1` | row-major feature distance, candidate refinement | 4 |
+| `EmbeddingSampleLayoutV1` | neighborhood/walk sampling for embeddings | 4 |
+| `DagOrderLayoutV1` | topological replay over acyclic graphs | 2 |
+| `InfluenceMonteCarloLayoutV1` | repeated stochastic cascade simulation | 1 |
+| **Total** | | **60** |
+
+The deeper bespoke-storage claim:
+
+> Dual CSR is the first strong proof, but the more durable doctrine
+> is to choose a byte shape family that makes the intended inner loop
+> boring.
+
+### The Three Practical Rules from the Atlas
+
+1. Traversal-style algorithms want contiguous adjacency slices
+2. Score-propagation algorithms want dense numeric planes over inbound edges
+3. Feature, flow, and training workloads want their own storage
+   primitives and should not be shoved through the same topology-only
+   snapshot
+
+### The Prototype Order Was Explicit
+
+P0 families (build first):
+1. `AnchorDualCsrLayoutV1` — closest to existing Knight Bus proof
+2. `InboundPowerLayoutV1` — unlocks PageRank, strong speedup potential
+3. `ConnectivityLowlinkLayoutV1` — SCC/WCC high-value baseline analytics
+4. `RelaxationFrontierLayoutV1` — Dijkstra, clean proof after fixed-hop
+5. `OrderedWedgeLayoutV1` — Triangle Count, sorted intersection wins
+
+If only five concrete proof snapshots were built, the recommended set:
+
+| # | Proof format | What it proves |
+|---|---|---|
+| 1 | `DegreeCentralityAnchorDualCsrSnapshotV1` | Slice replay |
+| 2 | `BfsTraversalFrontierSnapshotV1` | Frontier expansion |
+| 3 | `PageRankInboundPowerSnapshotV1` | Inbound power iteration |
+| 4 | `DijkstraSingleSourceHeapRelaxationSnapshotV1` | Weighted shortest path |
+| 5 | `TriangleCountOrderedWedgeSnapshotV1` | Sorted-neighbor intersection |
+
+That sequence has a systems-proof shape:
+- first prove slice replay
+- then prove inbound power iteration
+- then shortest-path relaxation
+- then wedge intersection
+- only then move deeper into community, flow, feature, or embedding families
+
+**TDD verdict:** Only proof #1 (AnchorDualCsr) has any implementation.
+Proofs #2-#5 are designed on paper. Zero code, zero tests, zero
+benchmarks for any of them.
+
+### The Open Questions
+
+These show up across the notes and remain unresolved:
+
+1. How far can the narrow snapshot idea stretch before a general
+   property-graph backend is unavoidable?
+2. Which workloads deserve dedicated layout families and which are
+   mostly compute-bound after load?
+3. How should mutable overlays work without contaminating the base
+   immutable runtime?
+4. If the user-facing interface must stay Neo4j-like, where exactly
+   does backend divergence begin?
+5. How much of the lookup path should stay sidecar-only before it
+   needs richer indexing?
+6. Should a future engine allow one base snapshot to expose both
+   CSR-style planes and tensor-ready feature planes without
+   duplicated bytes?
+7. Should vector-heavy families support `f16` or quantized planes
+   for cache density once correctness baselines are proven?
+8. Should filtered variants stay execution policies forever or
+   eventually earn dedicated filter-first precomputed postings?
+9. Should flow algorithms be allowed a writable memory overlay for
+   residual updates while keeping the durable snapshot immutable?
+10. Should APSP be implemented at all in a laptop-first engine or
+    only as a blocked offline batch artifact builder?
+
+### Best One-Sentence Summary
+
+> Knight Bus is the idea that you should compile the graph into a
+> memory-mapped, immutable, dense-ID snapshot whose bytes already
+> expose the walk hot path, instead of asking a general engine to
+> rediscover that path on every query.
+
+---
+
+## Appendix B: Full Algorithm Storage Atlas — Per-Algorithm Contracts
+
+*60 algorithms. 13 layout families. Each row is a concrete contract
+specifying exactly what on-disk shape that algorithm wants.*
+
+The Atlas answers one question:
+
+> If a Knight Bus successor wanted to beat generic property-graph
+> execution on a narrow graph workload, what on-disk shape should
+> each Neo4j GDS algorithm want?
+
+### Expert Lenses Applied
+
+- **Storage-systems:** optimize byte layout for the dominant
+  read/write pattern, not for query-language convenience.
+- **Graph-algorithms:** classify by true primitive: slice replay,
+  power iteration, wedge intersection, relaxation, residual flow,
+  feature-metric search, or training.
+- **Benchmark-fairness:** separate "beats Cypher over a property
+  graph" from "beats GDS over a projected in-memory graph."
+- **Operator:** prefer sealed artifacts, tiny sidecar indexes,
+  explicit validation, restart safety.
+- **Skeptical engineer:** ask whether a custom format really wins
+  or whether the workload is mostly compute-bound after load.
+
+### The Chosen Design
+
+| Approach | Upside | Downside | Verdict |
+|---|---|---|---|
+| One universal snapshot | Simple implementation | Leaves hot loops misaligned | **Reject** |
+| Fully bespoke per algorithm | Maximum local fit | Too many near-duplicate engines | **Reject** |
+| Hybrid: bespoke contracts over reusable families | Honest about differences while reusing runtime | Requires vocabulary + normalization | **Choose** |
+
+### Per-Layout Family Contracts
+
+#### `AnchorDualCsrLayoutV1` — 4 algorithms
+
+**Use when:** dominant operation is "exact anchor to one or two adjacency slices."
+
+```text
+manifest.json       node_table.bin      key_index.bin
+fwd.offsets.u64     fwd.peers.u32       rev.offsets.u64     rev.peers.u32
+degree.out.u32 [opt]    degree.in.u32 [opt]
+walk.alias_prob.f32 [opt]   walk.alias_jump.u32 [opt]
+```
+
+Hot path: `key → dense_id → offsets[id]..offsets[id+1] → peer slice`
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Degree Centrality | `DegreeCentralityAnchorDualCsrSnapshotV1` | P0 |
+| BFS | `BfsTraversalFrontierSnapshotV1` | P0 |
+| DFS | `DfsTraversalStackSnapshotV1` | P0 |
+| Random Walk | `RandomWalkAliasSnapshotV1` | P0 |
+
+**Status: THIS IS THE EXISTING KNIGHT BUS FORMAT.** Only family
+with any implementation.
+
+#### `InboundPowerLayoutV1` — 4 algorithms
+
+**Use when:** dominant operation is repeated inbound score accumulation.
+
+```text
+manifest.json       node_table.bin      key_index.bin
+in.offsets.u64      in.peers.u32        in.weight.f32 [opt]
+out.mass.f32        dangling.bitset     partition.node_ranges [opt]
+```
+
+Hot path: `for node: score_next[node] = base + sum(score[src] * weight / mass[src])`
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| PageRank | `PageRankInboundPowerSnapshotV1` | P0 |
+| Article Rank | `ArticleRankInboundPowerSnapshotV1` | P1 |
+| Eigenvector Centrality | `EigenvectorInboundPowerSnapshotV1` | P1 |
+| HITS | `HitsHubAuthoritySnapshotV1` | P1 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `ConnectivityLowlinkLayoutV1` — 4 algorithms
+
+**Use when:** algorithm wants DFS numbering, lowlinks, or reverse-pass replay.
+
+```text
+manifest.json       key_index.bin
+fwd.offsets.u64     fwd.peers.u32       rev.offsets.u64     rev.peers.u32
+undir.offsets.u64   undir.peers.u32     undir.edge_id.u32   undir.twin_halfedge.u32
+```
+
+Hot path: stack-based DFS or finish-order forward then reverse replay.
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Articulation Points | `ArticulationLowlinkSnapshotV1` | P1 |
+| Bridges | `BridgeLowlinkSnapshotV1` | P1 |
+| SCC | `SccFinishOrderSnapshotV1` | P1 |
+| WCC | `WccUnionFindSnapshotV1` | P1 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `OrderedWedgeLayoutV1` — 9 algorithms
+
+**Use when:** dominant operation is sorted-neighbor intersection or wedge counting.
+
+```text
+manifest.json
+left.offsets.u64    left.neighbors.u32  degree.u32
+degeneracy.order.u32    neighbor.weight.f32 [opt]
+```
+
+Hot path: pick lower-degree endpoint, intersect sorted neighbor lists.
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Triangle Count | `TriangleCountOrderedWedgeSnapshotV1` | P1 |
+| Local Clustering Coefficient | `LocalClusteringCoefficientSnapshotV1` | P2 |
+| Clique Counting | `CliqueCountingOrderedWedgeSnapshotV1` | P3 |
+| Node Similarity | `NodeSimilarityIntersectionSnapshotV1` | P2 |
+| Filtered Node Similarity | `FilteredNodeSimilarityIntersectionSnapshotV1` | P3 |
+| Adamic Adar | `AdamicAdarIntersectionSnapshotV1` | P2 |
+| Common Neighbors | `CommonNeighborsIntersectionSnapshotV1` | P1 |
+| Resource Allocation | `ResourceAllocationIntersectionSnapshotV1` | P2 |
+| Total Neighbors | (same family) | P2 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `PartitionRefinementLayoutV1` — 9 algorithms
+
+**Use when:** algorithm repeatedly updates or evaluates community assignments.
+
+```text
+manifest.json
+undirected.offsets.u64  undirected.peers.u32    edge.weight.f32 [opt]
+node.volume.f32     community.seed.u32 [opt]    community.input.u32 [opt]
+```
+
+Hot path: scan community labels on adjacent nodes, update gain or vote.
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Louvain | `LouvainRefinementSnapshotV1` | P2 |
+| Leiden | `LeidenRefinementSnapshotV1` | P2 |
+| Label Propagation | `LabelPropagationCommunitySnapshotV1` | P2 |
+| Modularity Optimization | `ModularityOptimizationSnapshotV1` | P2 |
+| Conductance metric | `ConductanceBoundarySnapshotV1` | P2 |
+| Modularity metric | `ModularityMetricSnapshotV1` | P2 |
+| Approx Max k-cut | `ApproxMaxKCutPartitionSnapshotV1` | P2 |
+| SLLPA | `SllpaSpeakerListenerSnapshotV1` | P2 |
+| Same Community | `SameCommunityJoinSnapshotV1` | P2 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `PeelBucketLayoutV1` — 3 algorithms
+
+**Use when:** algorithm peels low-degree nodes or does greedy assignment.
+
+```text
+manifest.json
+undirected.offsets.u64  undirected.peers.u32    degree.u32
+bucket.head.u32     bucket.next.u32     neighbor_color.bitset [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| K-Core Decomposition | `KCorePeelBucketSnapshotV1` | P1 |
+| K-1 Coloring | `K1ColoringBucketSnapshotV1` | P2 |
+| Preferential Attachment | `PreferentialAttachmentDegreeSnapshotV1` | P1 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `RelaxationFrontierLayoutV1` — 10 algorithms
+
+**Use when:** algorithm relaxes weighted edges from a frontier.
+
+```text
+manifest.json
+out.offsets.u64     out.peers.u32       edge.weight.f32
+edge.src.u32 [opt]  edge.dst.u32 [opt]  heuristic.f32 [opt]
+rev.offsets.u64 [opt]   rev.peers.u32 [opt]
+```
+
+Hot path: frontier pop → relax outgoing edges → update distance + queue.
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Dijkstra Source-Target | `DijkstraSourceTargetSnapshotV1` | P1 |
+| Dijkstra Single-Source | `DijkstraSingleSourceSnapshotV1` | P1 |
+| Delta-Stepping SSSP | `DeltaSteppingBucketSnapshotV1` | P1 |
+| A* | `AStarHeuristicSnapshotV1` | P1 |
+| Yen's Shortest Path | `YensDeviationSnapshotV1` | P2 |
+| Bellman-Ford SSSP | `BellmanFordEdgeScanSnapshotV1` | P2 |
+| Betweenness Centrality | `BetweennessBrandesSnapshotV1` | P2 |
+| Closeness Centrality | `ClosenessRadiusSnapshotV1` | P2 |
+| Harmonic Centrality | `HarmonicRadiusSnapshotV1` | P2 |
+| APSP | `AllPairsShortestBlockedSnapshotV1` | P3 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `EdgeOrderForestLayoutV1` — 2 algorithms
+
+**Use when:** the winning representation is a sorted edge plane + union-find.
+
+```text
+manifest.json
+edge.src.u32    edge.dst.u32    edge.weight.f32     edge.order.u32
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Min Weight Spanning Tree | `MinimumWeightSpanningTreeSnapshotV1` | P2 |
+| Min Weight k-Spanning Tree | `MinimumWeightKSpanningTreeSnapshotV1` | P2 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `FlowResidualLayoutV1` — 4 algorithms
+
+**Use when:** algorithm needs mutable residual capacity and reverse-arc jumps.
+
+```text
+manifest.json
+residual.offsets.u64    residual.head.u32   residual.cap.f32
+residual.rev_arc.u32    residual.cost.f32 [opt]
+terminal.role.u8    terminal.supply.f32 [opt]   terminal.demand.f32 [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Maximum Flow | `MaximumFlowResidualSnapshotV1` | P2 |
+| Min-Cost Max-Flow | `MinCostMaxFlowResidualSnapshotV1` | P2 |
+| Directed Steiner Tree | `DirectedSteinerTerminalSnapshotV1` | P2 |
+| Prize-collecting Steiner | `PrizeCollectingSteinerSnapshotV1` | P2 |
+
+**Status: DESIGN ONLY.** Zero code. Also NOTE: flow algorithms
+need **mutable** overlays, which contradicts the immutable snapshot
+model. This is an open design question.
+
+#### `FeatureMetricLayoutV1` — 4 algorithms
+
+**Use when:** graph topology is secondary and the dominant operation
+is vector distance or nearest-neighbor refinement.
+
+```text
+manifest.json       node_table.bin      key_index.bin
+features.row_offsets.u64    features.values.f32
+features.rowmajor.f32 [opt] feature.norm.f32
+candidate.offsets.u64 [opt] candidate.peers.u32 [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| KNN | `KnnFeatureAnnSnapshotV1` | P3 |
+| Filtered KNN | `FilteredKnnFeatureAnnSnapshotV1` | P3 |
+| K-Means | `KMeansFeatureCentroidSnapshotV1` | P3 |
+| HDBSCAN | `HdbscanDistanceMstSnapshotV1` | P3 |
+
+**Status: DESIGN ONLY.** Zero code. Also NOTE: K-Means and HDBSCAN
+are **not graph workloads** — they ignore relationships entirely.
+Skeptical-engineer lens downgrades these.
+
+#### `EmbeddingSampleLayoutV1` — 4 algorithms
+
+**Use when:** algorithm samples neighborhoods or random walks to
+emit embeddings or model weights.
+
+```text
+manifest.json       node_table.bin      key_index.bin
+fwd.offsets.u64     fwd.peers.u32       rev.offsets.u64 [opt]   rev.peers.u32 [opt]
+feature.rowmajor.f32 [opt]  alias.jump.u32 [opt]    alias.prob.f32 [opt]
+sample.seed.u64     neg.alias.jump.u32 [opt]    neg.alias.prob.f32 [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| FastRP | `FastRpProjectionSnapshotV1` | P2 |
+| GraphSAGE | `GraphSageSampledNeighborhoodSnapshotV1` | P3 |
+| Node2Vec | `Node2VecWalkCorpusSnapshotV1` | P3 |
+| HashGNN | `HashGnnFeatureNeighborhoodSnapshotV1` | P3 |
+
+**Status: DESIGN ONLY.** Zero code. Skeptical-engineer lens:
+training-dominated workloads where storage format matters less.
+
+#### `DagOrderLayoutV1` — 2 algorithms
+
+**Use when:** graph is acyclic and the winning primitive is
+in-degree peeling then topological replay.
+
+```text
+manifest.json
+dag.offsets.u64     dag.peers.u32       dag.weight.f32 [opt]
+in_degree.u32       topo.order.u32 [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| Topological Sort | `TopologicalOrderDagSnapshotV1` | P2 |
+| Longest Path | `LongestPathDagSnapshotV1` | P2 |
+
+**Status: DESIGN ONLY.** Zero code.
+
+#### `InfluenceMonteCarloLayoutV1` — 1 algorithm
+
+**Use when:** dominant work is repeated stochastic propagation.
+
+```text
+manifest.json
+fwd.offsets.u64     fwd.peers.u32       activation.prob.f32
+rrset.offsets.u64 [opt]     rrset.nodes.u32 [opt]   seed_gain.cache.f32 [opt]
+```
+
+| Algorithm | Format | Priority |
+|---|---|---|
+| CELF | `CelfInfluenceCascadeSnapshotV1` | P3 |
+
+**Status: DESIGN ONLY.** Zero code. Skeptical lens: Monte Carlo
+simulation dominates after graph is loaded.
+
+### Atlas TDD Summary
+
+| Status | Count | % |
+|---|---|---|
+| **Implemented and tested** | 1 family (4 algorithms) | 7% |
+| **Designed on paper** | 12 families (56 algorithms) | 93% |
+| **Total** | 13 families (60 algorithms) | 100% |
+
+---
+
+## Appendix C: Source Notes Worth Re-Reading
+
+If someone wants the shortest reading list after this document:
+
+1. `STORAGE_RUNTIME_ALIGNMENT.md` — the core doctrine
+2. `KNIGHT_BUS_THESIS.md` — the thesis statement
+3. `KNIGHT_BUS_ALGORITHM_STORAGE_ATLAS.md` — the 60-algorithm expansion
+4. `A-20260525164835-faithful-rust-port-dossier.md` — the honest
+   cost analysis
+
+---
+
+## Updated Bottom Line
+
+The accessible notes do NOT describe Knight Bus as "a faster graph
+database." They describe it as a stricter systems discipline:
+
+- separate truth from runtime
+- compile structure once
+- make the hot path visible in the bytes
+- keep search and traversal separate
+- use immutable snapshots by default
+- publish bespoke contracts while reusing a small family of byte-level layouts
+- specialize backend storage to the operation, not the other way around
+
+**Against the TDD playbook, the score is:**
+
+- **The discipline is well-articulated.** 6 stable design ideas,
+  4 guardrails, 4 stages of evolution, all internally consistent.
+- **The implementation proves the first stage.** Dual CSR,
+  build-heavy/walk-light, truth-runtime separation, mmap — all
+  proven with 23 passing tests and 4 traits.
+- **The later stages (Atlas families, Cypher, Bolt, Neo4j compat)
+  are research documents, not contracts.** 93% of the Atlas is
+  design-only. Zero lines of Cypher parser, Bolt protocol, or
+  general query runtime exist.
+
+The honest gap:
+
+| What | Status |
+|---|---|
+| Core doctrine | **Articulated and proven** |
+| AnchorDualCsr format | **Built and tested** |
+| 12 other layout families | **Designed, not built** |
+| Cypher parser | **Not started** |
+| Bolt protocol | **Not started** |
+| Query planner | **Not started** |
+| Query runtime operators | **Not started** |
+| Property storage | **Not started** |
+| Multi-relationship types | **Not started** |
+| Mutations / writes | **Not started** |
+| Neo4j import | **Not started** |
+| Frontend/backend trait interface | **Not started** |
+
+The doctrine is strong. The proof of the first stage is strong.
+Everything else is honest design work that has not yet entered
+the TDD cycle.

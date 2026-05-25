@@ -920,3 +920,73 @@ RISK: Day 6 may expand to 2-3 days if:
   
 TOTAL ESTIMATE: 7-10 working days
 ```
+
+---
+
+## I/O Strategy: Why mmap, Not compio/io_uring
+
+*Added after studying Apache Iggy's I/O architecture (compio-based)
+and rubber-duck debugging whether io_uring would improve Knight Bus.
+Full analysis: docs_PRD02/Rubber-Duck-Compio-io_uring-Analysis.md*
+
+### v0.0.3: mmap + rayon (Confirmed Correct)
+
+Knight Bus v0.0.3 is a **batch analytics engine**. The bottleneck
+is CPU cache misses (L3 misses on PageRank score array), not disk I/O.
+
+```
+WHY mmap WINS for v0.0.3:
+  - Zero-copy access to CSR arrays (pointer arithmetic, no memcpy)
+  - OS manages page cache (better than userspace LRU)
+  - madvise(SEQUENTIAL) enables kernel prefetching
+  - rayon par_iter parallelizes the COMPUTE bottleneck
+  - mmap + rayon are compatible; compio + rayon are NOT
+    (compio is single-threaded async, rayon is multi-threaded sync)
+
+WHY compio/io_uring would HURT v0.0.3:
+  - Replacing rayon with compio = single-threaded PageRank = 60-100 sec = SLOWER than Neo4j
+  - io_uring operates on file descriptors; can't help with Vec<f64> cache misses
+  - Async I/O adds ~500 LOC of plumbing for 0% performance gain
+  - Would delay v0.0.3 by 2-3 weeks
+```
+
+### v0.1.0: compio for OLTP, mmap for OLAP (Planned)
+
+When Knight Bus adds a write path (OLTP engine), compio becomes
+the RIGHT tool:
+
+```
+OLTP engine (v0.1.0):
+  - WAL append: io_uring batch-submit writes + fsync → 50% lower write latency
+  - Concurrent reads during writes: async I/O doesn't block query threads
+  - This is EXACTLY what Iggy uses compio for (message streaming)
+  
+  NEW DEPENDENCY at v0.1.0:
+    compio = { version = "0.18", features = ["runtime", "fs"] }
+  
+  DESIGN: Each engine uses the I/O model optimal for its workload:
+    OLTP: compio (async, concurrent writes)
+    OLAP: mmap + rayon (zero-copy reads, parallel compute)
+    Bridge: channel (like Iggy's shard-to-shard communication)
+```
+
+### v0.0.6+: io_uring for Out-of-Core Analytics (Research)
+
+For graphs that exceed RAM (500M+ edges on 8 GB machine):
+
+```
+  - Batch-prefetch CSR pages via io_uring SQ
+  - Inspired by RingSampler (HotStorage 2025)
+  - Alternative to mmap's blocking page faults
+  - ~400 LOC, separate codepath from in-memory mmap path
+  - PREREQUISITE: v0.0.3 benchmarks show I/O bottleneck on tight-RAM machines
+```
+
+### Techniques Adopted from Iggy (Low Effort)
+
+```
+TECHNIQUE                          WHERE         LOC    WHEN
+posix_fadvise / madvise(SEQ)       runtime.rs    3      v0.0.3 (already planned)
+Buffer pooling for merge-sort      low_ram.rs    20     v0.0.4
+Vectored writes for snapshot       snapshot.rs   30     v0.0.5
+```

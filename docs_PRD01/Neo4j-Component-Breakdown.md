@@ -584,6 +584,230 @@ Bounded risk. The first 5 minutes are free.
 
 ---
 
+## Exact Folder Mapping — Where Each Part Lives
+
+All paths relative to `neo4j-reference/neo4j/community/`.
+
+### Part 1: DATABASE (storage engine) — 195K LOC
+
+```
+community/
+├── record-storage-engine/    69,646 LOC  ← THE data store
+│   └── RecordStorageEngine, NeoStores, NodeStore,
+│       RelStore, PropStore, batch import, record formats
+│
+├── kernel/                   83,297 LOC  ← transactions, cursors, ACID
+│   └── KernelTransaction, NodeCursor, RelCursor,
+│       Operations, recovery, database lifecycle
+│
+├── kernel-api/               18,542 LOC  ← public SPI (traits/interfaces)
+│   └── StorageEngine, StorageReader, CommandCreationContext
+│
+├── io/                       14,241 LOC  ← page cache "Muninn"
+│   └── MuninnPageCache, PageCursor, file I/O,
+│       page eviction (clock sweep), faulting, flushing
+│
+├── index/                    13,402 LOC  ← GBPTree (B+tree)
+│   └── schema indexes, counts store index,
+│       ID tracking, crash-safe, checkpoint integration
+│
+├── wal/                       8,888 LOC  ← write-ahead log
+│   └── log entries, checkpointing, recovery,
+│       log rotation, durability
+│
+├── lock/                      5,522 LOC  ← lock manager
+│   └── read/write locks, deadlock detection,
+│       transaction concurrency
+│
+├── storage-engine-util/       7,898 LOC  ← counts store, shared utils
+│   └── GBPTreeGenericCountsStore, degree cache
+│
+├── id-generator/             10,939 LOC  ← ID recycling
+│   └── recycles freed entity IDs via GBPTree or scan
+│
+├── layout/                      723 LOC  ← store file layout
+├── concurrent/                1,813 LOC  ← concurrent data structures
+├── unsafe/                    1,443 LOC  ← low-level memory access
+└── consistency-check/         1,331 LOC  ← store integrity validation
+```
+
+### Part 2: QUERY LANGUAGE (Cypher) — 702K LOC
+
+```
+community/cypher/             701,841 LOC total (512K Scala + 155K Java)
+│
+├── front-end/               322,897 LOC  ← THE BIGGEST subfolder
+│   └── Parser (ANTLR grammar → AST)
+│       Semantic analysis (type checking, scope)
+│       AST rewriting (normalization, desugaring)
+│       Name resolution, pattern expression handling
+│
+├── cypher-planner/          181,802 LOC  ← THE HARDEST piece
+│   └── IDP solver (join ordering)
+│       Cost-based optimization
+│       Cardinality estimation (histograms, selectivity)
+│       Eager barrier analysis
+│       Plan caching, parameter sensitivity
+│
+├── runtime-spec-suite/      122,221 LOC  ← test specs for runtime
+│   └── Cucumber/Gherkin test scenarios
+│       Defines expected behavior for all operators
+│
+├── interpreted-runtime/      59,267 LOC  ← runtime option 1
+│   └── Interpreted pipe execution
+│       Each operator = function call
+│
+├── cypher/                   45,591 LOC  ← assembly/glue
+│   └── Wires parser → planner → runtime together
+│       CypherQueryEngine entry point
+│
+├── runtime-util/             35,381 LOC  ← shared runtime utilities
+│   └── Row handling, argument processing
+│       Shared between interpreted + slotted runtimes
+│
+├── slotted-runtime/          19,674 LOC  ← runtime option 2 (faster)
+│   └── Fixed-size slot arrays instead of Row objects
+│       Less allocation, better cache behavior
+│
+├── cypher-logical-plans/     14,605 LOC  ← plan tree types
+│   └── LogicalPlan node types (AllNodesScan, Expand,
+│       Filter, Projection, Sort, Limit, etc.)
+│
+├── physical-planning/        10,735 LOC  ← logical → physical plan
+│   └── Slot allocation, pipe mapping
+│
+├── ir/                        9,740 LOC  ← intermediate representation
+│   └── Between AST and logical plan
+│
+├── logical-plan-builder/      7,847 LOC  ← plan construction
+│
+├── expression-evaluator/      1,369 LOC  ← expression eval
+├── cypher-config/             1,991 LOC  ← Cypher config
+├── cypher-cache/              1,597 LOC  ← query plan cache
+├── cypher-testing/            1,855 LOC  ← test helpers
+├── planner-spi/               1,412 LOC  ← planner interfaces
+├── graph-counts/                809 LOC  ← graph statistics
+├── logical-plan-generator/    1,715 LOC  ← plan generation
+├── spec-suite-tools/          1,546 LOC  ← test tooling
+├── compatibility-spec-suite/    487 LOC  ← compat tests
+└── cypher-rendering/             81 LOC  ← plan rendering
+```
+
+### Part 3: RUNTIME (inside Cypher)
+
+The runtime is NOT a separate folder — it's distributed across:
+```
+community/cypher/interpreted-runtime/   59,267 LOC  ← runtime v1
+community/cypher/slotted-runtime/       19,674 LOC  ← runtime v2 (faster)
+community/cypher/runtime-util/          35,381 LOC  ← shared runtime code
+community/cypher/runtime-spec-suite/   122,221 LOC  ← runtime tests/specs
+community/cypher/physical-planning/     10,735 LOC  ← physical plan gen
+community/cypher/expression-evaluator/   1,369 LOC  ← expr eval
+                                       ────────
+                                      ~249K LOC total runtime
+```
+
+### Part 4: WIRE PROTOCOL (Bolt) — 42K LOC
+
+```
+community/bolt/               42,064 LOC (all Java)
+│
+└── src/main/java/org/neo4j/bolt/
+    ├── protocol/       ← Bolt protocol versions (v3, v4, v5)
+    │   ├── common/     ← shared message types
+    │   └── v*/         ← version-specific handling
+    ├── transport/       ← TCP transport, connection handling
+    ├── runtime/         ← session state machine
+    │   └── statemachine/  HELLO → READY → STREAMING → etc.
+    ├── packstream/      ← PackStream binary serialization
+    │   └── encode/decode for Neo4j types
+    └── security/        ← auth over Bolt
+```
+
+### Part 5: SERVER (HTTP + management) — 34K LOC
+
+```
+community/server/             19,960 LOC  ← HTTP API
+│   └── REST endpoints, Neo4j Browser serving
+│       Admin endpoints, query submission via HTTP
+│
+community/server-api/          1,377 LOC  ← server interfaces
+│
+community/dbms/               10,560 LOC  ← database management
+│   └── DatabaseManagementService
+│       Create/drop/start/stop databases
+│       System database management
+│
+community/security/            3,620 LOC  ← auth & authz
+│   └── Authentication (password), authorization (roles)
+│       User management, basic RBAC
+│
+community/configuration/      12,295 LOC  ← config system
+│   └── Setting definitions, validation, parsing
+│       (Neo4j has ~400 config settings)
+│
+community/logging/             4,080 LOC  ← logging framework
+community/monitoring/            570 LOC  ← metrics
+community/ssl/                 1,851 LOC  ← TLS
+```
+
+### Part 6: TOOLING — 78K LOC
+
+```
+community/cypher-shell/       18,777 LOC  ← CLI for running Cypher
+│
+community/import-tool/         4,231 LOC  ← bulk import CLI
+community/import-util/        21,981 LOC  ← import infrastructure
+community/import-api/            987 LOC  ← import interfaces
+community/csv/                 5,109 LOC  ← CSV parsing
+│
+community/procedure/          15,327 LOC  ← built-in procedures
+community/procedure-api/         273 LOC  ← procedure interfaces
+community/procedure-compiler/  4,309 LOC  ← procedure annotation proc
+│
+community/lucene-index/       12,896 LOC  ← full-text search (Lucene)
+community/fulltext-index/      3,029 LOC  ← full-text integration
+community/spatial-index/       2,266 LOC  ← spatial indexing
+community/graph-algo/          4,321 LOC  ← graph algorithms
+│
+community/genai-plugin/        4,230 LOC  ← AI/ML plugin
+community/cloud/               4,115 LOC  ← cloud features
+community/push-to-cloud/       3,986 LOC  ← cloud push
+community/fabric/             14,958 LOC  ← federated queries
+```
+
+### Supporting (shared infrastructure)
+
+```
+community/common/             12,324 LOC  ← shared utilities
+community/collections/        11,356 LOC  ← custom collections
+community/values/             24,076 LOC  ← type system (CypherValue)
+community/graphdb-api/         4,600 LOC  ← public Graph API
+community/token-api/           1,439 LOC  ← label/property tokens
+community/neo4j-exceptions/    2,809 LOC  ← exception types
+community/neo4j-gql-status/    8,191 LOC  ← GQL status codes
+community/neo4j-notifications/ 3,508 LOC  ← notification system
+community/capabilities/        1,133 LOC  ← feature flags
+community/command-line/          881 LOC  ← CLI framework
+community/codegen/            13,279 LOC  ← runtime code generation
+community/data-collector/      2,043 LOC  ← telemetry
+community/neo4j/              11,443 LOC  ← assembly/bootstrap
+```
+
+### Tests (SKIP — rewrite in Rust)
+
+```
+community/community-it/      207,135 LOC  ← integration tests
+community/kernel-test/         58,323 LOC  ← kernel unit tests
+community/kernel-test-utils/    7,421 LOC  ← test utilities
+community/testing/             20,277 LOC  ← test framework
+community/gbptree-tests/       17,603 LOC  ← B+tree tests
+community/server-test-utils/    1,982 LOC  ← server test utils
+community/neo4j-harness/        2,131 LOC  ← test harness
+```
+
+---
+
 ## Summary: Neo4j's 6 Parts → KNRT
 
 | Neo4j Part | LOC | Move to KNRT? | How |

@@ -8,3 +8,4 @@ __pycache__/
 artifacts/
 reports/
 .env.neo4j.local
+neo4j-reference/

@@ -80,6 +80,31 @@ enough space for transaction/query state, and allocating the rest to page cache
 For an `8 GB` box, that leaves little room for both a transactional database,
 a large GDS projection, and heavy algorithm scratch.
 
+## GDS Code Reality
+
+The missing reference repo is now cloned at
+`ref-repo-folder/graph-data-science`. That matters because the fair OLAP
+baseline is not just "Neo4j docs say GDS is projected"; the GDS source itself
+shows a separate projected graph plane with CSR-like stores, compressed
+adjacency implementations, a graph catalog, and explicit memory estimation.
+
+| GDS code fact | local evidence | implication for Knight Bus |
+| --- | --- | --- |
+| GDS builds a `CSRGraphStore` from projected nodes and imported relationships. | `ref-repo-folder/graph-data-science/core/src/main/java/org/neo4j/gds/api/CSRGraphStoreFactory.java:67-86` constructs a `GraphStoreBuilder` with `nodes`, `relationshipImportResult`, schema, capabilities, and read concurrency. | Neo4j already separates OLAP projection from OLTP record traversal. Our Rust OLAP layer should compete with GDS projection, not only Cypher. |
+| The projected graph store holds an ID map, relationship stores, node properties, graph properties, schema, and timestamps. | `ref-repo-folder/graph-data-science/core/src/main/java/org/neo4j/gds/core/loading/CSRGraphStore.java:79-150`. | A faithful replacement needs a projection catalog/data model, not just raw CSR files. |
+| GDS stores projected graphs in a user/database/name catalog. | `ref-repo-folder/graph-data-science/core/src/main/java/org/neo4j/gds/core/loading/GraphStoreCatalog.java:50-55` defines static catalog state; `GraphStoreCatalog.java:84-124` resolves graphs by user/database/name and handles ambiguity. | Knight Bus should have explicit snapshot/catalog identity and freshness metadata, not anonymous mmap files. |
+| GDS projection import publishes graph stores to the catalog after building nodes, relationships, and schema. | `ref-repo-folder/graph-data-science/triplet-graph-builder/src/main/java/org/neo4j/gds/projection/GraphImporter.java:173-198`. | The Rust architecture needs an atomic projection publish step that resembles a catalog update. |
+| GDS has compressed adjacency list implementations using pages, per-node degree arrays, and offsets. | `CompressedAdjacencyList.java:44-86` estimates compressed pages, degrees, and offsets; `CompressedAdjacencyList.java:101-111` stores `byte[][] pages`, `HugeIntArray degrees`, and `HugeLongArray offsets`. | The `CompressedDualCsrBaseV1` recommendation is not exotic; it is close to the shape GDS already optimizes around, except ours is durable/mmap-first. |
+| GDS also has packed adjacency implementations with pages, degrees, and offsets. | `ref-repo-folder/graph-data-science/core/src/main/java/org/neo4j/gds/core/compression/packed/PackedAdjacencyList.java:33-40`. | Compression/packing should be a base-format option or hot artifact, not thirteen separate persistent layouts. |
+| GDS exposes memory estimation that combines graph projection and algorithm memory. | `ref-repo-folder/graph-data-science/executor/src/main/java/org/neo4j/gds/executor/MemoryEstimationExecutor.java:80-153`. | Our benchmark plan must measure graph projection memory and algorithm scratch separately, matching the way GDS users reason about feasibility. |
+| GDS adjacency access is cursor-based over degree and target IDs, with relationship properties still a design concern. | `ref-repo-folder/graph-data-science/core-api/src/main/java/org/neo4j/gds/api/AdjacencyList.java:25-31` and `AdjacencyList.java:40-62`. | This supports the three-format split: topology cursor, property plane, bounded scratch. |
+
+This strengthens the conclusion rather than weakening it. GDS is already much
+closer to `base topology + properties + algorithm scratch` than to "one OLTP
+record store for everything." The Rust opportunity is to make that projection
+durable, mmap-native, lower-overhead, and usable on smaller machines while
+keeping the Neo4j-facing API unchanged.
+
 ## Candidate Format Variants
 
 ### Option A: One Persistent Format
@@ -202,6 +227,7 @@ This gives the clearest product promise:
 | The Atlas has 13 families over 60 algorithms. | sourced local fact | [KNIGHT_BUS_ALGORITHM_STORAGE_ATLAS.md:88](../docs/KNIGHT_BUS_ALGORITHM_STORAGE_ATLAS.md#L88) |
 | Neo4j's record store uses fixed node, relationship, and property records with pointer fields. | sourced local fact | `NodeRecordFormat.java:31-32`, `RelationshipRecordFormat.java:31-35`, `PropertyRecordFormat.java:37-39` |
 | Neo4j record traversal follows relationship chains or dense-node relationship groups. | sourced local fact | `ref-repo-folder/neo4j/community/record-storage-engine/src/main/java/org/neo4j/internal/recordstorage/RecordRelationshipTraversalCursor.java:95-167`, `ref-repo-folder/neo4j/community/record-storage-engine/src/main/java/org/neo4j/internal/recordstorage/RecordRelationshipTraversalCursor.java:171-245` |
+| GDS has a separate CSR graph-store factory, graph-store catalog, compressed adjacency implementations, and memory-estimation executor. | sourced local fact | `CSRGraphStoreFactory.java:67-86`, `GraphStoreCatalog.java:50-124`, `CompressedAdjacencyList.java:44-111`, `MemoryEstimationExecutor.java:80-153` |
 | GDS uses projected in-memory graphs with compressed structures optimized for topology and property lookup. | sourced web fact | [Neo4j GDS introduction](https://neo4j.com/docs/graph-data-science/current/introduction/), [Neo4j GDS graph management](https://neo4j.com/docs/graph-data-science/current/management-ops/) |
 | Neo4j server memory is not just heap; page cache and OS memory are part of the sizing problem. | sourced web fact | [Neo4j configuration settings](https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/) |
 | External/semi-external graph processing is a proven family. | sourced web fact | [GraphChi](https://www.usenix.org/conference/osdi12/126-graphchi-large-scale-graph-computation-just-pc), [X-Stream](https://infoscience.epfl.ch/entities/publication/464b1137-af88-43ec-86e4-2d38f7a14f41) |

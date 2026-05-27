@@ -21,15 +21,18 @@ Neo4j rewritten in Rust
 - lowest RAM custom storage formats for OLAP queries
   → REAL RAM: 50 GB data processed comfortably on 8 GB systems
 - community edition hence single node
+
+
+to be specific
+- OLTP data storage remains Neo4j-shaped.
+- OLAP must account for direct and indirect RAM: heap page cache, duplicate layouts, compaction buffers, snapshot build scratch, delta overlays, indexes, and algorithm intermediates.
+
+- O_DIRECT + compio gives EXACT RAM control
+  - O_DIRECT bypasses page cache entirely
+  - We allocate exactly the buffers we need: 64 KB, 1 MB, 64 MB — our choice
+  - RSS = our allocations + stack + heap. Period.
+  - DETERMINISTIC: same workload = same RSS every time
+  - We CAN promise "PageRank uses exactly X MB"
+
+
 ```
-
-## Supporting Documents
-
-| Document | Key Finding |
-|---|---|
-| `docs_PRD02/OLAP-RAM-8GB-Constraint-Analysis.md` | Level 2 (3.2 GB) beats Neo4j (OOM) on 8 GB system |
-| `docs_PRD02/Architecture-Dual-Engine.md` | OLTP identical + OLAP low-RAM dual engine |
-| `docs_PRD02/1000IQ-OLAP-Architecture-Deep-Think.md` | 12 of 13 custom layouts INCREASE RAM — killed |
-| `docs_PRD02/Deep-Research-Custom-Formats-Per-Family.md` | 25+ papers confirm single CSR base |
-| `docs_PRD02/Why-Compio-IS-Right-For-OLAP-RAM.md` | compio O_DIRECT = deterministic RAM |
-| `docs_PRD02/Rubber-Duck-13-Families-vs-Neo4j-Source.md` | All claims verified against Neo4j source |

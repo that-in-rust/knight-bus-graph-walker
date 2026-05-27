@@ -109,6 +109,81 @@ For v003, prioritize depth over breadth:
 6. `apache-tinkerpop-src`, `apache-jena-src`, `eclipse-rdf4j-src`: standards and
    query semantics that may affect long-term compatibility decisions.
 
+## Recommended next repositories
+
+The current corpus is strong on graph databases and OLAP engines, but the v003
+PRD has one especially unforgiving promise: existing Neo4j applications should
+work with zero client-side changes. That makes protocol and driver compatibility
+the next highest-leverage research gap.
+
+### Tier 1: Neo4j driver and Bolt compatibility
+
+Clone these before designing the public server surface.
+
+| recommended local path | upstream | why add it |
+| --- | --- | --- |
+| `gitrefrepo/neo4j-testkit-src` | `https://github.com/neo4j-drivers/testkit.git` | Compatibility oracle for official Neo4j drivers. This is the most direct way to test whether Knight Bus behaves like Neo4j from client code. |
+| `gitrefrepo/neo4j-python-driver-src` | `https://github.com/neo4j/neo4j-python-driver.git` | Python driver behavior, Bolt handshake expectations, routing/session semantics, error handling, and transaction API behavior. |
+| `gitrefrepo/neo4j-java-driver-src` | `https://github.com/neo4j/neo4j-java-driver.git` | Java driver is a primary enterprise client; useful for compatibility expectations around sessions, result streaming, retries, and type mapping. |
+| `gitrefrepo/neo4j-javascript-driver-src` | `https://github.com/neo4j/neo4j-javascript-driver.git` | JavaScript/TypeScript client behavior, async result consumption, PackStream value mapping, and browser/server ergonomics. |
+| `gitrefrepo/neo4j-go-driver-src` | `https://github.com/neo4j/neo4j-go-driver.git` | Go driver behavior and concurrency expectations. |
+| `gitrefrepo/neo4j-dotnet-driver-src` | `https://github.com/neo4j/neo4j-dotnet-driver.git` | .NET driver behavior and type-system mapping. |
+| `gitrefrepo/neo4j-docs-bolt-src` | `https://github.com/neo4j/docs-bolt.git` | Bolt protocol documentation source; use with `neo4j-src` to keep implementation and docs aligned. |
+
+### Tier 2: Cypher grammar, parser, and conformance
+
+Clone these before committing to a Cypher parser strategy.
+
+| recommended local path | upstream | why add it |
+| --- | --- | --- |
+| `gitrefrepo/opencypher-src` | `https://github.com/opencypher/openCypher.git` | Cypher grammar, TCK/spec history, and language-level compatibility reference. |
+| `gitrefrepo/antlr-grammars-v4-src` | `https://github.com/antlr/grammars-v4.git` | Large grammar corpus including Cypher-related grammars and parser design references. |
+| `gitrefrepo/libcypher-parser-src` | `https://github.com/cleishm/libcypher-parser.git` | C implementation of a Cypher parser; useful as a compact parser architecture reference. |
+
+### Tier 3: OLTP storage, WAL, and indexing
+
+Clone these when designing the Rust record store, WAL, page cache, and indexes.
+
+| recommended local path | upstream | why add it |
+| --- | --- | --- |
+| `gitrefrepo/rocksdb-src` | `https://github.com/facebook/rocksdb.git` | Production LSM storage engine; useful for compaction, WAL, block cache, bloom filters, and write amplification tradeoffs. |
+| `gitrefrepo/tikv-src` | `https://github.com/tikv/tikv.git` | Rust transactional key-value store; useful for MVCC, Raft-separated storage ideas, and production-grade Rust persistence patterns. |
+| `gitrefrepo/redb-src` | `https://github.com/cberner/redb.git` | Embedded Rust database with copy-on-write B-tree design; useful for single-node durable storage alternatives. |
+| `gitrefrepo/fjall-src` | `https://github.com/fjall-rs/fjall.git` | Rust LSM key-value store; useful for simpler embedded persistence and compaction implementation patterns. |
+| `gitrefrepo/sled-src` | `https://github.com/spacejam/sled.git` | Rust embedded database; useful for historical lessons in lock-free/tree storage and crash safety. |
+| `gitrefrepo/tantivy-src` | `https://github.com/quickwit-oss/tantivy.git` | Rust search/index engine; useful for full-text and property index architecture. |
+
+### Tier 4: OLAP graph algorithms and sparse linear algebra
+
+Clone these when designing the low-RAM algorithm layer beyond the first CSR
+vertical slice.
+
+| recommended local path | upstream | why add it |
+| --- | --- | --- |
+| `gitrefrepo/snap-src` | `https://github.com/snap-stanford/snap.git` | Stanford graph analytics library; useful for algorithm baselines and graph workload patterns. |
+| `gitrefrepo/gapbs-src` | `https://github.com/sbeamer/gapbs.git` | Graph Algorithm Platform Benchmark Suite; useful for BFS/PageRank/CC/SSSP benchmark structure. |
+| `gitrefrepo/lagraph-src` | `https://github.com/GraphBLAS/LAGraph.git` | Graph algorithms over GraphBLAS; useful for sparse-linear-algebra expression of graph analytics. |
+| `gitrefrepo/graphblas-src` | `https://github.com/DrTimothyAldenDavis/GraphBLAS.git` | SuiteSparse GraphBLAS implementation; useful for sparse matrix kernels and memory layout ideas. |
+| `gitrefrepo/gunrock-src` | `https://github.com/gunrock/gunrock.git` | GPU graph analytics reference; not a v003 dependency, but useful for frontier-based algorithm design. |
+| `gitrefrepo/cugraph-src` | `https://github.com/rapidsai/cugraph.git` | GPU/distributed graph analytics stack; useful for algorithm API and large-scale analytics patterns. |
+
+### Tier 5: Rust streaming/query architecture and ergonomics
+
+Clone these only after the compatibility and storage questions are covered.
+
+| recommended local path | upstream | why add it |
+| --- | --- | --- |
+| `gitrefrepo/risingwave-src` | `https://github.com/risingwavelabs/risingwave.git` | Rust streaming database; useful for stateful streaming, query scheduling, and OLTP-to-OLAP sync architecture thinking. |
+| `gitrefrepo/petgraph-src` | `https://github.com/petgraph/petgraph.git` | Idiomatic Rust graph API; not storage-scale, but useful for API ergonomics and internal graph abstractions. |
+
+### Recommendation
+
+The next cloning pass should start with Tier 1 and Tier 2. Those repos directly
+de-risk the hardest v003 claim: Neo4j applications and drivers should connect
+without client changes. Tier 3 comes next for the single-node OLTP record store.
+Tier 4 is valuable after the CSR snapshot layer exists and needs algorithmic
+coverage beyond the first PageRank/BFS-style procedures.
+
 ## Notes
 
 - `gitrefrepo/` is a working research cache, not a dependency directory.

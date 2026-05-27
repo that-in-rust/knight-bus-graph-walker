@@ -15,30 +15,100 @@ compaction buffers, snapshot build scratch, delta overlays, indexes,
 and algorithm intermediates.
 ```
 
-## Short answer
+## Short answer, corrected
 
 Current Knight Bus is already the right seed: a compact immutable dual-CSR
 snapshot with a low-RAM builder and mmap traversal runtime.
 
-Cellular CSR is the preferred v003 evolution:
+Cellular CSR is a strong v003 evolution path, but the corrected thesis is more
+conservative than "replace flat CSR":
+
+```text
+Flat CSR = physics primitive.
+Cellular CSR = packaging, freshness, planning, and compaction layer.
+```
+
+Recommended phrasing:
+
+```text
+Cellular CSR is the preferred v003 research target and update-aware storage
+evolution, but v003 should keep flat dual CSR as the canonical global stream
+and first implementation fallback until spikes prove cells improve real
+workloads.
+```
+
+So the preferred direction is:
 
 ```text
 current flat dual CSR
-  -> split into bounded graph cells
-  -> add cell passports
-  -> add boundary indexes
+  -> keep as canonical per-cell byte primitive
+  -> keep as exact global logical stream fallback
+  -> package into bounded graph cells where useful
+  -> add cell passports for planning/freshness/validation
+  -> add boundary indexes only where measurements justify them
   -> add label/type/property sidecars
-  -> add WAL-fed cell-local deltas
-  -> add exact global O_DIRECT streaming fallback
+  -> add capped WAL-fed cell-local deltas
+  -> use O_DIRECT global streaming for strict-RAM algorithms
 ```
 
 The main claim:
 
 ```text
 Cellular CSR is not "faster CSR."
-It is CSR made updateable, locality-aware, and RAM-budgetable enough
-to serve the full OLAP API surface on 50GB data / 8GB RAM systems.
+It is flat CSR made update-aware, locality-aware, and RAM-budgetable.
+It should not displace flat CSR as the global scan primitive until measured.
 ```
+
+This corrects the most important possible overstatement in the earlier note:
+cells are an architectural layer over CSR, not proof that cells beat flat CSR for
+every workload.
+
+## PRD constraint analysis
+
+The PRD constraints from `v003-prd.md` are unusually strict:
+
+```text
+exact same APIs or surface area with ZERO changes
+identical architecture for OLTP queries
+lowest RAM custom storage formats for OLAP queries
+50 GB data processed comfortably on 8 GB systems
+OLAP RAM includes heap, page cache, duplicate layouts, compaction buffers,
+snapshot build scratch, delta overlays, indexes, and algorithm intermediates
+O_DIRECT + compio for exact RAM control
+```
+
+The storage architecture must therefore satisfy four different obligations:
+
+| Obligation | What it means | Consequence for CSR design |
+| --- | --- | --- |
+| OLTP compatibility | Transactional graph store remains Neo4j-shaped | Do not make CSR the mutable source of truth |
+| OLAP low RAM | Analytics cannot rely on giant in-memory GDS projections | CSR/sidecars must stream and spill under budget |
+| Holistic RAM | Page cache and scratch count, not just heap | mmap is fast mode; O_DIRECT is strict-RAM mode |
+| API surface | GDS-style procedures need catalog, properties, modes, estimates | Topology alone is insufficient |
+
+Correct constraint reading:
+
+```text
+v003 does not need "one magic graph layout."
+v003 needs a dual-plane system:
+  OLTP plane: Neo4j-shaped mutable records/WAL/locks/indexes.
+  OLAP plane: CSR-derived projections with exact memory contracts.
+```
+
+Flat dual CSR already satisfies the "physics primitive" part of the OLAP plane.
+Cellular CSR addresses the missing operational pieces:
+
+```text
+freshness unit
+locality unit
+compaction unit
+planning unit
+sidecar attachment unit
+```
+
+But algorithm state remains independent of cell layout. PageRank, Louvain, KNN,
+embeddings, and ML can still be dominated by vectors, heaps, candidate pairs, or
+models. Cells improve packaging and locality; they do not erase global state.
 
 ## Core facts
 
@@ -343,6 +413,47 @@ Usable RAM for OLAP after OS/minimal server overhead: ~5-6GB
 | Full OLAP property filters | not first-class in current v2 | typed per-cell sidecars | Cellular major improvement |
 | Operational complexity | low | 2-4x higher | Cellular worse |
 
+### Truth-check table
+
+This table separates supported claims from plausible but unproven claims.
+
+| Claim | Verdict | Correction / nuance |
+| --- | --- | --- |
+| Current Knight Bus flat dual CSR is the right seed. | True | Supported by the repo's current snapshot/runtime shape and low-RAM builder. |
+| Cellular CSR is "CSR made updateable, locality-aware, RAM-budgetable." | Mostly true | True only if cells are real update, compaction, and query units, not just folders. |
+| Cellular CSR is better for static walks. | Not proven | Flat CSR may be equal or faster. Cells add boundary and mapping overhead. |
+| Cellular CSR is better for small update freshness. | True | Cell-local deltas are much better than rebuilding a 50GB-class snapshot for a handful of edits. |
+| Cellular CSR is better for full global algorithm speed. | False / not proven | Flat CSR is already close to ideal for sequential scans. Cells may slow global scans unless the logical stream adapter is excellent. |
+| Cellular CSR improves holistic RAM. | Partially true | Strong for local reads, dirty-cell compaction, and bounded deltas. Neutral for global PageRank/Louvain/KNN when algorithm state dominates. |
+| `O_DIRECT` gives deterministic RAM. | Mostly true but overstrong | It bypasses page cache, but alignment buffers, block-device behavior, kernel accounting, I/O scheduling, and algorithm arrays still matter. |
+| 50GB graph -> flat CSR topology/key structures around 15-20GB. | Plausible | Raw dual CSR for 200M nodes / 1B directed edges stored in both forward and reverse form is about 11.2GB before keys/properties: offsets `2 * (200M + 1) * 8 ~= 3.2GB`, peers `2 * 1B * 4 ~= 8GB`. Keys and sidecars make 15-20GB plausible. |
+| PageRank two `f64[200M]` vectors = about 3.2GB. | True | `2 * 200M * 8 = 3.2GB`. Two `f32` vectors would be about 1.6GB. |
+| Exact global PageRank in 10-30s. | Too confident | Possible on strong hardware, but unsafe as a claim for 8GB/O_DIRECT mode without benchmark. Say "tens of seconds to minutes." |
+| Cellular topology overhead 5-20%. | Plausible, unproven | Boundary indexes, passports, per-cell offsets, and deltas could push overhead higher. |
+| Metadata RAM 300MB-1.5GB. | Plausible but design-dependent | Compact passports should be far smaller; boundary indexes and cached sidecars may dominate. |
+| Full OLAP API readiness improves with cells. | True as architecture | Cells do not solve all algorithms. Global algorithms still need global state, sidecars, and result storage. |
+| Partitioning is the biggest risk. | True | Bad partitioning can erase locality and add random I/O. |
+| Delta compaction is the second biggest risk. | True | Unbounded delta layers become LSM-style read amplification. |
+
+### Evidence and verification notes
+
+These are supporting references, not benchmark proof.
+
+| Evidence | What it supports |
+| --- | --- |
+| Current Knight Bus `snapshot.rs` writes flat `forward.offsets`, `forward.peers`, `reverse.offsets`, `reverse.peers`, node table, string table, and key index. | Flat dual CSR is the implemented primitive today. |
+| Current Knight Bus `runtime.rs` opens the snapshot through mmap and exposes walk-focused runtime methods. | Current execution is static and traversal-oriented, not full GDS. |
+| Neo4j GDS source includes `CSRGraphStoreFactory`, `CSRGraphStore`, `GraphStoreCatalog`, `HugeGraph`, and memory estimate result types. | GDS uses a separate projected graph plane and takes memory estimation seriously. |
+| Neo4j GDS `HugeGraph` comments describe target IDs sorted, delta-encoded, and written as variable-length vlongs with offset-based access. | Compressed CSR-like layouts are a real GDS design pattern. |
+| GraphChi uses vertex intervals and shards for out-of-core graph processing. Source: [GraphChi OSDI/USENIX](https://www.usenix.org/conference/osdi12/126-graphchi-large-scale-graph-computation-just-pc). | Cell/shard-style graph execution has strong precedent. |
+| LLAMA uses multiversioned arrays for graph analytics. Source: [LLAMA](https://syrah.eecs.harvard.edu/publications/llama-efficient-graph-analytics-using-large-multiversioned-arrays). | Base + delta/versioned graph thinking is legitimate. |
+| LSMGraph proposes multi-level CSR for dynamic graph storage. Source: [arXiv 2411.06392](https://arxiv.org/abs/2411.06392). | Graph-LSM / multi-level CSR is a real research direction, but likely complex. |
+| Linux page-cache documentation. Source: [Linux page cache](https://www.kernel.org/doc/html/v6.13/mm/page_cache.html). | mmap/page-cache residency is not fully planner-controlled. |
+
+Anything above that references GraphChi, LLAMA, LSMGraph, or Linux kernel docs is
+external evidence, not proven by this repository. It should be independently
+verified before being treated as an implementation guarantee.
+
 ## Where Cellular CSR is better
 
 ### 1. Update locality
@@ -457,6 +568,15 @@ Expected result:
 possible 5-20% slowdown unless global stream adapter is carefully built
 ```
 
+Corrected latency wording:
+
+```text
+Do not claim exact global PageRank in 10-30s as an architectural fact.
+Safer claim: with optimized sequential scans and vectors that fit, it may be
+tens of seconds to minutes; with strict 8GB/O_DIRECT/spill mode, minutes is
+more realistic until benchmarked.
+```
+
 ### 2. Disk compactness
 
 Flat CSR is more compact.
@@ -559,6 +679,54 @@ RAM-contract planner for algorithm intermediates
 
 Without the global stream adapter, Cellular CSR would be incomplete.
 
+### Duck: Does the PRD force Cellular CSR to be the default immediately?
+
+No.
+
+The PRD forces:
+
+```text
+same surface area
+Neo4j-shaped OLTP
+lowest-RAM OLAP
+holistic memory accounting
+```
+
+It does not force the first v003 OLAP implementation to make cells the default
+for all reads. The safer path is:
+
+```text
+flat CSR first implementation fallback
+Cellular CSR as spike / opt-in storage evolution
+promote cells only after benchmark thresholds pass
+```
+
+### Duck: Is "O_DIRECT gives exact RAM" perfectly true?
+
+No. It is directionally right but should be stated precisely.
+
+O_DIRECT helps because it bypasses the normal page cache for file data and makes
+the application allocate explicit buffers. But strict RSS still includes:
+
+```text
+algorithm arrays
+allocator fragmentation
+stack
+metadata
+alignment buffers
+kernel-visible I/O structures
+device / filesystem behavior
+delta overlays
+result sidecars
+```
+
+Correct claim:
+
+```text
+O_DIRECT is the right strict-RAM tool for global scans, but the memory contract
+must still account for algorithm state and all explicit buffers.
+```
+
 ### Duck: What is the biggest implementation risk?
 
 Partitioning.
@@ -593,10 +761,73 @@ max delta layers per query
 force compaction when thresholds are crossed
 ```
 
+## Corrected architecture roles
+
+| Layer | Recommended role |
+| --- | --- |
+| Flat dual CSR | Keep as the canonical byte primitive for per-cell topology and global logical streams. |
+| Cells | Add as bounded update, compaction, planning, and locality units. |
+| Passports | Use for validation, freshness, histograms, query planning, and memory estimates. |
+| Boundary indexes | Add after measuring boundary ratio; avoid overbuilding first. |
+| Sidecars | Attach labels, relationship types, weights, and properties to cells without duplicating topology. |
+| Deltas | Keep capped per cell and globally capped; force compaction by thresholds. |
+| mmap | Keep for interactive traversal and normal fast mode. |
+| O_DIRECT streaming | Use for strict-RAM global algorithms and benchmarked scan paths, not every query. |
+| GDS catalog/procedure layer | Treat as API compatibility contract above storage. |
+
+The winning implementation is therefore:
+
+```text
+flat CSR inside cells
++ one exact global flat stream
++ optional cell-local fast paths
++ capped deltas
++ sidecars
++ memory-contract planner
+```
+
+not:
+
+```text
+cells instead of flat CSR
+```
+
+## Benchmark spikes required before making cells default
+
+| Spike | Must measure | Promotion threshold |
+| --- | --- | --- |
+| `flat-vs-cell-local-walk` | page faults, RSS/PSS, latency, opened cells, cells touched per query | cells reduce cache churn/latency on locality-heavy queries without large tail penalty |
+| `flat-vs-cell-global-scan` | scan throughput, file-open overhead, boundary overhead, logical stream adapter penalty | global stream is within an acceptable small overhead of flat CSR |
+| `10-edits-delta` | time-to-visible in OLAP, delta RAM, query merge overhead | small edits become visible without generation rebuild and without unbounded query slowdown |
+| `dirty-cell-compaction` | scratch RAM, disk amplification, publish time, crash recovery | compaction stays within budget and publishes atomically |
+| `partition-quality` | boundary edge ratio, hot hub distribution, opened cells per traversal | partition does not explode boundary traffic |
+| `pagerank-8gb` | exact RSS/PSS, wall time, I/O volume, vector pressure, spill volume | memory estimate predicts measured memory; runtime remains acceptable |
+| `sidecar-filtered-query` | label/type/property filter selectivity, sidecar page faults, result correctness | sidecars improve filtered OLAP without duplicating full topology |
+
+These spikes decide defaults:
+
+```text
+If global scan overhead is high, keep flat CSR global files as primary.
+If local walk benefit is high, use cells for locality-heavy queries.
+If delta merge overhead is high, lower delta thresholds or compact sooner.
+If partition quality is poor, do not block v003 on partitioning theory.
+```
+
 ## Decision
 
-Prefer Cellular CSR for v003, but keep flat CSR as the internal global stream
-model.
+Prefer Cellular CSR as the v003 research target and update-aware storage
+evolution, but keep flat CSR as the canonical primitive and internal global
+stream model.
+
+Cellular CSR should become the default only after spikes prove:
+
+```text
+boundary ratio is acceptable
+metadata and sidecar overhead are acceptable
+global scan overhead is acceptable
+delta merge overhead is bounded
+dirty-cell compaction stays under memory budget
+```
 
 The winning design is not:
 
@@ -629,15 +860,17 @@ RAM contracts.
 | Is Cellular CSR better for current static walks? | Only slightly, often equal |
 | Is Cellular CSR better for global algorithm speed? | No, flat CSR is already ideal |
 | Is Cellular CSR better for update-aware OLAP? | Yes, dramatically |
-| Is Cellular CSR better for holistic RAM? | Yes for local/update/compaction workloads; equal for strict global O_DIRECT |
+| Is Cellular CSR better for holistic RAM? | Yes for local/update/compaction workloads; neutral for strict global O_DIRECT when algorithm state dominates |
 | Is Cellular CSR simpler? | No |
 | Is Cellular CSR more PRD-compliant for v003? | Yes |
+| Should we abandon flat CSR? | No |
+| Should cells be the immediate default for every workload? | No; prove with spikes first |
 
 One-line conclusion:
 
 ```text
-Current Knight Bus is a perfect flat folded map.
-Cellular CSR turns it into a live atlas of small folded map tiles:
-slightly worse for pure full-map scans, much better for updates,
-locality, compaction, RAM budgeting, and full OLAP API growth.
+Flat CSR is the physical primitive.
+Cellular CSR is the update-aware atlas layer.
+The best v003 architecture is flat CSR inside cells plus an exact global flat
+stream, not cells instead of flat CSR.
 ```

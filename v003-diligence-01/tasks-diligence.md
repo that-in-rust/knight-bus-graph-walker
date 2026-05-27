@@ -755,6 +755,303 @@ Acceptance tests:
 - Level 3 plan spills or streams under strict budget;
 - no mmap page-cache plan is allowed to claim deterministic RAM.
 
+### Phase 7B: algorithm-family diligence matrix
+
+The current Phase 7 kernels are enough to start architecture convergence, but
+not enough to plan implementation across the whole GDS surface. Add a separate
+algorithm diligence matrix before writing many kernels.
+
+The matrix should classify every GDS algorithm by:
+
+```text
+graph access pattern
+state shape
+tile execution strategy
+direct-I/O strategy
+spill strategy
+exactness target
+GDS modes
+oracle test
+50GB/8GB risk
+```
+
+#### T7B.1 Add shared algorithm state types
+
+Symbols to add:
+
+```rust
+pub enum AlgorithmAccessPattern {
+    PerNodeDegree,
+    FrontierTraversal,
+    GlobalIterativeScan,
+    PriorityQueueTraversal,
+    TriangleIntersection,
+    CommunityContraction,
+    PairwiseSimilarity,
+    RandomWalkSampling,
+    DenseEmbedding,
+    PropertyColumnTransform,
+}
+// Describes how an algorithm touches CSR tiles.
+
+pub enum AlgorithmStateShape {
+    ScalarPerNode { bytes_per_node: u64 },
+    VectorPerNode { vectors: u32, bytes_per_value: u64 },
+    FrontierBitset,
+    PriorityQueue,
+    CandidateTopK { k: u32 },
+    DenseMatrix { dimensions: u32, bytes_per_value: u64 },
+    ModelArtifact,
+}
+// Drives memory estimates and spill decisions.
+
+pub struct AlgorithmDiligenceSpec {
+    pub procedure_prefix: &'static str,
+    pub family: GdsProcedureFamily,
+    pub access_pattern: AlgorithmAccessPattern,
+    pub state_shapes: &'static [AlgorithmStateShape],
+    pub supported_modes: &'static [GdsProcedureMode],
+    pub exactness: ExactnessTarget,
+    pub tile_strategy: PhysicalGraphPlanKind,
+    pub first_oracle: &'static str,
+}
+// One row per algorithm family, independent of implementation status.
+```
+
+Acceptance tests:
+
+- every algorithm prefix in the GDS inventory maps to one diligence spec;
+- every diligence spec names at least one oracle fixture;
+- every vector/matrix state reports bytes as a function of node count,
+  edge count, dimension, and configured `topK` where applicable;
+- high-risk families cannot be marked implementation-ready without an explicit
+  spill strategy.
+
+#### T7B.2 Centrality algorithms
+
+Reference procedures include PageRank/ArticleRank/Eigenvector, degree,
+betweenness, harmonic/closeness, HITS, articulation points, and CELF-style
+influence procedures.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| Degree | read offsets only, tile-local | output scalar per node | hand degree fixture | low |
+| PageRank / ArticleRank / Eigenvector | global edge stream per iteration | 2-4 vectors × node_count | tiny numerical convergence | medium/high at 200M nodes |
+| HITS | forward + reverse global scans | authority/hub vectors | bipartite toy graph | high |
+| Harmonic / closeness | repeated BFS/SSSP from selected/all nodes | frontier + distance arrays | small unweighted graph | high if all-pairs |
+| Betweenness | Brandes-style source sweeps | stack, sigma, delta, predecessor frontier | diamond graph | very high |
+| Articulation points | DFS low-link | discovery/low/parent arrays | bridge/articulation fixture | medium |
+| CELF/influence | repeated marginal-gain simulations | candidate heap + sampled reachability | tiny influence graph | high |
+
+Implementation tasks:
+
+- implement degree first because it validates projection orientation cheaply;
+- implement PageRank next because it proves deterministic vector estimates;
+- mark all-pairs centralities as exact-but-expensive unless they have sampling
+  configs;
+- require estimates to reject all-pairs plans that cannot fit the configured
+  budget.
+
+Acceptance tests:
+
+- degree stream/stat/write outputs match expected schema;
+- PageRank estimate for 200M nodes shows each vector explicitly;
+- betweenness/closeness estimates scale with `source_count × frontier_state`;
+- unsupported centrality procedures still appear in registry and return
+  deterministic `UnsupportedButRegistered`.
+
+#### T7B.3 Path-finding algorithms
+
+Reference procedures include all-shortest-paths, BFS, DFS, Bellman-Ford,
+Delta-Stepping, Dijkstra single-source/single-pair, A*, Yen's k-shortest paths,
+random walk, spanning tree, Steiner tree, and longest path variants.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| BFS / DFS | tile wavefront frontier | visited bitset + parent/distance | small tree/cycle graph | low/medium |
+| Dijkstra / A* | tile wavefront + weight sidecar | priority queue + distance + predecessor | weighted diamond graph | medium |
+| Delta-Stepping | bucketed frontier over weight sidecars | buckets + distance vector | weighted multi-path graph | medium/high |
+| Bellman-Ford | repeated global edge stream | distance vector | negative-edge no-cycle graph | medium |
+| All shortest paths | repeated BFS/SSSP or blocked dynamic plan | many distance/frontier states | tiny all-pairs oracle | very high |
+| Yen's k-shortest | repeated Dijkstra with path suppression | heap of candidate paths | graph with 3 known paths | high |
+| Random walk | tile-local sampling with boundary handoff | RNG state + walk buffers | deterministic seeded walk | medium |
+| Spanning/Steiner tree | frontier/priority plan | parent + candidate heap | weighted tree oracle | medium |
+
+Implementation tasks:
+
+- make unweighted BFS/DFS the first pathfinding kernels;
+- add weight sidecar requirements before weighted shortest paths;
+- support `sourceNode` / `targetNode` configs without loading all nodes;
+- add deterministic RNG seed tests for random walk;
+- make all-pairs procedures budget-aware and able to reject unsafe exact plans.
+
+Acceptance tests:
+
+- BFS output has stable path order for fixture graphs;
+- Dijkstra and Delta-Stepping agree on non-negative weighted fixtures;
+- Bellman-Ford detects negative cycles where GDS-compatible behavior requires it;
+- random walk with a fixed seed is reproducible across flat CSR and tilehouse;
+- every pathfinding write mode reports relationship write counts.
+
+#### T7B.4 Community and structure algorithms
+
+Reference procedures include WCC, SCC, triangle count, local clustering
+coefficient, k-core, k-1 coloring, label propagation, Louvain, Leiden,
+modularity/modularity optimization, conductance, approximate max-k-cut, SLPA,
+and k-means-style procedures.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| WCC | iterative union/frontier | component id per node | two-components fixture | low/medium |
+| SCC | DFS/Kosaraju/Tarjan over forward+reverse | stack + component arrays | directed SCC fixture | medium |
+| Triangle count / LCC | sorted neighbor intersections | intersection buffers | triangle/square fixture | medium/high for high degree |
+| k-core | degree peeling | degree + queue | k-core toy graph | medium |
+| Coloring | iterative color assignment | color per node + conflict frontier | odd/even cycle fixture | medium |
+| Label propagation / SLPA | iterative neighbor label scans | label distributions | two-cluster fixture | medium/high |
+| Louvain / Leiden | multi-level contraction | community ids + aggregate graph | modularity toy graph | high |
+| Modularity / conductance | scan cut/internal edges | community/property sidecars | known partition fixture | medium |
+| K-means | property/embedding vectors | centroid matrix + assignment | tiny points fixture | high if dense vectors |
+
+Implementation tasks:
+
+- implement WCC and SCC before modularity algorithms;
+- implement triangle/LCC only after neighbor intersections are proven over tile
+  boundaries;
+- implement Louvain/Leiden only after a compact "contracted graph" sidecar
+  format exists;
+- require each mutate/write mode to store community ids as projected graph
+  sidecars before OLTP writeback.
+
+Acceptance tests:
+
+- WCC/SCC are stable between flat CSR and tilehouse;
+- triangle count does not double-count across tile boundaries;
+- Louvain/Leiden estimates include contracted graph scratch;
+- label propagation has deterministic tie-breaking when configured;
+- community write mode validates property names and output counts.
+
+#### T7B.5 Similarity algorithms
+
+Reference procedures include KNN, filtered KNN, nodeSimilarity, and filtered
+nodeSimilarity.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| Node similarity | adjacency/property overlap | candidate pairs + topK heaps | small bipartite overlap graph | very high |
+| Filtered node similarity | overlap with label/property filters | filtered candidate pairs | filtered toy graph | high |
+| KNN | vector/property sidecar scan | per-node topK + candidate sampler | small vector set | very high |
+| Filtered KNN | KNN with node filters | filtered topK heaps | filtered vector set | high |
+
+Implementation tasks:
+
+- never materialize all pairwise similarities;
+- require candidate generation strategy: tile-local blocking, degree filters,
+  LSH/random-projection, or GraphBLAS-style sparse product;
+- make `topK`, `similarityCutoff`, and filter selectivity part of estimates;
+- stream mode should be spillable and sorted only as much as required by GDS
+  output semantics.
+
+Acceptance tests:
+
+- topK results match hand oracle on tiny graphs;
+- `similarityCutoff` prunes expected rows;
+- filtered and unfiltered procedures differ only by filter semantics;
+- estimate rejects `O(n^2)` exact plans without a configured candidate strategy.
+
+#### T7B.6 Embeddings algorithms
+
+Reference procedures include FastRP, GraphSAGE stream/train/write, HashGNN, and
+Node2Vec.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| FastRP | repeated sparse propagation | embedding matrix | deterministic tiny embedding with seed | very high |
+| Node2Vec | random walks + skip-gram/training | walk corpus + embedding matrix | seeded tiny walk corpus | very high |
+| GraphSAGE | neighbor sampling + model | sampled batches + model weights | tiny train/infer fixture | very high |
+| HashGNN | hashed features + neighborhood aggregation | feature hashes + embeddings | deterministic hash fixture | high |
+
+Implementation tasks:
+
+- separate "embedding output sidecar" from algorithm scratch;
+- require dimension, batch size, concurrency, and walk length in estimates;
+- make seeded determinism a test requirement for all stochastic algorithms;
+- support streaming embeddings without requiring writeback;
+- defer training-heavy variants until model catalog semantics exist.
+
+Acceptance tests:
+
+- output vector dimensions match config;
+- seeded runs are reproducible;
+- estimate for `node_count × dimension × bytes_per_value` is explicit;
+- write mode stores embedding sidecars without duplicating base topology.
+
+#### T7B.7 ML, pipelines, model catalog, and miscellaneous algorithms
+
+Reference ML/misc includes KGE, splitRelationships, scaleProperties,
+toUndirected, collapsePath, indexInverse, model catalog, operations, and
+pipelines.
+
+| Algorithm group | CSR/tile execution | Dominant state | TDD oracle | RAM risk |
+| --- | --- | --- | --- | --- |
+| KGE | relationship-type/property sidecars | embeddings + negative samples | tiny typed KG fixture | very high |
+| Split relationships | sidecar/filter mutation | split tags/properties | deterministic split with seed | medium |
+| Scale properties | property column scan | min/max/std stats + output column | numeric property fixture | low |
+| To undirected | logical projection or sidecar relationship writes | boundary-aware doubled edges | asymmetric fixture | medium |
+| Collapse path / index inverse | topology transform | derived relationship sidecar | path fixture | medium/high |
+| Pipelines/model catalog | metadata + trained artifacts | model bytes + feature schema | train/register/list/drop fixture | high |
+
+Implementation tasks:
+
+- implement `scaleProperties` early as the first property-only algorithm;
+- treat `toUndirected` primarily as a projection operation, not a base topology
+  rewrite;
+- require model catalog persistence and versioning before training APIs are
+  marked supported;
+- keep operations/progress APIs wired into execution budget telemetry.
+
+Acceptance tests:
+
+- scaleProperties stream/write matches numeric oracle;
+- splitRelationships is deterministic with a seed;
+- model catalog list/drop survives process restart;
+- pipeline train estimates include feature extraction, model memory, and output
+  writeback.
+
+#### T7B.8 Algorithm-mode contract
+
+Every algorithm family must implement or explicitly stub each mode:
+
+| Mode | Required behavior | Test requirement |
+| --- | --- | --- |
+| `stream` | return result rows without catalog mutation | output schema and row-order tests |
+| `stats` | aggregate timings/counts/distribution summaries | no per-node sidecar created |
+| `mutate` | write result into projected graph sidecar | catalog reflects new property |
+| `write` | write result back to OLTP-facing store | write count and property name validation |
+| `estimate` | return memory contract without execution | no graph scan beyond metadata |
+
+Cross-cutting acceptance tests:
+
+- same algorithm config produces compatible `stream`, `stats`, `mutate`, and
+  `write` metadata;
+- mode-specific unsupported cases are explicit;
+- write/mutate never run if `estimate.required_bytes > budget.max_rss_bytes`;
+- output schemas are checked against the inventory.
+
+#### T7B.9 Algorithm rollout gates
+
+Do not mark an algorithm "supported" until all gates pass:
+
+```text
+G1 registry row exists
+G2 config parser validates defaults and bad inputs
+G3 estimate accounts for topology, sidecars, state, scratch, deltas
+G4 tiny oracle correctness test passes
+G5 flat CSR and tilehouse parity test passes
+G6 each supported mode has schema tests
+G7 budget rejection test passes
+G8 deterministic ordering/seed behavior is documented
+```
+
 ### Phase 8: update/freshness bridge
 
 #### T8.1 Add WAL receipt types

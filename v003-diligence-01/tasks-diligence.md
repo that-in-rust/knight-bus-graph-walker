@@ -1,4 +1,4 @@
-# v003 Diligence 01: TDD Task List for CSR Tiles + GDS Surface
+# v003 Diligence 01: TDD Task List for Low-RAM OLAP + GDS Surface
 
 This diligence note turns the v003 architecture direction into a test-first task
 list.
@@ -7,9 +7,48 @@ The target is not "add a faster PageRank." The target is:
 
 ```text
 Neo4j-shaped OLTP stays fixed.
-OLAP uses Cellular CSR Tilehouse.
+OLAP compiles verified projection facts into low-RAM immutable snapshots.
 The external GDS-style surface is preserved.
 Every claim is backed by tests before implementation.
+```
+
+## 0. Codex-note correction
+
+`diligence-codex-notes01.md` changes the implementation order. The diligence
+target is no longer "build Cellular CSR first." The target is a low-RAM OLAP
+plane that can prove GDS compatibility and 8 GB behavior before any exotic
+physical layout becomes mandatory.
+
+Core facts from the Codex notes:
+
+| fact | consequence for this task list |
+| --- | --- |
+| "Lowest RAM" means heap, RSS, page cache, mmap residency, build/compaction peaks, scratch, result sidecars, and operator-visible machine pressure. | Every estimate and acceptance test must account for holistic memory, not just Rust heap. |
+| Neo4j GDS already uses a projected graph plane with CSR-like compressed adjacency, catalog identity, schema, properties, and memory estimation. | Knight Bus must compete against GDS projection semantics, not Cypher-over-record-store semantics. |
+| The original "13 persistent layout families" idea is overbuilt. | Keep a tiny number of durable byte families; move algorithm-specific state into scratch/result/model sidecars. |
+| Flat compressed dual CSR is closest to the current proof and should remain the first backend and oracle. | Do not require Tilehouse before the flat backend proves the procedure ABI, catalog, estimates, and algorithm contracts. |
+| Tilehouse is useful only if measured triggers appear: rebuild lag, tail-overlay cost, page-cache churn, or local compaction wins. | Tilehouse becomes an optional physical backend phase, not the foundational premise. |
+| `compio`/`io_uring` is more relevant to append/publish pipelines than to the mmap-heavy OLAP scan hot path. | Borrow journal/publish discipline; do not rewrite the OLAP read path around async I/O without evidence. |
+
+Revised thesis:
+
+```text
+GDS-compatible procedure ABI
+  -> named projection catalog
+  -> Projection Build Store / analytical facts
+  -> topology backend trait
+  -> FlatDualCsrBackend first
+  -> property/result/model sidecars
+  -> bounded algorithm scratch
+  -> optional TilehouseBackend only when measurements justify it
+```
+
+The implementation rule is:
+
+```text
+First prove the ABI, projection catalog, flat-CSR backend, memory contracts,
+and first GDS kernels. Then add Tilehouse only if the flat snapshot pipeline
+cannot satisfy freshness, rebuild, or page-cache requirements.
 ```
 
 ## 1. Core facts
@@ -20,12 +59,17 @@ Every claim is backed by tests before implementation.
   application-code changes.
 - OLTP storage remains Neo4j-shaped.
 - OLAP storage is the optimization target.
-- The RAM promise is holistic: heap, page cache, duplicate layouts, compaction
-  scratch, snapshot build scratch, delta overlays, indexes, and algorithm
-  intermediates all count.
+- The RAM promise is holistic: heap, RSS, page cache, mmap residency, duplicate
+  layouts, compaction scratch, snapshot build scratch, optional tail overlays,
+  indexes, result sidecars, model artifacts, and algorithm intermediates all
+  count.
 - The scale target is 50 GB-class data on 8 GB systems.
-- O_DIRECT + compio is preferred for deterministic RAM because it bypasses page
-  cache and makes buffer sizes explicit.
+- O_DIRECT-style explicit streaming is preferred for deterministic strict-RAM
+  plans because it bypasses page cache and makes buffer sizes explicit.
+- `mmap` remains valid for throughput-oriented plans, but it cannot honestly
+  claim deterministic RAM because page-cache residency is OS-mediated.
+- OLAP freshness lag versus OLTP is acceptable when queries clearly report their
+  snapshot/projection watermark.
 
 ### Current Knight Bus facts
 
@@ -171,6 +215,54 @@ catalog + algorithms + modes + configs + output schemas + memory estimates
 
 not merely graph algorithm kernels.
 
+Additional Codex-note facts from the local GDS scan:
+
+- GDS builds a `CSRGraphStore` from projected nodes, relationships, schema, and
+  import results.
+- GDS projected stores include ID maps, relationship stores, node properties,
+  graph properties, schema, capabilities, and timestamps.
+- GDS publishes projected graphs through a user/database/name catalog.
+- GDS compressed adjacency uses page/degree/offset-style structures that are
+  close to a compressed CSR family.
+- The working scan found `174` procedure bases, `570` annotation rows, and
+  `562` unique procedure names; the checked inventory remains the authority.
+- Every known GDS procedure must be registered as executable, later, or
+  deterministic `UnsupportedButRegistered`; unknown and known-unsupported must
+  not collapse into the same error.
+
+### Revised architecture-plane facts
+
+The durable OLAP plane should be small:
+
+```text
+1. Projection Build Store / analytical fact plane
+   - source tx/generation watermarks
+   - dense ID map
+   - normalized node/edge/property facts
+   - projection schema inputs
+
+2. CompressedDualCsrBaseV1 topology plane
+   - forward/reverse offsets and peers
+   - optional compression/packing metadata
+   - immutable snapshot generation
+
+3. Columnar sidecar planes
+   - labels, relationship types, weights, scalar/vector properties
+   - result sidecars, writeback sidecars, model/pipeline artifacts
+
+4. Bounded scratch/spill plane
+   - vectors, frontiers, candidate heaps, walk corpora, contracted graphs
+   - lifecycle scoped to job/generation
+```
+
+Tilehouse is a candidate topology backend, not a required architecture root:
+
+```text
+FlatDualCsrBackend = first implementation and correctness oracle.
+TilehouseBackend = add only for measured local compaction/page-window wins.
+GraphLsmBackend = later only if snapshot + bounded tail is insufficient.
+```
+
 ## 2. Rubber-duck diligence
 
 ### Duck: Are CSR tiles enough to claim GDS compatibility?
@@ -178,6 +270,24 @@ not merely graph algorithm kernels.
 No. CSR tiles are the storage substrate. GDS compatibility additionally needs
 procedure names, config parsing, graph catalog semantics, output schemas, modes,
 memory estimates, and write/mutate behavior.
+
+### Duck: Did the Codex notes change the physical-storage priority?
+
+Yes. Flat compressed dual CSR remains the first backend because it is closest to
+the current proof and to GDS compressed adjacency. Tilehouse should be developed
+after the ABI/catalog/flat backend/memory contract is proven, unless a measured
+freshness or page-cache failure forces it earlier.
+
+### Duck: How many durable OLAP formats should v003 create?
+
+As few as possible:
+
+```text
+base topology + property sidecars + bounded scratch/result/model artifacts
+```
+
+Do not create one persistent graph layout per algorithm family. Each new durable
+format must prove a RAM-saving reason beyond this base split.
 
 ### Duck: Should implementation start with tile partitioning?
 
@@ -206,29 +316,32 @@ by generated procedure inventory tests before storage work dominates the plan.
 ### Duck: What is the second scary failure?
 
 The second scary failure is "low Rust heap" while OS page cache, mmap residency,
-delta overlays, or algorithm vectors exceed the 8 GB machine. The memory tests
-must account for holistic RSS and page-cache policy, not just allocator bytes.
+optional tail overlays, result sidecars, model artifacts, or algorithm vectors
+exceed the 8 GB machine. The memory tests must account for holistic RSS and
+page-cache policy, not just allocator bytes.
 
 ### Duck: What is the creative move?
 
-Treat GDS as an ABI and CSR tiles as a physical plan target:
+Treat GDS as an ABI and low-RAM topology backends as physical plan targets:
 
 ```text
 GDS procedure call
   -> compatibility registry
   -> graph projection catalog
+  -> Projection Build Store / analytical facts
   -> logical graph view
   -> memory contract
   -> physical plan:
-       tile-local window
-       multi-tile wavefront
+       flat CSR mmap scan
        global O_DIRECT stream
+       tile-local window, if Tilehouse is selected
+       multi-tile wavefront, if Tilehouse is selected
        spillable vector/tape
   -> stream/stats/mutate/write result mode
 ```
 
-This makes tile storage prove itself against the whole API surface instead of
-becoming a disconnected storage experiment.
+This makes every physical layout prove itself against the whole API surface
+instead of becoming a disconnected storage experiment.
 
 ## 3. TDD strategy
 
@@ -243,8 +356,8 @@ The v003 PRD says exact same surface area. A fast non-compatible system fails.
 
 ### Rule 3: flat CSR remains the oracle
 
-Before Cellular CSR is trusted, every topology query over tiles must match the
-current flat CSR runtime.
+Flat CSR is not a throwaway seed. It is the first backend, the snapshot oracle,
+and the baseline every later topology backend must match.
 
 ### Rule 4: Neo4j/GDS reference is the API oracle
 
@@ -257,8 +370,22 @@ names, modes, facade categories, config shape, and output shape.
 
 ```text
 topology bytes + sidecar bytes + frontier/vector bytes + spill buffers
-+ delta overlay bytes + compaction scratch + planned page-cache policy
++ result/model/writeback bytes + optional tail-overlay bytes
++ compaction/build scratch + planned page-cache policy
 ```
+
+### Rule 6: Tilehouse is measurement-gated
+
+Tilehouse tasks remain in this plan because they are a serious candidate for
+bounded local compaction and page-window planning. They should not be treated as
+required for MVP unless one of these tests fails for the flat snapshot pipeline:
+
+| trigger | measurement |
+| --- | --- |
+| flat rebuild lag violates freshness SLO | rebuild time and update rate |
+| global tail overlay exceeds memory budget | overlay bytes and query merge cost |
+| local traversals churn page cache badly | major faults, RSS, and latency |
+| dirty-region compaction beats full generation rebuild | compaction time and scratch bytes |
 
 ## 4. Task list
 
@@ -301,6 +428,84 @@ Why:
 ```text
 v003 is a RAM promise. RAM reporting must become a first-class test target.
 ```
+
+### Phase 0B: projection-plane requirements from Codex notes
+
+#### T0B.1 Freeze support levels and procedure inventory contract
+
+Promote the Codex-note support-level model into a checked contract before
+building more storage.
+
+Support levels:
+
+```rust
+pub enum GdsSupportLevel {
+    P0Registered,
+    P1ExactLowRam,
+    P2Later,
+    UnsupportedButRegistered,
+}
+// Every known GDS procedure receives exactly one support level.
+```
+
+Acceptance tests:
+
+- inventory summary records the reference source, scan command, and scan time;
+- inventory includes the current working counts as metadata:
+  - `174` procedure bases;
+  - `570` annotation rows;
+  - `562` unique procedure names;
+- every inventory row maps to exactly one support level;
+- unknown procedure errors differ from known `UnsupportedButRegistered` errors.
+
+#### T0B.2 Define the Projection Build Store contract
+
+The Projection Build Store is the analytical pre-dataset used to compile
+immutable CSR snapshots. It is not the OLTP truth and not the final read
+optimized topology.
+
+Symbols to add:
+
+```rust
+pub struct ProjectionBuildStoreManifest {
+    pub version: u32,
+    pub source_generation: u64,
+    pub source_tx_watermark: u64,
+    pub node_fact_count: u64,
+    pub relationship_fact_count: u64,
+    pub property_fact_count: u64,
+    pub dense_id_map_path: String,
+    pub schema_path: String,
+}
+// Durable analytical-fact manifest used to build CSR snapshots.
+
+pub struct ProjectionFactReceipt {
+    pub tx_id: u64,
+    pub op_kind: ProjectionFactOpKind,
+    pub entity_id: u64,
+}
+// Verifiable receipt connecting OLTP changes to the analytical build plane.
+```
+
+Acceptance tests:
+
+- manifest round-trips and validates source generation/watermark fields;
+- fixture OLTP facts build the same dense IDs on repeated runs;
+- CSR snapshot manifest records the Projection Build Store generation used;
+- a stale or mismatched build-store watermark refuses to publish a snapshot.
+
+#### T0B.3 Add atomic projection publish semantics
+
+GDS projection import publishes to a catalog after building. Knight Bus needs
+the same atomic boundary so queries never observe half-built topology/sidecars.
+
+Acceptance tests:
+
+- building a projection writes to a staging generation first;
+- successful publish atomically updates catalog metadata;
+- failed publish leaves the previous projection generation visible;
+- restart after partial publish reports recoverable staging garbage rather than
+  serving it.
 
 ### Phase 1: GDS surface inventory before implementation
 
@@ -381,6 +586,7 @@ pub struct GdsProcedureSpec {
     pub mode: GdsProcedureMode,
     pub estimate_name: Option<&'static str>,
     pub result_shape: &'static [&'static str],
+    pub support_level: GdsSupportLevel,
 }
 // Static compatibility declaration for one public procedure variant.
 
@@ -393,7 +599,8 @@ Acceptance tests:
 - registry has a matching spec for every inventory row marked in-scope;
 - no duplicate procedure names;
 - each non-estimate algorithm mode links to the expected estimate procedure;
-- missing kernels return `UnsupportedButRegistered`, not unknown procedure.
+- missing kernels return `UnsupportedButRegistered`, not unknown procedure;
+- each spec has exactly one support level.
 
 ### Phase 2: graph projection/catalog semantics
 
@@ -421,12 +628,24 @@ pub enum RelationshipOrientation {
 
 pub struct GraphProjectionHandle {
     pub graph_name: String,
+    pub user: String,
+    pub database: String,
     pub snapshot_generation: u64,
+    pub source_tx_watermark: u64,
+    pub freshness_mode: FreshnessMode,
     pub node_count: u64,
     pub relationship_count: u64,
     pub memory_estimate: MemoryEstimate,
 }
 // Catalog handle returned to algorithms.
+
+pub enum FreshnessMode {
+    SnapshotOnly,
+    SnapshotPlusBoundedTail,
+    ForceRefreshBeforeRun,
+    RejectUntilRefresh,
+}
+// Explicitly records whether a query is snapshot-as-of or includes a tail.
 ```
 
 Acceptance tests:
@@ -434,7 +653,10 @@ Acceptance tests:
 - `gds.graph.project` fixture maps to `GraphProjectionSpec`;
 - `orientation: "UNDIRECTED"` doubles or symmetrizes relationships in the
   logical view without changing base CSR files;
-- catalog list/drop/existence behavior matches GDS expectations for named graphs.
+- catalog list/drop/existence behavior matches GDS expectations for named
+  user/database/graph handles;
+- list/stream output exposes source generation, source tx watermark, and
+  freshness mode.
 
 #### T2.2 Add projection memory estimation
 
@@ -444,11 +666,19 @@ Symbols to add:
 pub struct MemoryEstimate {
     pub required_bytes: u64,
     pub heap_bytes: u64,
+    pub rss_budget_bytes: u64,
     pub page_cache_bytes: u64,
+    pub page_cache_unbounded_risk: bool,
     pub direct_io_buffer_bytes: u64,
+    pub topology_bytes: u64,
+    pub property_sidecar_bytes: u64,
     pub algorithm_state_bytes: u64,
-    pub delta_overlay_bytes: u64,
     pub scratch_bytes: u64,
+    pub tail_overlay_bytes: u64,
+    pub result_sidecar_bytes: u64,
+    pub model_artifact_bytes: u64,
+    pub writeback_bytes: u64,
+    pub spill_bytes: u64,
 }
 // Holistic memory contract for projection and algorithm execution.
 ```
@@ -457,8 +687,52 @@ Acceptance tests:
 
 - estimates include all fields;
 - estimate for flat CSR projection does not include duplicate full topology;
-- estimate for tilehouse projection includes tile metadata and sidecar indexes;
-- 50GB/8GB scenario has an explicit pass/fail decision.
+- mmap plans set `page_cache_unbounded_risk == true` unless bounded by measured
+  residency policy;
+- strict-RAM plans select explicit stream/spill execution or reject before
+  execution;
+- estimate for Tilehouse projection includes tile metadata and sidecar indexes
+  only when Tilehouse is selected;
+- 50GB/8GB scenario has an explicit pass/fail decision with dominant state,
+  execution profile, freshness mode, and rejection reason.
+
+#### T2.3 Add columnar property-plane contracts
+
+Symbols to add:
+
+```rust
+pub enum SidecarKind {
+    NodeLabel,
+    RelationshipType,
+    NodeProperty,
+    RelationshipProperty,
+    GraphProperty,
+    Weight,
+    VectorFeature,
+}
+// All non-topology values are sidecars, not new topology layouts.
+
+pub struct SidecarColumnManifest {
+    pub name: String,
+    pub kind: SidecarKind,
+    pub value_type: PropertyValueType,
+    pub null_bitmap_path: Option<String>,
+    pub data_path: String,
+    pub generation: u64,
+}
+// Typed columnar sidecar required by GDS projections and algorithms.
+```
+
+Acceptance tests:
+
+- label membership supports union, intersection, exclusion, and empty-label
+  behavior;
+- relationship type filters apply to adjacency streams and property streams;
+- missing/null/default property behavior is resolved before execution begins;
+- numeric weight/feature coercion validates overflow, NaN, infinity, and invalid
+  values;
+- schema reporting reads catalog/sidecar metadata without scanning the full
+  graph.
 
 ### Phase 3: abstract graph access before tilehouse
 
@@ -472,6 +746,10 @@ pub trait GraphAdjacencyRuntime {
 
     fn relationship_count(&self) -> u64;
 
+    fn labels(&self, node: DenseNodeId) -> Result<LabelSet<'_>, KnightBusError>;
+
+    fn relationship_types(&self) -> Result<RelationshipTypeSet<'_>, KnightBusError>;
+
     fn neighbors(
         &self,
         node: DenseNodeId,
@@ -482,6 +760,19 @@ pub trait GraphAdjacencyRuntime {
         &self,
         direction: WalkDirection,
     ) -> Result<EdgeCursor<'_>, KnightBusError>;
+
+    fn typed_edges(
+        &self,
+        direction: WalkDirection,
+        relationship_types: RelationshipTypeFilter<'_>,
+    ) -> Result<EdgeCursor<'_>, KnightBusError>;
+
+    fn degree(
+        &self,
+        node: DenseNodeId,
+        direction: WalkDirection,
+        relationship_types: RelationshipTypeFilter<'_>,
+    ) -> Result<u64, KnightBusError>;
 }
 // Minimal substrate needed by GDS algorithms without exposing file layout.
 ```
@@ -491,7 +782,9 @@ Acceptance tests:
 - `MmapWalkRuntime` implements `GraphAdjacencyRuntime`;
 - neighbor results match `WalkQueryRuntime`;
 - global edge cursor returns exactly the flat CSR edge set;
-- reverse global cursor matches reverse CSR.
+- reverse global cursor matches reverse CSR;
+- relationship-type filtered stream matches fixture oracle;
+- undirected logical neighbors do not rewrite base topology.
 
 Why before tiles:
 
@@ -509,7 +802,36 @@ Acceptance tests:
   - future tilehouse runtime.
 - property-based small graphs compare all implementations.
 
+#### T3.3 Add flat compressed dual CSR backend as first physical backend
+
+Symbols to add:
+
+```rust
+pub struct FlatDualCsrBackend {
+    pub manifest: SnapshotManifest,
+    pub io_policy: GraphIoPolicy,
+}
+// First GDS topology backend over the existing immutable dual CSR files.
+
+pub enum GraphIoPolicy {
+    MmapThroughput,
+    ExplicitDirectStream,
+}
+// Makes page-cache honesty visible in planning.
+```
+
+Acceptance tests:
+
+- flat backend can serve the projection/catalog handle without Tilehouse;
+- `MmapThroughput` estimates include page-cache risk;
+- `ExplicitDirectStream` estimates include explicit direct buffer bytes;
+- algorithms can run through the backend trait without knowing the storage mode.
+
 ### Phase 4: Cellular CSR Tilehouse storage
+
+Phase status: measurement-gated. Do not start this phase before Phases 0B-3
+unless a flat-backend test proves that rebuild lag, page-cache churn, or update
+freshness cannot meet the v003 target.
 
 #### T4.1 Add tile metadata types
 
@@ -773,6 +1095,14 @@ exactness target
 GDS modes
 oracle test
 50GB/8GB risk
+```
+
+Codex-note guardrail:
+
+```text
+Algorithms do not get new durable topology layouts by default.
+They get a topology cursor, typed property sidecars, bounded scratch/spill,
+and result/model artifacts where required.
 ```
 
 #### T7B.1 Add shared algorithm state types
@@ -1044,22 +1374,23 @@ Do not mark an algorithm "supported" until all gates pass:
 ```text
 G1 registry row exists
 G2 config parser validates defaults and bad inputs
-G3 estimate accounts for topology, sidecars, state, scratch, deltas
+G3 estimate accounts for topology, sidecars, state, scratch, tail overlays
 G4 tiny oracle correctness test passes
-G5 flat CSR and tilehouse parity test passes
+G5 flat CSR parity test passes; Tilehouse parity is required only if that
+   backend is selected
 G6 each supported mode has schema tests
 G7 budget rejection test passes
 G8 deterministic ordering/seed behavior is documented
 ```
 
-### Phase 8: update/freshness bridge
+### Phase 8: freshness and update bridge
 
-#### T8.1 Add WAL receipt types
+#### T8.1 Add projection fact receipts
 
 Symbols to add:
 
 ```rust
-pub enum WalGraphOp {
+pub enum ProjectionFactOpKind {
     CreateNode,
     DeleteNode,
     CreateRelationship,
@@ -1069,50 +1400,69 @@ pub enum WalGraphOp {
     AddLabel,
     RemoveLabel,
 }
-// OLTP-to-OLAP operation vocabulary.
+// Graph-relevant OLTP facts normalized into the Projection Build Store.
 
-pub struct WalReceipt {
+pub struct ProjectionFactReceipt {
     pub tx_id: u64,
-    pub op: WalGraphOp,
-    pub source_node: Option<NodeKey>,
-    pub target_node: Option<NodeKey>,
-    pub relationship_type: Option<String>,
-    pub property_key: Option<String>,
+    pub op: ProjectionFactOpKind,
+    pub affected_node_ids: Vec<NodeId>,
+    pub affected_relationship_ids: Vec<RelationshipId>,
 }
-// Small durable fact emitted after OLTP commit.
+// Minimal receipt that can advance analytical watermarks without loading the
+// whole graph.
 ```
 
 Acceptance tests:
 
-- receipt maps to exactly the affected tile(s);
-- relationship updates dirty source and target tiles when needed;
-- property updates dirty only sidecar/passport metadata;
+- create relationship receipt maps to source/target dense IDs;
+- property update receipt maps to sidecar dirty region;
+- delete receipt creates a tombstone fact;
+- receipt stream advances Projection Build Store watermark monotonically;
+- receipt replay is idempotent for the same tx/entity/op identity;
 - out-of-order receipts are rejected or buffered deterministically.
 
-#### T8.2 Add delta overlay and compaction contract
+#### T8.2 Add snapshot freshness modes
 
-Symbols to add:
+The default serving contract is snapshot-as-of. Query-time tail merge is
+optional and must be selected by freshness mode and memory budget.
 
 ```rust
-pub struct DeltaApplier;
-
-impl DeltaApplier {
-    pub fn append_receipt(&self, receipt: WalReceipt) -> Result<(), KnightBusError>;
-
-    pub fn compact_dirty_cells(
-        &self,
-        budget: BuildMemoryBudget,
-    ) -> Result<CompactionReport, KnightBusError>;
+pub struct SnapshotFreshness {
+    pub snapshot_generation: u64,
+    pub snapshot_tx_watermark: u64,
+    pub build_store_tx_watermark: u64,
+    pub mode: FreshnessMode,
 }
-// Freshness path from Neo4j-shaped OLTP commits to tile-local OLAP updates.
+// Reports query freshness explicitly.
 ```
 
 Acceptance tests:
 
-- query after receipt sees fresh edge via overlay;
-- compaction removes overlay entry and updates tile CSR;
-- compaction never exceeds configured scratch budget;
-- crash between append and compaction recovers from durable receipts.
+- snapshot-only query reports exact-as-of snapshot watermark;
+- when build-store watermark is newer than snapshot watermark, lag is reported;
+- force-refresh mode refuses to run stale snapshots;
+- bounded-tail mode includes tail bytes in `MemoryEstimate`;
+- bounded-tail mode refuses to run if tail merge exceeds configured budget.
+
+#### T8.3 Add optional tail overlay
+
+Acceptance tests:
+
+- query view applies added/deleted tail facts over base snapshot;
+- property tail facts resolve before algorithm execution begins;
+- tail bytes, merge buffers, and conflict-resolution state appear in estimates;
+- tail overlay is not required for durability or next-snapshot correctness.
+
+#### T8.4 Add snapshot rebuild and optional Tilehouse compaction budget tests
+
+Acceptance tests:
+
+- rebuilding from Projection Build Store produces a new flat CSR generation;
+- build peak RSS stays under configured budget on fixture;
+- crash during build leaves previous generation readable;
+- manifest publish is atomic;
+- if Tilehouse is selected, compacting dirty cells produces a new cell
+  generation under budget.
 
 ### Phase 9: full GDS family rollout
 
@@ -1159,7 +1509,24 @@ Value:
 Prevents API-surface drift before deep storage work.
 ```
 
-### PR 2: graph projection catalog skeleton
+### PR 2: support levels + Projection Build Store manifest
+
+No algorithm kernels.
+
+Tests first:
+
+- every inventory row has a support level;
+- unknown differs from `UnsupportedButRegistered`;
+- build-store manifest records source generation and watermark;
+- stale build-store watermark refuses publish.
+
+Value:
+
+```text
+Turns the Codex-note analytical pre-dataset into a testable contract.
+```
+
+### PR 3: graph projection catalog skeleton
 
 No algorithm kernels.
 
@@ -1167,6 +1534,8 @@ Tests first:
 
 - project/list/drop/exists;
 - orientation parsing;
+- user/database/graph identity;
+- source tx watermark/freshness mode;
 - memory estimate shape.
 
 Value:
@@ -1175,7 +1544,7 @@ Value:
 Turns snapshots into named GDS graph handles.
 ```
 
-### PR 3: `GraphAdjacencyRuntime` over existing flat CSR
+### PR 4: `GraphAdjacencyRuntime` over existing flat CSR
 
 No tilehouse yet.
 
@@ -1183,6 +1552,7 @@ Tests first:
 
 - flat CSR neighbor cursor parity;
 - flat CSR global edge cursor parity;
+- type-filtered and undirected logical view parity;
 - old walk tests still pass.
 
 Value:
@@ -1191,45 +1561,34 @@ Value:
 Algorithms can be written once and later run on tiles.
 ```
 
-### PR 4: Tilehouse manifest and partitioner
-
-Tests first:
-
-- tile passport validation;
-- deterministic partition;
-- boundary ratio accounting.
-
-Value:
-
-```text
-Proves the storage unit before writing full tile files.
-```
-
-### PR 5: Tilehouse writer/reader parity
-
-Tests first:
-
-- fixture tilehouse files exist;
-- all flat CSR walk outputs equal tilehouse outputs;
-- snapshot overhead measured.
-
-Value:
-
-```text
-Makes Cellular CSR real without changing GDS algorithms.
-```
-
-### PR 6: sidecar columns
+### PR 5: columnar property sidecars
 
 Tests first:
 
 - labels/types/properties filter correctly;
-- sidecar bytes show up in estimates.
+- defaults/nulls/coercion are deterministic;
+- sidecar bytes show up in estimates;
+- schema reporting reads metadata without full graph scan.
 
 Value:
 
 ```text
-Unlocks full GDS projections instead of topology-only demos.
+Unlocks real GDS projections without multiplying topology layouts.
+```
+
+### PR 6: holistic memory planner
+
+Tests first:
+
+- estimate includes heap/RSS/page-cache/direct/topology/property/result/model/spill;
+- mmap plans do not claim deterministic RAM;
+- strict-RAM plan streams/spills or rejects;
+- 50GB/8GB decision reports dominant state and reason.
+
+Value:
+
+```text
+Makes the 8 GB promise executable before expensive kernels exist.
 ```
 
 ### PR 7: degree + BFS + WCC
@@ -1261,22 +1620,69 @@ Value:
 Directly validates the PRD's "PageRank uses exactly X MB" claim.
 ```
 
-### PR 9: WAL receipts and cell-local deltas
+### PR 9: freshness watermarks and snapshot rebuild
 
 Tests first:
 
-- receipt -> dirty tile mapping;
-- overlay query freshness;
-- compaction under scratch budget;
+- receipt -> Projection Build Store watermark;
+- snapshot exact-as-of reporting;
+- force-refresh and stale-snapshot behavior;
+- rebuild/publish under scratch budget;
 - recovery test.
 
 Value:
 
 ```text
-Connects Neo4j-shaped OLTP updates to OLAP freshness.
+Connects Neo4j-shaped OLTP updates to OLAP freshness without mandatory
+query-time overlays.
 ```
 
-### PR 10+: remaining GDS families
+### PR 10: optional bounded tail overlay
+
+Only if freshness SLA needs query visibility beyond the published snapshot.
+
+Tests first:
+
+- snapshot + bounded tail query correctness;
+- tail bytes and merge buffers in estimates;
+- rejection when tail exceeds memory budget;
+- no durability dependency on tail overlay.
+
+Value:
+
+```text
+Adds near-real-time freshness only when it can stay inside the RAM contract.
+```
+
+### PR 11: Tilehouse manifest and partitioner
+
+Tests first:
+
+- tile passport validation;
+- deterministic partition;
+- boundary ratio accounting.
+
+Value:
+
+```text
+Proves the storage unit before writing full tile files.
+```
+
+### PR 12: Tilehouse writer/reader parity
+
+Tests first:
+
+- fixture tilehouse files exist;
+- all flat CSR walk outputs equal tilehouse outputs;
+- snapshot overhead measured.
+
+Value:
+
+```text
+Makes Cellular CSR real without changing GDS algorithms.
+```
+
+### PR 13+: remaining GDS families
 
 Roll out by dependency order with compatibility matrix tracking.
 
@@ -1289,21 +1695,32 @@ pub enum SnapshotStorageMode {
     CellularCsrTilehouse,
 }
 // Replace stringly storage-mode handling while preserving JSON compatibility.
+// ImmutableDualCsr is the first v003 backend and correctness oracle.
 
 pub struct SnapshotManifest {
     // existing fields remain
+    // add Projection Build Store source generation and source tx watermark
     // add optional tilehouse manifest path once v3 snapshots exist
 }
-// Keeps v2 flat CSR readable and points v3 snapshots to tile metadata.
+// Keeps v2 flat CSR readable while making v3 snapshot freshness explicit.
 ```
 
 ```rust
 // src/gds/procedure.rs
+pub enum GdsSupportLevel { P0Registered, P1ExactLowRam, P2Later, UnsupportedButRegistered }
 pub enum GdsProcedureMode { Stream, Stats, Mutate, Write, Estimate }
 pub enum GdsProcedureFamily { Catalog, Centrality, Community, PathFinding, Similarity, Embedding, MachineLearning, Miscellaneous, Operations, Pipelines, ModelCatalog }
-pub struct GdsProcedureSpec { /* name, family, mode, estimate, result shape */ }
+pub struct GdsProcedureSpec { /* name, family, mode, estimate, result shape, support level */ }
 pub fn gds_procedure_specs() -> &'static [GdsProcedureSpec];
 // Public surface registry generated/validated from the GDS reference inventory.
+```
+
+```rust
+// src/projection_build_store.rs
+pub struct ProjectionBuildStoreManifest { /* version, source generation, tx watermark, fact counts, dense id map */ }
+pub enum ProjectionFactOpKind { CreateNode, DeleteNode, CreateRelationship, DeleteRelationship, SetNodeProperty, SetRelationshipProperty, AddLabel, RemoveLabel }
+pub struct ProjectionFactReceipt { /* tx id, op, affected nodes/relationships */ }
+// Analytical pre-dataset between OLTP truth and immutable CSR snapshots.
 ```
 
 ```rust
@@ -1311,8 +1728,9 @@ pub fn gds_procedure_specs() -> &'static [GdsProcedureSpec];
 pub struct GraphProjectionSpec { /* graph name, selectors, orientation, properties */ }
 pub enum RelationshipOrientation { Natural, Reverse, Undirected }
 pub struct GraphProjectionCatalog { /* named projected graphs */ }
-pub struct GraphProjectionHandle { /* graph name, generation, runtime, estimate */ }
-// Mirrors GDS graph catalog semantics over Knight Bus snapshots/tilehouse.
+pub enum FreshnessMode { SnapshotOnly, SnapshotPlusBoundedTail, ForceRefreshBeforeRun, RejectUntilRefresh }
+pub struct GraphProjectionHandle { /* user, database, graph name, generation, tx watermark, freshness, runtime, estimate */ }
+// Mirrors GDS graph catalog semantics over Knight Bus snapshots/backends.
 ```
 
 ```rust
@@ -1320,11 +1738,19 @@ pub struct GraphProjectionHandle { /* graph name, generation, runtime, estimate 
 pub struct MemoryEstimate {
     pub required_bytes: u64,
     pub heap_bytes: u64,
+    pub rss_budget_bytes: u64,
     pub page_cache_bytes: u64,
+    pub page_cache_unbounded_risk: bool,
     pub direct_io_buffer_bytes: u64,
+    pub topology_bytes: u64,
+    pub property_sidecar_bytes: u64,
     pub algorithm_state_bytes: u64,
-    pub delta_overlay_bytes: u64,
     pub scratch_bytes: u64,
+    pub tail_overlay_bytes: u64,
+    pub result_sidecar_bytes: u64,
+    pub model_artifact_bytes: u64,
+    pub writeback_bytes: u64,
+    pub spill_bytes: u64,
 }
 // Holistic memory accounting object used by every estimate procedure.
 ```
@@ -1334,12 +1760,16 @@ pub struct MemoryEstimate {
 pub trait GraphAdjacencyRuntime {
     fn node_count(&self) -> u64;
     fn relationship_count(&self) -> u64;
+    fn labels(&self, node: DenseNodeId) -> Result<LabelSet<'_>, KnightBusError>;
+    fn relationship_types(&self) -> Result<RelationshipTypeSet<'_>, KnightBusError>;
     fn neighbors(&self, node: DenseNodeId, direction: WalkDirection) -> Result<NeighborCursor<'_>, KnightBusError>;
     fn global_edges(&self, direction: WalkDirection) -> Result<EdgeCursor<'_>, KnightBusError>;
+    fn typed_edges(&self, direction: WalkDirection, relationship_types: RelationshipTypeFilter<'_>) -> Result<EdgeCursor<'_>, KnightBusError>;
 }
 // Algorithm-facing graph access abstraction.
 
-impl GraphAdjacencyRuntime for MmapWalkRuntime { /* flat CSR adapter */ }
+pub struct FlatDualCsrBackend { /* manifest + mmap/direct-stream policy */ }
+impl GraphAdjacencyRuntime for FlatDualCsrBackend { /* flat CSR adapter */ }
 // Lets current flat CSR run future GDS tests before tiles exist.
 ```
 
@@ -1374,9 +1804,17 @@ impl<P: TilePartitioner> SnapshotArtifactWriter for CellularCsrSnapshotWriter<P>
 
 ```rust
 // src/sidecar.rs
-pub enum SidecarKind { NodeLabel, RelationshipType, NodeProperty, RelationshipProperty, Weight }
+pub enum SidecarKind {
+    NodeLabel,
+    RelationshipType,
+    NodeProperty,
+    RelationshipProperty,
+    GraphProperty,
+    Weight,
+    VectorFeature,
+}
 pub struct SidecarColumnManifest { /* name, kind, type, path, null bitmap */ }
-// Columnar tile-local labels/types/properties required by GDS projections.
+// Columnar labels/types/properties required by GDS projections.
 ```
 
 ```rust
@@ -1386,20 +1824,24 @@ pub trait GdsProcedure {
     fn estimate(&self, graph: &GraphProjectionHandle, config: &GdsConfig) -> Result<MemoryEstimate, KnightBusError>;
     fn execute(&self, graph: &GraphProjectionHandle, config: &GdsConfig, mode: GdsProcedureMode) -> Result<GdsResultStream, KnightBusError>;
 }
-pub enum PhysicalGraphPlan { TileLocal { tiles: Vec<TileId> }, TileWavefront { start_tiles: Vec<TileId> }, GlobalDirectStream, SpillableVectorTape }
+pub enum PhysicalGraphPlan {
+    FlatMmapScan,
+    GlobalDirectStream,
+    TileLocal { tiles: Vec<TileId> },
+    TileWavefront { start_tiles: Vec<TileId> },
+    SpillableVectorTape,
+}
 // Converts API calls into bounded-memory physical execution.
 ```
 
 ```rust
 // src/oltp_bridge.rs
-pub enum WalGraphOp { CreateNode, DeleteNode, CreateRelationship, DeleteRelationship, SetNodeProperty, SetRelationshipProperty, AddLabel, RemoveLabel }
-pub struct WalReceipt { /* tx id, op, source/target, type/property */ }
-pub struct DeltaApplier;
-impl DeltaApplier {
-    pub fn append_receipt(&self, receipt: WalReceipt) -> Result<(), KnightBusError>;
-    pub fn compact_dirty_cells(&self, budget: BuildMemoryBudget) -> Result<CompactionReport, KnightBusError>;
+pub struct SnapshotFreshness { /* snapshot generation, snapshot watermark, build-store watermark, mode */ }
+pub struct TailOverlayPlanner;
+impl TailOverlayPlanner {
+    pub fn estimate_tail(&self, freshness: SnapshotFreshness, budget: MemoryBudget) -> Result<MemoryEstimate, KnightBusError>;
 }
-// WAL-to-cell delta and compaction bridge.
+// Optional freshness layer for tx > snapshot watermark.
 ```
 
 ## 7. Done definition
@@ -1409,12 +1851,15 @@ This diligence sequence is complete when:
 - every GDS procedure is inventoried and classified;
 - every in-scope procedure is registered;
 - every registered procedure has estimate behavior;
-- flat CSR and tilehouse adjacency are proven equivalent on fixtures and
-  property-based graphs;
+- flat CSR backend is proven against fixture/property-based graph oracles;
+- Tilehouse adjacency is proven equivalent only if the Tilehouse backend is
+  selected;
 - first-tier algorithms pass oracle tests;
-- every memory estimate names heap, page cache, direct I/O buffers, algorithm
-  state, deltas, and scratch;
-- WAL receipts update tile-local deltas and compact under budget;
+- every memory estimate names heap, RSS budget, page cache, direct I/O buffers,
+  topology, property sidecars, algorithm state, tail overlays, results, models,
+  writeback, spill, and scratch;
+- Projection Build Store receipts advance freshness watermarks and snapshots
+  rebuild/publish under budget;
 - 50GB/8GB tests demonstrate deterministic pass/fail decisions.
 
 ## 8. First concrete task to start

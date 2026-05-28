@@ -1,5 +1,22 @@
 # Arch 01: CSR, Two Options
 
+Status: **historical / superseded by
+`v003-prd/Arch-01-CSR-multiple-options.md`**.
+
+This note is preserved as the earlier flat-vs-cellular argument. The canonical
+v003 decision ledger is now `Arch-01-CSR-multiple-options.md`, which keeps this
+analysis as historical evidence but adds the missing layer:
+
+```text
+OLTP truth
+  -> verified OLAP pre-dataset / Projection Build Store
+  -> immutable flat/cellular CSR snapshots
+  -> snapshot-as-of OLAP queries
+  -> optional tail overlay only if freshness SLA requires it
+```
+
+Read this file as supporting background, not as the final architecture choice.
+
 This note compares two OLAP storage directions for v003:
 
 1. **Current Knight Bus flat immutable dual CSR**

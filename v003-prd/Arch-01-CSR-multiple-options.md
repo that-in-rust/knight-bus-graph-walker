@@ -1,5 +1,208 @@
 # Arch 01: CSR Multiple Options
 
+This is the canonical v003 architecture decision ledger for OLAP storage. It is
+intentionally not just the final answer. It preserves the serious architectures
+we considered, why each was attractive, what broke under the PRD constraints,
+and how the current preferred architecture emerged.
+
+Read this file as:
+
+```text
+top-level summary = current conviction
+option ledger     = how we got there
+appendix          = preserved earlier flat-vs-cellular analysis
+```
+
+The purpose is to keep conviction traceable. If a future reader asks "why not
+just flat CSR?" or "why not default cell deltas?", the answer should be visible
+without reconstructing the whole discussion.
+
+## Top-level decision summary
+
+Current preferred architecture:
+
+```text
+OLTP truth
+  -> verified OLAP pre-dataset / Projection Build Store
+  -> immutable CSR snapshot
+       either flat dual CSR
+       or cellular CSR packaged from the same pre-dataset
+  -> snapshot-as-of OLAP/GDS queries
+  -> optional tail overlay only for explicit near-real-time freshness
+```
+
+One-line thesis:
+
+```text
+For v003, optimize for RAM-bounded exact snapshots with explicit OLAP lag,
+not zero-lag query-time mutation merging.
+```
+
+The strongest current conviction:
+
+```text
+Flat CSR remains the physical read primitive.
+The Projection Build Store becomes the durable analytical build source.
+Cellular CSR becomes a packaging/locality/compaction option.
+Tail overlays are optional serving freshness, not foundational correctness.
+```
+
+## Why this decision changed
+
+The earlier debate was framed as:
+
+```text
+Option 1: one big flat immutable dual CSR
+Option 2: Cellular CSR Tilehouse with deltas
+```
+
+That was useful but incomplete. The missing layer was the thing before CSR:
+
+```text
+OLAP pre-dataset / Projection Build Store
+```
+
+Once that layer exists, the architecture stops being "flat vs cells" and becomes
+a pipeline:
+
+```text
+transactional truth -> analytical facts -> compiled read format -> query view
+```
+
+That matters because the PRD explicitly accepts OLAP lag and optimizes for
+holistic RAM on an 8GB machine. If OLAP lag is acceptable, query-time overlays
+are not required by default. They are only needed when a query promises
+freshness beyond the published snapshot watermark.
+
+## Architecture options ledger
+
+| ID | Architecture | Shape | What felt attractive | What broke / risk | Current verdict |
+| --- | --- | --- | --- | --- | --- |
+| A | Flat CSR only | OLTP/source -> full rebuild -> one immutable dual CSR | Simplest, compact, excellent global scans | Weak update pipeline; freshness only by full rebuild/swap | Keep as primitive and fallback, not whole v003 architecture |
+| B | Flat CSR + global delta overlay | immutable flat CSR + global add/delete/property deltas | Fresher queries without full rebuild | Query-time merge/tombstone/dedup RAM can violate 8GB goal | Do not default |
+| C | Cellular CSR + cell deltas | cell CSR + cell-local deltas + compaction | Good locality, dirty-cell compaction, bounded operational units | Still pays overlay complexity; partitioning risk; may slow global scans | Valuable research path, not foundational first step |
+| D | OLAP pre-dataset -> flat CSR | OLTP -> verified analytical facts -> flat CSR snapshots | Clean snapshot-as-of semantics; build-time normalization; predictable query RAM | Adds disk/build-source layer; snapshot lag explicit | Best MVP baseline |
+| E | OLAP pre-dataset -> Cellular CSR | OLTP -> analytical facts -> partitioned CSR cells | Keeps D's clean semantics while adding packaging/locality/compaction | More complex compiler/partitioner; must prove boundary overhead | Preferred v003 evolution target |
+| F | Pre-dataset + optional tail overlay | D/E + capped tx tail where `tx_id > snapshot_watermark` | Near-real-time OLAP possible for selected features | Reintroduces query-time merge RAM and complexity | Optional future mode only |
+
+Decision ladder:
+
+```text
+Start with A because current Knight Bus already proves the CSR primitive.
+Reject A alone because v003 needs a real OLTP->OLAP update/build path.
+Reject B as default because global overlays hide RAM/read-amplification costs.
+Treat C as promising but not sufficient because cells do not remove the need for
+  a durable build source or explicit freshness contract.
+Promote D as MVP because it gives clean watermarks and predictable query RAM.
+Promote E as research/evolution because cells are useful after the pre-dataset
+  makes snapshot generation clean.
+Keep F optional because it only matters if freshness SLA beats RAM simplicity.
+```
+
+## Comparison by PRD obligation
+
+| PRD obligation | A flat only | B flat + delta | C cellular + delta | D pre-dataset -> flat | E pre-dataset -> cells | F optional tail |
+| --- | --- | --- | --- | --- | --- | --- |
+| Neo4j-shaped OLTP remains truth | yes | yes | yes | yes | yes | yes |
+| Lowest serving RAM | strong | weak/medium | medium | strong | strong if partitions good | weak unless tightly capped |
+| Holistic RAM accounting | easiest | hard due to overlays | hard due to overlays | clear: build vs serve separated | clear if metadata bounded | hard in tail mode |
+| Accepted OLAP lag | yes | less relevant | less relevant | yes, explicit | yes, explicit | configurable |
+| Small update ingestion | weak | medium | good | good in pre-dataset | good in pre-dataset | good but query-costly |
+| Snapshot exactness | strong | merge-dependent | merge-dependent | strong as of W | strong as of W | exact only if overlay merge correct |
+| Global algorithm scans | excellent | overlay may interfere | needs stream adapter | excellent | must prove stream adapter | overlay may interfere |
+| Locality / compaction | weak | weak | strong | medium | strong | depends on base |
+| Implementation complexity | low | medium | high | medium | medium/high | high |
+
+## Current recommendation
+
+Use this as the canonical plan:
+
+```text
+Required v003 foundation:
+  1. OLTP truth remains Neo4j-shaped.
+  2. Projection Build Store stores normalized analytical facts.
+  3. Immutable CSR snapshots compile from that store at source watermarks.
+  4. OLAP queries report `as_of_watermark`.
+  5. Flat dual CSR remains the first physical snapshot target.
+
+Next evolution:
+  6. Cellular CSR compiles from the same pre-dataset when spikes prove value.
+
+Not default:
+  7. Query-time tail overlays.
+```
+
+If somebody asks "what are we optimizing for?", the answer is:
+
+```text
+Predictable holistic RAM on 8GB machines.
+Exact answers as of a stated snapshot watermark.
+Architecture that can later add cell locality without corrupting the base model.
+```
+
+If somebody asks "what are we not optimizing for?", the answer is:
+
+```text
+Zero-lag OLAP at all costs.
+Always-fresh query-time merge semantics.
+Partitioning theory before measured evidence.
+```
+
+## Architecture conviction map
+
+```text
+                      PRD accepts OLAP lag
+                              |
+                              v
+                 query-time overlay not mandatory
+                              |
+                              v
+             need durable analytical build source
+                              |
+                              v
+             Projection Build Store becomes foundation
+                              |
+                              v
+      immutable CSR snapshot gives predictable serving RAM
+                              |
+                              v
+          flat CSR first, cellular CSR as packaged evolution
+                              |
+                              v
+              optional tail overlay only if SLA demands it
+```
+
+ELI5:
+
+```text
+OLTP truth        = author's live manuscript
+Projection Store  = editor's verified notes
+Flat CSR snapshot = printed book
+Cellular CSR      = printed book split into chapters
+Tail overlay      = sticky notes after printing
+```
+
+Do not start with sticky notes. First build the editor's verified notes and
+print clean editions with publication dates.
+
+## Canonical file policy
+
+This file should be the place where all serious CSR/OLAP architecture options
+live. Earlier single-purpose notes can exist only if they are explicitly marked
+as historical or are replaced by this file.
+
+Recommended repo convention:
+
+```text
+Arch-01-CSR-multiple-options.md = canonical decision ledger
+Arch-01-CSR-2-options.md        = historical flat-vs-cellular note, superseded
+```
+
+If keeping both files, the two-options file should point back here so reviewers
+do not treat it as the current final decision.
+
+---
+
 This note compares OLAP storage directions for v003 after correcting the
 freshness premise:
 

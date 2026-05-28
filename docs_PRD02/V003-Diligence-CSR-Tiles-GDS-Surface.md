@@ -15,8 +15,39 @@ Build the diligence sequence around this thesis:
 ```text
 Neo4j-shaped OLTP remains the source of truth.
 Flat dual CSR remains the proven OLAP oracle and global stream primitive.
-Cellular CSR Tilehouse is the update-aware and RAM-budgetable evolution.
+Cellular CSR Tilehouse is the update-aware evolution if freshness pressure returns.
 GDS compatibility is an ABI/inventory problem before it is an algorithm problem.
+```
+
+### Update: If Freshness Can Lag By Hours
+
+If OLAP freshness is not a hard requirement and a few hours of lag is acceptable,
+the storage recommendation becomes sharper:
+
+```text
+Default v003 OLAP storage should stay immutable dual CSR plus mmap/streaming
+sidecars.
+
+Cellular CSR Tilehouse should move from "preferred default evolution" to
+"optional later update-locality tier."
+```
+
+Reason:
+
+| point | implication |
+| --- | --- |
+| Small OLTP updates do not need immediate OLAP visibility. | The main reason to pay Tilehouse complexity disappears from the RAM-first v003 path. |
+| Immutable files are easiest to mmap, stream, checksum, compress, swap, and test. | They are the lowest-risk way to keep server RAM predictable. |
+| Most GDS algorithms read a stable graph and write algorithm state elsewhere. | The hard memory problem is usually vectors, frontiers, heaps, candidates, embeddings, or output sidecars, not live adjacency mutation. |
+| Full snapshot rebuilds can run every few hours under a build memory budget. | Rebuild/swap is operationally simpler than delta overlays and cell compaction. |
+
+The revised thesis for this assumption is:
+
+```text
+Use one immutable CSR topology plane, one immutable/mmap property-sidecar plane,
+and bounded runtime scratch/spill/result sidecars.
+
+Do not build Tilehouse or WAL-fed deltas until freshness pressure is measured.
 ```
 
 The proposed note gets the important intuition right:
@@ -117,6 +148,11 @@ the requested memory contract.
 | Algorithms are grouped into facade families. | `gitrefrepo/neo4j-gds-src/procedures/algorithms-facade-api/src/main/java/org/neo4j/gds/procedures/algorithms/AlgorithmsProcedureFacade.java:34-88` exposes centrality, community, machine learning, miscellaneous, embeddings, path finding, and similarity. | The implementation registry should classify by family. |
 | The graph catalog is a large API surface. | `gitrefrepo/neo4j-gds-src/procedures/graph-catalog-facade-api/src/main/java/org/neo4j/gds/procedures/catalog/GraphCatalogProcedureFacade.java:49-180` includes exists, drop, list, native/cypher project, estimates, filtering, size, property streams, topology streams, and writebacks. | Catalog semantics must come before algorithms. |
 | PageRank stream has both execution and estimate procedures. | `gitrefrepo/neo4j-gds-src/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java:41-57` defines `gds.pageRank.stream` and `gds.pageRank.stream.estimate`. | Each implemented procedure mode needs a paired memory estimate contract. |
+| GDS has an explicit CSR graph type. | `gitrefrepo/neo4j-gds-src/core/src/main/java/org/neo4j/gds/api/CSRGraph.java:26-35` describes a graph subtype exposing CSR-specific structures such as `AdjacencyList`. | CSR is not an exotic Knight Bus-only bet; it matches how GDS exposes projected graph storage internally. |
+| GDS projections build a CSR graph store. | `gitrefrepo/neo4j-gds-src/core/src/main/java/org/neo4j/gds/api/CSRGraphStoreFactory.java:67-86` builds graph-store state from nodes and imported relationships. | A durable immutable CSR projection is a fair low-RAM alternative to GDS's in-memory projection catalog. |
+| GDS compressed adjacency stores pages, degrees, and offsets. | `gitrefrepo/neo4j-gds-src/core/src/main/java/org/neo4j/gds/core/compression/varlong/CompressedAdjacencyList.java:44-86` estimates compressed pages plus per-node degree and offset arrays; lines `101-110` store pages, degrees, and offsets. | A low-RAM Rust rewrite should study compression, but raw immutable CSR remains the simplest correctness baseline. |
+| GDS adjacency access is cursor-oriented. | `gitrefrepo/neo4j-gds-src/core-api/src/main/java/org/neo4j/gds/api/AdjacencyList.java:33-104` exposes degree and adjacency cursor access. | Knight Bus algorithms can target cursor traits over immutable CSR without knowing the file layout. |
+| GDS itself treats many algorithm states as memory-estimated per-node structures. | Examples: BFS estimates visited/result arrays in `BfsMemoryEstimateDefinition.java:32-69`; WCC estimates disjoint-set state in `WccMemoryEstimateDefinition.java:27-40`; KNN estimates per-node top-k and neighbor lists in `KnnMemoryEstimateDefinition.java:36-90`; FastRP estimates per-node embedding arrays in `FastRPMemoryEstimateDefinition.java:28-49`. | The limiting RAM is often algorithm state, not CSR topology. |
 | Local GDS procedure surface is very large. | A read-only scan over non-test Java sources found `567` unique `gds.*` annotations and `575` annotation rows. | v003 must use support levels instead of pretending full implementation is immediate. |
 
 ### Procedure Scan Result
@@ -165,6 +201,9 @@ user explicitly asks to include the existing reference-shelf changes.
 | First v003 work should inventory/register procedures before implementing Tilehouse. | architecture inference | high | Prevents building storage that does not match the public surface. |
 | Cellular CSR improves update locality and compaction locality over a single flat snapshot. | architecture inference | medium-high | Dirty cell and bounded compaction units reduce work for small localized updates. |
 | Cellular CSR will reduce global algorithm RAM versus a flat explicit stream. | speculation | low | For full-graph algorithms, vectors/frontiers often dominate; tiles mostly improve planning and locality. |
+| If hours of OLAP lag are acceptable, immutable CSR is the best default topology for lowest RAM. | architecture inference | high | It minimizes duplicate topology, avoids delta/compaction metadata, and supports mmap plus sequential streaming. |
+| Immutable CSR is sufficient as the topology substrate for all listed GDS families. | architecture inference | medium-high | All families can be expressed as adjacency scans, neighbor cursors, edge streams, or property-column scans, with algorithm state outside topology. |
+| Immutable CSR guarantees all GDS algorithms can fit on an 8 GB machine. | speculation rejected | high | Similarity, embeddings, all-pairs shortest paths, and some community algorithms are dominated by output/model/candidate state. |
 | `compio` should not replace the OLAP mmap walker first. | sourced inference | high | `docs_PRD02/User-Journey-50GB-OLTP-OLAP-Lag.md:198-241`, `300-310`, `420-427` |
 | `O_DIRECT` or explicit I/O should exist for strict-RAM global algorithms. | architecture inference | medium | It can avoid page-cache surprise, but adds complexity and platform constraints. |
 
@@ -193,11 +232,124 @@ Reason:
 | path | recommended I/O stance |
 | --- | --- |
 | 1-hop/2-hop static walks | mmap first |
-| local Tilehouse cell reads | mmap or bounded mapped windows first |
+| local immutable CSR reads | mmap CSR windows first |
+| optional later Tilehouse cell reads | mmap or bounded mapped windows first |
 | global PageRank strict-RAM mode | explicit stream or O_DIRECT candidate |
 | snapshot build external sort | bounded buffered I/O first; O_DIRECT only if measured useful |
 | WAL receipts and mutable delta logs | borrow segmented log ideas from Iggy; runtime choice is secondary |
 | compaction | bounded buffered or explicit I/O; prove with RSS and page-cache metrics |
+
+## Immutable CSR Suitability Under Hours-Lag Assumption
+
+### Premise Check
+
+If freshness can lag by a few hours, the main question is no longer:
+
+```text
+How do we make CSR update-local?
+```
+
+It becomes:
+
+```text
+Is one immutable CSR projection plus sidecars enough for the whole GDS-style
+OLAP surface, and is it the lowest-RAM default?
+```
+
+Answer:
+
+```text
+Yes for topology.
+No as a blanket guarantee for every algorithm fitting in 8 GB.
+```
+
+The careful claim is:
+
+| claim | confidence | reason |
+| --- | --- | --- |
+| Immutable dual CSR is the best default topology for lowest RAM when freshness lag is allowed. | high | It has no live delta, tombstone, per-cell passport, boundary-index, or compaction overhead. |
+| Every Phase 9 family can be planned against immutable CSR plus sidecars. | medium-high | The families need neighbor cursors, global edge streams, orientation views, property scans, or feature matrices. |
+| Some families still require rejection/spill even with perfect CSR. | high | Algorithm state and outputs can dominate topology. |
+| Tilehouse is still valuable if freshness/local compaction becomes a product need. | medium-high | Its main advantage is update locality, not lower global algorithm RAM. |
+
+### Expert Lenses
+
+| lens | judgment |
+| --- | --- |
+| Storage engineer | Immutable CSR is the simplest low-RAM durable projection: easy atomic swap, checksums, compression, and mmap/open behavior. |
+| Graph algorithm engineer | CSR is the standard substrate for adjacency-heavy analytics, but algorithm scratch must be budgeted separately. |
+| GDS compatibility engineer | CSR does not solve procedure names, configs, modes, result schemas, catalog behavior, or write/mutate semantics. |
+| Operator | Multi-hour lag makes rebuild/swap much easier to explain than deltas and compaction. |
+| Skeptical engineer | "CSR works for all algorithms" is true only as a topology statement; it is false if interpreted as "all algorithms fit cheaply." |
+
+### Candidate Approaches
+
+| approach | upside | downside | best use |
+| --- | --- | --- | --- |
+| Flat immutable dual CSR + sidecars | Lowest topology overhead, simplest build/swap, strongest mmap story | Rebuild needed for freshness; no local compaction | Default v003 RAM-first OLAP |
+| Cellular CSR Tilehouse | Local updates, dirty-cell compaction, better regional locality | More metadata, boundary indexes, deltas, compaction rules | Later freshness/locality tier |
+| Many per-algorithm layouts | Can speed hand-picked demos | Duplicates topology and destroys holistic RAM discipline | Avoid for default RAM-first mode |
+| Graph-LSM / living CSR | Fresh analytics, research moat | Highest complexity and hidden compaction RAM | Only if lag becomes unacceptable |
+
+Chosen approach under the hours-lag assumption:
+
+```text
+Build immutable CSR snapshots first.
+Make the rebuild path low-RAM and atomic.
+Add sidecars and spillable runtime state.
+Postpone Tilehouse until measured freshness pressure justifies it.
+```
+
+### What Immutable CSR Must Include
+
+The topology alone is not enough. The immutable CSR architecture needs these
+planes:
+
+| plane | required artifacts | why |
+| --- | --- | --- |
+| topology | forward CSR, reverse CSR, dense IDs, key index | Covers directed, reverse, undirected, traversal, PageRank, SCC, and edge scans. |
+| graph catalog | manifest, generation, source tx range, projection config | Makes multi-hour freshness explicit and testable. |
+| property sidecars | node/edge typed columns, null/default metadata, dictionaries | Supports weights, labels, features, partitions, and write/mutate results. |
+| orientation views | natural, reverse, undirected, filtered relationship-type views | Avoids duplicating base topology for projection variants. |
+| global edge streams | forward and reverse sequential edge cursors | Enables PageRank, Bellman-Ford, WCC scans, and strict-RAM execution. |
+| sorted-neighbor option | per-type or global sorted adjacency where required | Needed for triangle/intersection-heavy algorithms without runtime full sort. |
+| runtime scratch | bounded vectors, frontiers, heaps, candidate lists, spill tapes | Keeps algorithm state separate from durable topology. |
+| result sidecars | immutable or generationed output properties/models | Supports mutate/write-like behavior without rewriting topology. |
+
+### Can We Be Sure?
+
+We can be sure of this narrower statement:
+
+```text
+Immutable CSR is a sufficient and likely lowest-RAM persistent topology
+foundation for the broader GDS families when freshness lag is acceptable.
+```
+
+We cannot be sure of this broader statement:
+
+```text
+Immutable CSR makes every GDS algorithm practical on an 8 GB machine.
+```
+
+The falsifier is not usually adjacency layout. The falsifier is one of:
+
+| falsifier | examples |
+| --- | --- |
+| O(V) state too large | PageRank vectors, WCC components, BFS parent arrays, SCC stacks |
+| O(V * dimension) state too large | FastRP, Node2Vec, GraphSAGE, KGE, KMeans |
+| O(V * topK) or candidate-pair state too large | KNN, nodeSimilarity |
+| O(source_count * frontier) work too slow or too much spill | all-pairs shortest paths, betweenness, closeness |
+| output is larger than the input | paths, walks, embeddings, dense pairwise similarities |
+
+Therefore the confidence model should be:
+
+| statement | answer |
+| --- | --- |
+| Is immutable CSR the right default persistent topology? | yes |
+| Does every family have a path over immutable CSR? | yes, with sidecars and scratch |
+| Does every exact algorithm fit lowest-RAM targets? | no |
+| Should Tilehouse be default if lag is acceptable? | no |
+| Should Tilehouse remain in the roadmap? | yes, but behind measured freshness/locality pressure |
 
 ## GDS As ABI
 
@@ -294,11 +446,37 @@ Cross-cutting tests:
 Cellular CSR Tilehouse should be framed as a physical storage/execution plan,
 not as a new public API.
 
+Under the original freshness-sensitive framing, Tilehouse was the preferred
+evolution because it made local updates and cell compaction possible. Under the
+new assumption that OLAP may lag by hours, Tilehouse should be demoted:
+
+```text
+Default: immutable flat CSR + sidecars + atomic generation swap.
+Later: Tilehouse if rebuild time, locality, or freshness pressure proves it.
+```
+
+This matters for lowest RAM. Tilehouse adds metadata that immutable flat CSR
+does not need:
+
+```text
+cell passports
+global-to-local id maps
+boundary indexes
+delta receipts
+dirty watermarks
+cell compaction scratch
+multi-cell planning metadata
+```
+
+Those are justified when update locality matters. They are harder to justify
+for a RAM-first v003 where the product can accept scheduled OLAP refresh.
+
 ### Invariants
 
 ```text
 Flat dual CSR remains the correctness oracle.
-Tilehouse must produce the same logical adjacency as flat CSR.
+Flat immutable CSR remains the default v003 storage target under hours-lag.
+Tilehouse must produce the same logical adjacency as flat CSR if added later.
 Tiles are independently readable, dirtyable, compactable, and budgetable.
 Global algorithms must still be able to stream the whole graph exactly.
 Cells improve locality and update granularity, not algorithm exactness.
@@ -410,7 +588,7 @@ Example outcomes:
 
 | workload | likely v003 decision |
 | --- | --- |
-| 1-hop local traversal | run with mmap/cell-local reads |
+| 1-hop local traversal | run with mmap CSR windows |
 | graph catalog list/drop/exists | run from catalog metadata |
 | degree centrality | run if output sidecar fits |
 | BFS from one source | run with bounded frontier and visited state |
@@ -494,33 +672,35 @@ Acceptance tests:
 | Small graph oracle | In-memory normalized graph and flat CSR agree. |
 | Property-based graph oracle | Small generated graphs preserve adjacency parity. |
 
-### Phase 4: Tilehouse Manifest And Partitioner
+### Phase 4: Immutable CSR v3 Manifest And Sidecar Catalog
 
-Goal: define cells before writing full Tilehouse data.
-
-Acceptance tests:
-
-| test | requirement |
-| --- | --- |
-| Manifest JSON round-trip | Tilehouse manifest validates after serialization. |
-| Passport coverage | Dense ID ranges cover every node exactly once. |
-| Budget compliance | No tile exceeds configured nodes, edges, or byte budget. |
-| Boundary report | Boundary ratio is computed and included in build summary. |
-| Invalid ranges rejected | Overlapping or gapped passports fail validation. |
-
-### Phase 5: Tilehouse Writer/Reader Parity
-
-Goal: prove Tilehouse is a correct physical alternative.
+Goal: keep the topology immutable and flat, while adding enough manifest and
+sidecar metadata to serve GDS-style projections.
 
 Acceptance tests:
 
 | test | requirement |
 | --- | --- |
-| Files exist | Writer creates manifest, cell CSR files, and boundary files. |
-| File sizes valid | Reader validates offsets and peer lengths. |
-| Flat parity | Every fixture query returns the same result as flat CSR. |
-| Global stream parity | All tile streams combine into the same logical edge set as flat CSR. |
-| Overhead report | Build summary reports disk overhead versus flat CSR. |
+| v3 manifest JSON round-trip | Manifest validates after serialization and still opens v2 snapshots. |
+| Generation metadata | Manifest records snapshot generation, source tx range, build time, and graph counts. |
+| Sidecar catalog | Manifest lists label, relationship type, property, weight, feature, and result sidecars. |
+| Orientation metadata | Natural, reverse, and undirected logical views are represented without duplicating topology by default. |
+| Budget report | Build summary reports topology bytes, sidecar bytes, and scratch bytes separately. |
+
+### Phase 5: Immutable CSR Global Streams And Compression Diligence
+
+Goal: prove the immutable CSR snapshot can drive GDS algorithms through cursor
+and stream interfaces without building Tilehouse first.
+
+Acceptance tests:
+
+| test | requirement |
+| --- | --- |
+| File sizes valid | Reader validates offsets, peers, node table, strings, key index, and sidecar lengths. |
+| Global stream parity | Forward and reverse global edge streams match the normalized in-memory graph. |
+| Logical orientation parity | Natural/reverse/undirected views match oracle graphs without rewriting base files. |
+| Sorted-neighbor contract | Algorithms that need intersections either require sorted adjacency or declare runtime sort/spill. |
+| Compression diligence | Raw CSR remains baseline; optional compressed peer lists must prove lower total working set before adoption. |
 
 ### Phase 6: Sidecar Columns
 
@@ -532,7 +712,7 @@ Acceptance tests:
 | test | requirement |
 | --- | --- |
 | Label filter | Node labels are queryable without heap materializing all labels. |
-| Relationship type filter | Type filters select the correct edge subset across cells. |
+| Relationship type filter | Type filters select the correct edge subset across the immutable snapshot. |
 | Weight sidecar | Weighted algorithms fail deterministically if required weight is missing. |
 | Property null/default behavior | Missing values follow GDS-compatible config behavior. |
 | Estimate integration | Sidecar bytes appear in projection and algorithm estimates. |
@@ -544,8 +724,8 @@ Start with kernels that prove different pieces of the architecture:
 | kernel | why first | acceptance highlights |
 | --- | --- | --- |
 | Degree centrality | Low algorithm complexity; validates orientation and output modes. | Hand oracle, stream/schema, estimate includes output state. |
-| BFS | Proves frontier scheduling and tile boundary traversal. | Path oracle, source/target config, stable output order. |
-| WCC | Proves global iterative traversal. | Component oracle, flat/tile parity, bounded component state. |
+| BFS | Proves frontier scheduling over immutable CSR. | Path oracle, source/target config, stable output order. |
+| WCC | Proves global iterative traversal. | Component oracle, in-memory/flat-CSR parity, bounded component state. |
 | PageRank | Proves vector memory estimates and global stream plans. | Numeric tolerance oracle, vector-by-vector estimate, strict-RAM plan/reject. |
 
 ### Phase 8: WAL Receipts And Cell Deltas
@@ -553,11 +733,22 @@ Start with kernels that prove different pieces of the architecture:
 Goal: connect Neo4j-shaped OLTP updates to OLAP freshness without rebuilding the
 whole snapshot for tiny changes.
 
+Under the hours-lag assumption, Phase 8 should not block the v003 RAM-first
+architecture. Treat it as a later branch:
+
+```text
+If users accept scheduled OLAP refresh, use low-RAM full rebuild + atomic
+generation swap.
+
+Only build WAL receipts, deltas, and cell compaction if freshness lag becomes
+the bottleneck.
+```
+
 Acceptance tests:
 
 | test | requirement |
 | --- | --- |
-| Receipt mapping | Node/relationship/property changes map to affected cells. |
+| Receipt mapping | Node/relationship/property changes map to affected snapshot regions or cells. |
 | Fresh overlay read | Query sees a receipt-applied edge through the delta overlay. |
 | Sidecar-only update | Property/label updates dirty sidecars without rewriting topology. |
 | Compaction budget | Dirty-cell compaction stays below configured scratch budget. |
@@ -567,6 +758,16 @@ Acceptance tests:
 ### Phase 9: Broader GDS Families
 
 Goal: roll out by dependency order, not excitement order.
+
+Under the hours-lag assumption, Phase 9 should be compared against immutable
+CSR, not Tilehouse. The default storage question becomes:
+
+```text
+Can this family run over immutable CSR topology plus sidecars and bounded
+runtime scratch?
+```
+
+The answer is mostly yes, but with different confidence levels:
 
 | tier | family | representative procedures | gate |
 | --- | --- | --- | --- |
@@ -579,6 +780,28 @@ Goal: roll out by dependency order, not excitement order.
 | 3 | embeddings | FastRP, Node2Vec, GraphSAGE | Requires vector sidecars and model/output discipline. |
 | 3 | ML/pipelines/model catalog | train/predict/model list/drop | Requires persistent model metadata. |
 | 3 | operations/misc | progress, scaleProperties, feature flags | Requires telemetry and property-plane maturity. |
+
+### Phase 9 Immutable CSR Fit
+
+| family | immutable CSR fit | additional planes needed | lowest-RAM confidence | can we be sure? |
+| --- | --- | --- | --- | --- |
+| catalog | excellent | manifest, generation metadata, projection config | high | yes; catalog is metadata over snapshots |
+| centrality | excellent for degree/PageRank/HITS; hard for all-pairs variants | vectors, frontier/distance arrays, result sidecars | medium-high | sure for substrate, not for every config fitting |
+| pathfinding | excellent for BFS/DFS/Dijkstra/Bellman-Ford edge access | weight sidecars, priority queues, distance/parent arrays | medium-high | sure for exact access; output/path explosion still bounded by config |
+| community/structure | strong for WCC/SCC/k-core/triangle; harder for Louvain/Leiden | component/community arrays, sorted neighbors, contracted graph scratch | medium | sure for first-tier families; contraction scratch needs measurement |
+| similarity | adequate substrate but not enough by itself | candidate generation, topK heaps, filters, spill | low-medium | no; candidate state can dominate |
+| embeddings | adequate for neighbor sampling/propagation | dense embedding matrices, walk corpus, model artifacts | low-medium | no; embedding state dominates topology |
+| ML/pipelines/model catalog | CSR helps feature extraction only | feature columns, model storage, training batches | low-medium | no; model/training memory dominates |
+| operations/misc | good for metadata/progress/property scans | telemetry, feature flags, property columns | high for simple ops | yes for simple ops; transforms need estimates |
+
+Revised Phase 9 rule:
+
+```text
+Do not add a new persistent topology layout for a GDS family unless it reduces
+working set under the memory contract.
+
+Prefer immutable CSR + property sidecars + spillable runtime state.
+```
 
 ## Algorithm Diligence Matrix
 
@@ -598,13 +821,13 @@ Goal: roll out by dependency order, not excitement order.
 
 | group | access pattern | dominant state | spill strategy | first oracle | 50GB/8GB risk |
 | --- | --- | --- | --- | --- | --- |
-| BFS / DFS | tile wavefront | visited, parent, distance | bitset/frontier spill | tree/cycle fixture | low-medium |
+| BFS / DFS | immutable CSR frontier | visited, parent, distance | bitset/frontier spill | tree/cycle fixture | low-medium |
 | Dijkstra / A* | wavefront plus weight sidecar | priority queue, distance, predecessor | bucket/queue spill | weighted diamond | medium |
 | Delta-Stepping | bucketed frontier | distance vector and buckets | bucket spill | weighted multi-path | medium-high |
 | Bellman-Ford | repeated global stream | distance vector | vector spill | negative-edge no-cycle | medium |
 | All shortest paths | repeated source sweeps | many distance/frontier states | source batching | tiny all-pairs graph | very high |
 | Yen's k-shortest | repeated Dijkstra | candidate path heap | path heap spill | 3-known-path graph | high |
-| Random walk | tile sampling with boundary handoff | RNG state and walk buffers | walk corpus chunks | seeded walk fixture | medium |
+| Random walk | CSR neighbor sampling | RNG state and walk buffers | walk corpus chunks | seeded walk fixture | medium |
 
 ### Community And Structure
 
@@ -702,25 +925,25 @@ Tests first:
 | global edge cursor parity | Matches flat CSR edge set. |
 | old tests pass | Existing CLI/library contracts unaffected. |
 
-### PR 4: Tilehouse Manifest And Partitioner
+### PR 4: Immutable CSR v3 Manifest And Sidecar Catalog
 
 Tests first:
 
 | test | requirement |
 | --- | --- |
-| passport validation | Ranges cover dense IDs exactly once. |
-| deterministic partition | Stable input gives stable assignment. |
-| boundary accounting | Boundary ratio included in report. |
+| manifest round-trip | v3 manifest validates and v2 snapshots still open. |
+| sidecar catalog | Labels, types, weights, properties, features, and result sidecars are declared. |
+| generation metadata | Source tx range and snapshot generation are visible. |
 
-### PR 5: Tilehouse Writer/Reader Parity
+### PR 5: Immutable CSR Global Streams And Compression Diligence
 
 Tests first:
 
 | test | requirement |
 | --- | --- |
-| file contract | Expected cell and boundary files exist. |
-| adjacency parity | Tilehouse equals flat CSR for fixture queries. |
-| global stream parity | Tilehouse equals flat CSR for full edge stream. |
+| edge stream parity | Global forward/reverse streams match normalized graph. |
+| orientation parity | Natural/reverse/undirected logical views match oracles. |
+| compression gate | Any compressed peer format must prove lower working set than raw CSR. |
 
 ### PR 6: Sidecar Columns
 
@@ -739,8 +962,8 @@ Tests first:
 | test | requirement |
 | --- | --- |
 | degree oracle | Directed/reverse/undirected correct. |
-| BFS oracle | Boundary traversal covered. |
-| WCC oracle | Flat/tile parity stable. |
+| BFS oracle | Frontier traversal over immutable CSR is stable. |
+| WCC oracle | In-memory/flat-CSR parity stable. |
 
 ### PR 8: PageRank Deterministic RAM Proof
 
@@ -753,13 +976,13 @@ Tests first:
 | strict mode | O_DIRECT/explicit stream candidate does not claim mmap determinism. |
 | budget reject | Unsafe plan rejected before execution. |
 
-### PR 9: WAL Receipts And Cell Deltas
+### PR 9: Optional WAL Receipts And Cell Deltas
 
 Tests first:
 
 | test | requirement |
 | --- | --- |
-| receipt mapping | Affected cells are correct. |
+| receipt mapping | Affected snapshot regions or cells are correct. |
 | overlay freshness | New edge visible through overlay. |
 | compaction | Overlay removed and cell CSR updated under budget. |
 | recovery | Receipt replay is deterministic. |
@@ -776,9 +999,9 @@ No procedure can move to `P1 implemented exact low-RAM` until:
 ```text
 G1 registry row exists
 G2 config parser validates defaults and bad inputs
-G3 estimate accounts for topology, sidecars, state, scratch, deltas, and I/O policy
+G3 estimate accounts for topology, sidecars, state, scratch, optional deltas, and I/O policy
 G4 tiny oracle correctness test passes
-G5 flat CSR and Tilehouse parity test passes where topology is involved
+G5 immutable CSR and in-memory oracle parity test passes where topology is involved
 G6 supported modes have schema tests
 G7 budget rejection test passes
 G8 deterministic ordering and seed behavior is documented
@@ -798,7 +1021,7 @@ This diligence doc is implementation-ready when it satisfies:
 | Uses `gitrefrepo/` paths, not old reference-shelf paths. | done |
 | Separates fact, inference, and speculation. | done |
 | Corrects the `compio`/`O_DIRECT` thesis. | done |
-| Recommends flat CSR as oracle and Tilehouse as physical evolution. | done |
+| Recommends immutable CSR as default topology and Tilehouse as optional later work under the hours-lag assumption. | done |
 | Defines GDS support levels. | done |
 | Defines memory estimate fields and strict-RAM rules. | done |
 | Provides a TDD PR sequence. | done |

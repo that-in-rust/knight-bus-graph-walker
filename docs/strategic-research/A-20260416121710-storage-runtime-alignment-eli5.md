@@ -57,7 +57,7 @@ If the on-disk bytes are shaped wrong, the runtime will always feel heavy.
 
 We created an ignored reference folder:
 
-- `ref-repo-folder/`
+- `gitrefrepo/`
 
 and shallow-cloned two repos into it:
 

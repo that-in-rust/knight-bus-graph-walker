@@ -2,7 +2,7 @@
 
 This dossier fact-checks `/Users/amuldotexe/Downloads/Faithful-Rust-Port-Analysis.md` against:
 
-- the local `neo4j/neo4j` checkout in `ref-repo-folder/neo4j`
+- the local `neo4j/neo4j` checkout in `gitrefrepo/neo4j-src`
 - the current Knight Bus repo evidence
 - official Neo4j documentation
 - the backend-only storage ideas in [Knight Bus Algorithm Storage Atlas](../KNIGHT_BUS_ALGORITHM_STORAGE_ATLAS.md)
@@ -131,14 +131,14 @@ They are **not** good user-facing compatibility words if the product promise is 
 - The Neo4j Python driver docs show that session and transaction behavior includes retryability semantics, explicit and implicit transaction modes, and driver-mediated behavior: [Python driver transactions](https://neo4j.com/docs/python-manual/current/transactions/), [Advanced query mechanisms](https://neo4j.com/docs/python-manual/current/query-advanced/).
 - The Java driver docs distinguish `neo4j` routing behavior from direct connections: [Java driver API](https://neo4j.com/docs/api/java-driver/current/org.neo4j.driver/org/neo4j/driver/Driver.html).
 - The operations manual confirms that `neo4j-admin database import full` writes into Neo4j's native format and has edition-specific behavior and operational assumptions: [neo4j-admin import](https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/neo4j-admin-import/).
-- The local Neo4j checkout README states Community Edition is GPLv3 and that Enterprise includes closed-source components not present in this repo: [local README](../../ref-repo-folder/neo4j/README.asciidoc).
+- The local Neo4j checkout README states Community Edition is GPLv3 and that Enterprise includes closed-source components not present in this repo: [local README](../../gitrefrepo/neo4j-src/README.asciidoc).
 - Neo4j's trademark policy states that open-source licensing does not grant trademark rights and that modified products should not be branded as Neo4j without permission: [Trademark Policy and Guidelines](https://legal.neo4j.com/).
 - The current Knight Bus README and prior notes show that the repo's strongest proof today is a narrow one: fixed-hop traversal over immutable snapshots can beat Cypher over Bolt on the same dataset, but that is not yet proof of general Neo4j replacement: [README](../../README.md), [Knight Bus Rust Vs Neo4j ELI5](./A-20260416151416-rust-vs-neo4j-proof-eli5.md), [v001 PRD](../v001-PRD.md).
 - The atlas correctly argues that different graph algorithms want different byte shapes, but those ideas are more directly applicable to backend execution strategy than to the public compatibility surface: [Knight Bus Algorithm Storage Atlas](../KNIGHT_BUS_ALGORITHM_STORAGE_ATLAS.md).
 
 ### Local repo verification
 
-These are directly verified from the local `ref-repo-folder/neo4j` checkout:
+These are directly verified from the local `gitrefrepo/neo4j-src` checkout:
 
 - top-level `community/` directories in this checkout: `69`
 - `community/cypher` Java + Scala line count: about `842,622`

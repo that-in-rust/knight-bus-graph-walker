@@ -735,6 +735,282 @@ version/sysinfo/license/memory/features -> admin/procedure plane
 progress/list/kill -> operations plane
 ```
 
+## Reference test-harness leverage requirements
+
+The PRD SHALL be test-harness driven. Local Knight Bus tests prove the current
+walk runtime, but v003 must also use the reference harnesses inside
+`gitrefrepo/` as compatibility oracles for procedure behavior, graph projection
+semantics, memory estimation, and edge cases.
+
+### REQ-OLAP-TEST-001: Harness ladder
+
+Every v003 implementation task SHALL identify which harness level proves it:
+
+| level | source harness | what it proves |
+| --- | --- | --- |
+| `KB-unit` | `tests/library_contract.rs`, `tests/cli.rs` | current Rust API/CLI contract, snapshot round trip, error behavior, RSS reporting |
+| `KB-scale` | `scripts/run_three_tier_validation.py`, `scripts/run_v003_2gb_competitor_matrix.sh` | tiered datasets, correctness before timing, peak RSS and latency reporting |
+| `GDS-GDL` | `gitrefrepo/neo4j-gds-src/test-utils/.../GdlFactoryTest.java` and `@GdlExtension` tests | graph mini-fixtures, labels, types, direction, properties, inverse index, weighted relationships |
+| `GDS-proc` | `gitrefrepo/neo4j-gds-src/test-utils/.../BaseProcTest.java` and `proc/**/src/*Test/java` | procedure registration, Cypher call shape, stream/stats/mutate/write/estimate modes, error text |
+| `GDS-import` | `gitrefrepo/neo4j-gds-src/triplet-graph-builder/.../GraphImporterTest.java` | projection publish, `GraphStoreCatalog`, counts, labels, types, property state, catalog cleanup |
+| `GDS-memory` | `gitrefrepo/neo4j-gds-src/progress-tracking/.../MemoryTrackerTest.java`, `GraphStoreMemoryContainerTest.java`, `TaskMemoryContainerTest.java`, and `*MemoryEstimation*` tests | memory ownership, per-task/per-graph accounting, estimate shape, reject/accept behavior |
+| `Neo4j-core` | `gitrefrepo/neo4j-src/community/**/src/test/java` | transactions, WAL/log/page-cache/file-system behavior, procedures, kernel/test-directory fixtures |
+| `Cypher-TCK` | `gitrefrepo/opencypher-src/tck/features/**/*.feature` | query-language semantics for OLTP/query-facing compatibility |
+| `Columnar-spill` | `gitrefrepo/duckdb-src/test/**`, `apache-arrow-rs-src/**`, `apache-parquet-format-src/**` | columnar batches, schema evolution, memory limits, external/spill execution, serialization contracts |
+| `Graph-algo` | `gitrefrepo/graphblas-src`, `lagraph-src`, `gapbs-src`, `cugraph-src`, `gunrock-src` | algorithm oracle patterns for BFS/PageRank/SSSP/community-style kernels and memory-state shape |
+
+Requirement:
+
+```text
+WHEN a requirement is implemented
+THEN the PR/task must name the smallest harness level that can falsify it
+AND add a Knight Bus test or adapter before claiming the requirement is done.
+```
+
+### REQ-OLAP-TEST-002: Current Knight Bus harness is the seed, not the ceiling
+
+The current harness already proves:
+
+```text
+build -> query -> verify round trip
+duplicate node rejection
+missing endpoint rejection
+truncated mmap artifact rejection
+all current query families have seeds
+benchmark report includes peak_rss_bytes and peak_rss_source
+low-RAM build/verify records phase peaks
+corpus benchmark serializes engine measurement and runtime RSS scope
+CLI build/query/verify/bench/bench-corpus behavior
+```
+
+v003 SHALL extend this harness instead of replacing it.
+
+The first v003 harness extensions SHALL be:
+
+```text
+inventory registry tests
+support-level tests
+procedure mode tests
+projection catalog tests
+Projection Build Store manifest tests
+FlatDualCsrBackend topology-trait parity tests
+property sidecar tests
+holistic memory estimate JSON tests
+snapshot-watermark freshness tests
+UnsupportedButRegistered error tests
+```
+
+### REQ-OLAP-TEST-003: GDS GDL fixtures become the graph mini-language oracle
+
+GDS uses compact GDL strings to create high-signal graph fixtures. v003 SHALL
+adopt the same idea for Rust tests even if the parser is not identical.
+
+Minimum fixture classes:
+
+```text
+single node
+isolated nodes
+one directed edge
+parallel edges
+self loop
+two relationship types
+multi-label nodes
+missing labels
+weighted relationships
+mixed property schema
+inverse-indexed graph
+undirected logical graph
+NaN/null/default property cases
+```
+
+Rubber-duck check:
+
+```text
+If a requirement says "labels", "types", "orientation", "weights", or
+"properties", where is the tiny fixture that would fail if we got it wrong?
+```
+
+### REQ-OLAP-TEST-004: Procedure tests are product-surface tests
+
+GDS `BaseProcTest` registers procedures into a test Neo4j database and validates
+queries, rows, and errors. Knight Bus SHALL mirror this at its own procedure ABI
+boundary.
+
+For every registered procedure:
+
+```text
+valid call returns declared columns
+unknown graph returns deterministic error
+invalid config key/value returns deterministic error
+unsupported mode returns UnsupportedButRegistered or P2Later error
+estimate mode does not execute algorithm mutation/writeback
+stream mode does not mutate graph/catalog
+mutate mode writes only projection sidecars
+write mode goes only through OLTP-facing bridge
+```
+
+### REQ-OLAP-TEST-005: Projection publish tests follow GraphImporter discipline
+
+GDS `GraphImporterTest` verifies that imported facts become cataloged graph
+stores with expected node/relationship counts and topology. Knight Bus SHALL use
+the same discipline for the Projection Build Store and snapshot publish path.
+
+Required tests:
+
+```text
+Projection Build Store facts produce expected dense ids
+publish records source generation and watermark
+flat CSR snapshot counts match build-store facts
+catalog visibility is atomic at publish boundary
+duplicate graph name fails deterministically
+failed publish leaves no half-visible graph
+drop removes catalog entry and unloads sidecars
+restart reloads or rejects manifests deterministically
+```
+
+### REQ-OLAP-TEST-006: Memory tests must be falsifiable
+
+GDS memory harnesses track per-task and per-graph memory. Knight Bus needs
+stricter accounting because the product goal is 50 GB-class OLAP on 8 GB-class
+machines.
+
+Required memory-test assertions:
+
+```text
+negative budgets are rejected
+zero budget rejects non-metadata procedures
+estimate names every plane contributing bytes
+estimate rejects when required_budget_bytes > configured budget
+strict-RAM mode rejects mmap-only deterministic-RAM claims
+concurrency increases or preserves estimated worker/scratch bytes
+tail overlay bytes are zero in snapshot-only mode
+tail overlay bytes are nonzero only in freshness-overlay mode
+result/model/writeback bytes are included for mutate/write/train/predict modes
+actual benchmark reports include peak_rss_bytes, peak_rss_source, and rss_scope
+```
+
+### REQ-OLAP-TEST-007: Neo4j core tests define OLTP/query compatibility boundaries
+
+Neo4j core test harnesses cover kernel, transaction log, page cache, procedures,
+test-directory/file-system behavior, and Cypher-facing contracts. v003 SHALL not
+try to port all of Neo4j. Instead it SHALL use those harnesses to decide which
+boundary owns which invariant:
+
+| invariant | v003 owner |
+| --- | --- |
+| committed OLTP truth | OLTP Neo4j-shaped store |
+| WAL/receipt order | OLTP -> Projection Build Store bridge |
+| procedure visibility | procedure ABI registry |
+| page-cache effects | memory planner and telemetry, not deterministic RSS claim |
+| transaction rollback | OLTP layer, not immutable CSR |
+| snapshot publish atomicity | catalog and manifest layer |
+
+### REQ-OLAP-TEST-008: openCypher TCK gates query-facing semantics
+
+The openCypher TCK feature files are relevant to the Neo4j rewrite promise, but
+they SHALL be staged separately from OLAP topology work.
+
+Policy:
+
+```text
+OLTP/query API compatibility uses Cypher-TCK-style scenario tests.
+GDS procedure compatibility uses GDS procedure/GDL tests.
+CSR topology compatibility uses Knight Bus + graph-algorithm parity tests.
+Do not use CSR tests as proof of Cypher compatibility.
+Do not use Cypher tests as proof of GDS algorithm memory safety.
+```
+
+### REQ-OLAP-TEST-009: Related OLAP repos provide negative tests, not cargo cults
+
+DuckDB, Arrow/Parquet, ClickHouse, DataFusion, GraphBLAS/LAGraph, GAPBS, cuGraph,
+and Gunrock SHALL be used as design/harness inspiration:
+
+| reference family | harness lesson for v003 |
+| --- | --- |
+| DuckDB/DataFusion/ClickHouse | vectorized batches, memory limits, external/spill operators, explainable physical plans |
+| Arrow/Parquet | schema/columnar sidecar round trips, null/default semantics, pruned/shuffled columns |
+| GraphBLAS/LAGraph/GAPBS | algorithm-state oracles for BFS/PageRank/SSSP and sparse-matrix-style validation |
+| cuGraph/Gunrock | frontier-heavy and GPU-oriented algorithms still expose state classes that CPU low-RAM planning must budget |
+
+These repos SHALL NOT be treated as mandatory implementation dependencies unless
+an implementation task explicitly chooses one.
+
+## Rubber-duck validation of this PRD section
+
+Rubber-duck debugging rule:
+
+```text
+For every requirement, ask:
+1. What exact bug would this catch?
+2. Which fixture or harness can falsify it?
+3. Which memory plane could it hide?
+4. Which freshness/correctness boundary could it blur?
+5. What deterministic error should occur if we cannot support it yet?
+```
+
+### REQ-OLAP-DUCK-001: Section-by-section validation matrix
+
+| PRD claim | duck question | falsifying harness |
+| --- | --- | --- |
+| "same API/surface area" | Can an existing GDS procedure name resolve, even if unsupported? | GDS procedure inventory + `BaseProcTest`-style registration tests |
+| "OLTP remains Neo4j-shaped" | Are transactional/WAL/page-cache concerns kept out of CSR? | Neo4j core transaction/WAL/page-cache tests |
+| "Projection Build Store before CSR" | Can we verify facts and watermarks before snapshot compile? | `GraphImporterTest`-style publish/catalog tests |
+| "FlatDualCsrBackend first" | Can every topology result be compared against truth/GDL fixtures? | Knight Bus parity tests + GDS GDL fixtures |
+| "Tilehouse optional" | Does any acceptance test require Tilehouse before flat CSR fails a measured trigger? | measurement-gated freshness/rebuild/page-fault tests |
+| "tail overlay optional" | Does snapshot-only mode report exact watermark and zero overlay bytes? | freshness-watermark and memory-estimate tests |
+| "mmap is not deterministic RAM" | Does strict-RAM mode reject a plan whose only claim is mmap laziness? | memory planner negative tests |
+| "O_DIRECT-style streaming is strictest" | Are direct buffers counted and non-file-data memory still counted? | holistic memory estimate tests |
+| "every procedure has support level" | Can an unclassified new GDS procedure sneak in? | inventory generator CI test |
+| "properties are sidecars" | Can labels/types/weights/defaults change without rewriting topology? | GDS GDL property/type/label fixtures |
+| "mutate/write differ" | Does mutate avoid OLTP writeback and write use the bridge? | GDS PageRank mutate/write procedure-mode tests |
+| "model/pipeline artifacts separate" | Can model list/drop survive independent of topology files? | GDS pipeline/model-catalog tests |
+| "result streaming avoids heap blowup" | Can large stream mode avoid full materialization unless sorted/top-k? | DuckDB/DataFusion-style streaming/spill tests |
+| "algorithm estimates are honest" | Does PageRank expose vector state, iterations, and output/result bytes? | GDS `*MemoryEstimation*` tests + Knight Bus estimate JSON |
+| "restart durability" | Can half-written artifacts be rejected on reopen? | existing truncated-snapshot test extended to every sidecar |
+
+### REQ-OLAP-DUCK-002: Family-level challenge questions
+
+| family | rubber-duck challenge | required answer before implementation is complete |
+| --- | --- | --- |
+| Catalog | If two users/databases use graph name `g`, do they collide? | catalog key includes user/database/name/generation |
+| Projection | If publish fails after writing peers but before manifest, what is visible? | nothing; atomic manifest/catalog boundary |
+| Centrality | Does PageRank fit because CSR fits? | no; vectors, result sidecars, iterations, and page-cache mode also count |
+| Pathfinding | Does BFS memory equal graph memory? | no; visited/frontier/parent/path output state must be budgeted |
+| Community | Does Louvain only need adjacency? | no; community arrays and contracted-graph scratch dominate |
+| Similarity | Can node similarity materialize all pairs? | only if top-k/candidate estimate fits; otherwise reject/spill |
+| Embeddings | Can embedding outputs stay implicit? | no; node_count * dimension * bytes plus training scratch must be estimated |
+| ML/pipelines | Is model training just an algorithm call? | no; feature schema, splits, model bytes, metrics, and catalog lifecycle exist |
+| Operations | Can cancellation just kill the worker? | no; scratch cleanup and catalog atomicity must be deterministic |
+| Freshness | Is pre-dataset sync equal to query freshness? | only if snapshot watermark equals pre-dataset watermark; otherwise lag is reported or tail is budgeted |
+
+### REQ-OLAP-DUCK-003: Red-team contradictions resolved
+
+| apparent contradiction | resolution |
+| --- | --- |
+| "same GDS surface" vs "not every algorithm runs on 8 GB" | same surface means registered, schema-shaped, and deterministic support level; execution still requires memory fit. |
+| "lowest RAM" vs "mmap" | mmap is allowed for throughput plans, but strict-RAM claims need explicit accounting or explicit streaming/spill. |
+| "pre-dataset verified in sync" vs "tail overlay" | pre-dataset sync proves next-build correctness; tail overlay is only for serving fresher-than-snapshot queries. |
+| "CSR is fast" vs "GDS has models/pipelines" | CSR is topology only; models, pipelines, sidecars, scratch, and writeback are separate planes. |
+| "Neo4j rewrite" vs "do not port all Neo4j tests now" | v003 stages compatibility: procedure/GDS/OLAP first, Cypher/OLTP tests at the query-layer boundary. |
+| "Tilehouse considered" vs "FlatDualCsrBackend first" | Tilehouse stays in the option ledger and becomes implementation only after measured flat-backend failure. |
+
+### REQ-OLAP-DUCK-004: Definition of done for requirement text
+
+This PRD section is not done merely because it names a plane. A requirement is
+ready for implementation only when it has:
+
+```text
+source evidence
+support level
+test harness level
+minimum fixture
+positive test
+negative test
+memory estimate expectation
+freshness expectation where relevant
+deterministic unsupported/error behavior
+```
+
 ## Operational requirements
 
 ### REQ-OLAP-OPS-001: Restart durability

@@ -21,6 +21,7 @@ Neo4j rewritten in Rust
 - lowest RAM custom storage formats for OLAP queries
   → REAL RAM: 50 GB data processed comfortably on 8 GB systems
 - community edition hence single node
+- OLAP will have some lag as compared to OLTP in terms of freshness AND THAT IS OK
 
 
 to be specific

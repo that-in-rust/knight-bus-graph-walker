@@ -1,21 +1,22 @@
 # Arch 01: CSR Multiple Options
 
-This is the canonical v003 architecture decision ledger for OLAP storage. It is
-intentionally not just the final answer. It preserves the serious architectures
-we considered, why each was attractive, what broke under the PRD constraints,
-and how the current preferred architecture emerged.
+This is the canonical v003 architecture decision ledger for OLAP storage. It
+preserves the serious snapshot-oriented architectures we considered, why each
+was attractive, what broke under the PRD constraints, and how the current
+preferred architecture emerged.
 
 Read this file as:
 
 ```text
 top-level summary = current conviction
 option ledger     = how we got there
-appendix          = preserved earlier flat-vs-cellular analysis
+decision tests    = how we avoid fooling ourselves
 ```
 
-The purpose is to keep conviction traceable. If a future reader asks "why not
-just flat CSR?" or "why not default cell deltas?", the answer should be visible
-without reconstructing the whole discussion.
+This file deliberately removes query-time mutation layers from the option set.
+The v003 architecture assumes OLAP answers are exact as of a published snapshot
+watermark. Freshness is improved by publishing newer snapshots, not by merging
+new writes into every query path.
 
 ## Top-level decision summary
 
@@ -24,11 +25,11 @@ Current preferred architecture:
 ```text
 OLTP truth
   -> verified OLAP pre-dataset / Projection Build Store
-  -> immutable CSR snapshot
-       either flat dual CSR
-       or cellular CSR packaged from the same pre-dataset
+  -> immutable CSR snapshot publication
+       flat global CSR first
+       cellular CSR packaging after measurement
+       sidecars for labels, relationship types, weights, and properties
   -> snapshot-as-of OLAP/GDS queries
-  -> optional tail overlay only for explicit near-real-time freshness
 ```
 
 One-line thesis:
@@ -43,8 +44,29 @@ The strongest current conviction:
 ```text
 Flat CSR remains the physical read primitive.
 The Projection Build Store becomes the durable analytical build source.
-Cellular CSR becomes a packaging/locality/compaction option.
-Tail overlays are optional serving freshness, not foundational correctness.
+Cellular CSR becomes a packaging, locality, and bounded rebuild strategy.
+Snapshot generations are the freshness mechanism.
+```
+
+## Core facts
+
+```text
+1. OLTP remains Neo4j-shaped and authoritative.
+2. OLAP is allowed to lag OLTP.
+3. Every OLAP answer must expose the snapshot watermark it used.
+4. The scarce resource is holistic RAM on an 8GB machine.
+5. Flat dual CSR is already the best current physical seed.
+6. The missing layer is the durable Projection Build Store before CSR.
+7. Cells are useful only after the build-source and watermark model is clean.
+8. No option in this ledger uses query-time mutation merging as architecture.
+```
+
+Correctness rule:
+
+```text
+If a query uses snapshot W, the answer must be exact as of W.
+If OLTP is newer than W, the reported freshness lag must say so.
+If users require fresher OLAP, the system publishes a newer snapshot.
 ```
 
 ## Why this decision changed
@@ -53,7 +75,7 @@ The earlier debate was framed as:
 
 ```text
 Option 1: one big flat immutable dual CSR
-Option 2: Cellular CSR Tilehouse with deltas
+Option 2: cellular CSR storage
 ```
 
 That was useful but incomplete. The missing layer was the thing before CSR:
@@ -70,48 +92,272 @@ transactional truth -> analytical facts -> compiled read format -> query view
 ```
 
 That matters because the PRD explicitly accepts OLAP lag and optimizes for
-holistic RAM on an 8GB machine. If OLAP lag is acceptable, query-time overlays
-are not required by default. They are only needed when a query promises
-freshness beyond the published snapshot watermark.
+holistic RAM on an 8GB machine. If OLAP lag is acceptable, serving reads should
+not pay query-time write reconciliation cost. Build work belongs in the
+publication pipeline.
 
 ## Architecture options ledger
 
-| ID | Architecture | Shape | What felt attractive | What broke / risk | Current verdict |
-| --- | --- | --- | --- | --- | --- |
-| A | Flat CSR only | OLTP/source -> full rebuild -> one immutable dual CSR | Simplest, compact, excellent global scans | Weak update pipeline; freshness only by full rebuild/swap | Keep as primitive and fallback, not whole v003 architecture |
-| B | Flat CSR + global delta overlay | immutable flat CSR + global add/delete/property deltas | Fresher queries without full rebuild | Query-time merge/tombstone/dedup RAM can violate 8GB goal | Do not default |
-| C | Cellular CSR + cell deltas | cell CSR + cell-local deltas + compaction | Good locality, dirty-cell compaction, bounded operational units | Still pays overlay complexity; partitioning risk; may slow global scans | Valuable research path, not foundational first step |
-| D | OLAP pre-dataset -> flat CSR | OLTP -> verified analytical facts -> flat CSR snapshots | Clean snapshot-as-of semantics; build-time normalization; predictable query RAM | Adds disk/build-source layer; snapshot lag explicit | Best MVP baseline |
-| E | OLAP pre-dataset -> Cellular CSR | OLTP -> analytical facts -> partitioned CSR cells | Keeps D's clean semantics while adding packaging/locality/compaction | More complex compiler/partitioner; must prove boundary overhead | Preferred v003 evolution target |
-| F | Pre-dataset + optional tail overlay | D/E + capped tx tail where `tx_id > snapshot_watermark` | Near-real-time OLAP possible for selected features | Reintroduces query-time merge RAM and complexity | Optional future mode only |
-
-Decision ladder:
+We currently have six options, all snapshot-oriented:
 
 ```text
-Start with A because current Knight Bus already proves the CSR primitive.
-Reject A alone because v003 needs a real OLTP->OLAP update/build path.
-Reject B as default because global overlays hide RAM/read-amplification costs.
-Treat C as promising but not sufficient because cells do not remove the need for
-  a durable build source or explicit freshness contract.
-Promote D as MVP because it gives clean watermarks and predictable query RAM.
-Promote E as research/evolution because cells are useful after the pre-dataset
-  makes snapshot generation clean.
-Keep F optional because it only matters if freshness SLA beats RAM simplicity.
++----+--------------------------------------------+--------------------------------------------+------------------------------+
+| ID | Architecture                               | Shape                                      | Current verdict              |
++----+--------------------------------------------+--------------------------------------------+------------------------------+
+| A  | Direct flat CSR snapshot                   | OLTP/source -> rebuild -> flat dual CSR    | Primitive and fallback       |
+| B  | Projection Store -> flat CSR               | OLTP -> analytical facts -> flat CSR       | Best MVP baseline            |
+| C  | Projection Store -> flat CSR + sidecars     | B + labels/types/properties/weights        | Required API expansion path  |
+| D  | Projection Store -> cellular CSR snapshots  | OLTP -> facts -> partitioned CSR cells     | Measured evolution target    |
+| E  | Projection Store -> hybrid flat + cellular  | one global stream plus cell packages       | Preferred mature direction   |
+| F  | Multi-generation snapshot catalog           | publish/swap/retain immutable generations  | Required operations layer    |
++----+--------------------------------------------+--------------------------------------------+------------------------------+
+```
+
+### Option A: Direct flat CSR snapshot
+
+```text
+OLTP/source
+  -> full snapshot build
+  -> one immutable flat dual CSR
+  -> OLAP queries exact as of that snapshot
+```
+
+Why it was attractive:
+
+```text
+simple
+compact
+already close to current Knight Bus
+excellent full-graph sequential scans
+low conceptual complexity
+```
+
+What broke:
+
+```text
+weak update-to-OLAP publication story
+no durable analytical staging layer
+labels, types, weights, and properties are not first-class enough
+freshness only improves when a whole new generation is built
+```
+
+Current verdict:
+
+```text
+Keep as the physical primitive, first implementation target, and correctness
+oracle. Do not treat it as the whole v003 architecture.
+```
+
+### Option B: Projection Store -> flat CSR
+
+```text
+OLTP truth
+  -> Projection Build Store
+  -> immutable flat dual CSR snapshot
+  -> snapshot-as-of OLAP queries
+```
+
+Why it is stronger than A:
+
+```text
+separates transactional truth from analytical build facts
+normalizes labels, relationship types, properties, and IDs before CSR build
+makes source watermarks explicit
+keeps serving reads simple
+keeps query RAM predictable
+```
+
+What still needs work:
+
+```text
+the Projection Build Store needs crash recovery and checksums
+snapshot builds still need bounded scratch memory
+property and result sidecars still need design
+full GDS procedure surface still needs registration and modes
+```
+
+Current verdict:
+
+```text
+Best MVP baseline.
+```
+
+### Option C: Projection Store -> flat CSR + sidecars
+
+```text
+OLTP truth
+  -> Projection Build Store
+  -> flat dual CSR topology
+  -> columnar sidecars:
+       labels
+       relationship types
+       weights
+       node properties
+       relationship properties
+       result columns
+  -> GDS-compatible procedure surface
+```
+
+Why it matters:
+
+```text
+Neo4j/GDS compatibility is not topology alone.
+Algorithms need labels, relationship types, weights, properties, modes,
+estimates, writeback/result artifacts, and catalog metadata.
+```
+
+What can go wrong:
+
+```text
+sidecars can duplicate too much data
+property dictionaries can exceed the memory plan
+filtered projections can accidentally materialize large temporary graphs
+writeback/result columns can become hidden RAM sinks
+```
+
+Current verdict:
+
+```text
+Required API expansion path after B.
+```
+
+### Option D: Projection Store -> cellular CSR snapshots
+
+```text
+OLTP truth
+  -> Projection Build Store
+  -> partitioned snapshot compiler
+  -> immutable CSR cells
+  -> global logical stream for whole-graph algorithms
+  -> cell-local reads for locality-heavy workloads
+```
+
+Why it was attractive:
+
+```text
+bounded physical packages
+locality-aware reads
+smaller rebuild units during snapshot publication
+natural place for cell passports, histograms, and planning metadata
+clear attachment point for sidecars
+```
+
+What can go wrong:
+
+```text
+bad partitioning can create too many boundary edges
+global algorithms can slow down if the logical stream is not excellent
+metadata can grow into its own RAM problem
+cell packaging can become complexity without measurable benefit
+```
+
+Current verdict:
+
+```text
+Measured evolution target, not the first mandatory default.
+```
+
+### Option E: Projection Store -> hybrid flat + cellular publication
+
+```text
+Projection Build Store
+  -> publish one exact global flat stream
+  -> publish cell packages from the same facts and watermark
+  -> planner chooses:
+       global stream for whole-graph algorithms
+       cell packages for locality-heavy queries
+```
+
+Why this is the mature direction:
+
+```text
+keeps the flat CSR advantage for global scans
+keeps cells available for locality and bounded rebuilds
+keeps one source watermark
+avoids making cells the only physical truth
+lets benchmarks choose the serving path per workload
+```
+
+What can go wrong:
+
+```text
+publishing both layouts increases disk footprint
+compiler must prove both layouts represent the same watermark
+test harness must check parity between global stream and cells
+planner mistakes can choose the slower path
+```
+
+Current verdict:
+
+```text
+Preferred mature architecture after B/C are proven.
+```
+
+### Option F: Multi-generation snapshot catalog
+
+```text
+generation N:
+  manifest + topology + sidecars + watermark Wn
+
+generation N+1:
+  manifest + topology + sidecars + watermark Wn+1
+
+runtime:
+  atomically switches active generation
+  retains old generations while readers finish
+  garbage-collects unreferenced generations
+```
+
+Why it matters:
+
+```text
+freshness is publication cadence
+readers get stable immutable files
+rollbacks are possible
+crash recovery is simpler than mutating live query state
+operations can reason about what is published
+```
+
+What can go wrong:
+
+```text
+disk usage can grow if generations are not reclaimed
+long-running readers can pin old generations
+build failures must not corrupt active snapshots
+watermark reporting must be exact
+```
+
+Current verdict:
+
+```text
+Required operations layer.
+```
+
+## Decision ladder
+
+```text
+Start with A because current Knight Bus proves the flat CSR primitive.
+Reject A alone because v003 needs a real OLTP-to-OLAP build path.
+Promote B because it gives clean watermarks and predictable serving RAM.
+Add C because Neo4j/GDS compatibility requires more than topology.
+Measure D because cells may improve locality and bounded rebuild work.
+Prefer E as the mature target if cells prove useful without hurting scans.
+Require F because snapshot publication is the freshness and operations model.
 ```
 
 ## Comparison by PRD obligation
 
-| PRD obligation | A flat only | B flat + delta | C cellular + delta | D pre-dataset -> flat | E pre-dataset -> cells | F optional tail |
+| PRD obligation | A flat only | B store -> flat | C flat + sidecars | D store -> cells | E hybrid | F generations |
 | --- | --- | --- | --- | --- | --- | --- |
 | Neo4j-shaped OLTP remains truth | yes | yes | yes | yes | yes | yes |
-| Lowest serving RAM | strong | weak/medium | medium | strong | strong if partitions good | weak unless tightly capped |
-| Holistic RAM accounting | easiest | hard due to overlays | hard due to overlays | clear: build vs serve separated | clear if metadata bounded | hard in tail mode |
-| Accepted OLAP lag | yes | less relevant | less relevant | yes, explicit | yes, explicit | configurable |
-| Small update ingestion | weak | medium | good | good in pre-dataset | good in pre-dataset | good but query-costly |
-| Snapshot exactness | strong | merge-dependent | merge-dependent | strong as of W | strong as of W | exact only if overlay merge correct |
-| Global algorithm scans | excellent | overlay may interfere | needs stream adapter | excellent | must prove stream adapter | overlay may interfere |
-| Locality / compaction | weak | weak | strong | medium | strong | depends on base |
-| Implementation complexity | low | medium | high | medium | medium/high | high |
+| Lowest serving RAM | strong | strong | medium/strong | strong if partitions good | strongest if planner is good | neutral |
+| Holistic RAM accounting | easiest | clear: build vs serve separated | must budget sidecars | must budget cell metadata | must budget duplicate publication | must budget retained files |
+| Accepted OLAP lag | yes | yes, explicit | yes, explicit | yes, explicit | yes, explicit | yes, explicit |
+| Small update ingestion | weak | good in build store | good in build store | good in build store | good in build store | publication-based |
+| Snapshot exactness | strong | strong as of W | strong as of W | strong as of W | parity must be proven | strong per generation |
+| Global algorithm scans | excellent | excellent | excellent with sidecar discipline | must prove stream adapter | excellent through flat stream | neutral |
+| Locality / bounded rebuilds | weak | medium | medium | strong | strong | medium |
+| Implementation complexity | low | medium | medium/high | high | high | medium |
 
 ## Current recommendation
 
@@ -124,12 +370,12 @@ Required v003 foundation:
   3. Immutable CSR snapshots compile from that store at source watermarks.
   4. OLAP queries report `as_of_watermark`.
   5. Flat dual CSR remains the first physical snapshot target.
+  6. Sidecars expand the flat snapshot into the required Neo4j/GDS surface.
+  7. Snapshot generations provide freshness publication and rollback.
 
 Next evolution:
-  6. Cellular CSR compiles from the same pre-dataset when spikes prove value.
-
-Not default:
-  7. Query-time tail overlays.
+  8. Cellular CSR compiles from the same pre-dataset when spikes prove value.
+  9. Hybrid publication keeps a global flat stream plus cell packages.
 ```
 
 If somebody asks "what are we optimizing for?", the answer is:
@@ -137,14 +383,14 @@ If somebody asks "what are we optimizing for?", the answer is:
 ```text
 Predictable holistic RAM on 8GB machines.
 Exact answers as of a stated snapshot watermark.
-Architecture that can later add cell locality without corrupting the base model.
+Architecture that can add cell locality without corrupting the base model.
 ```
 
 If somebody asks "what are we not optimizing for?", the answer is:
 
 ```text
 Zero-lag OLAP at all costs.
-Always-fresh query-time merge semantics.
+Always-fresh query-time mutation semantics.
 Partitioning theory before measured evidence.
 ```
 
@@ -154,7 +400,7 @@ Partitioning theory before measured evidence.
                       PRD accepts OLAP lag
                               |
                               v
-                 query-time overlay not mandatory
+                 serving reads stay snapshot-only
                               |
                               v
              need durable analytical build source
@@ -166,10 +412,13 @@ Partitioning theory before measured evidence.
       immutable CSR snapshot gives predictable serving RAM
                               |
                               v
+       sidecars make the snapshot Neo4j/GDS-compatible
+                              |
+                              v
           flat CSR first, cellular CSR as packaged evolution
                               |
                               v
-              optional tail overlay only if SLA demands it
+       generations publish freshness through atomic snapshot swaps
 ```
 
 ELI5:
@@ -179,11 +428,11 @@ OLTP truth        = author's live manuscript
 Projection Store  = editor's verified notes
 Flat CSR snapshot = printed book
 Cellular CSR      = printed book split into chapters
-Tail overlay      = sticky notes after printing
+Generations       = editions with publication dates
 ```
 
-Do not start with sticky notes. First build the editor's verified notes and
-print clean editions with publication dates.
+Do not rewrite the book while a reader is reading it. Publish a new edition and
+make the publication date visible.
 
 ## Canonical file policy
 
@@ -195,38 +444,6 @@ Recommended repo convention:
 
 ```text
 Arch-01-CSR-multiple-options.md = canonical decision ledger
-Arch-01-CSR-2-options.md        = historical flat-vs-cellular note, superseded
-```
-
-If keeping both files, the two-options file should point back here so reviewers
-do not treat it as the current final decision.
-
----
-
-This note compares OLAP storage directions for v003 after correcting the
-freshness premise:
-
-```text
-OLAP is allowed to lag OLTP.
-The optimization target is holistic RAM on 8GB machines, not zero-lag OLAP.
-```
-
-That changes the architecture decision. A query-time delta overlay is not
-foundational if we introduce a verified OLAP pre-dataset. The cleaner baseline
-is:
-
-```text
-OLTP truth
-  -> OLAP pre-dataset / Projection Build Store
-  -> immutable flat/cellular CSR snapshot
-  -> GDS / walk queries exact as of snapshot watermark
-```
-
-The delta/tail overlay becomes optional:
-
-```text
-Use it only if a feature requires near-real-time OLAP freshness beyond the
-published snapshot watermark, and only if it fits the RAM budget.
 ```
 
 ## Short answer: preferred multi-layer architecture
@@ -250,245 +467,37 @@ published snapshot watermark, and only if it fits the RAM budget.
                                   v
                  +---------------------------------+
                  | 3. IMMUTABLE CSR SNAPSHOT       |
-                 | flat CSR or cellular CSR cells  |
+                 | flat CSR + sidecars             |
                  | exact as of tx/time W           |
+                 +----------------+----------------+
+                                  |
+                                  | publish generation
+                                  v
+                 +---------------------------------+
+                 | 4. SNAPSHOT CATALOG             |
+                 | active/previous generations     |
+                 | atomic swap + rollback          |
                  +----------------+----------------+
                                   |
                                   | mmap fast mode / O_DIRECT strict mode
                                   v
                  +---------------------------------+
-                 | 4. OLAP QUERY VIEW              |
+                 | 5. OLAP QUERY VIEW              |
                  | walks / GDS / PageRank / BFS    |
+                 | exact as of active generation   |
                  +---------------------------------+
 ```
 
-Optional only:
+## Dataset model
 
-```text
-                 +---------------------------------+
-                 | 5. TAIL/FRESHNESS OVERLAY       |
-                 | tx_id > snapshot_watermark      |
-                 | not v003 MVP foundation         |
-                 +---------------------------------+
-```
-
-One-line thesis:
-
-```text
-For Knight Bus v003, optimize for RAM-bounded exact snapshots with explicit
-freshness lag. Do not pay query-time delta merge cost by default.
-```
-
-## Phase 0: deconstruct and clarify
-
-Premise is sound. Proceeding with optimized protocol.
-
-The user question is asking whether v003 should include another layer before
-read-optimized CSR: a durable OLAP pre-dataset that is verified against OLTP.
-If yes, the earlier "CSR base + delta overlay" model should be softened because
-OLAP lag is acceptable and RAM is the true optimization target.
-
-The implicit assumptions are:
-
-- OLTP remains Neo4j-shaped and authoritative.
-- OLAP queries do not need to be zero-lag.
-- The system should expose the freshness watermark honestly.
-- The main scarce resource is holistic RAM on an 8GB machine.
-- Immutable CSR is still the best read-optimized analytical physical format.
-
-Flawed premise corrected:
-
-```text
-Delta overlay is not required for correctness if the OLAP pre-dataset is synced
-with OLTP and queries are allowed to be exact as of the latest published CSR
-snapshot.
-```
-
-Optimized execution plan:
-
-1. Preserve flat CSR as the physical read primitive.
-2. Add a Projection Build Store as analytical intermediate representation.
-3. Compile immutable CSR/cell snapshots from that pre-dataset at watermarks.
-4. Make snapshot freshness explicit in every query/result/manifest.
-5. Treat tail overlays as optional future near-real-time mode.
-
-## Phase 1: expert council
-
-Council:
-
-1. **Graph Database Architect**: protects Neo4j-compatible semantics.
-2. **Storage Systems Engineer**: protects write/read amplification and crash
-   recovery.
-3. **Graph Analytics / GDS Engineer**: protects algorithm execution contracts.
-4. **Memory Budget Engineer**: protects holistic 8GB RAM target.
-5. **Skeptical Engineer / Devil's Advocate**: challenges freshness and
-   duplication assumptions.
-
-Knowledge scaffolding:
-
-```text
-Neo4j OLTP record/WAL semantics
-CDC / analytical fact logs
-CSR and dual CSR snapshots
-snapshot isolation and watermarks
-OLAP freshness SLAs
-mmap vs O_DIRECT memory behavior
-LSM-style write amplification
-GDS graph catalog/projection model
-```
-
-## Phase 2: options explored
-
-### Conventional option: CSR base + query-time delta overlay
-
-```text
-OLTP truth -> immutable CSR base
-             + delta overlay for new writes
-             -> exact query view
-```
-
-This gives fresher OLAP reads, but every query may pay:
-
-```text
-base CSR read
-+ add-list merge
-+ delete/tombstone check
-+ property update merge
-+ dedup/order repair
-+ overlay indexes
-+ extra memory for merge state
-```
-
-It is attractive for freshness, but dangerous for the 8GB promise.
-
-### Blended alternative A: compiler IR
-
-Blend graph storage with compiler design.
-
-```text
-OLTP records/WAL = source language
-OLAP pre-dataset = intermediate representation
-CSR snapshot     = optimized machine code
-GDS runtime      = CPU executing machine code
-```
-
-This is the preferred model because it separates semantic normalization from
-physical optimization.
-
-### Blended alternative B: kitchen prep station
-
-Blend graph storage with restaurant operations.
-
-```text
-OLTP truth        = live orders
-OLAP pre-dataset  = prep station
-CSR snapshot      = plated meals
-tail overlay      = last-second garnish
-```
-
-If the restaurant is RAM-limited, avoid last-second garnish on every plate.
-Keep the prep station current and plate in batches.
-
-### Blended alternative C: cartography
-
-Blend graph storage with mapmaking.
-
-```text
-OLTP truth        = live surveyor observations
-OLAP pre-dataset  = verified survey ledger
-CSR snapshot      = printed atlas
-tail overlay      = temporary road-closure stickers
-```
-
-The atlas is not updated every second. It is accurate as of a publication date.
-Road-closure stickers are useful, but not foundational.
-
-### Selected hybrid
-
-Use the compiler IR + cartography model:
-
-```text
-OLTP truth -> verified analytical IR -> published CSR atlas.
-```
-
-Only add stickers/tail overlays for explicit near-real-time features.
-
-## Phase 3: council debate summary
-
-Graph Database Architect:
-
-> The pre-dataset is the right place to normalize Neo4j-shaped records into
-> projected analytical facts. Keep OLTP authoritative.
-
-Storage Systems Engineer:
-
-> Query-time overlays risk read amplification. Batch compaction from a durable
-> pre-dataset is much cleaner.
-
-Graph Analytics Engineer:
-
-> GDS algorithms want stable graph projections. Snapshot-as-of semantics are
-> normal and easier to test than every-query mutation merging.
-
-Memory Budget Engineer:
-
-> The 8GB target strongly favors immutable snapshots plus explicit O_DIRECT
-> buffers over ad hoc overlay merge memory.
-
-Skeptical Engineer:
-
-> Another dataset means more disk and consistency machinery. Only accept it if
-> it removes query-time complexity and has watermarks/checksums proving sync.
-
-Synthesis:
-
-```text
-Add the OLAP pre-dataset, but make its invariants explicit:
-durable, append/merge-friendly, verified against OLTP, and compiled into CSR at
-published watermarks. Do not introduce default serving overlays until a measured
-freshness SLA demands them.
-```
-
-## Freshness SLA reality
-
-Industry OLAP systems usually accept lag unless they are explicitly HTAP or
-streaming systems. This table is general industry context, not proof from this
-repository:
-
-| System style | Typical freshness | Optimizes for |
-| --- | ---: | --- |
-| Traditional warehouse batch | hours to daily | low cost, stable large scans |
-| Modern ELT/CDC warehouse | minutes to hours | analytical consistency |
-| Lakehouse incremental tables | minutes to hours | batch + incremental compaction |
-| Streaming analytics | seconds to minutes | event freshness with more complexity |
-| HTAP / operational analytics | milliseconds to seconds | freshness at high RAM/CPU/index cost |
-| GDS-style graph projection | explicit projection time; can be stale | fast algorithms on projected graph |
-
-Knight Bus v003 should fit here:
-
-```text
-low-RAM graph OLAP with explicit snapshot freshness,
-not HTAP zero-lag operational analytics.
-```
-
-Recommended SLA language:
-
-```text
-OLAP queries are exact as of the latest published projection snapshot.
-Each snapshot exposes a source watermark.
-Freshness lag = current OLTP watermark - snapshot watermark.
-```
-
-## Corrected dataset model
-
-There are three foundational datasets/planes, plus one optional serving overlay:
+There are three foundational data planes plus the publication catalog:
 
 | Layer | Role | Mutable? | Source of truth? | Query-time default? |
 | --- | --- | --- | --- | --- |
 | OLTP truth | Neo4j-shaped transactional records, WAL, locks, indexes | yes | yes | OLTP only |
-| OLAP pre-dataset / Projection Build Store | normalized analytical facts verified from OLTP | append/merge-friendly | no | no, build source |
+| Projection Build Store | normalized analytical facts verified from OLTP | append/merge-friendly | no | no, build source |
 | Immutable CSR snapshot | read-optimized projection exact at watermark W | no | no | yes for OLAP |
-| Optional tail overlay | changes where `tx_id > W` for near-real-time OLAP | yes, capped | no | no by default |
+| Snapshot catalog | active generation pointer, retention, rollback, manifests | metadata only | no | chooses active snapshot |
 
 ASCII:
 
@@ -504,9 +513,9 @@ ASCII:
                       | low-RAM CDC / receipts
                       v
 +---------------------------------------------+
-| OLAP pre-dataset / Projection Build Store   |
+| Projection Build Store                      |
 | nodes, edges, labels, reltypes, properties  |
-| tombstones, dictionaries, tx watermarks      |
+| dictionaries, tx watermarks, checksums       |
 +---------------------+-----------------------+
                       |
                       | compile/partition/sort at W
@@ -517,6 +526,13 @@ ASCII:
 | sidecars + manifest + watermark W           |
 +---------------------+-----------------------+
                       |
+                      | publish as generation N
+                      v
++---------------------------------------------+
+| Snapshot catalog                            |
+| active pointer + retention policy           |
++---------------------+-----------------------+
+                      |
                       v
 +---------------------------------------------+
 | OLAP/GDS query runtime                      |
@@ -524,19 +540,7 @@ ASCII:
 +---------------------------------------------+
 ```
 
-Optional:
-
-```text
-if near-real-time OLAP is explicitly required:
-
-query_view = snapshot(W) + tail_overlay(W, T)
-
-otherwise:
-
-query_view = snapshot(W)
-```
-
-## What the OLAP pre-dataset stores
+## What the Projection Build Store stores
 
 The pre-dataset should be boring, durable, and easy to verify:
 
@@ -550,7 +554,7 @@ target node id
 relationship type id
 relationship properties
 valid_from_tx
-valid_to_tx or tombstone
+valid_to_tx or deletion marker
 source WAL offset / tx id
 partition hint
 dictionary ids
@@ -568,16 +572,16 @@ snapshot compilation
 verification against OLTP watermarks
 ```
 
-## Why the pre-dataset removes mandatory delta overlay
+## Freshness model
 
 Key invariant:
 
 ```text
 CSR snapshot has watermark W.
-OLAP pre-dataset is verified through watermark T.
-If T == W, no overlay is needed.
-If T > W and queries only promise W, no overlay is needed.
-If T > W and queries promise T, overlay is needed.
+Projection Build Store is verified through watermark T.
+OLAP query answer is exact as of W.
+If T > W, the difference is compiler/publication lag.
+To improve OLAP freshness, publish a newer snapshot.
 ```
 
 Therefore:
@@ -585,33 +589,15 @@ Therefore:
 ```text
 pre-dataset sync proves build-source correctness.
 snapshot watermark defines query correctness.
-overlay only bridges a freshness SLA gap.
+snapshot generation publication defines OLAP freshness.
 ```
 
 If v003 accepts lag, use this:
 
 ```text
-query freshness = snapshot watermark
+query freshness = active snapshot watermark
 pre-dataset freshness = OLTP watermark or near it
 compiler lag = pre-dataset watermark - snapshot watermark
-```
-
-## Option comparison
-
-| Option | Shape | Freshness | RAM risk | Complexity | Verdict |
-| --- | --- | --- | --- | --- | --- |
-| A. Flat CSR only | OLTP -> full rebuild -> flat CSR | snapshot lag | lowest query RAM | low | good current primitive, weak update pipeline |
-| B. Cellular CSR + default deltas | OLTP -> cell deltas -> cell CSR | near-real-time | medium/high query merge RAM | high | useful later, risky as MVP default |
-| C. OLAP pre-dataset -> flat CSR | OLTP -> analytical facts -> flat CSR | snapshot lag | low query RAM, build RAM bounded | medium | best simple v003 baseline |
-| D. OLAP pre-dataset -> cellular CSR | OLTP -> analytical facts -> cells | snapshot lag | low query RAM if partition good | medium/high | best v003 research target |
-| E. Pre-dataset + optional tail overlay | C/D plus capped overlay | configurable | overlay-dependent | high | only for explicit near-real-time SLA |
-
-Preferred path:
-
-```text
-MVP: C
-Research/scale path: D
-Optional future: E
 ```
 
 ## How this changes the earlier Cellular CSR thesis
@@ -619,15 +605,15 @@ Optional future: E
 Earlier:
 
 ```text
-Cellular CSR + deltas is the freshness layer.
+Cellular CSR was treated as the main answer to update-aware OLAP.
 ```
 
 Corrected:
 
 ```text
 Projection Build Store is the freshness/build-source layer.
-Cellular CSR is the packaging/compaction/locality layer for compiled snapshots.
-Tail overlay is optional serving freshness, not foundational correctness.
+Snapshot generations are the publication mechanism.
+Cellular CSR is the packaging, planning, locality, and bounded rebuild layer.
 ```
 
 Flat CSR still matters:
@@ -640,23 +626,23 @@ Pre-dataset = durable normalized source for generating either one.
 
 ## Holistic RAM reasoning
 
-Default query-time overlay increases hidden RAM:
+Serving queries should not reconcile write state. They should read a stable
+snapshot and allocate only:
 
 ```text
-overlay indexes
-tombstone filters
-dedup buffers
-merge cursors
-property-change side buffers
-boundary repair
-result ordering state
+CSR file windows or explicit stream buffers
+sidecar file windows or explicit stream buffers
+algorithm state
+result buffers
+planner metadata
 ```
 
-The pre-dataset model moves that work out of the serving path:
+Build work happens outside the serving read path:
 
 ```text
-query path: CSR snapshot only
+query path: active CSR snapshot only
 build path: pre-dataset -> sorted/partitioned CSR under memory budget
+publication path: atomic generation swap
 ```
 
 That aligns with the project goal:
@@ -677,8 +663,11 @@ The architecture is only credible if these tests exist:
 | CSR snapshot watermark test | snapshot declares exact source watermark W |
 | snapshot-from-pre-dataset parity test | CSR output matches pre-dataset facts at W |
 | stale-read contract test | query result reports `as_of_watermark = W` |
-| no-overlay RAM test | OLAP query RSS excludes tail overlay structures by default |
-| optional-overlay budget test | near-real-time mode refuses to run if overlay exceeds budget |
+| sidecar parity test | label/type/property sidecars match source facts at W |
+| cell/global parity test | cellular snapshot equals global flat stream at W |
+| generation swap test | readers see either generation N or N+1, never a partial build |
+| generation retention test | old snapshots are reclaimed only after readers release them |
+| memory-contract test | query RSS/PSS fits estimate for topology, sidecars, and algorithm state |
 
 ## Recommended implementation sequence
 
@@ -714,7 +703,7 @@ pub struct ProjectionRelFact {
 }
 ```
 
-3. Define snapshot manifest freshness:
+3. Define snapshot freshness:
 
 ```rust
 pub struct SnapshotFreshness {
@@ -731,20 +720,25 @@ pub struct SnapshotFreshness {
 ```rust
 pub enum OlapFreshnessMode {
     SnapshotOnly,
-    SnapshotPlusTailOverlay,
 }
-// SnapshotOnly is the default v003 mode.
+// SnapshotOnly is the v003 mode.
 ```
 
-5. Define optional overlay budget:
+5. Define snapshot generation catalog:
 
 ```rust
-pub struct TailOverlayBudget {
-    pub max_bytes: u64,
-    pub max_tx_lag: u64,
-    pub max_merge_layers: u32,
+pub struct SnapshotGeneration {
+    pub generation_id: u64,
+    pub source_watermark: SourceWatermark,
+    pub manifest_path: String,
+    pub published_at_ms: u64,
 }
-// Refuse near-real-time mode when this cannot be honored.
+
+pub struct SnapshotCatalog {
+    pub active_generation: u64,
+    pub retained_generations: Vec<SnapshotGeneration>,
+}
+// Publication is an atomic active_generation change after validation.
 ```
 
 ## Chain of verification
@@ -752,11 +746,12 @@ pub struct TailOverlayBudget {
 Fact-check questions:
 
 1. Does OLAP generally allow lag?
-2. Does accepting lag remove the need for a default query-time overlay?
+2. Does accepting lag allow a snapshot-only query contract?
 3. Does a pre-dataset replace OLTP truth?
 4. Does a pre-dataset replace CSR?
 5. Does this improve the 8GB RAM story?
-6. Is tail overlay still useful?
+6. Do cells need to be first?
+7. How does freshness improve without query-time write reconciliation?
 
 Answers:
 
@@ -765,17 +760,22 @@ Answers:
 2. Yes, if query semantics are exact as of snapshot watermark.
 3. No. OLTP remains authoritative.
 4. No. It is build-source IR; CSR remains read-optimized physical format.
-5. Yes, because merge/dedup/tombstone work moves to build time instead of every
-   query.
-6. Yes, but only for explicit near-real-time features with a measured budget.
+5. Yes, because write reconciliation and sorting happen in the build path,
+   while serving reads use stable snapshot files.
+6. No. Flat CSR is the right first target; cells should be promoted by measured
+   evidence.
+7. By reducing build latency, publishing generations more often, and reporting
+   the active watermark honestly.
 
 Weaknesses:
 
-- The pre-dataset adds disk footprint.
-- It needs crash recovery and idempotent ingestion.
-- It needs verification tooling.
-- It does not make CSR builds free; it only makes them cleaner and more
-  incremental.
+```text
+The pre-dataset adds disk footprint.
+It needs crash recovery and idempotent ingestion.
+It needs verification tooling.
+It does not make CSR builds free; it only makes them cleaner and more bounded.
+Snapshot-only semantics accept lag rather than hiding it.
+```
 
 Final corrected response:
 
@@ -783,88 +783,13 @@ Final corrected response:
 The foundational v003 pipeline should be:
 
 OLTP truth
-  -> verified OLAP pre-dataset / Projection Build Store
+  -> verified Projection Build Store
   -> immutable flat or cellular CSR snapshots
+  -> snapshot catalog with atomic generation publication
   -> snapshot-as-of OLAP queries.
 
-Do not use query-time delta overlays by default.
-Use them only as an optional tail-freshness mode after proving RAM bounds.
+No query-time mutation layer belongs in the architecture options.
 ```
-
-## Appendix A: Earlier flat-vs-cellular analysis
-
-The rest of this note preserves the earlier flat-vs-cellular analysis, but it
-should now be read under the corrected multi-layer conclusion above:
-
-```text
-Projection Build Store first.
-Immutable CSR snapshots second.
-Cellular CSR as packaging/locality/compaction evolution.
-Tail overlays optional, not foundational.
-```
-
-The earlier comparison focused on two OLAP storage directions for v003:
-
-1. **Current Knight Bus flat immutable dual CSR**
-2. **Proposed Cellular CSR Tilehouse**
-
-The goal is not to change OLTP. The PRD constraint remains:
-
-```text
-OLTP data storage remains Neo4j-shaped.
-OLAP storage is the decision.
-OLAP must minimize holistic RAM: heap, page cache, duplicate layouts,
-compaction buffers, snapshot build scratch, delta overlays, indexes,
-and algorithm intermediates.
-```
-
-## Short answer, corrected
-
-Current Knight Bus is already the right seed: a compact immutable dual-CSR
-snapshot with a low-RAM builder and mmap traversal runtime.
-
-Cellular CSR is a strong v003 evolution path, but the corrected thesis is more
-conservative than "replace flat CSR":
-
-```text
-Flat CSR = physics primitive.
-Cellular CSR = packaging, freshness, planning, and compaction layer.
-```
-
-Recommended phrasing:
-
-```text
-Cellular CSR is the preferred v003 research target and update-aware storage
-evolution, but v003 should keep flat dual CSR as the canonical global stream
-and first implementation fallback until spikes prove cells improve real
-workloads.
-```
-
-So the preferred direction is:
-
-```text
-current flat dual CSR
-  -> keep as canonical per-cell byte primitive
-  -> keep as exact global logical stream fallback
-  -> package into bounded graph cells where useful
-  -> add cell passports for planning/freshness/validation
-  -> add boundary indexes only where measurements justify them
-  -> add label/type/property sidecars
-  -> add capped WAL-fed cell-local deltas
-  -> use O_DIRECT global streaming for strict-RAM algorithms
-```
-
-The main claim:
-
-```text
-Cellular CSR is not "faster CSR."
-It is flat CSR made update-aware, locality-aware, and RAM-budgetable.
-It should not displace flat CSR as the global scan primitive until measured.
-```
-
-This corrects the most important possible overstatement in the earlier note:
-cells are an architectural layer over CSR, not proof that cells beat flat CSR for
-every workload.
 
 ## PRD constraint analysis
 
@@ -876,8 +801,8 @@ identical architecture for OLTP queries
 lowest RAM custom storage formats for OLAP queries
 50 GB data processed comfortably on 8 GB systems
 OLAP RAM includes heap, page cache, duplicate layouts, compaction buffers,
-snapshot build scratch, delta overlays, indexes, and algorithm intermediates
-O_DIRECT + compio for exact RAM control
+snapshot build scratch, indexes, sidecars, and algorithm intermediates
+O_DIRECT + compio for strict file-data RAM control
 ```
 
 The storage architecture must therefore satisfy four different obligations:
@@ -892,19 +817,32 @@ The storage architecture must therefore satisfy four different obligations:
 Correct constraint reading:
 
 ```text
-v003 does not need "one magic graph layout."
+v003 does not need one magic graph layout.
 v003 needs a dual-plane system:
   OLTP plane: Neo4j-shaped mutable records/WAL/locks/indexes.
-  OLAP plane: CSR-derived projections with exact memory contracts.
+  OLAP plane: CSR-derived snapshots with exact memory contracts.
 ```
 
-Flat dual CSR already satisfies the "physics primitive" part of the OLAP plane.
-Cellular CSR addresses the missing operational pieces:
+Flat dual CSR already satisfies the physics-primitive part of the OLAP plane.
+The Projection Build Store and sidecars address the missing semantic pieces:
 
 ```text
-freshness unit
+freshness watermark
+labels
+relationship types
+properties
+weights
+writeback/result artifacts
+procedure metadata
+memory estimates
+catalog entries
+```
+
+Cellular CSR can later address:
+
+```text
 locality unit
-compaction unit
+bounded rebuild unit
 planning unit
 sidecar attachment unit
 ```
@@ -913,9 +851,7 @@ But algorithm state remains independent of cell layout. PageRank, Louvain, KNN,
 embeddings, and ML can still be dominated by vectors, heaps, candidate pairs, or
 models. Cells improve packaging and locality; they do not erase global state.
 
-## Core facts
-
-### Current Knight Bus architecture
+## Current Knight Bus architecture
 
 Current Knight Bus writes a single immutable snapshot:
 
@@ -964,7 +900,7 @@ The v003 PRD asks for more than immutable walks:
 ```text
 same Neo4j-facing surface
 full OLAP API surface
-OLTP updates feeding OLAP
+OLTP updates feeding OLAP publication
 50GB data on 8GB systems
 holistic RAM accounting
 ```
@@ -973,14 +909,14 @@ Current flat CSR is not enough by itself because:
 
 | Limit | Consequence |
 | --- | --- |
-| Immutable snapshot | OLAP freshness requires full rebuild or a separate delta design |
-| One global file set | Local updates and local compaction still interact with global layout |
+| Immutable snapshot | OLAP freshness requires publishing a newer generation |
+| One global file set | Local rebuild work still interacts with global layout |
 | mmap page cache | RAM residency is decided by the OS, not the planner |
 | Topology-first format | Labels, relationship types, and properties need sidecars |
 | Walk-focused runtime | PageRank, BFS, SSSP, k-core, Louvain, triangle count, etc. need additional execution/storage support |
-| No cell boundaries | No natural unit for bounded update repair, compaction, or locality-aware planning |
+| No cell boundaries | No natural unit for bounded rebuild or locality-aware planning |
 
-## Option 1: Current flat immutable dual CSR
+## Flat CSR option details
 
 ### Shape
 
@@ -1009,29 +945,26 @@ query seed key
   -> map ids back to keys
 ```
 
-### Update path
-
-There is no true live update path in the current static snapshot model.
-
-The realistic options are:
+### Publication path
 
 ```text
 1. OLTP update commits in Neo4j-shaped store.
-2. OLAP remains at generation N.
-3. A new snapshot generation N+1 is built from source/WAL.
-4. Runtime atomically swaps to generation N+1.
+2. Projection Build Store records verified analytical facts.
+3. Snapshot generation N+1 is built from facts through watermark W.
+4. Generation N+1 is validated.
+5. Runtime atomically switches active generation from N to N+1.
 ```
 
 This is clean and safe, but it is not update-local.
 
 ### RAM behavior
 
-Flat CSR has two different RAM personalities:
+Flat CSR has three RAM personalities:
 
 | Mode | RAM behavior |
 | --- | --- |
 | mmap traversal | Low explicit heap, but OS page cache controls real residency |
-| O_DIRECT global streaming | Deterministic RAM if implemented, but not current runtime default |
+| O_DIRECT global streaming | More planner-controlled file-data RAM if implemented carefully |
 | builder | Low-RAM external sort can bound process RSS |
 
 For a 50GB-class graph, current notes estimate roughly:
@@ -1043,19 +976,7 @@ flat CSR topology + key structures: ~15-20GB on disk
 PageRank score arrays: ~3.2GB for two f64[200M] vectors
 ```
 
-### Best use
-
-Flat CSR is best when:
-
-```text
-graph is mostly static
-queries are simple walks
-latency matters more than freshness
-full graph scans can stream sequentially
-implementation simplicity is the priority
-```
-
-## Option 2: Proposed Cellular CSR Tilehouse
+## Cellular CSR option details
 
 ### Shape
 
@@ -1076,7 +997,6 @@ snapshot_generation_42/
       reltype_bitmaps.bin
       node_properties.arrow
       edge_properties.arrow
-      delta_receipts.bin
     cell_000002/
       ...
   boundaries/
@@ -1100,7 +1020,7 @@ property min/max or dictionary metadata
 degree histogram
 hot hubs
 boundary edge counts
-dirty tx range
+source watermark
 checksum
 ```
 
@@ -1121,35 +1041,35 @@ Global algorithm:
 
 ```text
 procedure call
-  -> planner chooses Level 2 or Level 3 RAM contract
+  -> planner chooses RAM contract
   -> stream all cells in logical CSR order
-  -> use O_DIRECT for deterministic RAM
+  -> use strict streaming mode for global scans when needed
 ```
 
-### Update path
+### Publication path
 
 OLTP still commits first to the Neo4j-shaped store.
 
 Then:
 
 ```text
-Neo4j-shaped WAL transaction
-  -> analytical receipt
-  -> map affected node/edge/property to cell(s)
-  -> append cell-local delta
-  -> update dirty passport metadata
-  -> query reads base cell + bounded delta
-  -> background compacts dirty cell under memory budget
+Neo4j-shaped committed transaction
+  -> Projection Build Store fact rows
+  -> snapshot compiler maps facts to cell partition
+  -> compiler writes complete generation N+1
+  -> validation checks cell/global parity
+  -> catalog publishes generation N+1 atomically
 ```
 
 Example:
 
 ```text
 CREATE (a)-[:FOLLOWS]->(b)
-  -> receipt: edge_add(src=a, dst=b, type=FOLLOWS)
-  -> dirty cells: cell(a), cell(b), maybe boundary table
-  -> append delta to those cells
-  -> no full snapshot rebuild required
+  -> OLTP commit is authoritative
+  -> fact row records edge_add(src=a, dst=b, type=FOLLOWS)
+  -> next published generation includes the edge
+  -> queries before publication report older watermark
+  -> queries after publication report newer watermark
 ```
 
 ### RAM behavior
@@ -1159,9 +1079,8 @@ Cellular CSR aims to make RAM explicit:
 ```text
 local query RAM = selected cell windows + small metadata
 regional query RAM = wavefront cells + boundary buffers
-global query RAM = O_DIRECT stream buffers + algorithm state
-delta RAM = capped per dirty cell
-compaction RAM = capped per cell/batch
+global query RAM = stream buffers + algorithm state
+publication RAM = bounded compiler scratch
 ```
 
 The point is not that every query uses less heap than flat CSR.
@@ -1169,26 +1088,26 @@ The point is not that every query uses less heap than flat CSR.
 The point is:
 
 ```text
-global surprise RAM becomes local budgeted RAM.
+global surprise RAM becomes planned and measured RAM.
 ```
 
 ## Head-to-head comparison
 
 ### High-level comparison
 
-| Dimension | Current flat immutable dual CSR | Proposed Cellular CSR Tilehouse | Better? |
+| Dimension | Flat immutable dual CSR | Cellular CSR snapshots | Better? |
 | --- | --- | --- | --- |
-| Core storage | One global dual CSR | Many bounded dual-CSR cells | Cellular for v003; flat for simplicity |
-| Current implementation maturity | Already exists | New design | Flat |
-| Static walk latency | Excellent | Similar, sometimes slightly better/worse | Tie |
-| Full graph scan | Excellent sequential base | Must provide logical global stream | Flat unless optimized |
-| OLTP update bridge | Rebuild/swap generation | WAL receipt -> dirty cells -> local compaction | Cellular |
-| Freshness granularity | Snapshot-level | Cell/delta-level | Cellular |
-| Compaction unit | Whole snapshot | Cell or cell batch | Cellular |
-| Page-cache control | mmap-heavy; OS decides | cell windows + optional O_DIRECT | Cellular |
-| Full OLAP API readiness | Needs major additions | Designed for labels/types/properties/algorithms | Cellular |
-| Disk compactness | Minimal | 5-20% topology overhead likely | Flat |
-| Complexity | Low | Medium-high | Flat |
+| Core storage | One global dual CSR | Many bounded dual-CSR cells | depends on workload |
+| Current implementation maturity | Already exists | New design | flat |
+| Static walk latency | Excellent | Similar, sometimes slightly better/worse | tie |
+| Full graph scan | Excellent sequential base | Must provide logical global stream | flat unless optimized |
+| OLTP-to-OLAP bridge | Publish new generation | Publish new generation from partitioned facts | tie; cells may rebuild less |
+| Freshness granularity | Snapshot-level | Snapshot-level | tie |
+| Publication unit | Whole snapshot | Cell or cell batch inside a complete generation | cellular |
+| Page-cache control | mmap-heavy; OS decides | cell windows + strict stream mode | cellular |
+| Full OLAP API readiness | Needs major additions | Natural sidecar/catalog attachment points | cellular |
+| Disk compactness | Minimal | extra metadata and boundaries likely | flat |
+| Complexity | Low | Medium-high | flat |
 
 ### Quantified estimate for 50GB dataset on 8GB system
 
@@ -1201,20 +1120,19 @@ Flat CSR topology/key structures: ~15-20GB on disk
 Usable RAM for OLAP after OS/minimal server overhead: ~5-6GB
 ```
 
-| Workload / metric | Current flat CSR | Cellular CSR Tilehouse | Improvement / regression |
+| Workload / metric | Flat CSR | Cellular CSR | Improvement / regression |
 | --- | ---: | ---: | --- |
-| Topology disk size | ~15-20GB | ~16-23GB | Cellular is ~5-20% worse |
-| Metadata resident RAM | small runtime structs + mmap VMAs | ~300MB-1.5GB for cell metadata/windows | Cellular worse at idle if many passports cached |
+| Topology disk size | ~15-20GB | ~16-23GB | cellular is likely larger |
+| Metadata resident RAM | small runtime structs + mmap VMAs | compact cell passports and boundary metadata | cellular worse if over-cached |
 | 1-hop / 2-hop static walk | micro-ms to ms after page-in | micro-ms to ms after cell page-in | roughly equal |
-| Local neighborhood query | may fault arbitrary global pages | bounded to local cells when partitioning is good | 2-10x less page-cache churn |
-| Multi-cell traversal | direct CSR offsets | boundary routing + cell wavefront | can be better or worse; partition-dependent |
-| Exact global PageRank Level 2 | ~3.2GB, ~10-25s if O_DIRECT engine exists | ~3.2GB, ~10-30s with global stream adapter | roughly equal; Cellular may be 0-20% slower |
-| Strict global PageRank Level 3 | ~196MB-512MB, minutes if implemented | ~196MB-512MB, minutes if implemented | roughly equal |
-| Small update freshness | requires full rebuild/snapshot generation or broad delta | append receipt to 1-2 cells | 10x-1000x less rebuild work for small updates |
-| Delta overlay RAM | none in static model | capped per cell; target 128-512MB global cap before compaction | Cellular uses more RAM but enables freshness |
-| Compaction scratch | global rebuild budget | per-cell budget | Cellular substantially better |
-| Full OLAP property filters | not first-class in current v2 | typed per-cell sidecars | Cellular major improvement |
-| Operational complexity | low | 2-4x higher | Cellular worse |
+| Local neighborhood query | may fault arbitrary global pages | bounded to local cells when partitioning is good | possible 2-10x less page-cache churn |
+| Multi-cell traversal | direct CSR offsets | boundary routing + cell wavefront | can be better or worse |
+| Exact global PageRank | dominated by score arrays and scans | dominated by score arrays and scans | roughly equal if stream adapter is good |
+| Strict global PageRank | strict stream buffers + algorithm state | strict stream buffers + algorithm state | roughly equal |
+| Small update freshness | requires publishing newer generation | requires publishing newer generation | tie at query contract level |
+| Publication scratch | global rebuild budget | cell/batch-oriented compiler budget | cellular can be better |
+| Full OLAP property filters | not first-class in current v2 | typed per-cell sidecars | cellular major improvement |
+| Operational complexity | low | 2-4x higher | cellular worse |
 
 ### Truth-check table
 
@@ -1223,20 +1141,19 @@ This table separates supported claims from plausible but unproven claims.
 | Claim | Verdict | Correction / nuance |
 | --- | --- | --- |
 | Current Knight Bus flat dual CSR is the right seed. | True | Supported by the repo's current snapshot/runtime shape and low-RAM builder. |
-| Cellular CSR is "CSR made updateable, locality-aware, RAM-budgetable." | Mostly true | True only if cells are real update, compaction, and query units, not just folders. |
+| Cellular CSR is "CSR made locality-aware and RAM-budgetable." | Mostly true | True only if cells are real query, publication, and planning units, not just folders. |
 | Cellular CSR is better for static walks. | Not proven | Flat CSR may be equal or faster. Cells add boundary and mapping overhead. |
-| Cellular CSR is better for small update freshness. | True | Cell-local deltas are much better than rebuilding a 50GB-class snapshot for a handful of edits. |
+| Cellular CSR is better for small update freshness. | Not by itself | Both serve published snapshots. Cells may reduce publication work, but freshness is still generation-based. |
 | Cellular CSR is better for full global algorithm speed. | False / not proven | Flat CSR is already close to ideal for sequential scans. Cells may slow global scans unless the logical stream adapter is excellent. |
-| Cellular CSR improves holistic RAM. | Partially true | Strong for local reads, dirty-cell compaction, and bounded deltas. Neutral for global PageRank/Louvain/KNN when algorithm state dominates. |
+| Cellular CSR improves holistic RAM. | Partially true | Strong for local reads and bounded publication work. Neutral for global PageRank/Louvain/KNN when algorithm state dominates. |
 | `O_DIRECT` gives deterministic RAM. | Mostly true but overstrong | It bypasses page cache, but alignment buffers, block-device behavior, kernel accounting, I/O scheduling, and algorithm arrays still matter. |
-| 50GB graph -> flat CSR topology/key structures around 15-20GB. | Plausible | Raw dual CSR for 200M nodes / 1B directed edges stored in both forward and reverse form is about 11.2GB before keys/properties: offsets `2 * (200M + 1) * 8 ~= 3.2GB`, peers `2 * 1B * 4 ~= 8GB`. Keys and sidecars make 15-20GB plausible. |
+| 50GB graph -> flat CSR topology/key structures around 15-20GB. | Plausible | Raw dual CSR for 200M nodes / 1B directed edges stored in both forward and reverse form is about 11.2GB before keys/properties. |
 | PageRank two `f64[200M]` vectors = about 3.2GB. | True | `2 * 200M * 8 = 3.2GB`. Two `f32` vectors would be about 1.6GB. |
-| Exact global PageRank in 10-30s. | Too confident | Possible on strong hardware, but unsafe as a claim for 8GB/O_DIRECT mode without benchmark. Say "tens of seconds to minutes." |
-| Cellular topology overhead 5-20%. | Plausible, unproven | Boundary indexes, passports, per-cell offsets, and deltas could push overhead higher. |
+| Exact global PageRank in 10-30s. | Too confident | Say "tens of seconds to minutes" until benchmarked. |
+| Cellular topology overhead 5-20%. | Plausible, unproven | Boundary indexes, passports, per-cell offsets, and sidecars could push overhead higher. |
 | Metadata RAM 300MB-1.5GB. | Plausible but design-dependent | Compact passports should be far smaller; boundary indexes and cached sidecars may dominate. |
 | Full OLAP API readiness improves with cells. | True as architecture | Cells do not solve all algorithms. Global algorithms still need global state, sidecars, and result storage. |
-| Partitioning is the biggest risk. | True | Bad partitioning can erase locality and add random I/O. |
-| Delta compaction is the second biggest risk. | True | Unbounded delta layers become LSM-style read amplification. |
+| Partitioning is the biggest cellular risk. | True | Bad partitioning can erase locality and add random I/O. |
 
 ### Evidence and verification notes
 
@@ -1247,78 +1164,70 @@ These are supporting references, not benchmark proof.
 | Current Knight Bus `snapshot.rs` writes flat `forward.offsets`, `forward.peers`, `reverse.offsets`, `reverse.peers`, node table, string table, and key index. | Flat dual CSR is the implemented primitive today. |
 | Current Knight Bus `runtime.rs` opens the snapshot through mmap and exposes walk-focused runtime methods. | Current execution is static and traversal-oriented, not full GDS. |
 | Neo4j GDS source includes `CSRGraphStoreFactory`, `CSRGraphStore`, `GraphStoreCatalog`, `HugeGraph`, and memory estimate result types. | GDS uses a separate projected graph plane and takes memory estimation seriously. |
-| Neo4j GDS `HugeGraph` comments describe target IDs sorted, delta-encoded, and written as variable-length vlongs with offset-based access. | Compressed CSR-like layouts are a real GDS design pattern. |
+| Neo4j GDS `HugeGraph` comments describe target IDs sorted, compressed, and written as variable-length vlongs with offset-based access. | Compressed CSR-like layouts are a real GDS design pattern. |
 | GraphChi uses vertex intervals and shards for out-of-core graph processing. Source: [GraphChi OSDI/USENIX](https://www.usenix.org/conference/osdi12/126-graphchi-large-scale-graph-computation-just-pc). | Cell/shard-style graph execution has strong precedent. |
-| LLAMA uses multiversioned arrays for graph analytics. Source: [LLAMA](https://syrah.eecs.harvard.edu/publications/llama-efficient-graph-analytics-using-large-multiversioned-arrays). | Base + delta/versioned graph thinking is legitimate. |
-| LSMGraph proposes multi-level CSR for dynamic graph storage. Source: [arXiv 2411.06392](https://arxiv.org/abs/2411.06392). | Graph-LSM / multi-level CSR is a real research direction, but likely complex. |
 | Linux page-cache documentation. Source: [Linux page cache](https://www.kernel.org/doc/html/v6.13/mm/page_cache.html). | mmap/page-cache residency is not fully planner-controlled. |
 
-Anything above that references GraphChi, LLAMA, LSMGraph, or Linux kernel docs is
-external evidence, not proven by this repository. It should be independently
-verified before being treated as an implementation guarantee.
+Anything above that references GraphChi or Linux kernel docs is external
+evidence, not proven by this repository. It should be independently verified
+before being treated as an implementation guarantee.
 
 ## Where Cellular CSR is better
 
-### 1. Update locality
+### 1. Locality
 
 Flat CSR:
 
 ```text
-one changed edge
-  -> OLTP fresh
-  -> OLAP snapshot stale
-  -> rebuild/swap full generation for exact freshness
+local traversal
+  -> dense ids may map to distant file pages
+  -> OS page cache may load unrelated graph regions
 ```
 
 Cellular CSR:
 
 ```text
-one changed edge
-  -> OLTP fresh
-  -> append receipt to affected cell(s)
-  -> read base cell + delta
-  -> compact dirty cell later
-```
-
-This is the biggest improvement.
-
-Expected magnitude:
-
-```text
-small updates: 10x-1000x less OLAP rebuild work
-large batches: still better if changes are localized
-whole-graph imports: similar to rebuilding
-```
-
-### 2. Holistic RAM control
-
-Flat CSR with mmap:
-
-```text
-heap may be small
-but page cache can grow unpredictably
-```
-
-Cellular CSR:
-
-```text
-load bounded cell windows for local queries
-use O_DIRECT for global scans
-cap cell delta overlays
-compact cells under fixed memory budgets
+local traversal
+  -> dense id maps to cell
+  -> planner opens relevant cell windows
+  -> boundary expansion is explicit and measurable
 ```
 
 Expected magnitude:
 
 ```text
-local workloads: 2-10x less page-cache churn
-global workloads: similar RAM if both use O_DIRECT
-compaction: cell-bounded instead of generation-bounded
+local workloads: possibly 2-10x less page-cache churn
+global workloads: similar RAM if both use strict streaming
 ```
+
+### 2. Bounded publication work
+
+Flat publication:
+
+```text
+new generation
+  -> global sort/build
+  -> validate whole snapshot
+  -> publish generation
+```
+
+Cellular publication:
+
+```text
+new generation
+  -> partition facts
+  -> write cell packages
+  -> validate cell/global parity
+  -> publish generation
+```
+
+Cells can make compiler scratch and validation more local, but the published
+query contract remains snapshot-as-of.
 
 ### 3. Full OLAP API path
 
-Flat CSR is excellent for neighbor iteration, but v003 needs the full OLAP surface:
+Flat CSR is excellent for neighbor iteration, but v003 needs the full OLAP
+surface:
 
 ```text
 PageRank
@@ -1376,7 +1285,7 @@ Corrected latency wording:
 ```text
 Do not claim exact global PageRank in 10-30s as an architectural fact.
 Safer claim: with optimized sequential scans and vectors that fit, it may be
-tens of seconds to minutes; with strict 8GB/O_DIRECT/spill mode, minutes is
+tens of seconds to minutes; with strict 8GB/streaming/spill mode, minutes is
 more realistic until benchmarked.
 ```
 
@@ -1390,7 +1299,6 @@ Cellular CSR adds:
 per-cell offsets
 passports
 boundary indexes
-delta files
 sidecar metadata
 ```
 
@@ -1400,7 +1308,8 @@ Expected result:
 5-20% worse topology disk footprint
 ```
 
-This overhead is acceptable only if update locality and RAM control matter.
+This overhead is acceptable only if locality, bounded publication, and planning
+benefits matter.
 
 ### 3. Simplicity
 
@@ -1420,8 +1329,7 @@ cell partitioning
 global-to-local ID mapping
 boundary routing
 cell passports
-delta receipts
-cell compaction
+cell package publication
 global stream adapter
 ```
 
@@ -1435,14 +1343,15 @@ Expected result:
 
 ### Duck: Is Cellular CSR actually a new architecture or just folders?
 
-It is a new architecture if cells are query/compaction/update units.
+It is a new architecture if cells are query, publication, planning, and memory
+budget units.
 
 It is just folders if cells are only a file organization trick.
 
 The required invariant:
 
 ```text
-Every cell must be independently readable, dirtyable, compactable,
+Every cell must be independently readable, validatable, publishable,
 and budgetable.
 ```
 
@@ -1450,12 +1359,12 @@ and budgetable.
 
 Both.
 
-For global algorithms, it mostly moves RAM control into O_DIRECT and explicit
-algorithm state. It may not reduce total RAM versus a flat O_DIRECT stream.
+For global algorithms, it mostly moves RAM control into strict streaming and
+explicit algorithm state. It may not reduce total RAM versus a flat strict
+global stream.
 
-For local/update-heavy workloads, it genuinely reduces holistic RAM pressure by
-preventing unrelated graph regions from entering page cache or compaction
-scratch.
+For local workloads, it can genuinely reduce holistic RAM pressure by
+preventing unrelated graph regions from entering page cache or scratch space.
 
 ### Duck: Does it break exactness?
 
@@ -1519,7 +1428,6 @@ metadata
 alignment buffers
 kernel-visible I/O structures
 device / filesystem behavior
-delta overlays
 result sidecars
 ```
 
@@ -1545,35 +1453,31 @@ metadata overhead without locality benefit
 
 The first spike must measure boundary ratio and cell-window RAM.
 
-### Duck: What is the second biggest implementation risk?
+### Duck: What replaces query-time mutation reconciliation?
 
-Delta compaction.
+Snapshot publication.
 
-If cell deltas are not capped, Cellular CSR becomes an LSM mess:
-
-```text
-base cell + delta1 + delta2 + delta3 + tombstones + property versions
-```
-
-The design needs hard rules:
+The rule is:
 
 ```text
-max delta bytes per cell
-max global delta bytes
-max delta layers per query
-force compaction when thresholds are crossed
+Do not mutate the served graph while answering OLAP.
+Build and validate a newer generation, then publish it atomically.
 ```
+
+This is less fresh than always-current serving reads, but it is easier to reason
+about, easier to test, and safer for the 8GB RAM objective.
 
 ## Corrected architecture roles
 
 | Layer | Recommended role |
 | --- | --- |
-| Flat dual CSR | Keep as the canonical byte primitive for per-cell topology and global logical streams. |
-| Cells | Add as bounded update, compaction, planning, and locality units. |
+| Flat dual CSR | Keep as the canonical byte primitive for topology and global logical streams. |
+| Projection Build Store | Durable source for analytical facts, watermarks, dictionaries, and snapshot builds. |
+| Sidecars | Attach labels, relationship types, weights, properties, and result columns without duplicating topology. |
+| Cells | Add as bounded publication, planning, and locality units after measurement. |
 | Passports | Use for validation, freshness, histograms, query planning, and memory estimates. |
 | Boundary indexes | Add after measuring boundary ratio; avoid overbuilding first. |
-| Sidecars | Attach labels, relationship types, weights, and properties to cells without duplicating topology. |
-| Deltas | Keep capped per cell and globally capped; force compaction by thresholds. |
+| Snapshot catalog | Own active generation, retention, rollback, and publication manifests. |
 | mmap | Keep for interactive traversal and normal fast mode. |
 | O_DIRECT streaming | Use for strict-RAM global algorithms and benchmarked scan paths, not every query. |
 | GDS catalog/procedure layer | Treat as API compatibility contract above storage. |
@@ -1581,11 +1485,11 @@ force compaction when thresholds are crossed
 The winning implementation is therefore:
 
 ```text
-flat CSR inside cells
-+ one exact global flat stream
-+ optional cell-local fast paths
-+ capped deltas
+Projection Build Store
++ flat CSR first
 + sidecars
++ snapshot generation catalog
++ optional cellular packaging after measurement
 + memory-contract planner
 ```
 
@@ -1599,10 +1503,10 @@ cells instead of flat CSR
 
 | Spike | Must measure | Promotion threshold |
 | --- | --- | --- |
-| `flat-vs-cell-local-walk` | page faults, RSS/PSS, latency, opened cells, cells touched per query | cells reduce cache churn/latency on locality-heavy queries without large tail penalty |
+| `flat-vs-cell-local-walk` | page faults, RSS/PSS, latency, opened cells, cells touched per query | cells reduce cache churn/latency on locality-heavy queries |
 | `flat-vs-cell-global-scan` | scan throughput, file-open overhead, boundary overhead, logical stream adapter penalty | global stream is within an acceptable small overhead of flat CSR |
-| `10-edits-delta` | time-to-visible in OLAP, delta RAM, query merge overhead | small edits become visible without generation rebuild and without unbounded query slowdown |
-| `dirty-cell-compaction` | scratch RAM, disk amplification, publish time, crash recovery | compaction stays within budget and publishes atomically |
+| `publish-generation-small-change` | build time, scratch RAM, validation cost, publication time | newer generation can be published within accepted freshness target |
+| `cellular-publication` | scratch RAM, disk amplification, publish time, crash recovery | publication stays within budget and publishes atomically |
 | `partition-quality` | boundary edge ratio, hot hub distribution, opened cells per traversal | partition does not explode boundary traffic |
 | `pagerank-8gb` | exact RSS/PSS, wall time, I/O volume, vector pressure, spill volume | memory estimate predicts measured memory; runtime remains acceptable |
 | `sidecar-filtered-query` | label/type/property filter selectivity, sidecar page faults, result correctness | sidecars improve filtered OLAP without duplicating full topology |
@@ -1612,24 +1516,23 @@ These spikes decide defaults:
 ```text
 If global scan overhead is high, keep flat CSR global files as primary.
 If local walk benefit is high, use cells for locality-heavy queries.
-If delta merge overhead is high, lower delta thresholds or compact sooner.
+If generation publication is slow, improve compiler and pre-dataset layout.
 If partition quality is poor, do not block v003 on partitioning theory.
 ```
 
 ## Decision
 
-Prefer Cellular CSR as the v003 research target and update-aware storage
-evolution, but keep flat CSR as the canonical primitive and internal global
-stream model.
+Prefer Projection Build Store -> flat CSR + sidecars as the v003 MVP.
 
-Cellular CSR should become the default only after spikes prove:
+Prefer hybrid flat-global plus cellular packaging as the mature v003 direction
+only after spikes prove:
 
 ```text
 boundary ratio is acceptable
 metadata and sidecar overhead are acceptable
 global scan overhead is acceptable
-delta merge overhead is bounded
-dirty-cell compaction stays under memory budget
+cellular publication stays under memory budget
+snapshot generation publication meets freshness targets
 ```
 
 The winning design is not:
@@ -1641,31 +1544,33 @@ replace flat CSR completely
 It is:
 
 ```text
-make flat CSR the per-cell and global-stream primitive
+make flat CSR the first physical snapshot target and the global stream
 ```
 
 Final architecture:
 
 ```text
 Neo4j-shaped OLTP remains the transactional source of truth.
-WAL receipts feed Cellular CSR OLAP storage.
-Each cell is a small dual-CSR snapshot with labels, types, properties,
-passport metadata, and bounded deltas.
-Local OLAP reads touch only relevant cells.
-Global OLAP reads stream all cells as one logical CSR using deterministic
-RAM contracts.
+Projection Build Store records verified analytical facts.
+Flat CSR is the first immutable OLAP snapshot format.
+Sidecars provide labels, types, properties, weights, and results.
+Cellular CSR can package the same facts into bounded cells after measurement.
+Snapshot generations publish freshness through atomic swaps.
+All OLAP reads are exact as of their snapshot watermark.
 ```
 
 ## Final verdict
 
 | Question | Answer |
 | --- | --- |
-| Is Cellular CSR better for current static walks? | Only slightly, often equal |
-| Is Cellular CSR better for global algorithm speed? | No, flat CSR is already ideal |
-| Is Cellular CSR better for update-aware OLAP? | Yes, dramatically |
-| Is Cellular CSR better for holistic RAM? | Yes for local/update/compaction workloads; neutral for strict global O_DIRECT when algorithm state dominates |
+| How many options remain? | Six |
+| Is there any query-time mutation layer option? | No |
+| Is Flat CSR better for current static walks? | Usually yes |
+| Is Cellular CSR better for global algorithm speed? | Not proven; flat CSR is already ideal for scans |
+| Is Cellular CSR better for locality and bounded publication work? | Potentially yes, after measurement |
+| Is Cellular CSR better for holistic RAM? | Yes for local/planned workloads; neutral for strict global scans when algorithm state dominates |
 | Is Cellular CSR simpler? | No |
-| Is Cellular CSR more PRD-compliant for v003? | Yes |
+| Is Projection Build Store mandatory? | Yes, it is the build-source foundation |
 | Should we abandon flat CSR? | No |
 | Should cells be the immediate default for every workload? | No; prove with spikes first |
 
@@ -1673,7 +1578,8 @@ One-line conclusion:
 
 ```text
 Flat CSR is the physical primitive.
-Cellular CSR is the update-aware atlas layer.
-The best v003 architecture is flat CSR inside cells plus an exact global flat
-stream, not cells instead of flat CSR.
+Projection Build Store is the analytical source.
+Sidecars make the surface area complete.
+Cells are a measured packaging evolution.
+Snapshot generations are the freshness mechanism.
 ```

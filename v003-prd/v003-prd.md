@@ -17,16 +17,30 @@ L3 will be even longer and detailed
 Neo4j rewritten in Rust
 
 - exact same APIs or surface area with ZERO changes so that the same code can be used
-- identical architecture for OLTP queries
-- lowest RAM custom storage formats for OLAP queries
+- identical architecture for OLTP queries:
+  OLTP reads and writes run on Neo4j-shaped OLTP storage, not on CSR files.
+- lowest RAM custom storage formats for OLAP queries:
+  OLAP reads run only on published OLAP-optimized snapshots.
   → REAL RAM: 50 GB data processed comfortably on 8 GB systems
 - community edition hence single node
-- OLAP will have some lag as compared to OLTP in terms of freshness AND THAT IS OK
+- OLAP will have some lag as compared to OLTP in terms of freshness AND THAT IS OK.
+- a middle Projection Build Store is allowed and required, but it is a build/control
+  plane only:
+  OLTP storage -> Projection Build Store -> published OLAP snapshot.
+- user OLAP queries SHALL NOT read from the Projection Build Store.
+- freshness improves by publishing newer snapshot generations, not by query-time
+  reconciliation of newer writes.
 
 
 to be specific
 - OLTP data storage remains Neo4j-shaped.
-- OLAP must account for direct and indirect RAM: heap, RSS, page cache, mmap residency, duplicate layouts, compaction buffers, snapshot build scratch, optional tail overlays, indexes, sidecars, model artifacts, spill, and algorithm intermediates.
+- OLAP data storage remains snapshot-shaped and read-optimized.
+- the Projection Build Store is the analytical compiler IR / snapshot foundry:
+  useful for normalization, sorting, verification, dictionaries, dense IDs,
+  statistics, and publication, but not used as a serving read path.
+- OLAP must account for direct and indirect RAM: heap, RSS, page cache, mmap
+  residency, duplicate layouts, compaction buffers, snapshot build scratch,
+  indexes, sidecars, model artifacts, spill, and algorithm intermediates.
 
 - O_DIRECT-style explicit streaming gives the strictest RAM control for file-data reads
   - O_DIRECT bypasses file-data page cache for the eligible read path
@@ -59,7 +73,7 @@ OLTP truth
   -> immutable CSR snapshot backend
   -> columnar property/result/model sidecars
   -> bounded scratch/spill execution
-  -> optional tail overlay only when freshness requirements justify the RAM cost
+  -> snapshot generation catalog with exact as-of watermarks
 ```
 
 The current architecture choice is:
@@ -67,7 +81,8 @@ The current architecture choice is:
 ```text
 FlatDualCsrBackend first.
 Tilehouse later only when measurements prove it is needed.
-Tail overlay optional, not foundational.
+Projection Build Store is build/control plane only, not a query-serving plane.
+Freshness advances by publishing newer snapshot generations.
 ```
 
 ## Evidence basis used for these requirements
@@ -77,9 +92,9 @@ These requirements are grounded in local project docs and reference code:
 | source | evidence used |
 | --- | --- |
 | `README.md` | Knight Bus already proves low-RAM, low-latency CSR-style walks on tracked datasets, but only for fixed walk workloads. |
-| `v003-prd/Arch-01-CSR-multiple-options.md` | The preferred architecture is OLTP truth -> Projection Build Store -> immutable CSR/cell snapshots -> snapshot-as-of queries, with optional tail overlay. |
+| `v003-prd/Arch-01-CSR-multiple-options.md` | The preferred architecture is OLTP truth -> Projection Build Store -> immutable CSR/cell snapshots -> snapshot-as-of queries. |
 | `v003-diligence-01/diligence-codex-notes01.md` | Defines support levels, GDS inventory counts, architecture plane requirements, data/exec/memory/freshness requirements, and algorithm-family supportability. |
-| `v003-diligence-01/tasks-diligence.md` | Converts the requirement framework into TDD phases: inventory, registry, Projection Build Store, catalog, flat backend, sidecars, memory planner, algorithms, freshness, optional Tilehouse. |
+| `v003-diligence-01/tasks-diligence.md` | Converts the requirement framework into TDD phases: inventory, registry, Projection Build Store, catalog, flat backend, sidecars, memory planner, algorithms, snapshot-generation freshness, optional Tilehouse. |
 | `gitrefrepo/neo4j-src` | Confirms Neo4j OLTP is record/page-cache oriented; v003 must preserve OLTP semantics but should not force OLAP through the OLTP record path. |
 | `gitrefrepo/neo4j-gds-src` | Confirms GDS already has a projected graph plane, graph catalog, CSR-like graph stores, compressed adjacency, facades, modes, and memory estimation. |
 | `gitrefrepo/neo4j-*-driver-src` and `neo4j-docs-bolt-src` | Reinforce that application compatibility is an API/protocol/surface contract, not only storage layout compatibility. |
@@ -171,7 +186,7 @@ database identity
 graph name
 projection generation
 source transaction/generation watermark
-freshness mode
+published snapshot watermark
 node count
 relationship count
 schema
@@ -188,6 +203,9 @@ creation/modification timestamps
 WHEN OLTP data is made available to OLAP,
 THEN it SHALL first be normalized into a durable Projection Build Store before
 being compiled into immutable CSR snapshots.
+
+The Projection Build Store SHALL be treated as a build/control-plane artifact,
+not as a user-query serving layer.
 
 The Projection Build Store SHALL include:
 
@@ -211,7 +229,32 @@ The Projection Build Store is:
 ```text
 not the OLTP source of truth
 not the final read-optimized CSR topology
+not read by user OLAP queries
+not a query-time freshness layer
 the verified analytical IR used to build snapshots
+```
+
+Its allowed jobs are snapshot-manufacturing jobs:
+
+```text
+normalize Neo4j-shaped records/receipts into analytical facts
+assign and verify dense node ids
+build label/type/property dictionaries
+stage sorted edge and property runs
+deduplicate and coalesce facts before snapshot compilation
+record counts, histograms, checksums, and schema fingerprints
+produce memory-planner statistics
+test partition candidates for future cell snapshots
+feed flat CSR, sidecar, cellular, result, and catalog compilers
+gate publication with validation reports
+```
+
+Forbidden use:
+
+```text
+Do not serve user OLAP traversals from the Projection Build Store.
+Do not merge Projection Build Store facts into a running query.
+Do not treat Projection Build Store sync as equivalent to OLAP query freshness.
 ```
 
 ### REQ-OLAP-PLANE-004: Topology backend plane
@@ -239,8 +282,8 @@ Backend policy:
 | backend | requirement |
 | --- | --- |
 | `FlatDualCsrBackend` | SHALL be first implementation and correctness oracle. |
-| `TilehouseBackend` | MAY be added for measured local compaction, page-window, or rebuild-lag wins. |
-| `GraphLsmBackend` | MAY be explored only if snapshots plus bounded tail cannot satisfy a measured freshness requirement. |
+| `TilehouseBackend` | MAY be added for measured locality, page-window, partitioning, or snapshot-publication wins. |
+| Other serving backends | SHALL remain snapshot-serving backends; they SHALL NOT introduce query-time mutation reconciliation. |
 
 ### REQ-OLAP-PLANE-005: Columnar property plane
 
@@ -475,11 +518,12 @@ topology_bytes
 property_sidecar_bytes
 algorithm_state_bytes
 scratch_bytes
-tail_overlay_bytes
 result_sidecar_bytes
 model_artifact_bytes
 writeback_bytes
 spill_bytes
+snapshot_generation_bytes
+snapshot_build_scratch_bytes
 dominant_state
 can_run
 reason_if_rejected
@@ -507,7 +551,8 @@ can_run
 required_budget_bytes
 dominant_state
 execution_profile
-freshness_mode
+snapshot_watermark
+snapshot_generation
 reason_if_rejected
 ```
 
@@ -518,7 +563,7 @@ target is:
 Every algorithm must honestly say whether it can run on 8 GB,
 why,
 with which physical plan,
-and with which freshness semantics.
+and with which published snapshot watermark.
 ```
 
 ## Freshness requirements
@@ -531,6 +576,8 @@ AND report the exact snapshot/source watermark used.
 
 OLAP freshness lag versus OLTP is acceptable when explicitly reported.
 
+User OLAP reads SHALL NOT read from the Projection Build Store.
+
 ### REQ-OLAP-FRESH-002: Projection Build Store sync
 
 WHEN OLTP commits graph-relevant changes,
@@ -541,20 +588,39 @@ WHEN a CSR snapshot is built,
 THEN its manifest SHALL record the Projection Build Store generation and source
 watermark used.
 
-### REQ-OLAP-FRESH-003: Optional tail overlay
-
-WHEN a query requires visibility beyond the published snapshot watermark,
-THEN the system MAY choose a bounded tail overlay only if:
+Projection Build Store watermark and OLAP query watermark are different concepts:
 
 ```text
-tail facts are verified
-tail bytes are estimated
-merge buffers are estimated
-conflict/tombstone handling is deterministic
-the full plan fits the memory budget
+Projection Build Store watermark = how far the build/control plane has ingested.
+Published snapshot watermark     = what user OLAP queries can read.
 ```
 
-Tail overlay SHALL NOT be required for durability or next-snapshot correctness.
+If the Projection Build Store is ahead of the published snapshot, the difference
+is compiler/publication lag, not query visibility.
+
+### REQ-OLAP-FRESH-003: Snapshot generation publication
+
+WHEN OLAP freshness must improve,
+THEN Knight Bus SHALL publish a newer immutable snapshot generation rather than
+merge post-snapshot changes into a running query.
+
+Snapshot generation publication SHALL include:
+
+```text
+source watermark
+Projection Build Store generation
+snapshot generation id
+topology manifest
+sidecar manifests
+dictionary versions
+counts and checksums
+memory estimate inputs
+validation report
+atomic catalog publish marker
+```
+
+Old snapshots MAY remain pinned for active readers and SHALL be garbage-collected
+only after no catalog reader can observe them.
 
 ### REQ-OLAP-FRESH-004: Tilehouse optionality
 
@@ -562,8 +628,8 @@ Tilehouse SHALL be introduced only if one of these measured triggers occurs:
 
 | trigger | measurement |
 | --- | --- |
-| flat rebuild lag violates freshness SLO | rebuild time and update rate |
-| bounded tail overlay exceeds memory budget | tail bytes and query merge cost |
+| flat snapshot publication lag violates freshness SLO | build time, validation time, publish cadence, and update rate |
+| full-generation publication wastes too much rebuild work | unchanged bytes, dirty facts, compiler scratch, and elapsed build time |
 | local traversals churn page cache badly | major faults, RSS, and latency |
 | dirty-region compaction beats generation rebuild | compaction time and scratch bytes |
 
@@ -860,6 +926,7 @@ Required tests:
 ```text
 Projection Build Store facts produce expected dense ids
 publish records source generation and watermark
+OLAP queries read the published snapshot, not the Projection Build Store
 flat CSR snapshot counts match build-store facts
 catalog visibility is atomic at publish boundary
 duplicate graph name fails deterministically
@@ -883,8 +950,8 @@ estimate names every plane contributing bytes
 estimate rejects when required_budget_bytes > configured budget
 strict-RAM mode rejects mmap-only deterministic-RAM claims
 concurrency increases or preserves estimated worker/scratch bytes
-tail overlay bytes are zero in snapshot-only mode
-tail overlay bytes are nonzero only in freshness-overlay mode
+snapshot build scratch is counted outside query-serving memory
+retained snapshot generations are counted as disk/storage, not query heap
 result/model/writeback bytes are included for mutate/write/train/predict modes
 actual benchmark reports include peak_rss_bytes, peak_rss_source, and rss_scope
 ```
@@ -955,9 +1022,10 @@ For every requirement, ask:
 | "same API/surface area" | Can an existing GDS procedure name resolve, even if unsupported? | GDS procedure inventory + `BaseProcTest`-style registration tests |
 | "OLTP remains Neo4j-shaped" | Are transactional/WAL/page-cache concerns kept out of CSR? | Neo4j core transaction/WAL/page-cache tests |
 | "Projection Build Store before CSR" | Can we verify facts and watermarks before snapshot compile? | `GraphImporterTest`-style publish/catalog tests |
+| "Projection Build Store is not serving storage" | Can an OLAP query execute if the build store is offline but the published snapshot is valid? | snapshot-open tests with build-store unavailable |
 | "FlatDualCsrBackend first" | Can every topology result be compared against truth/GDL fixtures? | Knight Bus parity tests + GDS GDL fixtures |
 | "Tilehouse optional" | Does any acceptance test require Tilehouse before flat CSR fails a measured trigger? | measurement-gated freshness/rebuild/page-fault tests |
-| "tail overlay optional" | Does snapshot-only mode report exact watermark and zero overlay bytes? | freshness-watermark and memory-estimate tests |
+| "snapshot generations provide freshness" | Does a query see only W until generation W+1 is atomically published? | freshness-watermark and catalog-publish tests |
 | "mmap is not deterministic RAM" | Does strict-RAM mode reject a plan whose only claim is mmap laziness? | memory planner negative tests |
 | "O_DIRECT-style streaming is strictest" | Are direct buffers counted and non-file-data memory still counted? | holistic memory estimate tests |
 | "every procedure has support level" | Can an unclassified new GDS procedure sneak in? | inventory generator CI test |
@@ -981,7 +1049,7 @@ For every requirement, ask:
 | Embeddings | Can embedding outputs stay implicit? | no; node_count * dimension * bytes plus training scratch must be estimated |
 | ML/pipelines | Is model training just an algorithm call? | no; feature schema, splits, model bytes, metrics, and catalog lifecycle exist |
 | Operations | Can cancellation just kill the worker? | no; scratch cleanup and catalog atomicity must be deterministic |
-| Freshness | Is pre-dataset sync equal to query freshness? | only if snapshot watermark equals pre-dataset watermark; otherwise lag is reported or tail is budgeted |
+| Freshness | Is pre-dataset sync equal to query freshness? | no; OLAP freshness is the published snapshot watermark until a newer generation is published |
 
 ### REQ-OLAP-DUCK-003: Red-team contradictions resolved
 
@@ -989,7 +1057,7 @@ For every requirement, ask:
 | --- | --- |
 | "same GDS surface" vs "not every algorithm runs on 8 GB" | same surface means registered, schema-shaped, and deterministic support level; execution still requires memory fit. |
 | "lowest RAM" vs "mmap" | mmap is allowed for throughput plans, but strict-RAM claims need explicit accounting or explicit streaming/spill. |
-| "pre-dataset verified in sync" vs "tail overlay" | pre-dataset sync proves next-build correctness; tail overlay is only for serving fresher-than-snapshot queries. |
+| "pre-dataset verified in sync" vs "snapshot-only OLAP reads" | pre-dataset sync proves next-build correctness; users still read only the latest published snapshot generation. |
 | "CSR is fast" vs "GDS has models/pipelines" | CSR is topology only; models, pipelines, sidecars, scratch, and writeback are separate planes. |
 | "Neo4j rewrite" vs "do not port all Neo4j tests now" | v003 stages compatibility: procedure/GDS/OLAP first, Cypher/OLTP tests at the query-layer boundary. |
 | "Tilehouse considered" vs "FlatDualCsrBackend first" | Tilehouse stays in the option ledger and becomes implementation only after measured flat-backend failure. |
@@ -1017,7 +1085,8 @@ deterministic unsupported/error behavior
 
 WHEN the process restarts,
 THEN catalog metadata, projection manifests, sidecars, result artifacts, model
-artifacts, pipeline artifacts, and freshness receipts SHALL either load
+artifacts, pipeline artifacts, snapshot-generation manifests, and freshness
+watermarks SHALL either load
 successfully or fail with a recoverable corruption report.
 
 ### REQ-OLAP-OPS-002: Manifest versioning
@@ -1072,6 +1141,8 @@ The following are explicitly not v003 requirements:
 Do not require Tilehouse before the flat backend proves ABI/catalog/memory/kernel contracts.
 Do not claim mmap gives deterministic RAM.
 Do not require zero-lag OLAP by default.
+Do not serve user OLAP queries from the Projection Build Store.
+Do not merge post-snapshot writes into user OLAP queries.
 Do not store every algorithm's intermediate state as a persistent topology format.
 Do not treat "CSR exists" as equivalent to "GDS surface is supported."
 Do not materialize all result rows, all candidate pairs, or all embeddings in heap unless the estimate explicitly permits it.
@@ -1086,10 +1157,10 @@ This PRD section is satisfied when:
 | Inventory | every scanned GDS procedure row is known and has a support level |
 | ABI | procedure registry validates modes, config schema, output schema, support level, and estimate behavior |
 | Catalog | named graph projections are scoped by user/database/name and expose freshness watermarks |
-| Build store | Projection Build Store manifests source generation, watermarks, facts, dense IDs, and verification metadata |
+| Build store | Projection Build Store manifests source generation, watermarks, facts, dense IDs, verification metadata, and is not on the serving read path |
 | Topology | FlatDualCsrBackend implements the topology trait and acts as correctness oracle |
 | Properties | labels, types, weights, scalar/vector properties, graph properties, and result sidecars are columnar |
-| Memory | every estimate includes heap/RSS/page-cache/direct/topology/property/scratch/tail/result/model/writeback/spill bytes |
-| Freshness | snapshot-only is default; bounded tail is optional and budgeted |
+| Memory | every estimate includes heap/RSS/page-cache/direct/topology/property/scratch/result/model/writeback/spill/snapshot-build bytes |
+| Freshness | OLAP queries read published snapshot generations; freshness improves by publishing newer generations |
 | Algorithms | first-tier degree, BFS/DFS, WCC/SCC, triangle/k-core, and PageRank pass oracle and memory-budget tests |
 | Operations | progress, cancellation, cleanup, atomic publish, restart recovery, telemetry, and manifest version checks exist |

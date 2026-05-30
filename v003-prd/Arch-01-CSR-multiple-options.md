@@ -46,6 +46,9 @@ mutation, delta, tail, or serving overlay layer.
 | C | Neo4j OLTP -> Build Store -> cellular CSR snapshots | Neo4j-shaped OLTP storage -> Build Store -> partitioned snapshot compiler -> immutable CSR cells plus logical global stream | Cells may provide locality, planning, bounded package rebuilds, and sidecar attachment units. | OLAP reads published cell packages/global stream for a single snapshot watermark. | Measured evolution target, not first mandatory default. |
 | D | Neo4j OLTP -> Build Store -> hybrid flat + cellular publication | Neo4j-shaped OLTP storage -> Build Store -> exact global flat stream plus cell packages from the same facts and watermark | Mature architecture can keep flat CSR for global scans while using cells for locality-heavy workloads. | Planner chooses among published snapshot layouts for the same watermark; no Build Store reads. | Preferred mature direction after A/B are proven and C measures well. |
 | E | Neo4j OLTP -> Build Store -> multi-generation snapshot catalog | Neo4j-shaped OLTP storage -> Build Store -> publish/swap/retain immutable generations N, N+1, ... with manifests and watermarks | Freshness, rollback, reader isolation, crash recovery, and retention are catalog operations, not query-time merge operations. | OLAP reads the active published generation and reports its watermark. | Required operations layer for any snapshot design. |
+| F | Neo4j OLTP -> Build Store -> memory-estimate sidecar | Neo4j-shaped OLTP storage -> Projection Build Store -> snapshot W plus per-procedure memory-estimate artifact bound to that watermark | Strict-RAM rejection becomes falsifiable: the planner reads the estimate and refuses execution if the configured budget is too small. | OLAP planner reads the estimate artifact alongside the snapshot for the same watermark; never reads the Build Store. | Required strict-RAM compliance layer. |
+| G | Neo4j OLTP -> Build Store -> named projection catalog | Neo4j-shaped OLTP storage -> Projection Build Store -> immutable named sub-snapshots scoped by user/database/name/generation | GDS-compatible APIs need a per-name, per-version projection primitive that A-E do not provide. | OLAP mounts named projections by (user, database, name, generation) and reports the projection watermark; never reads the Build Store. | Required GDS named-projection layer. |
+| H | Neo4j OLTP -> Build Store -> result/model sidecar publication | Neo4j-shaped OLTP storage -> Projection Build Store -> per-(snapshot W, procedure, parameter hash) immutable result/model sidecars | "Writeback" becomes "publish result sidecar" so GDS write/mutate/model modes work without making OLAP storage mutable. | OLAP mounts result/model sidecars read-only, keyed by (W, procedure, parameter hash); never reads the Build Store. | Required GDS write/mutate/model layer. |
 
 ## Top-level decision summary
 
@@ -178,7 +181,7 @@ Snapshot compiler casts ingots into specialized tools:
 
 ## Architecture options ledger
 
-We currently have five valid architecture options, all snapshot-oriented and all
+We currently have eight valid architecture options, all snapshot-oriented and all
 starting from Neo4j-shaped OLTP storage. Direct flat CSR remains a physical
 snapshot primitive, but it is no longer an architecture option by itself because
 it does not state the required Neo4j-shaped OLTP source and Build Store boundary.
@@ -192,6 +195,9 @@ it does not state the required Neo4j-shaped OLTP source and Build Store boundary
 | C  | Neo4j OLTP -> Build Store -> cellular CSR        | Neo4j OLTP -> build facts -> partitioned cells         | Measured evolution target    |
 | D  | Neo4j OLTP -> Build Store -> hybrid publication  | Neo4j OLTP -> build facts -> flat stream + cell packs  | Preferred mature direction   |
 | E  | Neo4j OLTP -> Build Store -> generation catalog  | Neo4j OLTP -> publish/swap/retain immutable generations| Required operations layer    |
+| F  | Neo4j OLTP -> Build Store -> memory estimates   | Neo4j OLTP -> build facts -> memory-estimate sidecar    | Strict-RAM compliance layer  |
+| G  | Neo4j OLTP -> Build Store -> named projections  | Neo4j OLTP -> build facts -> named sub-snapshots        | GDS named-projection layer   |
+| H  | Neo4j OLTP -> Build Store -> result/model files | Neo4j OLTP -> build facts -> result/model sidecars      | GDS write/mutate/model layer |
 +----+-------------------------------------------------+---------------------------------------------------------+------------------------------+
 ```
 
@@ -397,6 +403,187 @@ Current verdict:
 Required operations layer.
 ```
 
+### Option F: Neo4j OLTP -> Projection Build Store -> memory-estimate sidecar
+
+```text
+Neo4j-shaped OLTP storage
+  -> Projection Build Store
+       statistics oracle / memory planner input
+  -> snapshot W (topology + semantic sidecars from A or B)
+  -> memory-estimate sidecar bound to snapshot W
+       per-procedure required-memory formulas
+       counts, degree distribution, property widths
+       working-set sizes for active OLAP algorithms
+       heap + RSS + mmap residency + page cache + result/model budgets
+  -> planner reads the estimate before execution
+  -> planner rejects if configured RAM budget < estimate
+```
+
+Why it matters:
+
+```text
+PRD L1 requires strict RAM: any plan that claims strict RAM must use
+explicit accounting and reject before execution if the budget cannot fit.
+Topology bytes and sidecar bytes alone do not tell the planner whether a
+procedure will fit on the active machine.
+A separate, snapshot-bound, per-procedure memory-estimate artifact makes
+the strict-RAM contract verifiable, falsifiable, and refusable.
+```
+
+What it adds beyond A-E:
+
+```text
+A-E publish topology and semantic sidecars but no formal planner contract.
+F treats the memory estimate itself as a published artifact, scoped to a
+snapshot watermark, so OLAP execution decisions are reproducible.
+```
+
+What can go wrong:
+
+```text
+estimates can lie in either direction (too pessimistic blocks valid runs;
+  too optimistic blesses runs that then OOM)
+per-procedure formulas need maintenance as algorithm implementations change
+estimating result/model artifact RAM for PageRank, embeddings, or community
+  detection is hard and easy to forget
+the estimate must include heap, RSS, mmap residency, page cache, duplicate
+  layouts, sidecar mounts, result/model artifacts, and algorithm scratch
+estimate version skew across procedure releases must be tracked alongside
+  the snapshot watermark
+```
+
+Current verdict:
+
+```text
+Required strict-RAM compliance layer. Depends on A or B for an actual
+snapshot to estimate against; pairs naturally with E for per-generation
+accounting.
+```
+
+### Option G: Neo4j OLTP -> Projection Build Store -> named projection catalog
+
+```text
+Neo4j-shaped OLTP storage
+  -> Projection Build Store
+       fact selection / dictionary subset / projection compiler
+  -> for each named projection (user/database/name/generation):
+       publish immutable sub-snapshot containing only the selected
+         labels, relationship types, and properties
+       publish per-projection watermark, parity checks against parent W,
+         and per-projection memory estimate
+  -> named projections live in a catalog keyed by
+     user, database, name, and generation
+  -> OLAP/GDS API mounts a named projection by name and version
+```
+
+Why it matters:
+
+```text
+GDS-compatible APIs expose named graph projections as first-class objects
+that users create, scope, version, and refer to by name.
+Publishing a full-graph snapshot does not by itself give GDS the
+"projected subgraph" primitive its procedures expect.
+A named projection catalog provides the per-name, per-user, per-version
+mount point that GDS callers actually request, without making the
+Projection Build Store a serving layer.
+```
+
+What it adds beyond A-E:
+
+```text
+E catalogs whole-graph generations.
+G catalogs named projections within or derived from a generation, so each
+named projection has its own size, watermark, and RAM cost.
+This is the primitive that makes "projection memory fits even when the
+full graph does not" honest.
+```
+
+What can go wrong:
+
+```text
+catalog metadata can grow into its own RAM and disk problem
+aggressive named-projection materialization can exhaust the snapshot disk
+  budget if every distinct projection is published independently
+naming conflicts across users, databases, and generations need strict
+  scoping rules
+projections that reference a deleted parent generation need a defined
+  lifecycle (refresh, repin, or invalidate)
+filtered projections may need their own dense-id space, separate from the
+  parent snapshot, which the dictionary factory must support
+materialize vs view-over-parent is a design choice that affects RAM,
+  disk, and freshness independently
+```
+
+Current verdict:
+
+```text
+Required GDS named-projection compatibility layer. Depends on B for
+sidecar semantics and on E for catalog operations. Strongest after A/B
+are proven.
+```
+
+### Option H: Neo4j OLTP -> Projection Build Store -> result/model sidecar publication
+
+```text
+Neo4j-shaped OLTP storage
+  -> Projection Build Store
+       result schema / model schema / parameter capture
+  -> snapshot W (topology + semantic sidecars)
+  -> for each (snapshot W, procedure id, parameter hash):
+       publish immutable result sidecar (scores, labels, embeddings, ...)
+       publish immutable model artifact sidecar (trained weights, configs)
+       publish a result manifest with watermark, parameters, and lineage
+  -> "writeback" becomes "publish result sidecar"
+  -> OLAP/GDS API mounts result/model sidecars read-only
+```
+
+Why it matters:
+
+```text
+GDS exposes write-back, stream, mutate, and stats procedure modes plus
+model training and prediction. Honoring those modes against an immutable
+OLAP snapshot requires somewhere durable to put the outputs.
+A result/model sidecar lifecycle preserves GDS write-back semantics
+without making OLAP storage mutable and without merging algorithm output
+back into the topology snapshot.
+```
+
+What it adds beyond A-E:
+
+```text
+B's sidecars cover source semantics (labels, types, weights, properties)
+that come from OLTP. H covers derived outputs (algorithm results, trained
+models) that come from the OLAP runtime.
+These have a different lifecycle (created per-run, parameter-keyed,
+sometimes large, sometimes ephemeral) and a different RAM story
+(materialization budget belongs to the procedure memory estimate, not the
+topology estimate).
+```
+
+What can go wrong:
+
+```text
+embeddings and large result columns can exceed topology size and dominate
+  storage if all runs are kept forever
+parameter-hash stability across algorithm version bumps must be defined
+non-deterministic procedures need explicit seed or version capture in the
+  manifest beyond a plain args hash
+model artifacts may reference vendored libraries with their own ABI
+  boundary that must be versioned alongside the sidecar
+result sidecars must report their own watermark and parent snapshot W to
+  avoid "stale results against a newer graph"
+retention policy for result/model sidecars needs to be explicit; otherwise
+  they silently dominate disk
+```
+
+Current verdict:
+
+```text
+Required to express the full GDS procedure surface (write/mutate/model)
+against immutable OLAP storage. Depends on B for sidecar machinery and on
+F for honest memory accounting of the produced artifacts.
+```
+
 ## Decision ladder
 
 ```text
@@ -407,6 +594,13 @@ Add B because Neo4j/GDS compatibility requires more than topology.
 Measure C because cells may improve locality and bounded rebuild work.
 Prefer D as the mature target if cells prove useful without hurting scans.
 Require E because snapshot publication is the freshness and operations model.
+Require F because strict-RAM rejection before execution needs a per-procedure,
+  snapshot-bound memory-estimate artifact that the planner can refuse.
+Require G because GDS named projections need a per-name, per-version
+  sub-snapshot primitive scoped by user/database/name/generation that A-E
+  do not provide.
+Require H because GDS write/mutate/model modes need an immutable result/model
+  sidecar lifecycle, not topology mutation.
 ```
 
 ## Comparison by PRD obligation
@@ -423,6 +617,17 @@ Require E because snapshot publication is the freshness and operations model.
 | Locality / bounded rebuilds | medium | medium | strong | strong | medium |
 | Implementation complexity | medium | medium/high | high | high | medium |
 
+Options F, G, H are additive layers, not competing topologies. They publish
+additional artifacts alongside whichever topology choice from A-E is in
+flight, and each delivers a specific PRD obligation that A-E do not
+directly cover:
+
+| PRD obligation | Layer that delivers it |
+| --- | --- |
+| Strict-RAM rejection before execution, bound to a snapshot watermark | F: memory-estimate sidecar |
+| GDS named projections scoped by user/database/name/generation | G: named projection catalog |
+| GDS write/mutate/model modes against immutable OLAP storage | H: result/model sidecar publication |
+
 ## Current recommendation
 
 Use this as the canonical plan:
@@ -436,10 +641,18 @@ Required v003 foundation:
   5. Flat dual CSR remains the first physical snapshot target.
   6. Sidecars expand the flat snapshot into the required Neo4j/GDS surface.
   7. Snapshot generations provide freshness publication and rollback.
+  8. Memory-estimate sidecars make strict-RAM rejection before execution
+     falsifiable and refusable.
+
+Required for full Neo4j/GDS surface:
+  9. Named projection catalog publishes per-name, per-version sub-snapshots
+     scoped by user/database/name/generation.
+  10. Result/model sidecar publication preserves write/mutate/model modes
+      against immutable OLAP storage.
 
 Next evolution:
-  8. Cellular CSR compiles from the same build store when spikes prove value.
-  9. Hybrid publication keeps a global flat stream plus cell packages.
+  11. Cellular CSR compiles from the same build store when spikes prove value.
+  12. Hybrid publication keeps a global flat stream plus cell packages.
 ```
 
 If somebody asks "what are we optimizing for?", the answer is:
@@ -1747,7 +1960,7 @@ All OLAP reads are exact as of their snapshot watermark.
 
 | Question | Answer |
 | --- | --- |
-| How many valid architecture options remain? | Five |
+| How many valid architecture options remain? | Eight |
 | Is there any query-time mutation layer option? | No |
 | Is Flat CSR better for current static walks? | Usually yes |
 | Is Cellular CSR better for global algorithm speed? | Not proven; flat CSR is already ideal for scans |

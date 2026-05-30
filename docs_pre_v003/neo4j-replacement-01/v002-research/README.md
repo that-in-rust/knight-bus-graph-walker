@@ -1,18 +1,6 @@
 # v003 Research
 
-This folder records the fixed `2 GB` competitor matrix for Knight Bus and the
-copied arXiv paper corpus for the `v003-prd` architecture research.
-
-## ArXiv Research Corpus
-
-- [ArXiv paper index](./arxiv-papers.md)
-- [Machine-readable metadata](./arxiv-papers.tsv)
-- copied PDFs: `./arxiv-papers/*.pdf`
-
-The corpus covers Neo4j-compatible query semantics, OLTP graph storage,
-WAL/LSM tradeoffs, low-RAM CSR/OLAP snapshots, property/index sidecars,
-GraphBLAS-style algorithms, explicit I/O, persistent memory, and columnar query
-execution.
+This folder records the fixed `2 GB` competitor matrix for Knight Bus.
 
 ## What This Matrix Proves
 

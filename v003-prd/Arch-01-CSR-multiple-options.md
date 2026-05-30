@@ -41,12 +41,11 @@ mutation, delta, tail, or serving overlay layer.
 
 | ID | Architecture option | Shape | What it proves | OLAP read-path rule | Current verdict |
 | --- | --- | --- | --- | --- | --- |
-| A | Direct flat CSR snapshot | OLTP/source -> full rebuild -> immutable flat dual CSR | The current Knight Bus physical primitive remains simple, compact, and useful as the correctness baseline. | OLAP reads the published flat CSR snapshot only. | Primitive and fallback, but not enough by itself for v003. |
-| B | Projection Build Store -> flat CSR | Neo4j-shaped OLTP storage -> Projection Build Store -> immutable flat dual CSR snapshot | Durable analytical IR can normalize facts, watermarks, dense IDs, and validation before compiling the first snapshot target. | OLAP reads the compiled flat CSR snapshot only, never the Build Store. | Best MVP baseline. |
-| C | Projection Build Store -> flat CSR + sidecars | B plus labels, relationship types, weights, properties, result columns, catalog metadata, and memory estimates | Neo4j/GDS compatibility requires more than topology; sidecars attach semantics without making topology mutable. | OLAP reads the published topology and sidecars for the same watermark. | Required API expansion path after B. |
-| D | Projection Build Store -> cellular CSR snapshots | Build Store -> partitioned snapshot compiler -> immutable CSR cells plus logical global stream | Cells may provide locality, planning, bounded package rebuilds, and sidecar attachment units. | OLAP reads published cell packages/global stream for a single snapshot watermark. | Measured evolution target, not first mandatory default. |
-| E | Projection Build Store -> hybrid flat + cellular publication | Build Store -> exact global flat stream plus cell packages from the same facts and watermark | Mature architecture can keep flat CSR for global scans while using cells for locality-heavy workloads. | Planner chooses among published snapshot layouts for the same watermark; no Build Store reads. | Preferred mature direction after B/C are proven and D measures well. |
-| F | Multi-generation snapshot catalog | publish/swap/retain immutable generations N, N+1, ... with manifests and watermarks | Freshness, rollback, reader isolation, crash recovery, and retention are catalog operations, not query-time merge operations. | OLAP reads the active published generation and reports its watermark. | Required operations layer for any snapshot design. |
+| A | Neo4j OLTP -> Build Store -> flat CSR | Neo4j-shaped OLTP storage -> Projection Build Store -> immutable flat dual CSR snapshot | Durable analytical IR can normalize facts, watermarks, dense IDs, and validation before compiling the first snapshot target. | OLAP reads the compiled flat CSR snapshot only, never the Build Store. | Best MVP baseline. |
+| B | Neo4j OLTP -> Build Store -> flat CSR + sidecars | Neo4j-shaped OLTP storage -> Projection Build Store -> flat CSR snapshot plus semantic sidecars | Neo4j/GDS compatibility requires more than topology; sidecars attach semantics without making topology mutable. | OLAP reads the published topology and sidecars for the same watermark. | Required API expansion path after A. |
+| C | Neo4j OLTP -> Build Store -> cellular CSR snapshots | Neo4j-shaped OLTP storage -> Build Store -> partitioned snapshot compiler -> immutable CSR cells plus logical global stream | Cells may provide locality, planning, bounded package rebuilds, and sidecar attachment units. | OLAP reads published cell packages/global stream for a single snapshot watermark. | Measured evolution target, not first mandatory default. |
+| D | Neo4j OLTP -> Build Store -> hybrid flat + cellular publication | Neo4j-shaped OLTP storage -> Build Store -> exact global flat stream plus cell packages from the same facts and watermark | Mature architecture can keep flat CSR for global scans while using cells for locality-heavy workloads. | Planner chooses among published snapshot layouts for the same watermark; no Build Store reads. | Preferred mature direction after A/B are proven and C measures well. |
+| E | Neo4j OLTP -> Build Store -> multi-generation snapshot catalog | Neo4j-shaped OLTP storage -> Build Store -> publish/swap/retain immutable generations N, N+1, ... with manifests and watermarks | Freshness, rollback, reader isolation, crash recovery, and retention are catalog operations, not query-time merge operations. | OLAP reads the active published generation and reports its watermark. | Required operations layer for any snapshot design. |
 
 ## Top-level decision summary
 
@@ -221,57 +220,32 @@ It lets us keep:
 
 ## Architecture options ledger
 
-We currently have six options, all snapshot-oriented:
+We currently have five valid architecture options, all snapshot-oriented and all
+starting from Neo4j-shaped OLTP storage. Direct flat CSR remains a physical
+snapshot primitive, but it is no longer an architecture option by itself because
+it does not state the required Neo4j-shaped OLTP source and Build Store boundary.
 
 ```text
-+----+--------------------------------------------+--------------------------------------------+------------------------------+
-| ID | Architecture                               | Shape                                      | Current verdict              |
-+----+--------------------------------------------+--------------------------------------------+------------------------------+
-| A  | Direct flat CSR snapshot                   | OLTP/source -> rebuild -> flat dual CSR    | Primitive and fallback       |
-| B  | Build Store -> flat CSR                    | OLTP -> build facts -> flat CSR snapshot   | Best MVP baseline            |
-| C  | Build Store -> flat CSR + sidecars          | B + labels/types/properties/weights        | Required API expansion path  |
-| D  | Build Store -> cellular CSR snapshots       | OLTP -> build facts -> partitioned cells   | Measured evolution target    |
-| E  | Build Store -> hybrid flat + cellular       | one global stream plus cell packages       | Preferred mature direction   |
-| F  | Multi-generation snapshot catalog           | publish/swap/retain immutable generations  | Required operations layer    |
-+----+--------------------------------------------+--------------------------------------------+------------------------------+
++----+-------------------------------------------------+---------------------------------------------------------+------------------------------+
+| ID | Architecture                                    | Shape                                                   | Current verdict              |
++----+-------------------------------------------------+---------------------------------------------------------+------------------------------+
+| A  | Neo4j OLTP -> Build Store -> flat CSR           | Neo4j OLTP -> build facts -> flat CSR snapshot          | Best MVP baseline            |
+| B  | Neo4j OLTP -> Build Store -> flat CSR + sidecars | Neo4j OLTP -> build facts -> flat CSR + sidecars       | Required API expansion path  |
+| C  | Neo4j OLTP -> Build Store -> cellular CSR        | Neo4j OLTP -> build facts -> partitioned cells         | Measured evolution target    |
+| D  | Neo4j OLTP -> Build Store -> hybrid publication  | Neo4j OLTP -> build facts -> flat stream + cell packs  | Preferred mature direction   |
+| E  | Neo4j OLTP -> Build Store -> generation catalog  | Neo4j OLTP -> publish/swap/retain immutable generations| Required operations layer    |
++----+-------------------------------------------------+---------------------------------------------------------+------------------------------+
 ```
 
-### Option A: Direct flat CSR snapshot
+Removed from the option set:
 
 ```text
-OLTP/source
-  -> full snapshot build
-  -> one immutable flat dual CSR
-  -> OLAP queries exact as of that snapshot
+Direct flat CSR from a generic source is not a valid v003 architecture option.
+Flat CSR is a compiled OLAP snapshot format only. It must be produced from
+Neo4j-shaped OLTP storage through the Projection Build Store boundary.
 ```
 
-Why it was attractive:
-
-```text
-simple
-compact
-already close to current Knight Bus
-excellent full-graph sequential scans
-low conceptual complexity
-```
-
-What broke:
-
-```text
-weak update-to-OLAP publication story
-no durable analytical staging layer
-labels, types, weights, and properties are not first-class enough
-freshness only improves when a whole new generation is built
-```
-
-Current verdict:
-
-```text
-Keep as the physical primitive, first implementation target, and correctness
-oracle. Do not treat it as the whole v003 architecture.
-```
-
-### Option B: Projection Build Store -> flat CSR
+### Option A: Neo4j OLTP -> Projection Build Store -> flat CSR
 
 ```text
 Neo4j-shaped OLTP storage
@@ -282,7 +256,7 @@ Neo4j-shaped OLTP storage
   -> snapshot-as-of OLAP queries
 ```
 
-Why it is stronger than A:
+Why this is the baseline:
 
 ```text
 separates transactional truth from analytical build facts
@@ -308,7 +282,7 @@ Current verdict:
 Best MVP baseline.
 ```
 
-### Option C: Projection Build Store -> flat CSR + sidecars
+### Option B: Neo4j OLTP -> Projection Build Store -> flat CSR + sidecars
 
 ```text
 Neo4j-shaped OLTP storage
@@ -345,10 +319,10 @@ writeback/result columns can become hidden RAM sinks
 Current verdict:
 
 ```text
-Required API expansion path after B.
+Required API expansion path after A.
 ```
 
-### Option D: Projection Build Store -> cellular CSR snapshots
+### Option C: Neo4j OLTP -> Projection Build Store -> cellular CSR snapshots
 
 ```text
 Neo4j-shaped OLTP storage
@@ -385,10 +359,11 @@ Current verdict:
 Measured evolution target, not the first mandatory default.
 ```
 
-### Option E: Projection Build Store -> hybrid flat + cellular publication
+### Option D: Neo4j OLTP -> Projection Build Store -> hybrid flat + cellular publication
 
 ```text
-Projection Build Store
+Neo4j-shaped OLTP storage
+  -> Projection Build Store
   -> publish one exact global flat stream
   -> publish cell packages from the same facts and watermark
   -> planner chooses:
@@ -418,12 +393,15 @@ planner mistakes can choose the slower path
 Current verdict:
 
 ```text
-Preferred mature architecture after B/C are proven.
+Preferred mature architecture after A/B are proven.
 ```
 
-### Option F: Multi-generation snapshot catalog
+### Option E: Multi-generation snapshot catalog
 
 ```text
+Neo4j-shaped OLTP storage
+  -> Projection Build Store
+  -> published snapshot generations:
 generation N:
   manifest + topology + sidecars + watermark Wn
 
@@ -464,28 +442,28 @@ Required operations layer.
 ## Decision ladder
 
 ```text
-Start with A because current Knight Bus proves the flat CSR primitive.
-Reject A alone because v003 needs a real OLTP-to-OLAP build path.
-Promote B because it gives clean watermarks and predictable serving RAM.
-Add C because Neo4j/GDS compatibility requires more than topology.
-Measure D because cells may improve locality and bounded rebuild work.
-Prefer E as the mature target if cells prove useful without hurting scans.
-Require F because snapshot publication is the freshness and operations model.
+Remove generic direct flat CSR as an architecture option because it does not
+state the required Neo4j-shaped OLTP boundary.
+Start with A because flat CSR is still the first compiled snapshot target.
+Add B because Neo4j/GDS compatibility requires more than topology.
+Measure C because cells may improve locality and bounded rebuild work.
+Prefer D as the mature target if cells prove useful without hurting scans.
+Require E because snapshot publication is the freshness and operations model.
 ```
 
 ## Comparison by PRD obligation
 
-| PRD obligation | A flat only | B store -> flat | C flat + sidecars | D store -> cells | E hybrid | F generations |
-| --- | --- | --- | --- | --- | --- | --- |
-| Neo4j-shaped OLTP remains truth | yes | yes | yes | yes | yes | yes |
-| Lowest serving RAM | strong | strong | medium/strong | strong if partitions good | strongest if planner is good | neutral |
-| Holistic RAM accounting | easiest | clear: build vs serve separated | must budget sidecars | must budget cell metadata | must budget duplicate publication | must budget retained files |
-| Accepted OLAP lag | yes | yes, explicit | yes, explicit | yes, explicit | yes, explicit | yes, explicit |
-| Small update ingestion | weak | good in build store | good in build store | good in build store | good in build store | publication-based |
-| Snapshot exactness | strong | strong as of W | strong as of W | strong as of W | parity must be proven | strong per generation |
-| Global algorithm scans | excellent | excellent | excellent with sidecar discipline | must prove stream adapter | excellent through flat stream | neutral |
-| Locality / bounded rebuilds | weak | medium | medium | strong | strong | medium |
-| Implementation complexity | low | medium | medium/high | high | high | medium |
+| PRD obligation | A store -> flat | B flat + sidecars | C store -> cells | D hybrid | E generations |
+| --- | --- | --- | --- | --- | --- |
+| Neo4j-shaped OLTP remains truth | yes | yes | yes | yes | yes |
+| Lowest serving RAM | strong | medium/strong | strong if partitions good | strongest if planner is good | neutral |
+| Holistic RAM accounting | clear: build vs serve separated | must budget sidecars | must budget cell metadata | must budget duplicate publication | must budget retained files |
+| Accepted OLAP lag | yes, explicit | yes, explicit | yes, explicit | yes, explicit | yes, explicit |
+| Small update ingestion | good in build store | good in build store | good in build store | good in build store | publication-based |
+| Snapshot exactness | strong as of W | strong as of W | strong as of W | parity must be proven | strong per generation |
+| Global algorithm scans | excellent | excellent with sidecar discipline | must prove stream adapter | excellent through flat stream | neutral |
+| Locality / bounded rebuilds | medium | medium | strong | strong | medium |
+| Implementation complexity | medium | medium/high | high | high | medium |
 
 ## Current recommendation
 
@@ -1769,7 +1747,8 @@ If partition quality is poor, do not block v003 on partitioning theory.
 
 ## Decision
 
-Prefer Projection Build Store -> flat CSR + sidecars as the v003 MVP.
+Prefer Neo4j OLTP -> Projection Build Store -> flat CSR + sidecars as the v003
+MVP.
 
 Prefer hybrid flat-global plus cellular packaging as the mature v003 direction
 only after spikes prove:
@@ -1810,7 +1789,7 @@ All OLAP reads are exact as of their snapshot watermark.
 
 | Question | Answer |
 | --- | --- |
-| How many options remain? | Six |
+| How many valid architecture options remain? | Five |
 | Is there any query-time mutation layer option? | No |
 | Is Flat CSR better for current static walks? | Usually yes |
 | Is Cellular CSR better for global algorithm speed? | Not proven; flat CSR is already ideal for scans |
@@ -1825,7 +1804,7 @@ One-line conclusion:
 
 ```text
 Flat CSR is the physical primitive.
-Projection Build Store is the analytical source.
+Projection Build Store is the analytical compiler IR.
 Sidecars make the surface area complete.
 Cells are a measured packaging evolution.
 Snapshot generations are the freshness mechanism.

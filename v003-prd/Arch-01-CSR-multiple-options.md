@@ -34,6 +34,20 @@ Middle layer:
   It is not a query-serving layer.
 ```
 
+## Architecture options at a glance
+
+All options in this ledger are snapshot-oriented. None add a query-time
+mutation, delta, tail, or serving overlay layer.
+
+| ID | Architecture option | Shape | What it proves | OLAP read-path rule | Current verdict |
+| --- | --- | --- | --- | --- | --- |
+| A | Direct flat CSR snapshot | OLTP/source -> full rebuild -> immutable flat dual CSR | The current Knight Bus physical primitive remains simple, compact, and useful as the correctness baseline. | OLAP reads the published flat CSR snapshot only. | Primitive and fallback, but not enough by itself for v003. |
+| B | Projection Build Store -> flat CSR | Neo4j-shaped OLTP storage -> Projection Build Store -> immutable flat dual CSR snapshot | Durable analytical IR can normalize facts, watermarks, dense IDs, and validation before compiling the first snapshot target. | OLAP reads the compiled flat CSR snapshot only, never the Build Store. | Best MVP baseline. |
+| C | Projection Build Store -> flat CSR + sidecars | B plus labels, relationship types, weights, properties, result columns, catalog metadata, and memory estimates | Neo4j/GDS compatibility requires more than topology; sidecars attach semantics without making topology mutable. | OLAP reads the published topology and sidecars for the same watermark. | Required API expansion path after B. |
+| D | Projection Build Store -> cellular CSR snapshots | Build Store -> partitioned snapshot compiler -> immutable CSR cells plus logical global stream | Cells may provide locality, planning, bounded package rebuilds, and sidecar attachment units. | OLAP reads published cell packages/global stream for a single snapshot watermark. | Measured evolution target, not first mandatory default. |
+| E | Projection Build Store -> hybrid flat + cellular publication | Build Store -> exact global flat stream plus cell packages from the same facts and watermark | Mature architecture can keep flat CSR for global scans while using cells for locality-heavy workloads. | Planner chooses among published snapshot layouts for the same watermark; no Build Store reads. | Preferred mature direction after B/C are proven and D measures well. |
+| F | Multi-generation snapshot catalog | publish/swap/retain immutable generations N, N+1, ... with manifests and watermarks | Freshness, rollback, reader isolation, crash recovery, and retention are catalog operations, not query-time merge operations. | OLAP reads the active published generation and reports its watermark. | Required operations layer for any snapshot design. |
+
 ## Top-level decision summary
 
 Current preferred architecture:

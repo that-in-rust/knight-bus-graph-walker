@@ -83,24 +83,62 @@ published files.
 
 The Projection Build Store is required as a build/control-plane store.
 
+Accepted names:
+
+```text
+Projection Build Store
+Analytical Projection IR Store
+```
+
+Compiler analogy:
+
+```text
+OLTP records       = source code
+Projection Store   = intermediate representation
+OLAP snapshot      = optimized machine code
+OLAP runtime       = CPU executing machine code
+```
+
 It may store:
 
 ```text
-source generation
-source tx watermark
-node facts
-relationship facts
-label facts
-relationship type facts
-property facts
-dense node id mappings
-relationship id / edge position mappings
-dictionaries
-schema facts
-counts and histograms
-checksums and validation reports
-build checkpoints
-publication inputs
+/manifests/
+  source_watermark
+  schema_version
+  dictionary_version
+  fact_counts
+  checksums
+
+/facts/
+  nodes
+  relationships
+  labels
+  relationship_types
+  node_properties
+  relationship_properties
+  deletes_or_validity_ranges
+
+/dictionaries/
+  external_node_id -> dense_node_id
+  label_name -> label_id
+  rel_type_name -> rel_type_id
+  property_key -> property_id
+
+/statistics/
+  node_count
+  rel_count
+  degree_histograms
+  label_histograms
+  reltype_histograms
+  property_widths
+  null_counts
+  min/max
+
+/build_runs/
+  sorted_edge_runs
+  partition_candidates
+  validation_reports
+  memory_estimates
 ```
 
 It must not serve:
@@ -112,9 +150,55 @@ GDS algorithm reads
 fresher-than-snapshot query views
 ```
 
+It is also explicitly not:
+
+```text
+OLTP source of truth
+OLAP query engine
+freshness overlay
+LSM serving layer
+second database users query directly
+```
+
+Required middle-layer capabilities:
+
+| capability | what it does | why it helps |
+| --- | --- | --- |
+| Semantic normalization | Converts Neo4j records/receipts into node, relationship, label, type, and property facts. | Snapshot compilers do not need to understand OLTP internals. |
+| Watermark ledger | Tracks the source generation represented by analytical facts. | Every published snapshot can report exact-as-of semantics. |
+| Dense-ID factory | Maintains stable external-id to dense-id mappings. | Snapshot arrays stay compact and reproducible. |
+| Dictionary factory | Builds label, relationship-type, and property dictionaries. | Sidecars and snapshots share compact IDs. |
+| Sort staging | Pre-sorts edges/properties by source, target, type, or partition. | Snapshot builds become sequential and lower-RAM. |
+| Dedup/coalescing | Resolves repeated facts and validity before compilation. | Avoids query-time reconciliation. |
+| Compiler cache | Stores intermediate sorted runs and checkpoints. | Failed builds can resume and use less peak RAM. |
+| Multi-target source | Feeds topology snapshots, sidecars, result stores, and catalog manifests. | One verified fact store can produce many read formats. |
+| Validation oracle | Compares counts, checksums, labels, types, properties, and dictionaries. | Prevents corrupt snapshots from publishing. |
+| Memory planner input | Stores histograms, cardinalities, degree distributions, widths, and null counts. | Planners can estimate before execution. |
+| Partition lab | Evaluates candidate partitions before writing partitioned snapshots. | Partitioning becomes measured, not theoretical. |
+| Sidecar builder | Produces label/type/weight/property/feature/result/model sidecars. | GDS surface can expand without changing topology. |
+| Compatibility bridge | Preserves projection and catalog metadata shape. | Neo4j/GDS product semantics remain visible. |
+| Reproducibility ledger | Rebuilds the same snapshot from a watermark or explains why not. | Bugs become falsifiable. |
+| Publication gate | Publishes only snapshots that pass validation. | OLAP reads never see half-built state. |
+| Offline optimizer | Tries compression, ordering, partitioning, and sidecar layout experiments. | Future snapshots improve without touching OLTP reads. |
+| Disaster recovery aid | Rebuilds disposable OLAP snapshots from durable facts. | Snapshot storage can be recovered after crash. |
+| Build scheduler input | Supplies dirty size, elapsed build time, and RAM estimates. | Freshness comes from publication cadence, not query merge. |
+
 ### REQ-L2-STORAGE-004: Snapshot publication
 
 Snapshot publication must be atomic.
+
+Publication flow:
+
+```text
+1. Read Projection Build Store at watermark W.
+2. Validate facts and dictionaries.
+3. Build topology snapshot.
+4. Build sidecars.
+5. Optionally build partitioned/cellular packages from the same W.
+6. Run parity, count, checksum, schema, and memory checks.
+7. Publish generation N atomically.
+8. OLAP queries read only generation N.
+```
 
 Publication must include:
 
@@ -373,6 +457,30 @@ Which fixture can falsify it?
 Which memory plane could it hide?
 Which boundary could it blur: OLTP, Build Store, or OLAP snapshot?
 What deterministic error should occur if it is unsupported?
+```
+
+Middle-layer validation questions:
+
+```text
+If OLAP never reads the Projection Build Store, why have it?
+  Because the hard part is reliably manufacturing correct, compact, low-RAM,
+  GDS-compatible snapshots from Neo4j-shaped truth.
+
+What exact bug should the middle layer catch?
+  snapshot missing a relationship type
+  property default applied incorrectly
+  deleted relationship still present in snapshot topology
+  label dictionary mismatch
+  dense-id instability
+  PageRank estimate missing sidecar/result memory
+  snapshot claims tx 5000 but facts only verify through tx 4992
+  partitioned package differs from global topology stream
+
+What should not happen?
+  OLAP query reads OLTP records.
+  OLAP query reads the Projection Build Store.
+  OLAP query merges fresh writes at query time.
+  OLAP query hides the snapshot watermark it used.
 ```
 
 Key red-team answers:

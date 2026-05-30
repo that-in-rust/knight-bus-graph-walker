@@ -34,6 +34,37 @@ Build/control path:
   Neo4j-shaped OLTP storage -> Projection Build Store -> OLAP snapshot W+1
 ```
 
+Expanded read/write picture:
+
+```text
+                   READ/WRITE PATHS
+
+OLTP query/write
+      |
+      v
++-----------------------------+
+| Neo4j-shaped OLTP storage   |
+| records / WAL / tx / locks  |
++-----------------------------+
+      |
+      | committed facts / receipts
+      v
++-----------------------------+
+| Projection Build Store      |   <-- not queried by users
+| analytical IR / build plane |
++-----------------------------+
+      |
+      | compile / validate / publish
+      v
++-----------------------------+
+| OLAP snapshot W             |
+| topology / sidecars / cells |
++-----------------------------+
+      |
+      v
+OLAP query exact as of W
+```
+
 ## 2. Situation / complication / resolution
 
 ### Situation
@@ -86,6 +117,8 @@ Separate the planes:
 | Projection Build Store | normalized analytical build/control plane used to manufacture snapshots | no |
 | OLAP snapshot storage | immutable low-RAM read format for OLAP/GDS procedures | yes, for OLAP |
 
+The middle layer is not a serving overlay. It is a build/control plane.
+
 ## 3. Non-negotiable PRD constraints
 
 | constraint | requirement |
@@ -102,8 +135,30 @@ Separate the planes:
 
 ## 4. What the middle layer is for
 
-The Projection Build Store is best understood as an analytical compiler IR or
-snapshot foundry.
+The best short name is:
+
+```text
+Projection Build Store
+```
+
+The more formal name is:
+
+```text
+Analytical Projection IR Store
+```
+
+It is best understood as an analytical compiler IR and snapshot foundry:
+
+```text
+OLTP records       = source code
+Projection Store   = intermediate representation
+OLAP snapshot      = optimized machine code
+OLAP runtime       = CPU executing machine code
+```
+
+It exists because the hard part is not only reading an optimized snapshot. The
+hard part is reliably manufacturing correct, compact, low-RAM,
+Neo4j/GDS-compatible snapshots from Neo4j-shaped truth.
 
 Allowed responsibilities:
 
@@ -118,6 +173,19 @@ produce memory-planner statistics
 feed snapshot, sidecar, catalog, result, and model compilers
 gate publication with validation reports
 support crash recovery and rebuild reproducibility
+```
+
+Foundry mental model:
+
+```text
+OLTP emits ore.
+Projection Store refines ore into standard ingots.
+Snapshot compilers cast ingots into specialized tools:
+  topology snapshots
+  property sidecars
+  result/model sidecars
+  memory estimates
+  catalog manifests
 ```
 
 Forbidden responsibilities:

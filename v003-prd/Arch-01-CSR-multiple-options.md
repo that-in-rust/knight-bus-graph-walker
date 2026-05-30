@@ -177,6 +177,48 @@ Snapshot compiler casts ingots into specialized tools:
   catalog manifests
 ```
 
+The foundry is never on the OLAP read path. Without it, every "tool" has to
+be hand-made directly from raw OLTP ore - which means every builder must redo
+dictionaries, sorting, dedup, validation, crash recovery, and watermark
+accounting.
+
+### Why this is powerful
+
+Without the middle layer the CSR builder owns everything:
+
+```text
+understand OLTP layout
+resolve deletes
+map IDs
+sort edges
+build dictionaries
+build sidecars
+estimate memory
+recover from crashes
+validate correctness
+```
+
+With the middle layer the system becomes modular:
+
+```text
+OLTP adapter produces facts.
+Projection Build Store verifies facts.
+Snapshot compiler emits physical layouts.
+OLAP runtime only reads published snapshots.
+```
+
+### Final thesis on the middle layer
+
+```text
+The middle layer is not a serving layer.
+It is the analytical compiler IR and snapshot foundry.
+
+It lets us keep:
+  OLTP = Neo4j-shaped and correct
+  OLAP = snapshot-only and RAM-bounded
+  Build pipeline = rich, verifiable, restartable, and creative
+```
+
 ## Architecture options ledger
 
 We currently have six options, all snapshot-oriented:

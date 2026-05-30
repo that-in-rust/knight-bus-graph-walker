@@ -1,9 +1,10 @@
 # Arch 01: CSR Multiple Options
 
-This is the canonical v003 architecture decision ledger for OLAP storage. It
-preserves the serious snapshot-oriented architectures we considered, why each
-was attractive, what broke under the PRD constraints, and how the current
-preferred architecture emerged.
+This is the canonical v003 architecture decision ledger for OLAP storage
+options. It preserves the serious snapshot-oriented options we considered, why
+each was attractive, what broke under the PRD constraints, and how the current
+preferred direction emerged. The concrete option set can change as evidence
+improves; the read/write boundaries below are the durable context.
 
 Read this file as:
 
@@ -18,18 +19,53 @@ The v003 architecture assumes OLAP answers are exact as of a published snapshot
 watermark. Freshness is improved by publishing newer snapshots, not by merging
 new writes into every query path.
 
+Premise:
+
+```text
+OLTP reads/writes:
+  run on Neo4j-shaped OLTP storage.
+
+OLAP reads:
+  run only on published OLAP-optimized snapshot storage W.
+
+Middle layer:
+  exists only to manufacture, verify, compact, partition, and publish OLAP
+  snapshots.
+  It is not a query-serving layer.
+```
+
 ## Top-level decision summary
 
 Current preferred architecture:
 
 ```text
-OLTP truth
-  -> verified OLAP pre-dataset / Projection Build Store
-  -> immutable CSR snapshot publication
-       flat global CSR first
-       cellular CSR packaging after measurement
-       sidecars for labels, relationship types, weights, and properties
-  -> snapshot-as-of OLAP/GDS queries
+                   READ/WRITE PATHS
+
+OLTP query/write
+      |
+      v
++-----------------------------+
+| Neo4j-shaped OLTP storage   |
+| records / WAL / tx / locks  |
++-----------------------------+
+      |
+      | committed facts / receipts
+      v
++-----------------------------+
+| Projection Build Store      |   <-- not queried by users
+| Analytical Projection IR    |
+| build/control plane         |
++-----------------------------+
+      |
+      | compile / validate / publish
+      v
++-----------------------------+
+| OLAP snapshot W             |
+| flat CSR / sidecars / cells |
++-----------------------------+
+      |
+      v
+OLAP query exact as of W
 ```
 
 One-line thesis:
@@ -43,7 +79,7 @@ The strongest current conviction:
 
 ```text
 Flat CSR remains the physical read primitive.
-The Projection Build Store becomes the durable analytical build source.
+Projection Build Store becomes the durable analytical compiler IR.
 Cellular CSR becomes a packaging, locality, and bounded rebuild strategy.
 Snapshot generations are the freshness mechanism.
 ```
@@ -52,13 +88,18 @@ Snapshot generations are the freshness mechanism.
 
 ```text
 1. OLTP remains Neo4j-shaped and authoritative.
-2. OLAP is allowed to lag OLTP.
-3. Every OLAP answer must expose the snapshot watermark it used.
-4. The scarce resource is holistic RAM on an 8GB machine.
-5. Flat dual CSR is already the best current physical seed.
-6. The missing layer is the durable Projection Build Store before CSR.
-7. Cells are useful only after the build-source and watermark model is clean.
-8. No option in this ledger uses query-time mutation merging as architecture.
+2. OLTP reads and writes run on OLTP storage, not on CSR files.
+3. OLAP reads run only on published OLAP-optimized snapshots.
+4. OLAP is allowed to lag OLTP.
+5. Every OLAP answer must expose the snapshot watermark it used.
+6. The scarce resource is holistic RAM on an 8GB machine.
+7. Flat dual CSR is already the best current physical seed.
+8. The missing layer is the durable Projection Build Store before CSR.
+9. Projection Build Store is a build/control-plane artifact only.
+10. Projection Build Store is not an OLAP query engine, freshness overlay,
+    LSM serving layer, or second user-visible database.
+11. Cells are useful only after the build-source and watermark model is clean.
+12. No option in this ledger uses query-time mutation merging as architecture.
 ```
 
 Correctness rule:
@@ -81,20 +122,46 @@ Option 2: cellular CSR storage
 That was useful but incomplete. The missing layer was the thing before CSR:
 
 ```text
-OLAP pre-dataset / Projection Build Store
+Projection Build Store / Analytical Projection IR Store
 ```
 
 Once that layer exists, the architecture stops being "flat vs cells" and becomes
 a pipeline:
 
 ```text
-transactional truth -> analytical facts -> compiled read format -> query view
+OLTP adapter -> verified analytical facts -> compiled snapshot -> query view
 ```
 
 That matters because the PRD explicitly accepts OLAP lag and optimizes for
 holistic RAM on an 8GB machine. If OLAP lag is acceptable, serving reads should
 not pay query-time write reconciliation cost. Build work belongs in the
 publication pipeline.
+
+The middle layer is not a serving overlay. It is a build/control plane. Its
+existence is powerful precisely because it is not on the OLAP read path.
+
+Compiler analogy:
+
+```text
+OLTP records       = source code
+Projection Build Store = intermediate representation
+CSR snapshot       = optimized machine code
+OLAP runtime       = CPU executing machine code
+```
+
+Foundry analogy:
+
+```text
+OLTP emits ore.
+Projection Build Store refines ore into standard ingots.
+Snapshot compiler casts ingots into specialized tools:
+  flat CSR
+  cellular CSR
+  property sidecars
+  model/result sidecars
+  memory estimates
+  catalog manifests
+```
 
 ## Architecture options ledger
 
@@ -105,10 +172,10 @@ We currently have six options, all snapshot-oriented:
 | ID | Architecture                               | Shape                                      | Current verdict              |
 +----+--------------------------------------------+--------------------------------------------+------------------------------+
 | A  | Direct flat CSR snapshot                   | OLTP/source -> rebuild -> flat dual CSR    | Primitive and fallback       |
-| B  | Projection Store -> flat CSR               | OLTP -> analytical facts -> flat CSR       | Best MVP baseline            |
-| C  | Projection Store -> flat CSR + sidecars     | B + labels/types/properties/weights        | Required API expansion path  |
-| D  | Projection Store -> cellular CSR snapshots  | OLTP -> facts -> partitioned CSR cells     | Measured evolution target    |
-| E  | Projection Store -> hybrid flat + cellular  | one global stream plus cell packages       | Preferred mature direction   |
+| B  | Build Store -> flat CSR                    | OLTP -> build facts -> flat CSR snapshot   | Best MVP baseline            |
+| C  | Build Store -> flat CSR + sidecars          | B + labels/types/properties/weights        | Required API expansion path  |
+| D  | Build Store -> cellular CSR snapshots       | OLTP -> build facts -> partitioned cells   | Measured evolution target    |
+| E  | Build Store -> hybrid flat + cellular       | one global stream plus cell packages       | Preferred mature direction   |
 | F  | Multi-generation snapshot catalog           | publish/swap/retain immutable generations  | Required operations layer    |
 +----+--------------------------------------------+--------------------------------------------+------------------------------+
 ```
@@ -148,11 +215,13 @@ Keep as the physical primitive, first implementation target, and correctness
 oracle. Do not treat it as the whole v003 architecture.
 ```
 
-### Option B: Projection Store -> flat CSR
+### Option B: Projection Build Store -> flat CSR
 
 ```text
-OLTP truth
+Neo4j-shaped OLTP storage
   -> Projection Build Store
+       analytical compiler IR
+       not queried by users
   -> immutable flat dual CSR snapshot
   -> snapshot-as-of OLAP queries
 ```
@@ -165,6 +234,7 @@ normalizes labels, relationship types, properties, and IDs before CSR build
 makes source watermarks explicit
 keeps serving reads simple
 keeps query RAM predictable
+keeps build facts out of the user query path
 ```
 
 What still needs work:
@@ -182,11 +252,12 @@ Current verdict:
 Best MVP baseline.
 ```
 
-### Option C: Projection Store -> flat CSR + sidecars
+### Option C: Projection Build Store -> flat CSR + sidecars
 
 ```text
-OLTP truth
+Neo4j-shaped OLTP storage
   -> Projection Build Store
+       normalize / dictionary-build / validate / estimate
   -> flat dual CSR topology
   -> columnar sidecars:
        labels
@@ -221,11 +292,12 @@ Current verdict:
 Required API expansion path after B.
 ```
 
-### Option D: Projection Store -> cellular CSR snapshots
+### Option D: Projection Build Store -> cellular CSR snapshots
 
 ```text
-OLTP truth
+Neo4j-shaped OLTP storage
   -> Projection Build Store
+       partition lab / compiler source / validation oracle
   -> partitioned snapshot compiler
   -> immutable CSR cells
   -> global logical stream for whole-graph algorithms
@@ -257,7 +329,7 @@ Current verdict:
 Measured evolution target, not the first mandatory default.
 ```
 
-### Option E: Projection Store -> hybrid flat + cellular publication
+### Option E: Projection Build Store -> hybrid flat + cellular publication
 
 ```text
 Projection Build Store
@@ -374,7 +446,7 @@ Required v003 foundation:
   7. Snapshot generations provide freshness publication and rollback.
 
 Next evolution:
-  8. Cellular CSR compiles from the same pre-dataset when spikes prove value.
+  8. Cellular CSR compiles from the same build store when spikes prove value.
   9. Hybrid publication keeps a global flat stream plus cell packages.
 ```
 
@@ -425,7 +497,7 @@ ELI5:
 
 ```text
 OLTP truth        = author's live manuscript
-Projection Store  = editor's verified notes
+Projection Build Store = editor's verified notes
 Flat CSR snapshot = printed book
 Cellular CSR      = printed book split into chapters
 Generations       = editions with publication dates
@@ -457,10 +529,10 @@ Arch-01-CSR-multiple-options.md = canonical decision ledger
                                   | committed events / CDC
                                   v
                  +---------------------------------+
-                 | 2. OLAP PRE-DATASET             |
+                 | 2. PROJECTION BUILD STORE       |
                  | Projection Build Store          |
-                 | normalized analytical facts     |
-                 | verified in sync with OLTP      |
+                 | analytical IR / build plane     |
+                 | not queried by users            |
                  +----------------+----------------+
                                   |
                                   | compile at watermark W
@@ -492,11 +564,11 @@ Arch-01-CSR-multiple-options.md = canonical decision ledger
 
 There are three foundational data planes plus the publication catalog:
 
-| Layer | Role | Mutable? | Source of truth? | Query-time default? |
+| Layer | Role | Mutable? | Source of truth? | User read path? |
 | --- | --- | --- | --- | --- |
 | OLTP truth | Neo4j-shaped transactional records, WAL, locks, indexes | yes | yes | OLTP only |
-| Projection Build Store | normalized analytical facts verified from OLTP | append/merge-friendly | no | no, build source |
-| Immutable CSR snapshot | read-optimized projection exact at watermark W | no | no | yes for OLAP |
+| Projection Build Store / Analytical Projection IR Store | verified, durable, low-RAM, build-friendly representation of graph facts | append/merge-friendly | no | no, build/control only |
+| Immutable OLAP snapshot | read-optimized projection exact at watermark W | no | no | OLAP only |
 | Snapshot catalog | active generation pointer, retention, rollback, manifests | metadata only | no | chooses active snapshot |
 
 ASCII:
@@ -542,35 +614,102 @@ ASCII:
 
 ## What the Projection Build Store stores
 
-The pre-dataset should be boring, durable, and easy to verify:
+The Projection Build Store should be boring, durable, and easy to verify. It is
+allowed to be rich because it is not serving user queries. Preferred contents:
 
 ```text
-node_id
-label ids
-property key ids and typed values
-relationship_id
-source node id
-target node id
-relationship type id
-relationship properties
-valid_from_tx
-valid_to_tx or deletion marker
-source WAL offset / tx id
-partition hint
-dictionary ids
-checksums
+/manifests/
+  source_watermark
+  schema_version
+  dictionary_version
+  fact_counts
+  checksums
+
+/facts/
+  nodes
+  relationships
+  labels
+  relationship_types
+  node_properties
+  relationship_properties
+  deletes_or_validity_ranges
+
+/dictionaries/
+  external_node_id -> dense_node_id
+  label_name -> label_id
+  rel_type_name -> rel_type_id
+  property_key -> property_id
+
+/statistics/
+  node_count
+  rel_count
+  degree_histograms
+  label_histograms
+  reltype_histograms
+  property_widths
+  null_counts
+  min/max
+
+/build_runs/
+  sorted_edge_runs
+  partition_candidates
+  validation_reports
+  memory_estimates
 ```
 
-It should not be optimized for final query speed. It should be optimized for:
+It is:
+
+```text
+a verified, durable, low-RAM, build-friendly representation of graph facts
+used to create one or more OLAP-optimized snapshots
+```
+
+It is not:
+
+```text
+OLTP source of truth
+OLAP query engine
+freshness overlay
+LSM serving layer
+second database users query directly
+```
+
+It should be optimized for building, not serving:
 
 ```text
 low-RAM ingestion
-sequential build reads
-deduplication
-delete/property-change resolution
+sorting
+normalization
+verification
 snapshot compilation
-verification against OLTP watermarks
+sidecar construction
+partition experiments
+publication gating
+build scheduling
 ```
+
+## Creative uses of the Projection Build Store
+
+| Use | What the middle layer does | Why it helps |
+| --- | --- | --- |
+| Semantic normalization | Converts Neo4j records/receipts into node, relationship, label, type, and property facts. | Snapshot compilers do not need to understand OLTP internals. |
+| Watermark ledger | Tracks exactly which source generation the analytical facts represent. | Every snapshot can say "exact as of W". |
+| Dense-ID factory | Maintains stable external-id to dense-id mappings. | Snapshot arrays stay compact and reproducible. |
+| Dictionary factory | Builds label/type/property dictionaries once. | Sidecars and snapshots share compact IDs. |
+| Sort staging | Pre-sorts edges by source, target, type, or partition. | Snapshot builds become sequential and low-RAM. |
+| Dedup/coalescing | Resolves repeated property changes, duplicate relationship facts, and deletes before snapshot compile. | Avoids query-time reconciliation. |
+| Snapshot compiler cache | Stores intermediate sorted runs and checkpoints. | Failed builds can resume and use less RAM. |
+| Multi-target compiler source | Emits flat CSR, cellular CSR, sidecars, result stores, and catalog manifests. | One truth can feed many physical layouts. |
+| Validation oracle | Compares OLTP facts, expected counts, checksums, labels, types, and properties. | Prevents publishing corrupt snapshots. |
+| Memory planner input | Stores counts, histograms, cardinality, degree distribution, property widths, and null counts. | Planner can estimate RAM before algorithms run. |
+| Partition lab | Tests candidate cell partitions before writing cellular snapshots. | Cells become measured, not theoretical. |
+| Sidecar builder | Produces labels, relationship types, weights, features, embeddings, and result columns. | Full GDS surface becomes possible without changing topology. |
+| Compatibility bridge | Preserves GDS projection/catalog metadata shape. | Helps emulate Neo4j GDS product semantics. |
+| Reproducibility ledger | Rebuilds the exact snapshot from watermark W or explains why not. | Bugs become falsifiable. |
+| Publication gate | Publishes only snapshots that pass validation. | OLAP reads never see half-built state. |
+| Offline optimizer | Tries compression, ordering, partitioning, and sidecar layout experiments. | Future snapshots improve without touching OLTP. |
+| Disaster recovery aid | Rebuilds OLAP snapshots from durable facts after crash. | OLAP storage can be disposable/rebuildable. |
+| Build scheduling brain | Decides when to publish based on dirty size, time, RAM budget, and SLA. | Freshness comes from snapshot cadence, not query merge. |
 
 ## Freshness model
 
@@ -587,7 +726,7 @@ To improve OLAP freshness, publish a newer snapshot.
 Therefore:
 
 ```text
-pre-dataset sync proves build-source correctness.
+Projection Build Store sync proves build-source correctness.
 snapshot watermark defines query correctness.
 snapshot generation publication defines OLAP freshness.
 ```
@@ -596,8 +735,21 @@ If v003 accepts lag, use this:
 
 ```text
 query freshness = active snapshot watermark
-pre-dataset freshness = OLTP watermark or near it
-compiler lag = pre-dataset watermark - snapshot watermark
+build-store freshness = OLTP watermark or near it
+compiler lag = build-store watermark - snapshot watermark
+```
+
+Snapshot publication flow:
+
+```text
+1. Read Projection Build Store at watermark W.
+2. Validate facts and dictionaries.
+3. Build flat CSR topology.
+4. Build sidecars.
+5. Optionally build cellular packages from the same W.
+6. Run parity, count, checksum, schema, and memory checks.
+7. Publish generation N atomically.
+8. OLAP queries read only generation N.
 ```
 
 ## How this changes the earlier Cellular CSR thesis
@@ -621,7 +773,7 @@ Flat CSR still matters:
 ```text
 Flat CSR = canonical byte primitive and global stream.
 Cells = bounded packaging around that primitive.
-Pre-dataset = durable normalized source for generating either one.
+Projection Build Store = durable normalized source for generating either one.
 ```
 
 ## Holistic RAM reasoning
@@ -641,7 +793,7 @@ Build work happens outside the serving read path:
 
 ```text
 query path: active CSR snapshot only
-build path: pre-dataset -> sorted/partitioned CSR under memory budget
+build path: Projection Build Store -> sorted/partitioned CSR under memory budget
 publication path: atomic generation swap
 ```
 
@@ -658,10 +810,10 @@ The architecture is only credible if these tests exist:
 
 | Test | What it proves |
 | --- | --- |
-| OLTP-to-pre-dataset watermark test | pre-dataset is synced through tx T |
-| pre-dataset checksum test | analytical facts match expected nodes/edges/properties |
+| OLTP-to-Build-Store watermark test | Projection Build Store is synced through tx T |
+| Build-Store checksum test | analytical facts match expected nodes/edges/properties |
 | CSR snapshot watermark test | snapshot declares exact source watermark W |
-| snapshot-from-pre-dataset parity test | CSR output matches pre-dataset facts at W |
+| snapshot-from-Build-Store parity test | CSR output matches build-store facts at W |
 | stale-read contract test | query result reports `as_of_watermark = W` |
 | sidecar parity test | label/type/property sidecars match source facts at W |
 | cell/global parity test | cellular snapshot equals global flat stream at W |
@@ -684,6 +836,15 @@ pub struct SourceWatermark {
 2. Define Projection Build Store records:
 
 ```rust
+pub struct ProjectionBuildStoreManifest {
+    pub source_watermark: SourceWatermark,
+    pub schema_version: u32,
+    pub dictionary_version: u64,
+    pub fact_counts: ProjectionFactCounts,
+    pub checksums: ProjectionChecksums,
+}
+// Identifies the verified analytical IR input to snapshot compilers.
+
 pub struct ProjectionNodeFact {
     pub node_id: ExternalNodeId,
     pub labels: LabelSetId,
@@ -747,8 +908,8 @@ Fact-check questions:
 
 1. Does OLAP generally allow lag?
 2. Does accepting lag allow a snapshot-only query contract?
-3. Does a pre-dataset replace OLTP truth?
-4. Does a pre-dataset replace CSR?
+3. Does the Projection Build Store replace OLTP truth?
+4. Does the Projection Build Store replace CSR?
 5. Does this improve the 8GB RAM story?
 6. Do cells need to be first?
 7. How does freshness improve without query-time write reconciliation?
@@ -767,10 +928,40 @@ Answers:
 7. By reducing build latency, publishing generations more often, and reporting
    the active watermark honestly.
 
+8. If OLAP never reads the Projection Build Store, why have it?
+
+```text
+Because the hard part is not only reading CSR. The hard part is reliably
+manufacturing correct, compact, low-RAM, GDS-compatible CSR snapshots from
+Neo4j-shaped truth.
+```
+
+9. What exact bug should the Projection Build Store catch?
+
+```text
+snapshot missing a relationship type
+property default applied incorrectly
+deleted relationship still present in CSR
+label dictionary mismatch
+node dense-id instability
+PageRank estimate missing sidecar/result memory
+snapshot claims tx 5000 but facts only verified to tx 4992
+cellular package differs from global flat stream
+```
+
+10. What should not happen?
+
+```text
+OLAP query reads OLTP records.
+OLAP query reads the Projection Build Store.
+OLAP query merges fresh writes at query time.
+OLAP query hides the snapshot watermark it used.
+```
+
 Weaknesses:
 
 ```text
-The pre-dataset adds disk footprint.
+The Projection Build Store adds disk footprint.
 It needs crash recovery and idempotent ingestion.
 It needs verification tooling.
 It does not make CSR builds free; it only makes them cleaner and more bounded.
@@ -793,7 +984,7 @@ No query-time mutation layer belongs in the architecture options.
 
 ## PRD constraint analysis
 
-The PRD constraints from `v003-prd.md` are unusually strict:
+The split PRD constraints are unusually strict:
 
 ```text
 exact same APIs or surface area with ZERO changes
@@ -1516,7 +1707,7 @@ These spikes decide defaults:
 ```text
 If global scan overhead is high, keep flat CSR global files as primary.
 If local walk benefit is high, use cells for locality-heavy queries.
-If generation publication is slow, improve compiler and pre-dataset layout.
+If generation publication is slow, improve compiler and Build Store layout.
 If partition quality is poor, do not block v003 on partitioning theory.
 ```
 

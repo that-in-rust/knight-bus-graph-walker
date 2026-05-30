@@ -96,6 +96,165 @@ holistic RAM on an 8GB machine. If OLAP lag is acceptable, serving reads should
 not pay query-time write reconciliation cost. Build work belongs in the
 publication pipeline.
 
+## Read/write paths and the build/control plane
+
+The premise behind the entire v003 architecture:
+
+```text
+OLTP reads/writes:
+  run on Neo4j-shaped OLTP storage.
+
+OLAP reads:
+  run only on published OLAP-optimized snapshot storage W.
+
+Middle layer:
+  exists only to manufacture, verify, compact, partition, and publish OLAP snapshots.
+  It is not a query-serving layer.
+```
+
+The Projection Build Store is not a serving overlay. It is a
+**build/control plane**.
+
+ASCII view of the strict path separation:
+
+```text
+                   READ/WRITE PATHS
+
+OLTP query/write
+      |
+      v
++-----------------------------+
+| Neo4j-shaped OLTP storage   |
+| records / WAL / tx / locks  |
++-----------------------------+
+      |
+      | committed facts / receipts
+      v
++-----------------------------+
+| Projection Build Store      |   <-- not queried by users
+| analytical IR / build plane |
++-----------------------------+
+      |
+      | compile / validate / publish
+      v
++-----------------------------+
+| OLAP snapshot W             |
+| Flat CSR / sidecars / cells |
++-----------------------------+
+      |
+      v
+OLAP query exact as of W
+```
+
+### What the middle layer is NOT
+
+```text
+not OLTP source of truth
+not the OLAP query engine
+not a freshness overlay
+not an LSM serving layer
+not a second database users query directly
+```
+
+### What the middle layer IS
+
+```text
+a verified, durable, low-RAM, build-friendly representation of graph facts
+used to create one or more OLAP-optimized snapshots
+```
+
+### Compiler IR analogy
+
+The mental model is a compiler pipeline:
+
+```text
+OLTP records       = source code
+Projection Store   = intermediate representation
+CSR snapshot       = optimized machine code
+OLAP runtime       = CPU executing machine code
+```
+
+Formal name when the compiler-IR framing matters:
+
+```text
+Analytical Projection IR Store
+```
+
+### Snapshot foundry metaphor
+
+```text
+OLTP emits ore.
+Projection Store refines ore into standard ingots.
+Snapshot compiler casts ingots into specialized tools:
+  flat CSR
+  cellular CSR
+  property sidecars
+  model/result sidecars
+  memory estimates
+  catalog manifests
+```
+
+The foundry is never on the OLAP read path. Without it, every "tool" has to
+be hand-made directly from raw OLTP ore - which means every builder must redo
+dictionaries, sorting, dedup, validation, crash recovery, and watermark
+accounting.
+
+### Why this is powerful
+
+Without the middle layer the CSR builder owns everything:
+
+```text
+understand OLTP layout
+resolve deletes
+map IDs
+sort edges
+build dictionaries
+build sidecars
+estimate memory
+recover from crashes
+validate correctness
+```
+
+With the middle layer the system becomes modular:
+
+```text
+OLTP adapter produces facts.
+Projection Store verifies facts.
+Snapshot compiler emits physical layouts.
+OLAP runtime only reads published snapshots.
+```
+
+### Optimized for building, not serving
+
+Each plane is shaped by a single primary goal:
+
+```text
+OLTP storage optimized for:
+  transactions
+  locks
+  indexes
+  point reads
+  Cypher-facing correctness
+
+Projection Build Store optimized for:
+  low-RAM ingestion
+  sorting
+  normalization
+  verification
+  snapshot compilation
+  sidecar construction
+  partition experiments
+
+OLAP snapshot optimized for:
+  fast reads
+  bounded memory
+  sequential scans
+  algorithm execution
+  GDS-style procedures
+```
+
+Build work belongs in the middle plane; serving reads stay on the snapshot.
+
 ## Architecture options ledger
 
 We currently have six options, all snapshot-oriented:
@@ -572,6 +731,86 @@ snapshot compilation
 verification against OLTP watermarks
 ```
 
+### Suggested on-disk layout
+
+The contents above naturally group into a small number of durable
+subdirectories:
+
+```text
+Projection Build Store contents:
+
+/manifests/
+  source_watermark
+  schema_version
+  dictionary_version
+  fact_counts
+  checksums
+
+/facts/
+  nodes
+  relationships
+  labels
+  relationship_types
+  node_properties
+  relationship_properties
+  deletes_or_validity_ranges
+
+/dictionaries/
+  external_node_id -> dense_node_id
+  label_name -> label_id
+  rel_type_name -> rel_type_id
+  property_key -> property_id
+
+/statistics/
+  node_count
+  rel_count
+  degree_histograms
+  label_histograms
+  reltype_histograms
+  property_widths
+  null_counts
+  min/max
+
+/build_runs/
+  sorted_edge_runs
+  partition_candidates
+  validation_reports
+  memory_estimates
+```
+
+This is what makes the store a **buildable** artifact instead of just a fact
+bag: manifests, facts, dictionaries, statistics, and reusable build-run
+intermediates each live in their own area.
+
+### Creative uses of the middle layer
+
+Treating the Projection Build Store as a build/control plane unlocks a wide
+set of capabilities that the OLAP read path never has to know about:
+
+| # | Use | What the middle layer does | Why it helps |
+| --- | --- | --- | --- |
+| 1 | Semantic normalization | Converts Neo4j records/WAL into node, rel, label, type, property facts | CSR builder does not need to understand OLTP internals |
+| 2 | Watermark ledger | Tracks exactly which tx/source generation the analytical facts represent | Every snapshot can say "exact as of W" |
+| 3 | Dense-ID factory | Maintains stable external-id -> dense-id mappings | CSR arrays stay compact and reproducible |
+| 4 | Dictionary factory | Builds label/type/property dictionaries once | Sidecars and snapshots share the same compact IDs |
+| 5 | Sort staging | Pre-sorts edges by source, target, type, partition | CSR build becomes sequential and low-RAM |
+| 6 | Dedup / coalescing | Resolves repeated property changes, duplicate rel facts, deletes before snapshot compile | Avoids query-time reconciliation |
+| 7 | Snapshot compiler cache | Stores intermediate sorted runs / checkpoints | Failed builds can resume; builds need less RAM |
+| 8 | Multi-target compiler source | Emits flat CSR, cellular CSR, sidecars, Arrow/Parquet-like columns, result stores | One truth, many physical layouts |
+| 9 | Validation oracle | Compares OLTP facts, expected counts, checksums, labels/types/properties | Prevents publishing corrupt snapshots |
+| 10 | Memory planner input | Stores counts, histograms, cardinality, degree distribution, property widths | Planner can estimate RAM before running algorithms |
+| 11 | Partition lab | Tests candidate cell partitions before writing cellular snapshots | Cells become measured, not theoretical |
+| 12 | Sidecar builder | Produces node labels, rel types, weights, features, embeddings, result columns | Full GDS surface becomes possible without changing topology |
+| 13 | Compatibility bridge | Preserves GDS projection/catalog metadata shape | Helps emulate Neo4j GDS product semantics |
+| 14 | Reproducibility ledger | Given watermark W, rebuild the same snapshot bytes or explain why not | Makes bugs falsifiable |
+| 15 | Publication gate | Only publishes snapshots that pass count/checksum/schema/memory tests | OLAP reads never see half-built state |
+| 16 | Offline optimizer | Tries compression, ordering, partitioning, sidecar layout experiments | Improves future snapshots without touching OLTP |
+| 17 | Disaster recovery aid | Rebuilds OLAP snapshots from durable facts after crash | OLAP storage can be disposable / rebuildable |
+| 18 | Build scheduling brain | Decides when to publish next snapshot based on dirty size, time, RAM budget, SLA | Freshness comes from snapshot cadence, not query merge |
+
+Each of these capabilities lives entirely off the OLAP read path. None of
+them require the OLAP runtime to know that the middle layer exists.
+
 ## Freshness model
 
 Key invariant:
@@ -599,6 +838,25 @@ query freshness = active snapshot watermark
 pre-dataset freshness = OLTP watermark or near it
 compiler lag = pre-dataset watermark - snapshot watermark
 ```
+
+### Snapshot publication procedure
+
+Given the build/control-plane framing, publication is a fixed sequence:
+
+```text
+1. Read Projection Build Store at watermark W.
+2. Validate facts and dictionaries.
+3. Build flat CSR topology.
+4. Build sidecars.
+5. Optionally build cellular packages from the same W.
+6. Run parity checks (cell vs global, sidecar vs facts, counts/checksums).
+7. Publish generation N atomically through the snapshot catalog.
+8. OLAP queries read only generation N and report as_of_watermark = W.
+```
+
+If any step before 7 fails, generation N is not published and OLAP keeps
+reading the previous generation. This is what makes the middle layer a
+**publication gate**, not just an ingestion buffer.
 
 ## How this changes the earlier Cellular CSR thesis
 
@@ -1466,6 +1724,62 @@ Build and validate a newer generation, then publish it atomically.
 
 This is less fresh than always-current serving reads, but it is easier to reason
 about, easier to test, and safer for the 8GB RAM objective.
+
+### Duck: If OLAP never reads the middle layer, why have it?
+
+Because the hard part is not only reading CSR.
+
+```text
+The hard part is reliably manufacturing correct, compact, low-RAM,
+GDS-compatible CSR snapshots from Neo4j-shaped truth.
+```
+
+The middle layer is where dictionaries, dedup, sort staging, validation,
+memory planning, partition experiments, and reproducibility live. The OLAP
+runtime stays small because the build plane absorbs that complexity.
+
+### Duck: What exact bug would the middle layer catch?
+
+The build/control plane is a publication gate. The bugs it is designed to
+catch include:
+
+```text
+snapshot missing a relationship type
+property default applied incorrectly
+deleted relationship still present in CSR
+label dictionary mismatch
+node dense-id instability across generations
+PageRank estimate missing sidecar/result memory
+snapshot claims tx 5000 but facts only verified to tx 4992
+cellular package differs from global flat stream at the same watermark
+```
+
+Each of these is a snapshot-time bug. None of them should be caught at
+OLAP-query time.
+
+### Duck: What should not happen at query time?
+
+```text
+OLAP query should not read OLTP records.
+OLAP query should not read the Projection Build Store.
+OLAP query should not merge fresh writes at query time.
+OLAP query should read a published snapshot and report W.
+```
+
+These four invariants are the operational definition of "the middle layer is
+not a serving layer".
+
+### Final thesis on the middle layer
+
+```text
+The middle layer is not a serving layer.
+It is the analytical compiler IR and snapshot foundry.
+
+It lets us keep:
+  OLTP = Neo4j-shaped and correct
+  OLAP = snapshot-only and RAM-bounded
+  Build pipeline = rich, verifiable, restartable, and creative
+```
 
 ## Corrected architecture roles
 

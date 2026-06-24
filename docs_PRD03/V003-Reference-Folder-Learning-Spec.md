@@ -120,6 +120,90 @@ Rules:
   reads first.
 - Graph-tool claims are candidate evidence only. Verify with source paths.
 
+Observed workspace validation on 2026-06-24:
+
+- `codebase-memory-evidence-reader` smoke run completed and explicitly verified
+  that indexed query outputs did not mention `gitrefrepo/`.
+- `codegraphcontext-evidence-reader` smoke run completed and explicitly verified
+  that indexed query outputs did not mention `gitrefrepo/`.
+- CodeGraphContext removed a first-time generated repo `.cgcignore` during the
+  smoke run, which is expected behavior from the wrapper script and should not
+  be treated as architectural evidence.
+
+## Architecture Decision Questions
+
+The study program exists to answer these architecture questions in a falsifiable
+order.
+
+| decision question | why it matters | primary repo families | required output |
+| --- | --- | --- | --- |
+| What exact public surface must v003 preserve? | Architecture choice is invalid if it quietly narrows the promised Neo4j/GDS surface. | `neo4j-src`, `neo4j-gds-src`, driver repos, `neo4j-docs-bolt-src`, `opencypher-src`, `neo4j-apoc-src` | surface inventory plus support status rows |
+| What is the non-negotiable OLTP source-of-truth shape? | Prevents OLAP design from bleeding into transactional storage or query semantics. | `neo4j-src`, `neo4j-testkit-src`, driver repos | OLTP boundary ledger |
+| What must exist outside topology? | Determines whether flat CSR alone is enough or whether sidecars, result artifacts, and model artifacts are mandatory. | `neo4j-gds-src`, `apache-arrow-rs-src`, `apache-parquet-format-src`, `ladybug-src` | capability-to-sidecar matrix |
+| Which GDS families fit flat CSR, flat CSR plus sidecars, cells, spill, or GraphBLAS? | This is the core storage-decision question. | `neo4j-gds-src`, `gapbs-src`, `graphblas-src`, `lagraph-src`, `graphchi-cpp-src`, `gridgraph-src` | procedure-to-kernel ledger plus architecture fit matrix |
+| When are cells justified rather than fashionable? | Prevents over-building packaging complexity before locality or bounded rebuild evidence exists. | current Knight Bus source, `graphchi-cpp-src`, `gridgraph-src`, `ladybug-src`, `docs_PRD03/Arch-options.md` | cell falsifier note plus option scorecard |
+| What must the Projection Build Store own? | Separates build/control concerns from serving concerns and controls crash recovery and publication. | `apache-iggy-src`, `rocksdb-src`, `fjall-src`, `redb-src`, `tikv-src` | Build Store recommendation and rejected alternatives |
+| How are watermarks, publication, rollback, and retention made exact? | OLAP lag is acceptable only if publication semantics are precise and testable. | current Knight Bus source, `ladybug-src`, `duckdb-src`, `clickhouse-src`, `redb-src` | publication contract and generation catalog plan |
+| What makes the 50GB-on-8GB claim honest? | RAM claims must survive RSS/page-cache/scratch/state scrutiny, not just low heap. | `neo4j-gds-src`, current Knight Bus source, `graphchi-cpp-src`, `gridgraph-src`, `tracing-src`, `jemalloc-src` | memory contract plus benchmark or estimator formulas |
+
+## Decision-First Study Order
+
+Future agents should not wander the shelf in a popularity order. Use this
+decision order unless a human explicitly overrides it.
+
+| step | study focus | why this comes now | do not do before this is solid |
+| --- | --- | --- | --- |
+| 1 | `docs_PRD03/prd-l1.md`, `docs_PRD03/Arch-options.md`, and current Knight Bus source | Locks the boundary conditions and the existing CSR seed. | Do not speculate about new layouts yet. |
+| 2 | Neo4j OLTP, procedures, values, Cypher, Bolt, and drivers | Establishes the compatibility contract and source-of-truth boundary. | Do not let competitor ideas redefine the API promise. |
+| 3 | Full GDS public ABI inventory | Prevents the architecture from being sized only for easy kernels. | Do not claim storage sufficiency before this inventory exists. |
+| 4 | GDS procedure-to-kernel and estimator tracing for representative families | Converts public surface into concrete storage and state requirements. | Do not choose cells, GraphBLAS, or spill policies from names alone. |
+| 5 | Build Store, sidecars, publication, and memory-accounting precedents | These are the required support systems around topology. | Do not over-focus on raw topology before the support plane is clear. |
+| 6 | Low-RAM priors, GraphBLAS, and competitor reads | Useful only after the first-party Neo4j/GDS contract is understood. | Do not let competitor elegance outrank compatibility evidence. |
+| 7 | Architecture option scorecard against `docs_PRD03/Arch-options.md` | Converts all prior evidence into an actual choice. | Do not recommend A/B/C/D/E without this scorecard. |
+
+Default reading principle:
+
+```text
+first-party contract first
+first-party implementation second
+storage/support precedents third
+competitors and alternatives fourth
+option scoring last
+```
+
+## Repository Families To Decision Questions
+
+This table answers the user's practical question: what to explore in what, and
+why.
+
+| repo family | local folders to start with | main question it answers | do not overclaim from it |
+| --- | --- | --- | --- |
+| PRD and current seed | `docs_PRD03/`, current Knight Bus `src/`, tests, README, benchmark docs | What constraints and working primitives already exist? | Do not treat current CSR seed as proof of full GDS support. |
+| Neo4j core | `gitrefrepo/neo4j-src` | What does Neo4j-compatible OLTP and procedure behavior really require? | Do not infer OLAP storage from OLTP record layouts. |
+| Bolt and drivers | `neo4j-docs-bolt-src`, `neo4j-testkit-src`, official driver repos | What does zero-application-change compatibility mean on the wire and in client behavior? | Do not use drivers to infer internal storage design. |
+| GDS core | `neo4j-gds-src`, `neo4j-gds-client-src`, `graph-data-science-src`, `gds-agent-src` | What exact GDS surface, graph catalog, estimator, and kernel behavior must be preserved? | Do not collapse surface rows into a few flagship algorithms. |
+| APOC and ecosystem canaries | `neo4j-apoc-src`, `neo4j-apoc-procedures-src`, `cypher-shell-src`, `cypher-dsl-src`, `neo4rs-src`, `neo4j-ogm-src`, `neo4j-browser-src` | Which procedural and workflow edges users will hit first? | Do not promote ecosystem niceties over core compatibility. |
+| Build Store precedents | `apache-iggy-src`, `rocksdb-src`, `fjall-src`, `redb-src`, `tikv-src` | What durable build/control plane shape is simplest and safest? | Do not let a storage engine decide the user-visible product architecture. |
+| Sidecar and planning precedents | `apache-arrow-rs-src`, `apache-parquet-format-src`, `apache-datafusion-src` | How should typed property/result/model sidecars behave and be scanned? | Do not turn v003 into a generic SQL or Parquet warehouse. |
+| Low-RAM graph priors | `graphchi-cpp-src`, `gridgraph-src`, `minigraph-src`, `thunderrw-src`, `gapbs-src`, `snap-src`, `ligra-src` | Which algorithms need global stream, locality, spill, or random-walk care? | Do not treat benchmark kernels as public API contracts. |
+| Sparse linear algebra priors | `graphblas-src`, `lagraph-src`, `graphblas-pointers-src`, `python-graphblas-src`, `graphblas_sparse_linear_algebra-src`, `falkordb-src`, `redisgraph-src` | Which GDS families are better as GraphBLAS-style plans versus direct CSR kernels? | Do not adopt GraphBLAS globally because it is elegant. |
+| Embedded graph precedents | `ladybug-src`, `kuzu-src`, `memgraph-src`, `age-src` | What compact execution and publication ideas are useful without breaking PRD boundaries? | Do not treat competitor behavior as compatibility truth. |
+| Benchmark and observability shelf | `ldbc_*`, `tracing-src`, `jemalloc-src`, relevant `neo4j-gds-src` estimator paths | What makes performance and RAM claims credible and measurable? | Do not confuse instrumentation with proof; workloads and thresholds still matter. |
+
+## Support Status Taxonomy
+
+Use one shared status vocabulary across surface inventories, architecture
+matrices, and option scorecards.
+
+| status | meaning | allowed claim |
+| --- | --- | --- |
+| `P0-RegisteredCompatible` | Public surface is inventoried, named, and assigned deterministic behavior; full implementation is not yet claimed. | "We know the surface and how it will fail or route." |
+| `P1-ImplementedExactLowRam` | Supported on the chosen architecture with named oracle tests, estimate behavior, and strict-RAM story where claimed. | "This works and the RAM claim is explicit." |
+| `P2-ImplementedLater` | Surface is intended to exist, but delivery depends on later work or later architecture layers. | "Not shipped yet, but not silently dropped." |
+| `NeedsArchitectureSpike` | Inventory exists, but there is not enough evidence to choose a storage/runtime strategy yet. | "Do not commit architecture until spike evidence exists." |
+| `UnsupportedButRegistered` | Surface is known and intentionally returns deterministic unsupported behavior. | "Compatibility visibility is preserved even though support is absent." |
+| `ExplicitlyOutOfScope` | Surface is outside the current PRD or edition boundary with a cited reason. | "This is not being promised by v003." |
+
 ## PRD L1 Outcome Spine
 
 Every study pass must explicitly support or challenge at least one of these
@@ -155,8 +239,10 @@ document or as a small linked set of Markdown/TSV files:
 
 | artifact | purpose | required when |
 | --- | --- | --- |
+| Clone coverage ledger | Record which local repos actually existed, what role they played, and whether any were only `CandidateClone`. | always |
 | Evidence ledger | Capture source-backed facts, inference, speculation, PRD impact, and skeptical notes. | always |
 | Architecture fit matrix | Map capability to topology, sidecars, Build Store, catalog, state, memory, execution, support, and falsifier. | always |
+| Architecture option scorecard | Compare options from `docs_PRD03/Arch-options.md` or successor options against accumulated evidence. | whenever recommending a storage direction |
 | Procedure-to-kernel ledger | Trace GDS procedures to config, results, estimates, specs, kernels, and storage implications. | any GDS algorithm study |
 | Checkpoint summary | Make the next agent resumable without rereading the whole context. | any batch that is non-trivial or context-heavy |
 | PRD outcome traceability dossier | Map findings back to PRD L1 outcomes and missing evidence. | always |
@@ -249,8 +335,8 @@ result_type | writes_catalog | writes_oltp | creates_model | source_file |
 support_status | architecture_needs | oracle_test
 
 Allowed support statuses:
-Implemented, UnsupportedButRegistered, DeferredWithReason,
-NeedsArchitectureSpike, ExplicitlyOutOfScope.
+P0-RegisteredCompatible, P1-ImplementedExactLowRam, P2-ImplementedLater,
+UnsupportedButRegistered, NeedsArchitectureSpike, ExplicitlyOutOfScope.
 
 Forbidden:
 - Do not collapse procedures into "PageRank etc."
@@ -321,7 +407,8 @@ name | family | mode | config inputs | result columns | source file |
 support status | storage needs | memory needs | test oracle | PRD impact
 
 Do not skip procedures because implementation looks hard. Hard means the row
-gets `NeedsArchitectureSpike`, not that it disappears.
+gets `NeedsArchitectureSpike`, `P2-ImplementedLater`, or
+`UnsupportedButRegistered`, not that it disappears.
 ```
 
 ### Repository Study Prompt
@@ -377,11 +464,23 @@ Ask:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | CLAIM-001 | REQ-LEARN-000.0 | source | `gitrefrepo/...` | `rg query or symbol` | verifiable fact | local implication | optional future idea | affected PRD outcome | falsifier or caveat |
 
+### Clone Coverage Ledger Template
+
+| local_repo | exists_now | upstream_hint | branch_or_head | study_role | required_or_optional | current_use | note |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `gitrefrepo/neo4j-gds-src` | yes | `neo4j/graph-data-science` | `<fill>` | compatibility oracle | required | active study | core GDS ABI and kernel evidence |
+
 ### Architecture Fit Matrix Template
 
 | capability | topology_need | sidecar_need | build_store_need | snapshot_catalog_need | algorithm_state | memory_plan | execution_strategy | support_status | falsifier |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `gds.<family>.<mode>` | flat CSR / reverse CSR / none | labels/types/properties/results/models | facts/dictionaries/sorted runs/statistics | generation/watermark/catalog/writeback | vectors/frontiers/heaps/models | heap/RSS/page-cache/direct/scratch/spill | mmap / direct stream / spill / GraphBLAS / sidecar scan | NeedsArchitectureSpike | source or benchmark that would overturn the row |
+| `gds.<family>.<mode>` | flat CSR / reverse CSR / none | labels/types/properties/results/models | facts/dictionaries/sorted runs/statistics | generation/watermark/catalog/writeback | vectors/frontiers/heaps/models | heap/RSS/page-cache/direct/scratch/spill | mmap / direct stream / spill / GraphBLAS / sidecar scan | `P0-RegisteredCompatible` / `NeedsArchitectureSpike` / other status | source or benchmark that would overturn the row |
+
+### Architecture Option Scorecard Template
+
+| option_id | option_summary | helps_prd_outcomes | known_blockers | required_capabilities | evidence_strength | dominant_ram_risks | current_status | next_falsifier |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `A` | Neo4j OLTP -> Build Store -> flat CSR | OLTP boundary, OLAP boundary, simple read path | full GDS semantics outside topology | global scans, basic graph catalog | medium | per-node vector state, sidecar growth | `P0-RegisteredCompatible` | complete representative GDS family ledger |
 
 ### Procedure-To-Kernel Ledger Template
 
@@ -581,7 +680,7 @@ Unresolved risks:
 **WHEN** studying procedure expectations outside core GDS
 **THEN** the pass SHALL cover `gitrefrepo/neo4j-apoc-src` and `gitrefrepo/neo4j-apoc-procedures-src`
 **AND** SHALL inventory procedure categories, common argument/result shapes, packaging assumptions, error behavior, and high-use workflows
-**SHALL** define whether each APOC category is `Implemented`, `UnsupportedButRegistered`, `AliasToNative`, or `ExplicitlyOutOfScope`.
+**SHALL** classify each APOC category with the shared support taxonomy and, separately, state whether support is native, alias-backed, or explicitly absent.
 
 ### REQ-LEARN-022.0: Study Client Ecosystem Canaries
 
@@ -643,7 +742,7 @@ Unresolved risks:
 
 **WHEN** any study artifact claims flat CSR, sidecars, cells, GraphBLAS, or another physical plan can support GDS
 **THEN** the artifact SHALL first reference a complete GDS surface inventory covering procedures, modes, configs, result schemas, estimates, graph catalog, mutate/write behavior, model catalog, pipelines, and operations
-**AND** SHALL classify every row as `Implemented`, `UnsupportedButRegistered`, `DeferredWithReason`, or `NeedsArchitectureSpike`
+**AND** SHALL classify every row as `P0-RegisteredCompatible`, `P1-ImplementedExactLowRam`, `P2-ImplementedLater`, `UnsupportedButRegistered`, `NeedsArchitectureSpike`, or `ExplicitlyOutOfScope`
 **SHALL** reject architecture sufficiency claims that only prove a small algorithm subset.
 
 ### REQ-LEARN-031.0: Study Snapshot Publication Catalog
@@ -714,6 +813,7 @@ Unresolved risks:
 **WHEN** an agent uses `codebase-memory-mcp` or `CodeGraphContext`
 **THEN** the tool SHALL index only the current Knight Bus repo by default
 **AND** SHALL exclude `gitrefrepo/`, `.git/`, `target/`, and generated tool artifacts
+**AND** SHALL record the question asked, the smoke or query command used, and whether direct source verification confirmed the finding
 **SHALL** verify graph-tool findings with direct source reads before recording them as evidence.
 
 ### REQ-LEARN-041.0: Produce Checkpoint Summaries
@@ -775,9 +875,31 @@ Unresolved risks:
 ### REQ-LEARN-049.0: Emit Required Study Deliverables
 
 **WHEN** a study batch is marked complete
-**THEN** it SHALL emit an evidence ledger, an architecture fit matrix, a PRD outcome traceability dossier, and a checkpoint summary
+**THEN** it SHALL emit a clone coverage ledger, an evidence ledger, an architecture fit matrix, a PRD outcome traceability dossier, and a checkpoint summary
 **AND** SHALL emit a procedure-to-kernel ledger whenever GDS algorithm claims are made
+**AND** SHALL emit an architecture option scorecard whenever the batch recommends a storage direction
 **SHALL** include at least one rejected-alternative note for every architecture recommendation that was considered against another option.
+
+### REQ-LEARN-050.0: Follow Decision-First Study Order
+
+**WHEN** a broad architecture-learning pass begins
+**THEN** the pass SHALL start from `docs_PRD03/prd-l1.md`, `docs_PRD03/Arch-options.md`, and current Knight Bus source before studying external precedents
+**AND** SHALL study Neo4j compatibility and full GDS surface before low-RAM alternatives, competitors, or substrate fashions drive architecture claims
+**SHALL** explain any deliberate deviation from the decision-first study order in the checkpoint summary.
+
+### REQ-LEARN-051.0: Use Shared Support Status Taxonomy
+
+**WHEN** a study artifact classifies a public surface item, capability row, or architecture option
+**THEN** it SHALL use the shared statuses `P0-RegisteredCompatible`, `P1-ImplementedExactLowRam`, `P2-ImplementedLater`, `NeedsArchitectureSpike`, `UnsupportedButRegistered`, or `ExplicitlyOutOfScope`
+**AND** SHALL avoid inventing one-off status words that hide implementation reality
+**SHALL** keep the same status meaning across surface inventories, fit matrices, and scorecards.
+
+### REQ-LEARN-052.0: Maintain Architecture Option Scorecard
+
+**WHEN** a study batch recommends flat CSR, flat CSR plus sidecars, cells, hybrid publication, GraphBLAS, or any successor architecture
+**THEN** it SHALL compare the active options in `docs_PRD03/Arch-options.md` or their documented successors using an architecture option scorecard
+**AND** SHALL record which PRD outcomes each option helps, what blockers remain, the evidence strength, dominant RAM risks, current status, and next falsifier
+**SHALL** reject prose-only architecture choices that do not show which viable option lost and why.
 
 ## Test Matrix
 
@@ -803,7 +925,7 @@ Unresolved risks:
 | REQ-LEARN-018.0 | TEST-NAME-018 | naming | New helper names follow four-word naming unless preserving external API compatibility. | AI-native maintainability |
 | REQ-LEARN-019.0 | TEST-DOC-019 | design review | Ladybug pass extracts Icebug-Disk, morsel parallelism, index recovery, transaction/checkpoint, and execution-engine lessons while labeling them inspiration. | embedded graph precedent |
 | REQ-LEARN-020.0 | TEST-DOC-020 | workflow review | GDS workflow pass classifies client, catalog, algorithm, notebook, and orchestration findings by priority. | user workflow compatibility |
-| REQ-LEARN-021.0 | TEST-DOC-021 | procedure inventory | APOC pass assigns each category to Implemented, UnsupportedButRegistered, AliasToNative, or ExplicitlyOutOfScope. | APOC boundary |
+| REQ-LEARN-021.0 | TEST-DOC-021 | procedure inventory | APOC pass uses shared support statuses and separately records whether support is native, alias-backed, or absent. | APOC boundary |
 | REQ-LEARN-022.0 | TEST-DOC-022 | compatibility plan | Client canary pass proposes CLI, generated-query, Rust-client, and app-style workflows. | ecosystem compatibility |
 | REQ-LEARN-023.0 | TEST-DOC-023 | benchmark design | LDBC pass maps every benchmark claim to workload, scale, validation, and command. | benchmark credibility |
 | REQ-LEARN-024.0 | TEST-DOC-024 | design review | Out-of-core pass separates lessons favoring flat streams, cells/tiles, and rejected layouts. | low-RAM OLAP |
@@ -822,7 +944,7 @@ Unresolved risks:
 | REQ-LEARN-037.0 | TEST-DOC-037 | traceability | Batch dossier maps findings to PRD L1 outcomes and names missing evidence per outcome. | PRD traceability |
 | REQ-LEARN-038.0 | TEST-DOC-038 | skeptical review | Adoption/rejection recommendations answer RAM, topology duplication, freshness, GDS shrinkage, client, and benchmark challenges. | review rigor |
 | REQ-LEARN-039.0 | TEST-DOC-039 | prompt review | Every broad handoff prompt names one lane, repo family, PRD outcome, and output table. | weak-model execution |
-| REQ-LEARN-040.0 | TEST-TOOL-040 | tool smoke | Code graph tool smoke runs index current repo only and excludes `gitrefrepo/`. | local tooling safety |
+| REQ-LEARN-040.0 | TEST-TOOL-040 | tool smoke | Code graph tool smoke runs index current repo only, excludes `gitrefrepo/`, and recorded findings are source-verified. | local tooling safety |
 | REQ-LEARN-041.0 | TEST-DOC-041 | checkpoint review | Long study artifacts include resumable checkpoint summaries. | context retention |
 | REQ-LEARN-042.0 | TEST-DOC-042 | matrix review | Capability recommendations include topology, sidecar, Build Store, catalog, state, memory, execution, support, and falsifier fields. | architecture fit |
 | REQ-LEARN-043.0 | TEST-DOC-043 | verification review | Final artifacts answer weak-model verification questions and surface unresolved unsafe answers. | self-check rigor |
@@ -831,7 +953,10 @@ Unresolved risks:
 | REQ-LEARN-046.0 | TEST-DOC-046 | memory estimation | Algorithm feasibility claims include estimator source, dimensions, concurrency, state, result, and omitted classes. | RAM contract |
 | REQ-LEARN-047.0 | TEST-DOC-047 | feasibility review | Every algorithm mode has support class and 50GB-on-8GB risk label. | GDS feasibility |
 | REQ-LEARN-048.0 | TEST-DOC-048 | oracle planning | Implementable algorithm families name oracle graph, Neo4j/GDS behavior source, flat-CSR parity check, and memory-estimate check. | test readiness |
-| REQ-LEARN-049.0 | TEST-DOC-049 | deliverable review | Completed study batches emit the required evidence, fit, traceability, and checkpoint artifacts, plus procedure-to-kernel ledgers when needed. | study completion |
+| REQ-LEARN-049.0 | TEST-DOC-049 | deliverable review | Completed study batches emit clone coverage, evidence, fit, traceability, checkpoint, and scorecard artifacts when required, plus procedure-to-kernel ledgers when needed. | study completion |
+| REQ-LEARN-050.0 | TEST-DOC-050 | process review | Broad study passes follow the decision-first order or justify deviations in the checkpoint. | study sequencing |
+| REQ-LEARN-051.0 | TEST-DOC-051 | status review | Surface inventories, architecture matrices, and option scorecards use the shared support status taxonomy consistently. | classification discipline |
+| REQ-LEARN-052.0 | TEST-DOC-052 | architecture review | Storage recommendations include an architecture option scorecard comparing viable options and naming the next falsifier. | architecture choice |
 
 ## TDD Plan
 
@@ -849,6 +974,8 @@ Unresolved risks:
    requirement IDs, and expected output tables before the agent starts.
 6. For GDS algorithm work, add empty procedure-to-kernel ledger rows before
    writing any architecture conclusion.
+7. For architecture-choice work, add an empty architecture option scorecard
+   before reading alternative-storage precedents.
 
 ### RED
 
@@ -870,6 +997,8 @@ Unresolved risks:
 8. For any completed batch, confirm the artifact set contains an evidence
    ledger, architecture fit matrix, PRD traceability dossier, and checkpoint
    summary; add a procedure-to-kernel ledger when algorithm claims were made.
+9. For architecture-choice work, confirm the scorecard still has unresolved
+   blockers before any option is declared preferred.
 
 ### GREEN
 
@@ -883,6 +1012,8 @@ Unresolved risks:
    one evidence row.
 6. Fill the architecture fit matrix before writing recommendation prose.
 7. Fill procedure-to-kernel ledger rows before deriving storage needs.
+8. Fill clone coverage and architecture option scorecard rows before naming a
+   preferred storage direction.
 
 ### REFACTOR
 
@@ -897,6 +1028,8 @@ Unresolved risks:
    memory estimate, and storage implication into separate ledger fields.
 9. Keep rejected alternatives close to the recommendation so later agents can
    see what was considered and why.
+10. Normalize support statuses to the shared taxonomy before review so weak
+    models do not invent synonyms.
 
 ### VERIFY
 
@@ -916,6 +1049,8 @@ Unresolved risks:
 9. Confirm every GDS algorithm architecture claim cites a procedure-to-kernel
    ledger row and a memory-estimate or oracle-test plan.
 10. Confirm every completed study batch emits the required artifact set.
+11. Confirm every architecture recommendation compares active options with a
+    scorecard and a named next falsifier.
 
 ## Quality Gates
 
@@ -927,6 +1062,7 @@ Unresolved risks:
 - [ ] Every study batch maps its findings to at least one PRD L1 outcome.
 - [ ] Every required local repo path exists or the artifact fails verification.
 - [ ] Every optional missing repo is marked `CandidateClone` with rationale.
+- [ ] Every study batch includes or references a clone coverage ledger.
 - [ ] No learning artifact suggests reading OLAP queries from the Projection
       Build Store.
 - [ ] No GDS support claim appears without procedure, mode, config, result, and
@@ -955,21 +1091,30 @@ Unresolved risks:
       unless it preserves an external compatibility name.
 - [ ] Every broad agent handoff prompt names one lane, one repo family, one PRD
       outcome, and one expected output table.
+- [ ] Every broad architecture-learning pass follows the decision-first study
+      order or explains the deviation.
 - [ ] Every long study pass includes a checkpoint summary before context is
       likely to drift.
 - [ ] Every architecture recommendation includes an architecture fit matrix or
       explicitly says `MissingEvidence`.
+- [ ] Every architecture recommendation includes an architecture option
+      scorecard comparing viable options and naming the next falsifier.
 - [ ] Every completed study batch emits an evidence ledger, architecture fit
-      matrix, PRD traceability dossier, and checkpoint summary.
+      matrix, PRD traceability dossier, checkpoint summary, and scorecard when
+      a storage direction is recommended.
 - [ ] Every GDS algorithm claim has a procedure-to-kernel ledger row before it
       can affect architecture decisions.
 - [ ] Any use of `codebase-memory-mcp` or `CodeGraphContext` is scoped to the
       current Knight Bus repo unless a human explicitly requests reference-repo
       indexing.
+- [ ] Any graph-tool finding is recorded with the command used and verified
+      against source before it influences the ledger.
 - [ ] Weak-model verification questions are answered before finalizing a study
       artifact.
 - [ ] Every implementable GDS algorithm family names oracle, parity, and memory
       estimate tests before implementation begins.
+- [ ] Surface inventories, architecture matrices, and scorecards use the shared
+      support status taxonomy consistently.
 - [ ] `git diff --check` passes before committing documentation.
 
 ## Open Questions

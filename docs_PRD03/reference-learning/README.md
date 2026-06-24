@@ -25,9 +25,19 @@ This folder contains execution artifacts produced from
 | --- | --- | --- |
 | `requirements coverage tracker` | Shows which `REQ-LEARN-*` contracts are artifact-covered, partial, spec-native, or still queued. | `Requirements-Coverage-Tracker.md` |
 | `public surface inventory tsv` | Machine-readable baseline inventory of visible `gds.*` procedures and functions from the local GDS clone. | `GDS-Public-Surface-Inventory.tsv` |
+| `gds procedure-to-kernel ledger tsv` | Machine-readable representative-family trace from public GDS procedure entrypoints to config, estimate, implementation kernel, runtime state, and storage implication. | `GDS-Procedure-To-Kernel-Ledger.tsv` |
+| `gds family support-tier matrix tsv` | Machine-readable long-tail support-tier classification for GDS family groups, including access pattern, state shape, non-topology dependency, 50GB-on-8GB risk, and target support class. | `GDS-Family-Support-Tier-Matrix.tsv` |
+| `gds parity taxonomy tsv` | Machine-readable classification of parity proof styles needed by different algorithm families. | `GDS-Parity-Taxonomy.tsv` |
+| `rust fixture and oracle scaffolding tsv` | Machine-readable classification of Rust and adjacent graph repos that should inform fixtures and oracles without distorting storage architecture. | `Rust-Fixture-And-Oracle-Scaffolding.tsv` |
+| `gds family oracle parity matrix tsv` | Machine-readable family-by-family oracle, flat-CSR parity, estimate-check, and readiness matrix for implementation planning. | `GDS-Family-Oracle-Parity-Matrix.tsv` |
+| `architecture fit matrix tsv` | Machine-readable consolidation of explicit architecture fit rows emitted across the current batch set, now including representative and hard-family rows through Batch 08. | `Architecture-Fit-Matrix.tsv` |
+| `architecture option scorecard tsv` | Machine-readable consolidation of the architecture, Build Store, publication, and compact-competitor option scorecards emitted across the study batches, now refreshed with later support-tier evidence. | `Architecture-Option-Scorecard.tsv` |
+| `prd outcome traceability dossier tsv` | Machine-readable consolidation of batch-level PRD outcome dossiers: supporting claims, confidence, and next evidence spikes, now extended through the later algorithm, benchmark, support-tier, and oracle batches. | `PRD-Outcome-Traceability-Dossier.tsv` |
 | `reference shelf graph evidence ledger` | Records the full spec-resolved shelf-wide graph-tool truthcheck, low-yield repo exceptions, canonical shelf-path resolution, and the semantic-ready versus low-yield split. | `Reference-Shelf-Graph-Evidence-Ledger.md` |
 | `reference shelf graph tool truthcheck tsv` | Machine-readable per-repo graph-tool validation rows with follow-up-probe status, example symbols, and rerun flags. | `Reference-Shelf-Graph-Tool-Truthcheck.tsv` |
 | `reference shelf subpath coverage audit` | Shows how spec-named nested folders and subpaths are covered by repo-root graph-tool runs plus direct source reads. | `Reference-Shelf-Subpath-Coverage-Audit.md` |
+| `reference shelf requirement subpath coverage tsv` | Machine-readable companion mapping each path-bearing `REQ-LEARN-*` clause to repo-root graph status, concrete subpath resolution, and named exceptions. | `Reference-Shelf-Requirement-Subpath-Coverage.tsv` |
+| `requirements coverage tracker tsv` | Machine-readable companion for the full `REQ-LEARN-*` coverage matrix: status, owning artifacts or guardrails, next action, and primary repo family. | `Requirements-Coverage-Tracker.tsv` |
 
 ## Supplemental Artifacts
 
@@ -80,6 +90,11 @@ This folder contains execution artifacts produced from
   `functions_find.txt`.
 - The machine-readable companion for that truthcheck is:
   `Reference-Shelf-Graph-Tool-Truthcheck.tsv`.
+- The machine-readable companion for folder and subpath coverage is:
+  `Reference-Shelf-Requirement-Subpath-Coverage.tsv`.
+- The folder/subpath companion currently covers all `27` path-bearing
+  `REQ-LEARN-*` clauses that explicitly name repo roots, nested folders,
+  wildcard repo families, or concrete subpaths.
 - The broad Neo4j compatibility boundary now has a dedicated batch artifact:
   `Batch-05-Neo4j-Compatibility-Boundary.md`.
 - The sidecar, planner-input, and compact-competitor pass now has a dedicated
@@ -95,9 +110,36 @@ This folder contains execution artifacts produced from
   `Batch-10-GDS-Projection-Internals-And-Support-Tiers.md`.
 - The oracle-and-parity discipline now has a dedicated batch artifact:
   `Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md`.
+- The requirement tracker now includes a direct spec-alignment audit:
+  `53` spec requirements, `53` tracker rows, `0` missing IDs, `0` extra IDs,
+  `0` duplicate IDs, and `0` missing non-guardrail artifact references.
+- The requirement tracker now also has a machine-readable companion:
+  `Requirements-Coverage-Tracker.tsv`.
+- The study shelf now also has a dedicated representative-family
+  procedure-to-kernel ledger:
+  `GDS-Procedure-To-Kernel-Ledger.tsv`.
+- The study shelf now also has dedicated machine-readable companions for the
+  Batch 10 and Batch 11 implementation-readiness layer:
+  `GDS-Family-Support-Tier-Matrix.tsv`,
+  `GDS-Parity-Taxonomy.tsv`,
+  `Rust-Fixture-And-Oracle-Scaffolding.tsv`, and
+  `GDS-Family-Oracle-Parity-Matrix.tsv`.
+- The study shelf now also has a shelf-level machine-readable architecture fit
+  matrix spanning the baseline, compatibility, sidecar, representative-family,
+  and hard-family passes:
+  `Architecture-Fit-Matrix.tsv`.
+- The study shelf now also has shelf-level machine-readable companions for
+  architecture-choice and PRD traceability work, with the PRD dossier now
+  extended through Batch 11 and the architecture scorecard refreshed through
+  Batch 10:
+  `Architecture-Option-Scorecard.tsv` and
+  `PRD-Outcome-Traceability-Dossier.tsv`.
 - The current learning-spec scope no longer has architecture-critical partial
   rows. Remaining work from here is implementation support or scope expansion,
   not missing study coverage.
+- For the current learning-spec scope, satisfying the graph-evidence contract
+  is a documentation and traceability outcome, not a reason to touch Rust
+  production code again.
 
 ## Usage Rule
 

@@ -1,9 +1,12 @@
 use std::collections::BTreeSet;
 
+use serde_json::json;
+
 use knight_bus::{
     GraphProjectionCatalog, GraphProjectionMetadata, GraphProjectionSpec, KnightBusError,
-    MemoryEstimate, ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed,
-    PropertySelector, RelationshipOrientation,
+    MemoryEstimate, ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow,
+    ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector,
+    RelationshipOrientation,
 };
 
 fn sample_projection_spec_now(orientation: RelationshipOrientation) -> GraphProjectionSpec {
@@ -27,6 +30,37 @@ fn sample_projection_metadata_now() -> GraphProjectionMetadata {
         34,
         MemoryEstimate::projection(8_192, 1_024, 256, 128, 64),
         1_717_000_000_000,
+    )
+    .with_property_plane(
+        vec![
+            ProjectedNodePropertyRow::new(
+                0,
+                vec!["City".to_owned()],
+                std::collections::BTreeMap::from([
+                    ("pagerank".to_owned(), json!(0.25)),
+                    ("community".to_owned(), json!(7)),
+                ]),
+            ),
+            ProjectedNodePropertyRow::new(
+                1,
+                vec!["Airport".to_owned()],
+                std::collections::BTreeMap::from([("pagerank".to_owned(), json!(0.75))]),
+            ),
+        ],
+        vec![
+            ProjectedRelationshipPropertyRow::new(
+                0,
+                1,
+                "ROUTE",
+                std::collections::BTreeMap::from([("weight".to_owned(), json!(1.5))]),
+            ),
+            ProjectedRelationshipPropertyRow::new(
+                1,
+                0,
+                "ROUTE",
+                std::collections::BTreeMap::from([("weight".to_owned(), json!(2.5))]),
+            ),
+        ],
     )
 }
 
@@ -131,12 +165,34 @@ fn property_selectors_become_sidecar_needs_now() {
         .collect::<BTreeSet<_>>();
 
     let expected = BTreeSet::from([
+        ProjectionSidecarNeed::new(ProjectionSidecarKind::NodeLabel, "Airport"),
+        ProjectionSidecarNeed::new(ProjectionSidecarKind::NodeLabel, "City"),
         ProjectionSidecarNeed::new(ProjectionSidecarKind::NodeProperty, "community"),
         ProjectionSidecarNeed::new(ProjectionSidecarKind::NodeProperty, "pagerank"),
+        ProjectionSidecarNeed::new(ProjectionSidecarKind::RelationshipType, "ROUTE"),
         ProjectionSidecarNeed::new(ProjectionSidecarKind::RelationshipProperty, "weight"),
     ]);
 
     assert_eq!(needs, expected);
+}
+
+#[test]
+fn all_selectors_do_not_create_named_label_or_type_sidecars_now() {
+    let spec = GraphProjectionSpec::new(
+        "all-graph".to_owned(),
+        ProjectionSelector::all(),
+        ProjectionSelector::all(),
+        RelationshipOrientation::Natural,
+        PropertySelector::all(),
+        PropertySelector::none(),
+    )
+    .expect("projection spec");
+
+    let needs = spec.required_sidecar_needs();
+    assert!(
+        needs.is_empty(),
+        "all-selectors should not invent named sidecar requirements"
+    );
 }
 
 #[test]
@@ -154,4 +210,69 @@ fn projection_memory_estimate_avoids_duplicate_topology_now() {
     assert_eq!(estimate.delta_overlay_bytes, 0);
     assert_eq!(estimate.scratch_bytes, 0);
     assert_eq!(estimate.required_bytes, 9_664);
+}
+
+#[test]
+fn projection_catalog_streams_projected_property_plane_now() {
+    let mut catalog = GraphProjectionCatalog::new();
+    catalog
+        .project(
+            sample_projection_spec_now(RelationshipOrientation::Natural),
+            sample_projection_metadata_now(),
+        )
+        .expect("projection should be created");
+
+    let node_rows = catalog
+        .stream_node_properties(
+            "roads",
+            &["pagerank".to_owned(), "community".to_owned()],
+            &ProjectionSelector::All,
+            true,
+        )
+        .expect("node property stream");
+    assert_eq!(node_rows.len(), 3);
+    assert_eq!(node_rows[0].node_id, 0);
+    assert_eq!(node_rows[0].node_property, "community");
+    assert_eq!(node_rows[0].node_labels, vec!["City".to_owned()]);
+
+    let relationship_rows = catalog
+        .stream_relationship_properties(
+            "roads",
+            &["weight".to_owned()],
+            &ProjectionSelector::named(["ROUTE"]).expect("type selector"),
+        )
+        .expect("relationship property stream");
+    assert_eq!(relationship_rows.len(), 2);
+    assert_eq!(relationship_rows[0].source_node_id, 0);
+    assert_eq!(relationship_rows[0].target_node_id, 1);
+    assert_eq!(relationship_rows[0].relationship_type, "ROUTE");
+}
+
+#[test]
+fn projection_catalog_rejects_unknown_projected_property_now() {
+    let mut catalog = GraphProjectionCatalog::new();
+    catalog
+        .project(
+            sample_projection_spec_now(RelationshipOrientation::Natural),
+            sample_projection_metadata_now(),
+        )
+        .expect("projection should be created");
+
+    match catalog.stream_node_properties(
+        "roads",
+        &["missing".to_owned()],
+        &ProjectionSelector::All,
+        false,
+    ) {
+        Err(KnightBusError::UnknownProjectedProperty {
+            graph_name,
+            property_kind,
+            property_name,
+        }) => {
+            assert_eq!(graph_name, "roads");
+            assert_eq!(property_kind, "node property");
+            assert_eq!(property_name, "missing");
+        }
+        other => panic!("expected unknown projected property error, got {other:?}"),
+    }
 }

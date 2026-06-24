@@ -74,6 +74,12 @@ pub enum KnightBusError {
     DuplicateGraphProjection { graph_name: String },
     #[error("unknown graph projection `{graph_name}`")]
     UnknownGraphProjection { graph_name: String },
+    #[error("graph projection `{graph_name}` does not expose requested {property_kind} `{property_name}`")]
+    UnknownProjectedProperty {
+        graph_name: String,
+        property_kind: &'static str,
+        property_name: String,
+    },
     #[error("invalid relationship orientation `{value}`; expected NATURAL, REVERSE, or UNDIRECTED")]
     InvalidRelationshipOrientation { value: String },
     #[error("invalid {selector_kind} selector: {detail}")]
@@ -83,6 +89,8 @@ pub enum KnightBusError {
     },
     #[error("unknown GDS {entry_kind} `{name}`")]
     UnknownGdsEntry { entry_kind: String, name: String },
+    #[error("invalid GDS invocation for `{name}`: {detail}")]
+    InvalidGdsInvocation { name: String, detail: String },
     #[error("registered GDS {entry_kind} `{name}` is not yet supported ({support_status})")]
     UnsupportedRegisteredGdsEntry {
         entry_kind: String,

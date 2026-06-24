@@ -93,6 +93,29 @@ Truthcheck follow-up used after the wrapper stage:
 - The machine-readable result lives at
   [Reference-Shelf-Graph-Tool-Truthcheck.tsv](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Graph-Tool-Truthcheck.tsv).
 
+## Same-Day Revalidation
+
+This later 2026-06-24 pass reused the same two evidence-reader skills as a
+control check instead of treating the earlier ledger as permanently sufficient.
+
+- `codebase-memory-mcp` reran successfully on the current Knight Bus workspace
+  as `knight-bus-graph-walker-20260624-171625`, with
+  `list_projects.json` reporting `2231` nodes and `4815` edges for the indexed
+  project.
+- CodeGraphContext reran successfully on the current Knight Bus workspace as
+  `knight-bus-graph-walker-20260624-171729`, with `stats.txt` reporting
+  `92` files, `439` functions, `3` classes, `6` traits, `57` structs,
+  `23` enums, and `72` modules.
+- `codebase-memory-mcp` reran successfully on `gitrefrepo/neo4j-gds-src` as
+  `neo4j-gds-src-20260624-171837`, with `list_projects.json` reporting
+  `64763` nodes and `280145` edges for the indexed project.
+- A fresh `clickhouse-src` `codebase-memory-mcp` attempt still failed to finish
+  inside a `180s` leash in this later pass, so `NeedsRerun` remains the honest
+  status rather than a stale caveat.
+
+These reruns do not replace the full `71`-target truthcheck. They confirm that
+the shelf-wide operating story still matches the live tools.
+
 ## Status Summary
 
 | status | count | meaning |

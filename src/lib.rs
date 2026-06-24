@@ -20,12 +20,17 @@ pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpus
 pub use error::KnightBusError;
 pub use gds::{
     GDS_PUBLIC_SURFACE_INVENTORY_PATH, GdsAnnotationMode, GdsEntryKind, GdsProcedureFamily,
-    GdsProcedureMode, GdsProcedureSpec, GdsRegistryKey, GdsSupportStatus, GraphProjectionCatalog,
-    GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec, MemoryEstimate,
-    ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector,
-    RelationshipOrientation, find_gds_entry_spec, gds_inventory_row_count, gds_procedure_specs,
-    require_registered_gds_entry, require_registered_gds_procedure, require_supported_gds_entry,
-    require_supported_gds_procedure,
+    GdsExecutionContext, GdsExecutionRequest, GdsExecutionResult, GdsExecutionRow,
+    GdsExecutionTable, GdsExecutionValue, GdsProcedureMode, GdsProcedureSpec, GdsRegistryKey,
+    GdsSupportStatus, GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata,
+    GraphProjectionSpec, MemoryEstimate, ProjectedNodePropertyRow,
+    ProjectedRelationshipPropertyRow, ProjectionSelector, ProjectionSidecarKind,
+    ProjectionSidecarNeed, PropertySelector, RelationshipOrientation,
+    effective_gds_support_status,
+    execute_registered_gds_entry, execute_registered_gds_procedure,
+    execute_registered_gds_user_function, find_gds_entry_spec, gds_inventory_row_count,
+    gds_procedure_specs, require_registered_gds_entry, require_registered_gds_procedure,
+    require_supported_gds_entry, require_supported_gds_procedure,
 };
 pub use graph::{
     collect_neighbors_within_hops, flatten_adjacency_lists_now, normalize_truth_graph_data,

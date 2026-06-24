@@ -1,0 +1,10 @@
+source_batch	parity_class	meaning	representative_families
+Batch-11	ExactValueParity	exact scalar or vector result equality on a tiny graph	ScaleProperties; KCore; simple FastRP property-shape parity
+Batch-11	ExactPathParity	exact ordered node path and cumulative cost	Dijkstra; BellmanFord without ambiguous ties
+Batch-11	ExactSetParity	exact unordered result set equality	NodeSimilarity; some KNN tiny fixtures
+Batch-11	PartitionParity	same partitioning or community grouping, even if raw ids differ	WCC; SCC; Louvain; Leiden
+Batch-11	NumericToleranceParity	floating-point equality within a named tolerance	PageRank; modularity checks; some embedding outputs
+Batch-11	SeededDeterministicParity	exact equality given fixed seed and bounded concurrency	RandomWalk; Node2Vec single-threaded
+Batch-11	InvariantParity	must satisfy structural or probability invariants	petgraph PageRank probabilities; shortest-path triangle inequality
+Batch-11	RejectionParity	same explicit failure or warning behavior	negative-weight Node2Vec; invalid projection-orientation families
+Batch-11	EstimateParity	estimate path names the same state classes and scales with the same dimensions	all *.estimate modes, especially Louvain, PageRank, FastRP, and KNN

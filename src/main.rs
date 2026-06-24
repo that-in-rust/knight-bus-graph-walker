@@ -1,6 +1,6 @@
 use std::{path::PathBuf, process::ExitCode};
 
-use anyhow::{Context, Result};
+use anyhow::{Context, Result, bail};
 use clap::{Parser, Subcommand, ValueEnum};
 use knight_bus::{
     BENCH_REPORT_FILE_NAME, BuildMemoryBudget, HopCount, SnapshotBuildOptions,
@@ -31,6 +31,12 @@ enum Commands {
         memory_budget_mb: Option<u64>,
         #[arg(long)]
         scratch_dir: Option<PathBuf>,
+        #[arg(long)]
+        snapshot_generation: Option<u64>,
+        #[arg(long)]
+        source_tx_start: Option<u64>,
+        #[arg(long)]
+        source_tx_end: Option<u64>,
     },
     Verify {
         #[arg(long)]
@@ -101,8 +107,17 @@ fn try_main() -> Result<()> {
             output,
             memory_budget_mb,
             scratch_dir,
+            snapshot_generation,
+            source_tx_start,
+            source_tx_end,
         } => {
-            let build_options = build_snapshot_options_now(memory_budget_mb, scratch_dir)?;
+            let build_options = build_snapshot_options_now(
+                memory_budget_mb,
+                scratch_dir,
+                snapshot_generation,
+                source_tx_start,
+                source_tx_end,
+            )?;
             let summary = build_snapshot_from_paths_with_options(
                 &nodes_csv,
                 &edges_csv,
@@ -270,13 +285,22 @@ fn parse_hop_count(value: &str) -> Result<HopCount, String> {
 fn build_snapshot_options_now(
     memory_budget_mb: Option<u64>,
     scratch_dir: Option<PathBuf>,
+    snapshot_generation: Option<u64>,
+    source_tx_start: Option<u64>,
+    source_tx_end: Option<u64>,
 ) -> Result<SnapshotBuildOptions> {
+    if let (Some(start), Some(end)) = (source_tx_start, source_tx_end) {
+        if end < start {
+            bail!("source_tx_end must be greater than or equal to source_tx_start");
+        }
+    }
+
     Ok(SnapshotBuildOptions {
         memory_budget: parse_memory_budget_now(memory_budget_mb)?,
         scratch_dir,
-        snapshot_generation: None,
-        source_tx_start: None,
-        source_tx_end: None,
+        snapshot_generation,
+        source_tx_start,
+        source_tx_end,
     })
 }
 

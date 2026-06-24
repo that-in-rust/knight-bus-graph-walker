@@ -41,6 +41,8 @@ It does not replace the repo-wide graph ledger. It makes the spec's
   [`docs_PRD03/reference-learning/Reference-Shelf-Graph-Evidence-Ledger.md`](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Graph-Evidence-Ledger.md)
 - Machine-readable truthcheck:
   [`docs_PRD03/reference-learning/Reference-Shelf-Graph-Tool-Truthcheck.tsv`](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Graph-Tool-Truthcheck.tsv)
+- Machine-readable requirement-to-subpath companion:
+  [`docs_PRD03/reference-learning/Reference-Shelf-Requirement-Subpath-Coverage.tsv`](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Requirement-Subpath-Coverage.tsv)
 - Skills used:
   - `/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/SKILL.md`
   - `/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/SKILL.md`
@@ -60,6 +62,24 @@ that dominate the spec.
 | `gitrefrepo/neo4j-gds-src` | `codebase-memory-mcp` | `neo4j-gds-src-20260624-162809` | complete; wrapper verified indexed query outputs do not mention `gitrefrepo/` |
 | `gitrefrepo/neo4j-gds-src` | CodeGraphContext | `neo4j-gds-src-20260624-162809` | partial only; `index.txt` exists but no semantic `stats.txt` yet, again matching the shelf ledger |
 
+## Later Same-Day Revalidation
+
+A later 2026-06-24 control pass rechecked the live tooling state without
+changing the audit's overall conclusion:
+
+- current Knight Bus repo `codebase-memory-mcp` reran as
+  `knight-bus-graph-walker-20260624-171625`, and the fresh cache still reports
+  a non-empty project graph.
+- current Knight Bus repo CodeGraphContext reran as
+  `knight-bus-graph-walker-20260624-171729`, and the fresh `stats.txt`
+  reports `92` files and `439` functions.
+- `gitrefrepo/neo4j-gds-src` `codebase-memory-mcp` reran as
+  `neo4j-gds-src-20260624-171837`, and the fresh cache still reports a large
+  non-empty graph.
+- `clickhouse-src` remains the lone explicit shelf outlier: the later
+  `codebase-memory-mcp` attempt still exceeded a `180s` leash, so the repo's
+  graph-tool story is still `NeedsRerun`, not silently upgraded.
+
 ## Coverage Rule
 
 For this learning program, folder coverage means:
@@ -72,6 +92,19 @@ For this learning program, folder coverage means:
 
 That is the contract future agents should use. They should not create a second,
 separate graph database per subfolder when the repo-root run already exists.
+
+## Machine-Readable Companion
+
+This audit now has a TSV companion at
+[Reference-Shelf-Requirement-Subpath-Coverage.tsv](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Requirement-Subpath-Coverage.tsv).
+
+- It contains `27` requirement rows whose scope explicitly names repo roots,
+  folders, subpaths, or repo wildcards.
+- Each row records the repo-root graph-tool readiness basis inherited from the
+  shelf truthcheck plus the concrete subpath resolution result.
+- Future agents should prefer the TSV when they need to check whether a
+  `REQ-LEARN-*` clause already has folder coverage, and then use this Markdown
+  audit for narrative exceptions and caveats.
 
 ## Requirement Coverage Matrix
 

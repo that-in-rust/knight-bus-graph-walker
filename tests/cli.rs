@@ -82,6 +82,64 @@ fn verify_cli_reports_success_now() {
 }
 
 #[test]
+fn build_cli_persists_snapshot_generation_metadata_now() {
+    let (_temp_dir, snapshot_dir) = support::temp_snapshot_dir();
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "build",
+            "--nodes-csv",
+            support::valid_nodes_path().to_str().expect("utf8 path"),
+            "--edges-csv",
+            support::valid_edges_path().to_str().expect("utf8 path"),
+            "--output",
+            snapshot_dir.to_str().expect("utf8 path"),
+            "--snapshot-generation",
+            "42",
+            "--source-tx-start",
+            "100",
+            "--source-tx-end",
+            "120",
+        ])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("snapshot:"));
+
+    let manifest_path = snapshot_dir.join("manifest.json");
+    let manifest_json = fs::read_to_string(&manifest_path).expect("manifest exists");
+    assert!(manifest_json.contains("\"snapshot_generation\": 42"));
+    assert!(manifest_json.contains("\"source_tx_start\": 100"));
+    assert!(manifest_json.contains("\"source_tx_end\": 120"));
+}
+
+#[test]
+fn build_cli_rejects_inverted_source_tx_range_now() {
+    let (_temp_dir, snapshot_dir) = support::temp_snapshot_dir();
+
+    Command::cargo_bin("knight-bus")
+        .expect("binary exists")
+        .args([
+            "build",
+            "--nodes-csv",
+            support::valid_nodes_path().to_str().expect("utf8 path"),
+            "--edges-csv",
+            support::valid_edges_path().to_str().expect("utf8 path"),
+            "--output",
+            snapshot_dir.to_str().expect("utf8 path"),
+            "--source-tx-start",
+            "200",
+            "--source-tx-end",
+            "120",
+        ])
+        .assert()
+        .failure()
+        .stderr(predicate::str::contains(
+            "source_tx_end must be greater than or equal to source_tx_start",
+        ));
+}
+
+#[test]
 fn query_rejects_invalid_hops_now() {
     let (_temp_dir, snapshot_dir) = support::temp_snapshot_dir();
 

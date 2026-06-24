@@ -1,4 +1,5 @@
 pub mod catalog;
+pub mod execution;
 
 use std::{collections::HashSet, sync::OnceLock};
 
@@ -9,7 +10,13 @@ use crate::error::KnightBusError;
 pub use self::catalog::{
     GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec,
     MemoryEstimate, ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed,
-    PropertySelector, RelationshipOrientation,
+    ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow, PropertySelector,
+    RelationshipOrientation,
+};
+pub use self::execution::{
+    GdsExecutionContext, GdsExecutionRequest, GdsExecutionResult, GdsExecutionRow,
+    GdsExecutionTable, GdsExecutionValue, execute_registered_gds_entry,
+    execute_registered_gds_procedure, execute_registered_gds_user_function,
 };
 
 pub const GDS_PUBLIC_SURFACE_INVENTORY_PATH: &str =
@@ -222,15 +229,21 @@ pub fn require_supported_gds_entry(
     name: &str,
 ) -> Result<&'static GdsProcedureSpec, KnightBusError> {
     let spec = require_registered_gds_entry(entry_kind, name)?;
-    if spec.support_status.is_supported_now() {
+    let support_status = effective_gds_support_status(spec);
+    if support_status.is_supported_now() {
         Ok(spec)
     } else {
         Err(KnightBusError::UnsupportedRegisteredGdsEntry {
             entry_kind: entry_kind.label().to_owned(),
             name: name.to_owned(),
-            support_status: spec.support_status.label().to_owned(),
+            support_status: support_status.label().to_owned(),
         })
     }
+}
+
+pub fn effective_gds_support_status(spec: &GdsProcedureSpec) -> GdsSupportStatus {
+    execution::built_in_gds_support_status_now(spec.entry_kind, &spec.name)
+        .unwrap_or(spec.support_status)
 }
 
 pub fn require_registered_gds_procedure(

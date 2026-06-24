@@ -40,6 +40,32 @@ still required before the learning-spec goal can honestly be called complete.
 | `PlannedNextBatch` | 0 | No requirement is currently sitting in this bucket; future uncovered rows would land here with a concrete next batch. |
 | `SpecNativeGuardrail` | 2 | Requirement is currently satisfied in the spec/process itself rather than a study batch. |
 
+## Verification Snapshot
+
+The current tracker has been checked directly against
+`docs_PRD03/V003-Reference-Folder-Learning-Spec.md` and the live
+`docs_PRD03/reference-learning/` folder.
+
+| verification check | current result | meaning |
+| --- | --- | --- |
+| Spec requirement count | `53` | The spec currently defines `53` explicit `REQ-LEARN-*` contracts. |
+| Tracker coverage rows | `53` | The tracker currently records one row per explicit requirement. |
+| Missing requirement IDs | `0` | No spec requirement is currently absent from the tracker. |
+| Extra requirement IDs | `0` | The tracker does not currently invent rows not present in the spec. |
+| Duplicate requirement IDs | `0` | No requirement is currently recorded more than once. |
+| Missing non-guardrail artifact references | `0` | Every file-cited `ArtifactCovered` row currently points at an existing local artifact. |
+| Current status mix | `51 ArtifactCovered`, `0 ArtifactPartial`, `0 PlannedNextBatch`, `2 SpecNativeGuardrail` | The current scope is implemented as a study program, with no unresolved architecture-critical partial rows. |
+
+This snapshot is deliberately narrow. It proves the study-program bookkeeping is
+currently aligned. It does not, by itself, prove that every cited artifact drew
+the right conclusion from its sources; that stronger claim still lives in the
+batch artifacts, evidence ledgers, and skeptical-review sections themselves.
+
+A machine-readable companion now exists at
+`docs_PRD03/reference-learning/Requirements-Coverage-Tracker.tsv` so future
+agents do not have to scrape this Markdown table to answer basic coverage or
+handoff questions.
+
 ## Requirement Coverage Matrix
 
 | req_id | title | current_status | current_artifact_or_guardrail | next_batch_or_action | primary_repo_family |
@@ -69,7 +95,7 @@ still required before the learning-spec goal can honestly be called complete.
 | `REQ-LEARN-023.0` | Study LDBC Benchmark Contracts | `ArtifactCovered` | Batch-09-Benchmarks-And-Observability.md | keep workload naming, validation, and repeatability discipline explicit in later benchmark claims | `ldbc_*` clones when added, `tracing-src`, `jemalloc-src`, current Knight Bus benchmark docs |
 | `REQ-LEARN-024.0` | Study Low-RAM Out-Of-Core Graph Systems | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md | revisit only if a later architecture spike needs deeper shard/window internals | `neo4j-gds-src`, low-RAM graph priors, and GraphBLAS/LAGraph repos when available |
 | `REQ-LEARN-025.0` | Study GraphBLAS Alternative Substrate | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md | revisit only if similarity or other hard families force a stronger GraphBLAS case | `neo4j-gds-src`, low-RAM graph priors, and GraphBLAS/LAGraph repos when available |
-| `REQ-LEARN-026.0` | Study Rust Graph Fixture Scaffolding | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md | keep these repos classified as scaffolding/oracle shelves rather than storage architecture | `petgraph-src`, `rustworkx-src`, `sprs-src`, `sparsetools-src`, `networkit-src`, `igraph-src` |
+| `REQ-LEARN-026.0` | Study Rust Graph Fixture Scaffolding | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md; Rust-Fixture-And-Oracle-Scaffolding.tsv | keep these repos classified as scaffolding/oracle shelves rather than storage architecture | `petgraph-src`, `rustworkx-src`, `sprs-src`, `sparsetools-src`, `networkit-src`, `igraph-src` |
 | `REQ-LEARN-027.0` | Study RAM Observability Precedents | `ArtifactCovered` | Batch-09-Benchmarks-And-Observability.md | keep measured-versus-estimated memory fields and source naming intact in later implementation work | `ldbc_*` clones when added, `tracing-src`, `jemalloc-src`, current Knight Bus benchmark docs |
 | `REQ-LEARN-028.0` | Study Rejected Live-Incremental Architectures | `ArtifactCovered` | Batch-03-Projection-Build-Store-Precedents.md | keep live incremental serving explicitly rejected unless PRD changes | already-emitted artifacts |
 | `REQ-LEARN-029.0` | Study Graph-Vector Market Watch | `ArtifactCovered` | Batch-09-Benchmarks-And-Observability.md | keep graph-vector/full-text findings bounded to later tiers unless PRD03 expands P0 | `ldbc_*` clones when added, `tracing-src`, `jemalloc-src`, current Knight Bus benchmark docs |
@@ -77,26 +103,26 @@ still required before the learning-spec goal can honestly be called complete.
 | `REQ-LEARN-031.0` | Study Snapshot Publication Catalog | `ArtifactCovered` | Batch-04-Publication-And-Generation-Catalog.md | turn invariants into a concrete generation catalog schema | already-emitted artifacts |
 | `REQ-LEARN-032.0` | Study Current Knight Bus CSR Seed | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md | use flat CSR as oracle and first primitive | already-emitted artifacts |
 | `REQ-LEARN-033.0` | Produce Agent-Ready Study Prompts | `ArtifactCovered` | Batch-02-GDS-Public-Surface-Inventory.md; V003-Reference-Folder-Learning-Spec.md | keep prompts repo-family specific | already-emitted artifacts |
-| `REQ-LEARN-034.0` | Produce Architecture Fit Matrix | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | extend fit matrices across later families | already-emitted artifacts |
+| `REQ-LEARN-034.0` | Produce Architecture Fit Matrix | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Batch-05-Neo4j-Compatibility-Boundary.md; Batch-06-Sidecars-Planner-And-Compact-Competitors.md; Architecture-Fit-Matrix.tsv | extend the consolidated matrix across later families and batches as new evidence lands | already-emitted artifacts |
 | `REQ-LEARN-035.0` | Separate Source Inference And Speculation | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | preserve fact/inference/speculation split | already-emitted artifacts |
-| `REQ-LEARN-036.0` | Maintain Local Clone Coverage Ledger | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Reference-Shelf-Graph-Evidence-Ledger.md | keep clone ledger current as new repos are used | already-emitted artifacts |
-| `REQ-LEARN-037.0` | Produce PRD Outcome Traceability Dossier | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | keep PRD outcome dossiers in all batches | already-emitted artifacts |
+| `REQ-LEARN-036.0` | Maintain Local Clone Coverage Ledger | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Reference-Shelf-Graph-Evidence-Ledger.md; Reference-Shelf-Subpath-Coverage-Audit.md; Reference-Shelf-Requirement-Subpath-Coverage.tsv | keep clone ledger current as new repos are used | already-emitted artifacts |
+| `REQ-LEARN-037.0` | Produce PRD Outcome Traceability Dossier | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-09-Benchmarks-And-Observability.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md; Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md; PRD-Outcome-Traceability-Dossier.tsv | keep PRD outcome dossiers current as later batches add stronger evidence or new PRD outcomes | already-emitted artifacts |
 | `REQ-LEARN-038.0` | Run Skeptical Architecture Review | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | keep skeptical review table mandatory | already-emitted artifacts |
 | `REQ-LEARN-039.0` | Support Weaker Agent Execution | `SpecNativeGuardrail` | V003-Reference-Folder-Learning-Spec.md | use weak-model prompts and small lanes in every future pass | current spec and future helper-generation passes |
-| `REQ-LEARN-040.0` | Use Local Graph Tools Safely | `ArtifactCovered` | Reference-Shelf-Graph-Evidence-Ledger.md; Batch-01-Current-Seed-And-GDS-Baseline.md | keep dual-tool-ready versus CBM-only timeout-heavy repos explicit in later passes | already-emitted artifacts |
-| `REQ-LEARN-053.0` | Canonicalize Reference Shelf Paths | `ArtifactCovered` | Reference-Shelf-Graph-Evidence-Ledger.md | keep resolving legacy `ref-repo-folder/` mentions to `gitrefrepo/` while the old shelf is empty | already-emitted artifacts |
+| `REQ-LEARN-040.0` | Use Local Graph Tools Safely | `ArtifactCovered` | Reference-Shelf-Graph-Evidence-Ledger.md; Reference-Shelf-Subpath-Coverage-Audit.md; Reference-Shelf-Requirement-Subpath-Coverage.tsv; Batch-01-Current-Seed-And-GDS-Baseline.md | keep dual-tool-ready versus CBM-only timeout-heavy repos explicit in later passes | already-emitted artifacts |
+| `REQ-LEARN-053.0` | Canonicalize Reference Shelf Paths | `ArtifactCovered` | Reference-Shelf-Graph-Evidence-Ledger.md; Reference-Shelf-Subpath-Coverage-Audit.md; Reference-Shelf-Requirement-Subpath-Coverage.tsv | keep resolving legacy `ref-repo-folder/` mentions to `gitrefrepo/` while the old shelf is empty | already-emitted artifacts |
 | `REQ-LEARN-041.0` | Produce Checkpoint Summaries | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | continue checkpoint summaries | already-emitted artifacts |
-| `REQ-LEARN-042.0` | Enforce Architecture Fit Matrices | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md | apply fit matrices to later families and build-store work | already-emitted artifacts |
+| `REQ-LEARN-042.0` | Enforce Architecture Fit Matrices | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Batch-05-Neo4j-Compatibility-Boundary.md; Batch-06-Sidecars-Planner-And-Compact-Competitors.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Architecture-Fit-Matrix.tsv | use the consolidated matrix as the shelf-level check while continuing to add later-family rows | already-emitted artifacts |
 | `REQ-LEARN-043.0` | Run Weak-Model Verification | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md | keep weak-model verification checklist active | already-emitted artifacts |
-| `REQ-LEARN-044.0` | Trace GDS Procedures To Kernels | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md | a later machine-readable procedure-to-kernel ledger would refine rather than create this coverage | `neo4j-gds-src`, `neo4j-gds-client-src`, `gds-agent-src` |
+| `REQ-LEARN-044.0` | Trace GDS Procedures To Kernels | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md; GDS-Procedure-To-Kernel-Ledger.tsv | extend the ledger from representative families toward broader row coverage as new implementation spikes demand it | `neo4j-gds-src`, `neo4j-gds-client-src`, `gds-agent-src` |
 | `REQ-LEARN-045.0` | Derive Storage Needs From Kernel Behavior | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md | hold the storage-implication matrix stable unless PRD boundaries change | `neo4j-gds-src`, baseline algorithm repos, current Knight Bus architecture docs |
 | `REQ-LEARN-046.0` | Capture Algorithm Memory Estimator Semantics | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md | implementation work should now focus on executable estimate tests, not more study breadth | `neo4j-gds-src`, current Knight Bus memory-contract docs |
-| `REQ-LEARN-047.0` | Classify Full Algorithm Feasibility | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md | keep family support tiers honest as implementation begins | `neo4j-gds-src`, low-RAM graph priors, and GraphBLAS/LAGraph repos when available |
-| `REQ-LEARN-048.0` | Require Algorithm Oracle And Parity Tests | `ArtifactCovered` | Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md | keep still-gated families explicitly marked `NeedsArchitectureSpike` or later-tier until their parity class and RAM gate are implemented | `neo4j-gds-src`, current Knight Bus runtime/parity files, `gapbs-src`, `petgraph-src`, `rustworkx-src` |
-| `REQ-LEARN-049.0` | Emit Required Study Deliverables | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | keep required deliverables complete in each batch | already-emitted artifacts |
+| `REQ-LEARN-047.0` | Classify Full Algorithm Feasibility | `ArtifactCovered` | Batch-07-Low-RAM-Graph-Priors.md; Batch-08-Hard-GDS-Families-And-Model-Artifacts.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md; GDS-Family-Support-Tier-Matrix.tsv | keep family support tiers honest as implementation begins | `neo4j-gds-src`, low-RAM graph priors, and GraphBLAS/LAGraph repos when available |
+| `REQ-LEARN-048.0` | Require Algorithm Oracle And Parity Tests | `ArtifactCovered` | Batch-11-Algorithm-Oracle-And-Parity-Scaffolding.md; GDS-Parity-Taxonomy.tsv; GDS-Family-Oracle-Parity-Matrix.tsv | keep still-gated families explicitly marked `NeedsArchitectureSpike` or later-tier until their parity class and RAM gate are implemented | `neo4j-gds-src`, current Knight Bus runtime/parity files, `gapbs-src`, `petgraph-src`, `rustworkx-src` |
+| `REQ-LEARN-049.0` | Emit Required Study Deliverables | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; GDS-Procedure-To-Kernel-Ledger.tsv; GDS-Family-Support-Tier-Matrix.tsv; GDS-Parity-Taxonomy.tsv; Rust-Fixture-And-Oracle-Scaffolding.tsv; GDS-Family-Oracle-Parity-Matrix.tsv; Architecture-Fit-Matrix.tsv; Architecture-Option-Scorecard.tsv; PRD-Outcome-Traceability-Dossier.tsv | keep required deliverables complete in each batch and extend the machine-readable companions as later studies deepen | already-emitted artifacts |
 | `REQ-LEARN-050.0` | Follow Decision-First Study Order | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | keep decision-first order explicit | already-emitted artifacts |
 | `REQ-LEARN-051.0` | Use Shared Support Status Taxonomy | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-02-GDS-Public-Surface-Inventory.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md | use shared status taxonomy in later batches | already-emitted artifacts |
-| `REQ-LEARN-052.0` | Maintain Architecture Option Scorecard | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-04-Publication-And-Generation-Catalog.md | refresh option scorecard after later compatibility and algorithm batches too | already-emitted artifacts |
+| `REQ-LEARN-052.0` | Maintain Architecture Option Scorecard | `ArtifactCovered` | Batch-01-Current-Seed-And-GDS-Baseline.md; Batch-03-Projection-Build-Store-Precedents.md; Batch-04-Publication-And-Generation-Catalog.md; Batch-06-Sidecars-Planner-And-Compact-Competitors.md; Batch-10-GDS-Projection-Internals-And-Support-Tiers.md; Architecture-Option-Scorecard.tsv | refresh the consolidated scorecard after later compatibility and algorithm batches too | already-emitted artifacts |
 
 ## Follow-On Batch Queue
 
@@ -110,6 +136,21 @@ Any later batch from here should be treated as:
 - or scope expansion,
 
 not as unfinished execution of the current learning spec.
+
+The graph-evidence and folder-coverage clause is already closed for the current
+scope through:
+
+- `71` concrete repo truthcheck rows in
+  `Reference-Shelf-Graph-Tool-Truthcheck.tsv`;
+- `27` path-bearing requirement rows in
+  `Reference-Shelf-Requirement-Subpath-Coverage.tsv`; and
+- narrative control artifacts in
+  `Reference-Shelf-Graph-Evidence-Ledger.md` and
+  `Reference-Shelf-Subpath-Coverage-Audit.md`.
+
+That means future work here should improve extraction quality or widen scope,
+not reopen the question of whether the named repos and subpaths were covered by
+the two local evidence-reader skills.
 
 ## Test Matrix
 
@@ -165,5 +206,6 @@ not as unfinished execution of the current learning spec.
   `CbmSemanticReadyCgcLowYield` shelf
   tranche, or is the present three-class ledger enough now that the current
   learning spec is fully covered?
-- Do we want a machine-readable TSV companion for requirement coverage, or is
-  the Markdown tracker sufficient for now?
+- The TSV companion now exists. Future refinement can decide whether to add
+  stronger artifact-type or proof-strength columns, but the "machine-readable
+  or not?" question is no longer open.

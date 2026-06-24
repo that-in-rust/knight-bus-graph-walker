@@ -2,8 +2,9 @@ use std::collections::HashSet;
 
 use knight_bus::{
     GdsEntryKind, GdsProcedureFamily, GdsProcedureMode, GdsSupportStatus, KnightBusError,
-    find_gds_entry_spec, gds_inventory_row_count, gds_procedure_specs,
-    require_registered_gds_procedure, require_supported_gds_procedure,
+    effective_gds_support_status, find_gds_entry_spec, gds_inventory_row_count,
+    gds_procedure_specs, require_registered_gds_procedure, require_supported_gds_entry,
+    require_supported_gds_procedure,
 };
 
 #[test]
@@ -136,4 +137,67 @@ fn gds_registered_lookup_preserves_inventory_count_now() {
         .count();
 
     assert_eq!(registered_rows, resolved_rows);
+}
+
+#[test]
+fn built_in_catalog_entries_are_supported_now() {
+    let project_estimate =
+        require_supported_gds_procedure("gds.graph.project.estimate").expect("graph.project.estimate");
+    let node_props =
+        require_supported_gds_procedure("gds.graph.nodeProperties.stream").expect("nodeProperties.stream");
+    let node_prop =
+        require_supported_gds_procedure("gds.graph.nodeProperty.stream").expect("nodeProperty.stream");
+    let rel_props = require_supported_gds_procedure("gds.graph.relationshipProperties.stream")
+        .expect("relationshipProperties.stream");
+    let rel_prop = require_supported_gds_procedure("gds.graph.relationshipProperty.stream")
+        .expect("relationshipProperty.stream");
+    let exists_proc =
+        require_supported_gds_procedure("gds.graph.exists").expect("graph.exists procedure");
+    let exists_func = require_supported_gds_entry(GdsEntryKind::UserFunction, "gds.graph.exists")
+        .expect("graph.exists function");
+    let list_proc = require_supported_gds_procedure("gds.graph.list").expect("graph.list");
+    let drop_proc = require_supported_gds_procedure("gds.graph.drop").expect("graph.drop");
+    let size_proc =
+        require_supported_gds_procedure("gds.internal.graph.sizeOf").expect("graph.sizeOf");
+
+    assert_eq!(
+        effective_gds_support_status(project_estimate),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(node_props),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(node_prop),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(rel_props),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(rel_prop),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(exists_proc),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(exists_func),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(list_proc),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(drop_proc),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
+    assert_eq!(
+        effective_gds_support_status(size_proc),
+        GdsSupportStatus::P1ImplementedExactLowRam
+    );
 }

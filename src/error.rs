@@ -68,6 +68,19 @@ pub enum KnightBusError {
     InvalidMemoryBudget { value: u64, detail: String },
     #[error("unknown entity `{entity}`")]
     UnknownEntity { entity: String },
+    #[error("dense node id {dense_id} is out of range for node count {node_count}")]
+    DenseNodeIdOutOfRange { dense_id: u32, node_count: u32 },
+    #[error("graph projection `{graph_name}` already exists")]
+    DuplicateGraphProjection { graph_name: String },
+    #[error("unknown graph projection `{graph_name}`")]
+    UnknownGraphProjection { graph_name: String },
+    #[error("invalid relationship orientation `{value}`; expected NATURAL, REVERSE, or UNDIRECTED")]
+    InvalidRelationshipOrientation { value: String },
+    #[error("invalid {selector_kind} selector: {detail}")]
+    InvalidProjectionSelector {
+        selector_kind: &'static str,
+        detail: String,
+    },
     #[error("unknown GDS {entry_kind} `{name}`")]
     UnknownGdsEntry { entry_kind: String, name: String },
     #[error("registered GDS {entry_kind} `{name}` is not yet supported ({support_status})")]

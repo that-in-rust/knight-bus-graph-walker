@@ -5,6 +5,7 @@ use std::{
     io::{BufReader, BufWriter, Read, Write},
     marker::PhantomData,
     path::{Path, PathBuf},
+    time::{SystemTime, UNIX_EPOCH},
 };
 
 use csv::{ReaderBuilder, StringRecord};
@@ -97,9 +98,15 @@ pub fn build_snapshot_from_paths_low_ram(
         scratch_workspace.root(),
         &mut peak_tracker,
     )?;
-    write_snapshot_manifest_now(output_dir, node_catalog.node_count, unique_edge_count)?;
+    write_snapshot_manifest_now(
+        output_dir,
+        node_catalog.node_count,
+        unique_edge_count,
+        options,
+    )?;
     let manifest = read_snapshot_manifest_now(output_dir)?;
     let snapshot_size_bytes = compute_snapshot_size_bytes(output_dir, &manifest)?;
+    let scratch_bytes = directory_size_bytes_now(scratch_workspace.root())?;
     let peak_rss_measurement = peak_tracker.finish_total_now();
 
     Ok(SnapshotBuildSummary {
@@ -107,6 +114,9 @@ pub fn build_snapshot_from_paths_low_ram(
         node_count: node_catalog.node_count,
         edge_count: unique_edge_count,
         snapshot_size_bytes,
+        topology_bytes: snapshot_size_bytes,
+        sidecar_bytes: 0,
+        scratch_bytes,
         peak_rss_bytes: peak_rss_measurement.bytes,
         peak_rss_source: peak_rss_measurement.source,
         phase_peaks: peak_tracker.phase_peaks,
@@ -1464,23 +1474,16 @@ fn write_snapshot_manifest_now(
     output_dir: &Path,
     node_count: u32,
     edge_count: u64,
+    options: &SnapshotBuildOptions,
 ) -> Result<(), KnightBusError> {
-    let manifest = SnapshotManifest {
-        version: 2,
-        node_id_width: 32,
-        adjacency_offset_width: 64,
+    let manifest = SnapshotManifest::new_immutable_dual_csr(
         node_count,
         edge_count,
-        key_mode: "sorted_key_index".to_owned(),
-        storage_mode: "immutable_dual_csr".to_owned(),
-        forward_offsets: FORWARD_OFFSETS_FILE_NAME.to_owned(),
-        forward_peers: FORWARD_PEERS_FILE_NAME.to_owned(),
-        reverse_offsets: REVERSE_OFFSETS_FILE_NAME.to_owned(),
-        reverse_peers: REVERSE_PEERS_FILE_NAME.to_owned(),
-        node_table: NODE_TABLE_FILE_NAME.to_owned(),
-        strings: STRINGS_FILE_NAME.to_owned(),
-        key_index: KEY_INDEX_FILE_NAME.to_owned(),
-    };
+        options.snapshot_generation.unwrap_or(0),
+        options.source_tx_start,
+        options.source_tx_end,
+        current_epoch_millis_now(),
+    );
     let manifest_path = output_dir.join(MANIFEST_FILE_NAME);
     let bytes = serde_json::to_vec_pretty(&manifest)
         .map_err(|source| KnightBusError::json(&manifest_path, source))?;
@@ -1516,6 +1519,32 @@ fn read_reverse_run_manifest_now(scratch_root: &Path) -> Result<Vec<PathBuf>, Kn
 fn map_file_read_only_now(path: PathBuf) -> Result<Mmap, KnightBusError> {
     let file = File::open(&path).map_err(|source| KnightBusError::io(&path, source))?;
     unsafe { Mmap::map(&file) }.map_err(|source| KnightBusError::io(path, source))
+}
+
+fn current_epoch_millis_now() -> u64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_millis() as u64
+}
+
+fn directory_size_bytes_now(root: &Path) -> Result<u64, KnightBusError> {
+    let mut total_bytes = 0_u64;
+    let mut pending_paths = vec![root.to_path_buf()];
+
+    while let Some(path) = pending_paths.pop() {
+        let metadata = fs::metadata(&path).map_err(|source| KnightBusError::io(&path, source))?;
+        if metadata.is_dir() {
+            for entry in fs::read_dir(&path).map_err(|source| KnightBusError::io(&path, source))? {
+                let entry = entry.map_err(|source| KnightBusError::io(&path, source))?;
+                pending_paths.push(entry.path());
+            }
+        } else {
+            total_bytes = total_bytes.saturating_add(metadata.len());
+        }
+    }
+
+    Ok(total_bytes)
 }
 
 fn read_key_for_dense_id_now(

@@ -32,6 +32,10 @@ As of 2026-06-24:
 - the legacy path `ref-repo-folder/` still exists at the repo root, but it has
   no cloned sub-repositories under it;
 - the live cloned reference shelf is `gitrefrepo/`;
+- the live `gitrefrepo/` shelf currently contains `106` top-level clones, but
+  only `71` concrete repo targets are presently bound by this learning spec;
+  the remaining `35` clones are on-shelf but out-of-scope until a later spec
+  revision names them explicitly;
 - any prompt, note, or handoff that mentions `ref-repo-folder/` SHALL resolve
   that request to `gitrefrepo/` unless the clone coverage ledger shows the
   legacy path has been repopulated later.
@@ -137,12 +141,19 @@ Rules:
   it as the study root.
 - Run both graph tools in isolated per-repo mode for every code-bearing repo or
   sub-repo in the assigned batch.
+- For named subfolders inside a repo, repo-root indexing is acceptable because
+  the wrappers index the full repository; the agent SHALL still verify any
+  folder-specific claim with `rg` plus direct reads inside the named path.
 - Never index multiple reference repos into one shared graph-tool database or
   cache run.
 - For docs-only, grammar-only, or format-spec repos, the agent MAY skip full
   graph indexing only by recording `GraphToolLowYield` with a concrete reason.
 - After smoke indexing a code-bearing repo, run at least one discovery query in
   each tool before reading large files.
+- A graph-tool run does not count as semantically ready merely because wrapper
+  output files exist; at least one non-empty discovery result or non-zero
+  semantic stats row must be recorded before the run is treated as reusable
+  evidence.
 - Use `rg`, `find`, `git -C`, and targeted file reads alongside the graph tools;
   graph tools do not replace literal search.
 - Graph-tool claims are candidate evidence only. Verify with source paths.
@@ -158,6 +169,21 @@ Observed workspace validation on 2026-06-24:
 - `codebase-memory-evidence-reader` smoke runs also completed for
   `gitrefrepo/neo4j-src` and `gitrefrepo/neo4j-gds-src`, proving the same
   wrapper path works on first-party reference repos in isolated mode.
+- A later shelf-wide truthcheck showed that wrapper file presence alone can
+  overstate CodeGraphContext readiness on some repos; semantic follow-up is
+  therefore mandatory. See
+  `docs_PRD03/reference-learning/Reference-Shelf-Graph-Evidence-Ledger.md`.
+- That control truthcheck currently covers the full `71`-repo spec scope, not
+  the full `106`-clone live shelf; future agents SHALL expand the learning spec
+  before silently treating the extra `35` live clones as mandatory study input.
+- After normalizing wildcard families such as `neo4j-*-driver-src` and
+  `ldbc_*` into the concrete clone rows recorded in the truthcheck TSV, a
+  direct equality check currently shows `71` concrete spec repo targets and
+  `71` truthcheck TSV rows, with `0` missing and `0` extra rows.
+- Fresh long-leash `clickhouse-src` reruns on 2026-06-24 still failed the
+  semantic-ready bar after `150s`: `codebase-memory-mcp` left zero-byte
+  `index_repository.json` and `index_repository.stderr`, while
+  CodeGraphContext still never emitted `stats.txt` or `functions_find.txt`.
 - CodeGraphContext removed a first-time generated repo `.cgcignore` during the
   smoke run, which is expected behavior from the wrapper script and should not
   be treated as architectural evidence.
@@ -545,7 +571,7 @@ Ask:
 
 | claim_id | req_id | source_type | source_path | symbol_or_query | sourced_fact | inference | speculation | PRD impact | skeptical note |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| CLAIM-001 | REQ-LEARN-000.0 | source | `gitrefrepo/...` | `rg query or symbol` | verifiable fact | local implication | optional future idea | affected PRD outcome | falsifier or caveat |
+| CLAIM-001 | REQ-LEARN-XXX.0 | source | `gitrefrepo/...` | `rg query or symbol` | verifiable fact | local implication | optional future idea | affected PRD outcome | falsifier or caveat |
 
 ### Clone Coverage Ledger Template
 
@@ -907,6 +933,8 @@ isolated per-repo mode
 other unrelated sibling repos from each run
 **AND** SHALL record the repo path, question asked, smoke command, output dir,
 follow-up query, and whether direct source verification confirmed the finding
+**AND** SHALL treat empty wrapper artifacts or zero-count semantic stats as
+insufficient for `ready` status
 **SHALL** verify graph-tool findings with direct source reads before recording
 them as evidence.
 

@@ -2,6 +2,7 @@ use std::{
     fs::{self, File},
     io::{BufWriter, Write},
     path::{Path, PathBuf},
+    time::{SystemTime, UNIX_EPOCH},
 };
 
 use crate::{
@@ -70,6 +71,9 @@ impl SnapshotArtifactWriter for FilesystemSnapshotWriter {
             node_count: graph_data.node_count(),
             edge_count: graph_data.edge_count(),
             snapshot_size_bytes,
+            topology_bytes: snapshot_size_bytes,
+            sidecar_bytes: 0,
+            scratch_bytes: 0,
             peak_rss_bytes: 0,
             peak_rss_source: PeakRssSource::SampledCurrentRssBytes,
             phase_peaks: Vec::new(),
@@ -81,7 +85,7 @@ pub fn compute_snapshot_size_bytes(
     snapshot_dir: &Path,
     manifest: &SnapshotManifest,
 ) -> Result<u64, KnightBusError> {
-    let tracked_paths = [
+    let mut tracked_paths = vec![
         snapshot_dir.join(MANIFEST_FILE_NAME),
         snapshot_dir.join(&manifest.node_table),
         snapshot_dir.join(&manifest.strings),
@@ -91,6 +95,13 @@ pub fn compute_snapshot_size_bytes(
         snapshot_dir.join(&manifest.reverse_peers),
         snapshot_dir.join(&manifest.key_index),
     ];
+
+    tracked_paths.extend(
+        manifest
+            .sidecar_catalog
+            .all_entries()
+            .map(|entry| snapshot_dir.join(&entry.path)),
+    );
 
     tracked_paths
         .into_iter()
@@ -102,22 +113,14 @@ pub fn compute_snapshot_size_bytes(
 }
 
 fn build_snapshot_manifest(graph_data: &NormalizedGraphData) -> SnapshotManifest {
-    SnapshotManifest {
-        version: 2,
-        node_id_width: 32,
-        adjacency_offset_width: 64,
-        node_count: graph_data.node_count(),
-        edge_count: graph_data.edge_count(),
-        key_mode: "sorted_key_index".to_owned(),
-        storage_mode: "immutable_dual_csr".to_owned(),
-        forward_offsets: FORWARD_OFFSETS_FILE_NAME.to_owned(),
-        forward_peers: FORWARD_PEERS_FILE_NAME.to_owned(),
-        reverse_offsets: REVERSE_OFFSETS_FILE_NAME.to_owned(),
-        reverse_peers: REVERSE_PEERS_FILE_NAME.to_owned(),
-        node_table: NODE_TABLE_FILE_NAME.to_owned(),
-        strings: STRINGS_FILE_NAME.to_owned(),
-        key_index: KEY_INDEX_FILE_NAME.to_owned(),
-    }
+    SnapshotManifest::new_immutable_dual_csr(
+        graph_data.node_count(),
+        graph_data.edge_count(),
+        0,
+        None,
+        None,
+        current_epoch_millis_now(),
+    )
 }
 
 fn build_node_records_and_strings(
@@ -214,4 +217,11 @@ fn write_u32_values_file(path: PathBuf, values: &[u32]) -> Result<(), KnightBusE
     writer
         .flush()
         .map_err(|source| KnightBusError::io(&path, source))
+}
+
+fn current_epoch_millis_now() -> u64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_millis() as u64
 }

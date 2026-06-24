@@ -316,6 +316,84 @@ impl NodeRecord {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SnapshotStorageMode {
+    ImmutableDualCsr,
+}
+
+impl SnapshotStorageMode {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::ImmutableDualCsr => "immutable_dual_csr",
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SnapshotLogicalOrientation {
+    Natural,
+    Reverse,
+    Undirected,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SnapshotSidecarValueScope {
+    Node,
+    Relationship,
+    Graph,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SnapshotSidecarEntry {
+    pub name: String,
+    pub path: String,
+    pub value_scope: SnapshotSidecarValueScope,
+}
+
+impl SnapshotSidecarEntry {
+    pub fn new(name: String, path: String, value_scope: SnapshotSidecarValueScope) -> Self {
+        Self {
+            name,
+            path,
+            value_scope,
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Default, Serialize, Deserialize)]
+pub struct SnapshotSidecarCatalog {
+    #[serde(default)]
+    pub label_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub relationship_type_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub node_property_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub relationship_property_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub weight_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub feature_sidecars: Vec<SnapshotSidecarEntry>,
+    #[serde(default)]
+    pub result_sidecars: Vec<SnapshotSidecarEntry>,
+}
+
+impl SnapshotSidecarCatalog {
+    pub fn all_entries(&self) -> impl Iterator<Item = &SnapshotSidecarEntry> {
+        self.label_sidecars
+            .iter()
+            .chain(self.relationship_type_sidecars.iter())
+            .chain(self.node_property_sidecars.iter())
+            .chain(self.relationship_property_sidecars.iter())
+            .chain(self.weight_sidecars.iter())
+            .chain(self.feature_sidecars.iter())
+            .chain(self.result_sidecars.iter())
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SnapshotManifest {
     pub version: u32,
@@ -324,7 +402,19 @@ pub struct SnapshotManifest {
     pub node_count: u32,
     pub edge_count: u64,
     pub key_mode: String,
-    pub storage_mode: String,
+    pub storage_mode: SnapshotStorageMode,
+    #[serde(default)]
+    pub snapshot_generation: u64,
+    #[serde(default)]
+    pub source_tx_start: Option<u64>,
+    #[serde(default)]
+    pub source_tx_end: Option<u64>,
+    #[serde(default)]
+    pub built_at_epoch_millis: u64,
+    #[serde(default = "default_snapshot_logical_orientations_now")]
+    pub logical_orientations: Vec<SnapshotLogicalOrientation>,
+    #[serde(default)]
+    pub sidecar_catalog: SnapshotSidecarCatalog,
     pub forward_offsets: String,
     pub forward_peers: String,
     pub reverse_offsets: String,
@@ -332,6 +422,48 @@ pub struct SnapshotManifest {
     pub node_table: String,
     pub strings: String,
     pub key_index: String,
+}
+
+impl SnapshotManifest {
+    pub fn new_immutable_dual_csr(
+        node_count: u32,
+        edge_count: u64,
+        snapshot_generation: u64,
+        source_tx_start: Option<u64>,
+        source_tx_end: Option<u64>,
+        built_at_epoch_millis: u64,
+    ) -> Self {
+        Self {
+            version: 3,
+            node_id_width: 32,
+            adjacency_offset_width: 64,
+            node_count,
+            edge_count,
+            key_mode: "sorted_key_index".to_owned(),
+            storage_mode: SnapshotStorageMode::ImmutableDualCsr,
+            snapshot_generation,
+            source_tx_start,
+            source_tx_end,
+            built_at_epoch_millis,
+            logical_orientations: default_snapshot_logical_orientations_now(),
+            sidecar_catalog: SnapshotSidecarCatalog::default(),
+            forward_offsets: "forward.offsets.bin".to_owned(),
+            forward_peers: "forward.peers.bin".to_owned(),
+            reverse_offsets: "reverse.offsets.bin".to_owned(),
+            reverse_peers: "reverse.peers.bin".to_owned(),
+            node_table: "node_table.bin".to_owned(),
+            strings: "strings.bin".to_owned(),
+            key_index: "key_index.bin".to_owned(),
+        }
+    }
+}
+
+fn default_snapshot_logical_orientations_now() -> Vec<SnapshotLogicalOrientation> {
+    vec![
+        SnapshotLogicalOrientation::Natural,
+        SnapshotLogicalOrientation::Reverse,
+        SnapshotLogicalOrientation::Undirected,
+    ]
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize)]
@@ -367,6 +499,9 @@ pub struct SnapshotBuildSummary {
     pub node_count: u32,
     pub edge_count: u64,
     pub snapshot_size_bytes: u64,
+    pub topology_bytes: u64,
+    pub sidecar_bytes: u64,
+    pub scratch_bytes: u64,
     pub peak_rss_bytes: u64,
     pub peak_rss_source: PeakRssSource,
     pub phase_peaks: Vec<PhasePeakReport>,
@@ -468,6 +603,9 @@ impl Default for BuildMemoryBudget {
 pub struct SnapshotBuildOptions {
     pub memory_budget: Option<BuildMemoryBudget>,
     pub scratch_dir: Option<PathBuf>,
+    pub snapshot_generation: Option<u64>,
+    pub source_tx_start: Option<u64>,
+    pub source_tx_end: Option<u64>,
 }
 
 impl SnapshotBuildOptions {

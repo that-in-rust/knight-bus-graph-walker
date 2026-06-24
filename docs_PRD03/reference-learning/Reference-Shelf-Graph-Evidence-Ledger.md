@@ -2,28 +2,73 @@
 
 Date: 2026-06-24
 
-This control artifact records the full graph-evidence sweep required by
-`/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/V003-Reference-Folder-Learning-Spec.md`.
-It turns the spec's repo-family graph-tool contract into a concrete run-state
-ledger for every currently named concrete repo target.
+This control artifact records the shelf-wide graph-evidence truthcheck required by
+[`/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/V003-Reference-Folder-Learning-Spec.md`](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/V003-Reference-Folder-Learning-Spec.md).
+It replaces file-existence optimism with semantic readiness checks drawn from
+actual follow-up queries.
 
 ## Verdict
 
-- The canonical reference shelf is
-  `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo`;
-  the legacy alias `ref-repo-folder/` is still not the live clone root.
-- The spec currently resolves to `71` concrete local repo targets after
-  expanding wildcard driver families and collapsing duplicate mentions.
-- Of those `71`, `67` are code-bearing repos and `4` are docs/spec-first repos
-  that are intentionally tracked as `GraphToolLowYield`.
-- The current full-shelf sweep produced `32` `DualToolReady` repos, `35`
-  `CbmReadyCgcTimeout` repos, and `4` `GraphToolLowYield` repos.
-- `codebase-memory-mcp` proved broadly tractable across the full code-bearing
-  shelf in this pass. CodeGraphContext was valuable but materially more
-  timeout-heavy on larger support repos under a safe `90s` cap.
-- The sweep completed without leaving long-lived local indexer workers, and the
-  transient repo-root `.cgcignore` artifact created earlier was removed after
-  the pass.
+- The canonical reference shelf remains
+  `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo`.
+- The spec still resolves to `71` concrete repo targets: `67` code-bearing
+  repos and `4` docs/spec-first repos.
+- The live `gitrefrepo/` shelf currently contains `106` top-level clones, so
+  this truthcheck is complete for the current learning-spec scope, not for
+  every clone already present on disk.
+- `codebase-memory-mcp` is the stronger shelf-wide substrate in this pass. It is
+  semantically queryable on `66` of `67` code-bearing repos after direct per-repo follow-up probes.
+- CodeGraphContext is useful on a narrower tranche than the earlier readiness
+  ledger suggested. Only `18` repos are `DualSemanticReady`;
+  `16` repos produced zero indexed semantic counts and `33` repos timed
+  out before a reusable semantic `stats.txt` artifact was written.
+- The real follow-up bucket is now small and explicit: `clickhouse-src`.
+- A fresh long-leash rerun for `clickhouse-src` on 2026-06-24 still left
+  zero-byte `index_repository.json` and `index_repository.stderr` artifacts in
+  `codebase-memory-mcp` after `150s`, while CodeGraphContext only reached a
+  partial `index.txt` plus SQLite/WAL state and still never produced
+  `stats.txt` or `functions_find.txt`, so `NeedsRerun` remains the truthful
+  status.
+- The earlier `DualToolReady` notion was too operational. Output-file presence is
+  not the same thing as symbol-level evidence.
+
+## What Changed
+
+The earlier shelf ledger treated a repo as effectively ready when wrapper output
+files existed. This truthcheck tightens the bar:
+
+1. `codebase-memory-mcp` must answer a direct per-repo query or search with a usable file,
+   function, or class row.
+2. CodeGraphContext must expose non-zero semantic stats and return at least one
+   function row.
+3. Docs/spec repos are still tracked explicitly as `GraphToolLowYield`.
+
+## Scope Boundary Versus Live Shelf
+
+- The current learning spec names `71` concrete repo targets.
+- The live `gitrefrepo/` shelf currently contains `106` top-level clones.
+- A row-set equality check currently shows `71` spec repo names, `71`
+  truthcheck TSV rows, `0` missing rows, and `0` extra rows.
+- The remaining `35` clones are real local inputs, but they are not yet
+  mandatory learning targets until the spec or requirement tracker expands to
+  include them.
+- Future agents should therefore read this ledger as "graph-tool execution is
+  truthchecked for the current spec scope" rather than "every clone on disk has
+  already been semantically audited."
+
+## Folder And Sub-Repo Coverage Semantics
+
+- Repo-root graph indexing is the intended mechanism for nested folder coverage.
+  When the spec names subpaths such as `community/record-storage-engine`,
+  `docs_PRD03/`, `src/`, or `tests/`, the wrapper still runs on the enclosing
+  repo root and the follow-up proof comes from `rg` plus direct reads inside
+  the named folders.
+- This means the current truthcheck covers all spec-named reference repos and
+  the current Knight Bus workspace as graph substrates, while still requiring
+  file-level verification for every folder-specific claim.
+- Docs/spec-first repos remain `GraphToolLowYield` even when specific folders
+  inside them are named, because text-first reading is still the evidence path
+  that matters there.
 
 ## Method
 
@@ -32,172 +77,157 @@ Skills used:
 - `/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/SKILL.md`
 - `/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/SKILL.md`
 
-Wrapper commands used:
+Wrapper commands used during the sweep:
 
 ```bash
 /Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>
 /Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>
 ```
 
-Execution rules for this full-shelf pass:
+Truthcheck follow-up used after the wrapper stage:
 
-1. Resolve every concrete repo named by the current spec into
-   `gitrefrepo/<repo>`.
-2. Expand `neo4j-*-driver-src` to the five concrete official driver repos
-   present locally.
-3. Reuse existing successful smoke outputs where the wrapper had produced the
-   expected discovery artifacts.
-4. Re-run missing or partial repos with a safe process-group timeout of `90s`
-   and kill the full process group on expiry so orphaned indexers do not
-   accumulate.
-5. Record docs/spec shelves as `GraphToolLowYield` instead of pretending a code
-   graph adds signal where direct file reading is the true source of truth.
+- For every code-bearing repo, direct `codebase-memory-mcp` follow-up probes were
+  run against the repo-specific cache with an explicit `project` name.
+- For every available CodeGraphContext run, `stats.txt` was parsed and `find type Function`
+  was used when the semantic counts were non-zero.
+- The machine-readable result lives at
+  [Reference-Shelf-Graph-Tool-Truthcheck.tsv](/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/Reference-Shelf-Graph-Tool-Truthcheck.tsv).
 
-Readiness criteria used in this ledger:
-
-- `codebase-memory ready`: latest run directory contains `index_repository.json`.
-- `CodeGraphContext ready`: latest run directory contains `files_query.txt` and
-  `functions_find.txt`, proving that the follow-up discovery query stage
-  completed after indexing.
-- `CbmReadyCgcTimeout`: the repo has a reusable `codebase-memory` run, but the
-  safe CodeGraphContext pass timed out before producing the full discovery
-  artifacts.
-
-Machine-generated run report for this pass:
-
-- `/tmp/codex-code-intel/spec_repo_sweep_safe_20260624.tsv`
-
-## Scope Summary
+## Status Summary
 
 | status | count | meaning |
 | --- | ---: | --- |
-| `DualToolReady` | 32 | Both graph tools have reusable smoke-plus-discovery outputs for the repo. |
-| `CbmReadyCgcTimeout` | 35 | `codebase-memory` is reusable, while CodeGraphContext timed out under the safe 90s cap. |
-| `GraphToolLowYield` | 4 | The repo is docs/spec-first; direct text reading is the right primary path. |
+| `DualSemanticReady` | 18 | Both graph tools yielded usable semantic evidence after follow-up checks. |
+| `CbmSemanticReadyCgcLowYield` | 48 | `codebase-memory` yielded usable evidence; CodeGraphContext was zero-indexed or timeout-heavy for that repo. |
+| `NeedsRerun` | 1 | The cached evidence is still not trustworthy enough for clean reuse. |
+| `GraphToolLowYield` | 4 | Docs/spec-first repos tracked explicitly as text-first. |
 
-## Coverage Semantics
+## Critical Repo Truthcheck
 
-- Repo-root scans are sufficient for the spec's named subpaths because each
-  wrapper indexes the full repo root and therefore covers the nested folders
-  called out elsewhere in the learning plan.
-- This ledger is about graph-evidence substrate coverage, not architectural
-  approval. A `DualToolReady` repo is easier to study; it is not thereby a
-  design endorsement.
-- A `CbmReadyCgcTimeout` repo is still materially usable for the learning
-  program because one graph substrate is ready and direct `rg` plus file reads
-  remain available. It simply means the stricter dual-tool contract is
-  operationally expensive on that repo under the safe cap used here.
+| repo | combined status | cbm example | cgc status | implication |
+| --- | --- | --- | --- | --- |
+| `neo4j-src` | `CbmSemanticReadyCgcLowYield` | indexes @ `community/kernel-test/src/test/java/org/neo4j/kernel/api/index/EntityValueUpdatesTest.java` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `neo4j-gds-src` | `CbmSemanticReadyCgcLowYield` | unpack @ `core/src/main/java/org/neo4j/gds/core/compression/packed/AdjacencyUnpacking.java` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `neo4j-testkit-src` | `DualSemanticReady` | test_dumps_full @ `boltstub/tests/simple_jolt/v3/test_parse.py` | `QueryReady` | usable in both tools |
+| `neo4j-java-driver-src` | `CbmSemanticReadyCgcLowYield` | decodePrivate @ `driver/src/main/java/org/neo4j/driver/internal/pki/PemFormats.java` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `neo4j-python-driver-src` | `CbmSemanticReadyCgcLowYield` | snake_case_to_pascal_case @ `testkitbackend/_async/requests.py` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `apache-iggy-src` | `CbmSemanticReadyCgcLowYield` | FromCode @ `foreign/go/errors/errors_gen.go` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `rocksdb-src` | `CbmSemanticReadyCgcLowYield` | T @ `third-party/gtest-1.8.1/fused-src/gtest/gtest.h` | `NoStats` | usable via codebase-memory; CGC is low-yield here |
+| `ladybug-src` | `CbmSemanticReadyCgcLowYield` | make_unique @ `third_party/httplib/httplib.h` | `ZeroIndexed` | usable via codebase-memory; CGC is low-yield here |
+| `gapbs-src` | `DualSemanticReady` | .PHONY @ `Makefile` | `QueryReady` | usable in both tools |
+| `graphchi-cpp-src` | `CbmSemanticReadyCgcLowYield` | jQuerySub @ `conf/adminhtml/bootstrap/js/jquery.js` | `NoStats` | usable via codebase-memory; CGC is low-yield here |
+| `gridgraph-src` | `DualSemanticReady` | all @ `Makefile` | `QueryReady` | usable in both tools |
+| `ligra-src` | `DualSemanticReady` | all @ `apps/Makefile` | `QueryReady` | usable in both tools |
+| `thunderrw-src` | `DualSemanticReady` | sfmt_genrand_uint32 @ `dependency/SFMT-src-1.5.1/SFMT.h` | `QueryReady` | usable in both tools |
+| `graphblas-src` | `CbmSemanticReadyCgcLowYield` | GB_accum_mask @ `Source/mask/GB_accum_mask.c` | `NoStats` | usable via codebase-memory; CGC is low-yield here |
+| `lagraph-src` | `CbmSemanticReadyCgcLowYield` | difference @ `experimental/test/test_edgeBetweennessCentrality.c` | `NoStats` | usable via codebase-memory; CGC is low-yield here |
 
-## DualToolReady
 
-| repo | cbm_status | cbm_run | cgc_status | cgc_run | notes | repo_path |
-| --- | --- | --- | --- | --- | --- | --- |
-| `age-src` | `ready` | `age-src-20260624-121827` | `ready` | `age-src-20260624-121828` | ready | `gitrefrepo/age-src` |
-| `apache-iggy-src` | `ready` | `apache-iggy-src-20260624-120656` | `ready` | `apache-iggy-src-20260624-120703` | ready | `gitrefrepo/apache-iggy-src` |
-| `cypher-dsl-src` | `ready` | `cypher-dsl-src-20260624-120654` | `ready` | `cypher-dsl-src-20260624-120655` | ready | `gitrefrepo/cypher-dsl-src` |
-| `fjall-src` | `ready` | `fjall-src-20260624-121114` | `ready` | `fjall-src-20260624-121114` | ready | `gitrefrepo/fjall-src` |
-| `gapbs-src` | `ready` | `gapbs-src-20260624-125024` | `ready` | `gapbs-src-20260624-125024` | ready | `gitrefrepo/gapbs-src` |
-| `gds-agent-src` | `ready` | `gds-agent-src-20260624-120625` | `ready` | `gds-agent-src-20260624-120625` | ready | `gitrefrepo/gds-agent-src` |
-| `graph-data-science-src` | `ready` | `graph-data-science-src-20260624-120618` | `ready` | `graph-data-science-src-20260624-120618` | ready | `gitrefrepo/graph-data-science-src` |
-| `graphblas-pointers-src` | `ready` | `graphblas-pointers-src-20260624-125038` | `ready` | `graphblas-pointers-src-20260624-125038` | ready | `gitrefrepo/graphblas-pointers-src` |
-| `gridgraph-src` | `ready` | `gridgraph-src-20260624-125335` | `ready` | `gridgraph-src-20260624-125335` | ready | `gitrefrepo/gridgraph-src` |
-| `ladybug-src` | `ready` | `ladybug-src-20260624-121259` | `ready` | `ladybug-src-20260624-121311` | ready | `gitrefrepo/ladybug-src` |
-| `ldbc_graphalytics_platforms_graphblas-src` | `ready` | `ldbc_graphalytics_platforms_graphblas-src-20260624-125824` | `ready` | `ldbc_graphalytics_platforms_graphblas-src-20260624-125825` | ready | `gitrefrepo/ldbc_graphalytics_platforms_graphblas-src` |
-| `ligra-src` | `ready` | `ligra-src-20260624-130144` | `ready` | `ligra-src-20260624-130145` | ready | `gitrefrepo/ligra-src` |
-| `minigraph-src` | `ready` | `minigraph-src-20260624-130356` | `ready` | `minigraph-src-20260624-130402` | ready | `gitrefrepo/minigraph-src` |
-| `neo4j-apoc-procedures-src` | `ready` | `neo4j-apoc-procedures-src-20260624-120631` | `ready` | `neo4j-apoc-procedures-src-20260624-120636` | ready | `gitrefrepo/neo4j-apoc-procedures-src` |
-| `neo4j-apoc-src` | `ready` | `neo4j-apoc-src-20260624-120631` | `ready` | `neo4j-apoc-src-20260624-120635` | ready | `gitrefrepo/neo4j-apoc-src` |
-| `neo4j-dotnet-driver-src` | `ready` | `neo4j-dotnet-driver-src-20260624-120607` | `ready` | `neo4j-dotnet-driver-src-20260624-120609` | ready | `gitrefrepo/neo4j-dotnet-driver-src` |
-| `neo4j-gds-client-src` | `ready` | `neo4j-gds-client-src-20260624-120618` | `ready` | `neo4j-gds-client-src-20260624-120631` | ready | `gitrefrepo/neo4j-gds-client-src` |
-| `neo4j-gds-src` | `ready` | `neo4j-gds-src-20260624-120618` | `ready` | `neo4j-gds-src-20260624-120627` | ready | `gitrefrepo/neo4j-gds-src` |
-| `neo4j-go-driver-src` | `ready` | `neo4j-go-driver-src-20260624-120607` | `ready` | `neo4j-go-driver-src-20260624-120608` | ready | `gitrefrepo/neo4j-go-driver-src` |
-| `neo4j-java-driver-src` | `ready` | `neo4j-java-driver-src-20260624-120602` | `ready` | `neo4j-java-driver-src-20260624-120604` | ready | `gitrefrepo/neo4j-java-driver-src` |
-| `neo4j-javascript-driver-src` | `ready` | `neo4j-javascript-driver-src-20260624-120607` | `ready` | `neo4j-javascript-driver-src-20260624-120608` | ready | `gitrefrepo/neo4j-javascript-driver-src` |
-| `neo4j-ogm-src` | `ready` | `neo4j-ogm-src-20260624-120655` | `ready` | `neo4j-ogm-src-20260624-120656` | ready | `gitrefrepo/neo4j-ogm-src` |
-| `neo4j-python-driver-src` | `ready` | `neo4j-python-driver-src-20260624-120541` | `ready` | `neo4j-python-driver-src-20260624-120546` | ready | `gitrefrepo/neo4j-python-driver-src` |
-| `neo4j-src` | `ready` | `neo4j-src-20260624-120354` | `ready` | `neo4j-src-20260624-120536` | ready | `gitrefrepo/neo4j-src` |
-| `neo4j-testkit-src` | `ready` | `neo4j-testkit-src-20260624-120354` | `ready` | `neo4j-testkit-src-20260624-120358` | ready | `gitrefrepo/neo4j-testkit-src` |
-| `petgraph-src` | `ready` | `petgraph-src-20260624-121656` | `ready` | `petgraph-src-20260624-121657` | ready | `gitrefrepo/petgraph-src` |
-| `redb-src` | `ready` | `redb-src-20260624-121207` | `ready` | `redb-src-20260624-121208` | ready | `gitrefrepo/redb-src` |
-| `sparsetools-src` | `ready` | `sparsetools-src-20260624-131248` | `ready` | `sparsetools-src-20260624-131249` | ready | `gitrefrepo/sparsetools-src` |
-| `sprs-src` | `ready` | `sprs-src-20260624-131311` | `ready` | `sprs-src-20260624-131311` | ready | `gitrefrepo/sprs-src` |
-| `thunderrw-src` | `ready` | `thunderrw-src-20260624-131400` | `ready` | `thunderrw-src-20260624-131400` | ready | `gitrefrepo/thunderrw-src` |
-| `timely-dataflow-src` | `ready` | `timely-dataflow-src-20260624-131516` | `ready` | `timely-dataflow-src-20260624-131516` | ready | `gitrefrepo/timely-dataflow-src` |
-| `tracing-src` | `ready` | `tracing-src-20260624-121526` | `ready` | `tracing-src-20260624-121526` | ready | `gitrefrepo/tracing-src` |
+## DualSemanticReady Repos
 
-## CbmReadyCgcTimeout
+- `cypher-shell-src`
+- `gapbs-src`
+- `graphblas-pointers-src`
+- `gridgraph-src`
+- `ldbc_graphalytics_platforms_graphblas-src`
+- `ligra-src`
+- `minigraph-src`
+- `neo4rs-src`
+- `sparsetools-src`
+- `sprs-src`
+- `thunderrw-src`
+- `timely-dataflow-src`
+- `fjall-src`
+- `graph-data-science-src`
+- `neo4j-testkit-src`
+- `petgraph-src`
+- `redb-src`
+- `tracing-src`
 
-| repo | cbm_status | cbm_run | cgc_status | cgc_run | notes | repo_path |
-| --- | --- | --- | --- | --- | --- | --- |
-| `apache-arrow-rs-src` | `ready` | `apache-arrow-rs-src-20260624-123607` | `timeout` | `apache-arrow-rs-src-20260624-124554` | cgc timeout 90.0s | `gitrefrepo/apache-arrow-rs-src` |
-| `apache-datafusion-src` | `ready` | `apache-datafusion-src-20260624-123607` | `timeout` | `apache-datafusion-src-20260624-124554` | cgc timeout 90.0s | `gitrefrepo/apache-datafusion-src` |
-| `clickhouse-src` | `ready` | `clickhouse-src-20260624-123607` | `timeout` | `clickhouse-src-20260624-124724` | cgc timeout 90.0s | `gitrefrepo/clickhouse-src` |
-| `cypher-shell-src` | `ready` | `cypher-shell-src-20260624-120654` | `timeout` | `cypher-shell-src-20260624-124724` | cgc timeout 90.0s | `gitrefrepo/cypher-shell-src` |
-| `differential-dataflow-src` | `ready` | `differential-dataflow-src-20260624-124115` | `timeout` | `differential-dataflow-src-20260624-124854` | cgc timeout 90.0s | `gitrefrepo/differential-dataflow-src` |
-| `duckdb-src` | `ready` | `duckdb-src-20260624-124119` | `timeout` | `duckdb-src-20260624-124854` | cgc timeout 90.0s | `gitrefrepo/duckdb-src` |
-| `falkordb-src` | `ready` | `falkordb-src-20260624-125024` | `timeout` | `falkordb-src-20260624-125035` | cgc timeout 90.0s | `gitrefrepo/falkordb-src` |
-| `graphblas-src` | `ready` | `graphblas-src-20260624-125040` | `timeout` | `graphblas-src-20260624-125049` | cgc timeout 90.0s | `gitrefrepo/graphblas-src` |
-| `graphblas_sparse_linear_algebra-src` | `ready` | `graphblas_sparse_linear_algebra-src-20260624-125205` | `timeout` | `graphblas_sparse_linear_algebra-src-20260624-125205` | cgc timeout 90.0s | `gitrefrepo/graphblas_sparse_linear_algebra-src` |
-| `graphchi-cpp-src` | `ready` | `graphchi-cpp-src-20260624-125219` | `timeout` | `graphchi-cpp-src-20260624-125221` | cgc timeout 90.0s | `gitrefrepo/graphchi-cpp-src` |
-| `helix-db-src` | `ready` | `helix-db-src-20260624-125346` | `timeout` | `helix-db-src-20260624-125424` | cgc timeout 90.0s | `gitrefrepo/helix-db-src` |
-| `igraph-src` | `ready` | `igraph-src-20260624-125351` | `timeout` | `igraph-src-20260624-125352` | cgc timeout 90.0s | `gitrefrepo/igraph-src` |
-| `jemalloc-src` | `ready` | `jemalloc-src-20260624-125522` | `timeout` | `jemalloc-src-20260624-125523` | cgc timeout 90.0s | `gitrefrepo/jemalloc-src` |
-| `kuzu-src` | `ready` | `kuzu-src-20260624-125554` | `timeout` | `kuzu-src-20260624-125612` | cgc timeout 90.0s | `gitrefrepo/kuzu-src` |
-| `lagraph-src` | `ready` | `lagraph-src-20260624-125653` | `timeout` | `lagraph-src-20260624-125654` | cgc timeout 90.0s | `gitrefrepo/lagraph-src` |
-| `ldbc_graphalytics-src` | `ready` | `ldbc_graphalytics-src-20260624-125742` | `timeout` | `ldbc_graphalytics-src-20260624-125742` | cgc timeout 90.0s | `gitrefrepo/ldbc_graphalytics-src` |
-| `ldbc_snb_interactive_v1_driver-src` | `ready` | `ldbc_snb_interactive_v1_driver-src-20260624-125843` | `timeout` | `ldbc_snb_interactive_v1_driver-src-20260624-125844` | cgc timeout 90.0s | `gitrefrepo/ldbc_snb_interactive_v1_driver-src` |
-| `ldbc_snb_interactive_v1_impls-src` | `ready` | `ldbc_snb_interactive_v1_impls-src-20260624-125912` | `timeout` | `ldbc_snb_interactive_v1_impls-src-20260624-125913` | cgc timeout 90.0s | `gitrefrepo/ldbc_snb_interactive_v1_impls-src` |
-| `ldbc_snb_interactive_v2_driver-src` | `ready` | `ldbc_snb_interactive_v2_driver-src-20260624-130014` | `timeout` | `ldbc_snb_interactive_v2_driver-src-20260624-130014` | cgc timeout 90.0s | `gitrefrepo/ldbc_snb_interactive_v2_driver-src` |
-| `ldbc_snb_interactive_v2_impls-src` | `ready` | `ldbc_snb_interactive_v2_impls-src-20260624-130043` | `timeout` | `ldbc_snb_interactive_v2_impls-src-20260624-130043` | cgc timeout 90.0s | `gitrefrepo/ldbc_snb_interactive_v2_impls-src` |
-| `materialize-src` | `ready` | `materialize-src-20260624-130213` | `timeout` | `materialize-src-20260624-130226` | cgc timeout 90.0s | `gitrefrepo/materialize-src` |
-| `memgraph-src` | `ready` | `memgraph-src-20260624-130236` | `timeout` | `memgraph-src-20260624-130250` | cgc timeout 90.0s | `gitrefrepo/memgraph-src` |
-| `neo4j-browser-src` | `ready` | `neo4j-browser-src-20260624-120655` | `timeout` | `neo4j-browser-src-20260624-130420` | cgc timeout 90.0s | `gitrefrepo/neo4j-browser-src` |
-| `neo4rs-src` | `ready` | `neo4rs-src-20260624-120654` | `timeout` | `neo4rs-src-20260624-130500` | cgc timeout 90.0s | `gitrefrepo/neo4rs-src` |
-| `networkit-src` | `ready` | `networkit-src-20260624-130550` | `timeout` | `networkit-src-20260624-130552` | cgc timeout 90.0s | `gitrefrepo/networkit-src` |
-| `nornicdb-src` | `ready` | `nornicdb-src-20260624-130630` | `timeout` | `nornicdb-src-20260624-130636` | cgc timeout 90.0s | `gitrefrepo/nornicdb-src` |
-| `python-graphblas-src` | `ready` | `python-graphblas-src-20260624-130722` | `timeout` | `python-graphblas-src-20260624-130723` | cgc timeout 90.0s | `gitrefrepo/python-graphblas-src` |
-| `qdrant-src` | `ready` | `qdrant-src-20260624-130806` | `timeout` | `qdrant-src-20260624-130810` | cgc timeout 90.0s | `gitrefrepo/qdrant-src` |
-| `redisgraph-src` | `ready` | `redisgraph-src-20260624-130853` | `timeout` | `redisgraph-src-20260624-130901` | cgc timeout 90.0s | `gitrefrepo/redisgraph-src` |
-| `risingwave-src` | `ready` | `risingwave-src-20260624-130940` | `timeout` | `risingwave-src-20260624-130947` | cgc timeout 90.0s | `gitrefrepo/risingwave-src` |
-| `rocksdb-src` | `ready` | `rocksdb-src-20260624-120656` | `timeout` | `rocksdb-src-20260624-131031` | cgc timeout 90.0s | `gitrefrepo/rocksdb-src` |
-| `rustworkx-src` | `ready` | `rustworkx-src-20260624-131118` | `timeout` | `rustworkx-src-20260624-131118` | cgc timeout 90.0s | `gitrefrepo/rustworkx-src` |
-| `snap-src` | `ready` | `snap-src-20260624-131201` | `timeout` | `snap-src-20260624-131212` | cgc timeout 90.0s | `gitrefrepo/snap-src` |
-| `tantivy-src` | `ready` | `tantivy-src-20260624-131342` | `timeout` | `tantivy-src-20260624-131344` | cgc timeout 90.0s | `gitrefrepo/tantivy-src` |
-| `tikv-src` | `ready` | `tikv-src-20260624-131514` | `timeout` | `tikv-src-20260624-131521` | cgc timeout 90.0s | `gitrefrepo/tikv-src` |
+## CBM-Strong, CGC-Low-Yield Repos
 
-## GraphToolLowYield
+- `apache-datafusion-src`
+- `apache-arrow-rs-src`
+- `differential-dataflow-src`
+- `duckdb-src`
+- `falkordb-src`
+- `graphblas-src`
+- `graphblas_sparse_linear_algebra-src`
+- `graphchi-cpp-src`
+- `igraph-src`
+- `helix-db-src`
+- `jemalloc-src`
+- `kuzu-src`
+- `lagraph-src`
+- `ldbc_graphalytics-src`
+- `ldbc_snb_interactive_v1_driver-src`
+- `ldbc_snb_interactive_v1_impls-src`
+- `ldbc_snb_interactive_v2_driver-src`
+- `ldbc_snb_interactive_v2_impls-src`
+- `materialize-src`
+- `memgraph-src`
+- `neo4j-browser-src`
+- `networkit-src`
+- `nornicdb-src`
+- `python-graphblas-src`
+- `qdrant-src`
+- `redisgraph-src`
+- `risingwave-src`
+- `rocksdb-src`
+- `rustworkx-src`
+- `snap-src`
+- `tantivy-src`
+- `age-src`
+- `apache-iggy-src`
+- `cypher-dsl-src`
+- `gds-agent-src`
+- `ladybug-src`
+- `neo4j-apoc-procedures-src`
+- `neo4j-apoc-src`
+- `neo4j-dotnet-driver-src`
+- `neo4j-gds-client-src`
+- `neo4j-gds-src`
+- `neo4j-go-driver-src`
+- `neo4j-java-driver-src`
+- `neo4j-javascript-driver-src`
+- `neo4j-ogm-src`
+- `neo4j-python-driver-src`
+- `neo4j-src`
+- `tikv-src`
 
-| repo | cbm_status | cbm_run | cgc_status | cgc_run | notes | repo_path |
-| --- | --- | --- | --- | --- | --- | --- |
-| `apache-parquet-format-src` | `skipped` | `` | `skipped` | `` | docs/spec-first repo | `gitrefrepo/apache-parquet-format-src` |
-| `ldbc_graphalytics_docs-src` | `skipped` | `` | `skipped` | `` | docs/spec-first repo | `gitrefrepo/ldbc_graphalytics_docs-src` |
-| `neo4j-docs-bolt-src` | `skipped` | `` | `skipped` | `` | docs/spec-first repo | `gitrefrepo/neo4j-docs-bolt-src` |
-| `opencypher-src` | `skipped` | `` | `skipped` | `` | docs/spec-first repo | `gitrefrepo/opencypher-src` |
+## Needs Rerun
 
-## What This Changes For Future Study Passes
+- `clickhouse-src`
+- Fresh long-leash reruns `clickhouse-src-20260624-150515` and
+  `clickhouse-src-20260624-150516` still failed the semantic-ready bar:
+  `codebase-memory-mcp` left zero-byte index files after `150s`, and
+  CodeGraphContext still never produced `stats.txt` or `functions_find.txt`.
 
-- Future agents can safely assume `codebase-memory` coverage exists for every
-  currently named code-bearing repo in the spec.
-- Future agents should prefer CodeGraphContext first on the `DualToolReady`
-  subset and treat the `CbmReadyCgcTimeout` subset as repos where a longer
-  custom CGC run is a conscious choice, not an invisible default.
-- The four docs/spec shelves should continue to be handled text-first unless
-  the learning question specifically requires grammar or protocol-wide
-  structural indexing.
+## GraphToolLowYield Repos
+
+- `apache-parquet-format-src`
+- `ldbc_graphalytics_docs-src`
+- `neo4j-docs-bolt-src`
+- `opencypher-src`
+
+## Current Workspace Note
+
+- CBM indexed 1860 nodes and 3942 edges in knight-bus-graph-walker-20260624-120354.
+- CGC indexed 78 files, 345 functions, 3 classes, and 64 modules in knight-bus-graph-walker-20260624-120043.
 
 ## Requirement Impact
 
 | requirement | effect of this artifact |
 | --- | --- |
-| `REQ-LEARN-040.0` | fully grounded with a full spec-resolved run-state ledger instead of a partial tranche. |
-| `REQ-LEARN-036.0` | strengthened because clone coverage is now tied to an explicit graph-evidence status for all currently named concrete repos. |
-| `REQ-LEARN-053.0` | reinforced because the ledger continues to canonicalize the live shelf as `gitrefrepo/` while treating `ref-repo-folder/` as a legacy alias only. |
+| `REQ-LEARN-040.0` | strengthened: isolated per-repo runs are now checked for semantic output, not just wrapper file presence. |
+| `REQ-LEARN-036.0` | strengthened: clone coverage now has a truthchecked graph-tool status for every concrete repo target currently named by the spec. |
+| `REQ-LEARN-053.0` | preserved: the live shelf remains `gitrefrepo/`, while `ref-repo-folder/` remains a legacy alias only. |
 
 ## Skeptical Note
 
-This ledger still should not be overclaimed. It does **not** mean every repo
-here has already produced architecture-grade source evidence; it means the
-graph-navigation substrate has now been exercised across the full current repo
-set named by the spec. The next quality bottleneck is not shelf discovery, but
-disciplined evidence extraction and architectural synthesis from the
-highest-value repos.
+This artifact still does not prove architecture correctness. It proves something
+narrower but important: which local graph-evidence substrates are genuinely
+usable across the named repo shelf today. Future agents should prefer
+`codebase-memory-mcp` as the default structural navigator across the shelf,
+then use CodeGraphContext selectively where this ledger marks real semantic
+readiness.

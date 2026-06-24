@@ -1,4 +1,4 @@
-# Batch 07: Low-RAM Graph Priors And Architectures
+# Batch 07: Low-RAM Graph Priors, Representative GDS Kernels, And Storage Fit
 
 Date: 2026-06-24
 
@@ -14,9 +14,12 @@ Assigned PRD outcomes:
 - `Out-of-core graph execution`
 - `CSR / sparse adjacency storage`
 - `Memory-budgeted graph projection`
+- `Representative GDS family feasibility`
 
 Requirement IDs touched in this batch:
 
+- `REQ-LEARN-008.0`
+- `REQ-LEARN-009.0`
 - `REQ-LEARN-015.0`
 - `REQ-LEARN-024.0`
 - `REQ-LEARN-025.0`
@@ -27,461 +30,313 @@ Requirement IDs touched in this batch:
 - `REQ-LEARN-047.0`
 - `REQ-LEARN-048.0`
 
+## Answer First
+
+This batch started as a repo-ranking exercise and is now something more useful:
+it connects low-RAM graph precedents to representative Neo4j GDS kernel
+families.
+
+The strongest current conclusions are:
+
+1. `GraphChi` and `MiniGraph` are still the clearest single-node low-RAM
+   precedents, but the reason is now source-backed runtime control, not README
+   posture.
+2. `Kuzu` is the cleanest local proof that a disk-first graph system can keep
+   CSR as a durable storage shape rather than only an in-memory projection.
+3. `GAPBS`, `Ligra`, and `sprs` are valuable, but mostly as canonical CSR /
+   compressed-shape oracles and fixture scaffolding, not as full low-RAM server
+   architectures.
+4. `Neo4j GDS` representative families do not point toward thirteen persistent
+   per-algorithm layouts. They point toward:
+   - compact canonical topology,
+   - typed sidecars,
+   - explicit scratch/state accounting,
+   - and selective spill or out-of-core execution for the hard families.
+5. Cells are still not forced by the traced algorithm semantics alone.
+   Representative family tracing strengthens the case for:
+   - flat dual CSR plus sidecars as the first snapshot primitive,
+   - optional cells for locality and bounded rebuild packaging later,
+   - and separate treatment for pairwise-similarity and dense-embedding families.
+
+Short architecture thesis after this batch:
+
+```text
+PageRank, BFS, and WCC fit the "flat CSR + sidecars + bounded scratch" story.
+FastRP fits only if embeddings are treated as heavyweight sidecar/state artifacts.
+NodeSimilarity is the first major family that actively pressures the architecture
+toward selective spill, candidate pruning, or GraphBLAS-style alternatives.
+```
+
 ## Scope
 
-This note answers a narrow question:
+This batch answers two linked questions:
 
-**Which mirrored GitHub repos actually do less work in RAM for graph-related workloads, and what architectural moves make that possible?**
+1. Which mirrored repos actually contain real low-RAM graph design moves in
+   runtime code, not just README language?
+2. When representative Neo4j GDS families are traced from public procedures to
+   implementation and estimate classes, what storage/runtime shapes do they
+   actually demand from v003?
 
-I treated a repo as a real low-RAM precedent only if it had explicit evidence for one of these:
+This is not yet a complete per-procedure ledger for all GDS algorithms. It is a
+representative-family pass meant to prevent the storage decision from being made
+off topology alone.
 
-- disk-backed or out-of-core execution
-- CSR or sparse adjacency as the canonical graph shape
-- sparse linear algebra as the algorithm substrate
-- explicit memory budgets or memory estimators
-- deferred materialization that avoids duplicate in-memory copies
+## Graph-Tool Execution For This Batch
 
-I did **not** count repos that merely:
+This batch explicitly used the two local graph-evidence skills required by the
+learning spec:
 
-- benchmark graph workloads without a storage story
-- run graphs on GPUs or clusters without changing the RAM model
-- provide an API wrapper without a distinct memory design
+- `/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/SKILL.md`
+- `/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/SKILL.md`
 
-## Quick Read
+The repo-scope truthcheck for these runs already lives in
+`Reference-Shelf-Graph-Evidence-Ledger.md`. The table below records the
+discovery queries actually used in this batch.
 
-The strongest direct precedents, in order, are:
+| repo | graph-tool status | query / analysis question | matched symbol | verified source implication |
+| --- | --- | --- | --- | --- |
+| `neo4j-gds-src` | `CBM query-ready`, `CGC low-yield` | `PageRank*`, `*MemoryEstimateDefinition*`, `CentralityAlgorithms*` | `PageRankStreamProc`, `PageRankMemoryEstimateDefinition`, `CentralityAlgorithms.java` | public GDS proc classes, implementation classes, and estimate definitions are structurally traceable even though CGC is zero-indexed on this repo in the current shelf pass |
+| `graphchi-cpp-src` | `CBM query-ready`, `CGC low-yield` | `*engine*`, `*shard*`, `*memory*` | `graphchi_engine.hpp`, `slidingshard.hpp`, `memoryshard.hpp` | low-RAM claims are backed by explicit memory budget and streamed shard code |
+| `minigraph-src` | `DualSemanticReady` | `buffer_size` | `buffer_size` in `minigraph_sys.h`, `load_component.h`, and multiple apps | bounded resident fragments are a runtime control, not just CLI decoration |
+| `kuzu-src` | `CBM query-ready`, `CGC low-yield` | `*CSR*`, `*Adj*List*` | `csr_node_group.h`, `csr_chunked_node_group.h` | CSR is part of the storage/table layer, not only a benchmark view |
+| `gapbs-src` | `DualSemanticReady` | `CSRGraph` | `CSRGraph` in `src/graph.h` | good in-memory CSR oracle and fixture baseline |
+| `ligra-src` | `DualSemanticReady` | `compressedSymmetricVertex` | `compressedSymmetricVertex` in `ligra/compressedVertex.h` | compressed adjacency is a first-class execution representation |
+| `sprs-src` | `DualSemanticReady` | `CsMat` | `CsMat` / `CsMatBase` | pure Rust compressed sparse matrix shape is available for fixtures and experiments |
 
-1. `GraphChi` - disk-first graph execution on a single machine.
-2. `MiniGraph` - out-of-core graph processing with pipelined disk/CPU overlap.
-3. `Kuzu` - columnar disk-based storage with CSR adjacency/join indices.
-4. `RedisGraph` and `FalkorDB` - sparse adjacency matrices plus GraphBLAS.
-5. `GraphBLAS`, `LAGraph`, `python-graphblas`, `sprs` - sparse linear algebra and CSR/CSC graph kernels.
-6. `Ligra` and `graph-csr-openmp` - compressed / CSR graph representations and fast conversion.
-7. `Neo4j GDS` - not a RAM reducer, but a useful memory-budgeting guardrail.
+## Evidence Ledger
 
-## Ranked Shortlist
+| claim_id | source_path | symbol_or_query | sourced_fact | inference | speculation | PRD impact | skeptical note |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `B07-001` | `gitrefrepo/neo4j-gds-src/proc/centrality/.../PageRankStreamProc.java:41-56`, `.../CentralityAlgorithms.java:366-387`, `.../PageRankComputation.java:35-114`, `.../PageRankMemoryEstimateDefinition.java:29-37` | `gds.pageRank.stream`, `PageRankAlgorithm`, `PageRankComputation` | PageRank has public stream + estimate entrypoints, routes through `CentralityAlgorithms`, executes a Pregel-style computation, and estimates memory through `Pregel.memoryEstimation(...)` with a double node value. | PageRank fits a canonical topology plus per-node numeric state model better than a custom persistent layout. | Later tuning might want special packing for hot vectors, but not a separate durable topology. | Supports flat CSR plus weight sidecar plus result sidecar; no separate PageRank layout is justified yet. | This says what the family needs now, not that PageRank will be cheap at 200M nodes. |
+| `B07-002` | `gitrefrepo/neo4j-gds-src/proc/path-finding/.../BfsStreamProc.java:41-56`, `.../BfsBaseConfig.java:27-40`, `.../BFS.java:62-145`, `.../BfsMemoryEstimateDefinition.java:32-70` | `gds.bfs.stream`, `BFS`, `BfsMemoryEstimateDefinition` | BFS uses source/target node configs, allocates `traversedNodes`, `weights`, and a `visited` bitset, and its estimate includes per-thread `localNodes` / `chunks` ranges. | BFS is scratch-heavy but topology-light; the persistent need is adjacency, while the hard part is bounded frontier state. | Tile-local BFS may help locality later, but the family does not require cells for correctness. | Supports flat CSR plus bounded scratch planning; strengthens the case for explicit algorithm-state budgeting. | This is one traversal family only; weighted shortest-path families may pressure the design differently. |
+| `B07-003` | `gitrefrepo/neo4j-gds-src/proc/community/.../WccStreamProc.java:41-56`, `.../WccBaseConfig.java:30-46`, `.../CommunityAlgorithms.java:439-450`, `.../Wcc.java:54-120`, `.../WccMemoryEstimateDefinition.java:27-40` | `gds.wcc.stream`, `Wcc`, `HugeAtomicDisjointSetStruct` | WCC exposes stream + estimate, accepts `seedProperty`, `relationshipWeightProperty`, and `consecutiveIds`, executes through `WccStub` / `Wcc`, and estimates memory mainly as a disjoint-set structure. | WCC needs optional property sidecars plus per-node community scratch, not a second topology format. | A future packed community workspace might help huge graphs, but the traced family does not justify a persistent WCC layout. | Supports flat/reverse CSR plus optional weight/seed sidecars and per-node result writeback. | Some community algorithms like Louvain/Leiden still need separate tracing; WCC is the easy member of the family. |
+| `B07-004` | `gitrefrepo/neo4j-gds-src/proc/similarity/.../NodeSimilarityStreamProc.java:41-56`, `.../NodeSimilarityBaseConfig.java:35-110`, `.../SimilarityAlgorithms.java:196-236`, `.../NodeSimilarity.java:220-320`, `.../NodeSimilarityMemoryEstimateDefinition.java:36-108`, `.../NodeSimilarityWriteStep.java:37-84` | `gds.nodeSimilarity.stream`, `NodeSimilarity`, `TopKMap` | NodeSimilarity may run WCC first, materializes neighbor vectors and optional weight vectors, supports `topK` / `topN` / component filters, and can write relationship results. | This is the first representative family that clearly pressures the architecture toward pruning, spill, or sparse-kernel alternatives rather than pure flat-CSR iteration. | A GraphBLAS-style or candidate-blocking implementation may become preferable for the similarity family. | Supports the thesis that similarity is a `NeedsArchitectureSpike` family even if basic surface registration exists. | This is a representative trace, not proof that all similarity procedures share identical state shape. |
+| `B07-005` | `gitrefrepo/neo4j-gds-src/proc/embeddings/.../FastRPStreamProc.java:41-56`, `.../FastRPBaseConfig.java:34-85`, `.../NodeEmbeddingAlgorithms.java:80-104`, `.../FastRP.java:55-130`, `.../FastRPMemoryEstimateDefinition.java:30-50`, `.../FastRPWriteStep.java:35-64` | `gds.fastRP.stream`, `FastRP`, `FastRPMemoryEstimateDefinition` | FastRP depends on embedding dimension, feature properties, optional relationship weights, random seed, and allocates `propertyVectors` plus three per-node embedding arrays before writing node-property embeddings. | Dense embedding families pressure result-sidecar design and strict-RAM rejection much more than topology design. | Cells may help packaging hot subsets later, but they are not the first-order answer; embedding sidecars and spill matter more. | Supports treating embeddings as heavyweight sidecar and result artifacts, not as a reason to invent a dedicated topology format. | FastRP is still friendlier than training-heavy GraphSAGE / Node2Vec families; those remain to be traced. |
+| `B07-006` | `gitrefrepo/graphchi-cpp-src/src/engine/graphchi_engine.hpp:105-136`, `...:304-330`, `gitrefrepo/graphchi-cpp-src/src/shards/slidingshard.hpp:152-170` | `membudget_mb`, `determine_next_window`, `sliding_shard` | GraphChi has an explicit `membudget_mb`, computes the next window against a byte budget, and streams a shard that can only read one direction one chunk at a time. | GraphChi is a real runtime precedent for bounded graph windows rather than just a disk-backed slogan. | A strict-RAM execution profile for v003 could borrow GraphChi-style byte-budgeted window sizing without borrowing its whole API. | Strongly supports explicit-RAM global scan / window planning in v003. | GraphChi is not a property-graph database, so it cannot answer catalog or sidecar questions by itself. |
+| `B07-007` | `gitrefrepo/minigraph-src/minigraph/minigraph_sys.h:42-92`, `gitrefrepo/minigraph-src/minigraph/components/load_component.h:57-105`, `gitrefrepo/minigraph-src/README.md:85-108` | `buffer_size`, `NativeSemaphore`, `binary CSR` | MiniGraph asserts `buffer_size >= 1`, uses it to size semaphores and queues, and documents binary CSR plus bounded in-memory fragments. | MiniGraph is a direct precedent for turning resident working set into a first-class user/runtime knob. | A future strict-RAM profile could expose a queue/window budget inspired by MiniGraph even if the rest of the engine differs. | Strongly supports bounded scratch and explicit out-of-core control in v003. | MiniGraph shows runtime control, but not Neo4j-compatible API or property semantics. |
+| `B07-008` | `gitrefrepo/kuzu-src/src/include/storage/table/csr_node_group.h:21-29`, `...:81-99`, `...:165-179` | `NodeCSRIndex`, `CSRIndex`, `CSRNodeGroup` | Kuzu stores persistent data in CSR format, transient append data separately, and marks CSR as a node-group data format at the storage layer. | Disk-native CSR storage is compatible with a modern embedded graph system; CSR need not only be an in-memory projection. | v003 could adopt durable CSR snapshot packaging without becoming a Kuzu clone. | Strengthens the case for snapshot-topology files that are structurally first-class, not accidental exports. | Kuzu also has a full DB execution model that v003 is not required to copy. |
+| `B07-009` | `gitrefrepo/gapbs-src/src/graph.h:98-180` | `CSRGraph` | GAPBS uses explicit CSR index and neighbor arrays, with separate in/out indices for directed graphs. | GAPBS is a strong oracle and fixture shape for flat dual-CSR semantics. | v003 parity harnesses can borrow GAPBS-like graph fixtures and expectations. | Supports fixture/oracle strategy for traversal and centrality kernels. | GAPBS is an in-memory benchmark library, not a low-RAM serving architecture. |
+| `B07-010` | `gitrefrepo/ligra-src/ligra/compressedVertex.h:261-319` | `compressedSymmetricVertex` | Ligra defines compressed symmetric/asymmetric vertices and decodes neighborhoods lazily through decode helpers. | Compression can live in the execution representation without changing the public graph abstraction. | A later compact snapshot tier could experiment with compressed adjacency payloads behind the same logical API. | Supports optional compressed snapshot experiments after baseline flat CSR is proven. | Ligra is still fundamentally a shared-memory engine, not a disk-first system. |
+| `B07-011` | `gitrefrepo/sprs-src/sprs/src/sparse.rs:14-50`, `gitrefrepo/sprs-src/sprs/src/lib.rs:183-200` | `CsMatBase`, `CsMat::new` | `sprs` treats compressed CSR/CSC matrices as core Rust types with sorted indices and direct owned/borrowed variants. | Rust-native sparse matrix fixtures and experiments are viable without inventing all sparse primitives from scratch. | v003 could use `sprs`-like shapes for harnesses or internal experiments without committing to it as production substrate. | Supports `REQ-LEARN-026.0` fixture/oracle scaffolding. | A fixture helper is not a production architecture by itself. |
 
-| repo | URL | relevance | commentary | why it matters for the PRD |
-| --- | --- | ---: | --- | --- |
-| `graphchi-cpp-src` | https://github.com/GraphChi/graphchi-cpp | 97 | Best direct fit. It treats disk as the primary graph store and makes a laptop-sized machine feel much larger. | Strong precedent for single-machine graph work that intentionally avoids full in-memory residency. |
-| `minigraph-src` | https://github.com/Vinawx/MiniGraph | 95 | The architecture is blunt in a good way: overlap I/O and compute, then keep the memory manager out of the hot path. | Very close to the PRD's "strict holistic RAM" instinct. |
-| `kuzu-src` | https://github.com/kuzudb/kuzu | 92 | Disk-native graph database design with CSR adjacency structures; this is the modern embedded version of the same instinct. | Useful if we want storage-first graph shape without turning the whole system into a distributed service. |
-| `redisgraph-src` | https://github.com/RedisGraph/RedisGraph | 90 | Sparse adjacency plus algebraic traversal is the whole game here. | Strong proof that graph traversal can be expressed as sparse matrix operations instead of pointer-chasing. |
-| `falkordb-src` | https://github.com/FalkorDB/FalkorDB | 88 | Same sparse-matrix family, but with a more productized property-graph posture. | Good evidence that sparse adjacency is not just an academic trick. |
-| `graphblas-src` | https://github.com/DrTimothyAldenDavis/GraphBLAS | 86 | The backend story is sparse linear algebra, not graph-specific plumbing. That is the point. | Valuable as a substrate choice if the PRD wants graph math to stay compact. |
-| `lagraph-src` | https://github.com/GraphBLAS/LAGraph | 84 | Algorithm library on top of GraphBLAS, so it inherits the sparse representation advantage. | Good algorithm precedent once the storage substrate is decided. |
-| `python-graphblas-src` | https://github.com/python-graphblas/python-graphblas | 82 | The delayed-object API avoids needless intermediate allocations if used carefully. | Shows how to keep high-level syntax without paying for every temporary. |
-| `sprs-src` | https://github.com/sparsemat/sprs | 80 | Plain sparse matrix structures in Rust, with CSR/CSC front and center. | Useful if we need a compact Rust-side representation or test fixture oracle. |
-| `ligra-src` | https://github.com/jshun/ligra | 79 | Shared-memory graph framework with compressed graph support and CSR-like layout. | Good for compressed representation ideas, though not as aggressive as disk-first systems. |
-| `graph-csr-openmp-src` | https://github.com/puzzlef/graph-csr-openmp | 76 | Fast edgelist-to-CSR loader. More loader than runtime engine, but still relevant. | Helps if the PRD wants a compact canonical graph shape before execution begins. |
-| `neo4j-gds-src` | https://github.com/neo4j/graph-data-science | 74 | Not a RAM reducer. It is the opposite: a heap-based system with explicit memory estimation. | Useful as a guardrail and an anti-example for the PRD's low-RAM story. |
-| `graphblas_sparse_linear_algebra-src` | https://github.com/code-sam/graphblas_sparse_linear_algebra | 72 | Wrapper, not substrate. Still relevant because it exposes GraphBLAS to Rust users. | Good if the PRD wants sparse-linear-algebra access from Rust without bespoke bindings. |
+## Representative GDS Family Trace
 
-## What The Repos Actually Do
+These rows are not the full GDS surface. They are the representative family
+pass needed before claiming storage sufficiency.
 
-### 1) Disk-first or out-of-core execution
+| family | public modes seen in source | config surface | implementation path | estimate path | dominant runtime state | write / mutate target | v003 storage implication | current fit status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `PageRank / rank propagation` | `stream`, `stats`, `mutate`, `write`, `estimate` | `PageRankStreamConfig`, `PageRankStatsConfig`, `PageRankMutateConfig`, `PageRankWriteConfig` | `PageRankStreamProc` -> `CentralityAlgorithms.pageRank(...)` -> `PageRankAlgorithm` -> `PageRankComputation` | `PageRankMemoryEstimateDefinition` via `Pregel.memoryEstimation(...)` | per-node double value plus message passing over graph edges | mutate/write as node-property values via `PageRankWriteStep` | flat CSR or equivalent adjacency, optional weight sidecar, result sidecar for scores | `P1-friendly` on flat CSR plus sidecars |
+| `BFS / frontier traversal` | `stream`, `stats`, `mutate`, `estimate` | `BfsBaseConfig`, `BfsStreamConfig`, source node, target nodes, optional `maxDepth` | `BfsStreamProc` -> `PathFindingAlgorithms.breadthFirstSearch(...)` -> `BreadthFirstSearch` -> `BFS` | `BfsMemoryEstimateDefinition` | visited bitset, traversed node array, weight/depth array, per-thread local node chunks | mutate path exists; no write proc found in the current public surface pass | canonical adjacency plus bounded frontier scratch, no persistent BFS layout | `P1-friendly` on flat CSR plus bounded scratch |
+| `WCC / connectivity` | `stream`, `stats`, `mutate`, `write`, `estimate` | `WccBaseConfig` with optional `seedProperty`, `relationshipWeightProperty`, `threshold`, `consecutiveIds` | `WccStreamProc` -> `CommunityAlgorithms.wcc(...)` -> `WccStub` -> `Wcc` | `WccMemoryEstimateDefinition` | `HugeAtomicDisjointSetStruct` plus optional seeding and threshold logic | mutate/write as node-property values via `WccWriteStep` | flat or inverse-indexed adjacency, optional weight/seed sidecars, result sidecar / writeback | `P1-friendly` on flat/reverse CSR plus sidecars |
+| `NodeSimilarity / pairwise similarity` | `stream`, `stats`, `mutate`, `write`, `estimate`; filtered variants too | `NodeSimilarityBaseConfig` with `topK`, `topN`, degree cutoffs, component filtering, optional weights | `NodeSimilarityStreamProc` -> `SimilarityAlgorithms.nodeSimilarity(...)` -> `NodeSimilarity` | `NodeSimilarityMemoryEstimateDefinition` | neighbor vectors, optional weight vectors, source/target filters, optional WCC prepass, `TopKMap` / `TopNList`, optional similarity graph | mutate/write create relationship-oriented similarity results via `NodeSimilarityWriteStep` | canonical adjacency is necessary but not sufficient; candidate pruning, spill, or sparse-kernel path is likely needed | `NeedsArchitectureSpike` |
+| `FastRP / embedding propagation` | `stream`, `stats`, `mutate`, `write`, `estimate` | `FastRPBaseConfig` with embedding dimension, property ratio, feature properties, weights, seed | `FastRPStreamProc` -> `NodeEmbeddingAlgorithms.fastRP(...)` -> `FastRP` | `FastRPMemoryEstimateDefinition` | property vectors plus three per-node embedding arrays | mutate/write as node-property embeddings via `FastRPWriteStep` | topology plus feature-property sidecars plus embedding/result sidecars; strict RAM must account for dense matrices | `P2-but-feasible` with strong budget gates |
 
-These repos reduce RAM by making the graph live on disk and only pulling in the active working set.
+## Low-RAM Precedent Corrections After Runtime Inspection
 
-#### GraphChi
+The earlier draft was directionally right but too README-heavy. After reading the
+actual runtime code, the more precise interpretation is:
 
-Source:
+### 1. GraphChi is a real memory-budgeted window engine
 
-- [`graphchi-cpp-src/README.md:30-34`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphchi-cpp-src/README.md:30>)
-- [`graphchi-cpp-src/README.md:107-115`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphchi-cpp-src/README.md:107>)
+Runtime evidence:
 
-What it does:
+- `gitrefrepo/graphchi-cpp-src/src/engine/graphchi_engine.hpp:105-136`
+- `gitrefrepo/graphchi-cpp-src/src/engine/graphchi_engine.hpp:304-330`
+- `gitrefrepo/graphchi-cpp-src/src/shards/slidingshard.hpp:152-170`
 
-- processes large graphs from disk instead of requiring the whole graph to fit in RAM
-- runs vertex-centric programs asynchronously and in parallel
-- uses the Parallel Sliding Windows method so the working set is streamed from disk
-- explicitly mentions a run on a Mac Mini with 8 GB RAM and SSD
+What survives source inspection:
 
-Short evidence snippet:
+- `membudget_mb` is an actual runtime setting.
+- `determine_next_window(...)` computes window size against a byte budget.
+- `sliding_shard` is explicitly a streamed one-direction, one-chunk-at-a-time
+  shard abstraction.
 
-```text
-processing the graph from disk
-Parallel Sliding Windows
-8 gigabytes of RAM
-```
-
-Why this matters:
-
-- this is the clearest single-machine precedent for "less RAM, more disk"
-- it is a good fit for PRD thinking that wants graph state to be staged, not globally resident
-
-#### MiniGraph
-
-Source:
-
-- [`minigraph-src/README.md:4-18`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/minigraph-src/README.md:4>)
-- [`minigraph-src/README.md:85-108`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/minigraph-src/README.md:85>)
-
-What it does:
-
-- calls itself an out-of-core graph system for a single machine
-- pipelines disk reads/writes with CPU work
-- says this decouples computation from memory management and scheduling
-- stores graphs in binary CSR
-- uses `buffer_size` to limit how many fragments can remain resident in memory
-
-Short evidence snippet:
+v003 implication:
 
 ```text
-out-of-core system
-binary CSR format
-buffer_size ... residented in memory
+GraphChi is not just "graph on disk".
+It is a concrete precedent for strict-RAM window planning on top of a
+canonical graph layout.
 ```
 
-Why this matters:
+### 2. MiniGraph is a real bounded-working-set pipeline
 
-- this is almost a design pattern catalog for the PRD's build-store layer
-- the `buffer_size` idea is especially useful because it makes memory a first-class operating parameter
+Runtime evidence:
 
-#### Kuzu
+- `gitrefrepo/minigraph-src/minigraph/minigraph_sys.h:42-92`
+- `gitrefrepo/minigraph-src/minigraph/components/load_component.h:57-105`
+- `gitrefrepo/minigraph-src/README.md:85-108`
 
-Source:
+What survives source inspection:
 
-- [`kuzu-src/README.md:22-29`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/kuzu-src/README.md:22>)
+- `buffer_size` is asserted, logged, and used to size semaphores and queues.
+- the load component creates a semaphore from `buffer_size_` and drains work
+  accordingly.
+- binary CSR is still the durable graph shape.
 
-What it does:
-
-- uses columnar disk-based storage
-- uses columnar sparse row-based (CSR) adjacency list / join indices
-- couples that with a vectorized and factorized query processor
-
-Short evidence snippet:
+v003 implication:
 
 ```text
-Columnar disk-based storage
-Columnar sparse row-based (CSR) adjacency list/join indices
+MiniGraph is the clearest local precedent for making resident analytical
+working-set size a first-class operator knob rather than an accidental outcome.
 ```
 
-Why this matters:
+### 3. Kuzu keeps CSR at the storage/table layer
 
-- this is the most directly relevant modern embedded graph-store pattern in the mirror
-- it suggests a clean separation between durable storage shape and execution shape
+Runtime evidence:
 
-### 2) Sparse adjacency and GraphBLAS-style traversal
+- `gitrefrepo/kuzu-src/src/include/storage/table/csr_node_group.h:21-29`
+- `gitrefrepo/kuzu-src/src/include/storage/table/csr_node_group.h:81-99`
+- `gitrefrepo/kuzu-src/src/include/storage/table/csr_node_group.h:165-179`
 
-These repos reduce RAM by making graph structure sparse by construction and using matrix algebra instead of object-heavy adjacency structures.
+What survives source inspection:
 
-#### RedisGraph
+- Kuzu models node-CSR indices directly.
+- it distinguishes persistent CSR-organized data from transient append data.
+- `CSRNodeGroup` is a storage format, not just a temporary query structure.
 
-Source:
-
-- [`redisgraph-src/docs/docs/design/_index.md:122-165`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/redisgraph-src/docs/docs/design/_index.md:122>)
-
-What it does:
-
-- represents graphs as sparse adjacency matrices
-- uses one matrix for the general adjacency structure and more matrices for typed relationships / labels
-- translates traversal patterns into matrix multiplication
-- prefers multiplying sparse intermediates first
-- uses GraphBLAS
-- current implementation uses CSC format
-
-Short evidence snippet:
+v003 implication:
 
 ```text
-sparse adjacency matrices
-GraphBLAS
-CSC sparse matrix format
+Durable CSR snapshot packaging is a legitimate database-storage move,
+not merely a benchmark or export trick.
 ```
 
-Why this matters:
+### 4. GAPBS, Ligra, and sprs are baseline-shape oracles, not low-RAM servers
 
-- sparse matrices are the RAM story here, not just the query language
-- the "multiply sparse intermediates first" rule is an execution-time memory saver as well as a speed trick
+Runtime evidence:
 
-#### FalkorDB
+- `gitrefrepo/gapbs-src/src/graph.h:98-180`
+- `gitrefrepo/ligra-src/ligra/compressedVertex.h:261-319`
+- `gitrefrepo/sprs-src/sprs/src/sparse.rs:14-50`
 
-Source:
+What survives source inspection:
 
-- [`falkordb-src/README.md:39-46`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/falkordb-src/README.md:39>)
+- `GAPBS` gives a direct in/out CSR baseline for test and oracle work.
+- `Ligra` gives compressed symmetric/asymmetric vertex shapes with decode
+  helpers.
+- `sprs` gives Rust-native CSR/CSC compressed matrix shapes.
 
-What it does:
-
-- positions sparse matrices as the adjacency representation
-- uses linear algebra for querying
-
-Why this matters:
-
-- it is a productized proof that the RedisGraph idea survived into a newer graph database line
-- useful if the PRD wants a graph-native store whose internal representation is already sparse
-
-#### GraphBLAS
-
-Source:
-
-- [`graphblas-src/README.md:1-18`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphblas-src/README.md:1>)
-- [`graphblas-src/README.md:208-216`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphblas-src/README.md:208>)
-
-What it does:
-
-- defines graph algorithms in the language of sparse linear algebra
-- applies sparse matrix operations to sparse adjacency matrices
-- can build kernels at run time in `GRAPHBLAS_COMPACT` mode to reduce library size
-
-Short evidence snippet:
+v003 implication:
 
 ```text
-sparse matrix operations on semirings
-applied to sparse adjacency matrices
+These repos matter more for canonical shapes, fixtures, and compression ideas
+than for end-to-end low-RAM product architecture.
 ```
 
-Why this matters:
+## Architecture Fit Matrix
 
-- this is the most important substrate-level precedent in the set
-- the RAM win is mostly implicit: sparse structures are the representation, not an afterthought
+| family / capability | topology need | sidecar need | dominant state / scratch | likely artifact target | flat CSR only? | optional cells pressure | GraphBLAS pressure | recommendation |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `PageRank` | forward adjacency, optional weight-aware degree logic | relationship-weight sidecar, result property sidecar | per-node double rank state plus Pregel messaging | node-property result sidecar / writeback | almost | low | low / optional | keep on flat CSR plus sidecars |
+| `BFS / traversal` | forward adjacency; reverse helpful for related families | little or none beyond source/target config metadata | visited bitset, traversed node list, depth/weight array, frontier chunks | stream rows or mutate-side scratch/result | no, needs scratch plan | medium for locality only | low | keep on flat CSR plus bounded scratch; cells later only if measured |
+| `WCC` | undirected or inverse-indexed traversal semantics | seed property and optional weight sidecar | disjoint set per node | node-property result sidecar / writeback | almost | low | low | keep on flat/reverse CSR plus sidecars |
+| `NodeSimilarity` | adjacency access for many node pairs | optional weight sidecar, component sidecar, result relationship artifact | vectors, weights, topK/topN, optional WCC, candidate explosion | relationship-result artifact or graph result | no | low-medium | medium-high | treat as spike family; design pruning/spill before claiming support |
+| `FastRP` | canonical adjacency | feature-property sidecars, optional relationship-weight sidecar, embedding result sidecar | dense property vectors plus three per-node embedding arrays | node-embedding sidecar / writeback | no | low | medium | support only with explicit dimension-based RAM rejection |
+| `General low-RAM global scan profile` | canonical adjacency stream | optional columnar sidecars | window buffers, spill, result scratch | streamed execution, not extra topology | no | low | optional by family | borrow GraphChi / MiniGraph control ideas |
 
-#### LAGraph
+## What This Batch Strengthens
 
-Source:
+### Stronger than the earlier draft
 
-- [`lagraph-src/README.md:6-16`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/lagraph-src/README.md:6>)
+- The low-RAM shortlist is no longer justified mainly by README language.
+- Representative GDS families now have source-backed proc/config/kernel/estimate
+  traces.
+- Similarity and embedding families are now visibly different from traversal and
+  centrality families in storage pressure.
 
-What it does:
+### Still intentionally unresolved
 
-- collects algorithms that use GraphBLAS
-- therefore inherits the sparse representation and sparse-operator model
+- This is not yet a full per-procedure kernel ledger for all of GDS.
+- Louvain, Leiden, triangle count, Node2Vec, GraphSAGE, KNN, and model/pipeline
+  families still need direct tracing before they can move out of
+  `NeedsArchitectureSpike` or `ArtifactPartial`.
+- This batch does not yet prove benchmark or observability discipline. That
+  remains Batch 08.
 
-Why this matters:
+## Requirement Impact
 
-- use this as the algorithm-layer precedent after GraphBLAS is chosen
-- it is less about storage and more about keeping graph kernels in the sparse domain
+| requirement | after this batch | note |
+| --- | --- | --- |
+| `REQ-LEARN-024.0` | `ArtifactCovered` | low-RAM out-of-core graph systems are now supported by runtime code evidence, not only README summaries |
+| `REQ-LEARN-025.0` | `ArtifactCovered` | GraphBLAS and sparse-matrix alternatives are now placed correctly as selective substrate options rather than universal answers |
+| `REQ-LEARN-008.0` | stronger `ArtifactPartial` | estimator semantics now include representative PageRank, BFS, WCC, NodeSimilarity, and FastRP traces |
+| `REQ-LEARN-009.0` | stronger `ArtifactPartial` | state-shape classification now has representative family evidence |
+| `REQ-LEARN-015.0` | stronger `ArtifactPartial` | representative post-surface algorithm baselines now exist, but not yet the whole family set |
+| `REQ-LEARN-026.0` | stronger `ArtifactPartial` | GAPBS, Ligra, and sprs now provide better fixture/oracle shape evidence |
+| `REQ-LEARN-044.0` | stronger `ArtifactPartial` | proc-to-kernel tracing now exists for representative families |
+| `REQ-LEARN-045.0` | stronger `ArtifactPartial` | kernel-derived storage implications now exist for representative families |
+| `REQ-LEARN-046.0` | stronger `ArtifactPartial` | estimator definitions are now linked to real family state shapes |
+| `REQ-LEARN-047.0` | stronger `ArtifactPartial` | family feasibility is more grounded, but not complete |
+| `REQ-LEARN-048.0` | stronger `ArtifactPartial` | oracle direction is clearer, but batch does not yet define every family harness |
 
-#### python-graphblas
+## Skeptical Review
 
-Source:
+| concern | why it is fair | current answer |
+| --- | --- | --- |
+| `GraphBLAS temptation` | Sparse algebra is elegant and could seduce us into redesigning everything around it. | The traced GDS families do not require a GraphBLAS-only architecture. Similarity is the first real pressure point; traversal/centrality are not. |
+| `Cells everywhere` | Once locality enters the conversation, it is easy to over-prescribe cells. | The representative families still fit flat CSR plus sidecars first. Cells remain a packaging/locality optimization until measured otherwise. |
+| `README bias` | Earlier drafts could have mistaken documentation tone for runtime truth. | This batch corrects that with runtime file evidence from GraphChi, MiniGraph, Kuzu, GAPBS, Ligra, and sprs. |
+| `Representative-family overreach` | Five families are not the whole GDS surface. | Correct. This batch intentionally upgrades confidence without pretending complete family coverage. |
+| `Memory-estimate optimism` | Having estimate classes does not guarantee real strict-RAM execution. | Correct. Neo4j GDS estimate definitions help classify state shape, not prove v003 execution policy. Strict-RAM remains a v003 design obligation. |
 
-- [`python-graphblas-src/README.md:89-96`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/python-graphblas-src/README.md:89>)
-- [`python-graphblas-src/README.md:111-115`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/python-graphblas-src/README.md:111>)
+## Checkpoint Summary
 
-What it does:
+What changed in the architecture conversation because of this batch:
 
-- creates delayed objects that do no work until the GraphBLAS call is formed
-- warns that `.new()` inside a loop creates unnecessary objects
-- encourages object reuse outside the loop
+1. The first architecture choice is still not `cells or no cells`.
+   It is still:
+   - canonical topology shape,
+   - typed sidecars,
+   - scratch/state budgeting,
+   - publication semantics.
+2. The strongest family split is now visible:
+   - `PageRank`, `BFS`, `WCC`: good first-wave fits for flat CSR plus sidecars.
+   - `FastRP`: feasible, but only with honest dense-state accounting.
+   - `NodeSimilarity`: genuine architecture spike family.
+3. The best low-RAM external borrow remains operational rather than cosmetic:
+   - byte- or queue-bounded working sets,
+   - streamed windows,
+   - durable compact structure,
+   - explicit refusal before memory blow-up.
 
-Short evidence snippet:
+Best next move after this batch:
 
 ```text
-creates a delayed object which does no computation
-will create many unnecessary objects if used in a loop
+Trace one more hard family cluster:
+  Louvain / Leiden / triangle / Node2Vec / KNN
+then move to benchmark + observability discipline.
 ```
-
-Why this matters:
-
-- this is a small but real RAM story: fewer temporaries, fewer live objects
-- it is the kind of "don't materialize early" lesson we should steal directly
-
-#### sprs
-
-Source:
-
-- [`sprs-src/README.md:1-34`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/sprs-src/README.md:1>)
-
-What it does:
-
-- provides CSR and CSC matrices plus sparse vectors in pure Rust
-- includes sparse matrix/vector products and sparse iterators
-
-Why this matters:
-
-- this is the compact Rust-side data shape we want if the PRD leans into a native implementation
-- it is a better fit than dense adjacency lists for low-RAM graph work
-
-### 3) Compressed graph loading and canonical CSR shapes
-
-These repos do not always run out-of-core, but they still reduce RAM pressure by compressing the graph representation before algorithm execution.
-
-#### Ligra
-
-Source:
-
-- [`ligra-src/README.md:1-18`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/ligra-src/README.md:1>)
-- [`ligra-src/README.md:37-40`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/ligra-src/README.md:37>)
-- [`ligra-src/README.md:105-129`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/ligra-src/README.md:105>)
-- [`ligra-src/README.md:167-171`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/ligra-src/README.md:167>)
-
-What it does:
-
-- supports compressed graphs and hypergraphs
-- offers byte codes, run-length encoding, and nibble codes
-- stores CSR offsets in `.idx` and adjacency arrays in `.adj`
-- can run the same algorithms on compressed inputs with a `-c` flag
-
-Short evidence snippet:
-
-```text
-compressed graphs and hypergraphs
-CSR format
-byte codes with run-length encoding
-```
-
-Why this matters:
-
-- this is a strong precedent for precomputing a compact structural representation before the actual graph kernel starts
-
-#### graph-csr-openmp
-
-Source:
-
-- [`graph-csr-openmp-src/README.md:1-5`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graph-csr-openmp-src/README.md:1>)
-- [`graph-csr-openmp-src/README.md:95-132`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graph-csr-openmp-src/README.md:95>)
-
-What it does:
-
-- optimizes edgelist reading and conversion into CSR
-- explicitly discusses memory mapping and out-of-core I/O references
-
-Why this matters:
-
-- if the PRD needs a fast ingestion path into a compact canonical layout, this is the right kind of precedent
-
-### 4) Memory budgeting and guardrails rather than memory reduction
-
-#### Neo4j GDS
-
-Source:
-
-- [`neo4j-gds-src/doc/modules/ROOT/pages/common-usage/memory-estimation.adoc:1-58`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/neo4j-gds-src/doc/modules/ROOT/pages/common-usage/memory-estimation.adoc:1>)
-- [`neo4j-gds-src/doc/modules/ROOT/pages/management-ops/graph-creation/graph-project.adoc:1-22`](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/neo4j-gds-src/doc/modules/ROOT/pages/management-ops/graph-creation/graph-project.adoc:1>)
-
-What it does:
-
-- says the graph algorithms library operates completely on the heap
-- exposes `.estimate` mode so users can check `requiredMemory` before running
-- keeps projected graphs in memory until dropped
-
-Short evidence snippet:
-
-```text
-operates completely on the heap
-requiredMemory
-projected graphs reside in memory
-```
-
-Why this matters:
-
-- this is not the low-RAM answer, but it is the honest guardrail answer
-- useful as a counterexample: memory estimation is not the same as memory reduction
-
-## Supporting Local Analog
-
-This one is not from the longlist, but it is too relevant to ignore because it shows the same pattern in a different domain.
-
-### NornicDB
-
-Source:
-
-- `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/nornicdb-src/docs/architecture/indexing-memory-large-datasets.md`
-
-What it does:
-
-- writes vectors to an append-only `.vec` file
-- keeps only `id -> offset` in RAM
-- builds HNSW from the file in chunks
-- avoids a duplicate vector copy during search
-- bounds peak RAM by chunk size plus the offset map
-
-Why it matters:
-
-- this is the cleanest file-backed / lookup-backed memory reduction pattern in the local mirror
-- even though it is not a graph kernel repo, the storage lesson maps cleanly to graph sidecars and embeddings
-
-## Excluded From The Shortlist
-
-These are present in the mirror, but I did not count them as direct low-RAM graph precedents:
-
-| repo | reason excluded |
-| --- | --- |
-| `gapbs-src` | benchmark suite and reference kernels, not a storage architecture. |
-| `graphscope-src` | distributed graph platform with an in-memory manager; it scales out, but it does not primarily minimize RAM per graph. |
-| `cugraph-src` | GPU-first graph analytics; different memory model. |
-| `timely-dataflow-src` | valuable for backpressure and resource control, but not a graph storage precedent. |
-| `graphblas-pointers-src` | pointer/index of papers and implementations, not an implementation path by itself. |
-
-## Pattern Extraction
-
-The repeatable low-RAM moves across the shortlist are:
-
-1. **Push the graph onto disk early.**
-   - GraphChi, MiniGraph, Kuzu, and the NornicDB analog all do this.
-   - The active working set becomes much smaller than the graph itself.
-
-2. **Make CSR or sparse adjacency the canonical shape.**
-   - Ligra, sprs, graph-csr-openmp, RedisGraph, FalkorDB, and Kuzu all converge here.
-   - This avoids dense representation blowups and pointer-heavy adjacency storage.
-
-3. **Move graph math into sparse linear algebra.**
-   - GraphBLAS, LAGraph, RedisGraph, and FalkorDB all show this path.
-   - Traversal becomes matrix multiplication or masked sparse operations instead of object churn.
-
-4. **Budget memory explicitly.**
-   - MiniGraph's `buffer_size` and Neo4j GDS `requiredMemory` are the clearest examples.
-   - Even when a system is still in-memory, the budget becomes observable.
-
-5. **Delay materialization.**
-   - python-graphblas demonstrates that delayed objects and object reuse matter.
-   - NornicDB shows the same principle with file-backed vector lookup.
-
-6. **Separate ingestion shape from execution shape.**
-   - graph-csr-openmp, Ligra compression, and Kuzu's columnar disk layout all do this.
-   - That separation is where the RAM savings usually appear.
-
-## What I Think We Should Steal For Knight Bus
-
-If the PRD wants a real low-RAM outcome, the strongest borrowable pattern stack is:
-
-- **Disk-backed graph facts**
-  - do not keep the entire graph in live heap state
-
-- **CSR or sparse adjacency as the canonical structural layout**
-  - use one compact structural form for both build and query
-
-- **Sparse-linear-algebra kernels for traversal**
-  - avoid custom pointer-chasing if the same traversal can be expressed as sparse ops
-
-- **Explicit memory budgets and estimates**
-  - make "fit" something we can ask before execution, not something we discover by OOM
-
-- **Delayed materialization for intermediate objects**
-  - do not create transient graph objects unless a kernel needs them
-
-- **Chunked file-backed sidecars for heavyweight auxiliary state**
-  - embeddings, labels, or history should not force a second full resident copy
-
-## Bottom Line
-
-The repos that really reduce RAM are the ones that treat graph state as:
-
-- a disk-backed working set,
-- a sparse structural representation,
-- or a sparse algebra problem.
-
-The ones that only estimate memory are still useful, but they are not the same class.
-
-For the PRD, the highest-confidence path is:
-
-1. pick a compact canonical graph shape, ideally CSR-like,
-2. keep the working set bounded or file-backed,
-3. run graph kernels through sparse algebra or frontier-based access,
-4. and make memory budgets explicit enough that the system can refuse work before it OOMs.
 
 ## References
 
-- [GraphChi README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphchi-cpp-src/README.md:30>)
-- [MiniGraph README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/minigraph-src/README.md:4>)
-- [Kuzu README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/kuzu-src/README.md:22>)
-- [RedisGraph design](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/redisgraph-src/docs/docs/design/_index.md:122>)
-- [FalkorDB README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/falkordb-src/README.md:41>)
-- [GraphBLAS README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graphblas-src/README.md:1>)
-- [LAGraph README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/lagraph-src/README.md:6>)
-- [python-graphblas README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/python-graphblas-src/README.md:89>)
-- [sprs README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/sprs-src/README.md:1>)
-- [Ligra README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/ligra-src/README.md:1>)
-- [graph-csr-openmp README](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/graph-csr-openmp-src/README.md:1>)
-- [Neo4j GDS memory estimation](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/neo4j-gds-src/doc/modules/ROOT/pages/common-usage/memory-estimation.adoc:1>)
-- [Neo4j GDS graph projection lifecycle](</Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo/neo4j-gds-src/doc/modules/ROOT/pages/management-ops/graph-creation/graph-project.adoc:1>)
+- `gitrefrepo/neo4j-gds-src/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/pagerank/PageRankComputation.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/pagerank/PageRankMemoryEstimateDefinition.java`
+- `gitrefrepo/neo4j-gds-src/applications/algorithms/centrality/src/main/java/org/neo4j/gds/applications/algorithms/centrality/CentralityAlgorithms.java`
+- `gitrefrepo/neo4j-gds-src/proc/path-finding/src/main/java/org/neo4j/gds/paths/traverse/BfsStreamProc.java`
+- `gitrefrepo/neo4j-gds-src/procedures/facade-api/configs/path-finding-configs/src/main/java/org/neo4j/gds/paths/traverse/BfsBaseConfig.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/paths/traverse/BFS.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/paths/traverse/BfsMemoryEstimateDefinition.java`
+- `gitrefrepo/neo4j-gds-src/proc/community/src/main/java/org/neo4j/gds/wcc/WccStreamProc.java`
+- `gitrefrepo/neo4j-gds-src/procedures/facade-api/configs/community-configs/src/main/java/org/neo4j/gds/wcc/WccBaseConfig.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/wcc/Wcc.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/wcc/WccMemoryEstimateDefinition.java`
+- `gitrefrepo/neo4j-gds-src/proc/similarity/src/main/java/org/neo4j/gds/similarity/nodesim/NodeSimilarityStreamProc.java`
+- `gitrefrepo/neo4j-gds-src/procedures/facade-api/configs/similarity-configs/src/main/java/org/neo4j/gds/similarity/nodesim/NodeSimilarityBaseConfig.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/similarity/nodesim/NodeSimilarity.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/similarity/nodesim/NodeSimilarityMemoryEstimateDefinition.java`
+- `gitrefrepo/neo4j-gds-src/proc/embeddings/src/main/java/org/neo4j/gds/embeddings/fastrp/FastRPStreamProc.java`
+- `gitrefrepo/neo4j-gds-src/procedures/facade-api/configs/node-embeddings-configs/src/main/java/org/neo4j/gds/embeddings/fastrp/FastRPBaseConfig.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/embeddings/fastrp/FastRP.java`
+- `gitrefrepo/neo4j-gds-src/algo/src/main/java/org/neo4j/gds/embeddings/fastrp/FastRPMemoryEstimateDefinition.java`
+- `gitrefrepo/graphchi-cpp-src/src/engine/graphchi_engine.hpp`
+- `gitrefrepo/graphchi-cpp-src/src/shards/slidingshard.hpp`
+- `gitrefrepo/minigraph-src/minigraph/minigraph_sys.h`
+- `gitrefrepo/minigraph-src/minigraph/components/load_component.h`
+- `gitrefrepo/minigraph-src/README.md`
+- `gitrefrepo/kuzu-src/src/include/storage/table/csr_node_group.h`
+- `gitrefrepo/gapbs-src/src/graph.h`
+- `gitrefrepo/ligra-src/ligra/compressedVertex.h`
+- `gitrefrepo/sprs-src/sprs/src/sparse.rs`

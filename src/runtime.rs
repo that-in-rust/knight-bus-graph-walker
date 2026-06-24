@@ -15,7 +15,7 @@ use crate::{
     },
     types::{
         DenseNodeId, HopCount, NodeKey, NodeRecord, QueryFamily, QueryResult, SnapshotManifest,
-        WalkDirection,
+        SnapshotStorageMode, WalkDirection,
     },
 };
 
@@ -36,6 +36,121 @@ pub trait WalkQueryRuntime {
     fn all_node_keys(&self) -> Result<Vec<NodeKey>, KnightBusError>;
 
     fn snapshot_size_bytes(&self) -> u64;
+}
+
+pub trait GraphAdjacencyRuntime {
+    fn node_count(&self) -> u64;
+
+    fn relationship_count(&self) -> u64;
+
+    fn neighbors(
+        &self,
+        node: DenseNodeId,
+        direction: WalkDirection,
+    ) -> Result<NeighborCursor<'_>, KnightBusError>;
+
+    fn global_edges(&self, direction: WalkDirection) -> Result<EdgeCursor<'_>, KnightBusError>;
+}
+
+#[derive(Debug)]
+pub struct NeighborCursor<'a> {
+    peers_mmap: &'a Mmap,
+    next_index: usize,
+    end_index: usize,
+}
+
+impl<'a> NeighborCursor<'a> {
+    fn new(peers_mmap: &'a Mmap, start_index: usize, end_index: usize) -> Self {
+        Self {
+            peers_mmap,
+            next_index: start_index,
+            end_index,
+        }
+    }
+}
+
+impl Iterator for NeighborCursor<'_> {
+    type Item = DenseNodeId;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.next_index >= self.end_index {
+            return None;
+        }
+
+        let dense_id = DenseNodeId::new(read_u32_from_mmap(self.peers_mmap, self.next_index));
+        self.next_index += 1;
+        Some(dense_id)
+    }
+}
+
+#[derive(Debug)]
+pub struct EdgeCursor<'a> {
+    offsets_mmap: &'a Mmap,
+    peers_mmap: &'a Mmap,
+    node_count: usize,
+    current_source_index: usize,
+    next_peer_index: usize,
+    current_source_end: usize,
+}
+
+impl<'a> EdgeCursor<'a> {
+    fn new(offsets_mmap: &'a Mmap, peers_mmap: &'a Mmap, node_count: u32) -> Self {
+        let mut cursor = Self {
+            offsets_mmap,
+            peers_mmap,
+            node_count: node_count as usize,
+            current_source_index: 0,
+            next_peer_index: 0,
+            current_source_end: 0,
+        };
+        cursor.reset_source_bounds_now();
+        cursor.advance_past_empty_sources_now();
+        cursor
+    }
+
+    fn reset_source_bounds_now(&mut self) {
+        if self.current_source_index >= self.node_count {
+            self.next_peer_index = 0;
+            self.current_source_end = 0;
+            return;
+        }
+
+        self.next_peer_index =
+            read_u64_from_mmap(self.offsets_mmap, self.current_source_index) as usize;
+        self.current_source_end =
+            read_u64_from_mmap(self.offsets_mmap, self.current_source_index + 1) as usize;
+    }
+
+    fn advance_past_empty_sources_now(&mut self) {
+        while self.current_source_index < self.node_count
+            && self.next_peer_index >= self.current_source_end
+        {
+            self.current_source_index += 1;
+            self.reset_source_bounds_now();
+        }
+    }
+}
+
+impl Iterator for EdgeCursor<'_> {
+    type Item = (DenseNodeId, DenseNodeId);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.current_source_index >= self.node_count {
+            return None;
+        }
+
+        let source_dense_id = DenseNodeId::new(self.current_source_index as u32);
+        let target_dense_id =
+            DenseNodeId::new(read_u32_from_mmap(self.peers_mmap, self.next_peer_index));
+        self.next_peer_index += 1;
+        if self.next_peer_index >= self.current_source_end {
+            self.current_source_index += 1;
+            self.reset_source_bounds_now();
+            self.advance_past_empty_sources_now();
+        }
+
+        Some((source_dense_id, target_dense_id))
+    }
 }
 
 #[derive(Debug)]
@@ -116,14 +231,24 @@ impl MmapWalkRuntime {
     }
 
     pub fn key_for_dense_id(&self, dense_id: u32) -> Result<String, KnightBusError> {
+        self.validate_dense_id_now(dense_id)?;
         Ok(self.key_str_for_dense_id(dense_id)?.to_owned())
     }
 
     fn validate_open_path(&self) -> Result<(), KnightBusError> {
-        if self.manifest.version != 2 {
+        if self.manifest.version != 2 && self.manifest.version != 3 {
             return Err(KnightBusError::SnapshotCorruption {
                 path: self.snapshot_dir.join(MANIFEST_FILE_NAME),
                 detail: format!("unsupported manifest version {}", self.manifest.version),
+            });
+        }
+        if self.manifest.storage_mode != SnapshotStorageMode::ImmutableDualCsr {
+            return Err(KnightBusError::SnapshotCorruption {
+                path: self.snapshot_dir.join(MANIFEST_FILE_NAME),
+                detail: format!(
+                    "unsupported storage mode {}",
+                    self.manifest.storage_mode.label()
+                ),
             });
         }
         if self.manifest.node_id_width != 32 || self.manifest.adjacency_offset_width != 64 {
@@ -280,6 +405,7 @@ impl MmapWalkRuntime {
     }
 
     fn node_record_for_dense_id(&self, dense_id: u32) -> Result<NodeRecord, KnightBusError> {
+        self.validate_dense_id_now(dense_id)?;
         let start = dense_id as usize * NodeRecord::BYTE_LEN;
         let end = start + NodeRecord::BYTE_LEN;
         Ok(NodeRecord::decode_le(&self.node_table[start..end]))
@@ -328,6 +454,54 @@ impl MmapWalkRuntime {
         (start..end)
             .map(|index| read_u32_from_mmap(peers_mmap, index))
             .collect()
+    }
+
+    fn validate_dense_id_now(&self, dense_id: u32) -> Result<(), KnightBusError> {
+        if dense_id >= self.manifest.node_count {
+            return Err(KnightBusError::DenseNodeIdOutOfRange {
+                dense_id,
+                node_count: self.manifest.node_count,
+            });
+        }
+        Ok(())
+    }
+}
+
+impl GraphAdjacencyRuntime for MmapWalkRuntime {
+    fn node_count(&self) -> u64 {
+        u64::from(self.manifest.node_count)
+    }
+
+    fn relationship_count(&self) -> u64 {
+        self.manifest.edge_count
+    }
+
+    fn neighbors(
+        &self,
+        node: DenseNodeId,
+        direction: WalkDirection,
+    ) -> Result<NeighborCursor<'_>, KnightBusError> {
+        self.validate_dense_id_now(node.get())?;
+        let (offsets_mmap, peers_mmap) = match direction {
+            WalkDirection::Forward => (&self.forward_offsets, &self.forward_peers),
+            WalkDirection::Backward => (&self.reverse_offsets, &self.reverse_peers),
+        };
+
+        let start = read_u64_from_mmap(offsets_mmap, node.get() as usize) as usize;
+        let end = read_u64_from_mmap(offsets_mmap, node.get() as usize + 1) as usize;
+        Ok(NeighborCursor::new(peers_mmap, start, end))
+    }
+
+    fn global_edges(&self, direction: WalkDirection) -> Result<EdgeCursor<'_>, KnightBusError> {
+        let (offsets_mmap, peers_mmap) = match direction {
+            WalkDirection::Forward => (&self.forward_offsets, &self.forward_peers),
+            WalkDirection::Backward => (&self.reverse_offsets, &self.reverse_peers),
+        };
+        Ok(EdgeCursor::new(
+            offsets_mmap,
+            peers_mmap,
+            self.manifest.node_count,
+        ))
     }
 }
 

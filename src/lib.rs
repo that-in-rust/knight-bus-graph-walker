@@ -20,16 +20,21 @@ pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpus
 pub use error::KnightBusError;
 pub use gds::{
     GDS_PUBLIC_SURFACE_INVENTORY_PATH, GdsAnnotationMode, GdsEntryKind, GdsProcedureFamily,
-    GdsProcedureMode, GdsProcedureSpec, GdsRegistryKey, GdsSupportStatus, find_gds_entry_spec,
-    gds_inventory_row_count, gds_procedure_specs, require_registered_gds_entry,
-    require_registered_gds_procedure, require_supported_gds_entry, require_supported_gds_procedure,
+    GdsProcedureMode, GdsProcedureSpec, GdsRegistryKey, GdsSupportStatus, GraphProjectionCatalog,
+    GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec, MemoryEstimate,
+    ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector,
+    RelationshipOrientation, find_gds_entry_spec, gds_inventory_row_count, gds_procedure_specs,
+    require_registered_gds_entry, require_registered_gds_procedure, require_supported_gds_entry,
+    require_supported_gds_procedure,
 };
 pub use graph::{
     collect_neighbors_within_hops, flatten_adjacency_lists_now, normalize_truth_graph_data,
     query_normalized_graph,
 };
 pub use parity::run_parity_verification;
-pub use runtime::{MmapWalkRuntime, WalkQueryRuntime};
+pub use runtime::{
+    EdgeCursor, GraphAdjacencyRuntime, MmapWalkRuntime, NeighborCursor, WalkQueryRuntime,
+};
 pub use snapshot::{FilesystemSnapshotWriter, SnapshotArtifactWriter, compute_snapshot_size_bytes};
 pub use truth::{CsvTruthGraphSource, TruthGraphIndex, TruthGraphSource};
 pub use types::{
@@ -37,7 +42,8 @@ pub use types::{
     CorpusBenchmarkRunSummary, CorpusFamily, CorpusQueryRow, CsvEdgeRow, CsvNodeRow, DenseNodeId,
     EngineMeasurement, HopCount, MeasurementRssScope, MeasurementRssSource, NodeKey, NodeRecord,
     NormalizedGraphData, PeakRssSource, PhasePeakReport, QueryFamily, QueryResult,
-    SnapshotBuildOptions, SnapshotBuildSummary, SnapshotManifest, SnapshotPhase,
-    SnapshotVerifyOptions, ValidatedTruthGraph, VerificationFamilySummary, VerificationSummary,
-    WalkDirection,
+    SnapshotBuildOptions, SnapshotBuildSummary, SnapshotLogicalOrientation, SnapshotManifest,
+    SnapshotPhase, SnapshotSidecarCatalog, SnapshotSidecarEntry, SnapshotSidecarValueScope,
+    SnapshotStorageMode, SnapshotVerifyOptions, ValidatedTruthGraph, VerificationFamilySummary,
+    VerificationSummary, WalkDirection,
 };

@@ -17,6 +17,7 @@ pub fn valid_edges_path() -> PathBuf {
     fixture_path("valid/interface_edges.csv")
 }
 
+#[allow(dead_code)]
 pub fn valid_corpus_path() -> PathBuf {
     fixture_path("valid/corpus_query.csv")
 }

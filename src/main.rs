@@ -274,6 +274,9 @@ fn build_snapshot_options_now(
     Ok(SnapshotBuildOptions {
         memory_budget: parse_memory_budget_now(memory_budget_mb)?,
         scratch_dir,
+        snapshot_generation: None,
+        source_tx_start: None,
+        source_tx_end: None,
     })
 }
 

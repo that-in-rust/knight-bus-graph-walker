@@ -1,8 +1,16 @@
+pub mod catalog;
+
 use std::{collections::HashSet, sync::OnceLock};
 
 use serde::Deserialize;
 
 use crate::error::KnightBusError;
+
+pub use self::catalog::{
+    GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec,
+    MemoryEstimate, ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed,
+    PropertySelector, RelationshipOrientation,
+};
 
 pub const GDS_PUBLIC_SURFACE_INVENTORY_PATH: &str =
     "docs_PRD03/reference-learning/GDS-Public-Surface-Inventory.tsv";

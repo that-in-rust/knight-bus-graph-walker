@@ -25,7 +25,7 @@ this dossier is backed by `rg` and direct source reads.
 | tool | command/output | readiness | useful result | caveat |
 | --- | --- | --- | --- | --- |
 | codebase-memory | Wrapper output: `/tmp/codex-code-intel/codebase-memory/neo4j-gds-src-20260624-211814` | Semantically usable after passing explicit project key | Indexed `64,763` nodes and `280,222` edges. Project-specific `search_graph` found `13` GraphStore-related functions and `75` memory-related functions. | Wrapper canned queries were empty because CLI required explicit `project`; default stderr recorded `project not found or not indexed`. |
-| CodeGraphContext | Wrapper output: `/tmp/codex-code-intel/codegraphcontext/neo4j-gds-src-20260624-211814` | Partial and low-yield for this repo | DB survived interrupted wrapper. Manual `stats` reported `1` repo, `452` files, `1,822` functions, `373` classes, `70` interfaces, `14` enums. Manual `Function` query found memory-estimation symbols such as `AlgorithmFactory.memoryEstimation`. | Wrapper exceeded bounded wait and was interrupted with code `130`; canned post-index files were not produced. Initial queries using `file_path` failed because cgc nodes use `path`. |
+| CodeGraphContext | Wrapper output: `/tmp/codex-code-intel/codegraphcontext/neo4j-gds-src-20260624-211814` | `LowYield`; partial for this repo | DB survived interrupted wrapper. Manual `stats` reported `1` repo, `452` files, `1,822` functions, `373` classes, `70` interfaces, `14` enums. Manual `Function` query found memory-estimation symbols such as `AlgorithmFactory.memoryEstimation`. | Wrapper exceeded bounded wait and was interrupted with code `130`; canned post-index files were not produced. Initial queries using `file_path` failed because cgc nodes use `path`. |
 | `rg` and direct reads | `rg`, `find`, `nl -ba`, targeted file reads | Primary truth source | Counted `559` GDS procedure annotations, `265` estimate-related procedure/usages, and `61` write-mode procedure annotations under `proc`. | Counts are literal-search evidence, not a parsed ABI registry. Use existing procedure inventory for full public surface reconciliation. |
 
 Confidence labels used below:
@@ -38,6 +38,10 @@ Confidence labels used below:
 | Inference | Local conclusion drawn from DirectSource evidence; needs implementation validation. |
 | CandidateOnly | Graph or search candidate not used as final support. |
 | Speculation | Open question or hypothesis; never sufficient for a P0 recommendation. |
+
+Tool readiness also uses `LowYield` when a graph tool returns empty, missing,
+or bounded-wait-limited semantic output; `LowYield` is not used as an evidence
+confidence value for source-backed rows.
 
 ## P0 Evidence
 

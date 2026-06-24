@@ -1,0 +1,123 @@
+# GitHub Repo Longlist for v003 PRD
+
+Research date: 2026-06-24.
+
+Source method: internet search plus GH CLI checks using `gh search repos` and
+`gh repo view`. Scores are not popularity scores. They estimate usefulness for
+the v003 PRD goal: a Neo4j-compatible Rust rewrite with Neo4j-shaped OLTP,
+published OLAP/GDS snapshots, Projection Build Store, CSR/sidecars/cells,
+snapshot generations, and strict RAM accounting.
+
+Scoring rubric:
+
+| score band | meaning |
+| --- | --- |
+| 90-100 | Direct reference surface for Neo4j, GDS, Cypher, Bolt, or driver compatibility. |
+| 80-89 | Strong architectural or algorithmic precedent for the PRD. |
+| 70-79 | Useful implementation building block, benchmark, or comparative design. |
+| 60-69 | Adjacent precedent worth scanning, but not central. |
+| below 60 | Peripheral reference only. |
+
+Skeptical note: "Related somehow" can explode into every graph, database,
+sparse-matrix, and storage repo on GitHub. This file intentionally captures the
+high-signal public repos found in this pass, not every toy project or one-off
+example.
+
+| URL | Shreyas Doshi commentary on URL | Relevance score of 1 to 100 for our PRD | Remarks on why that repo might be useful |
+| --- | --- | ---: | --- |
+| [neo4j/neo4j](https://github.com/neo4j/neo4j) | This is not inspiration. This is the compatibility contract in source form. | 100 | Core reference for Neo4j-shaped OLTP semantics, kernel behavior, Cypher integration, storage, transactions, locks, indexes, procedures, and operational expectations. |
+| [neo4j/graph-data-science](https://github.com/neo4j/graph-data-science) | The PRD promise lives or dies here: GDS is the user-facing surface, not just an algorithm list. | 98 | Open source Neo4j GDS library. Essential for procedure inventory, graph catalog semantics, projection behavior, algorithms, memory estimates, and unsupported-mode parity. |
+| [opencypher/openCypher](https://github.com/opencypher/openCypher) | If the product says Cypher-compatible, this is the grammar-shaped truth serum. | 96 | Cypher language specification and TCK-style material. Useful for parser, semantic coverage, and compatibility tests. |
+| [neo4j/docs-bolt](https://github.com/neo4j/docs-bolt) | Driver compatibility fails at the wire before it fails in the feature matrix. | 95 | Bolt protocol documentation. Relevant to zero-change client compatibility and protocol handshake/session behavior. |
+| [neo4j-drivers/testkit](https://github.com/neo4j-drivers/testkit) | This is the forcing function: clients do not care about our architecture diagram, they care that tests pass. | 94 | Official driver integration and conformance testkit. High-value for proving Neo4j driver compatibility across languages. |
+| [neo4j/neo4j-python-driver](https://github.com/neo4j/neo4j-python-driver) | Python is the default data-science path, so breaking this breaks the story. | 92 | Official Python Bolt driver. Useful for compatibility harnesses, driver behavior, auth/session tests, and GDS client usage paths. |
+| [neo4j/neo4j-javascript-driver](https://github.com/neo4j/neo4j-javascript-driver) | Web and app developers will find protocol rough edges before database engineers do. | 92 | Official JavaScript Bolt driver. Useful for browser/app compatibility and transaction/session behavior tests. |
+| [memgraph/memgraph](https://github.com/memgraph/memgraph) | The closest competitor lens: if they made a Cypher-compatible graph database tradeoff, study the scar tissue. | 91 | Active C++ Cypher-compatible graph database. Useful for comparing Cypher support, in-memory execution, procedures, and real-time analytics positioning. |
+| [neo4j/neo4j-java-driver](https://github.com/neo4j/neo4j-java-driver) | Java is where the Neo4j ecosystem has the least patience for semantic drift. | 91 | Official Java Bolt driver. Useful for enterprise client compatibility, routing, connection pooling, and transaction behavior. |
+| [neo4j/neo4j-go-driver](https://github.com/neo4j/neo4j-go-driver) | A clean systems-language driver is a good way to reveal protocol assumptions. | 91 | Official Go Bolt driver. Useful for compatibility tests and protocol behavior from a typed non-JVM client. |
+| [neo4j/neo4j-dotnet-driver](https://github.com/neo4j/neo4j-dotnet-driver) | Compatibility means the boring enterprise client works, not just the demo notebook. | 90 | Official .NET Bolt driver. Useful for cross-driver parity and enterprise app compatibility checks. |
+| [FalkorDB/FalkorDB](https://github.com/FalkorDB/FalkorDB) | The strategic question here is not "copy it?" but "what does GraphBLAS buy and cost?" | 89 | Graph database using GraphBLAS under the hood. Useful precedent for sparse linear algebra as graph storage/execution substrate. |
+| [neo4j-labs/neo4rs](https://github.com/neo4j-labs/neo4rs) | This is the Rust canary for Bolt ergonomics and type boundaries. | 89 | Rust Neo4j driver implementing Bolt. Useful for Rust protocol ergonomics, testing a Rust server against a Rust client, and driver expectations. |
+| [apache/age](https://github.com/apache/age) | A Postgres extension is a reminder that compatibility can ride a host engine, but inherits its constraints. | 88 | Cypher-oriented graph database extension for PostgreSQL. Useful for query-language and storage-integration tradeoffs. |
+| [neo4j/graph-data-science-client](https://github.com/neo4j/graph-data-science-client) | If the Python GDS client needs code changes, the PRD's "zero changes" clause has failed. | 86 | Official Python client for Neo4j GDS. Useful for end-to-end procedure compatibility and notebook/user-workflow tests. |
+| [neo4j/cypher-dsl](https://github.com/neo4j/cypher-dsl) | Generated Cypher catches the edge cases hand-written demos politely avoid. | 86 | Java DSL for Cypher. Useful for query-shape coverage and generated Cypher compatibility tests. |
+| [cleishm/libcypher-parser](https://github.com/cleishm/libcypher-parser) | A parser repo is not the product, but it is a cheap way to avoid inventing grammar pain twice. | 85 | C Cypher parser. Useful as parser precedent or comparative grammar implementation. |
+| [kuzudb/kuzu](https://github.com/kuzudb/kuzu) | Strong ideas, but archived metadata means treat it as precedent, not a live bet. | 84 | Embedded property graph database implementing Cypher. Useful for embedded OLAP-oriented graph storage and Cypher design comparisons. Marked archived by GH CLI. |
+| [DrTimothyAldenDavis/GraphBLAS](https://github.com/DrTimothyAldenDavis/GraphBLAS) | The hard lesson: many graph algorithms are sparse linear algebra wearing graph clothes. | 84 | SuiteSparse:GraphBLAS implementation. Useful for GraphBLAS semantics, sparse matrix kernels, and algorithm substrate decisions. |
+| [GraphBLAS/LAGraph](https://github.com/GraphBLAS/LAGraph) | If GDS procedures become a matrix-kernel layer, this is where the API gets humbled. | 83 | Graph algorithm library and test harness on GraphBLAS. Useful for algorithm references and GraphBLAS-backed validation. |
+| [neo4j/apoc](https://github.com/neo4j/apoc) | Procedure surfaces are product surfaces, even when they look like utilities. | 83 | Current APOC repo. Useful for understanding Neo4j procedure packaging and deterministic unsupported behavior if APOC is out of scope. |
+| [RedisGraph/RedisGraph](https://github.com/RedisGraph/RedisGraph) | An older path that still teaches how sparse matrices and Cypher collide in production. | 82 | Redis module graph database. Useful as FalkorDB lineage and GraphBLAS/Cypher precedent. |
+| [neo4j-contrib/neo4j-apoc-procedures](https://github.com/neo4j-contrib/neo4j-apoc-procedures) | Even non-core procedures become user expectations once workflows depend on them. | 82 | Historical/contrib APOC procedures. Useful for procedure inventory thinking and support-boundary decisions. |
+| [ldbc/ldbc_graphalytics](https://github.com/ldbc/ldbc_graphalytics) | Benchmarks are strategy documents when they define what "fast enough" means. | 81 | Generic driver for LDBC Graphalytics. Useful for OLAP/GDS benchmark harnesses and algorithm validation. |
+| [networkit/networkit](https://github.com/networkit/networkit) | A mature analytics toolkit shows what users expect once graphs get large. | 80 | Large-scale network analysis toolkit. Useful for algorithm behavior, performance baselines, and memory-aware graph analytics comparisons. |
+| [GraphChi/graphchi-cpp](https://github.com/GraphChi/graphchi-cpp) | "Big data, small machine" is almost exactly the PRD's emotional promise. | 80 | Out-of-core graph processing on a single machine. Strong precedent for low-RAM graph processing tradeoffs. |
+| [ldbc/ldbc_snb_interactive_v1_impls](https://github.com/ldbc/ldbc_snb_interactive_v1_impls) | OLTP compatibility needs a workload with teeth, not a hand-picked CRUD script. | 80 | Reference implementations for LDBC SNB Interactive workload. Useful for OLTP query/write benchmarking and compatibility workload design. |
+| [thu-pacman/GridGraph](https://github.com/thu-pacman/GridGraph) | The PRD's 8GB machine constraint needs out-of-core ancestors in the room. | 79 | Single-machine out-of-core graph processing. Useful for partitioning, disk/RAM tradeoffs, and low-memory execution lessons. |
+| [ldbc/ldbc_snb_interactive_v1_driver](https://github.com/ldbc/ldbc_snb_interactive_v1_driver) | A driver turns vague OLTP ambition into repeatable pressure. | 79 | Driver for LDBC SNB Interactive. Useful for repeatable OLTP benchmark execution. |
+| [ldbc/ldbc_graphalytics_docs](https://github.com/ldbc/ldbc_graphalytics_docs) | The spec matters because it prevents benchmark theater. | 78 | Graphalytics benchmark specification. Useful for algorithm semantics and benchmark acceptance criteria. |
+| [sbeamer/gapbs](https://github.com/sbeamer/gapbs) | Before building a GDS runtime, know the benchmark kernels people trust. | 78 | GAP Benchmark Suite. Useful for BFS, PageRank, connected components, and graph kernel baselines. |
+| [apache/arrow-rs](https://github.com/apache/arrow-rs) | Sidecars should be boring, columnar, and inspectable unless there is a strong reason otherwise. | 77 | Rust implementation of Apache Arrow. Useful for property sidecars, columnar result artifacts, memory layout, and zero-copy thinking. |
+| [Qiskit/rustworkx](https://github.com/Qiskit/rustworkx) | Rust graph code that survived Python users is worth studying for API ergonomics. | 77 | High-performance Python graph library written in Rust. Useful for Rust graph algorithms and Python-facing graph API boundaries. |
+| [ArcadeData/arcadedb](https://github.com/ArcadeData/arcadedb) | Multi-model systems are useful warnings: breadth can quietly tax the core promise. | 77 | Multi-model DB supporting Cypher among other APIs. Useful for compatibility and API-surface tradeoff comparisons. |
+| [jshun/ligra](https://github.com/jshun/ligra) | A small sharp graph framework can teach more than a large vague platform. | 76 | Shared-memory graph processing framework. Useful for algorithm kernels and graph representation choices. |
+| [graphfoundation/ongdb](https://github.com/graphfoundation/ongdb) | A Neo4j fork is valuable archaeology, especially for old compatibility assumptions. | 76 | Independent fork of older Neo4j. Useful as historical reference, but not a modern compatibility target. |
+| [snap-stanford/snap](https://github.com/snap-stanford/snap) | It is a reference shelf: useful for algorithms, not for the product architecture. | 76 | General-purpose network analysis and graph mining library. Useful for algorithm behavior and datasets. |
+| [GraphBLAS/GraphBLAS-Pointers](https://github.com/GraphBLAS/GraphBLAS-Pointers) | Sometimes the repo worth saving is a map of the field, not an implementation. | 76 | Curated GraphBLAS resources. Useful for research orientation and algorithm substrate decisions. |
+| [SICS-Fundamental-Research-Center/MiniGraph](https://github.com/SICS-Fundamental-Research-Center/MiniGraph) | Single-machine big-graph work is a direct stress test for the PRD's RAM story. | 76 | System for querying big graphs on a single machine. Useful low-RAM and out-of-core precedent. |
+| [petgraph/petgraph](https://github.com/petgraph/petgraph) | This is a Rust building block, not the storage engine. Keep the boundary clean. | 76 | Rust graph data structure library. Useful for smaller in-memory algorithms and test scaffolds, less for 50GB snapshots. |
+| [ldbc/ldbc_graphalytics_platforms_graphblas](https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas) | This connects the benchmark world to the matrix-kernel world. | 75 | Graphalytics implementation using SuiteSparse:GraphBLAS and LAGraph. Useful for comparing GraphBLAS-backed algorithm execution. |
+| [igraph/igraph](https://github.com/igraph/igraph) | Mature graph libraries reveal the long tail of algorithms users will ask for. | 75 | Network analysis library. Useful for algorithm reference behavior and API comparison. |
+| [sparsemat/sprs](https://github.com/sparsemat/sprs) | CSR in Rust already exists; the product question is what semantics sit around it. | 75 | Rust sparse linear algebra library with CSR/CSC structures. Useful for sparse matrix representations and prototyping. |
+| [gunrock/gunrock](https://github.com/gunrock/gunrock) | GPU is not the MVP, but it reveals what high-throughput graph kernels want from layout. | 74 | CUDA/C++ GPU graph analytics. Useful for algorithm layout and future acceleration references. |
+| [orneryd/NornicDB](https://github.com/orneryd/NornicDB) | The market keeps pulling graph plus vector plus compatibility together. Decide deliberately. | 74 | Graph/vector database claiming Neo4j Bolt/Cypher compatibility. Useful for watching emerging GraphRAG compatibility expectations. |
+| [ldbc/ldbc_snb_interactive_v2_driver](https://github.com/ldbc/ldbc_snb_interactive_v2_driver) | Version 2 matters because compatibility targets move while architectures harden. | 74 | Newer LDBC SNB Interactive driver. Useful for forward-looking OLTP benchmark planning. |
+| [ldbc/ldbc_snb_interactive_v2_impls](https://github.com/ldbc/ldbc_snb_interactive_v2_impls) | Keep an eye on the next workload before overfitting v1. | 74 | Reference implementations for SNB Interactive v2. Useful for future compatibility/benchmark coverage. |
+| [IntelligentSoftwareSystems/Galois](https://github.com/IntelligentSoftwareSystems/Galois) | Parallel graph infrastructure is a reminder that scheduling is part of the algorithm. | 74 | C++ library for multicore and multinode parallelization. Useful for graph algorithm scheduling and runtime design ideas. |
+| [apache/datafusion](https://github.com/apache/datafusion) | A Rust query engine is tempting, but the PRD should use it only where columnar semantics actually help. | 73 | Rust SQL query engine. Useful for columnar sidecar exploration, execution planning ideas, and memory accounting patterns. |
+| [code-sam/graphblas_sparse_linear_algebra](https://github.com/code-sam/graphblas_sparse_linear_algebra) | If Rust wants GraphBLAS, study the FFI boundary before promising native elegance. | 73 | Rust wrapper for SuiteSparse:GraphBLAS. Useful for evaluating Rust GraphBLAS integration. |
+| [Pometry/Raphtory](https://github.com/Pometry/Raphtory) | Temporal graph analytics is adjacent to snapshot generations, but not the same problem. | 73 | Rust temporal graph analytics database. Useful for graph history, vectorized engine ideas, and temporal API comparisons. |
+| [neo4j/cypher-shell](https://github.com/neo4j/cypher-shell) | A moved/archived CLI can still be a compatibility probe. | 72 | Archived repo moved into `neo4j/neo4j`. Useful as a client behavior reference if testing shell compatibility. |
+| [orientechnologies/orientdb](https://github.com/orientechnologies/orientdb) | Multi-model graph systems are good at exposing what not to promise too early. | 72 | Java multi-model DB with graph features. Useful comparative precedent, though not Neo4j/GDS-compatible enough to score higher. |
+| [facebook/rocksdb](https://github.com/facebook/rocksdb) | Durable key-value storage is not a product strategy, but it can save a build plane. | 72 | Embeddable persistent key-value store. Useful as a Projection Build Store or OLTP-storage precedent. |
+| [rust-rocksdb/rust-rocksdb](https://github.com/rust-rocksdb/rust-rocksdb) | If RocksDB enters Rust, the wrapper's operational edges matter as much as the C++ core. | 72 | Rust wrapper for RocksDB. Useful if evaluating RocksDB-backed build/control storage. |
+| [puzzlef/graph-csr-openmp](https://github.com/puzzlef/graph-csr-openmp) | Fast CSR loading is an unglamorous constraint that can dominate snapshot publication time. | 72 | OpenMP edgelist-to-CSR loader. Useful for snapshot build pipeline and CSR ingestion performance ideas. |
+| [neo4j/neo4j-browser](https://github.com/neo4j/neo4j-browser) | A UI repo is not core, but it reveals what humans expect when Cypher works. | 71 | Neo4j browser UI. Useful for compatibility smoke tests and user-facing workflow assumptions. |
+| [cberner/redb](https://github.com/cberner/redb) | Pure Rust embedded storage is attractive when operational simplicity is part of the product. | 71 | Pure Rust embedded key-value database. Useful candidate/reference for manifests, catalogs, or build-store metadata. |
+| [neo4j-contrib/gds-agent](https://github.com/neo4j-contrib/gds-agent) | AI tooling around GDS shows where users want graphs to become operations, not just queries. | 70 | MCP server around Neo4j GDS. Useful as an example of procedure orchestration and graph algorithm workflows. |
+| [neo4j-graph-examples/graph-data-science](https://github.com/neo4j-graph-examples/graph-data-science) | Examples expose the happy path the product must preserve. | 70 | Neo4j GDS examples. Useful for user journey tests and sample workloads. |
+| [fjall-rs/fjall](https://github.com/fjall-rs/fjall) | A Rust LSM can be useful if the Projection Build Store needs simple durable ingestion. | 70 | Log-structured embeddable key-value storage engine in Rust. Useful as a storage precedent for build/control data. |
+| [python-graphblas/python-graphblas](https://github.com/python-graphblas/python-graphblas) | Python GraphBLAS is a usability benchmark for matrix-backed graph analytics. | 70 | Python GraphBLAS library. Useful for algorithm expression and comparison with Python data-science workflows. |
+| [Xtra-Computing/ThunderRW](https://github.com/Xtra-Computing/ThunderRW) | Random walks punish naive layouts; useful if GDS coverage includes walk-heavy procedures. | 69 | CSR-based random walk engine. Useful for Node2Vec/random-walk style GDS procedure performance references. |
+| [HelixDB/helix-db](https://github.com/HelixDB/helix-db) | Rust graph-vector OLTP is adjacent; keep the useful storage ideas and ignore the hype. | 69 | Rust OLTP graph-vector database. Useful for Rust graph database patterns, but not direct Neo4j/GDS compatibility. |
+| [neo4j/neo4j-ogm](https://github.com/neo4j/neo4j-ogm) | ORMs are where protocol compatibility becomes application compatibility. | 68 | Neo4j object-graph mapper. Useful for client compatibility edge cases if OGM workflows matter. |
+| [TimelyDataflow/differential-dataflow](https://github.com/TimelyDataflow/differential-dataflow) | Incremental views are seductive, but the PRD explicitly chooses published snapshots over query-time reconciliation. | 67 | Rust differential dataflow. Useful as a contrast for incremental computation, not as the serving architecture. |
+| [indradb/indradb](https://github.com/indradb/indradb) | A Rust graph DB precedent, but not a Neo4j-compatible product promise. | 67 | Rust graph database. Useful for Rust storage/API patterns and comparative simplicity. |
+| [tikv/tikv](https://github.com/tikv/tikv) | Distributed KV lessons are useful, but v003 community target is single-node. | 66 | Rust distributed transactional key-value database. Useful for transaction/storage design references, lower relevance due to scope mismatch. |
+| [spacejam/sled](https://github.com/spacejam/sled) | Interesting Rust storage history, but do not let an embedded DB choose the architecture. | 65 | Rust embedded database. Useful precedent, but less central than redb/fjall/RocksDB for active evaluation. |
+| [ArcadeData/ldbc_graphalytics_platforms_arcadedb](https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb) | Competitor benchmark adapters reveal how vendors present their strengths. | 65 | ArcadeDB Graphalytics platform driver. Useful for benchmarking pattern comparison. |
+| [TimelyDataflow/timely-dataflow](https://github.com/TimelyDataflow/timely-dataflow) | The runtime is impressive, but the PRD should not drift into a streaming database. | 64 | Rust dataflow runtime. Useful for build pipeline ideas, less for snapshot-only serving. |
+| [rwl/sparsetools](https://github.com/rwl/sparsetools) | Useful as a sparse-format reference, not as a foundation. | 63 | SparseTools translated into Rust. Useful for CSR/CSC operations and test comparisons. |
+| [arangodb/arangodb](https://github.com/arangodb/arangodb) | Broad multi-model databases are strategy counterexamples: focus is a feature. | 62 | Multi-model database with graph support. Useful as market/reference context, not direct Neo4j/GDS compatibility. |
+| [rust-ndarray/ndarray](https://github.com/rust-ndarray/ndarray) | Dense arrays help around the edges, but the PRD's center is sparse graph layout. | 60 | Rust N-dimensional arrays. Useful for algorithm scratch/state representation, not core graph storage. |
+| [MaterializeInc/materialize](https://github.com/MaterializeInc/materialize) | Live views are a tempting alternative thesis; the PRD intentionally rejects that for OLAP serving. | 60 | Rust streaming SQL database. Useful contrast for freshness architecture and incremental materialization. |
+| [surrealdb/surrealdb](https://github.com/surrealdb/surrealdb) | A Rust database with graph features, but its product surface is not our compatibility target. | 60 | Rust document-graph database. Useful for Rust database engineering patterns, lower relevance to Neo4j/GDS parity. |
+| [quickwit-oss/tantivy](https://github.com/quickwit-oss/tantivy) | Full-text indexing can support the product, but it should not become the product. | 60 | Rust search engine library. Useful if Neo4j-like indexing/search support enters scope. |
+| [dimforge/nalgebra](https://github.com/dimforge/nalgebra) | Good math infrastructure, but sparse graph analytics needs more specific primitives. | 58 | Rust linear algebra library. Useful around algorithm state, lower relevance than GraphBLAS or `sprs`. |
+| [dgraph-io/dgraph](https://github.com/dgraph-io/dgraph) | A graph database reference with a different query model teaches category lessons, not compatibility. | 58 | Go graph database. Useful comparative precedent, but not Neo4j/Cypher/GDS compatible. |
+| [tokio-rs/tracing](https://github.com/tokio-rs/tracing) | If strict RAM is a product claim, observability is part of the implementation, not decoration. | 55 | Rust tracing framework. Useful for memory planner instrumentation and operational telemetry. |
+| [terminusdb/terminusdb](https://github.com/terminusdb/terminusdb) | Versioned graph ideas are adjacent to snapshot generations, but the stack and semantics differ. | 55 | Collaborative/versioned database. Useful for versioning concepts, lower relevance to Neo4j-compatible OLTP/OLAP split. |
+| [jemalloc/jemalloc](https://github.com/jemalloc/jemalloc) | Memory promises eventually meet allocator behavior. Keep this nearby for measurement, not design leadership. | 54 | Allocator implementation. Useful for holistic memory/RSS investigations and production profiling. |
+| [qdrant/qdrant](https://github.com/qdrant/qdrant) | Vector search is market-adjacent; include it only when graph plus vector becomes a deliberate bet. | 44 | Rust vector database. Peripheral to the v003 PRD, but relevant to GraphRAG ecosystem pressure and possible future sidecars. |
+
+## Highest-Value Follow-Up Reads
+
+1. Start with `neo4j/neo4j`, `neo4j/graph-data-science`,
+   `neo4j-drivers/testkit`, `opencypher/openCypher`, and `neo4j/docs-bolt`.
+2. Use `memgraph/memgraph`, `FalkorDB/FalkorDB`, `apache/age`, and
+   `kuzudb/kuzu` as competitor/precedent reads.
+3. Use `GraphBLAS/LAGraph`, `DrTimothyAldenDavis/GraphBLAS`,
+   `GraphChi/graphchi-cpp`, `thu-pacman/GridGraph`, and
+   `ldbc/ldbc_graphalytics` for the low-RAM OLAP snapshot thread.
+4. Use `apache/arrow-rs`, `apache/datafusion`, `redb`, `fjall`, and
+   `rust-rocksdb` only after the PRD has chosen which facts/sidecars/catalogs
+   need durable local storage.

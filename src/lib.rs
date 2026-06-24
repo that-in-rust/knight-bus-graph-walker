@@ -1,6 +1,7 @@
 pub mod app;
 pub mod bench;
 pub mod error;
+pub mod gds;
 pub mod graph;
 pub mod low_ram;
 pub mod parity;
@@ -17,6 +18,12 @@ pub use app::{
 };
 pub use bench::{BenchmarkScenarioRunner, SnapshotBenchmarkRunner, SnapshotCorpusBenchmarkRunner};
 pub use error::KnightBusError;
+pub use gds::{
+    GDS_PUBLIC_SURFACE_INVENTORY_PATH, GdsAnnotationMode, GdsEntryKind, GdsProcedureFamily,
+    GdsProcedureMode, GdsProcedureSpec, GdsRegistryKey, GdsSupportStatus, find_gds_entry_spec,
+    gds_inventory_row_count, gds_procedure_specs, require_registered_gds_entry,
+    require_registered_gds_procedure, require_supported_gds_entry, require_supported_gds_procedure,
+};
 pub use graph::{
     collect_neighbors_within_hops, flatten_adjacency_lists_now, normalize_truth_graph_data,
     query_normalized_graph,

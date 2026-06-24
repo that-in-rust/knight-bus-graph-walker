@@ -11,6 +11,9 @@ This folder contains execution artifacts produced from
 | `Batch 02` | `completed for this batch scope` | surface, capability | What is the visible public GDS surface breadth before any storage sufficiency claim? | `Batch-02-GDS-Public-Surface-Inventory.md` |
 | `Batch 03` | `completed for this batch scope` | capability, architecture, rejection | What kind of middle-layer storage behavior is actually useful for the Projection Build Store? | `Batch-03-Projection-Build-Store-Precedents.md` |
 | `Batch 04` | `completed for this batch scope` | capability, architecture, rejection | What metadata and lifecycle rules are needed so OLAP snapshots can be published, retained, and rolled back safely? | `Batch-04-Publication-And-Generation-Catalog.md` |
+| `Batch 05` | `completed for this batch scope` | surface, capability, rejection | What exactly must a Rust Neo4j rewrite preserve at the compatibility boundary: Bolt, Cypher, procedures, values, APOC, drivers, and real GDS user workflows? | `Batch-05-Neo4j-Compatibility-Boundary.md` |
+| `Batch 06` | `completed for this batch scope` | capability, architecture, execution, rejection | What must live outside flat topology, how should sidecars and planner inputs behave, and which compact-graph precedents are actually admissible? | `Batch-06-Sidecars-Planner-And-Compact-Competitors.md` |
+| `Batch 07` | `working draft` | capability, architecture, rejection | Which mirrored graph repos actually reduce RAM, and which storage patterns are worth copying? | `Batch-07-Low-RAM-Graph-Priors.md` |
 
 ## Control Artifacts
 
@@ -18,6 +21,13 @@ This folder contains execution artifacts produced from
 | --- | --- | --- |
 | `requirements coverage tracker` | Shows which `REQ-LEARN-*` contracts are artifact-covered, partial, spec-native, or still queued. | `Requirements-Coverage-Tracker.md` |
 | `public surface inventory tsv` | Machine-readable baseline inventory of visible `gds.*` procedures and functions from the local GDS clone. | `GDS-Public-Surface-Inventory.tsv` |
+| `reference shelf graph evidence ledger` | Records the full spec-resolved shelf-wide graph-tool run state, low-yield repo exceptions, canonical shelf-path resolution, and the dual-tool versus timeout-heavy split. | `Reference-Shelf-Graph-Evidence-Ledger.md` |
+
+## Supplemental Artifacts
+
+| artifact | status | focus | file |
+| --- | --- | --- | --- |
+| `Current codebase low-RAM patterns` | `working draft` | Source-level explanation of how the current Knight Bus repo keeps build and query RAM low. | `Current-Codebase-Low-RAM-Patterns.md` |
 
 ## Decision-First Execution Order
 
@@ -35,12 +45,27 @@ This folder contains execution artifacts produced from
 ## Current Coverage Signal
 
 - The requirement tracker currently records:
-  - `19` `ArtifactCovered`
-  - `9` `ArtifactPartial`
-  - `22` `PlannedNextBatch`
+  - `35` `ArtifactCovered`
+  - `13` `ArtifactPartial`
+  - `3` `PlannedNextBatch`
   - `2` `SpecNativeGuardrail`
-- The biggest open cluster is still the broader Neo4j compatibility boundary:
-  OLTP record/WAL depth, Bolt, Cypher, procedures/values, APOC, and driver/testkit behavior.
+- The graph-tool substrate now has a dedicated control artifact:
+  `Reference-Shelf-Graph-Evidence-Ledger.md`.
+- That ledger now resolves all `71` concrete repo targets currently named by the
+  learning spec:
+  - `32` `DualToolReady`
+  - `35` `CbmReadyCgcTimeout`
+  - `4` `GraphToolLowYield`
+- The broad Neo4j compatibility boundary now has a dedicated batch artifact:
+  `Batch-05-Neo4j-Compatibility-Boundary.md`.
+- The sidecar, planner-input, and compact-competitor pass now has a dedicated
+  batch artifact:
+  `Batch-06-Sidecars-Planner-And-Compact-Competitors.md`.
+- The biggest remaining architecture themes are:
+  - the still-partial algorithm-feasibility and oracle cluster;
+  - benchmark and observability discipline.
+  - deeper estimator, mutate/write/model, and full-family kernel tracing beyond
+    the first representative passes.
 
 ## Usage Rule
 

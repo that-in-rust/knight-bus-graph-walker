@@ -25,6 +25,20 @@ and strict holistic RAM accounting.
 | Runtime constraint | No production Rust code is required by this spec; generated helper scripts must use four-word names when introduced later. |
 | Model assumption | A future agent may be weaker than the authoring agent; prompts must be explicit, bounded, repetitive where useful, and verification-first. |
 
+## Reference Shelf Reality Check
+
+As of 2026-06-24:
+
+- the legacy path `ref-repo-folder/` still exists at the repo root, but it has
+  no cloned sub-repositories under it;
+- the live cloned reference shelf is `gitrefrepo/`;
+- any prompt, note, or handoff that mentions `ref-repo-folder/` SHALL resolve
+  that request to `gitrefrepo/` unless the clone coverage ledger shows the
+  legacy path has been repopulated later.
+
+This matters because future agents should not waste time scanning an empty
+legacy shelf while the real evidence lives elsewhere.
+
 ## Agent Goal Packet
 
 Use this section as the handoff prompt when assigning the learning goal to a
@@ -75,7 +89,7 @@ strict outputs, and hard verification gates.
 | Misses hidden RAM | Require heap, RSS/page-cache, direct-buffer, scratch, sidecar, spill, and algorithm-state fields. |
 | Hallucinates source evidence | Require path plus symbol or `rg` query that another agent can rerun. |
 | Loses progress across context windows | Require checkpoint summaries after every 20 evidence rows or every repository family. |
-| Uses graph tools too broadly | Use graph-index tools for the current Knight Bus repo only unless explicitly asked to index references. Use `rg` for targeted `gitrefrepo/` study. |
+| Uses graph tools too narrowly or too broadly | For every code-bearing repo or sub-repo assigned in a batch, run both graph tools in isolated per-repo mode. For docs-only or format-spec repos, record `GraphToolLowYield` and use `rg` plus direct reads instead of pretending a graph index added value. |
 
 ### Mandatory Turn Shape
 
@@ -84,19 +98,23 @@ Every future agent pass SHALL follow this shape:
 ```text
 1. Restate assigned lane and PRD outcome.
 2. List exact local folders to inspect.
-3. Run path validation.
-4. Run targeted `rg` discovery.
-5. Read only the top files needed for evidence.
-6. Fill evidence rows.
-7. Fill architecture fit rows.
-8. Run skeptical review.
-9. Run verification commands.
-10. Write a checkpoint summary with unresolved risks.
+3. Resolve any legacy path aliases such as `ref-repo-folder/` -> `gitrefrepo/`.
+4. Run path validation.
+5. Run dual graph-tool smoke indexing for every code-bearing repo in scope, or
+   record `GraphToolLowYield` for docs-only repos.
+6. Run targeted `rg` discovery.
+7. Read only the top files needed for evidence.
+8. Fill evidence rows.
+9. Fill architecture fit rows.
+10. Run skeptical review.
+11. Run verification commands.
+12. Write a checkpoint summary with unresolved risks.
 ```
 
-### Local Tooling Contract
+### Graph Evidence Tooling Contract
 
-For current Knight Bus source orientation, the agent MAY use the local Codex
+For current Knight Bus source orientation and for every code-bearing reference
+repo or sub-repo mentioned by this spec, the agent SHALL use the local Codex
 skills installed outside this repository:
 
 ```text
@@ -104,28 +122,42 @@ skills installed outside this repository:
 /Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/SKILL.md
 ```
 
-Default smoke commands:
+Default smoke command template:
 
 ```bash
-/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/scripts/scan_current_repo_only.sh /Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker
-/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/scripts/scan_current_repo_only.sh /Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker
+/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>
+/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>
 ```
 
 Rules:
 
-- These graph tools are for the current Knight Bus repo by default.
-- Do not index all `gitrefrepo/` folders with these graph tools unless a human
-  explicitly asks for that separate, slower pass.
-- For reference repositories, use `rg`, `find`, `git -C`, and targeted file
-  reads first.
+- The canonical reference shelf is
+  `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo`.
+- Treat `ref-repo-folder/` as a legacy alias only; if it is empty, do not use
+  it as the study root.
+- Run both graph tools in isolated per-repo mode for every code-bearing repo or
+  sub-repo in the assigned batch.
+- Never index multiple reference repos into one shared graph-tool database or
+  cache run.
+- For docs-only, grammar-only, or format-spec repos, the agent MAY skip full
+  graph indexing only by recording `GraphToolLowYield` with a concrete reason.
+- After smoke indexing a code-bearing repo, run at least one discovery query in
+  each tool before reading large files.
+- Use `rg`, `find`, `git -C`, and targeted file reads alongside the graph tools;
+  graph tools do not replace literal search.
 - Graph-tool claims are candidate evidence only. Verify with source paths.
 
 Observed workspace validation on 2026-06-24:
 
 - `codebase-memory-evidence-reader` smoke run completed and explicitly verified
-  that indexed query outputs did not mention `gitrefrepo/`.
+  that indexed query outputs did not mention `gitrefrepo/` when run on the
+  current Knight Bus repo.
 - `codegraphcontext-evidence-reader` smoke run completed and explicitly verified
-  that indexed query outputs did not mention `gitrefrepo/`.
+  that indexed query outputs did not mention `gitrefrepo/` when run on the
+  current Knight Bus repo.
+- `codebase-memory-evidence-reader` smoke runs also completed for
+  `gitrefrepo/neo4j-src` and `gitrefrepo/neo4j-gds-src`, proving the same
+  wrapper path works on first-party reference repos in isolated mode.
 - CodeGraphContext removed a first-time generated repo `.cgcignore` during the
   smoke run, which is expected behavior from the wrapper script and should not
   be treated as architectural evidence.
@@ -189,6 +221,25 @@ why.
 | Sparse linear algebra priors | `graphblas-src`, `lagraph-src`, `graphblas-pointers-src`, `python-graphblas-src`, `graphblas_sparse_linear_algebra-src`, `falkordb-src`, `redisgraph-src` | Which GDS families are better as GraphBLAS-style plans versus direct CSR kernels? | Do not adopt GraphBLAS globally because it is elegant. |
 | Embedded graph precedents | `ladybug-src`, `kuzu-src`, `memgraph-src`, `age-src` | What compact execution and publication ideas are useful without breaking PRD boundaries? | Do not treat competitor behavior as compatibility truth. |
 | Benchmark and observability shelf | `ldbc_*`, `tracing-src`, `jemalloc-src`, relevant `neo4j-gds-src` estimator paths | What makes performance and RAM claims credible and measurable? | Do not confuse instrumentation with proof; workloads and thresholds still matter. |
+
+## Repo-Family Graph Evidence Execution Map
+
+Use this map to decide when the two graph-evidence skills are mandatory and when
+they are low-yield but still must be accounted for explicitly.
+
+| repo family | default repo paths | graph-tool policy | first graph questions | low-yield exception rule |
+| --- | --- | --- | --- | --- |
+| PRD and current seed | current Knight Bus repo, `docs_PRD03/`, `src/`, `tests/` | required on the current Knight Bus repo | where are snapshot writer, manifest, mmap runtime, budget structs, and benchmark claims connected? | docs files inside the current repo are text-first, but the repo-level graph index is still required |
+| Neo4j core | `gitrefrepo/neo4j-src` | required | where do record formats, traversal cursors, tx log paths, procedures, values, and dense-node rules connect? | none |
+| Bolt and drivers | `neo4j-docs-bolt-src`, `neo4j-testkit-src`, `neo4j-*-driver-src` | required for code repos; text-first for `neo4j-docs-bolt-src` | what client-visible handshake, retry, transaction, and result behaviors are encoded? | docs-only repos may be `GraphToolLowYield` if no meaningful code graph exists |
+| GDS core | `neo4j-gds-src`, `neo4j-gds-client-src`, `graph-data-science-src`, `gds-agent-src` | required | which procedures map to which facades, configs, kernels, estimators, and catalog operations? | none |
+| APOC and ecosystem canaries | `neo4j-apoc-src`, `neo4j-apoc-procedures-src`, `cypher-shell-src`, `cypher-dsl-src`, `neo4rs-src`, `neo4j-ogm-src`, `neo4j-browser-src` | required | what procedure categories, shell flows, generated Cypher, and client expectations will hit v003 first? | none |
+| Build Store precedents | `apache-iggy-src`, `rocksdb-src`, `fjall-src`, `redb-src`, `tikv-src` | required | where do logs, checkpoints, compaction, segments, and recovery logic live? | none |
+| Sidecar and planning precedents | `apache-arrow-rs-src`, `apache-parquet-format-src`, `apache-datafusion-src` | required for `arrow-rs` and `datafusion`; text-first for `parquet-format` | where do column buffers, null handling, scans, and planning hooks live? | format-spec repos may be `GraphToolLowYield` |
+| Low-RAM graph priors | `graphchi-cpp-src`, `gridgraph-src`, `minigraph-src`, `thunderrw-src`, `gapbs-src`, `snap-src`, `ligra-src` | required | which out-of-core, streaming, or frontier kernels matter and how are they packaged? | none |
+| Sparse linear algebra priors | `graphblas-src`, `lagraph-src`, `graphblas-pointers-src`, `python-graphblas-src`, `graphblas_sparse_linear_algebra-src`, `falkordb-src`, `redisgraph-src` | required | which graph families map cleanly to sparse kernels and what state shapes do they imply? | docs-heavy helper repos may be `GraphToolLowYield` only with justification |
+| Embedded graph precedents | `ladybug-src`, `kuzu-src`, `memgraph-src`, `age-src` | required | where do compact graph storage, publication, and execution abstractions live? | none |
+| Benchmark and observability shelf | `ldbc_*`, `tracing-src`, `jemalloc-src`, estimator paths in `neo4j-gds-src` | mixed: required on code repos, text-first on docs repos | where do workload contracts, memory meters, tracing hooks, and allocator stats live? | docs-only benchmark repos may be `GraphToolLowYield` |
 
 ## Support Status Taxonomy
 
@@ -272,25 +323,30 @@ Your assigned PRD outcome is: <FILL THIS IN>.
 
 Do exactly this:
 1. Validate that every required local path exists.
-2. Use `rg` to find symbols before reading files.
-3. Read only files needed to fill evidence rows.
-4. Produce an evidence ledger with these columns:
+2. If a path mentions `ref-repo-folder/`, resolve it to `gitrefrepo/` when the
+   legacy shelf is empty.
+3. Run both graph-tool smoke commands for every code-bearing repo in scope, or
+   record `GraphToolLowYield` for docs-only repos.
+4. Record the output directories and one query or analysis question per tool.
+5. Use `rg` to find symbols before reading files.
+6. Read only files needed to fill evidence rows.
+7. Produce an evidence ledger with these columns:
    claim_id | req_id | source_type | source_path | symbol_or_query |
    sourced_fact | inference | speculation | PRD impact | skeptical note
-5. Produce an architecture fit matrix with these columns:
+8. Produce an architecture fit matrix with these columns:
    capability | topology_need | sidecar_need | build_store_need |
    snapshot_catalog_need | algorithm_state | memory_plan |
    execution_strategy | support_status | falsifier
-6. For GDS algorithm work, produce a procedure-to-kernel ledger with:
+9. For GDS algorithm work, produce a procedure-to-kernel ledger with:
    procedure_name | mode | config_type | result_type | estimate_path |
    algorithm_spec | implementation_class | graph_interfaces |
    topology_orientation | sidecar_inputs | dominant_state |
    mutate_write_target | oracle_test | storage_implication | ram_risk
-7. Separate facts from inferences. Never merge them.
-8. If evidence is missing, write `MissingEvidence`, not a guess.
-9. If support is hard, write `NeedsArchitectureSpike`, not unsupported.
-10. If support is outside PRD03, write `ExplicitlyOutOfScope` and cite why.
-11. End with verification commands run and unresolved risks.
+10. Separate facts from inferences. Never merge them.
+11. If evidence is missing, write `MissingEvidence`, not a guess.
+12. If support is hard, write `NeedsArchitectureSpike`, not unsupported.
+13. If support is outside PRD03, write `ExplicitlyOutOfScope` and cite why.
+14. End with verification commands run and unresolved risks.
 
 Do not claim v003 supports all GDS unless you inventoried procedures, modes,
 configs, result schemas, estimates, graph catalog, mutate/write, model catalog,
@@ -311,12 +367,15 @@ Do not summarize the repo. Fill tables.
 Required steps:
 1. Run `git -C gitrefrepo/<REPO-NAME> rev-parse --short HEAD`.
 2. Run `find gitrefrepo/<REPO-NAME> -maxdepth 2 -type d | sort | head -80`.
-3. Run 3 to 8 targeted `rg` commands for the assigned symbols.
-4. Read the smallest files that answer the question.
-5. Produce exactly 5 to 15 evidence rows.
-6. Produce exactly 3 to 10 v003 implications.
-7. Mark each implication `Adopt`, `Adapt`, `Reject`, `Watch`, or `MissingEvidence`.
-8. Add one skeptical falsifier per implication.
+3. Run both graph-tool smoke commands on `gitrefrepo/<REPO-NAME>` unless the
+   repo is docs-only or format-only; if skipped, write `GraphToolLowYield`.
+4. Record one discovery query or analysis question for each graph tool.
+5. Run 3 to 8 targeted `rg` commands for the assigned symbols.
+6. Read the smallest files that answer the question.
+7. Produce exactly 5 to 15 evidence rows.
+8. Produce exactly 3 to 10 v003 implications.
+9. Mark each implication `Adopt`, `Adapt`, `Reject`, `Watch`, or `MissingEvidence`.
+10. Add one skeptical falsifier per implication.
 ```
 
 ### Weak-Model GDS Surface Prompt
@@ -417,11 +476,35 @@ gets `NeedsArchitectureSpike`, `P2-ImplementedLater`, or
 Study this repository as evidence, not inspiration theater.
 
 1. Identify the 5 to 12 most relevant directories for the assigned PRD outcome.
-2. Use `rg` to find exact symbols and concepts before reading large files.
-3. Capture short source-backed facts with local path and line/symbol.
-4. Convert each fact into a v003 implication.
-5. Add one skeptical counterpoint per major implication.
-6. End with: adopt, adapt, reject, or watch.
+2. Run both graph-tool smoke commands if this is a code-bearing repo.
+3. Record the output dirs and one discovery question per tool.
+4. Use `rg` to find exact symbols and concepts before reading large files.
+5. Capture short source-backed facts with local path and line/symbol.
+6. Convert each fact into a v003 implication.
+7. Add one skeptical counterpoint per major implication.
+8. End with: adopt, adapt, reject, or watch.
+```
+
+### Graph-Tool Cross-Check Prompt
+
+```text
+Use both local graph-evidence tools on this repo before you trust your own
+mental map.
+
+For repository `<ABSOLUTE_REPO_PATH>`:
+1. Run:
+   - `/Users/amuldotexe/.codex/skills/codebase-memory-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>`
+   - `/Users/amuldotexe/.codex/skills/codegraphcontext-evidence-reader/scripts/scan_current_repo_only.sh <ABSOLUTE_REPO_PATH>`
+2. Record each output directory.
+3. Ask one discovery question in `codebase-memory-mcp`.
+4. Ask one discovery or caller/callee question in `CodeGraphContext`.
+5. Verify at least one matched symbol from each tool against source.
+6. If the repo is docs-only or format-only, record `GraphToolLowYield` instead
+   of fabricating a meaningful graph result.
+
+Return a table:
+repo_path | tool | output_dir | question | query_or_command |
+matched_symbol | source_verification | note
 ```
 
 ### Architecture Fit Prompt
@@ -469,6 +552,12 @@ Ask:
 | local_repo | exists_now | upstream_hint | branch_or_head | study_role | required_or_optional | current_use | note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `gitrefrepo/neo4j-gds-src` | yes | `neo4j/graph-data-science` | `<fill>` | compatibility oracle | required | active study | core GDS ABI and kernel evidence |
+
+### Graph Tool Run Ledger Template
+
+| repo_path | tool | output_dir | smoke_command | followup_query | matched_symbol | source_verification | note |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `gitrefrepo/neo4j-gds-src` | `codebase-memory-mcp` | `/tmp/...` | `scan_current_repo_only.sh .../neo4j-gds-src` | `search_graph ...` | `PageRankStreamProc` | `proc/.../PageRankStreamProc.java` | verified |
 
 ### Architecture Fit Matrix Template
 
@@ -808,13 +897,29 @@ Unresolved risks:
 **AND** SHALL use the Weak-Model Master Prompt or a narrower prompt from this spec
 **SHALL** reject broad "study everything" instructions unless they are split into traceable batches.
 
-### REQ-LEARN-040.0: Use Local Graph Tools Safely
+### REQ-LEARN-040.0: Use Local Graph Tools Safely Across The Study Shelf
 
-**WHEN** an agent uses `codebase-memory-mcp` or `CodeGraphContext`
-**THEN** the tool SHALL index only the current Knight Bus repo by default
-**AND** SHALL exclude `gitrefrepo/`, `.git/`, `target/`, and generated tool artifacts
-**AND** SHALL record the question asked, the smoke or query command used, and whether direct source verification confirmed the finding
-**SHALL** verify graph-tool findings with direct source reads before recording them as evidence.
+**WHEN** an agent studies the current Knight Bus repo or any code-bearing
+reference repo or sub-repo named by this spec
+**THEN** it SHALL run both `codebase-memory-mcp` and `CodeGraphContext` in
+isolated per-repo mode
+**AND** SHALL exclude `.git/`, `target/`, generated tool artifacts, and any
+other unrelated sibling repos from each run
+**AND** SHALL record the repo path, question asked, smoke command, output dir,
+follow-up query, and whether direct source verification confirmed the finding
+**SHALL** verify graph-tool findings with direct source reads before recording
+them as evidence.
+
+### REQ-LEARN-053.0: Canonicalize Reference Shelf Paths
+
+**WHEN** a human prompt, older note, or copied command mentions
+`ref-repo-folder/`
+**THEN** the study pass SHALL check whether that legacy path actually contains
+cloned repositories
+**AND** SHALL resolve study work to `gitrefrepo/` when the legacy path is empty
+or stale
+**SHALL** record that path resolution in the clone coverage ledger or checkpoint
+summary.
 
 ### REQ-LEARN-041.0: Produce Checkpoint Summaries
 
@@ -944,7 +1049,8 @@ Unresolved risks:
 | REQ-LEARN-037.0 | TEST-DOC-037 | traceability | Batch dossier maps findings to PRD L1 outcomes and names missing evidence per outcome. | PRD traceability |
 | REQ-LEARN-038.0 | TEST-DOC-038 | skeptical review | Adoption/rejection recommendations answer RAM, topology duplication, freshness, GDS shrinkage, client, and benchmark challenges. | review rigor |
 | REQ-LEARN-039.0 | TEST-DOC-039 | prompt review | Every broad handoff prompt names one lane, repo family, PRD outcome, and output table. | weak-model execution |
-| REQ-LEARN-040.0 | TEST-TOOL-040 | tool smoke | Code graph tool smoke runs index current repo only, excludes `gitrefrepo/`, and recorded findings are source-verified. | local tooling safety |
+| REQ-LEARN-040.0 | TEST-TOOL-040 | tool smoke | Code graph tool smoke runs are isolated to one repo at a time, record output dirs and follow-up queries, and every graph-derived claim is source-verified. | local tooling safety |
+| REQ-LEARN-053.0 | TEST-PATH-053 | path resolution | Legacy `ref-repo-folder/` references are resolved to `gitrefrepo/` when the old shelf is empty, and the resolution is recorded. | shelf hygiene |
 | REQ-LEARN-041.0 | TEST-DOC-041 | checkpoint review | Long study artifacts include resumable checkpoint summaries. | context retention |
 | REQ-LEARN-042.0 | TEST-DOC-042 | matrix review | Capability recommendations include topology, sidecar, Build Store, catalog, state, memory, execution, support, and falsifier fields. | architecture fit |
 | REQ-LEARN-043.0 | TEST-DOC-043 | verification review | Final artifacts answer weak-model verification questions and surface unresolved unsafe answers. | self-check rigor |
@@ -989,7 +1095,8 @@ Unresolved risks:
    procedure, mode, config, result, estimate, catalog, mutate/write, model,
    pipeline, or operations category is unknown.
 5. Record the expected failure reason in the artifact checkpoint.
-6. For graph-tool runs, confirm smoke output excludes `gitrefrepo/` before using
+6. For graph-tool runs, confirm each smoke run indexed only the intended repo
+   path and did not silently sweep sibling repositories before using
    graph-derived findings.
 7. For GDS algorithm work, confirm the trace fails until procedure, config,
    result, estimate, spec/factory, implementation class, graph interfaces,
@@ -1044,8 +1151,8 @@ Unresolved risks:
 6. Confirm every study batch produces a PRD outcome traceability dossier.
 7. Confirm long-running work has a checkpoint summary that another agent can
    resume from.
-8. Confirm code graph tools were not used to index all `gitrefrepo/` folders
-   unless explicitly requested.
+8. Confirm graph tools were run in isolated per-repo mode for the code-bearing
+   repos in scope, or that `GraphToolLowYield` was recorded for docs-only repos.
 9. Confirm every GDS algorithm architecture claim cites a procedure-to-kernel
    ledger row and a memory-estimate or oracle-test plan.
 10. Confirm every completed study batch emits the required artifact set.
@@ -1104,9 +1211,12 @@ Unresolved risks:
       a storage direction is recommended.
 - [ ] Every GDS algorithm claim has a procedure-to-kernel ledger row before it
       can affect architecture decisions.
-- [ ] Any use of `codebase-memory-mcp` or `CodeGraphContext` is scoped to the
-      current Knight Bus repo unless a human explicitly requests reference-repo
-      indexing.
+- [ ] The active study shelf is `gitrefrepo/`, or any deviation is explicitly
+      documented in clone coverage.
+- [ ] Any mention of `ref-repo-folder/` is resolved to `gitrefrepo/` when the
+      legacy folder is empty.
+- [ ] Any use of `codebase-memory-mcp` or `CodeGraphContext` is isolated to one
+      repo path per run, with docs-only exceptions marked `GraphToolLowYield`.
 - [ ] Any graph-tool finding is recorded with the command used and verified
       against source before it influences the ledger.
 - [ ] Weak-model verification questions are answered before finalizing a study

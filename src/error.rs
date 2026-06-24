@@ -68,6 +68,14 @@ pub enum KnightBusError {
     InvalidMemoryBudget { value: u64, detail: String },
     #[error("unknown entity `{entity}`")]
     UnknownEntity { entity: String },
+    #[error("unknown GDS {entry_kind} `{name}`")]
+    UnknownGdsEntry { entry_kind: String, name: String },
+    #[error("registered GDS {entry_kind} `{name}` is not yet supported ({support_status})")]
+    UnsupportedRegisteredGdsEntry {
+        entry_kind: String,
+        name: String,
+        support_status: String,
+    },
     #[error("node count {node_count} exceeds u32 capacity")]
     NodeCountOverflow { node_count: usize },
     #[error("peer count {peer_count} exceeds u32 capacity")]

@@ -113,3 +113,40 @@ Ensure the spec remains executable and resumable by any continuation context.
 - checkpoints_appended: 1
 - blockers: 0
 - token_context_estimate: n/a
+
+### Session: 2026-07-06 13:12:00Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- python3:read-coverage-snapshot: pass - 111 total, 10 completed, 101 remaining
+- python3:lane-matrix: pass - completed_by_lane {catalog_lifecycle:1, memory_estimator:2, olap_algorithm:1, procedure_surface:1, projection_build:5}
+- markdown:progress-dashboard: pass - created docs_PRD03/reference-learning/neo4j-family-dependency-graphs/gds-read-progress-dashboard.md with priorities 11-30
+
+#### Implementation Progress:
+- Wrote `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/neo4j-family-dependency-graphs/gds-read-progress-dashboard.md`
+- Added exact remaining workload counters and prioritized 20-file next batch (priorities 11..30)
+- Ran codebase-memory-evidence-reader smoke index to verify local graph evidence tooling path and project index health
+- Confirmed 111-row queue contract and 10 existing dossiers present
+
+#### Current Focus:
+Prioritize Batch-2 execution (priorities 11..20) with full-file evidence dossiers and oracle-first summaries.
+
+#### Next Steps:
+1. Read and summarize priority 11 (`LocalCommunityProcedureFacade.java`) and 12 (`GraphStoreCatalog.java`).
+2. Read and summarize priorities 13-20 and append their dossiers in the same required format.
+3. Update `gds-v2-dossiers/ROLLUP.md` with cross-file invariants after Batch-2 and run a completion validator pass.
+4. Keep read-metric counters updated after every file with this checkpoint format.
+
+#### Context Notes:
+- codebase-memory-evidence-reader index run completed at `/tmp/codex-code-intel/codebase-memory/knight-bus-graph-walker-20260706-130253`; Java/Clojure/Cross-language symbol query returned limited results with project selector requirements, so Clarity/SQLite remained primary structural evidence for this repo.
+- `scripts/progress_journal_orchestrator.py` remains unavailable in this worktree; fallback journal schema is used as documented in spec.
+- Next high-confidence objective remains explicit: reduce compatibility risk by locking catalog/procedure/memory seams before broad OLAP test-oracle ingestion.
+
+#### Performance/Metrics:
+- files_read_count=10
+- files_left=101
+- files_total=111
+- read_percent=9.01%
+- next_batch=11-20
+- blockers=0

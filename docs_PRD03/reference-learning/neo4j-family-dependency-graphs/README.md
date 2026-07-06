@@ -9,6 +9,7 @@ Artifacts:
 - `family-file-edges.tsv`: parsed file-to-file dependency edges from all successful/partial DOT outputs.
 - `dot/*.dot`: raw Clarity DOT per repo.
 - `stderr/*.stderr.txt`: command stderr per repo.
+- `gds-read-progress-dashboard.md`: current rewrite-read progress (files completed/remaining, batch priorities, Shreyas-style next-step framing).
 - `opencypher-fallback-file-inventory.tsv`: fallback inventory for `opencypher-src`, because Clarity 0.28.1 found no supported import-bearing source files in that spec/TCK repo.
 - `opencypher-fallback-reference-edges.tsv`: lightweight intra-repo AsciiDoc/reference edges for `opencypher-src`.
 

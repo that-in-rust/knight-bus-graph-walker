@@ -1,0 +1,12 @@
+digraph dependencies {
+  rankdir=LR;
+  node [shape=box];
+  label="neo4j-docs-bolt-src • 1714723 • 1 file";
+  labelloc=t;
+  labeljust=l;
+  fontsize=10;
+  fontname=Courier;
+
+  "server.js" [label="server.js", style=filled, fillcolor=white];
+}
+

@@ -11,8 +11,21 @@ from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parents[2]
-SOURCE_ROOT = REPO / "gitrefrepo" / "neo4j-gds-src"
 OUT_DIR = REPO / "docs_PRD03" / "reference-learning"
+
+
+def resolve_source_root() -> Path:
+    candidates = [
+        REPO / "gitrefrepo" / "Neo4j family" / "neo4j-gds-src",
+        REPO / "gitrefrepo" / "neo4j-gds-src",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    raise FileNotFoundError("Could not find neo4j-gds-src under gitrefrepo")
+
+
+SOURCE_ROOT = resolve_source_root()
 
 
 PROCEDURE_COLUMNS = [

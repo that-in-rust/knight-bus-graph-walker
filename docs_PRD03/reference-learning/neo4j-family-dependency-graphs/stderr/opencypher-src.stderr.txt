@@ -1,0 +1,31 @@
+Error: no supported files found in working directory
+Usage:
+  clarity show [paths...] [flags]
+
+Flags:
+      --all                  Render the whole tree at this snapshot
+      --allow-outside-repo   Allow input paths outside the repo root
+      --also strings         Include files matching glob patterns that connect to the --reach graph (requires --reach)
+  -w, --between strings      Find all paths between specified files (comma-separated)
+      --collapse             Collapse files into the modules declared in .clarity/modules.json
+  -c, --commit string        Git commit or range to analyze (e.g., f0459ec, HEAD~3, f0459ec...be3d11a)
+  -l, --depth int            Depth for --reach (0 = unlimited) (default 1)
+      --exclude strings      Exclude specific files and/or directories from graph inputs (comma-separated)
+      --exclude-ext string   Exclude files with these extensions (comma-separated, e.g. .go,.java)
+  -f, --format string        Output format (dot, mermaid) (default "dot")
+  -h, --help                 help for show
+      --include-ext string   Include only files with these extensions (comma-separated, e.g. .go,.java)
+      --label                Add deterministic short labels to edges
+  -m, --module string        Render the named module's files inside a box, alongside any files already in scope such as working-set changes (quote names with spaces)
+      --no-phantom           Suppress phantom test nodes (Rust files with #[cfg(test)] regions are rendered as a single node)
+      --no-stats             Skip file addition/deletion statistics for faster rendering
+  -o, --orientation string   Graph layout orientation (lr, rl, tb, bt) (default "lr")
+      --prune strings        Show node but skip its subtree (requires --reach; shown with dashed border)
+      --reach string         Walk dependencies from the anchor: up, down, both
+  -r, --repo string          Git repository path (default: current directory)
+  -u, --url                  Generate visualization URL (supported formats: dot, mermaid)
+
+Global Flags:
+  -v, --verbose   Enable verbose/debug output
+  -V, --version   Print version information and exit
+

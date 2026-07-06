@@ -1,6 +1,6 @@
 # Neo4j Family Rewrite Read Progress Dashboard (GDS v2 Corpus)
 
-**Generated:** 2026-07-06T13:12:00Z  
+**Generated:** 2026-07-06T10:38:19Z
 **Scope:** `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/gds-v2-dossiers/*` + `/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/docs_PRD03/reference-learning/neo4j-family-dependency-graphs/*`
 
 ## Executive intent
@@ -12,21 +12,21 @@ We are not reading randomly. We read files in dependency-informed priority order
 ## Current coverage (as of this checkpoint)
 
 - **Total queue rows:** `111`
-- **Fully read and documented files:** `10`
-- **Remaining files to read:** `101`
+- **Fully read and documented files:** `60`
+- **Remaining files to read:** `51`
 
 | Lane | Total | Completed | Remaining |
 |---|---:|---:|---:|
-| catalog_lifecycle | 9 | 1 | 8 |
-| memory_estimator | 9 | 2 | 7 |
-| olap_algorithm | 26 | 1 | 25 |
-| procedure_surface | 20 | 1 | 19 |
-| projection_build | 13 | 5 | 8 |
+| catalog_lifecycle | 9 | 7 | 2 |
+| memory_estimator | 9 | 7 | 2 |
+| olap_algorithm | 26 | 17 | 9 |
+| procedure_surface | 20 | 15 | 5 |
+| projection_build | 13 | 12 | 1 |
 | verification_oracle | 30 | 0 | 30 |
-| write_import_export | 4 | 0 | 4 |
+| write_import_export | 4 | 2 | 2 |
 
-### Completed files (10)
-`1..10`
+### Completed files (60)
+`1..49`, `53..58`, `59`, `60`, `61`, `62`, `64`
 
 - `001-catalog_lifecycle-GraphStore.md`
 - `002-memory_estimator-MemoryEstimateResult.md`
@@ -38,6 +38,56 @@ We are not reading randomly. We read files in dependency-informed priority order
 - `008-projection_build-GraphProjectProc.md`
 - `009-olap_algorithm-AlgorithmProcessingTimings.md`
 - `010-projection_build-ValueType.md`
+- `011-procedure_surface-LocalCommunityProcedureFacade.md`
+- `012-catalog_lifecycle-GraphStoreCatalog.md`
+- `013-procedure_surface-ProcedureConstants.md`
+- `014-memory_estimator-MemoryEstimations.md`
+- `015-olap_algorithm-AlgoBaseConfig.md`
+- `016-memory_estimator-MemoryRange.md`
+- `017-olap_algorithm-NodePropertiesWritten.md`
+- `018-memory_estimator-Estimate.md`
+- `019-procedure_surface-LocalCentralityProcedureFacade.md`
+- `020-projection_build-Aggregation.md`
+- `021-olap_algorithm-ResultBuilder.md`
+- `022-projection_build-DefaultValue.md`
+- `023-procedure_surface-LocalPathFindingProcedureFacade.md`
+- `024-olap_algorithm-Algorithm.md`
+- `025-procedure_surface-MutateStub.md`
+- `026-procedure_surface-PipelineApplications.md`
+- `027-procedure_surface-AlgorithmsProcedureFacade.md`
+- `028-catalog_lifecycle-ModelCatalog.md`
+- `029-procedure_surface-ProcedureReturnColumns.md`
+- `030-catalog_lifecycle-DefaultGraphCatalogApplications.md`
+- `031-olap_algorithm-AlgorithmLabel.md`
+- `032-olap_algorithm-CommunityAlgorithms.md`
+- `033-catalog_lifecycle-Model.md`
+- `034-olap_algorithm-RequestScopedDependencies.md`
+- `035-memory_estimator-MemoryEstimateDefinition.md`
+- `036-olap_algorithm-AlgorithmSpec.md`
+- `037-procedure_surface-AsNodeFunc.md`
+- `038-procedure_surface-NewConfigFunction.md`
+- `039-procedure_surface-GenericStub.md`
+- `040-olap_algorithm-PathFindingAlgorithms.md`
+- `041-projection_build-PropertyMapping.md`
+- `042-projection_build-GraphProjectConfig.md`
+- `043-projection_build-RelationshipProjection.md`
+- `044-olap_algorithm-StreamResultBuilder.md`
+- `045-olap_algorithm-CommunityAlgorithmsMutateModeBusinessFacade.md`
+- `046-olap_algorithm-CentralityAlgorithms.md`
+- `047-olap_algorithm-RelationshipsWritten.md`
+- `048-procedure_surface-GdsCallable.md`
+- `049-procedure_surface-CommunityProcedureFacade.md`
+- `053-memory_estimator-ProgressTrackerCreator.md`
+- `054-memory_estimator-CommunityAlgorithmsEstimationModeBusinessFacade.md`
+- `055-write_import_export-CommunityAlgorithmsWriteModeBusinessFacade.md`
+- `056-olap_algorithm-MutateStep.md`
+- `057-projection_build-PropertyMappings.md`
+- `058-olap_algorithm-AlgorithmProcessingTemplateConvenience.md`
+- `059-catalog_lifecycle-GraphStoreCatalogService.md`
+- `060-catalog_lifecycle-CSRGraphStore.md`
+- `061-projection_build-ElementProjection.md`
+- `062-procedure_surface-LocalSimilarityProcedureFacade.md`
+- `064-write_import_export-WritePropertyConfig.md`
 
 ### Why this is not optional for rewrite safety
 1. The GDS rewrite target is OLAP-heavy and currently has **>100k lines** of dependency graph context.
@@ -63,33 +113,33 @@ Read in batches that keep the same seam alive:
 - batch2 begins with catalog lifecycle and procedure/IO edges before algorithm breadth.
 
 ### 5) Track spend, not just output
-The useful metric is not lines skimmed; it is **files fully read + dossiers complete + next 10 recommended rows**.
+The useful metric is not lines skimmed; it is **files fully read + dossiers complete + next 20 prioritized rows**.
 
 ## Next 20 files to read next (priority order)
-These are the remaining highest-priority targets from queue (11–30) in exact order.
+These are the remaining highest-priority targets from queue (after `64`) in exact order.
 
 | Priority | Lane | File | fan_in/fan_out | Planned dossier |
 |---|---|---|---:|---|
-| 11 | procedure_surface | `procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java` | 4 / 163 | `011-procedure_surface-LocalCommunityProcedureFacade.md` |
-| 12 | catalog_lifecycle | `core/src/main/java/org/neo4j/gds/core/loading/GraphStoreCatalog.java` | 145 / 17 | `012-catalog_lifecycle-GraphStoreCatalog.md` |
-| 13 | procedure_surface | `procedures/procedures-facade-api/src/main/java/org/neo4j/gds/procedures/ProcedureConstants.java` | 161 / 0 | `013-procedure_surface-ProcedureConstants.md` |
-| 14 | memory_estimator | `memory-usage/src/main/java/org/neo4j/gds/mem/MemoryEstimations.java` | 139 / 7 | `014-memory_estimator-MemoryEstimations.md` |
-| 15 | olap_algorithm | `config-api/src/main/java/org/neo4j/gds/config/AlgoBaseConfig.java` | 137 / 9 | `015-olap_algorithm-AlgoBaseConfig.md` |
-| 16 | memory_estimator | `memory-usage/src/main/java/org/neo4j/gds/mem/MemoryRange.java` | 131 / 1 | `016-memory_estimator-MemoryRange.md` |
-| 17 | olap_algorithm | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/metadata/NodePropertiesWritten.java` | 129 / 0 | `017-olap_algorithm-NodePropertiesWritten.md` |
-| 18 | memory_estimator | `memory-usage/src/main/java/org/neo4j/gds/mem/Estimate.java` | 128 / 1 | `018-memory_estimator-Estimate.md` |
-| 19 | procedure_surface | `procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/centrality/LocalCentralityProcedureFacade.java` | 2 / 114 | `019-procedure_surface-LocalCentralityProcedureFacade.md` |
-| 20 | projection_build | `graph-projection-api/src/main/java/org/neo4j/gds/core/Aggregation.java` | 111 / 1 | `020-projection_build-Aggregation.md` |
-| 21 | olap_algorithm | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/ResultBuilder.java` | 109 / 2 | `021-olap_algorithm-ResultBuilder.md` |
-| 22 | projection_build | `graph-projection-api/src/main/java/org/neo4j/gds/api/DefaultValue.java` | 107 / 4 | `022-projection_build-DefaultValue.md` |
-| 23 | procedure_surface | `procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/pathfinding/LocalPathFindingProcedureFacade.java` | 1 / 107 | `023-procedure_surface-LocalPathFindingProcedureFacade.md` |
-| 24 | olap_algorithm | `algo-common/src/main/java/org/neo4j/gds/Algorithm.java` | 100 / 2 | `024-olap_algorithm-Algorithm.md` |
-| 25 | procedure_surface | `procedures/facade-api/algorithms-facade-common/src/main/java/org/neo4j/gds/procedures/algorithms/stubs/MutateStub.java` | 99 / 2 | `025-procedure_surface-MutateStub.md` |
-| 26 | procedure_surface | `procedures/pipelines-facade/src/main/java/org/neo4j/gds/procedures/pipelines/PipelineApplications.java` | 5 / 96 | `026-procedure_surface-PipelineApplications.md` |
-| 27 | procedure_surface | `procedures/algorithms-facade-api/src/main/java/org/neo4j/gds/procedures/algorithms/AlgorithmsProcedureFacade.java` | 83 / 7 | `027-procedure_surface-AlgorithmsProcedureFacade.md` |
-| 28 | catalog_lifecycle | `model-catalog-api/src/main/java/org/neo4j/gds/core/model/ModelCatalog.java` | 81 / 3 | `028-catalog_lifecycle-ModelCatalog.md` |
-| 29 | procedure_surface | `neo4j-api/src/main/java/org/neo4j/gds/api/ProcedureReturnColumns.java` | 82 / 0 | `029-procedure_surface-ProcedureReturnColumns.md` |
-| 30 | catalog_lifecycle | `applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/DefaultGraphCatalogApplications.java` | 2 / 74 | `030-catalog_lifecycle-DefaultGraphCatalogApplications.md` |
+| 65 | olap_algorithm | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MutateNodeProperty.java` | 40 / 8 | `065-olap_algorithm-MutateNodeProperty.md` |
+| 66 | olap_algorithm | `algo/src/main/java/org/neo4j/gds/embeddings/graphsage/GraphSageModelTrainer.java` | 19 / 29 | `066-olap_algorithm-GraphSageModelTrainer.md` |
+| 67 | procedure_surface | `procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/embeddings/LocalNodeEmbeddingsProcedureFacade.java` | 1 / 47 | `067-procedure_surface-LocalNodeEmbeddingsProcedureFacade.md` |
+| 68 | memory_estimator | `applications/algorithms/path-finding/src/main/java/org/neo4j/gds/applications/algorithms/pathfinding/PathFindingAlgorithmsEstimationModeBusinessFacade.java` | 17 / 30 | `068-memory_estimator-PathFindingAlgorithmsEstimationModeBusinessFacade.md` |
+| 69 | olap_algorithm | `applications/algorithms/centrality/src/main/java/org/neo4j/gds/applications/algorithms/centrality/CentralityAlgorithmsMutateModeBusinessFacade.java` | 9 / 38 | `069-olap_algorithm-CentralityAlgorithmsMutateModeBusinessFacade.md` |
+| 70 | write_import_export | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/WriteStep.java` | 42 / 4 | `070-write_import_export-WriteStep.md` |
+| 71 | procedure_surface | `proc/common/src/main/java/org/neo4j/gds/NullComputationResultConsumer.java` | 41 / 5 | `071-procedure_surface-NullComputationResultConsumer.md` |
+| 72 | olap_algorithm | `applications/algorithms/node-embeddings/src/main/java/org/neo4j/gds/applications/algorithms/embeddings/NodeEmbeddingAlgorithms.java` | 9 / 37 | `072-olap_algorithm-NodeEmbeddingAlgorithms.md` |
+| 73 | procedure_surface | `procedures/facade/src/main/java/org/neo4j/gds/procedures/LocalGraphDataScienceProcedures.java` | 4 / 42 | `073-procedure_surface-LocalGraphDataScienceProcedures.md` |
+| 75 | olap_algorithm | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/StatsResultBuilder.java` | 43 / 2 | `075-olap_algorithm-StatsResultBuilder.md` |
+| 76 | olap_algorithm | `applications/algorithms/path-finding/src/main/java/org/neo4j/gds/applications/algorithms/pathfinding/PathFindingAlgorithmsMutateModeBusinessFacade.java` | 12 / 33 | `076-olap_algorithm-PathFindingAlgorithmsMutateModeBusinessFacade.md` |
+| 77 | catalog_lifecycle | `pipeline/src/main/java/org/neo4j/gds/ml/pipeline/PipelineCatalog.java` | 39 / 5 | `077-catalog_lifecycle-PipelineCatalog.md` |
+| 78 | procedure_surface | `pregel/src/main/java/org/neo4j/gds/beta/pregel/PregelProcedureConfig.java` | 36 / 8 | `078-procedure_surface-PregelProcedureConfig.md` |
+| 79 | write_import_export | `applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/WriteToDatabase.java` | 30 / 13 | `079-write_import_export-WriteToDatabase.md` |
+| 80 | olap_algorithm | `algo/src/main/java/org/neo4j/gds/algorithms/community/CommunityCompanion.java` | 29 / 14 | `080-olap_algorithm-CommunityCompanion.md` |
+| 81 | memory_estimator | `memory-usage/src/main/java/org/neo4j/gds/mem/BitUtil.java` | 42 / 0 | `081-memory_estimator-BitUtil.md` |
+| 83 | procedure_surface | `procedures/facade-api/configs/node-embeddings-configs/src/main/java/org/neo4j/gds/embeddings/graphsage/algo/GraphSageTrainConfig.java` | 27 / 15 | `083-procedure_surface-GraphSageTrainConfig.md` |
+| 86 | projection_build | `native-projection/src/main/java/org/neo4j/gds/projection/GraphProjectFromStoreConfig.java` | 32 / 9 | `086-projection_build-GraphProjectFromStoreConfig.md` |
+| 87 | catalog_lifecycle | `applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphCatalogApplications.java` | 9 / 31 | `087-catalog_lifecycle-GraphCatalogApplications.md` |
+| 88 | olap_algorithm | `applications/algorithms/community/src/main/java/org/neo4j/gds/applications/algorithms/community/CommunityAlgorithmsStreamModeBusinessFacade.java` | 2 / 38 | `088-olap_algorithm-CommunityAlgorithmsStreamModeBusinessFacade.md` |
 
 ## Evidence anchors for this dashboard
 
@@ -118,7 +168,7 @@ PY
 
 ## Concrete next-step target for this branch
 
-Write all files for priorities **11..20** as Batch-2 next step, each as:
+Write all files for priorities **65..88** as the next queued block (20 files; missing priorities are `63`, `74`, `82`, `84`, `85`), each as:
 
 1. full-file read of the source in `gitrefrepo/Neo4j family`
 2. dependency neighborhood capture (incoming + outgoing if available)

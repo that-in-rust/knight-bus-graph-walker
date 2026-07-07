@@ -2,7 +2,7 @@
 
 - Task: GDS complete-read executable spec batch 1
 - Created: 2026-07-06 07:06:59Z
-- Updated: 2026-07-06 10:38:19Z
+- Updated: 2026-07-06 12:09:29Z
 - Current Phase: Green
 - Status: active
 
@@ -443,3 +443,141 @@ Finish block 54..58 dossier creation and align dashboard/rollup/journal counters
 - files_left=56
 - read_percent=49.55
 - next_batch=59-73
+
+### Session: 2026-07-06 10:51:13Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- V001-verification-oracle-WccMutateProcTest.md: pass - dossier created
+- V002-verification-oracle-ModularityOptimizationMutateProcTest.md: pass - dossier created
+- V003-verification-oracle-LabelPropagationMutateProcTest.md: pass - dossier created
+- V004-verification-oracle-NodeClassificationPredictPipelineExecutorTest.md: pass - dossier created
+- V005-verification-oracle-LinkPredictionTrainPipelineExecutorTest.md: pass - dossier created
+- V006-verification-oracle-PregelProcTest.md: pass - dossier created
+- V007-verification-oracle-LinkPredictionPredictPipelineExecutorTest.md: pass - dossier created
+- V008-verification-oracle-WriteNodePropertiesComputationResultConsumerTest.md: pass - dossier created
+- V009-verification-oracle-PregelTest.md: pass - dossier created
+- V010-verification-oracle-GraphSageTest.md: pass - dossier created
+
+#### Implementation Progress:
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V001-verification-oracle-WccMutateProcTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V002-verification-oracle-ModularityOptimizationMutateProcTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V003-verification-oracle-LabelPropagationMutateProcTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V004-verification-oracle-NodeClassificationPredictPipelineExecutorTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V005-verification-oracle-LinkPredictionTrainPipelineExecutorTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V006-verification-oracle-PregelProcTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V007-verification-oracle-LinkPredictionPredictPipelineExecutorTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V008-verification-oracle-WriteNodePropertiesComputationResultConsumerTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V009-verification-oracle-PregelTest.md created
+- Docs: docs_PRD03/reference-learning/gds-v2-dossiers/V010-verification-oracle-GraphSageTest.md created
+
+#### Current Focus:
+Read and document verification_oracle priorities 1001-1010 for node/ML/Pregel/GraphSage compatibility checks.
+
+#### Next Steps:
+- Create dossiers for priorities 1011-1020.
+- Re-run next20 coverage validator before dashboard/rollup update.
+- Run git status and prepare next commit-safe checkpoint.
+
+#### Context Notes:
+- No blocking issues identified in this batch; nested test classes and mode-specific assertions fully preserved.
+- All 10 files now have explicit line-level method evidence and dependency context.
+
+#### Performance/Metrics:
+- covered_in_block=10
+- total_covered=91
+- total_remaining=20
+- next_priority_batch=1011..1020
+
+### Session: 2026-07-06 11:36:50Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- V011-verification-oracle-LinkPredictionTrainTest.md: pass - dossier created from LinkPredictionTrainTest evidence
+- V012-verification-oracle-FastRPTest.md: pass - dossier created from FastRPTest evidence
+- V013-verification-oracle-GraphStoreToCsvExporterTest.md: pass - dossier created from GraphStoreToCsvExporterTest evidence
+- V014-verification-oracle-LinkPredictionTrainingPipelineTest.md: pass - dossier created from LinkPredictionTrainingPipelineTest evidence
+- V015-verification-oracle-HashGNNTest.md: pass - dossier created from HashGNNTest evidence
+- V016-verification-oracle-ModularityOptimizationWithoutOrientationTest.md: pass - dossier created from ModularityOptimizationWithoutOrientationTest evidence
+- V017-verification-oracle-GraphSageAlgorithmFactoryTest.md: pass - dossier created from GraphSageAlgorithmFactoryTest evidence
+- V018-verification-oracle-PipelineExecutorTest.md: pass - dossier created from PipelineExecutorTest evidence
+- V019-verification-oracle-GraphCatalogProcedureFacadeTest.md: pass - dossier created from GraphCatalogProcedureFacadeTest evidence
+- V020-verification-oracle-MemoryEstimationExecutorTest.md: pass - dossier created from MemoryEstimationExecutorTest evidence
+
+#### Implementation Progress:
+- docs_PRD03/reference-learning/gds-v2-dossiers/V011-verification-oracle-LinkPredictionTrainTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V012-verification-oracle-FastRPTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V013-verification-oracle-GraphStoreToCsvExporterTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V014-verification-oracle-LinkPredictionTrainingPipelineTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V015-verification-oracle-HashGNNTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V016-verification-oracle-ModularityOptimizationWithoutOrientationTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V017-verification-oracle-GraphSageAlgorithmFactoryTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V018-verification-oracle-PipelineExecutorTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V019-verification-oracle-GraphCatalogProcedureFacadeTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V020-verification-oracle-MemoryEstimationExecutorTest.md: created
+
+#### Current Focus:
+Created verification_oracle dossiers V011-V020 using five parallel evidence agents for GDS complete-read batch.
+
+#### Next Steps:
+- Create dossiers for remaining priorities 1021-1030.
+- Re-run coverage validator and ensure missing_priorities is empty.
+- Update dashboard/rollup after all V-series verification_oracle dossiers exist.
+
+#### Context Notes:
+- Five parallel explorer agents were used with disjoint two-file evidence slices; central thread wrote the dossiers for consistency.
+- Coverage validator after this batch: total_rows=111, existing=101, missing=10, missing_priorities=1021..1030.
+
+#### Performance/Metrics:
+- covered_in_block=10
+- total_covered=101
+- total_remaining=10
+- next_priority_batch=1021..1030
+
+### Session: 2026-07-06 12:09:29Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- V021-verification-oracle-DummyGraphStore.md: pass - dossier created from DummyGraphStore evidence
+- V022-verification-oracle-PredictPipelineExecutorTest.md: pass - dossier created from PredictPipelineExecutorTest evidence
+- V023-verification-oracle-GraphProjectProcTest.md: pass - dossier created from GraphProjectProcTest evidence
+- V024-verification-oracle-ProcedureRunner.md: pass - dossier created from ProcedureRunner evidence
+- V025-verification-oracle-UndirectedEdgeSplitterTest.md: pass - dossier created from UndirectedEdgeSplitterTest evidence
+- V026-verification-oracle-LouvainTest.md: pass - dossier created from LouvainTest evidence
+- V027-verification-oracle-LinkPredictionPipelineTrainProcTest.md: pass - dossier created from LinkPredictionPipelineTrainProcTest evidence
+- V028-verification-oracle-NodePropertyStepExecutorTest.md: pass - dossier created from NodePropertyStepExecutorTest evidence
+- V029-verification-oracle-CypherAggregationTest.md: pass - dossier created from CypherAggregationTest evidence
+- V030-verification-oracle-LinkPredictionPipelineIntegrationTest.md: pass - dossier created from LinkPredictionPipelineIntegrationTest evidence
+
+#### Implementation Progress:
+- docs_PRD03/reference-learning/gds-v2-dossiers/V021-verification-oracle-DummyGraphStore.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V022-verification-oracle-PredictPipelineExecutorTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V023-verification-oracle-GraphProjectProcTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V024-verification-oracle-ProcedureRunner.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V025-verification-oracle-UndirectedEdgeSplitterTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V026-verification-oracle-LouvainTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V027-verification-oracle-LinkPredictionPipelineTrainProcTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V028-verification-oracle-NodePropertyStepExecutorTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V029-verification-oracle-CypherAggregationTest.md: created
+- docs_PRD03/reference-learning/gds-v2-dossiers/V030-verification-oracle-LinkPredictionPipelineIntegrationTest.md: created
+
+#### Current Focus:
+Completed verification_oracle dossiers V021-V030 and closed the GDS complete-read queue.
+
+#### Next Steps:
+- Build a rollup index that clusters the 111 dossiers by rewrite subsystem: projection/catalog, algorithms, ML pipelines, memory estimation, procedure surface, and export/writeback.
+- Extract executable Rust verification specs from the dossier oracles, starting with projection/catalog and memory-estimation seams.
+- Create a thin SQLite-backed dossier index keyed by source file, public contract, oracle type, and Rust rewrite implication.
+
+#### Context Notes:
+- Coverage validator after final batch: total_rows=111, existing=111, missing=0, missing_priorities empty.
+- Final two files were CypherAggregationTest and LinkPredictionPipelineIntegrationTest; both are high-value public procedure integration surfaces.
+
+#### Performance/Metrics:
+- covered_in_block=10
+- total_covered=111
+- total_remaining=0
+- missing_priorities=none

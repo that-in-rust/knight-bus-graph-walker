@@ -1550,6 +1550,45 @@ These remain gaps for future agents. They should be inspected directly before ad
 - `rust-rocksdb-src`: write batches, snapshots, column family APIs, and option lifetimes need direct reads.
 - `tikv-src`: Raft log, MVCC reader/writer, Titan/blob storage, lock manager, and full coprocessor execution need direct reads.
 
+### Codebase-Memory Tool Evidence: ClickHouse Focused Fallback
+
+The full `gitrefrepo/clickhouse-src` codebase-memory run timed out twice:
+
+- first after 120 seconds;
+- then after 600 seconds;
+- then after a final 1800-second single-repo retry.
+
+The long retry log showed the tool was making real progress through the full
+26,426-file repository, but it still did not finish. To preserve codebase-memory
+evidence for the repo without pretending the full index succeeded, I ran a
+focused fallback over the high-signal ClickHouse slices most relevant to a
+Neo4j-in-Rust rewrite:
+
+- `clickhouse-src/src/Storages`
+- `clickhouse-src/src/Processors`
+- `clickhouse-src/src/Interpreters`
+- `clickhouse-src/src/Parsers`
+- `clickhouse-src/src/Disks`
+- `clickhouse-src/base`
+
+The focused codebase-memory pass indexed all six slices successfully:
+
+- status file:
+  `graph-database-rewrite-references-202606/clickhouse-focused-codebase-memory-status.tsv`
+- logs:
+  `/tmp/codex-code-intel/codebase-memory/clickhouse-focused-20260707/logs`
+- aggregate focused evidence: 70,100 nodes, 225,998 edges, 4,724 files.
+
+Interpretation for future agents:
+
+- Treat the full ClickHouse repo as too large for the current codebase-memory
+  runtime budget.
+- Treat the six focused slices as valid codebase-memory evidence for storage
+  layout, query pipelines, interpreter/planner boundaries, parser surfaces,
+  disk/IO abstractions, and common systems infrastructure.
+- Do not claim full ClickHouse graph coverage unless a later run completes the
+  full repository index.
+
 ### Next-Agent Recommendations
 
 1. Start with the uninspected repos that are most relevant to the missing themes:
@@ -1562,4 +1601,3 @@ These remain gaps for future agents. They should be inspected directly before ad
 3. Add a second section specifically for binary formats after reading `apache-parquet-format-src`, DuckDB storage headers, ClickHouse part formats, and Qdrant segment files.
 4. Add benchmark tables only after opening benchmark harness source paths.
 5. Preserve the distinction between logical graph ids and physical storage/page ids throughout the rewrite design.
-

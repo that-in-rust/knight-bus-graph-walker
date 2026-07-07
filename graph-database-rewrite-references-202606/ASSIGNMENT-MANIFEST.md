@@ -1,10 +1,10 @@
-# Assignment Manifest: Desktop Graph Database Pattern Corpus
+# Assignment Manifest: Gitrefrepo Graph Database Pattern Corpus
 
 Date: 2026-07-07
 
 Scope:
 
-`/Users/amuldotexe/Desktop/`
+`/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/gitrefrepo`
 
 Output directory:
 
@@ -14,29 +14,39 @@ The active objective requires exactly these five canonical files:
 
 | file | slice | thematic lens |
 | --- | --- | --- |
-| `meta-graph-database-patterns-1.md` | Neo4j family architecture and compatibility surface | Neo4j kernel/procedure boundaries, Cypher/Bolt contracts, GDS graph catalog, drivers, testkit |
-| `meta-graph-database-patterns-2.md` | Storage engines and memory layout | WAL, checkpoints, page cache, mmap/direct I/O, Arrow/Parquet, durable file formats |
-| `meta-graph-database-patterns-3.md` | Query execution and parser/compiler infrastructure | grammar/AST, binder, planner, optimizer, physical operators, vectorized execution |
-| `meta-graph-database-patterns-4.md` | Graph algorithms, CSR, GraphBLAS, sparse traversal | algorithm state shape, traversal frontiers, external-memory processing, low-RAM proof |
-| `meta-graph-database-patterns-5.md` | Testing, observability, protocols, developer tooling | metrics, tracing, failure injection, benchmark design, driver fixtures, operational ergonomics |
+| `graph-database-patterns-1.md` | Neo4j family architecture and compatibility surface | Neo4j kernel/procedure boundaries, Cypher/Bolt contracts, GDS graph catalog, drivers, testkit |
+| `graph-database-patterns-2.md` | Graph engines and query runtimes | graph storage, parser/planner/executor boundaries, cursor traversal, index substitution |
+| `graph-database-patterns-3.md` | Storage engines and query execution infrastructure | memory layout, zero-copy IO, WAL, indexes, columnar/vector systems, Rust ownership and unsafe boundaries |
+| `graph-database-patterns-4.md` | Graph algorithms, CSR, GraphBLAS, sparse traversal | algorithm state shape, traversal frontiers, external-memory processing, low-RAM proof |
+| `graph-database-patterns-5.md` | Parsers, testing, observability, allocators, developer tooling | grammar/ASTs, metrics, tracing, failure injection, benchmark design, operational ergonomics |
 
 ## Coverage Rule
 
-Every Git repo root discovered under `/Users/amuldotexe/Desktop/` must have one
+Every repo root under `gitrefrepo` must have one row in:
+
+`graph-database-rewrite-references-202606/gitrefrepo-coverage-ledger.tsv`
+
+Every repo root under `gitrefrepo` must also have a codebase-memory tool-status
 row in:
 
-`graph-database-rewrite-references-202606/repo-coverage-ledger.tsv`
+`graph-database-rewrite-references-202606/gitrefrepo-codebase-memory-status.tsv`
 
-Allowed inspection levels:
+Allowed inspection levels in the corpus coverage ledger:
 
-- `direct_source_cited`: repo has direct source or doc citations in a canonical
-  file or named supplement.
-- `metadata_browsed_name_cited`: repo was browsed at metadata/name level and
-  cited as relevant context, but not deeply source-extracted.
-- `metadata_browsed_low_signal`: repo was browsed and judged low signal for the
-  Neo4j-in-Rust rewrite unless a later requirement makes it relevant.
-- `metadata_browsed_gap`: repo is inventoried but still needs source evidence,
-  explicit low-signal rationale, or user-accepted scoping.
+- `canonical_file_mentioned`: repo appears in at least one canonical
+  `graph-database-patterns-*.md` file.
+- `direct_source_cited`: repo has direct source or doc citations in a
+  canonical file.
+- `assigned_inventory_only`: repo is assigned but has not yet received enough
+  evidence. This should be zero before considering the corpus done.
+
+Codebase-memory status interpretation:
+
+- `indexed`: full repo path indexed by codebase-memory.
+- `timeout`: full repo path did not complete within the recorded timeout.
+- For `clickhouse-src`, full-repo indexing timed out after 1800 seconds, but
+  focused high-signal slices are indexed in
+  `clickhouse-focused-codebase-memory-status.tsv`.
 
 ## Pattern Record Shape
 
@@ -55,28 +65,33 @@ For every meaningful pattern, capture as much as practical:
 
 ## Evidence Tool Policy
 
-- Use `codegraphcontext-evidence-reader` as an accelerator, not as a truth
-  oracle.
+- Use `codebase-memory-evidence-reader` and `codegraphcontext-evidence-reader`
+  as accelerators, not as truth oracles.
 - Confirm important graph-tool findings with direct source reads.
 - Record graph-tool paths, stats, and failed/hanging attempts in the audit or
   journal.
 - Use `tdd-task-progress-context-retainer` to preserve resumable state after
   meaningful batches.
 
-## Current Desktop Coverage Count
+## Current Assignment Count
 
-The active ledger currently covers 911 repo roots under `/Users/amuldotexe/Desktop/`.
+The active coverage ledger covers 106 repo roots under `gitrefrepo`.
 
-As of supplemental gap-closure batch 05:
+Current corpus coverage ledger:
 
-- 89 repos are `direct_source_cited`.
-- 69 repos are `metadata_browsed_name_cited`.
-- 129 repos are `metadata_browsed_low_signal`.
-- 624 repos are `metadata_browsed_gap`.
+- 91 repos are `canonical_file_mentioned`.
+- 15 repos are `direct_source_cited`.
+- 0 repos are `assigned_inventory_only`.
+
+Current codebase-memory tool ledger:
+
+- 105 repos are full-repo `indexed`.
+- 1 repo, `clickhouse-src`, is full-repo `timeout` after 1800 seconds.
+- 6 focused ClickHouse slices are `indexed` as fallback evidence.
 
 ## Non-Canonical Files
 
-The directory also contains older or narrower artifacts such as
-`graph-database-patterns-*`, `supermeta-*`, supplemental files, and legacy
-worker outputs. Keep them for historical context, but treat `meta-*` as the
-required five-file corpus for the active objective.
+The directory also contains older or broader artifacts such as `meta-*`,
+`supermeta-*`, supplemental files, Desktop-wide ledgers, and legacy worker
+outputs. Keep them for historical context, but do not treat them as the
+required five outputs for this active goal.

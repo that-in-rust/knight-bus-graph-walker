@@ -2,7 +2,7 @@
 
 - Task: Graph database rewrite reference corpus across gitrefrepo
 - Created: 2026-07-06 17:27:32Z
-- Updated: 2026-07-07 01:25:46Z
+- Updated: 2026-07-07 02:37:24Z
 - Current Phase: Green
 - Status: active
 
@@ -148,3 +148,35 @@ Verified gitrefrepo gap closure and corrected stale scope docs
 - canonical_file_total_lines=9877
 - gitrefrepo_ledger_direct_source_cited=8
 - gitrefrepo_ledger_canonical_file_mentioned=98
+
+### Session: 2026-07-07 02:37:24Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- codebase_memory_full_repo_status: passing - 105 gitrefrepo repos full-indexed; clickhouse-src full repo timed out after 1800 seconds
+- clickhouse_focused_fallback_status: passing - 6 high-signal ClickHouse slices indexed with 70100 nodes 225998 edges 4724 files
+- gitrefrepo_corpus_files_present: passing - five graph-database-patterns files exist in required directory
+
+#### Implementation Progress:
+- graph-database-rewrite-references-202606/scripts/audit_codebase_memory_gitrefrepo.py: reusable per-repo codebase-memory status runner
+- graph-database-rewrite-references-202606/gitrefrepo-codebase-memory-status.tsv: records full-repo codebase-memory outcomes for 106 repo roots
+- graph-database-rewrite-references-202606/clickhouse-focused-codebase-memory-targets.tsv and clickhouse-focused-codebase-memory-status.tsv: records focused ClickHouse fallback after full timeout
+- graph-database-rewrite-references-202606/completion-audit.md, ASSIGNMENT-MANIFEST.md, coverage-spine.md: updated to gitrefrepo scope and tool-status evidence
+- graph-database-rewrite-references-202606/graph-database-patterns-3.md: added ClickHouse focused codebase-memory evidence note
+
+#### Current Focus:
+Proved codebase-memory coverage for gitrefrepo with full-index ledger and ClickHouse focused fallback
+
+#### Next Steps:
+- Run final whitespace/stale-scope/ledger checks and mark goal complete if evidence holds
+
+#### Context Notes:
+- ClickHouse full-repo codebase-memory did not complete after 1800s, but focused high-signal slices indexed cleanly; audit records this as a tooling-scale caveat
+
+#### Performance/Metrics:
+- codebase_memory_full_repo_indexed=105
+- codebase_memory_full_repo_timeout=1
+- clickhouse_focused_slices_indexed=6
+- clickhouse_focused_nodes=70100
+- clickhouse_focused_edges=225998

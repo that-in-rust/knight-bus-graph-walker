@@ -542,6 +542,132 @@ it, and the receipt ("state: 3.8 GB, edges: streamed, total resident:
 
 ---
 
+## The Bespoke Realization: One Format, Seven Access Plans
+
+Reading the three worked examples together exposes something the "lever"
+framing hides: **each algorithm effectively demands its own custom
+storage design.**
+
+```
+  WCC       wants:  labels resident, edges streamed once per pass,
+                    tiles skippable when settled
+  LOUVAIN   wants:  capped tally maps, coarser levels as new tiny
+                    generations, hot/cold scratch split
+  PAGERANK  wants:  compressed re-scannable strata (paid per iteration),
+                    delta-skippable tiles, warm-startable rank vector
+```
+
+Three algorithms, three different residency/scratch/iteration designs.
+Pretending this is "one engine + options" would recreate Neo4j's
+problem: one storage model forced onto workloads it doesn't fit.
+
+### The reframe: substrate vs plan
+
+Split the design into what is SHARED and what is BESPOKE:
+
+```
+  +--------------------------------------------------------------+
+  | SHARED SUBSTRATE (built once): GRAIN                          |
+  |   degree-ranked ids | strata (hot/warm/cold) | 2D blocks      |
+  |   manifest w/ degree-CDF | immutable generations              |
+  +--------------------------------------------------------------+
+                              |
+          one ACCESS PLAN per algorithm family (bespoke, declared)
+                              |
+  +----------------+  +--------------------+  +-------------------+
+  | WCC plan       |  | LOUVAIN plan       |  | PAGERANK plan     |
+  | resident:      |  | resident:          |  | resident:         |
+  |  labels 8B/v   |  |  capped tallies    |  |  ranks f32 4B/v   |
+  | streamed:      |  |  (top-k, kB/v cap) |  | streamed:         |
+  |  all strata    |  | generational:      |  |  all strata/iter  |
+  | skip rule:     |  |  level graphs      |  | skip rule:        |
+  |  settled tiles |  | spill: cold tally  |  |  converged tiles  |
+  +----------------+  +--------------------+  +-------------------+
+```
+
+An access plan is a small declared structure (not code spread through
+the engine): what state is resident and at what width, what streams,
+what may spill, what can be skipped, what warm-starts. Exactly like a
+SQL engine: one storage layer, a different QUERY PLAN per query — the
+plan is bespoke, the substrate is not.
+
+Consequences:
+- The manifest prices a PLAN, not an algorithm: resident_bytes(plan) is
+  arithmetic over manifest fields. The receipt prints the plan itself
+  ("resident: labels 3.8 GB; streamed: 96 GB; skip: settled tiles").
+- Seven families = seven plans, not seven engines. A new algorithm =
+  writing a plan + kernels against the substrate, not a new storage
+  format.
+- The plan is the honest unit of benchmarking: publish per-plan RAM
+  ceilings and per-plan approximation flags (Louvain's tally cap is an
+  approximation; WCC's plan is exact).
+
+### Verified against the GDS source (this repo's clone)
+
+Checked in `reference-repos-neo4j-family/graph-data-science-src`:
+
+```
+  claim                     GDS source evidence
+  ------------------------  -------------------------------------------
+  WCC scratch is tiny       WccMemoryEstimateDefinition -> HugeAtomic-
+  (8 B/node, 16 if seeded)  DisjointSetStruct.memoryEstimation():
+                            perNode long array (+ seed array)
+  Louvain rebuilds a whole  LouvainMemoryEstimateDefinition:
+  CSR graph per level       rangePerGraphDimension("subGraph", ...
+                            CSRGraphStoreFactory.getMemoryEstimation)
+                            with comment "rough estimate of graph size"
+                            + dendrograms 8 B/node x levels
+  PageRank scratch small    PageRankMemoryEstimateDefinition -> Pregel
+                            double per node + message machinery
+  Projection is compact     CompressedAdjacencyList.adjacencyList-
+  BUT 100% heap-resident    Estimation: delta+varlong, best ~1-2 B/edge,
+                            worst ~4-5 B/edge, + 12 B/node fixed
+                            (degrees 4 B + offsets 8 B)
+```
+
+Corrections this forces on earlier sections: GDS's varlong compression
+is genuinely good, so the honest dataset-at-fixed-RAM multiplier is
+~10-30x (not 50-100x); the money multiplier vs Aura sessions stays
+10-25x because sessions are sized to worst-case estimate ranges, and
+JVM practice needs GC headroom (~1.5-2x estimated bytes) that Rust
+does not.
+
+### The three algorithms in one table (code-verified)
+
+```
+                     WCC (~20%)         LOUVAIN (~15%)      PAGERANK (~15%)
+ ------------------- ------------------ ------------------- ------------------
+ their scratch       8 B/node           NEW CSR graph per   8 B/node double
+ (from GDS source)   disjoint-set       level + 3-5 arrays  + Pregel machinery
+                     = tiny             x 8 B/node = VILLAIN = tiny
+ their real limit    projection in      projection x2 +     projection in heap
+                     heap, 100%         tallies in heap     (30-50 re-reads
+                     resident                               otherwise)
+ dataset @ 8 GB:
+   Neo4j GDS         ~300M-1.5B edges   ~150-400M edges     ~300M-1.5B edges
+   us (stacked)      ~1B verts,         ~300-800M verts,    ~500M-1B verts,
+                     10B+ edges disk    capped tallies      10B+ edges disk
+   multiplier        ~10-30x            ~20-50x             ~10-30x
+ winning plan        O(V): labels       capped tallies +    delta convergence
+                     resident, edges    levels as tiny      + warm restart
+                     stream             generations
+ speed trade         ~2-5x slower       comparable; warm    ~2-5x/pass, won
+                     than in-RAM        re-index 10-50x     back by delta+skip
+ Shreyas line        "the job that      "the cluster job    "stop renting RAM
+                     didn't fit...      that never lies     for data that only
+                     finished"          to you"             flows through it"
+ honest caveat       modeled, not       tally cap = approx; needs NVMe;
+                     measured yet       1-week gate         HDD degrades 10x
+ ------------------- ------------------ ------------------- ------------------
+ SHARED: bill = 1 KB manifest arithmetic (their Louvain estimator's own
+ comment says "rough estimate"); staleness already the GDS norm (projections
+ are frozen copies — we just print the watermark); weakest journey step is
+ EXPORT from Neo4j (2-8 hrs, 30-40% failure risk) -> the sidecar wrapper IS
+ the product; moat = certainty they can't sell without breaking the RAM meter.
+```
+
+---
+
 ## References
 
 - [R1] Ligra: A Lightweight Graph Processing Framework for Shared Memory

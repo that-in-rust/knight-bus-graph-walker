@@ -283,6 +283,85 @@ L2 bounds the total, L3/L4 cut wall-clock. No pair cancels out.
 
 ---
 
+## Worked Example: WCC, The Most Popular Algorithm (~20% of GDS adoption)
+
+"Which nodes belong to the same group?" — the first job every fraud /
+dedup / entity-resolution team runs, usually daily.
+
+### The seven options created so far, applied to WCC
+
+```
+ #  option (doc)             what it does for WCC          limit
+ -- ------------------------ ----------------------------- ------------------
+ 1  flat photo    (A/01)     one straight CSR scan          dies > RAM
+ 2  tiles         (B/01)     process tile by tile;          slower per pass
+                             SKIP settled tiles
+ 3  bouncer       (C/01)     price the job FIRST:           policy only,
+                             fit->RAM  big->tiles           needs 1/2 under it
+                             hopeless->reject + bill
+ 4  GRAIN         (05)       1+2 fused in one format;       estimate is the
+                             1 KB manifest = the bill       load-bearing bet
+                             by pure arithmetic
+ 5  tiny scratch  (06-L1)    frontier bitmap: 32x less      --
+                             label state, quantized
+ 6  O(V) mode     (06-L2)    only labels in RAM, edges      slower than
+                             stream from disk               in-core
+                             RAM = O(V) GUARANTEED
+ 7  remember      (axes)     graph moved 2% since gen N?    needs axis-1/2
+                             re-run WCC on the 2% only,     format support
+                             seeded from gen N's labels
+```
+
+How they stack on one job:
+
+```
+  WCC on a 50 GB edge file, 16 GB box:
+
+  1 flat        [############### needs ~60 GB ###############]  OOM
+  2 tiles       [##### budget-bound, finishes slowly #####]     OK
+  4 GRAIN       bill known from 1 KB BEFORE anything runs       OK
+  5 scratch     label+frontier state shrinks 4-30x              OK
+  6 O(V) mode   [# <1 GB resident #]  edges stream past         EASY
+  7 remember    tomorrow's re-run touches only the 2% delta     ~instant
+```
+
+### Shreyas Doshi's selling narrative
+
+Do not sell "faster WCC". Sell **the end of WCC anxiety**.
+
+```
+  THEIR lived experience (Neo4j Aura):     OURS:
+  1. guess a session size (RAM)            1. point at your graph
+  2. pre-pay by GB-hour for the guess      2. 1 second later: exact bill,
+  3. wait                                     from 1 KB of metadata
+  4. maybe OOM anyway                      3. it finishes — RAM if it fits,
+     = PAY-TO-FIND-OUT                        streaming if it doesn't,
+                                              on the 16 GB box you own
+                                              = KNOW-BEFORE-YOU-RUN
+```
+
+Insight-level differentiation: Neo4j structurally cannot copy this —
+their revenue is metered by the RAM you are forced to over-provision.
+Selling certainty would cannibalize their own meter.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : their sizing guide -> 110+ GB sessions for LDBC100-class
+               analytics; stacked options -> low single-digit GB for WCC
+               (O(V) label state). ~10-40x less.
+  Money      : ~$44/run on a 110 GB Aura session vs $0 on owned hardware.
+  Capability : "impossible without a special machine" -> overnight job
+               (the impossible->possible claim markets better than speed).
+  Re-runs    : incremental WCC on a 2% daily delta ~10-100x faster than
+               recompute — and daily re-runs ARE the fraud-pipeline usage.
+  Moat       : the PROMISE, not the engine: "know before you run, finish
+               anyway, on your hardware." Features get copied in quarters;
+               this can't be copied without breaking their billing model.
+```
+
+---
+
 ## References
 
 - [R1] Ligra: A Lightweight Graph Processing Framework for Shared Memory

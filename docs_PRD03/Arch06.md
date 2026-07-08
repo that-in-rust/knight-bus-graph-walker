@@ -362,6 +362,99 @@ Selling certainty would cannibalize their own meter.
 
 ---
 
+## Worked Example 2: Louvain/Leiden, #2 Algorithm (~15% of GDS adoption)
+
+"Find the natural clusters" — fraud rings, segmentation, and now GraphRAG
+(Microsoft GraphRAG runs hierarchical Leiden on every corpus re-index).
+This is the family with the WORST OOM reputation — the story is sharper
+than WCC's.
+
+### Why Louvain is the OOM villain
+
+```
+  WCC scratch, per vertex:      LOUVAIN scratch, per vertex:
+  [ label: u32 ]                [ community -> weight tally map ]
+  4 bytes, fixed                UNBOUNDED (one entry per neighboring
+                                community; hubs touch thousands)
+                                ...and after each level, build a whole
+                                NEW coarser graph. Then do it again.
+
+  Neo4j's own sizing guide: LDBC100 Louvain ~ 119 GB session.
+  The graph is a few GB. THE SCRATCH IS THE PROBLEM.
+```
+
+### The seven options applied to Louvain
+
+```
+ #  option (doc)             what it does for LOUVAIN       verdict
+ -- ------------------------ ------------------------------ ---------------
+ 1  flat photo    (A/01)     shrinks graph bytes only;      does NOT save it
+                             tally scratch untouched
+ 2  tiles         (B/01)     streams edges; tallies still   partial help
+                             all in RAM
+ 3  bouncer       (C/01)     price the tallies BEFORE       first real save
+                             running: fit / bounded-spill
+                             / reject with the bill
+ 4  GRAIN         (05)       each coarser level = a NEW     multi-level
+                             TINY GENERATION of the same    machinery free;
+                             format (1B verts -> ~5M at     manifest CDF
+                             level 2); manifest prices      prices tallies
+                             the tally scratch
+ 5  tiny scratch  (06-L1)    cap tallies per vertex         THE BIG GUN
+                             (top-k communities, quantized  4-30x scratch
+                             weights) -> bounded B/vertex   cut (modeled)
+ 6  O(V) mode     (06-L2)    hot-vertex tallies resident,   degree-rank cut
+                             cold-tail tallies spill        on WORKSPACE
+ 7  remember      (axes)     warm-start from yesterday's    10-50x on the
+                             assignment; graph moved 2%     recurring
+                             -> minutes, not hours          re-index case
+```
+
+Stack on one job:
+
+```
+  Louvain on LDBC100-class graph, 16 GB box:
+
+  their sizing   [############ 119 GB session ############]   pre-pay & pray
+  1-2 layout     [######### tallies still ~100 GB ########]   still OOM
+  3 bouncer      priced first -> bounded-spill mode           finishes
+  4 GRAIN        levels = tiny generations, bill = arithmetic  finishes
+  5 capped tally [## low GB ##]                                FITS
+  6 O(V) split   [# hot resident, tail spills #]               EASY
+  7 warm-start   next day's 2% delta -> minutes                ~instant
+```
+
+### Shreyas Doshi's selling narrative
+
+Do not sell "faster clustering". Sell **"the cluster job that never lies
+to you."**
+
+```
+  Louvain burns users worst:               Our promise:
+  runs for HOURS, then OOMs,               tally bill = arithmetic BEFORE
+  on a session pre-paid by the GB          start; levels run as tiny
+  = the most expensive way to learn        generations; 2% overnight change
+    your graph didn't fit                  -> warm-start in minutes
+```
+
+And the buyer is newly urgent: every GraphRAG pipeline runs Leiden on
+every re-index — buyers who are GPU-poor on RAM and cost-anxious.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : 119 GB session -> low single-digit GB with capped
+               tallies + spill (~20-50x less).
+  Money      : ~$48/run on a 119 GB Aura session vs $0 owned.
+  Recurring  : warm-started re-index 10-50x faster — and re-indexing
+               IS the recurring GraphRAG cost.
+  Moat       : same certainty moat as WCC — plus the honesty is worth
+               MORE here because this is the family that lies (dies
+               late, after hours of paid runtime).
+```
+
+---
+
 ## References
 
 - [R1] Ligra: A Lightweight Graph Processing Framework for Shared Memory

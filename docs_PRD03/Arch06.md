@@ -455,6 +455,93 @@ every re-index — buyers who are GPU-poor on RAM and cost-anxious.
 
 ---
 
+## Worked Example 3: PageRank, #3 Algorithm (~15% of GDS adoption)
+
+"Who matters most?" — influence ranking, ML feature generation, seed
+scoring. Different personality from WCC/Louvain: PageRank is a pure
+**scan** problem — scratch is tiny and fixed (1-2 floats per vertex);
+the pain is reading ALL edges 20-50 times. The dominant levers flip.
+
+```
+  LOUVAIN pain:  scratch explodes        (state problem)
+  PAGERANK pain: edges re-read 30 times  (bandwidth problem)
+```
+
+### The options applied to PageRank
+
+```
+ #  option (doc)             what it does for PAGERANK      verdict
+ -- ------------------------ ------------------------------ ---------------
+ 1  flat photo    (A/01)     one straight sweep per         near-optimal
+                             iteration                      when it FITS
+ 2  tiles         (B/01)     stream tiles per iteration     works, but
+                             when > RAM                     50GB x 30 iters
+                                                            = 1.5 TB of I/O
+ 3  bouncer       (C/01)     scratch = |V| x 8B, priced     least dramatic;
+                             trivially                      keeps the
+                                                            receipt uniform
+ 4  GRAIN         (05)       compressed strata pay PER      2-4x less I/O,
+                             ITERATION: fewer bytes x 30    compounds with
+                             sweeps                         iteration count
+ 5  tiny scratch  (06-L1)    ranks in f32 not f64           matters at 1B+
+                                                            verts (8->4 GB)
+ 6  O(V) mode     (06-L2)    THE NATURAL HOME: ranks in     1B verts = ~8 GB
+                             RAM, edges streamed — the      resident, ANY
+                             textbook semi-external algo    edge count
+ 7  less work     (06-L3)    THE STAR: delta convergence.   2-10x wall-clock
+                             by iter 10, ~97% of vertices   (modeled); each
+                             converged; touch only the 3%,  skipped tile is
+                             SKIP converged cold tiles      skipped I/O too
+ 8  remember      (axes)     yesterday's ranks = warm       2-5 iterations
+                             start on a 2% delta            instead of 30
+```
+
+Stack on one job:
+
+```
+  PageRank, 100 GB edges / 1B vertices, 16 GB box:
+
+  their sizing   [########### ~110 GB session ###########]   rent it all
+  1 flat         [########### needs edges in RAM ########]   OOM
+  2 tiles        finishes, but 30 full re-reads               slow
+  4 GRAIN        30 re-reads of 2-4x fewer bytes              better
+  6 O(V) mode    [# ~8 GB ranks resident #] edges stream      FITS
+  7 delta        late iterations touch ~3% of graph           2-10x faster
+  8 warm start   nightly re-rank: 2-5 iters, not 30           ~10x on re-runs
+```
+
+### Shreyas Doshi's selling narrative
+
+PageRank is not where OOM anxiety lives — it is where the RAM meter is
+most obviously ABSURD.
+
+```
+  what you rent (Aura):                 what the algorithm needs:
+  [########## 110 GB RAM ##########]    [# 4 GB rank state #]
+           ^                                     ^
+           mostly holds edges the                the only thing that
+           algorithm only STREAMS PAST           must stay resident
+```
+
+Sell: **"stop renting RAM to hold data that only flows through it."**
+PageRank is the demo algorithm — everyone knows it, everyone can verify
+it, and the receipt ("state: 3.8 GB, edges: streamed, total resident:
+4.1 GB") is self-explanatory on a slide.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : ~110 GB session -> ~4-8 GB resident (10-25x less).
+  Speed      : 2-10x wall-clock via delta convergence + compressed
+               strata; iteration I/O cut compounds 30x over.
+  Re-runs    : nightly re-rank via warm start ~10x faster.
+  Moat       : same certainty moat, sharpest expression — "you paid for
+               110 GB so 100 GB of edges could flow past it once per
+               iteration" lands hardest here.
+```
+
+---
+
 ## References
 
 - [R1] Ligra: A Lightweight Graph Processing Framework for Shared Memory

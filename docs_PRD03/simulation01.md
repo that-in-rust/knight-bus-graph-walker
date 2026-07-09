@@ -561,3 +561,197 @@ reasons rather than technical ones — everything else a well-funded
 competitor could ship in quarters. Product decisions should be scored
 by whether they strengthen the receipt (byte-honest, cgroup-verified,
 time-quoted) before anything else.
+
+---
+
+## 9. Competitive landscape: why is the low-RAM turf empty?
+
+Wide sweep (GitHub API for stars/liveness, checked 2026-07) of every
+notable graph engine, grouped by what it is FOR. Question asked of
+each: does it occupy our turf — bounded-RAM, disk-streaming analytics
+with a cost receipt?
+
+### 9.1 The table
+
+```
+  tool (stars, last push)     primarily used for       on our turf?
+  --------------------------  -----------------------  ------------------
+  GRAPH DATABASES (OLTP-first, query languages, transactions)
+  Neo4j                       property-graph OLTP +    NO — the incumbent
+                              GDS in-heap analytics    whose wall we fix
+  Dgraph (21.7k, active)      distributed OLTP,        NO — scale-OUT
+                              GraphQL-native           answer, not low-RAM
+  NebulaGraph (12.3k, act.)   distributed OLTP at      NO — same
+                              billion-edge scale
+  ArangoDB (14.2k, active)    multi-model (doc+graph)  NO
+  JanusGraph (5.8k, active)   distributed OLTP over    NO — RAM-heavy,
+                              Cassandra/HBase          ops-heavy
+  Memgraph (4.2k, active)     IN-memory OLTP+streams   OPPOSITE turf —
+                              (pitched for GraphRAG)   doubles down on RAM
+  FalkorDB (4.7k, active)     sparse-matrix Cypher     NO — in-memory,
+                              (GraphBLAS), RAG focus   latency-first
+  Kuzu (4.0k, ARCHIVED)       embedded OLAP graph DB,  CLOSEST DB — but
+                              columnar, out-of-core    company died Oct
+                              joins                    2025 (Apple acqui-
+                                                       hire); repo frozen
+  Apache AGE (4.7k, active)   Cypher inside Postgres   NO — convenience,
+                                                       not scale; algos
+                                                       are basic
+  DuckPGQ (0.4k, active)      SQL/PGQ graph queries    ADJACENT — DuckDB
+                              in DuckDB                ethos = ours, but
+                                                       pattern matching,
+                                                       not iterative algos
+  TuGraph (1.7k, active)      Ant Group's graph DB     NO
+
+  ANALYTICS LIBRARIES (bring your own RAM, no storage story)
+  igraph (2.0k, active)       C library w/ R/Python;   NO — in-RAM only;
+                              academia's workhorse     dies where we start
+  NetworKit (0.9k, active)    parallel in-RAM network  NO — same
+                              science (C++/Python)
+  NetworkX (huge, active)     pure-Python teaching/    NO — 10-100x slower
+                              prototyping standard     than igraph even
+                                                       in-RAM
+  SNAP (2.3k, dormant)        Stanford's C++ library   NO — in-RAM
+  GBBS/Ligra (academic)       shared-memory parallel   NO — assumes the
+                              algorithm suites         graph fits
+  cuGraph (2.2k, active)      GPU graph analytics      NO — needs GPU +
+                              (RAPIDS)                 VRAM budget; the
+                                                       vertical-scaling
+                                                       answer on a card
+
+  OUT-OF-CORE ENGINES (our technical ancestors)
+  GraphChi (0.8k, DEAD 2019)  the OSDI'12 proof that   YES technically —
+                              a laptop can do 1B+      but research code,
+                              edges via disk           no product, no
+                                                       receipt, JVM/C++
+  X-Stream, GridGraph,        2013-2015 academic       YES technically —
+  FlashGraph, Mosaic          out-of-core systems      all unmaintained
+                                                       paper artifacts
+  GraphScope (3.6k, active)   Alibaba's one-stop       NO — cluster-scale
+                              distributed graph        answer (scale-OUT)
+                              computing
+
+  PAID PLATFORMS
+  TigerGraph                  enterprise distributed   NO — scale-out MPP,
+                              analytics               enterprise $$
+  AWS Neptune (+Analytics)    managed OLTP + RAM-      NO — SAME meter:
+                              provisioned analytics    m-NCU = memory-
+                                                       metered billing
+  Aura Graph Analytics        Neo4j's metered GDS      the thing itself
+```
+
+### 9.2 The Shreyas answer: WHY the turf is empty
+
+Not because it's impossible — GraphChi proved the physics in 2012 and
+then DIED. The turf is empty because every player faces a structural
+reason not to stand on it:
+
+```
+  player class      why they won't build low-RAM + receipt
+  ----------------  --------------------------------------------------
+  incumbents        their REVENUE is the RAM meter (Aura GB-hours,
+  (Neo4j, Neptune)  Neptune m-NCUs). certainty cannibalizes the meter.
+  in-memory         their PITCH is latency; admitting disk is fine for
+  challengers       analytics undermines their one differentiator.
+  (Memgraph etc.)
+  libraries         no storage layer at all — "bring your own RAM" is
+  (igraph, cuGraph) the design, cost estimation is out of scope.
+  academia          papers reward novel algorithms, not receipts,
+  (GraphChi line)   packaging, or maintenance. code dies at tenure.
+  scale-out camp    the 2015-2020 zeitgeist said the answer to big
+  (Dgraph, Nebula,  graphs is MORE MACHINES. an entire generation of
+  GraphScope)       funding went to horizontal, none to frugal.
+  Kuzu (the one     validated the adjacent turf (embedded, columnar,
+  that got close)   out-of-core JOINS) — then got acqui-hired before
+                    reaching iterative-analytics-with-receipt.
+```
+
+The five-forces reading: the technique is public and 13 years old; the
+GAP is a product gap (receipt, bounded arena, algorithm plans) plus a
+business-model gap (nobody with distribution is INCENTIVIZED to sell
+RAM-frugality). That second gap is the moat — same conclusion as
+section 8, reached from the competitor side.
+
+Differentiation one-liner per near-neighbor:
+- vs igraph/NetworKit: "we start where they OOM; they have no disk story."
+- vs cuGraph: "no GPU required; our budget is the receipt, not VRAM."
+- vs Kuzu (RIP): "they proved embedded-OLAP demand; we add iterative
+  algorithms + the receipt, in maintained form."
+- vs DuckPGQ: "same ethos, different layer: they query patterns, we run
+  iterative analytics. potential ALLY (export sink), not rival."
+- vs GraphChi lineage: "they are our physics citation, not a rival:
+  dead code, no estimation, no product."
+- vs Neo4j/Neptune: "they cannot copy the receipt without breaking the
+  meter."
+
+---
+
+## 10. Notes from external LLM deep-research pass (user-supplied)
+
+A parallel deep-research report (independent LLM with web search,
+2026-07) was reviewed against our catalog. Items below extend sections
+2-7; its citation links were not exported with the text, so items are
+marked [ext-unverified] until re-sourced — directionally consistent
+with our verified base.
+
+### 10.1 New pain anecdotes worth keeping (all [ext-unverified])
+
+- K8s sidecar with 120 GB provisioned still OOM-crashed at ~40 GB used
+  — manual JVM threshold management fails even with headroom.
+- Aura FREE-TIER user OOM'd on `gds.graph.project()` while following
+  Neo4j's own Graph Academy course (Mar 2026).
+- NodeSimilarity blocked: estimated 130 GiB vs 24 GiB free — a fourth
+  algorithm-named memory-block anecdote (cf. E1's 52 GiB).
+- Delta-stepping OOM'd with 12 GB heap on a 63k-node graph (!).
+- Louvain on Yelp dataset: DB corruption + ~23 GB consumption.
+- `gds.graph.drop` does NOT return memory to the OS (JVM GC behavior)
+  — users forced into manual restarts. New complaint class for us:
+  our munmap actually releases.
+- Aura pricing quotes: "$70k a year isn't even nearly competitive";
+  Neptune claimed ~1/6th the price at similar provisioning (flagged
+  by the report itself as workload-dependent).
+- Workaround culture: projecting node IDs only and re-MATCHing
+  attributes — trading the memory wall for an I/O latency wall.
+
+### 10.2 GraphRAG cost-split confirmation
+
+The report independently reaches our section 3 correction: LLM token
+cost dominates GraphRAG, BUT the Leiden/community phase is the
+CPU/RAM-bound slice, unstable on dense graphs, and re-runs from
+scratch on every re-index (stochastic, seed-dependent — one cited team
+proposed k-core decomposition just to get determinism). Two additions:
+- Microsoft GraphRAG reportedly drops ~10% of entities because Leiden
+  discards weakly-connected/isolated nodes — an ACCURACY complaint
+  against the incumbent pipeline, useful for our exactness-flags story.
+- "GraphRAG is 20-100x more expensive than vector RAG" — the indexing
+  phase is the adoption blocker we relieve (the graph-compute slice).
+
+### 10.3 Incumbent-response scenarios (adopted into our planning)
+
+The report's Neo4j counter-move forecast, kept as planning input:
+1. FUD via latency benchmarks conflating OLTP with batch analytics —
+   pre-answered by our "loudly OLAP-only" badge (sec. 7.8/8).
+2. "Serverless" pricing tiers that HIDE the RAM meter rather than
+   remove it — obfuscation, not architecture; the receipt is the
+   counter-story.
+3. Apache Arrow off-ramp: position Neo4j as the storage hub, push
+   compute to Polars/DuckDB/cuGraph — this validates the EXPORT
+   sidecar as our critical wedge (sec. 5 journey risk).
+4. If disruptive: acquisition attempt ("cold-storage analytics tier
+   under GDS").
+
+### 10.4 Segments (matches ours, one addition)
+
+Report's top-3 segments = ours (GraphRAG builders; mid-market data
+engineers with nightly ETL; academics/bioinformaticians). Addition
+worth keeping: LOCAL AI agents on consumer hardware — an embedded,
+16 GB-class buyer where Aura is disqualified outright.
+
+### 10.5 Methodological flags (theirs and ours)
+
+The report itself flags: the Neptune 1/6th-price and "custom Rust DB =
+1000x" claims are workload-dependent folklore. We additionally flag:
+all 10.x items lack exported URLs; before any item is used in public
+material it must be re-sourced. The core memory-wall thesis, however,
+is now triangulated three independent ways: our API sweeps (sec. 2, 6,
+7), GDS source code (Arch06), and this external pass.

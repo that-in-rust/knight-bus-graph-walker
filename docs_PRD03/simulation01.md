@@ -36,8 +36,8 @@ gathering, each triggered by a harder question than the last:
    — Section 10.
 
 Every factual claim carries a numbered citation; all URLs are collected in
-Section 11 (References) so that anyone — including a skeptical future version
-of ourselves — can check every line.
+the References section at the bottom so that anyone — including a skeptical
+future version of ourselves — can check every line.
 
 **Method note.** Searches were run against the Hacker News Algolia API,
 community.neo4j.com (Discourse search API), the StackExchange API, and the
@@ -710,7 +710,101 @@ of this kind is the closest a pre-build product can get to proof.
 
 ---
 
-## 11. References
+## 11. Reading the competitors' own code: the shallow-clone audit
+
+Section 9 judged competitors from the outside (stars, liveness, positioning).
+This pass goes one level deeper — the Shreyas move of *auditing the artifact,
+not the press release*. All ~20 competitor repos were shallow-cloned into
+`reference-repos-competitors/` in this repository (gitignored, `*-src`
+naming, alongside the existing `reference-repos-neo4j-family/`), and the
+near-neighbors were read.
+
+### 11.1 The Kuzu finding: the closest competitor had OUR wall inside it
+
+Kuzu [[53]](#references) was Section 9's "CLOSEST DB" — embedded, columnar,
+disk-based, out-of-core joins. Reading the archived source (final commit
+2025-10-10, one month before the repo froze) yields the single most
+strategically comforting discovery of this entire dossier:
+
+**Kuzu's graph algorithms run on a full in-memory CSR copy of the graph.**
+
+The `algo` extension (`extension/algo/` in `kuzu-src`) implements WCC,
+SCC (x2), PageRank, Louvain, k-core decomposition, spanning forest, and
+component ids — and every one of them is fed by `InMemGraph`
+(`extension/algo/src/common/in_mem_graph.cpp`): a `csrOffsets` +
+`csrEdges` pair of in-memory vectors, rebuilt per run, with the header
+comment "CSR-like in-memory representation of an undirected weighted
+graph... Undirected edges should be explicitly inserted twice."
+
+Read that against their own storage layer: Kuzu's core is genuinely
+disk-based and columnar (`src/storage/`: buffer manager, compression,
+disk arrays, WAL). The *queries* stream from disk — but the moment you ask
+for Louvain or PageRank, the graph is projected into RAM, doubled for
+undirectedness, exactly like `gds.graph.project`. **The projection wall
+lived inside our closest competitor too.** And `grep -ri estimate
+extension/algo/` returns nothing: no memory estimation, no receipt, no
+pre-run bill of any kind.
+
+| What the Kuzu clone shows | Measurement |
+|---------------------------|-------------|
+| Total graph-algorithm code | ~3,400 LOC (7 algorithm files) |
+| Algorithm families covered | WCC, SCC, PageRank, Louvain, k-core, spanning forest — **no** NodeSimilarity, no embeddings/FastRP, no triangle counting |
+| Algorithm storage model | Full in-memory CSR (`InMemGraph`), rebuilt per run, 2x for undirected |
+| Pre-run cost estimation | None (zero hits for "estimate" in the extension) |
+| Where the engineering actually went | Extension list in `extension_config.cmake`: azure, delta, duckdb, fts, httpfs, iceberg, json, **llm**, postgres, sqlite, unity_catalog, **vector**, **neo4j** (a migration tool), algo |
+
+### 11.2 Why they were acquired so quickly — the code answers it
+
+The question was: why did Kuzu get acqui-hired (Apple, Oct 2025
+[[54]](#references)) so fast, seemingly mid-product? The shallow clone
+suggests a three-part answer:
+
+1. **The crown jewels were the query core, not the analytics.** The
+   valuable, deeply-engineered code is in `src/processor/`,
+   `src/storage/`, and the factorized/vectorized join machinery — years of
+   world-class database-systems work by a small team. That is exactly what
+   an acquirer of *talent and engine* pays for. The graph-analytics story —
+   our turf — was a ~3.4k-LOC extension bolted on late, still in-memory,
+   still receipt-less. Apple bought a database team, not a graph-analytics
+   product, because the graph-analytics product did not exist yet.
+2. **The extension list documents a breadth pivot.** llm, vector, fts,
+   iceberg, delta, unity_catalog, a neo4j-migration extension — in the final
+   year the energy went to RAG/lakehouse connectivity (where the 2024-2025
+   money was), not to deepening the analytics engine. Classic Shreyas
+   pattern: when a startup's roadmap becomes a mirror of the current hype
+   cycle, it is fundraising with features — and an acqui-hire is often the
+   next event.
+3. **Therefore the turf was never actually occupied.** Section 9 called Kuzu
+   the closest competitor "acqui-hired before completing the product." The
+   code sharpens this: even uncompleted, they were building toward *embedded
+   OLTP+OLAP with RAG trimmings*, not bounded-RAM analytics with a receipt.
+   Had they never been acquired, they would still have hit our wall —
+   `InMemGraph` — and would have had to rebuild their algorithm layer to
+   escape it.
+
+### 11.3 Spot-checks on the rest of the shelf
+
+| Repo (local clone) | What the code confirms |
+|--------------------|------------------------|
+| `graphchi-cpp-src` | Last commit 2019-01-02; 58 header files of research C++ — the out-of-core physics proof [[65]](#references)[[66]](#references), frozen. No estimation layer, no product surface. Our citation, not our rival. |
+| `memgraph-src` | The storage engine is literally named `InMemoryStorage` (`src/storage/v2/inmemory/`) — in-memory is the architecture, not a configuration. They structurally cannot follow us to disk. |
+| `falkordb-src` | README leads with "Powering Generative AI, Agent Memory..." — latency/RAG positioning; GraphBLAS sparse matrices resident in RAM. |
+| `ligra-src` / `gbbs-src` | Shared-memory academic suites; assume the graph fits by design. GBBS still active (2025) but is a library of algorithms, not a storage product. |
+| `flashx-src` | Semi-external-memory (SSD) research line — the closest ancestral DNA to our plan — dead since 2017. |
+
+### 11.4 What this pass changes
+
+Nothing in our strategy — and that is the point. This is the fourth
+independent line of evidence (after our API sweeps, the GDS source, and the
+external research pass) converging on the same conclusion: the bounded-RAM +
+receipt turf is empty, and even the competitor that came closest carried the
+projection wall inside its own `extension/algo/` directory. When you can
+read the incumbent's *and* the near-neighbor's code and find your product
+missing from both, you are no longer guessing about whitespace.
+
+---
+
+## 12. References
 
 Every URL cited in this document, numbered in order of first appearance.
 

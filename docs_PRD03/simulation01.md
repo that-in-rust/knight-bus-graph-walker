@@ -879,7 +879,102 @@ bet is that it is growing.
 
 ---
 
-## 13. References
+## 13. Who actually uses these seven algorithms — practical use cases, with public evidence
+
+A strategy document that names seven algorithm families owes the reader an
+answer to the blunt question: *who actually runs these, for what, and where
+is the public proof?* Every company attribution below is backed by a
+published paper or engineering blog on the open web — no private telemetry,
+no internal-discussion claims. Where the usage pattern is industry-standard
+but not publicly attributed to a named company (e.g., specific banks' fraud
+stacks), that is said explicitly.
+
+### 13.1 The seven families and their documented uses
+
+**WCC — Weakly Connected Components (~20% of modeled adoption).** The
+workhorse of *entity resolution*: build a similarity graph over records
+(shared email, device, address) and every connected component is one
+real-world entity. Neo4j's own fraud-detection materials lead with WCC as
+the first-ring-finding step [[79]](#references), and the GDS manual
+describes it as a canonical early step in analytics pipelines
+[[80]](#references). The same primitive drives master-data-management and
+dedup pipelines across retail, insurance, and AML — a documented pattern,
+though individual banks rarely publish their stacks by name.
+
+**Louvain / Leiden — community detection (~15%).** Finding "clumps": fraud
+rings, customer segments from co-purchase graphs, citation and
+protein-interaction modules. The Leiden algorithm itself is published in
+Nature Scientific Reports by CWTS Leiden [[81]](#references). Its newest and
+fastest-growing consumer is **Microsoft GraphRAG**, which runs Leiden over
+an LLM-extracted entity graph to build hierarchical community summaries —
+stated directly in the GraphRAG paper [[82]](#references) and documentation
+[[83]](#references). Every GraphRAG deployment is a Leiden user.
+
+**PageRank (~15%).** Influence and importance scoring far beyond web search.
+Twitter's "Who To Follow" service ran personalized PageRank / SALSA variants
+over the full follower graph — published at WWW 2013 [[84]](#references).
+Pinterest's Pixie recommender is random-walk-with-restart (PageRank's
+query-time cousin) over a 3-billion-item graph [[85]](#references). In
+fraud, PageRank scores the centrality of accounts in money-flow networks —
+a use Neo4j documents in its fraud materials [[79]](#references).
+
+**NodeSimilarity / kNN (~12%).** "Which nodes behave alike" over bipartite
+graphs (user-product, account-device, patient-drug): recommendation
+candidate generation and fraud pattern-matching (accounts sharing many
+devices/IPs). Alibaba published billion-scale item-similarity-and-embedding
+recommendation over its product graph [[86]](#references); the
+insurance/claims-similarity variant is an industry-documented pattern.
+
+**Shortest paths / BFS / Dijkstra (~10%).** Routing and logistics, plus the
+bigger enterprise uses: supply-chain impact analysis ("which products break
+if this supplier fails" is a BFS), network dependency tracing, and
+degrees-of-separation features. LinkedIn's LIquid engineering series
+describes its graph serving the connection-distance and network features at
+member scale [[87]](#references). Data-lineage tools express column-level
+impact analysis as path queries over dependency graphs.
+
+**FastRP — graph embeddings (~8%).** Turning nodes into vectors for
+downstream ML: fraud-model features, churn prediction, recommendation
+embeddings. The FastRP algorithm is published at CIKM 2019
+[[88]](#references) and is Neo4j's flagship CPU embedding
+[[89]](#references). The wider graph-embeddings-feed-ML pattern is
+documented at production scale by Pinterest's PinSage (KDD 2018)
+[[90]](#references), Uber Eats' graph learning for food recommendation
+[[91]](#references), and Alibaba [[86]](#references). FastRP is the
+cheap-and-cheerful CPU member of that same family.
+
+**Triangle counting / clustering coefficient (~5%).** Mostly a *feature
+factory*: triangle counts and clustering coefficients are strong features in
+fraud and fake-account models (fabricated networks have abnormal
+clustering), social-capital scoring, and community-quality metrics. The
+canonical web-scale study (Suri & Vassilvitskii, WWW 2011) counts triangles
+on the Twitter follower graph precisely because clustering signals matter at
+social-network scale [[92]](#references). Bot detection uses the same
+signal: bot follower networks show near-zero clustering.
+
+### 13.2 The cross-cutting pattern (the Shreyas read)
+
+The paying use cases cluster into three buyers:
+
+| Buyer | Families used | Character of the workload |
+|---|---|---|
+| **Fraud / AML teams** (banks, payments, insurance) | WCC + Louvain + PageRank + triangles, together | Re-run repeatedly on the same growing graph — the warm-start story |
+| **Recommendation / ML platform teams** | NodeSimilarity + FastRP (embedding feature pipelines) | Batch feature generation feeding downstream models |
+| **GraphRAG builders** | Leiden (community summaries) | Run on hardware whose size they do not control |
+
+Fraud is the deepest-pocketed and most re-run-heavy segment; GraphRAG is the
+fastest-growing and most RAM-constrained. This is the same beachhead
+conclusion the complaint evidence reached (§2-§7) — the use-case side of the
+market now independently agrees with the pain side.
+
+*Honesty note:* the Uber Eats blog URL [[91]](#references) returns a
+bot-block (HTTP 406) to non-browser clients but loads normally in a browser;
+all other URLs in this section were verified reachable (HTTP 200) at the
+time of writing.
+
+---
+
+## 14. References
 
 Every URL cited in this document, numbered in order of first appearance.
 
@@ -981,3 +1076,20 @@ Every URL cited in this document, numbered in order of first appearance.
 76. Aura free tier fails Neo4j's own GDS course — https://community.neo4j.com/t/using-gds-graph-project-on-auradb-free-tier/76520
 77. `gds.graph.drop` does not release memory — https://community.neo4j.com/t/when-i-drop-the-memory-graph-my-memory-usage-does-not-change/67604
 78. Louvain: 5 hours, >70 GB heap on a 60 GiB store — https://stackoverflow.com/questions/60050083/how-to-reduce-the-running-time-and-memory-utilization-of-the-louvain-algorithm-i
+
+### Use-case evidence (Section 13)
+
+79. Neo4j fraud-detection use case (WCC / community detection / centrality) — https://neo4j.com/use-cases/fraud-detection/
+80. Neo4j GDS manual: WCC algorithm — https://neo4j.com/docs/graph-data-science/current/algorithms/wcc/
+81. Traag, Waltman & van Eck, "From Louvain to Leiden" (Nature Scientific Reports, 2019) — https://www.nature.com/articles/s41598-019-41695-z
+82. Edge et al., "From Local to Global: A Graph RAG Approach to Query-Focused Summarization" (arXiv 2404.16130) — https://arxiv.org/abs/2404.16130
+83. Microsoft GraphRAG documentation — https://microsoft.github.io/graphrag/
+84. Gupta et al., "WTF: The Who to Follow Service at Twitter" (WWW 2013) — https://web.stanford.edu/~rezab/papers/wtf_overview.pdf
+85. Eksombatchai et al., "Pixie: A System for Recommending 3+ Billion Items to 200+ Million Users in Real-Time" (arXiv 1711.07601) — https://arxiv.org/abs/1711.07601
+86. Wang et al., "Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba" (arXiv 1803.02349) — https://arxiv.org/abs/1803.02349
+87. LinkedIn Engineering, "LIquid: The soul of a new graph database, Part 1" — https://engineering.linkedin.com/blog/2020/liquid-the-soul-of-a-new-graph-database-part-1
+88. Chen et al., "Fast and Accurate Network Embeddings via Very Sparse Random Projection" (FastRP, arXiv 1908.11512) — https://arxiv.org/abs/1908.11512
+89. Neo4j GDS manual: FastRP node embeddings — https://neo4j.com/docs/graph-data-science/current/machine-learning/node-embeddings/fastrp/
+90. Ying et al., "Graph Convolutional Neural Networks for Web-Scale Recommender Systems" (PinSage, arXiv 1806.01973) — https://arxiv.org/abs/1806.01973
+91. Uber Engineering, "Food Discovery with Uber Eats: Using Graph Learning to Power Recommendations" — https://www.uber.com/blog/uber-eats-graph-learning/
+92. Suri & Vassilvitskii, "Counting Triangles and the Curse of the Last Reducer" (WWW 2011) — https://theory.stanford.edu/~sergei/papers/www11-triangles.pdf

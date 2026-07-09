@@ -243,3 +243,94 @@ they were never the market.
                                         rebuttal (answer: the receipt is
                                         the product, not the streaming)
 ```
+
+---
+
+## 6. Second pass: the other four families (NodeSim, paths, FastRP, triangles)
+
+The first pass covered only WCC / Louvain / PageRank. After Arch06
+gained worked examples 4-7, this second search pass asked: do the
+remaining families (NodeSimilarity ~12%, shortest paths ~10%, FastRP
+~8%, triangles ~5%) generate their own pain signal?
+
+Method: same APIs (community.neo4j.com Discourse search, HN Algolia,
+StackExchange, GitHub issues on neo4j/graph-data-science).
+
+### 6.1 New evidence
+
+**E16. "GDS algorithms without a projection" (revisit of E3, richer
+quote)** — billions of nodes, user asks to run centrality WITHOUT
+projecting. Neo4j engineer paul.horn: *"GDS also needs to project all
+the data... into a single in-memory projection, there is no option to
+spill to disk."* User's reply is the money quote: *"that surprises me
+as it defeats the purpose of using a database if you need to map its
+data to an in-memory representation to run an algorithm."*
+https://community.neo4j.com/t/gds-algorithms-without-a-projection/73039
+- A real user independently articulating our pitch's core absurdity.
+
+**E17. Stack Overflow: "In Neo4j, is there anyway to create a graph
+projection if your graph is too big to fit in memory?"** — the question
+title IS the product spec.
+https://stackoverflow.com/questions/69092539
+- Again projection-level, not algorithm-level.
+
+**E18. GitHub neo4j/graph-data-science #55 / #54:
+"gds.alpha.shortestPath.stream: java.lang.OutOfMemoryError: Java heap
+space"** — shortest path, the family whose scratch is tiny, still OOMs
+users (result streaming + projection).
+https://github.com/neo4j/graph-data-science/issues/55
+- Confirms Arch06 example 5's frame: paths pain = paying for the whole
+  graph to answer one question.
+
+**E19. GitHub #139 / #132: personalized PageRank
+"OutOfMemoryError: unable to create native thread" under normal use.**
+https://github.com/neo4j/graph-data-science/issues/139
+- OOMs even from thread machinery, not just data — JVM operational
+  fragility is its own complaint class.
+
+**E20. Forum: "GDS ShortestPath memory consumption"** — a ~500-node (!)
+graph, 150k Dijkstra calls/hour, memory climbing until restart.
+https://community.neo4j.com/t/gds-shortestpath-memory-consumption/58340
+- Even trivially small graphs generate memory anxiety when the runtime
+  is a JVM; our fixed-arena story speaks to this buyer too.
+
+**E21. Forum: fastRP threads are about USAGE confusion (zero vectors,
+type errors, applying to new samples), not RAM.**
+https://community.neo4j.com/t/dgs-fastrp-write-returns-failed-to-invoke-procedure-gds-fastrp-write-caused-by-java-l/51294
+- FastRP RAM pain shows up indirectly: users at the scale where the
+  254 GB sizing bites have usually already hit the projection wall
+  earlier and never reached fastRP.
+
+### 6.2 What the second pass did NOT find (honesty)
+
+```
+  searched for                          found
+  ------------------------------------  -----------------------------
+  "nodeSimilarity out of memory"        ~nothing algorithm-specific;
+                                        similarity pain appears as
+                                        generic projection failures
+  "triangle count memory" complaints    essentially zero
+  fastRP RAM complaints                 zero (usage confusion only)
+  HN threads naming these algorithms    zero relevant
+```
+
+### 6.3 Interpretation
+
+1. **The funnel hypothesis:** users die at the PROJECTION step before
+   they ever reach the algorithm whose scratch would have killed them.
+   NodeSimilarity's whole-graph-copy scratch (Arch06 ex.4) generates
+   few complaints because the population that would hit it already
+   OOM'd at `gds.graph.project`. The wall hides behind the wall.
+2. **Messaging consequence (reinforces first pass):** per-algorithm
+   RAM numbers are OUR internal engineering truth; the USER-facing
+   truth is one sentence — "no projection step." The seven bespoke
+   plans are proof points, not headlines.
+3. **Small-graph JVM anxiety (E20) is a real secondary segment:** even
+   users whose graphs fit complain about creep/restarts. "Fixed arena,
+   RSS never exceeds the receipt" resonates beyond the big-graph
+   market.
+4. **Where evidence is thin, claims must be too:** for triangles and
+   fastRP the demand evidence is inferential (funnel-blocked), not
+   observed. The docs should not claim "users are crying out for
+   low-RAM fastRP" — they are not, visibly. The claim is: the same
+   projection wall blocks them, and the same fix frees them.

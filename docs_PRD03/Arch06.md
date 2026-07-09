@@ -668,6 +668,125 @@ approximate" from a weakness into a printed, chosen trade.
 
 ---
 
+## Worked Example 5: Shortest Paths, #5 Algorithm (~10% of GDS adoption)
+
+"How do I get from A to B (cheapest/fewest hops)?" — logistics routing,
+network hop analysis, dependency chains, money-flow tracing. Family:
+Dijkstra, BFS/DFS, A*, Yen's k-paths, delta-stepping.
+
+### What the GDS source says (verified)
+
+`algo/.../paths/dijkstra/DijkstraMemoryEstimateDefinition.java`:
+priority queue + reverse-path map (`HugeLongLongMap`) + visited bitset —
+all O(V)-class scratch. `BfsMemoryEstimateDefinition.java` budgets
+per-node visited/traversed/weights/minimumChunk arrays plus a
+`localNodes` range whose worst case is min(E, threads x V) — their own
+comment admits the bound is "unlikely... in an extremely convoluted
+way".
+
+So: scratch is genuinely modest here. The absurdity is elsewhere —
+
+```
+  to answer ONE A->B query, GDS requires the ENTIRE graph projected
+  into heap first. You rent 100 GB of RAM to walk a path that will
+  touch 0.1% of it.
+```
+
+This family has a second personality: it's LATENCY-shaped (interactive
+"find the route now"), not batch-shaped. And projection takes minutes-
+hours before query one.
+
+### The options applied to shortest paths
+
+```
+ #  option (doc)             what it does for PATHS          verdict
+ -- ------------------------ ------------------------------- --------------
+ 1  flat photo    (A/01)     fast scans, but must all fit    pay full graph
+                                                             for one path
+ 2  tiles         (B/01)     THE NATURAL FIT: touch only     most of the
+                             tiles the search enters;        graph is never
+                             search is LOCAL by nature       read at all
+ 3  bouncer       (C/01)     scratch is small & priced;      receipt says
+                             receipt mostly certifies the    "resident: 0.9
+                             tiny footprint                  GB" — a flex
+ 4  GRAIN         (05)       degree-ranked hot stratum =     hubs cached in
+                             hubs (which searches cross      RAM, cold tail
+                             constantly) stay resident;      paged on demand
+                             cold blocks demand-paged
+ 5  tiny scratch  (06-L1)    visited set as bitmap           minor (already
+                                                             smallish)
+ 6  O(V) mode     (06-L2)    distances/parents resident,     graph size
+                             blocks read only when the       ~irrelevant to
+                             frontier enters them            RAM
+ 7  less work     (06-L3)    direction-optimizing BFS        2-10x fewer
+                             (Beamer) + bidirectional        edge touches;
+                             search (meet in the middle)     touched set
+                                                             shrinks ~sqrt
+ 8  remember/     (axes)     manifest sketches give block-   whole cold
+    sketches                 level reachability/weight       blocks skipped
+                             bounds -> prune blocks the      without reading
+                             path cannot pass through        them
+```
+
+Stack on one job:
+
+```
+  one Dijkstra query, 100 GB graph / 500M vertices, 16 GB box:
+
+  GDS               project ALL 100 GB into heap first        REFUSED @16GB
+                    (minutes-hours), THEN query in ms         (or huge box)
+  2+4 tiles/GRAIN   open manifest (ms), demand-page only      first query in
+                    blocks the search enters                  seconds, no
+                                                              projection step
+  6 O(V)            distances+parents ~6 GB resident max      FITS with room
+  7 bidirectional   touched region shrinks ~sqrt              seconds, not
+                                                              minutes
+  verdict           "boot the graph for one question" ->      cold-open to
+                    "open the file, ask, close it"            answer in secs
+```
+
+### Shreyas Doshi's selling narrative
+
+The other algorithms sell "finishes anyway." Shortest paths sells
+**"no boot-up ritual."** The GDS experience: project for an hour, THEN
+sub-second queries — great for the 1000th query, absurd for the 1st.
+Most real path workloads are sporadic (an investigator traces one money
+flow; an engineer checks one dependency chain).
+
+```
+  their model:  RENT A THEATER to watch one movie
+                (project everything, then query)
+  our model:    open the file like a database opens an index:
+                cold-open in milliseconds, page in only what
+                the search touches, answer in seconds
+```
+
+The promise: **"ask one question of a 100 GB graph without first
+paying to load 100 GB."** Pairs with the certainty story: the receipt
+for a path query says "resident ceiling: 0.9 GB, whatever the graph
+size" — a guarantee, not an estimate.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : full-projection session -> O(V) distances + demand-paged
+               blocks; RAM ~independent of graph size (10-100x on paper,
+               but the honest frame is "projection step deleted").
+  Latency    : time-to-FIRST-answer collapses from minutes-hours
+               (project) to seconds (mmap + demand paging).
+  Capability : sporadic/interactive path queries on big graphs stop
+               requiring a dedicated always-on analytics box.
+  Moat       : same receipt moat, plus a shape Neo4j can't mimic cheaply:
+               their architecture REQUIRES the projection step (staff-
+               confirmed, see simulation01.md E3); ours has no such step.
+  Caveat     : weighted Dijkstra on random-access-heavy graphs stresses
+               demand paging — NVMe random-read latency matters; the
+               hot-stratum hub cache is what keeps this honest. Needs
+               measurement.
+```
+
+---
+
 ## The Bespoke Realization: One Format, Seven Access Plans
 
 Reading the three worked examples together exposes something the "lever"

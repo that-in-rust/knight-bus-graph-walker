@@ -334,3 +334,172 @@ https://community.neo4j.com/t/dgs-fastrp-write-returns-failed-to-invoke-procedur
    observed. The docs should not claim "users are crying out for
    low-RAM fastRP" — they are not, visibly. The claim is: the same
    projection wall blocks them, and the same fix frees them.
+
+---
+
+## 7. Aggregate anecdotal log: everywhere Neo4j gets complained about
+
+Third pass, widest aperture: not GDS, not our algorithms — EVERY
+recurring complaint theme about Neo4j across Hacker News (2011-2026),
+the community forum, Stack Overflow, and GitHub. Purpose: an honest
+anecdotal map of where Neo4j fails its users, so we know which failures
+our product actually addresses (and which it doesn't).
+
+URL convention: HN comment ids link as
+https://news.ycombinator.com/item?id=<id>
+
+### 7.1 Memory / resource consumption (our home turf)
+
+**A1.** *"I've had bad experience with Neo4J's memory consumption so
+I'm wary... we actively chose to go against it because of past issues
+with resource usage."* — HN, on the $325M Series F thread of all
+places. https://news.ycombinator.com/item?id=27543721
+
+**A2.** Ex-Neo4j insider on why they abandoned OS memory mapping:
+*"50% driven by Java memory mapping having insane issues on Windows,
+20% Java memory mapping having insane issues on every platform..."*
+https://news.ycombinator.com/item?id=31509341
+- Notable for us: mmap-hostility is a JVM problem, not an mmap
+  problem. Rust doesn't inherit it.
+
+**A3.** ID-space ceiling: *"we reached the limit of 32 billions of
+unique IDs (Neo 3.2)... had to wait for the next version so we could
+add more data."* https://news.ycombinator.com/item?id=33918730
+
+(Plus the entire GDS catalog above: E1-E3, E16-E20 — projection OOM,
+no spill to disk, "defeats the purpose of using a database.")
+
+### 7.2 Performance / speed
+
+**B1.** *"I still have nightmares with Cypher and neo4j's slowness."*
+https://news.ycombinator.com/item?id=48647551
+
+**B2.** *"right now neo4j is slower for graphs than postgres, just
+with a nicer UI."* https://news.ycombinator.com/item?id=27544079
+
+**B3.** *"Neo4j is dead slow."* (2013 — the complaint is over a decade
+stable) https://news.ycombinator.com/item?id=6693003
+
+**B4.** *"Neo4j was freaking slow when I tried to use it."* (2025)
+https://news.ycombinator.com/item?id=48581477
+
+**B5.** On vector search: *"the #2 committer of the project may
+agree... Neo4j is slower than a 'normal vector db'."*
+https://news.ycombinator.com/item?id=37871190
+
+### 7.3 Reliability / operations
+
+**C1.** The classic 2015 rant: *"the least reliable and most buggy
+database solution I've ever worked with"* — six months of production
+experience, on the ArangoDB benchmark thread.
+https://news.ycombinator.com/item?id=9699964
+
+**C2.** ConceptNet author (rspeer): *"I lost months of work to Neo4J
+back in 2011... The write speed was awful, the stability was awful."*
+https://news.ycombinator.com/item?id=9700558
+
+**C3.** *"Neo4j was a terrible experience as a developer. It crashed
+constantly, local dev required me to finagle around with Java SDK
+versions... Their managed offering was equally as shitty."*
+https://news.ycombinator.com/item?id=33916804
+- Note the JVM-toolchain complaint: a single static Rust binary is
+  itself a feature against this.
+
+### 7.4 Pricing / licensing (the loudest theme by volume)
+
+**D1.** *"Every time that Neo4J is mentioned here, the pricing issues
+are raised. No exception today."* — user who hit the scaling wall on
+the free version, then *"almost had a heart attack"* at enterprise
+pricing. https://news.ycombinator.com/item?id=18797980
+
+**D2.** *"Neo4j's entire pricing model, even in cloud, is built around
+the idea that you'll have one centralized very large graph"* — doesn't
+fit many-small-graphs shops with 3-5 pre-prod environments.
+https://news.ycombinator.com/item?id=27544889
+
+**D3.** Scaling is enterprise-gated: *"Neo4j is also very expensive if
+you want to use it in a cluster."*
+https://news.ycombinator.com/item?id=7804908
+
+**D4.** License bait-and-switch resentment: *"they did a bait and
+switch with the license model, I was not happy about that."*
+https://news.ycombinator.com/item?id=33916759
+- Context: the Neo4j v PureThink litigation over AGPL+Commons Clause
+  ("open-washing") ran for years on HN's front page:
+  https://news.ycombinator.com/item?id=30726286 ,
+  https://news.ycombinator.com/item?id=34763955
+
+**D5.** Sales-side confirmation: *"The company was totally inflexible
+with their very outdated licensing model and it constantly lost them
+potential customers."* https://news.ycombinator.com/item?id=33918651
+
+### 7.5 Scaling architecture (the structural critique)
+
+**F1.** *"always thought Neo4J was a joke, it was based on an
+execution model which is not scalable at all... story after story from
+people who tried it for projects which were just too big."* — "Ask HN:
+What Is Going on with Neo4j?" (2022, layoffs thread).
+https://news.ycombinator.com/item?id=33916259
+
+**F2.** *"You can't shard it... you could only scale vertically, not
+horizontally."* https://news.ycombinator.com/item?id=33919132
+
+**F3.** The "Trillion Relationship Graph" marketing claim got its own
+debunking thread: https://news.ycombinator.com/item?id=28707310
+
+### 7.6 Churn stories (who left, and where they went)
+
+**G1.** *"We're in the process of migrating off Neo4j/OngDB to
+Postgres. Happy with how it's going so far."*
+https://news.ycombinator.com/item?id=33916848
+
+**G2.** ConceptNet moved off entirely (C2) — to purpose-built storage.
+
+**G3.** Whole HN threads exist of people asking for and comparing
+alternatives (FalkorDB, Memgraph, ArangoDB, Apache AGE, KuzuDB...):
+https://news.ycombinator.com/item?id=43202780 ,
+https://news.ycombinator.com/item?id=48358865
+
+### 7.7 Honesty: the counter-log
+
+Neo4j also has real defenders, and the log must show them:
+
+- *"Had the exact opposite experience with N4j. Easy to operate, scale
+  and run... large scale enterprise rollout"* —
+  https://news.ycombinator.com/item?id=33917206
+- GDS itself is praised: *"The built-in Graph Data Science package has
+  a lot of nice graph algos that are easy to [use]"* —
+  https://news.ycombinator.com/item?id=41269987
+- Cypher's ergonomics and the browser UI are consistently liked even
+  by critics (B2: "...just with a nicer UI").
+- Several complaints (C1, C2) date to 2011-2015; the product has
+  improved materially since. Age of evidence must be weighed.
+
+### 7.8 What the aggregate log says
+
+```
+  complaint theme        volume   age span     do WE fix it?
+  ---------------------  -------  -----------  -------------------------
+  pricing / licensing    LOUDEST  2011-2026    indirectly (own-hardware,
+                                               open engine = no meter)
+  memory / RAM / OOM     high     2015-2026    YES — the core product
+  slow (OLTP queries)    high     2013-2026    NO (we are OLAP-only;
+                                               must say so loudly)
+  reliability / JVM ops  medium   2011-2022    partly (static binary,
+                                               fixed arena, no GC)
+  can't scale out        medium   2015-2026    sidestepped (scale-UP via
+                                               disk, not scale-OUT)
+  vendor trust           medium   2018-2026    YES by being boring: open
+                                               format, receipt, no meter
+```
+
+Two product lessons the wide log adds beyond the GDS-specific passes:
+
+1. **Pricing/licensing resentment is the emotional carrier wave.** The
+   RAM receipt lands harder because the audience already distrusts the
+   meter. The pitch order should be: no meter -> no projection ->
+   receipt -> algorithms.
+2. **We must explicitly NOT claim to fix the top-volume complaint we
+   don't address** (OLTP query slowness / Cypher performance). Being
+   loudly OLAP-only converts a scope limit into credibility with an
+   audience primed to smell overclaiming.

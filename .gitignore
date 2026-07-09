@@ -9,3 +9,5 @@ reports/
 .env.neo4j.local
 reference-repos-neo4j-family/
 reference-repos-competitors/
+.serena/
+.gitnexus/

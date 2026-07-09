@@ -1,809 +1,814 @@
 # Simulation 01 — Do Real Users Actually Feel This Pain?
 
-Truth-seeking exercise: before believing our own pitch ("~20x less RAM
-for WCC / Louvain / PageRank, bill known before the run"), go read what
-real users say on forums — Neo4j Community, Hacker News, Stack Overflow —
-and simulate honestly how they would react if we delivered it.
-
-Method: searched HN (Algolia API), community.neo4j.com (Discourse API),
-Stack Overflow (StackExchange API). Reddit's API blocked unauthenticated
-search; noted as a gap. All quotes paraphrased-minimally; URLs given so
-every claim is independently checkable.
+*A truth-seeking market-evidence dossier, written in the voice and with the
+discipline of Shreyas Doshi: insight before execution, pre-mortems before
+pitches, and radical honesty about what the evidence does and does not say.*
 
 ---
 
-## 1. Core facts going in (what we claim)
+## 0. Why this document exists (the Shreyas preamble)
 
-```
-  claim                                    status
-  ---------------------------------------  --------------------------
-  WCC/Louvain/PageRank = ~50% of GDS use   modeled from GDS docs/talks
-  ~10-25x less RAM to pay for              modeled, code-verified vs
-                                           GDS source, NOT measured
-  bill known before run (manifest math)    designed, not built
-  2-5x slower wall-clock (streaming)       modeled from literature
-```
+Most products fail not because the team executed badly, but because the team
+never verified that the pain they imagined was the pain users actually felt.
+The single highest-leverage activity before writing a line of production code
+is to go find the users in the wild — in their own words, on their own forums,
+complaining about their own bills — and check whether the story we tell
+ourselves survives contact with their reality.
 
-The question this doc answers: **does anyone actually care?**
+Our story going in: *"Neo4j GDS demands the whole graph in RAM; we can run the
+same algorithms in ~10-25x less RAM by streaming from disk, and — uniquely —
+we can print the exact bill before the run starts."*
+
+This document is the audit of that story. It contains six passes of evidence
+gathering, each triggered by a harder question than the last:
+
+1. Do users complain about **our three flagship algorithms** (WCC, Louvain,
+   PageRank)? — Sections 2-5.
+2. Do users complain about the **other four families** (NodeSimilarity,
+   shortest paths, FastRP, triangles)? — Section 6.
+3. What does the **aggregate complaint record of Neo4j** (2011-2026, all
+   themes) look like? — Section 7.
+4. Which **differentiating claims ("badges")** does the evidence actually
+   support? — Section 8.
+5. If this turf is so good, **why is nobody standing on it?** A wide
+   competitive sweep. — Section 9.
+6. What does an **independent external research pass** add or contradict?
+   — Section 10.
+
+Every factual claim carries a numbered citation; all URLs are collected in
+Section 11 (References) so that anyone — including a skeptical future version
+of ourselves — can check every line.
+
+**Method note.** Searches were run against the Hacker News Algolia API,
+community.neo4j.com (Discourse search API), the StackExchange API, and the
+GitHub API (issues and repository metadata). Reddit's API blocked
+unauthenticated search; this is flagged as a coverage gap rather than papered
+over. Quotes are minimally paraphrased; where a quote matters, it is verbatim.
 
 ---
 
-## 2. Evidence catalog (with URLs)
+## 1. Core facts going in (what we claim, and how honest each claim is)
 
-### 2.1 Direct, on-point pain — Neo4j Community Forum
+Before looking at users, state the claims and grade their epistemic status.
+A claim that is "modeled" is a hypothesis wearing a suit; it must not be
+allowed to dress up as a measurement.
 
-These are the strongest signals: real users hitting the exact wall our
-product removes, answered by Neo4j staff confirming the wall is
-structural.
+| # | Claim | Epistemic status |
+|---|-------|------------------|
+| 1 | WCC + Louvain + PageRank ≈ ~50% of GDS algorithm usage; all seven families ≈ ~90% | Modeled from GDS documentation emphasis and conference talks; not from vendor telemetry |
+| 2 | ~10-25x less RAM to pay for at fixed dataset size | Modeled; **code-verified against GDS source** (see Arch06) but **not yet measured** on our own engine |
+| 3 | The bill (RAM + wall-clock) is computable from ~1 KB of manifest metadata **before** the run | Designed, not yet built |
+| 4 | 2-5x slower wall-clock for streaming runs (recovered partially by delta convergence and warm starts) | Modeled from the out-of-core literature (GraphChi lineage) |
 
-**E1. "How to efficiently cluster nodes using GDS with limited memory
-(16 GB RAM)"** — user tries to project a graph for clustering, gets:
+The question this entire document answers: **does anyone actually care?**
+Not "is this technically impressive" — Shreyas would remind us that impressive
+technology solving unfelt pain is the most expensive way to fail.
+
+---
+
+## 2. Evidence catalog: the first pass (WCC / Louvain / PageRank era)
+
+### 2.1 Direct, on-point pain — the Neo4j Community Forum
+
+These are the strongest signals available anywhere: real users hitting the
+exact wall our product removes, answered by **Neo4j's own staff confirming
+the wall is structural, not configurational**. When the vendor's employees
+describe your product's reason to exist, you are no longer speculating.
+
+**E1 — The 16 GB clustering user.** A user asks *"How to efficiently cluster
+nodes using GDS with limited memory (16 GB RAM)"* and receives the error:
 `Procedure was blocked since minimum estimated memory (52 GiB) exceeds
-current free memory (5120 MiB)`.
-https://community.neo4j.com/t/how-to-efficiently-cluster-nodes-using-gds-with-limited-memory-16-gb-ram/71073
-- This is LITERALLY our demo scenario: 16 GB box, 52 GiB estimate,
-  job refused. Our pitch: that job finishes, streaming, bill printed.
+current free memory (5120 MiB)` [[1]](#references).
+This is *literally* our demo scenario: a 16 GB box, a 52 GiB estimate, a job
+refused. Our pitch to this exact person: that job finishes, streaming, with
+the bill printed first.
 
-**E2. "What library to use instead GDS when graph db is too big to
-project in memory?"** — user with hundreds of millions of nodes on a
-32 GB VM. Neo4j (Alicia Frame, then-GDS PM) replies: *"We don't offer
-any spill over / out of core computations right now"*, suggests
-projecting a subset or `sudo: True` ("the risk is OOMing your
-database").
-https://community.neo4j.com/t/what-library-to-use-instead-gds-when-graph-db-is-too-big-to-project-in-memory/55821
-- Vendor-confirmed: no spill exists; official workarounds are "use
-  less data" or "risk crashing the database."
+**E2 — The vendor admits there is no spill.** A user with hundreds of
+millions of nodes on a 32 GB VM asks *"What library to use instead of GDS
+when the graph db is too big to project in memory?"* Alicia Frame — then
+Neo4j's GDS product lead — replies: *"We don't offer any spill over / out of
+core computations right now,"* and offers two workarounds: project a subset,
+or set `sudo: True` with the caveat that *"the risk is OOMing your
+database"* [[2]](#references). Read that again from a product lens: the
+official guidance is **use less data or risk crashing production**.
 
-**E3. "GDS algorithms without a projection"** — user with billions of
-nodes / hundreds of billions of edges OOMs at projection. Neo4j staff
-(paul.horn, GDS engineer): *"GDS also needs to project all the data...
-into a single in-memory projection, there is no option to spill to
-disk."* User's reply: *"that surprises me as it defeats the purpose of
-using a database if you need to map its data to an in-memory
-representation to run an algorithm."*
-https://community.neo4j.com/t/gds-algorithms-without-a-projection/73039
-- The user articulates our pitch FOR us, unprompted.
+**E3 — The user who writes our pitch for us.** A user with billions of nodes
+and hundreds of billions of edges OOMs at projection and asks whether GDS can
+run without one. Neo4j GDS engineer paul.horn: *"GDS also needs to project
+all the data... into a single in-memory projection, there is no option to
+spill to disk."* The user's reply is the single best sentence in this entire
+dossier: *"that surprises me as it defeats the purpose of using a database if
+you need to map its data to an in-memory representation to run an
+algorithm"* [[3]](#references). An unprompted user independently articulating
+the core absurdity we exist to fix — this is what real demand looks like.
 
-**E4. "What is the ideal heap memory size for GDS in Neo4j"** — 95 GB
-RAM machine, 75 GB heap, ~320M nodes, still heap errors while
-clustering.
-https://community.neo4j.com/t/what-is-the-ideal-heap-memory-size-for-gds-in-neo4j/76311
+**E4 — Big iron does not save you.** A machine with 95 GB RAM and a 75 GB
+heap, ~320M nodes, still hits heap errors while clustering
+[[4]](#references). The wall scales with you.
 
-**E5. "Memory Limit on graph projection"** — "Capacity exhausted" at
-~300 GB during projection; user reduced concurrency, tinkered with
-heap configs, nothing helped.
-https://community.neo4j.com/t/memory-limit-on-graph-projection/61567
+**E5 — "Capacity exhausted" at 300 GB.** A projection fails at ~300 GB;
+the user reduces concurrency and tunes heap configs; nothing helps
+[[5]](#references).
 
-**E6. "How can I load a very large dataset with limited memory?"** —
-6.6 TiB import on a 32 GB machine; import tool "suggests 203 GB."
-https://community.neo4j.com/t/how-can-i-load-a-very-large-dataset-with-limited-memory/59189
+**E6 — The 6.6 TiB import on a 32 GB machine.** The import tool "suggests
+203 GB" [[6]](#references). Not GDS-specific, but the same shape of pain:
+the tool demands RAM the user does not have.
 
-**E7. "GDS ShortestPath memory consumption"** — memory of a projection
-grows steadily under a 150k-paths/hour workload.
-https://community.neo4j.com/t/gds-shortestpath-memory-consumption/58340
+**E7 — Memory creep under path workloads.** A projection's memory grows
+steadily under a 150k-shortest-paths-per-hour workload until restart
+[[7]](#references).
 
-### 2.2 Pricing/RAM resentment — Hacker News
+### 2.2 Pricing and RAM resentment — Hacker News
 
-**E8.** *"When we looked to scale Neo4j, we almost had a heart attack
-when seeing the price"* (startup, 2019). Same thread: *"Every time that
-Neo4j is mentioned here, the pricing issues are raised."*
-https://news.ycombinator.com/item?id=18797980
+The forum gives us the *technical* pain; HN gives us the *emotional and
+economic* pain. Shreyas's framing applies: users buy progress on problems
+they resent, and resentment compounds.
 
-**E9.** *"They wanted to charge us something like 10% of our ARR"*
-(2021, on pricing model built around one very large centralized graph).
-https://news.ycombinator.com/item?id=27544889
+**E8.** *"When we looked to scale Neo4j, we almost had a heart attack when
+seeing the price"* (startup, 2019). The same thread contains the meta-signal:
+*"Every time that Neo4j is mentioned here, the pricing issues are raised. No
+exception today."* [[8]](#references)
 
-**E10.** *"We evaluated umpteen graph dbs this past year and chose
-vanilla Postgres instead because Neo4j/RedisGraph have insane
-licenses"* (2020).
-https://news.ycombinator.com/item?id=22485576
+**E9.** *"They wanted to charge us something like 10% of our ARR"* (2021, on
+a pricing model built around one very large centralized graph)
+[[9]](#references).
+
+**E10.** *"We evaluated umpteen graph dbs this past year and chose vanilla
+Postgres instead because Neo4j/RedisGraph have insane licenses"* (2020)
+[[10]](#references). Note what this is: **silent churn caught on camera** —
+a buyer who left the category without ever filing a complaint ticket.
 
 **E11.** *"If the data fits in memory (Neo4j, in the past at least, has
-pretty much required that)..."* (2015 — the RAM-resident reputation is
-a decade old).
-https://news.ycombinator.com/item?id=8899483
+pretty much required that)..."* (2015) [[11]](#references). The RAM-resident
+reputation is a **decade old**. Reputations this durable are moats for
+whoever attacks them.
 
-**E12.** GraphRAG cost anxiety (2025): *"GraphRag preprocessing is
-insanely expensive and precisely does not scale linearly with your
-dataset"* and the explainer reply detailing entity extraction +
-community detection over everything.
-https://news.ycombinator.com/item?id=45063386 and
-https://news.ycombinator.com/item?id=45068902
+**E12.** GraphRAG cost anxiety (2025): *"GraphRAG preprocessing is insanely
+expensive and precisely does not scale linearly with your dataset"*
+[[12]](#references), with an explainer reply detailing entity extraction plus
+community detection over the whole corpus [[13]](#references).
 
 **E13.** *"...you're told to add Neo4j or a specialized GraphDB to your
-stack... you have to deal with Neo4j and who wants that"* (2025, Show
-HN for a GraphRAG-without-Neo4j tool — builders are routing AROUND
-Neo4j).
-https://news.ycombinator.com/item?id=46347143
+stack... you have to deal with Neo4j and who wants that"* — a 2025 Show HN
+for a GraphRAG tool whose selling point is *not needing Neo4j*
+[[14]](#references). When "avoids the incumbent" is a launch headline,
+the incumbent has a resentment problem.
 
 ### 2.3 Stack Overflow
 
-Thinner signal (graph-analytics questions mostly go to the Neo4j forum
-instead), but present:
+A thinner signal — graph-analytics questions mostly flow to the Neo4j forum —
+but present and on-theme:
 
-**E14.** "How can I create graph Projections in Neo4J for a very large
-graph"
-https://stackoverflow.com/questions/79650281/how-can-i-create-graph-projections-in-neo4j-for-a-very-large-graph
+**E14.** *"How can I create graph projections in Neo4j for a very large
+graph"* [[15]](#references).
 
-**E15.** "Keep a projected graph in sync with persisted graph in Neo4j
-GDS" — the staleness/refresh pain, organic.
-https://stackoverflow.com/questions/73258583/keep-a-projected-graph-in-synch-with-persisted-graph-in-neo4j-gds
+**E15.** *"Keep a projected graph in sync with persisted graph in Neo4j
+GDS"* — the staleness/refresh pain arising organically [[16]](#references).
 
 ---
 
 ## 3. Truth-seeking: what the evidence does NOT say
 
-Honesty section — the counter-signals matter as much as the signals.
+Shreyas's discipline: the counter-evidence section is not an appendix; it is
+the part of the document most likely to save the company. Six honest
+corrections to our own pitch:
 
-1. **Nobody complains about WCC/Louvain/PageRank BY NAME.** The pain is
-   almost always at the PROJECTION step (get the graph into memory at
-   all), not the algorithm step. Users say "can't project," not "Louvain
-   ate my tallies." Implication: our messaging should attack the
-   projection wall ("no projection step — point us at the files"), with
-   per-algorithm plans as supporting detail, not the headline.
+1. **Nobody complains about WCC, Louvain, or PageRank by name.** The pain is
+   almost always at the **projection step** — getting the graph into memory
+   at all — not at the algorithm step. Users say "can't project," never
+   "Louvain ate my tallies." Implication: the headline must attack the
+   projection wall ("no projection step — point us at the files"), with the
+   per-algorithm plans as supporting proof, not the lede.
 
-2. **The complaint volume is moderate, not a flood.** Tens of
-   high-quality forum threads over ~5 years, not thousands. Two honest
-   readings: (a) most Neo4j users run small graphs that fit, and the
-   big-graph users are a minority — the market is the minority; (b)
-   survivorship bias — people who hit the wall silently leave for
-   igraph/NetworkX/cuGraph or Postgres (E10, E13 show exactly this),
-   so forums under-count the pain. Both are partially true.
+2. **The complaint volume is moderate, not a flood.** Tens of high-quality
+   threads over ~5 years, not thousands. Two readings, both partially true:
+   (a) most Neo4j users run small graphs that fit, and the big-graph users
+   are a minority — in which case *the minority is the market*; (b)
+   survivorship bias — people who hit the wall silently leave for igraph,
+   Postgres, or cuGraph (E10 and E13 show exactly this), so forums
+   structurally under-count the pain.
 
-3. **GraphRAG's "insanely expensive" is mostly LLM token cost, not
-   Leiden RAM** (E12's explainer: entity extraction + narrative
-   generation dominate). Leiden/community detection is a real but
-   secondary cost there. Our GraphRAG story must be honest: we cut the
-   graph-compute and re-index slice, not the LLM bill.
+3. **GraphRAG's "insanely expensive" is mostly LLM token cost, not Leiden
+   RAM** (E12's explainer thread is clear on this). Community detection is a
+   real but secondary cost there. Our GraphRAG story must stay honest: we cut
+   the graph-compute and re-index slice, not the LLM bill.
 
-4. **The pricing rage (E8-E10) is about licenses and cluster pricing,
-   not GB-hours specifically.** Aura Graph Analytics ($/GB-hour) is
-   newer; there isn't yet a public corpus of "my Aura analytics bill"
-   complaints. Our $-comparisons are extrapolated, not quoted from
-   victims.
+4. **The pricing rage (E8-E10) is about licenses and cluster pricing, not
+   GB-hours specifically.** Aura Graph Analytics ($/GB-hour) is newer; there
+   is not yet a public corpus of "my Aura analytics bill" complaints. Our
+   dollar comparisons are extrapolations, not quotes from victims — and must
+   be labeled as such.
 
-5. **Reddit unsearched** (API blocked). Gap, flagged.
+5. **Reddit is unsearched** (API blocked unauthenticated search). Flagged as
+   a gap, not silently omitted.
 
-6. **Neo4j's estimate-then-block behavior (E1) is arguably a FEATURE
-   they already ship** — the job was refused, not OOM-killed. What they
-   don't offer is the second half: "...and here's how it finishes
-   anyway." Our differentiation is the FINISH, plus estimate-in-1-second
-   -without-a-running-database.
+6. **Neo4j's estimate-then-block behavior (E1) is arguably a feature they
+   already ship** — the job was refused, not OOM-killed mid-flight. What they
+   do not offer is the second half of the sentence: *"...and here is how it
+   finishes anyway."* Our differentiation is the FINISH, plus
+   estimate-in-one-second-without-a-running-database.
 
 ---
 
 ## 4. Simulated reactions if we ship what we claim
 
-Simulation: we publish "the 52-GiB-estimate job from E1 finishes on the
-same 16 GB box in 38 minutes; bill printed before start; artifact
-bundle reproducible." How do the observed populations react?
+The simulation: we publish *"the 52-GiB-estimate job from E1 finishes on the
+same 16 GB box in 38 minutes; bill printed before start; reproducible
+artifact bundle attached."* How does each observed population react?
 
-**P1. The forum users in E1-E5 (data engineers with too-big graphs):**
-Reaction: immediate trial. They already asked for exactly this and were
-told "no spill, use less data." Conversion blocker: their data lives
-inside Neo4j — the export step (2-8 hrs, failure-prone) is OUR onboarding
-cliff. Simulated quote: *"Worked on the CSV dump. Now can it read my
-Neo4j store directly?"*
+**P1 — The forum users of E1-E5 (data engineers with too-big graphs).**
+Reaction: immediate trial. They already asked for exactly this and were told
+"no spill, use less data." The conversion blocker is not desire — it is that
+their data lives *inside* Neo4j, and the export step (2-8 hours,
+failure-prone) is our onboarding cliff. Simulated quote: *"Worked on the CSV
+dump. Now can it read my Neo4j store directly?"*
 
-**P2. The HN skeptic:** *"You can do this with GraphChi in 2012 /
-networkit / a 750-line Rust program. Out-of-core graph processing is a
-solved research problem."* — TRUE, and the correct reply is: yes, the
-mechanism is 13 years old; nobody productized it with a pre-run cost
-receipt against the #1 graph vendor's workloads. The receipt, not the
-streaming, is the news. Expect this comment in the first hour of any
-HN launch; pre-empt it in the post itself.
+**P2 — The HN skeptic.** *"You could do this with GraphChi in 2012 / with
+NetworKit / with a 750-line Rust program. Out-of-core graph processing is a
+solved research problem."* This objection is **true**, and the correct reply
+is prepared in advance: yes, the mechanism is 13 years old; what nobody did
+is productize it with a pre-run cost receipt aimed at the #1 graph vendor's
+workloads. **The receipt, not the streaming, is the news.** Expect this
+comment within the first hour of any HN launch; pre-empt it inside the post
+itself.
 
-**P3. The "just buy RAM" crowd:** *"512 GB servers are cheap now."* —
-Partially true (a 512 GB bare-metal box is ~$200-400/mo rented). But
-E1/E4 show real users on 16-95 GB boxes NOT buying bigger machines —
-because procurement, cloud policy, or laptops. The segment that can't
-just buy RAM exists and posts about it.
+**P3 — The "just buy RAM" crowd.** *"512 GB servers are cheap now."*
+Partially true — a rented 512 GB bare-metal box runs ~$200-400/month. But
+E1 and E4 show real users on 16-95 GB boxes who did *not* buy bigger
+machines — because of procurement, cloud policy, or the fact that the
+machine is a laptop. The segment that cannot "just buy RAM" exists, posts
+about it, and is answered by the vendor with "use less data."
 
-**P4. Neo4j's probable response (simulate the competitor):** short
-term, point at their estimate mode + Aura autoscaling; medium term,
-ship *some* disk-backed projection (they already have block format work
-in the DB layer). What they will NOT do is make the bill-before-run +
-finish-anyway promise central, because (a) Java heap + GC makes honest
-byte-exact receipts hard, (b) per-GB-hour revenue disincentive. Our
-moat holds only while we keep the receipt byte-honest.
+**P4 — Neo4j's probable competitive response.** Short term: point at their
+existing estimate mode and Aura autoscaling. Medium term: ship *some*
+disk-backed projection (block-format work already exists in the DB layer).
+What they will **not** do is make bill-before-run + finish-anyway the center
+of their story, because (a) JVM heap + GC makes byte-exact receipts
+technically embarrassing, and (b) per-GB-hour revenue is a direct
+disincentive. Our moat holds exactly as long as the receipt stays
+byte-honest. (Section 10.3 extends this with an external forecast.)
 
-**P5. GraphRAG builders (E12, E13):** they want FEWER moving parts, not
-another database. Reaction to "a CLI that runs Leiden on your parquet
-of edges with a fixed RAM cap": strong — it subtracts a component
-(Neo4j) instead of adding one. This audience is acquirable without
-touching the Neo4j export cliff at all, because their edges are already
-in files. Possibly the true beachhead.
+**P5 — GraphRAG builders (E12, E13).** They want *fewer* moving parts, not
+another database. Reaction to "a CLI that runs Leiden on your parquet of
+edges with a fixed RAM cap": strong — it **subtracts** a component (Neo4j)
+instead of adding one. This audience is acquirable without ever touching the
+Neo4j export cliff, because their edges are already in files. Possibly the
+true beachhead.
 
-**P6. The silent majority (small graphs that fit):** no reaction. Our
-product is irrelevant below ~10M edges, and that's most users. Fine —
-they were never the market.
-
----
-
-## 5. Verdict
-
-```
-  question                              answer
-  ------------------------------------  --------------------------------
-  Is the pain real?                     YES — vendor-confirmed structural
-                                        wall (E2, E3), users asking for
-                                        exactly our product (E1, E2, E3)
-  Is it about our 3 algorithms          NO — it's about the PROJECTION
-  by name?                              wall; algorithms are downstream.
-                                        Lead with "no projection step."
-  Is the market loud?                   MODERATE — quality over volume;
-                                        silent churn to igraph/Postgres
-                                        likely understates it
-  Strongest wedge audience              (1) forum-class users with
-                                        too-big-to-project graphs;
-                                        (2) GraphRAG builders with edges
-                                        already in files (no export cliff)
-  Biggest adoption risk                 the Neo4j EXPORT step, and the
-                                        "solved problem, see GraphChi"
-                                        rebuttal (answer: the receipt is
-                                        the product, not the streaming)
-```
+**P6 — The silent majority (small graphs that fit).** No reaction. Our
+product is irrelevant below ~10M edges, and that is most users. This is
+fine — they were never the market, and pretending otherwise would only blur
+the positioning.
 
 ---
 
-## 6. Second pass: the other four families (NodeSim, paths, FastRP, triangles)
+## 5. Verdict of the first pass
 
-The first pass covered only WCC / Louvain / PageRank. After Arch06
-gained worked examples 4-7, this second search pass asked: do the
-remaining families (NodeSimilarity ~12%, shortest paths ~10%, FastRP
-~8%, triangles ~5%) generate their own pain signal?
+| Question | Answer |
+|----------|--------|
+| Is the pain real? | **YES** — vendor-confirmed structural wall (E2, E3); users asking for exactly our product (E1, E2, E3) |
+| Is it about our three algorithms by name? | **NO** — it is about the projection wall; algorithms are downstream. Lead with "no projection step." |
+| Is the market loud? | **MODERATE** — quality over volume; silent churn to igraph/Postgres likely understates it |
+| Strongest wedge audiences | (1) forum-class users with too-big-to-project graphs; (2) GraphRAG builders with edges already in files (no export cliff) |
+| Biggest adoption risks | The Neo4j export step; and the "solved problem, see GraphChi" rebuttal (answer: the receipt is the product, not the streaming) |
+
+---
+
+## 6. Second pass: the other four families (NodeSimilarity, paths, FastRP, triangles)
+
+The first pass covered only WCC / Louvain / PageRank. After Arch06 gained
+worked examples 4-7, the harder question became: do the remaining families —
+NodeSimilarity (~12% of usage), shortest paths (~10%), FastRP (~8%),
+triangles (~5%) — generate their own pain signal, or were we about to build
+proof points nobody asked for?
 
 Method: same APIs (community.neo4j.com Discourse search, HN Algolia,
 StackExchange, GitHub issues on neo4j/graph-data-science).
 
 ### 6.1 New evidence
 
-**E16. "GDS algorithms without a projection" (revisit of E3, richer
-quote)** — billions of nodes, user asks to run centrality WITHOUT
-projecting. Neo4j engineer paul.horn: *"GDS also needs to project all
-the data... into a single in-memory projection, there is no option to
-spill to disk."* User's reply is the money quote: *"that surprises me
-as it defeats the purpose of using a database if you need to map its
-data to an in-memory representation to run an algorithm."*
-https://community.neo4j.com/t/gds-algorithms-without-a-projection/73039
-- A real user independently articulating our pitch's core absurdity.
+**E16 — The money quote, revisited.** The E3 thread, re-read for the
+NodeSimilarity-era pass, yields the richest exchange in the corpus: billions
+of nodes; the engineer's *"there is no option to spill to disk"*; the user's
+*"defeats the purpose of using a database"* [[3]](#references). A real user
+independently articulating our pitch's core absurdity, unprompted.
 
-**E17. Stack Overflow: "In Neo4j, is there anyway to create a graph
-projection if your graph is too big to fit in memory?"** — the question
-title IS the product spec.
-https://stackoverflow.com/questions/69092539
-- Again projection-level, not algorithm-level.
+**E17 — The question title that IS the product spec.** Stack Overflow: *"In
+Neo4j, is there any way to create a graph projection if your graph is too big
+to fit in memory?"* [[17]](#references). Again: projection-level, not
+algorithm-level.
 
-**E18. GitHub neo4j/graph-data-science #55 / #54:
-"gds.alpha.shortestPath.stream: java.lang.OutOfMemoryError: Java heap
-space"** — shortest path, the family whose scratch is tiny, still OOMs
-users (result streaming + projection).
-https://github.com/neo4j/graph-data-science/issues/55
-- Confirms Arch06 example 5's frame: paths pain = paying for the whole
-  graph to answer one question.
+**E18 — Shortest paths still OOMs people.** GitHub issues #55/#54 on
+neo4j/graph-data-science: `gds.alpha.shortestPath.stream:
+java.lang.OutOfMemoryError: Java heap space` [[18]](#references). The family
+whose *scratch* is tiny still kills users — because the projection and result
+streaming are the bill. This confirms Arch06 example 5's framing: path pain
+means paying for the whole graph to answer one question.
 
-**E19. GitHub #139 / #132: personalized PageRank
-"OutOfMemoryError: unable to create native thread" under normal use.**
-https://github.com/neo4j/graph-data-science/issues/139
-- OOMs even from thread machinery, not just data — JVM operational
-  fragility is its own complaint class.
+**E19 — OOM from thread machinery, not even data.** GitHub #139/#132:
+personalized PageRank fails with `OutOfMemoryError: unable to create native
+thread` under normal use [[19]](#references). JVM operational fragility is
+its own complaint class, distinct from data volume.
 
-**E20. Forum: "GDS ShortestPath memory consumption"** — a ~500-node (!)
-graph, 150k Dijkstra calls/hour, memory climbing until restart.
-https://community.neo4j.com/t/gds-shortestpath-memory-consumption/58340
-- Even trivially small graphs generate memory anxiety when the runtime
-  is a JVM; our fixed-arena story speaks to this buyer too.
+**E20 — A 500-node graph generating memory anxiety.** The E7 thread in
+detail: ~500 nodes (!), 150k Dijkstra calls/hour, memory climbing until
+restart [[7]](#references). Even trivially small graphs create memory dread
+when the runtime is a JVM. Our fixed-arena story — "RSS never exceeds the
+receipt" — speaks to this buyer too.
 
-**E21. Forum: fastRP threads are about USAGE confusion (zero vectors,
-type errors, applying to new samples), not RAM.**
-https://community.neo4j.com/t/dgs-fastrp-write-returns-failed-to-invoke-procedure-gds-fastrp-write-caused-by-java-l/51294
-- FastRP RAM pain shows up indirectly: users at the scale where the
-  254 GB sizing bites have usually already hit the projection wall
-  earlier and never reached fastRP.
+**E21 — FastRP pain is usage confusion, not RAM.** Forum FastRP threads are
+about zero vectors, type errors, and applying embeddings to new samples —
+not memory [[20]](#references). The RAM pain shows up indirectly: users at
+the scale where FastRP's 254 GB sizing bites have usually already died at the
+projection wall and never reached FastRP at all.
 
 ### 6.2 What the second pass did NOT find (honesty)
 
-```
-  searched for                          found
-  ------------------------------------  -----------------------------
-  "nodeSimilarity out of memory"        ~nothing algorithm-specific;
-                                        similarity pain appears as
-                                        generic projection failures
-  "triangle count memory" complaints    essentially zero
-  fastRP RAM complaints                 zero (usage confusion only)
-  HN threads naming these algorithms    zero relevant
-```
+| Searched for | Found |
+|--------------|-------|
+| "nodeSimilarity out of memory" complaints | ~Nothing algorithm-specific; similarity pain appears as generic projection failures (but see Section 10.1 — a re-sourcing pass later found a direct hit [[73]](#references)) |
+| "triangle count memory" complaints | Essentially zero |
+| FastRP RAM complaints | Zero (usage confusion only) |
+| HN threads naming these algorithms | Zero relevant |
 
 ### 6.3 Interpretation
 
-1. **The funnel hypothesis:** users die at the PROJECTION step before
-   they ever reach the algorithm whose scratch would have killed them.
-   NodeSimilarity's whole-graph-copy scratch (Arch06 ex.4) generates
-   few complaints because the population that would hit it already
-   OOM'd at `gds.graph.project`. The wall hides behind the wall.
-2. **Messaging consequence (reinforces first pass):** per-algorithm
-   RAM numbers are OUR internal engineering truth; the USER-facing
-   truth is one sentence — "no projection step." The seven bespoke
-   plans are proof points, not headlines.
-3. **Small-graph JVM anxiety (E20) is a real secondary segment:** even
-   users whose graphs fit complain about creep/restarts. "Fixed arena,
-   RSS never exceeds the receipt" resonates beyond the big-graph
-   market.
-4. **Where evidence is thin, claims must be too:** for triangles and
-   fastRP the demand evidence is inferential (funnel-blocked), not
-   observed. The docs should not claim "users are crying out for
-   low-RAM fastRP" — they are not, visibly. The claim is: the same
-   projection wall blocks them, and the same fix frees them.
+1. **The funnel hypothesis.** Users die at the projection step before they
+   ever reach the algorithm whose scratch would have killed them.
+   NodeSimilarity's whole-graph-copy scratch (Arch06 example 4) generates few
+   complaints because the population that would hit it already OOM'd at
+   `gds.graph.project`. **The wall hides behind the wall.** This is the kind
+   of non-obvious causal structure Shreyas would insist on naming explicitly,
+   because it changes what the messaging must attack.
+2. **Messaging consequence (reinforces the first pass).** Per-algorithm RAM
+   numbers are our *internal engineering truth*; the *user-facing truth* is
+   one sentence — "no projection step." The seven bespoke plans are proof
+   points, not headlines.
+3. **Small-graph JVM anxiety (E20) is a real secondary segment.** Even users
+   whose graphs fit complain about creep and restarts. "Fixed arena, RSS
+   never exceeds the receipt" resonates beyond the big-graph market.
+4. **Where evidence is thin, claims must be too.** For triangles and FastRP
+   the demand evidence is inferential (funnel-blocked), not observed. The
+   docs must not claim "users are crying out for low-RAM FastRP" — they are
+   not, visibly. The honest claim: the same projection wall blocks them, and
+   the same fix frees them.
 
 ---
 
 ## 7. Aggregate anecdotal log: everywhere Neo4j gets complained about
 
-Third pass, widest aperture: not GDS, not our algorithms — EVERY
-recurring complaint theme about Neo4j across Hacker News (2011-2026),
-the community forum, Stack Overflow, and GitHub. Purpose: an honest
-anecdotal map of where Neo4j fails its users, so we know which failures
-our product actually addresses (and which it doesn't).
-
-URL convention: HN comment ids link as
-https://news.ycombinator.com/item?id=<id>
+Third pass, widest aperture: not GDS, not our algorithms — **every recurring
+complaint theme about Neo4j** across Hacker News (2011-2026), the community
+forum, Stack Overflow, and GitHub. Purpose: an honest anecdotal map of where
+Neo4j fails its users, so we know precisely which failures our product
+addresses — and, just as importantly, which it does not.
 
 ### 7.1 Memory / resource consumption (our home turf)
 
-**A1.** *"I've had bad experience with Neo4J's memory consumption so
-I'm wary... we actively chose to go against it because of past issues
-with resource usage."* — HN, on the $325M Series F thread of all
-places. https://news.ycombinator.com/item?id=27543721
+**A1.** *"I've had bad experience with Neo4j's memory consumption so I'm
+wary... we actively chose to go against it because of past issues with
+resource usage."* — posted, of all places, on the thread celebrating Neo4j's
+$325M Series F [[21]](#references). Resentment showing up at the victory
+parade is a strong signal.
 
-**A2.** Ex-Neo4j insider on why they abandoned OS memory mapping:
-*"50% driven by Java memory mapping having insane issues on Windows,
-20% Java memory mapping having insane issues on every platform..."*
-https://news.ycombinator.com/item?id=31509341
-- Notable for us: mmap-hostility is a JVM problem, not an mmap
-  problem. Rust doesn't inherit it.
+**A2.** An ex-Neo4j insider on why the product abandoned OS memory mapping:
+*"50% driven by Java memory mapping having insane issues on Windows, 20%
+Java memory mapping having insane issues on every platform..."*
+[[22]](#references). Notable for us: **mmap-hostility is a JVM problem, not
+an mmap problem** — a Rust engine does not inherit it.
 
-**A3.** ID-space ceiling: *"we reached the limit of 32 billions of
-unique IDs (Neo 3.2)... had to wait for the next version so we could
-add more data."* https://news.ycombinator.com/item?id=33918730
+**A3.** The ID-space ceiling: *"we reached the limit of 32 billions of unique
+IDs (Neo 3.2)... had to wait for the next version so we could add more
+data."* [[23]](#references)
 
-(Plus the entire GDS catalog above: E1-E3, E16-E20 — projection OOM,
-no spill to disk, "defeats the purpose of using a database.")
+(Plus the entire GDS catalog above — E1-E3, E16-E20: projection OOM, no
+spill to disk, "defeats the purpose of using a database.")
 
 ### 7.2 Performance / speed
 
 **B1.** *"I still have nightmares with Cypher and neo4j's slowness."*
-https://news.ycombinator.com/item?id=48647551
+[[24]](#references)
 
-**B2.** *"right now neo4j is slower for graphs than postgres, just
-with a nicer UI."* https://news.ycombinator.com/item?id=27544079
+**B2.** *"right now neo4j is slower for graphs than postgres, just with a
+nicer UI."* [[25]](#references)
 
-**B3.** *"Neo4j is dead slow."* (2013 — the complaint is over a decade
-stable) https://news.ycombinator.com/item?id=6693003
+**B3.** *"Neo4j is dead slow."* — from **2013** [[26]](#references).
 
-**B4.** *"Neo4j was freaking slow when I tried to use it."* (2025)
-https://news.ycombinator.com/item?id=48581477
+**B4.** *"Neo4j was freaking slow when I tried to use it."* — from **2025**
+[[27]](#references). Twelve years, same sentence. A complaint this stable is
+not a bug backlog; it is an architecture.
 
-**B5.** On vector search: *"the #2 committer of the project may
-agree... Neo4j is slower than a 'normal vector db'."*
-https://news.ycombinator.com/item?id=37871190
+**B5.** On vector search: *"the #2 committer of the project may agree...
+Neo4j is slower than a 'normal vector db'."* [[28]](#references)
 
 ### 7.3 Reliability / operations
 
-**C1.** The classic 2015 rant: *"the least reliable and most buggy
-database solution I've ever worked with"* — six months of production
-experience, on the ArangoDB benchmark thread.
-https://news.ycombinator.com/item?id=9699964
+**C1.** The classic 2015 rant: *"the least reliable and most buggy database
+solution I've ever worked with"* — six months of production experience,
+posted on the ArangoDB benchmark thread [[29]](#references).
 
-**C2.** ConceptNet author (rspeer): *"I lost months of work to Neo4J
+**C2.** The ConceptNet author (rspeer): *"I lost months of work to Neo4j
 back in 2011... The write speed was awful, the stability was awful."*
-https://news.ycombinator.com/item?id=9700558
+[[30]](#references)
 
 **C3.** *"Neo4j was a terrible experience as a developer. It crashed
 constantly, local dev required me to finagle around with Java SDK
 versions... Their managed offering was equally as shitty."*
-https://news.ycombinator.com/item?id=33916804
-- Note the JVM-toolchain complaint: a single static Rust binary is
-  itself a feature against this.
+[[31]](#references). Note the JVM-toolchain complaint specifically: a single
+static Rust binary is itself a feature against this.
 
 ### 7.4 Pricing / licensing (the loudest theme by volume)
 
-**D1.** *"Every time that Neo4J is mentioned here, the pricing issues
-are raised. No exception today."* — user who hit the scaling wall on
-the free version, then *"almost had a heart attack"* at enterprise
-pricing. https://news.ycombinator.com/item?id=18797980
+**D1.** *"Every time that Neo4j is mentioned here, the pricing issues are
+raised. No exception today."* — from a user who hit the scaling wall on the
+free version, then *"almost had a heart attack"* at enterprise pricing
+[[8]](#references).
 
-**D2.** *"Neo4j's entire pricing model, even in cloud, is built around
-the idea that you'll have one centralized very large graph"* — doesn't
-fit many-small-graphs shops with 3-5 pre-prod environments.
-https://news.ycombinator.com/item?id=27544889
+**D2.** *"Neo4j's entire pricing model, even in cloud, is built around the
+idea that you'll have one centralized very large graph"* — which does not
+fit many-small-graphs shops running 3-5 pre-production environments
+[[9]](#references).
 
-**D3.** Scaling is enterprise-gated: *"Neo4j is also very expensive if
-you want to use it in a cluster."*
-https://news.ycombinator.com/item?id=7804908
+**D3.** Scaling is enterprise-gated: *"Neo4j is also very expensive if you
+want to use it in a cluster."* [[32]](#references)
 
-**D4.** License bait-and-switch resentment: *"they did a bait and
-switch with the license model, I was not happy about that."*
-https://news.ycombinator.com/item?id=33916759
-- Context: the Neo4j v PureThink litigation over AGPL+Commons Clause
-  ("open-washing") ran for years on HN's front page:
-  https://news.ycombinator.com/item?id=30726286 ,
-  https://news.ycombinator.com/item?id=34763955
+**D4.** License bait-and-switch resentment: *"they did a bait and switch
+with the license model, I was not happy about that."* [[33]](#references)
+Context: the Neo4j v. PureThink litigation over AGPL + Commons Clause
+("open-washing") ran for years on HN's front page
+[[34]](#references), [[35]](#references).
 
-**D5.** Sales-side confirmation: *"The company was totally inflexible
-with their very outdated licensing model and it constantly lost them
-potential customers."* https://news.ycombinator.com/item?id=33918651
+**D5.** Confirmation from the sales side: *"The company was totally
+inflexible with their very outdated licensing model and it constantly lost
+them potential customers."* [[36]](#references)
 
 ### 7.5 Scaling architecture (the structural critique)
 
-**F1.** *"always thought Neo4J was a joke, it was based on an
-execution model which is not scalable at all... story after story from
-people who tried it for projects which were just too big."* — "Ask HN:
-What Is Going on with Neo4j?" (2022, layoffs thread).
-https://news.ycombinator.com/item?id=33916259
+**F1.** *"always thought Neo4j was a joke, it was based on an execution
+model which is not scalable at all... story after story from people who
+tried it for projects which were just too big"* — from the 2022 "Ask HN:
+What Is Going on with Neo4j?" layoffs thread [[37]](#references).
 
 **F2.** *"You can't shard it... you could only scale vertically, not
-horizontally."* https://news.ycombinator.com/item?id=33919132
+horizontally."* [[38]](#references)
 
-**F3.** The "Trillion Relationship Graph" marketing claim got its own
-debunking thread: https://news.ycombinator.com/item?id=28707310
+**F3.** The "Trillion Relationship Graph" marketing claim earned its own
+debunking thread [[39]](#references).
 
 ### 7.6 Churn stories (who left, and where they went)
 
-**G1.** *"We're in the process of migrating off Neo4j/OngDB to
-Postgres. Happy with how it's going so far."*
-https://news.ycombinator.com/item?id=33916848
+**G1.** *"We're in the process of migrating off Neo4j/OngDB to Postgres.
+Happy with how it's going so far."* [[40]](#references)
 
-**G2.** ConceptNet moved off entirely (C2) — to purpose-built storage.
+**G2.** ConceptNet moved off entirely (see C2) — to purpose-built storage.
 
-**G3.** Whole HN threads exist of people asking for and comparing
-alternatives (FalkorDB, Memgraph, ArangoDB, Apache AGE, KuzuDB...):
-https://news.ycombinator.com/item?id=43202780 ,
-https://news.ycombinator.com/item?id=48358865
+**G3.** Whole HN threads exist of people soliciting and comparing
+alternatives (FalkorDB, Memgraph, ArangoDB, Apache AGE, KuzuDB...)
+[[41]](#references), [[42]](#references).
 
 ### 7.7 Honesty: the counter-log
 
-Neo4j also has real defenders, and the log must show them:
+Neo4j also has real defenders, and an honest log must show them — otherwise
+this document becomes a pitch deck wearing a lab coat:
 
-- *"Had the exact opposite experience with N4j. Easy to operate, scale
-  and run... large scale enterprise rollout"* —
-  https://news.ycombinator.com/item?id=33917206
-- GDS itself is praised: *"The built-in Graph Data Science package has
-  a lot of nice graph algos that are easy to [use]"* —
-  https://news.ycombinator.com/item?id=41269987
-- Cypher's ergonomics and the browser UI are consistently liked even
-  by critics (B2: "...just with a nicer UI").
-- Several complaints (C1, C2) date to 2011-2015; the product has
-  improved materially since. Age of evidence must be weighed.
+- *"Had the exact opposite experience with N4j. Easy to operate, scale and
+  run... large scale enterprise rollout"* [[43]](#references).
+- GDS itself is praised: *"The built-in Graph Data Science package has a lot
+  of nice graph algos that are easy to [use]"* [[44]](#references).
+- Cypher's ergonomics and the browser UI are consistently liked even by
+  critics (B2: "...just with a nicer UI").
+- Several of the harshest complaints (C1, C2) date to 2011-2015; the product
+  has improved materially since. **Age of evidence must be weighed**, and
+  each item above carries its date for exactly that reason.
 
 ### 7.8 What the aggregate log says
 
-```
-  complaint theme        volume   age span     do WE fix it?
-  ---------------------  -------  -----------  -------------------------
-  pricing / licensing    LOUDEST  2011-2026    indirectly (own-hardware,
-                                               open engine = no meter)
-  memory / RAM / OOM     high     2015-2026    YES — the core product
-  slow (OLTP queries)    high     2013-2026    NO (we are OLAP-only;
-                                               must say so loudly)
-  reliability / JVM ops  medium   2011-2022    partly (static binary,
-                                               fixed arena, no GC)
-  can't scale out        medium   2015-2026    sidestepped (scale-UP via
-                                               disk, not scale-OUT)
-  vendor trust           medium   2018-2026    YES by being boring: open
-                                               format, receipt, no meter
-```
+| Complaint theme | Volume | Age span | Do WE fix it? |
+|-----------------|--------|----------|----------------|
+| Pricing / licensing | **Loudest** | 2011-2026 | Indirectly — own-hardware, open engine, no meter |
+| Memory / RAM / OOM | High | 2015-2026 | **YES — the core product** |
+| Slow (OLTP queries) | High | 2013-2026 | **NO** — we are OLAP-only, and must say so loudly |
+| Reliability / JVM ops | Medium | 2011-2022 | Partly — static binary, fixed arena, no GC |
+| Can't scale out | Medium | 2015-2026 | Sidestepped — scale-UP via disk, not scale-OUT |
+| Vendor trust | Medium | 2018-2026 | YES, by being boring: open format, receipt, no meter |
 
 Two product lessons the wide log adds beyond the GDS-specific passes:
 
-1. **Pricing/licensing resentment is the emotional carrier wave.** The
-   RAM receipt lands harder because the audience already distrusts the
-   meter. The pitch order should be: no meter -> no projection ->
-   receipt -> algorithms.
-2. **We must explicitly NOT claim to fix the top-volume complaint we
-   don't address** (OLTP query slowness / Cypher performance). Being
-   loudly OLAP-only converts a scope limit into credibility with an
-   audience primed to smell overclaiming.
+1. **Pricing/licensing resentment is the emotional carrier wave.** The RAM
+   receipt lands harder because the audience already distrusts the meter.
+   The pitch order should therefore be: *no meter → no projection → receipt
+   → algorithms.*
+2. **We must explicitly NOT claim to fix the top-volume complaint we don't
+   address** (OLTP query slowness / Cypher performance). Being loudly
+   OLAP-only converts a scope limitation into credibility with an audience
+   primed to smell overclaiming. Positioning by exclusion is still
+   positioning — often the strongest kind.
 
 ---
 
 ## 8. The badges (Shreyas Doshi lens): what we get to wear that they can't
 
-Ranked by defensibility x evidence weight from sections 2-7.
+Shreyas distinguishes three levels of differentiation: **execution-level**
+(you do the same thing better — copyable in quarters), **feature-level**
+(you have something they lack — copyable in a year), and **insight-level**
+(your advantage flows from something the competitor *cannot* adopt without
+damaging themselves — durable). The badges below are ranked by that ladder,
+weighted by the evidence of Sections 2-7.
 
-```
-  #  badge                        why it's ours          evidence base
-  -- ---------------------------  ---------------------  ---------------
-  1  "THE BILL BEFORE THE RUN"    insight-level moat:    E1, E5-E7;
-     exact RAM + wall-clock from  Neo4j can't sell it    Louvain code
-     1 KB of metadata, before a   without breaking the   comment "rough
-     byte is read                 GB-hour meter; their   estimate";
-                                  own estimator admits   Arch06 ex.7
-                                  imprecision            (time receipt)
-  2  "NO PROJECTION STEP"         vendor-confirmed       E2, E3, E16,
-     the wall every evidence      structural: "no        E17; funnel
-     pass converged on            option to spill to     hypothesis
-                                  disk" (their eng.);    (sec. 6.3)
-                                  "defeats the purpose
-                                  of using a database"
-                                  (their user)
-  3  "FINISHES ON THE MACHINE     rides the loudest      110-254 GB
-     YOU OWN"                     emotional theme        sessions ->
-     the money badge              (meter resentment,     8-16 GB box;
-                                  2011-2026) — but is    sec. 7.4;
-                                  DERIVATIVE of #1+#2:   GraphChi
-                                  streaming alone gets   rebuttal noted
-                                  "solved in 2012";      in sec. 4
-                                  the receipt makes it
-                                  a product
-  4  "LOUDLY OLAP-ONLY"           positioning by         sec. 7.8:
-     a negative badge:            exclusion — refusing   OLTP slowness
-     we do NOT fix their          to overclaim buys      is high-volume
-     biggest complaint            credibility with an    and NOT ours
-     (OLTP/Cypher slowness)       audience primed to
-                                  smell overclaiming
-  5  "BORING AND TRUSTWORTHY"     speaks to the vendor-  sec. 7.4 (D4,
-     open format, static Rust     trust wound (license   D5), 7.3 (C3:
-     binary, no GC, no license    litigation, bait-and-  JVM toolchain
-     bait-and-switch              switch resentment) —   pain)
-                                  real but table-stakes
-                                  hygiene, not a moat
-```
+| # | Badge | Why it's ours | Differentiation level | Evidence base |
+|---|-------|---------------|----------------------|---------------|
+| 1 | **"THE BILL BEFORE THE RUN"** — exact RAM + wall-clock computed from ~1 KB of metadata, before a byte is read | Neo4j cannot sell certainty without breaking the GB-hour meter; their own Louvain estimator source comments "rough estimate of graph size" | **Insight-level** — uncopyable for *business* reasons, not technical ones | E1 [[1]](#references), E5-E7 [[5]](#references)[[6]](#references)[[7]](#references); GDS Louvain source (Arch06); Arch06 ex. 7 (time receipt) |
+| 2 | **"NO PROJECTION STEP"** — the wall every evidence pass converged on | Vendor-confirmed structural: *"no option to spill to disk"* (their engineer); *"defeats the purpose of using a database"* (their user) | Feature-level today; hard to retrofit into a JVM heap architecture | E2 [[2]](#references), E3/E16 [[3]](#references), E17 [[17]](#references); funnel hypothesis (§6.3) |
+| 3 | **"FINISHES ON THE MACHINE YOU OWN"** — the money badge | Rides the loudest emotional theme (meter resentment, 2011-2026) — but is *derivative* of #1+#2: streaming alone earns the "solved in 2012" rebuttal; the receipt is what makes it a product | Feature-level | 110-254 GB sessions → 8-16 GB box; §7.4; GraphChi rebuttal (§4, P2) |
+| 4 | **"LOUDLY OLAP-ONLY"** — a negative badge: we do NOT fix their biggest complaint (OLTP/Cypher slowness) | Positioning by exclusion — refusing to overclaim buys credibility with an audience primed to smell overclaiming | Positioning-level | §7.8: OLTP slowness is high-volume and explicitly not ours |
+| 5 | **"BORING AND TRUSTWORTHY"** — open format, static Rust binary, no GC, no license bait-and-switch | Speaks to the vendor-trust wound (license litigation, bait-and-switch resentment) | Table-stakes hygiene, not a moat | §7.4 (D4 [[33]](#references), D5 [[36]](#references)); §7.3 (C3 [[31]](#references): JVM toolchain pain) |
 
-Pitch order the evidence supports:
+The pitch order the evidence supports:
 
-```
-  no meter  ->  no projection  ->  the receipt  ->  algorithms
-  (why care)    (what's gone)      (the proof)      (the proof points)
-```
+> **no meter** (why care) → **no projection** (what's gone) → **the receipt**
+> (the proof) → **algorithms** (the proof points)
 
-Badge discipline: #1 is the only badge that is uncopyable for BUSINESS
-reasons rather than technical ones — everything else a well-funded
-competitor could ship in quarters. Product decisions should be scored
-by whether they strengthen the receipt (byte-honest, cgroup-verified,
-time-quoted) before anything else.
+**Badge discipline.** Badge #1 is the only one that is uncopyable for
+*business* rather than technical reasons — everything else a well-funded
+competitor could ship within quarters. Therefore every product decision
+should be scored first by a single question: *does this strengthen the
+receipt* (byte-honest, cgroup-verifiable, time-quoted)? A feature that makes
+the receipt fuzzier is a strategic loss regardless of how much it helps
+elsewhere.
 
 ---
 
 ## 9. Competitive landscape: why is the low-RAM turf empty?
 
-Wide sweep (GitHub API for stars/liveness, checked 2026-07) of every
-notable graph engine, grouped by what it is FOR. Question asked of
-each: does it occupy our turf — bounded-RAM, disk-streaming analytics
-with a cost receipt?
+The Shreyas move here is to treat an empty market as a **question, not a
+gift**. Empty turf means one of two things: nobody wants it (a graveyard),
+or everyone who could occupy it has a structural reason not to (an
+opportunity). Distinguishing the two requires going far and wide — so this
+pass swept every notable graph engine, library, and platform, using the
+GitHub API for stars and liveness (checked 2026-07). The question asked of
+each: *does it occupy our turf — bounded-RAM, disk-streaming analytics with
+a cost receipt?*
 
 ### 9.1 The table
 
-```
-  tool (stars, last push)     primarily used for       on our turf?
-  --------------------------  -----------------------  ------------------
-  GRAPH DATABASES (OLTP-first, query languages, transactions)
-  Neo4j                       property-graph OLTP +    NO — the incumbent
-                              GDS in-heap analytics    whose wall we fix
-  Dgraph (21.7k, active)      distributed OLTP,        NO — scale-OUT
-                              GraphQL-native           answer, not low-RAM
-  NebulaGraph (12.3k, act.)   distributed OLTP at      NO — same
-                              billion-edge scale
-  ArangoDB (14.2k, active)    multi-model (doc+graph)  NO
-  JanusGraph (5.8k, active)   distributed OLTP over    NO — RAM-heavy,
-                              Cassandra/HBase          ops-heavy
-  Memgraph (4.2k, active)     IN-memory OLTP+streams   OPPOSITE turf —
-                              (pitched for GraphRAG)   doubles down on RAM
-  FalkorDB (4.7k, active)     sparse-matrix Cypher     NO — in-memory,
-                              (GraphBLAS), RAG focus   latency-first
-  Kuzu (4.0k, ARCHIVED)       embedded OLAP graph DB,  CLOSEST DB — but
-                              columnar, out-of-core    company died Oct
-                              joins                    2025 (Apple acqui-
-                                                       hire); repo frozen
-  Apache AGE (4.7k, active)   Cypher inside Postgres   NO — convenience,
-                                                       not scale; algos
-                                                       are basic
-  DuckPGQ (0.4k, active)      SQL/PGQ graph queries    ADJACENT — DuckDB
-                              in DuckDB                ethos = ours, but
-                                                       pattern matching,
-                                                       not iterative algos
-  TuGraph (1.7k, active)      Ant Group's graph DB     NO
+#### Graph databases (OLTP-first: query languages, transactions)
 
-  ANALYTICS LIBRARIES (bring your own RAM, no storage story)
-  igraph (2.0k, active)       C library w/ R/Python;   NO — in-RAM only;
-                              academia's workhorse     dies where we start
-  NetworKit (0.9k, active)    parallel in-RAM network  NO — same
-                              science (C++/Python)
-  NetworkX (huge, active)     pure-Python teaching/    NO — 10-100x slower
-                              prototyping standard     than igraph even
-                                                       in-RAM
-  SNAP (2.3k, dormant)        Stanford's C++ library   NO — in-RAM
-  GBBS/Ligra (academic)       shared-memory parallel   NO — assumes the
-                              algorithm suites         graph fits
-  cuGraph (2.2k, active)      GPU graph analytics      NO — needs GPU +
-                              (RAPIDS)                 VRAM budget; the
-                                                       vertical-scaling
-                                                       answer on a card
+| Tool (stars, status) | Primarily used for | On our turf? |
+|----------------------|--------------------|--------------|
+| Neo4j [[45]](#references) + GDS [[46]](#references) | Property-graph OLTP + in-heap analytics | **NO** — the incumbent whose wall we fix |
+| Dgraph (21.7k, active) [[47]](#references) | Distributed OLTP, GraphQL-native | NO — scale-OUT answer, not low-RAM |
+| NebulaGraph (12.3k, active) [[48]](#references) | Distributed OLTP at billion-edge scale | NO — same |
+| ArangoDB (14.2k, active) [[49]](#references) | Multi-model (document + graph) | NO |
+| JanusGraph (5.8k, active) [[50]](#references) | Distributed OLTP over Cassandra/HBase | NO — RAM-heavy, ops-heavy |
+| Memgraph (4.2k, active) [[51]](#references) | **In-memory** OLTP + streams (pitched for GraphRAG) | **OPPOSITE turf** — doubles down on RAM |
+| FalkorDB (4.7k, active) [[52]](#references) | Sparse-matrix Cypher (GraphBLAS), RAG focus | NO — in-memory, latency-first |
+| Kuzu (4.0k, **ARCHIVED**) [[53]](#references) | Embedded OLAP graph DB, columnar, out-of-core joins | **CLOSEST DB** — but the company died Oct 2025 (Apple acqui-hire [[54]](#references)); repo frozen |
+| Apache AGE (4.7k, active) [[55]](#references) | Cypher inside Postgres | NO — convenience, not scale; algorithms basic |
+| DuckPGQ (0.4k, active) [[56]](#references) | SQL/PGQ graph queries in DuckDB | **ADJACENT** — DuckDB ethos = ours, but pattern matching, not iterative algorithms |
+| TuGraph (1.7k, active) [[57]](#references) | Ant Group's graph DB | NO |
 
-  OUT-OF-CORE ENGINES (our technical ancestors)
-  GraphChi (0.8k, DEAD 2019)  the OSDI'12 proof that   YES technically —
-                              a laptop can do 1B+      but research code,
-                              edges via disk           no product, no
-                                                       receipt, JVM/C++
-  X-Stream, GridGraph,        2013-2015 academic       YES technically —
-  FlashGraph, Mosaic          out-of-core systems      all unmaintained
-                                                       paper artifacts
-  GraphScope (3.6k, active)   Alibaba's one-stop       NO — cluster-scale
-                              distributed graph        answer (scale-OUT)
-                              computing
+#### Analytics libraries (bring your own RAM; no storage story)
 
-  PAID PLATFORMS
-  TigerGraph                  enterprise distributed   NO — scale-out MPP,
-                              analytics               enterprise $$
-  AWS Neptune (+Analytics)    managed OLTP + RAM-      NO — SAME meter:
-                              provisioned analytics    m-NCU = memory-
-                                                       metered billing
-  Aura Graph Analytics        Neo4j's metered GDS      the thing itself
-```
+| Tool (stars, status) | Primarily used for | On our turf? |
+|----------------------|--------------------|--------------|
+| igraph (2.0k, active) [[58]](#references) | C library with R/Python bindings; academia's workhorse | NO — in-RAM only; **dies where we start** |
+| NetworKit (0.9k, active) [[59]](#references) | Parallel in-RAM network science (C++/Python) | NO — same |
+| NetworkX (huge, active) [[60]](#references) | Pure-Python teaching/prototyping standard | NO — 10-100x slower than igraph even in-RAM |
+| SNAP (2.3k, dormant) [[61]](#references) | Stanford's C++ library | NO — in-RAM |
+| GBBS [[62]](#references) / Ligra [[63]](#references) (academic) | Shared-memory parallel algorithm suites | NO — assumes the graph fits |
+| cuGraph (2.2k, active) [[64]](#references) | GPU graph analytics (RAPIDS) | NO — needs GPU + VRAM budget; the vertical-scaling answer on a card |
 
-#### 9.1.1 Reference URLs (repo/product pages for every row above)
+#### Out-of-core engines (our technical ancestors)
 
-- Neo4j: https://github.com/neo4j/neo4j and GDS: https://github.com/neo4j/graph-data-science
-- Dgraph: https://github.com/hypermodeinc/dgraph
-- NebulaGraph: https://github.com/vesoft-inc/nebula
-- ArangoDB: https://github.com/arangodb/arangodb
-- JanusGraph: https://github.com/JanusGraph/janusgraph
-- Memgraph: https://github.com/memgraph/memgraph
-- FalkorDB: https://github.com/FalkorDB/FalkorDB
-- Kuzu (archived): https://github.com/kuzudb/kuzu
-- Apache AGE: https://github.com/apache/age
-- DuckPGQ: https://github.com/cwida/duckpgq-extension
-- TuGraph: https://github.com/TuGraph-family/tugraph-db
-- igraph: https://github.com/igraph/igraph
-- NetworKit: https://github.com/networkit/networkit
-- NetworkX: https://github.com/networkx/networkx
-- SNAP: https://github.com/snap-stanford/snap
-- GBBS: https://github.com/ParAlg/gbbs ; Ligra: https://github.com/jshun/ligra
-- cuGraph: https://github.com/rapidsai/cugraph
-- GraphChi: https://github.com/GraphChi/graphchi-cpp
-  (paper: https://www.usenix.org/system/files/conference/osdi12/osdi12-final-126.pdf)
-- GridGraph paper: https://www.usenix.org/system/files/conference/atc15/atc15-paper-zhu.pdf
-- X-Stream paper: https://dl.acm.org/doi/10.1145/2517349.2522740
-- FlashGraph: https://github.com/flashxio/FlashX
-- Mosaic paper: https://dl.acm.org/doi/10.1145/3064176.3064191
-- GraphScope: https://github.com/alibaba/GraphScope
-- TigerGraph: https://www.tigergraph.com/
-- AWS Neptune Analytics (m-NCU pricing): https://aws.amazon.com/neptune/pricing/
-- Neo4j Aura Graph Analytics pricing: https://neo4j.com/pricing/
-- Kuzu shutdown/acqui-hire discussion: https://news.ycombinator.com/item?id=44383243
+| Tool (status) | Primarily used for | On our turf? |
+|---------------|--------------------|--------------|
+| GraphChi (0.8k, **DEAD** since 2019) [[65]](#references) | The OSDI'12 proof [[66]](#references) that a laptop can process billion-edge graphs via disk | **YES technically** — but research code: no product, no receipt, JVM/C++ |
+| X-Stream [[67]](#references), GridGraph [[68]](#references), FlashGraph [[69]](#references), Mosaic [[70]](#references) | 2013-2017 academic out-of-core systems | **YES technically** — all unmaintained paper artifacts |
+| GraphScope (3.6k, active) [[71]](#references) | Alibaba's one-stop distributed graph computing | NO — cluster-scale answer (scale-OUT) |
+
+#### Paid platforms
+
+| Tool | Primarily used for | On our turf? |
+|------|--------------------|--------------|
+| TigerGraph [[72]](#references) | Enterprise distributed analytics | NO — scale-out MPP, enterprise $$ |
+| AWS Neptune + Neptune Analytics [[74]](#references) | Managed OLTP + RAM-provisioned analytics | NO — **the SAME meter**: m-NCU = memory-metered billing |
+| Neo4j Aura Graph Analytics [[75]](#references) | Neo4j's metered GDS | The thing itself |
 
 ### 9.2 The Shreyas answer: WHY the turf is empty
 
-Not because it's impossible — GraphChi proved the physics in 2012 and
-then DIED. The turf is empty because every player faces a structural
-reason not to stand on it:
+Not because it is impossible — GraphChi proved the physics in **2012**
+[[66]](#references), and then died. The turf is empty because **every class
+of player faces a structural, self-interested reason not to stand on it**.
+This is the pattern Shreyas calls out when he distinguishes "nobody has done
+it" (a warning) from "everybody is incentivized not to do it" (an
+invitation):
 
-```
-  player class      why they won't build low-RAM + receipt
-  ----------------  --------------------------------------------------
-  incumbents        their REVENUE is the RAM meter (Aura GB-hours,
-  (Neo4j, Neptune)  Neptune m-NCUs). certainty cannibalizes the meter.
-  in-memory         their PITCH is latency; admitting disk is fine for
-  challengers       analytics undermines their one differentiator.
-  (Memgraph etc.)
-  libraries         no storage layer at all — "bring your own RAM" is
-  (igraph, cuGraph) the design, cost estimation is out of scope.
-  academia          papers reward novel algorithms, not receipts,
-  (GraphChi line)   packaging, or maintenance. code dies at tenure.
-  scale-out camp    the 2015-2020 zeitgeist said the answer to big
-  (Dgraph, Nebula,  graphs is MORE MACHINES. an entire generation of
-  GraphScope)       funding went to horizontal, none to frugal.
-  Kuzu (the one     validated the adjacent turf (embedded, columnar,
-  that got close)   out-of-core JOINS) — then got acqui-hired before
-                    reaching iterative-analytics-with-receipt.
-```
+| Player class | Why they won't build low-RAM + receipt |
+|--------------|----------------------------------------|
+| Incumbents (Neo4j, Neptune) | Their **revenue IS the RAM meter** (Aura GB-hours, Neptune m-NCUs). Certainty cannibalizes the meter. Asking them to ship the receipt is asking them to un-invent their own billing model. |
+| In-memory challengers (Memgraph, FalkorDB) | Their **pitch is latency**. Admitting that disk is fine for analytics undermines their one differentiator against Neo4j. |
+| Libraries (igraph, NetworKit, cuGraph) | **No storage layer exists at all** — "bring your own RAM" is the design. Cost estimation is out of scope by construction. |
+| Academia (the GraphChi line) | Papers reward novel algorithms, not receipts, packaging, or decade-long maintenance. **Code dies at tenure.** |
+| The scale-out camp (Dgraph, Nebula, GraphScope) | The 2015-2020 zeitgeist said the answer to big graphs is MORE MACHINES. An entire funding generation went to horizontal scaling; none went to frugality. |
+| Kuzu — the one that got close | Validated the adjacent turf (embedded, columnar, out-of-core JOINS) — then was acqui-hired [[54]](#references) before ever reaching iterative-analytics-with-a-receipt. The near-miss that proves the demand and vacates the seat simultaneously. |
 
-The five-forces reading: the technique is public and 13 years old; the
-GAP is a product gap (receipt, bounded arena, algorithm plans) plus a
-business-model gap (nobody with distribution is INCENTIVIZED to sell
-RAM-frugality). That second gap is the moat — same conclusion as
-section 8, reached from the competitor side.
+The five-forces reading: the *technique* is public and thirteen years old;
+the GAP is a **product gap** (receipt, bounded arena, per-algorithm access
+plans) compounded by a **business-model gap** (nobody with distribution is
+*incentivized* to sell RAM-frugality). That second gap is the moat — the
+same conclusion Section 8 reached from the badge side, now confirmed from
+the competitor side. When two independent analyses converge on the same
+moat, Shreyas would say you have found your strategy kernel.
 
-Differentiation one-liner per near-neighbor:
-- vs igraph/NetworKit: "we start where they OOM; they have no disk story."
-- vs cuGraph: "no GPU required; our budget is the receipt, not VRAM."
-- vs Kuzu (RIP): "they proved embedded-OLAP demand; we add iterative
-  algorithms + the receipt, in maintained form."
-- vs DuckPGQ: "same ethos, different layer: they query patterns, we run
-  iterative analytics. potential ALLY (export sink), not rival."
-- vs GraphChi lineage: "they are our physics citation, not a rival:
+### 9.3 Differentiation one-liners per near-neighbor
+
+- **vs igraph/NetworKit:** "We start where they OOM; they have no disk story."
+- **vs cuGraph:** "No GPU required; our budget is the receipt, not VRAM."
+- **vs Kuzu (RIP):** "They proved embedded-OLAP demand; we add iterative
+  algorithms plus the receipt, in maintained form."
+- **vs DuckPGQ:** "Same ethos, different layer: they query patterns, we run
+  iterative analytics. Potential ALLY (export sink), not rival."
+- **vs the GraphChi lineage:** "They are our physics citation, not a rival:
   dead code, no estimation, no product."
-- vs Neo4j/Neptune: "they cannot copy the receipt without breaking the
+- **vs Neo4j/Neptune:** "They cannot copy the receipt without breaking the
   meter."
 
 ---
 
-## 10. Notes from external LLM deep-research pass (user-supplied)
+## 10. Notes from an external LLM deep-research pass (user-supplied)
 
-A parallel deep-research report (independent LLM with web search,
-2026-07) was reviewed against our catalog. Items below extend sections
-2-7; its citation links were not exported with the text, so items are
-marked [ext-unverified] until re-sourced — directionally consistent
-with our verified base.
+A parallel deep-research report (independent LLM with web search, 2026-07)
+was reviewed against our catalog. Items below extend Sections 2-7. The
+report's citation links were not exported with its text, so a re-sourcing
+pass (2026-07) was run by us: items we could independently locate now carry
+URLs and are marked **VERIFIED**; the rest remain **[ext-unverified]** and
+must not be used in public material until sourced.
 
 ### 10.1 New pain anecdotes worth keeping
 
-Re-sourcing pass (2026-07): items we could independently locate now
-carry URLs and are VERIFIED; the rest stay [ext-unverified].
-
-- [VERIFIED] Aura FREE-TIER user OOM'd on `gds.graph.project()` while
-  following Neo4j's own Graph Academy GDS-fundamentals course:
-  https://community.neo4j.com/t/using-gds-graph-project-on-auradb-free-tier/76520
-  ("it is stated that it is possible to use AuraDB free tier for the
-  course. However, I have found this not to be true.")
-- [VERIFIED] NodeSimilarity blocked: "Procedure was blocked since
-  minimum estimated memory (130 GiB) exceeds current free memory
-  (24 GiB)" — on a graph they then shrank to 2,594 nodes and STILL
-  hit a 54 GiB estimate; "motivating us to look elsewhere for scale":
-  https://community.neo4j.com/t/comparing-jaccard-similarity-neo4j-3-4-to-node-similarity-on-neo4j-3-5-and-gds-1-1-1/37205
-- [VERIFIED] `gds.graph.drop` does NOT return memory to the OS (JVM GC
-  behavior) — user forced into stop/start restarts to reclaim RAM:
-  https://community.neo4j.com/t/when-i-drop-the-memory-graph-my-memory-usage-does-not-change/67604
-  New complaint class for us: our munmap actually releases.
-- [VERIFIED, adjacent] Louvain run taking 5 hours and >70 GB heap on a
-  60 GiB store (community 3.5, algo.louvain):
-  https://stackoverflow.com/questions/60050083/how-to-reduce-the-running-time-and-memory-utilization-of-the-louvain-algorithm-i
-- [ext-unverified] K8s sidecar with 120 GB provisioned still
-  OOM-crashed at ~40 GB used — manual JVM threshold management fails
-  even with headroom. (Could not locate the original post.)
-- [ext-unverified] Delta-stepping OOM'd with 12 GB heap on a 63k-node
-  graph. (Could not locate; nearest verified path-OOM evidence remains
-  E18/E19, GDS GitHub issues #55/#54.)
-- [ext-unverified] Louvain on Yelp dataset: DB corruption + ~23 GB
-  consumption. (Could not locate; the SO post above is the closest
-  verified analog.)
-- [ext-unverified] Aura pricing quotes: "$70k a year isn't even nearly
-  competitive"; Neptune claimed ~1/6th the price at similar
-  provisioning (flagged by the report itself as workload-dependent).
-- [ext-unverified] Workaround culture: projecting node IDs only and
-  re-MATCHing attributes — trading the memory wall for an I/O latency
-  wall.
+| Status | Anecdote |
+|--------|----------|
+| **VERIFIED** | An Aura **free-tier** user OOM'd on `gds.graph.project()` while following Neo4j's *own* Graph Academy GDS-fundamentals course: *"it is stated that it is possible to use AuraDB free tier for the course. However, I have found this not to be true."* [[76]](#references) The vendor's teaching material does not run on the vendor's entry-level product. |
+| **VERIFIED** | NodeSimilarity blocked outright: *"Procedure was blocked since minimum estimated memory (130 GiB) exceeds current free memory (24 GiB)"* — on a graph the user then shrank to 2,594 nodes and **still** received a 54 GiB estimate; *"motivating us to look elsewhere for scale."* [[73]](#references) A direct, algorithm-named hit that partially fills the §6.2 evidence gap. |
+| **VERIFIED** | `gds.graph.drop` does **not** return memory to the OS (JVM GC behavior) — the user is forced into stop/start restarts to reclaim RAM [[77]](#references). A new complaint class for us: our munmap actually releases. |
+| **VERIFIED** (adjacent find) | A Louvain run taking 5 hours and >70 GB of heap on a 60 GiB store (community edition 3.5) [[78]](#references). |
+| [ext-unverified] | K8s sidecar with 120 GB provisioned still OOM-crashed at ~40 GB used — manual JVM threshold management fails even with headroom. (Could not locate the original post.) |
+| [ext-unverified] | Delta-stepping OOM'd with a 12 GB heap on a 63k-node graph. (Could not locate; nearest verified path-OOM evidence remains E18/E19 [[18]](#references)[[19]](#references).) |
+| [ext-unverified] | Louvain on the Yelp dataset: DB corruption + ~23 GB consumption. (Could not locate; the SO post above [[78]](#references) is the closest verified analog.) |
+| [ext-unverified] | Aura pricing quotes: *"$70k a year isn't even nearly competitive"*; Neptune claimed ~1/6th the price at similar provisioning (flagged by the report itself as workload-dependent). |
+| [ext-unverified] | Workaround culture: projecting node IDs only and re-MATCHing attributes — trading the memory wall for an I/O latency wall. |
 
 ### 10.2 GraphRAG cost-split confirmation
 
-The report independently reaches our section 3 correction: LLM token
-cost dominates GraphRAG, BUT the Leiden/community phase is the
-CPU/RAM-bound slice, unstable on dense graphs, and re-runs from
-scratch on every re-index (stochastic, seed-dependent — one cited team
-proposed k-core decomposition just to get determinism). Two additions:
-- Microsoft GraphRAG reportedly drops ~10% of entities because Leiden
-  discards weakly-connected/isolated nodes — an ACCURACY complaint
-  against the incumbent pipeline, useful for our exactness-flags story.
-- "GraphRAG is 20-100x more expensive than vector RAG" — the indexing
-  phase is the adoption blocker we relieve (the graph-compute slice).
+The external report independently reaches our Section 3 correction: LLM
+token cost dominates GraphRAG, BUT the Leiden/community-detection phase is
+the CPU/RAM-bound slice, unstable on dense graphs, and re-runs from scratch
+on every re-index (stochastic and seed-dependent — one cited team proposed
+k-core decomposition just to obtain determinism). Two additions worth
+keeping:
+
+- Microsoft GraphRAG reportedly drops **~10% of entities** because Leiden
+  discards weakly-connected/isolated nodes — an *accuracy* complaint against
+  the incumbent pipeline, directly useful for our exactness-flags story.
+  [ext-unverified]
+- "GraphRAG is 20-100x more expensive than vector RAG" — the indexing phase
+  is the adoption blocker we relieve (the graph-compute slice).
+  [ext-unverified]
 
 ### 10.3 Incumbent-response scenarios (adopted into our planning)
 
-The report's Neo4j counter-move forecast, kept as planning input:
-1. FUD via latency benchmarks conflating OLTP with batch analytics —
-   pre-answered by our "loudly OLAP-only" badge (sec. 7.8/8).
-2. "Serverless" pricing tiers that HIDE the RAM meter rather than
-   remove it — obfuscation, not architecture; the receipt is the
-   counter-story.
-3. Apache Arrow off-ramp: position Neo4j as the storage hub, push
-   compute to Polars/DuckDB/cuGraph — this validates the EXPORT
-   sidecar as our critical wedge (sec. 5 journey risk).
-4. If disruptive: acquisition attempt ("cold-storage analytics tier
-   under GDS").
+The report's forecast of Neo4j counter-moves, kept as planning input and
+mapped to our pre-prepared answers:
+
+1. **FUD via latency benchmarks** conflating OLTP with batch analytics —
+   pre-answered by the "loudly OLAP-only" badge (§7.8, §8).
+2. **"Serverless" pricing tiers that HIDE the RAM meter** rather than remove
+   it — obfuscation, not architecture; the receipt is the counter-story.
+3. **An Apache Arrow off-ramp**: position Neo4j as the storage hub and push
+   compute out to Polars/DuckDB/cuGraph — which would *validate* the export
+   sidecar as our critical wedge (§4, P1 journey risk).
+4. If genuinely disruptive: an **acquisition attempt** ("cold-storage
+   analytics tier under GDS").
 
 ### 10.4 Segments (matches ours, one addition)
 
-Report's top-3 segments = ours (GraphRAG builders; mid-market data
-engineers with nightly ETL; academics/bioinformaticians). Addition
-worth keeping: LOCAL AI agents on consumer hardware — an embedded,
-16 GB-class buyer where Aura is disqualified outright.
+The report's top-3 segments match ours exactly — GraphRAG builders;
+mid-market data engineers with nightly ETL; academics/bioinformaticians.
+One addition worth keeping: **local AI agents on consumer hardware** — an
+embedded, 16 GB-class buyer for whom Aura is disqualified outright.
 
 ### 10.5 Methodological flags (theirs and ours)
 
-The report itself flags: the Neptune 1/6th-price and "custom Rust DB =
-1000x" claims are workload-dependent folklore. We additionally flag:
-the report's citation links were not exported, so a re-sourcing pass
-(2026-07) was run: four 10.1 items are now independently VERIFIED with
-URLs; the remainder stay [ext-unverified] and must not be used in
-public material until sourced. The core memory-wall thesis, however,
-is now triangulated three independent ways: our API sweeps (sec. 2, 6,
-7), GDS source code (Arch06), and this external pass.
+The report itself flags that the Neptune-1/6th-price and "custom Rust DB =
+1000x" claims are workload-dependent folklore. We additionally flag: the
+report's citation links were not exported, so our re-sourcing pass verified
+four §10.1 items with URLs; the remainder stay [ext-unverified] and are
+quarantined from public use. The core memory-wall thesis, however, is now
+**triangulated three independent ways**: our own API sweeps (§2, §6, §7),
+the GDS source code itself (Arch06), and this external pass. Triangulation
+of this kind is the closest a pre-build product can get to proof.
+
+---
+
+## 11. References
+
+Every URL cited in this document, numbered in order of first appearance.
+
+### Neo4j Community Forum (first pass)
+
+1. "How to efficiently cluster nodes using GDS with limited memory (16 GB RAM)" — https://community.neo4j.com/t/how-to-efficiently-cluster-nodes-using-gds-with-limited-memory-16-gb-ram/71073
+2. "What library to use instead GDS when graph db is too big to project in memory?" — https://community.neo4j.com/t/what-library-to-use-instead-gds-when-graph-db-is-too-big-to-project-in-memory/55821
+3. "GDS algorithms without a projection" — https://community.neo4j.com/t/gds-algorithms-without-a-projection/73039
+4. "What is the ideal heap memory size for GDS in Neo4j" — https://community.neo4j.com/t/what-is-the-ideal-heap-memory-size-for-gds-in-neo4j/76311
+5. "Memory Limit on graph projection" — https://community.neo4j.com/t/memory-limit-on-graph-projection/61567
+6. "How can I load a very large dataset with limited memory?" — https://community.neo4j.com/t/how-can-i-load-a-very-large-dataset-with-limited-memory/59189
+7. "GDS ShortestPath memory consumption" — https://community.neo4j.com/t/gds-shortestpath-memory-consumption/58340
+
+### Hacker News (pricing / RAM resentment)
+
+8. Pricing "heart attack" thread (2019) — https://news.ycombinator.com/item?id=18797980
+9. "10% of our ARR" / centralized-graph pricing (2021) — https://news.ycombinator.com/item?id=27544889
+10. "chose vanilla Postgres instead... insane licenses" (2020) — https://news.ycombinator.com/item?id=22485576
+11. "pretty much required that data fits in memory" (2015) — https://news.ycombinator.com/item?id=8899483
+12. "GraphRAG preprocessing is insanely expensive" (2025) — https://news.ycombinator.com/item?id=45063386
+13. GraphRAG cost explainer reply — https://news.ycombinator.com/item?id=45068902
+14. "you have to deal with Neo4j and who wants that" (2025) — https://news.ycombinator.com/item?id=46347143
+
+### Stack Overflow (first pass)
+
+15. "How can I create graph Projections in Neo4J for a very large graph" — https://stackoverflow.com/questions/79650281/how-can-i-create-graph-projections-in-neo4j-for-a-very-large-graph
+16. "Keep a projected graph in sync with persisted graph in Neo4j GDS" — https://stackoverflow.com/questions/73258583/keep-a-projected-graph-in-synch-with-persisted-graph-in-neo4j-gds
+
+### Second pass (other four families)
+
+17. "Is there any way to create a graph projection if your graph is too big to fit in memory?" — https://stackoverflow.com/questions/69092539
+18. GDS GitHub issue #55: shortestPath OutOfMemoryError — https://github.com/neo4j/graph-data-science/issues/55
+19. GDS GitHub issue #139: personalized PageRank "unable to create native thread" — https://github.com/neo4j/graph-data-science/issues/139
+20. FastRP usage-confusion thread — https://community.neo4j.com/t/dgs-fastrp-write-returns-failed-to-invoke-procedure-gds-fastrp-write-caused-by-java-l/51294
+
+### Aggregate log — Hacker News (2011-2026)
+
+21. A1: memory-consumption wariness, Series F thread — https://news.ycombinator.com/item?id=27543721
+22. A2: ex-insider on Java memory-mapping issues — https://news.ycombinator.com/item?id=31509341
+23. A3: 32-billion-ID ceiling — https://news.ycombinator.com/item?id=33918730
+24. B1: "nightmares with Cypher and neo4j's slowness" — https://news.ycombinator.com/item?id=48647551
+25. B2: "slower for graphs than postgres, just with a nicer UI" — https://news.ycombinator.com/item?id=27544079
+26. B3: "Neo4j is dead slow" (2013) — https://news.ycombinator.com/item?id=6693003
+27. B4: "freaking slow when I tried to use it" (2025) — https://news.ycombinator.com/item?id=48581477
+28. B5: slower than a normal vector DB — https://news.ycombinator.com/item?id=37871190
+29. C1: "least reliable and most buggy database" (2015) — https://news.ycombinator.com/item?id=9699964
+30. C2: ConceptNet author, "lost months of work" (on 2011 Neo4j) — https://news.ycombinator.com/item?id=9700558
+31. C3: "crashed constantly... Java SDK versions" — https://news.ycombinator.com/item?id=33916804
+32. D3: "very expensive if you want to use it in a cluster" — https://news.ycombinator.com/item?id=7804908
+33. D4: "bait and switch with the license model" — https://news.ycombinator.com/item?id=33916759
+34. Neo4j v PureThink / AGPL litigation thread (2022) — https://news.ycombinator.com/item?id=30726286
+35. Neo4j v PureThink follow-up thread (2023) — https://news.ycombinator.com/item?id=34763955
+36. D5: sales-side, "totally inflexible... outdated licensing model" — https://news.ycombinator.com/item?id=33918651
+37. F1: "execution model which is not scalable at all" (2022 layoffs thread) — https://news.ycombinator.com/item?id=33916259
+38. F2: "You can't shard it" — https://news.ycombinator.com/item?id=33919132
+39. F3: "Trillion Relationship Graph" debunking thread — https://news.ycombinator.com/item?id=28707310
+40. G1: "migrating off Neo4j/OngDB to Postgres" — https://news.ycombinator.com/item?id=33916848
+41. G3a: alternatives-comparison thread — https://news.ycombinator.com/item?id=43202780
+42. G3b: alternatives-comparison thread — https://news.ycombinator.com/item?id=48358865
+43. Counter-log: "exact opposite experience with N4j" — https://news.ycombinator.com/item?id=33917206
+44. Counter-log: GDS algorithms praised — https://news.ycombinator.com/item?id=41269987
+
+### Competitive landscape (Section 9)
+
+45. Neo4j — https://github.com/neo4j/neo4j
+46. Neo4j Graph Data Science — https://github.com/neo4j/graph-data-science
+47. Dgraph — https://github.com/hypermodeinc/dgraph
+48. NebulaGraph — https://github.com/vesoft-inc/nebula
+49. ArangoDB — https://github.com/arangodb/arangodb
+50. JanusGraph — https://github.com/JanusGraph/janusgraph
+51. Memgraph — https://github.com/memgraph/memgraph
+52. FalkorDB — https://github.com/FalkorDB/FalkorDB
+53. Kuzu (archived) — https://github.com/kuzudb/kuzu
+54. Kuzu shutdown / acqui-hire discussion (HN) — https://news.ycombinator.com/item?id=44383243
+55. Apache AGE — https://github.com/apache/age
+56. DuckPGQ — https://github.com/cwida/duckpgq-extension
+57. TuGraph — https://github.com/TuGraph-family/tugraph-db
+58. igraph — https://github.com/igraph/igraph
+59. NetworKit — https://github.com/networkit/networkit
+60. NetworkX — https://github.com/networkx/networkx
+61. SNAP — https://github.com/snap-stanford/snap
+62. GBBS — https://github.com/ParAlg/gbbs
+63. Ligra — https://github.com/jshun/ligra
+64. cuGraph — https://github.com/rapidsai/cugraph
+65. GraphChi — https://github.com/GraphChi/graphchi-cpp
+66. GraphChi paper (OSDI 2012) — https://www.usenix.org/system/files/conference/osdi12/osdi12-final-126.pdf
+67. X-Stream paper (SOSP 2013) — https://dl.acm.org/doi/10.1145/2517349.2522740
+68. GridGraph paper (USENIX ATC 2015) — https://www.usenix.org/system/files/conference/atc15/atc15-paper-zhu.pdf
+69. FlashGraph / FlashX — https://github.com/flashxio/FlashX
+70. Mosaic paper (EuroSys 2017) — https://dl.acm.org/doi/10.1145/3064176.3064191
+71. GraphScope — https://github.com/alibaba/GraphScope
+72. TigerGraph — https://www.tigergraph.com/
+73. NodeSimilarity blocked at 130 GiB vs 24 GiB free ("motivating us to look elsewhere for scale") — https://community.neo4j.com/t/comparing-jaccard-similarity-neo4j-3-4-to-node-similarity-on-neo4j-3-5-and-gds-1-1-1/37205
+74. AWS Neptune pricing (m-NCU memory-metered) — https://aws.amazon.com/neptune/pricing/
+75. Neo4j Aura pricing — https://neo4j.com/pricing/
+
+### External-pass re-sourcing (Section 10)
+
+76. Aura free tier fails Neo4j's own GDS course — https://community.neo4j.com/t/using-gds-graph-project-on-auradb-free-tier/76520
+77. `gds.graph.drop` does not release memory — https://community.neo4j.com/t/when-i-drop-the-memory-graph-my-memory-usage-does-not-change/67604
+78. Louvain: 5 hours, >70 GB heap on a 60 GiB store — https://stackoverflow.com/questions/60050083/how-to-reduce-the-running-time-and-memory-utilization-of-the-louvain-algorithm-i

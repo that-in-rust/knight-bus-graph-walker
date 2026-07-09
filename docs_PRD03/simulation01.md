@@ -503,3 +503,61 @@ Two product lessons the wide log adds beyond the GDS-specific passes:
    don't address** (OLTP query slowness / Cypher performance). Being
    loudly OLAP-only converts a scope limit into credibility with an
    audience primed to smell overclaiming.
+
+---
+
+## 8. The badges (Shreyas Doshi lens): what we get to wear that they can't
+
+Ranked by defensibility x evidence weight from sections 2-7.
+
+```
+  #  badge                        why it's ours          evidence base
+  -- ---------------------------  ---------------------  ---------------
+  1  "THE BILL BEFORE THE RUN"    insight-level moat:    E1, E5-E7;
+     exact RAM + wall-clock from  Neo4j can't sell it    Louvain code
+     1 KB of metadata, before a   without breaking the   comment "rough
+     byte is read                 GB-hour meter; their   estimate";
+                                  own estimator admits   Arch06 ex.7
+                                  imprecision            (time receipt)
+  2  "NO PROJECTION STEP"         vendor-confirmed       E2, E3, E16,
+     the wall every evidence      structural: "no        E17; funnel
+     pass converged on            option to spill to     hypothesis
+                                  disk" (their eng.);    (sec. 6.3)
+                                  "defeats the purpose
+                                  of using a database"
+                                  (their user)
+  3  "FINISHES ON THE MACHINE     rides the loudest      110-254 GB
+     YOU OWN"                     emotional theme        sessions ->
+     the money badge              (meter resentment,     8-16 GB box;
+                                  2011-2026) — but is    sec. 7.4;
+                                  DERIVATIVE of #1+#2:   GraphChi
+                                  streaming alone gets   rebuttal noted
+                                  "solved in 2012";      in sec. 4
+                                  the receipt makes it
+                                  a product
+  4  "LOUDLY OLAP-ONLY"           positioning by         sec. 7.8:
+     a negative badge:            exclusion — refusing   OLTP slowness
+     we do NOT fix their          to overclaim buys      is high-volume
+     biggest complaint            credibility with an    and NOT ours
+     (OLTP/Cypher slowness)       audience primed to
+                                  smell overclaiming
+  5  "BORING AND TRUSTWORTHY"     speaks to the vendor-  sec. 7.4 (D4,
+     open format, static Rust     trust wound (license   D5), 7.3 (C3:
+     binary, no GC, no license    litigation, bait-and-  JVM toolchain
+     bait-and-switch              switch resentment) —   pain)
+                                  real but table-stakes
+                                  hygiene, not a moat
+```
+
+Pitch order the evidence supports:
+
+```
+  no meter  ->  no projection  ->  the receipt  ->  algorithms
+  (why care)    (what's gone)      (the proof)      (the proof points)
+```
+
+Badge discipline: #1 is the only badge that is uncopyable for BUSINESS
+reasons rather than technical ones — everything else a well-funded
+competitor could ship in quarters. Product decisions should be scored
+by whether they strengthen the receipt (byte-honest, cgroup-verified,
+time-quoted) before anything else.

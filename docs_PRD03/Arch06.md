@@ -787,6 +787,124 @@ size" — a guarantee, not an estimate.
 
 ---
 
+## Worked Example 6: FastRP, #6 Algorithm (~8% of GDS adoption)
+
+"Turn every node into a vector" — Fast Random Projection embeddings,
+the feature-generation workhorse: feed graph structure into downstream
+ML (churn models, fraud scoring, recommender rerankers) and, in the
+GraphRAG era, into vector indexes.
+
+### What the GDS source says (verified)
+
+`algo/.../embeddings/fastrp/FastRPMemoryEstimateDefinition.java`
+budgets, per node, THREE full float arrays of embeddingDimension:
+
+```
+  "embeddings"   : nodeCount x dim x 4 B   (the result)
+  "embeddingsA"  : nodeCount x dim x 4 B   (iteration buffer)
+  "embeddingsB"  : nodeCount x dim x 4 B   (iteration buffer)
+```
+
+At dim=256 (a common choice): 3 x 1 KB = ~3 KB/node of scratch — on
+100M nodes, ~300 GB of embedding buffers ON TOP of the projection.
+The scratch dwarfs the graph. (Their own sizing guide's LDBC100 FastRP
+number, 254 GB, is the biggest of the three flagship algorithms.)
+
+```
+  PAGERANK scratch : 8 B/node          (a number per node)
+  FASTRP scratch   : ~3,000 B/node     (three vectors per node)
+```
+
+### The options applied to FastRP
+
+```
+ #  option (doc)             what it does for FASTRP         verdict
+ -- ------------------------ ------------------------------- --------------
+ 1  flat photo    (A/01)     scan-friendly (FastRP is pure   graph part ok;
+                             neighbor-averaging sweeps)      buffers explode
+ 2  tiles         (B/01)     streams edges fine              buffers still
+                                                             resident
+ 3  bouncer       (C/01)     dim x 3 x 4 B x V is trivially  exact bill by
+                             priced from the manifest        arithmetic
+ 4  GRAIN         (05)       compressed strata cut the       helps the
+                             per-iteration edge re-read      smaller half
+ 5  tiny scratch  (06-L1)    THE STAR: int8 quantized        4x instantly;
+                             buffers (vector-DB standard     8x with int8 +
+                             practice); and only TWO         two buffers
+                             buffers needed (ping-pong),     (3KB -> 512B
+                             result written out per stratum  per node)
+ 6  O(V) mode     (06-L2)    buffers resident, edges         RAM = V x 2 x
+                             streamed per iteration          dim x 1 B, edge
+                                                             count irrelevant
+ 7  less work     (06-L3)    few iterations by design (3-4); degree-ranked
+                             cache-friendly hub reuse via    order pays in
+                             degree ranking                  cache hits
+ 8  remember      (axes)     embeddings ARE a sidecar;       2% delta ->
+                             delta nodes + their neighbors   re-embed ~5-10%
+                             re-embedded, rest reused        of nodes
+```
+
+Stack on one job:
+
+```
+  FastRP dim=256, 100M nodes / 30 GB edges, 16 GB box:
+
+  their sizing      projection + 3 x f32 buffers (~300 GB)    ~254 GB class
+                                                              session (their
+                                                              LDBC100 number)
+  5 int8 + 2 bufs   100M x 2 x 256 x 1 B = ~51 GB -> hmm      still too big?
+  5+4 stratified    process one stratum at a time: buffers    ~6-10 GB
+                    for resident stratum only, results        FITS
+                    flushed to sidecar as each stratum done
+  6 edges stream    edge bytes never resident                 unchanged
+  verdict           254 GB class -> ~8 GB box                 ~25-30x
+```
+
+(Again the honest note: int8 alone isn't enough at 100M x 256; the
+stratum-at-a-time trick — embed hot band, flush, move on — is what
+closes it. Levers compose or they don't close.)
+
+### Shreyas Doshi's selling narrative
+
+FastRP's buyer is an ML engineer, not a DBA — and their lived
+comparison isn't "another graph database," it's the vector-DB world,
+where int8 quantization and memory-mapped indexes are table stakes.
+
+```
+  the pitch to that buyer:
+  "your embedding pipeline should work like your vector DB already
+   does: quantized, mmapped, budgeted — not like a JVM that wants
+   254 GB of float64 heap. Same math, 30x less machine, and the
+   accuracy cost of int8 is printed on the receipt (it's the same
+   trade your vector index already makes)."
+```
+
+This is the family where our story sounds NORMAL instead of novel to
+the buyer — vector people already believe quantization works. Zero
+education cost; the only claim to prove is parity of downstream model
+accuracy (f32 vs int8 embeddings), which is measurable and publishable.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : ~254 GB class (their LDBC100 sizing) -> ~8-10 GB
+               (~25-30x): int8 + ping-pong buffers + stratum-at-a-time.
+  Speed      : comparable per iteration (FastRP is bandwidth-bound;
+               int8 buffers = 4x less buffer bandwidth); 3-4 iterations
+               total by design.
+  Re-runs    : embeddings-as-sidecar + delta re-embedding makes the
+               nightly feature-refresh ~10-20x cheaper — and nightly
+               refresh is exactly how FastRP is consumed by ML teams.
+  Accuracy   : int8 embedding quantization typically costs ~1-2% on
+               downstream task metrics (vector-DB literature); MUST be
+               reproduced on GDS-parity benchmarks before claiming.
+  Moat       : receipt + "works like your vector stack" familiarity;
+               Neo4j selling int8-quantized low-RAM FastRP would
+               concede the RAM meter on their biggest-RAM algorithm.
+```
+
+---
+
 ## The Bespoke Realization: One Format, Seven Access Plans
 
 Reading the three worked examples together exposes something the "lever"

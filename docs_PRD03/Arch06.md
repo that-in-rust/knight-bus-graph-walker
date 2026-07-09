@@ -905,6 +905,126 @@ accuracy (f32 vs int8 embeddings), which is measurable and publishable.
 
 ---
 
+## Worked Example 7: Triangle Counting / LCC, #7 Algorithm (~5% of GDS adoption)
+
+"How clique-ish is this graph, node by node?" — triangle count and
+local clustering coefficient: fraud-ring density signals, social
+cohesion metrics, feature generation, community quality checks.
+
+### What the GDS source says (verified)
+
+`algo/.../triangle/IntersectingTriangleCountMemoryEstimateDefinition.java`
+is the shortest estimator in the codebase: one `HugeAtomicLongArray` —
+**8 B/node of scratch, period.** Same for LCC (one array of
+coefficients).
+
+So triangles is the purest expression of the whole thesis:
+
+```
+  scratch:      8 B/node  (trivial)
+  requirement:  the graph must be projected UNDIRECTED — every edge
+                stored in both directions — and 100% heap-resident,
+                because counting intersects adjacency lists in a
+                RANDOM-ACCESS pattern all over the graph
+  cost shape:   sum over edges of min(deg(u), deg(v)) intersections
+                — hubs make this explode combinatorially
+```
+
+The memory bill is ~all projection; the wall-clock bill is dominated
+by hub-heavy intersections. Two different explosions, neither of which
+their 8-byte estimator line mentions.
+
+### The options applied to triangles
+
+```
+ #  option (doc)             what it does for TRIANGLES      verdict
+ -- ------------------------ ------------------------------- --------------
+ 1  flat photo    (A/01)     fast intersections when it      fits-only, and
+                             fits                            undirected = 2x
+ 2  tiles         (B/01)     classic out-of-core triangle    disk-bound
+                             counting works block-by-block   version exists
+                             (well-studied literature)       in literature
+ 3  bouncer       (C/01)     RAM bill trivial; the receipt   first receipt
+                             here should price WALL-CLOCK:   with a TIME
+                             sum min(deg,deg) is computable  estimate as the
+                             from the manifest's degree-CDF  headline number
+ 4  GRAIN         (05)       THE STAR: degree-ranked order   the standard
+                             IS the classic triangle trick   preprocessing
+                             (orient edges low->high rank,   step — already
+                             intersect forward lists only):  paid at build
+                             each triangle counted once,     time, for every
+                             hub explosion neutralized       future run
+ 5  tiny scratch  (06-L1)    counts are already 8 B/node     nothing to do
+ 6  O(V) mode     (06-L2)    counts resident; blocks pair-   RAM = O(V) even
+                             joined from disk                undirected
+ 7  less work     (06-L3)    rank-orientation (above) +      orders of
+                             hot-stratum hub lists pinned    magnitude fewer
+                             in RAM (hubs are in every       intersection ops
+                             intersection)                   on skewed graphs
+ 8  remember      (axes)     per-block triangle counts as    2% delta -> only
+                             sidecar; delta edges only       touched blocks
+                             touch a few blocks              recounted
+```
+
+Stack on one job:
+
+```
+  triangle count, 50 GB directed graph (100 GB undirected), 16 GB box:
+
+  GDS               project 100 GB undirected into heap       REFUSED @16GB
+  4 rank-orient     stored order already low->high;           half the edges,
+                    forward lists only                        no hub blowup
+  6 O(V) counts     8 B x V resident, block pairs streamed    ~1-4 GB resident
+  7 hot pinned      hub adjacency (top stratum) stays in      intersections
+                    RAM; cold x cold blocks streamed          mostly RAM-speed
+  3 time receipt    degree-CDF -> intersection-op count ->    "est. 47 min on
+                    minutes estimate BEFORE running           your NVMe"
+  verdict           impossible-on-16GB -> finishes, EXACT     with a time
+                    (no approximation needed here)            quote up front
+```
+
+### Shreyas Doshi's selling narrative
+
+Triangles is small (~5%) but strategically sweet for two reasons:
+
+```
+  1. it's the algorithm GRAIN was accidentally BORN for:
+     degree-ranked layout = the textbook triangle optimization,
+     already paid at build time. zero extra machinery; the format
+     itself is the plan.
+
+  2. it's where the receipt learns to price TIME, not just RAM:
+     intersection work = closed-form function of the degree-CDF
+     in the manifest. "est. 47 min" before you run — no other
+     engine quotes wall-clock from 1 KB of metadata.
+```
+
+The pitch: **"exact triangle counts on graphs 10x your RAM — with the
+runtime quoted before you start."** And unlike Louvain/NodeSim, no
+approximation asterisk: this one is exact.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : 100 GB-class undirected projection -> ~1-4 GB resident
+               (counts + pinned hub stratum): ~25-50x.
+  Speed      : rank-orientation is the known big win (it's why every
+               serious triangle counter preprocesses this way); disk
+               streaming costs 2-5x vs in-RAM, partly recovered by
+               hub pinning.
+  Exactness  : EXACT — the only family here with no accuracy caveat.
+  Moat       : the time-receipt (degree-CDF -> minutes) debuts here
+               and then generalizes to the other six plans; Neo4j's
+               estimator for this algorithm prices only the 8 B/node
+               array and says nothing about the hours of intersections.
+  Caveat     : cold x cold block pair-joins are I/O-heavy on very
+               large graphs; block-pair scheduling (which pairs can
+               skip via degree bounds) is the piece needing a real
+               benchmark.
+```
+
+---
+
 ## The Bespoke Realization: One Format, Seven Access Plans
 
 Reading the three worked examples together exposes something the "lever"

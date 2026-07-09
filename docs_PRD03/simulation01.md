@@ -889,6 +889,10 @@ no internal-discussion claims. Where the usage pattern is industry-standard
 but not publicly attributed to a named company (e.g., specific banks' fraud
 stacks), that is said explicitly.
 
+> ASCII walkthroughs of each family — use case, raw data, storage, and how
+> the algorithm works, with two worked examples each — live in the companion
+> document `AlgoExplainers-ASCII.md`.
+
 ### 13.1 The seven families and their documented uses
 
 **WCC — Weakly Connected Components (~20% of modeled adoption).** The

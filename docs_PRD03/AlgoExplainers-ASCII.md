@@ -20,6 +20,20 @@ C,D                      neighbors(C) = targets[offsets[C]..offsets[C+1]]
 D,B                                   = targets[3..5] = [A, D]
 ```
 
+```mermaid
+flowchart LR
+  subgraph RAW["Raw edges (CSV)"]
+    A1[A] --> B1[B]
+    A1 --> C1[C]
+    B1 --> D1[D]
+    C1 --> A1
+    C1 --> D1
+    D1 --> B1
+  end
+  RAW -->|snapshot build| CSR["CSR on disk: offsets array (V+1) + targets array (E), mmap'd"]
+  CSR -->|"neighbors(C) = targets[offsets C .. offsets C+1]"| OUT["[A, D]"]
+```
+
 The algorithm-specific question is always: *what must stay resident in RAM
 (the O(V) plane), and what can stream from disk (the O(E) plane)?*
 
@@ -48,6 +62,15 @@ a5    w@mail.com    a6 shares nothing
 a6    q@mail.com
 ```
 
+```mermaid
+flowchart LR
+  T1["ACCOUNTS table"] --> D["derive edge when two accounts share an attribute"]
+  T2["SHARED ATTRIBUTES table"] --> D
+  D --> E1["a1 -- a2 (email)"]
+  D --> E2["a2 -- a3 (device)"]
+  D --> E3["a4 -- a5 (card)"]
+```
+
 How the algorithm works — label propagation until fixpoint. Every vertex
 starts as its own component id; each pass, every vertex takes the MINIMUM
 label among itself and its neighbors:
@@ -64,6 +87,20 @@ RESULT: component {a1,a2,a3}  = one fraud ring / one real customer
         component {a6}        = singleton, clean
 ```
 
+```mermaid
+flowchart LR
+  subgraph C1["Component 1 = fraud ring"]
+    a1 ---|shared email| a2
+    a2 ---|shared device| a3
+  end
+  subgraph C2["Component 2"]
+    a4 ---|shared card| a5
+  end
+  subgraph C3["Component 3 = clean singleton"]
+    a6
+  end
+```
+
 Storage & RAM shape — the only resident state is the label array
 (8 B/vertex). Edges stream from disk each pass:
 
@@ -71,6 +108,13 @@ Storage & RAM shape — the only resident state is the label array
 RAM  (O(V), stays):   labels[V]           [1][1][2][4][4][6]
 DISK (O(E), streams): CSR edges ==========================>  pass 1
                       CSR edges ==========================>  pass 2
+```
+
+```mermaid
+flowchart LR
+  DISK["DISK: CSR edges (O(E))"] -->|stream pass 1| RAM["RAM: labels array (O(V), 8 B/vertex)"]
+  DISK -->|stream pass 2| RAM
+  RAM -->|min-label propagation until fixpoint| RESULT["component ids"]
 ```
 
 ### Example 2: product catalog dedup
@@ -81,6 +125,15 @@ RAW: listings that share a barcode or near-identical title
    L2                        --title---->  L3 "iphone 15 pro (256 gb)"
 
 WCC output: {L1, L2, L3} = one canonical product page.
+```
+
+```mermaid
+flowchart LR
+  L1["L1: iPhone 15 Pro 256GB"] ---|same barcode| L2["L2: Apple iPhone15Pro 256"]
+  L2 ---|near-identical title| L3["L3: iphone 15 pro 256 gb"]
+  L1 -.-> P["one canonical product page"]
+  L2 -.-> P
+  L3 -.-> P
 ```
 
 Same machinery, different edge-derivation rule. WCC does not care what an
@@ -110,6 +163,20 @@ c1    c2     30
 c2    c3     25
 ```
 
+```mermaid
+flowchart LR
+  subgraph M["Mule ring (dense, large amounts)"]
+    m1 ---|500| m2
+    m2 ---|480| m3
+    m1 ---|510| m3
+  end
+  subgraph C["Normal cluster (small amounts)"]
+    c1 ---|30| c2
+    c2 ---|25| c3
+  end
+  m3 ---|20 thin bridge| c1
+```
+
 How the algorithm works — greedily move each vertex into the neighboring
 community that most increases *modularity* (in-community edge weight vs.
 expected), then collapse communities into super-nodes and repeat:
@@ -123,12 +190,26 @@ LEVEL 0: each vertex alone     LEVEL 0 after moves      LEVEL 1: collapse
 RESULT: community M = {m1,m2,m3} (mule ring), C = {c1,c2,c3} (normal cluster)
 ```
 
+```mermaid
+flowchart TD
+  L0["Level 0: every vertex its own community"] -->|greedy modularity moves| L0b["Communities form: m1,m2,m3 and c1,c2,c3"]
+  L0b -->|collapse into super-nodes| L1["Level 1: M --20-- C"]
+  L1 -->|no move improves modularity| STOP["STOP: final communities"]
+```
+
 The per-vertex move decision needs a tally: "how much edge weight do I have
 into each neighboring community?"
 
 ```
 tallying m3's neighbors:   into M: 480+510 = 990   into C: 20
                            moving to M wins by a landslide
+```
+
+```mermaid
+flowchart LR
+  m3["vertex m3"] -->|edge weight 990| M["community M"]
+  m3 -->|edge weight 20| C["community C"]
+  M ==>|tally wins| MOVE["m3 joins M"]
 ```
 
 Storage & RAM shape — community ids resident (O(V)); the tally map is the
@@ -143,6 +224,13 @@ WARM START: yesterday's communities are today's init -> most vertices never
       move -> 10-50x faster re-runs
 ```
 
+```mermaid
+flowchart LR
+  DISK["DISK: edges per level (each level smaller)"] --> RAM["RAM: community ids (O(V)) + capped tally (k slots)"]
+  YEST["yesterday's communities"] -->|warm start init| RAM
+  RAM --> OUT["levels collapse until modularity stops improving"]
+```
+
 ### Example 2: GraphRAG document communities
 
 ```
@@ -153,6 +241,21 @@ RAW: LLM-extracted entities and co-mention edges from a corpus
 
 Leiden groups them:  [Physics cluster]         [Art cluster]
 Each cluster gets one LLM-written summary -> hierarchical index for RAG.
+```
+
+```mermaid
+flowchart LR
+  subgraph P["Physics cluster"]
+    E[Einstein] --- R[Relativity]
+    R --- S[Spacetime]
+    E --- PH[Physics]
+  end
+  subgraph A["Art cluster"]
+    PI[Picasso] --- CU[Cubism]
+    PI --- G[Guernica]
+  end
+  P -->|LLM summary| SP["Physics community summary"]
+  A -->|LLM summary| SA["Art community summary"]
 ```
 
 The corpus re-index re-runs Leiden on a slightly-grown graph — the
@@ -179,6 +282,14 @@ B         D
 D         A
 ```
 
+```mermaid
+flowchart LR
+  A --> B
+  C --> B
+  B --> D
+  D --> A
+```
+
 How the algorithm works — every vertex starts with equal rank; each
 iteration, it splits its rank among its out-neighbors; ranks accumulate
 where many (or important) edges point:
@@ -195,6 +306,13 @@ after ~20 iterations (damping 0.85):
            ^^^ most-pointed-at vertex wins, even with equal edge counts
 ```
 
+```mermaid
+flowchart LR
+  INIT["init: all ranks = 0.25"] --> I1["each iteration: vertex splits its rank among out-neighbors"]
+  I1 --> I2["rank accumulates where edges point"]
+  I2 -->|"~20 iterations, damping 0.85"| FINAL["B=.38 > D=.32 > A=.22 > C=.08"]
+```
+
 Storage & RAM shape — two rank vectors resident (current + next, 8 B each
 per vertex); edges stream per iteration:
 
@@ -204,6 +322,13 @@ DISK: CSR edges =========> iter 1
       CSR edges =========> iter 2  ... x20
 DELTA TRICK: late iterations, ~97% of vertices have converged -> only
       stream blocks containing still-active vertices -> most passes shrink
+```
+
+```mermaid
+flowchart LR
+  DISK["DISK: CSR edges"] -->|"full stream, early iters"| RAM["RAM: rank + next vectors (ping-pong)"]
+  DISK -->|"delta: only still-active blocks, late iters"| RAM
+  RAM --> OUT["converged ranks"]
 ```
 
 ### Example 2: mule-account centrality in a payments graph
@@ -216,6 +341,16 @@ RAW: directed transfer edges (like Louvain ex.1, but direction matters)
 Personalized PageRank seeded at known-bad accounts:
    rank mass leaks outward along transfer edges;
    high-rank unseeded accounts = likely undiscovered mules.
+```
+
+```mermaid
+flowchart LR
+  s1["small acct"] --> HUB["HUB account (high personalized rank)"]
+  s2["small acct"] --> HUB
+  s3["small acct (known bad, seed)"] --> HUB
+  HUB --> o1["cash-out acct"]
+  HUB --> o2["cash-out acct"]
+  o1 -.->|"high rank, unseeded"| FLAG["likely undiscovered mule"]
 ```
 
 Same iteration, different seed vector — the storage plan is identical.
@@ -245,6 +380,29 @@ u2    p4
 u3    p9
 ```
 
+```mermaid
+flowchart LR
+  subgraph USERS
+    u1
+    u2
+    u3
+  end
+  subgraph PRODUCTS
+    p1
+    p2
+    p3
+    p4
+    p9
+  end
+  u1 --- p1
+  u1 --- p2
+  u1 --- p3
+  u2 --- p2
+  u2 --- p3
+  u2 --- p4
+  u3 --- p9
+```
+
 How the algorithm works — Jaccard similarity between neighbor sets:
 
 ```
@@ -252,6 +410,14 @@ J(u1,u2) = |N(u1) ∩ N(u2)| / |N(u1) ∪ N(u2)|
          = |{p2,p3}|       / |{p1,p2,p3,p4}|
          = 2/4 = 0.5              -> u1 and u2 are similar; recommend p4 to u1
 J(u1,u3) = 0/4 = 0                -> unrelated
+```
+
+```mermaid
+flowchart LR
+  N1["N(u1) = p1,p2,p3"] --> J["Jaccard = intersection / union"]
+  N2["N(u2) = p2,p3,p4"] --> J
+  J -->|"2/4 = 0.5"| SIM["u1 similar to u2"]
+  SIM --> REC["recommend p4 to u1"]
 ```
 
 The naive cost is ALL PAIRS — V² comparisons, and GDS additionally
@@ -271,6 +437,16 @@ DISK: neighbor lists read in place (CSR is already the list) only for the
 PRUNE: degree bands — |N| = 3 can never have J > t with |N| = 30,000
 ```
 
+```mermaid
+flowchart LR
+  L1["full neighbor list N(u1)"] -->|hash| S1["sketch(u1): 128-256 fixed bytes"]
+  L2["full neighbor list N(u2)"] -->|hash| S2["sketch(u2)"]
+  S1 --> CMP["matching slots / total slots ~= Jaccard"]
+  S2 --> CMP
+  CMP -->|top-k candidates only| RERANK["exact rerank: read CSR lists in place"]
+  BAND["degree-band pruning"] -.->|skips impossible pairs| CMP
+```
+
 ### Example 2: shared-device fraud
 
 ```
@@ -278,6 +454,17 @@ RAW: account --uses--> device
    a1 -- d1   a1 -- d2   a2 -- d1   a2 -- d2   a2 -- d3
 
 J(a1,a2) = |{d1,d2}| / |{d1,d2,d3}| = 0.67  -> flag pair for review
+```
+
+```mermaid
+flowchart LR
+  a1 --- d1["device d1"]
+  a1 --- d2["device d2"]
+  a2 --- d1
+  a2 --- d2
+  a2 --- d3["device d3"]
+  a1 -.->|"J = 0.67"| FLAG["flag pair a1,a2 for review"]
+  a2 -.-> FLAG
 ```
 
 High similarity over *devices/IPs* (instead of products) is a fraud signal,
@@ -307,12 +494,32 @@ P3         RETAIL       level 2: {P3}           <- cascades
                         level 3: {RETAIL}       <- customer-visible
 ```
 
+```mermaid
+flowchart LR
+  S["S: failed supplier (level 0)"] --> P1["P1 (level 1)"]
+  S --> P2["P2 (level 1)"]
+  P1 --> P3["P3 (level 2)"]
+  P2 --> P3
+  P3 --> RETAIL["RETAIL (level 3, customer-visible)"]
+```
+
 How BFS works — a frontier expands one hop per round; a visited-bitset
 (1 bit/vertex) stops revisits:
 
 ```
 frontier: [S] -> [P1 P2] -> [P3] -> [RETAIL] -> []  done
 visited:   S      SP1P2     +P3      +RETAIL
+```
+
+```mermaid
+flowchart LR
+  F0["frontier: S"] --> F1["frontier: P1, P2"]
+  F1 --> F2["frontier: P3"]
+  F2 --> F3["frontier: RETAIL"]
+  F3 --> DONE["empty: done"]
+  V["visited bitset grows each round"] -.-> F1
+  V -.-> F2
+  V -.-> F3
 ```
 
 Storage & RAM shape — O(V) bits resident; the disk win is *not touching*
@@ -325,6 +532,13 @@ DISK: demand-page ONLY the CSR blocks the frontier enters.
       one query — minutes of boot-up for a 4-hop question.
 ```
 
+```mermaid
+flowchart LR
+  RAM["RAM: visited bitset (V/8 bytes) + frontier queue"] -->|frontier enters block| DISK["DISK: demand-page ONLY touched CSR blocks"]
+  DISK -->|neighbors| RAM
+  RAM --> OUT["levels 0..k, most of graph never read"]
+```
+
 ### Example 2: cheapest route (weighted Dijkstra)
 
 ```
@@ -334,6 +548,15 @@ RAW: edges with weights          A --2--> B --2--> D
    B D 2       Dijkstra explores in cost order (priority queue):
    C D 1       settle A(0) -> B(2) -> D(4 via B) ... C(5) arrives too late
                shortest A->D = 4  (path A-B-D, NOT through the 1-weight edge)
+```
+
+```mermaid
+flowchart LR
+  A -->|2| B
+  A -->|5| C
+  B -->|2| D
+  C -->|1| D
+  A -.->|"settled order: A at 0, B at 2, D at 4"| D
 ```
 
 The priority queue and distance array are O(V); edges are only read for
@@ -364,6 +587,13 @@ GRAPH IN                          EMBEDDINGS OUT (dim=4 shown; real: 256)
                                   ...then: XGBoost(embeddings + amounts) -> fraud score
 ```
 
+```mermaid
+flowchart LR
+  G["Graph: a1--a2--a3, a4--a5"] -->|FastRP| E["Embedding table: one 256-dim vector per account"]
+  E --> X["XGBoost (embeddings + transaction features)"]
+  X --> S["fraud score per account"]
+```
+
 How the algorithm works — (1) give every node a RANDOM sparse vector; (2)
 repeatedly replace each node's vector with the (weighted) AVERAGE of its
 neighbors' vectors; (3) the final embedding is a weighted sum of the
@@ -380,6 +610,14 @@ nodes with similar neighborhoods average toward similar vectors --
 no training, no gradients; just sparse random projection + smoothing.
 ```
 
+```mermaid
+flowchart TD
+  R["1. random sparse vector per node"] --> A1["2. iter 1: vector <- avg of neighbors"]
+  A1 --> A2["3. iter 2: mixes 2-hop neighborhood"]
+  A2 --> A3["4. iter 3: mixes 3-hop neighborhood"]
+  A3 --> F["5. final embedding = weighted sum of iterations"]
+```
+
 Storage & RAM shape — GDS keeps THREE full float arrays (result + two
 iteration buffers): at dim=256 that is ~3 KB/node -> 254 GB on LDBC100.
 Our plan:
@@ -392,6 +630,14 @@ OURS:  [int8 x 256] x 2 ping-pong (quantized)        ~0.5 KB/node
 RAM:   ~8-10 GB for the same job (modeled)
 ```
 
+```mermaid
+flowchart LR
+  GDS["GDS: 3 x f32 arrays per node, all resident (~3 KB/node)"] ---|vs| OURS["Ours: 2 x int8 ping-pong buffers (~0.5 KB/node)"]
+  OURS --> STRATUM["process one stratum at a time"]
+  STRATUM -->|flush finished embeddings| SIDECAR["sidecar file on disk"]
+  DISK["DISK: edges streamed per iteration"] --> OURS
+```
+
 ### Example 2: churn prediction from a social graph
 
 ```
@@ -400,6 +646,14 @@ Embedding captures "who you sit near in the graph";
 churn model learns: users embedded near past churners churn next.
 No hand-engineered graph features (degree, triangles) needed — the
 embedding subsumes them.
+```
+
+```mermaid
+flowchart LR
+  FG["friendship graph"] -->|FastRP| EMB["user embeddings"]
+  ACT["monthly activity table"] --> MODEL["churn model"]
+  EMB --> MODEL
+  MODEL --> PRED["users near past churners -> churn next"]
 ```
 
 ---
@@ -427,6 +681,22 @@ clustering(r) = 2 triangles / 3 possible = 0.67     no edges to each other)
                                                    clustering(b) = 0.0  <- flag
 ```
 
+```mermaid
+flowchart LR
+  subgraph REAL["real user r: clustering 0.67"]
+    r --- f1
+    r --- f2
+    r --- f3
+    f1 --- f2
+    f2 --- f3
+  end
+  subgraph BOT["bot b: clustering 0.0 -> flag"]
+    b --- g1
+    b --- g2
+    b --- g3
+  end
+```
+
 How the algorithm works — for each edge (u,v), count common neighbors by
 intersecting sorted adjacency lists:
 
@@ -434,6 +704,13 @@ intersecting sorted adjacency lists:
 N(r)  = [f1, f2, f3]         intersect N(r) x N(f2):
 N(f2) = [f1, r,  f3]           f1 in both?  yes -> triangle (r,f2,f1)
                                f3 in both?  yes -> triangle (r,f2,f3)
+```
+
+```mermaid
+flowchart LR
+  E["edge (r, f2)"] --> I["intersect sorted lists N(r) x N(f2)"]
+  I -->|f1 in both| T1["triangle r, f2, f1"]
+  I -->|f3 in both| T2["triangle r, f2, f3"]
 ```
 
 The classic optimization — RANK-ORIENT the graph: order vertices by degree,
@@ -448,6 +725,15 @@ rank-oriented (degree order f1 < f3 < f2 < r):
              each triangle has exactly one "apex" wedge)
 ```
 
+```mermaid
+flowchart LR
+  f1 --> f2
+  f1 --> r
+  f3 --> f2
+  f3 --> r
+  f2 --> r
+```
+
 Storage & RAM shape — GRAIN's degree-ranked layout IS rank orientation,
 already paid at snapshot-build time:
 
@@ -456,6 +742,14 @@ GDS:   undirected projection = ~2x edges, all in heap
 OURS:  forward lists only (already rank-sorted on disk), stream wedge
        blocks; RAM = counts[V] + pinned hot-stratum hubs  -> ~1-4 GB
        on a 100 GB-class job, and the count is EXACT (no approximation).
+```
+
+```mermaid
+flowchart LR
+  GDS["GDS: undirected projection, ~2x edges, all in heap"] ---|vs| OURS["Ours: rank-oriented forward lists, already on disk"]
+  OURS --> WEDGE["stream wedge blocks once"]
+  WEDGE --> RAM["RAM: counts array + pinned hot hubs (~1-4 GB)"]
+  RAM --> EXACT["EXACT count, no approximation"]
 ```
 
 ### Example 2: community quality audit
@@ -468,6 +762,13 @@ clustering coefficient per community:
   community X (accidental):  clustering = 0.04  <- an artifact, ignore it
 
 Triangles grade the output of the other algorithms.
+```
+
+```mermaid
+flowchart LR
+  LOU["Louvain communities"] --> TC["triangle count / clustering per community"]
+  TC -->|"0.71"| REAL["community M: genuinely dense mule ring"]
+  TC -->|"0.04"| FAKE["community X: artifact, ignore"]
 ```
 
 ---
@@ -487,4 +788,20 @@ Triangles            counts[V] + hot hubs        wedge blocks, once
 The common trick: never require the O(E) plane to be resident.
 The common product: the manifest knows V, E, and the degree CDF, so every
 row of this table is a number you can print BEFORE the run starts.
+```
+
+```mermaid
+flowchart LR
+  MAN["Manifest (~1 KB): V, E, degree CDF"] --> REC["Receipt: RAM + wall-clock, printed BEFORE the run"]
+  subgraph RAM["Resident O(V) plane"]
+    W["WCC: labels"]
+    L["Louvain: communities + capped tally"]
+    P["PageRank: 2 rank vectors"]
+    N["NodeSim: sketches + top-k"]
+    SP["Paths: bitset + queue"]
+    F["FastRP: 2 int8 buffers"]
+    T["Triangles: counts + hot hubs"]
+  end
+  DISK["Streaming O(E) plane on disk"] --> RAM
+  REC -.->|bounds| RAM
 ```

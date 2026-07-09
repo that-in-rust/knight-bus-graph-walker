@@ -542,6 +542,132 @@ it, and the receipt ("state: 3.8 GB, edges: streamed, total resident:
 
 ---
 
+## Worked Example 4: NodeSimilarity, #4 Algorithm (~12% of GDS adoption)
+
+"Which nodes have similar neighborhoods?" — product recommendations
+("users who bought X also bought Y"), entity resolution (two records
+that share most neighbors are probably the same thing), feature
+generation. Jaccard/overlap over neighbor sets, usually keeping topK
+per node.
+
+### Why NodeSimilarity is the scariest one (verified in GDS source)
+
+`algo/.../nodesim/NodeSimilarityMemoryEstimateDefinition.java` budgets:
+
+```
+  "vectors"  : per node, a long[] COPY of its whole neighbor list
+               = nodeCount x avgDegree x 8 B
+               = A SECOND, UNCOMPRESSED COPY OF THE ENTIRE GRAPH,
+                 as scratch, ON TOP of the projection
+  "weights"  : per node, a double[] of the same shape (weighted case)
+               = potentially a THIRD copy
+  "topK map" : nodeCount x topK entries
+  + node filter bitset, component arrays, optional similarity graph
+```
+
+So their own estimator says: scratch >= 8 B/edge raw (vs the
+projection's compressed 1-5 B/edge). The scratch is BIGGER than the
+graph. And that's before the O(n^2)-ish pair comparison cost.
+
+```
+  WCC scratch      : 8 B/vertex               (tiny)
+  LOUVAIN scratch  : new graph per level      (bad)
+  NODESIM scratch  : whole graph, uncompressed, again (worst)
+```
+
+### The options applied to NodeSimilarity
+
+```
+ #  option (doc)             what it does for NODESIM       verdict
+ -- ------------------------ ------------------------------ ---------------
+ 1  flat photo    (A/01)     nothing for the vectors copy   still explodes
+ 2  tiles         (B/01)     streams the graph, but the     partial at best
+                             vectors/topK live in RAM
+ 3  bouncer       (C/01)     prices the explosion BEFORE    saves the crash,
+                             running; reject with the bill  not the job
+ 4  GRAIN         (05)       degree-ranked ids = neighbor   removes the
+                             lists ARE the vectors; zero-   "vectors" copy
+                             copy read from the strata      entirely (its
+                             instead of materializing       whole reason to
+                             long[] copies                  exist here)
+ 5  sketch scratch(06-L1)    THE STAR: MinHash sketch per   unbounded ->
+                             vertex (fixed ~128-256 B)      FIXED bytes/vertex;
+                             estimates Jaccard without      approximate, with
+                             touching raw sets; exact       exact re-check of
+                             rerank only for topK finalists top candidates
+ 6  O(V) mode     (06-L2)    sketches + topK heaps resident 16 GB box handles
+                             (~300 B/vertex), edges stream  ~50M vertices'
+                             one pass to build sketches     sketches easily
+ 7  less work     (06-L3)    degree-ranked order = compare  skips the vast
+                             within degree bands + common-  majority of the
+                             neighbor candidates only, not  n^2 pair space
+                             all pairs
+ 8  remember      (axes)     sketches stored as a sidecar   re-runs skip the
+                             of the generation; 2% delta    sketch-build pass
+                             -> resketch 2% of vertices     entirely
+```
+
+Stack on one job:
+
+```
+  NodeSimilarity, 20 GB graph / 200M vertices / avg degree 50, 16 GB box:
+
+  their estimate    projection (~5-20 GB) + vectors copy (~80 GB raw)
+                    + topK map (~ GBs)  => 100+ GB session   REFUSED @16GB
+  4 GRAIN           vectors copy deleted (read in place)      big cut, still
+                                                              pairwise-heavy
+  5 sketches        200M x 256 B = ~51 GB? no — sketches of   ~6-12 GB with
+                    hot band resident, cold band streamed,    banding; FITS
+                    or 128 B sketches = ~26 GB -> band it
+  7 banding         compare only plausible candidate pairs    hours -> minutes
+  verdict           impossible-on-16GB -> finishes, approx    topK with exact
+                                                              rerank of finalists
+```
+
+(Note the honesty: at 200M vertices even sketches need the strata trick
+— hot band resident, cold streamed. The plan composes; no single lever
+is magic.)
+
+### Shreyas Doshi's selling narrative
+
+NodeSimilarity is where Neo4j's estimator says the quiet part out loud:
+the algorithm needs a bigger-than-the-graph scratch copy, so the
+estimate mode's most common answer on real graphs is effectively
+"don't run this."
+
+```
+  their product truth:   "similarity works great... on graphs small
+                          enough that you didn't need a database"
+  our promise:           "similarity on the graph you actually have:
+                          fixed bytes per node, approximate scores,
+                          exact top-K rerank — and the receipt says
+                          BOTH the RAM and the accuracy trade before
+                          you run"
+```
+
+Selling certainty again — but here certainty includes an ACCURACY
+receipt (sketch error bounds are closed-form), which turns "it's
+approximate" from a weakness into a printed, chosen trade.
+
+### Estimated impact (modeled, not yet measured)
+
+```
+  RAM        : 100+ GB class session -> ~6-12 GB resident (10-20x);
+               scratch goes from O(E) raw copy to O(V) fixed sketches.
+  Capability : the flip is starkest here — on big graphs the GDS answer
+               is effectively "no" (their own estimator blocks it);
+               ours is "yes, approximate, here are the error bounds."
+  Accuracy   : MinHash topK recall typically 90-98% vs exact at 128-256
+               bytes/vertex (must be benchmarked; the 1-week prototype
+               gate from the decision filter is exactly this).
+  Moat       : the recommendation/entity-resolution audience re-runs
+               nightly; sketch sidecars + 2% resketch make re-runs
+               near-free — the recurring-job economics they can't match
+               while metering RAM.
+```
+
+---
+
 ## The Bespoke Realization: One Format, Seven Access Plans
 
 Reading the three worked examples together exposes something the "lever"

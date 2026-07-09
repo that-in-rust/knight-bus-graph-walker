@@ -804,7 +804,82 @@ missing from both, you are no longer guessing about whitespace.
 
 ---
 
-## 12. References
+## 12. Closing synthesis: why is nobody building lower-RAM graph databases?
+
+The final question this dossier must answer in one place. The answer is not
+one reason but **five interlocking mental models** — each rational in
+isolation — that together leave the turf empty. This synthesizes Sections
+9 and 11 with the wider evidence.
+
+### 12.1 The five reasons
+
+**1. The industry's dominant belief: "RAM got cheap, so disk-frugality is a
+solved non-problem."** From ~2012 onward, the systems community internalized
+"just buy a bigger box or a cluster." It is *mostly true* — which is exactly
+what makes it dangerous. Beliefs that are 90% true stop being questioned,
+and the 10% (procurement limits, laptops, cloud RAM meters, GraphRAG on
+consumer hardware — E1 [[1]](#references), E4 [[4]](#references), §10.4)
+becomes invisible whitespace. This is an industry-wide blind spot created by
+a mostly-correct heuristic.
+
+**2. Low-RAM is a *ceiling on revenue* for anyone who sells hosting.** The
+moment you monetize by GB-hour (Aura [[75]](#references), Neptune m-NCUs
+[[74]](#references)), building frugality is building your own pay cut. This
+is not hypothetical — it is why "estimate then BLOCK" exists in GDS
+[[1]](#references) while "estimate then FINISH ANYWAY" does not. The feature
+that would help users most is the one that shrinks the bill.
+
+**3. Databases are judged by benchmarks, and benchmarks measure latency, not
+certainty.** Every graph DB competes on queries/second because that is what
+wins the HN launch and the analyst slot. "Runs on 8 GB instead of 256 GB,
+3x slower" *loses every published benchmark* while winning the actual user.
+Nobody builds what the scoreboard punishes. The receipt is a new scoreboard
+— which is precisely why it is uncomfortable for incumbents to adopt.
+
+**4. The engineering is miserable in a specific, unglamorous way.** The
+cloned repos (§11) tell this story directly. Out-of-core *iterative*
+analytics needs a bespoke storage plan per algorithm (Arch06), careful I/O
+scheduling, and honest accounting. GraphChi / X-Stream / FlashX did the hard
+part, got the paper, and died [[65]](#references)–[[70]](#references) —
+because the last 80% (packaging, estimation, maintenance) earns no citations
+and no VC story. Meanwhile Kuzu — the one funded team with the right
+disk-based bones — took the easy path for its analytics layer: `InMemGraph`,
+a full in-RAM CSR (§11.1), because in-memory algorithms are a weekend and
+out-of-core ones are a year. Then it pivoted to llm/vector/iceberg
+extensions chasing the 2024-25 hype cycle and was acqui-hired
+[[54]](#references). The code is a confession: even the closest competitor
+chose speed-to-demo over the wall.
+
+**5. The buyer who feels this pain has no lobby.** The person OOMing on a
+16 GB box is a mid-market data engineer or a solo GraphRAG builder — not an
+enterprise account with a CIO budget. Vendors build for whoever signs the
+big checks, and the big checks come from people who can afford the RAM.
+Classic underserved-segment dynamics: the pain is real, distributed, and
+unmonetized *by anyone whose business model permits monetizing it*.
+
+### 12.2 The one-liner
+
+> **The turf is empty not because nobody can build it, but because everyone
+> who could is either paid not to (vendors), scored not to (benchmarks),
+> promoted not to (academia), or funded not to (startups chasing the hype
+> cycle).**
+
+That is the best kind of empty — structural, not accidental.
+
+### 12.3 The honest warning
+
+The only genuine warning in the data is reason #1: if the market segment
+that cannot "just buy RAM" turns out to be too small, the incumbents were
+right to ignore it, and this whole strategy is a well-documented mistake.
+That is the bet. It is also why the GraphRAG and local-AI-agent wave
+(§10.4) matters strategically: it is minting new members of exactly that
+segment — analytics-hungry users on fixed consumer hardware — every month.
+The bet is not that the segment exists (it demonstrably does — §2, §7); the
+bet is that it is growing.
+
+---
+
+## 13. References
 
 Every URL cited in this document, numbered in order of first appearance.
 

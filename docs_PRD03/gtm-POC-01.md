@@ -5,6 +5,55 @@ algorithm is processed — leaving the rest of Neo4j untouched, and rerouting
 that one procedure call into our Rust engine — which algorithm should it be,
 and what is the concrete architecture for doing it?
 
+## The whole document in one picture
+
+**The idea:** a stock, unmodified Neo4j gets a tiny sidecar plugin
+(`grain-plugin.jar`). It registers `grain.wcc.stream` *next to*
+`gds.wcc.stream` — same call shape, but instead of projecting the graph
+into the JVM heap, it calls a Rust engine over JNI that runs WCC off an
+mmap'd on-disk snapshot with only O(V) labels resident. One algorithm
+(WCC, chosen because parity is verifiable with a one-line diff), one jar,
+zero changes to Neo4j or GDS, and a side-by-side RAM demo.
+
+```
+              CALL gds.wcc.stream('g')            CALL grain.wcc.stream('snap1')
+              (the incumbent path)                 (the POC path — this doc)
+   +----------------|---------------------------------------|-----------------+
+   |  NEO4J (stock) v                                        v                 |
+   |     gds-plugin.jar                              grain-plugin.jar         |
+   |     gds.graph.project                           thin @Procedure shim     |
+   |     = FULL GRAPH COPIED                         = graph NEVER enters     |
+   |       INTO JVM HEAP  <== the wall                 the heap               |
+   |         |                                           | JNI                |
+   +---------|-------------------------------------------|--------------------+
+             v                                            v
+      Java union-find on heap                    libgrain_ffi.so (Rust)
+      RAM ~ O(V + E)  -- often BLOCKED           mmap GRAIN snapshot on disk
+      by gds's own estimator                     labels[V] resident, edges
+                                                 streamed; RSS = the receipt
+             |                                            |
+             +----------> SAME PARTITION <----------------+
+                 (canonicalize labels by min member, diff must be empty)
+```
+
+```mermaid
+flowchart TD
+  C1["CALL gds.wcc.stream('g')"] --> GDS["gds-plugin.jar"]
+  C2["CALL grain.wcc.stream('snap1')"] --> SHIM["grain-plugin.jar<br/>(thin @Procedure shim)"]
+  subgraph NEO["Stock Neo4j — unmodified"]
+    GDS -->|gds.graph.project| HEAP["FULL graph copied into JVM heap<br/>RAM ~ O(V+E) — the wall"]
+    SHIM
+  end
+  HEAP --> J["Java union-find on heap<br/>often BLOCKED by GDS's own estimator"]
+  SHIM -->|JNI, one direct ByteBuffer back| RUST["libgrain_ffi.so (Rust)"]
+  RUST -->|mmap, edges streamed| SNAP[("GRAIN snapshot on disk<br/>built once by grain.snapshot.build")]
+  RUST --> R2["labels[V] resident only<br/>RSS = printed receipt"]
+  J --> PAR["Same partition — verify with a one-line diff"]
+  R2 --> PAR
+```
+
+---
+
 **Method:** Timeline Traverser — three-to-four plausible futures per
 candidate, compared, then a decision filter. Evidence base: the actual GDS
 source in `reference-repos-neo4j-family/graph-data-science-src/` (read for

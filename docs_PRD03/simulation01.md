@@ -640,6 +640,37 @@ with a cost receipt?
   Aura Graph Analytics        Neo4j's metered GDS      the thing itself
 ```
 
+#### 9.1.1 Reference URLs (repo/product pages for every row above)
+
+- Neo4j: https://github.com/neo4j/neo4j and GDS: https://github.com/neo4j/graph-data-science
+- Dgraph: https://github.com/hypermodeinc/dgraph
+- NebulaGraph: https://github.com/vesoft-inc/nebula
+- ArangoDB: https://github.com/arangodb/arangodb
+- JanusGraph: https://github.com/JanusGraph/janusgraph
+- Memgraph: https://github.com/memgraph/memgraph
+- FalkorDB: https://github.com/FalkorDB/FalkorDB
+- Kuzu (archived): https://github.com/kuzudb/kuzu
+- Apache AGE: https://github.com/apache/age
+- DuckPGQ: https://github.com/cwida/duckpgq-extension
+- TuGraph: https://github.com/TuGraph-family/tugraph-db
+- igraph: https://github.com/igraph/igraph
+- NetworKit: https://github.com/networkit/networkit
+- NetworkX: https://github.com/networkx/networkx
+- SNAP: https://github.com/snap-stanford/snap
+- GBBS: https://github.com/ParAlg/gbbs ; Ligra: https://github.com/jshun/ligra
+- cuGraph: https://github.com/rapidsai/cugraph
+- GraphChi: https://github.com/GraphChi/graphchi-cpp
+  (paper: https://www.usenix.org/system/files/conference/osdi12/osdi12-final-126.pdf)
+- GridGraph paper: https://www.usenix.org/system/files/conference/atc15/atc15-paper-zhu.pdf
+- X-Stream paper: https://dl.acm.org/doi/10.1145/2517349.2522740
+- FlashGraph: https://github.com/flashxio/FlashX
+- Mosaic paper: https://dl.acm.org/doi/10.1145/3064176.3064191
+- GraphScope: https://github.com/alibaba/GraphScope
+- TigerGraph: https://www.tigergraph.com/
+- AWS Neptune Analytics (m-NCU pricing): https://aws.amazon.com/neptune/pricing/
+- Neo4j Aura Graph Analytics pricing: https://neo4j.com/pricing/
+- Kuzu shutdown/acqui-hire discussion: https://news.ycombinator.com/item?id=44383243
+
 ### 9.2 The Shreyas answer: WHY the turf is empty
 
 Not because it's impossible — GraphChi proved the physics in 2012 and
@@ -694,24 +725,43 @@ A parallel deep-research report (independent LLM with web search,
 marked [ext-unverified] until re-sourced — directionally consistent
 with our verified base.
 
-### 10.1 New pain anecdotes worth keeping (all [ext-unverified])
+### 10.1 New pain anecdotes worth keeping
 
-- K8s sidecar with 120 GB provisioned still OOM-crashed at ~40 GB used
-  — manual JVM threshold management fails even with headroom.
-- Aura FREE-TIER user OOM'd on `gds.graph.project()` while following
-  Neo4j's own Graph Academy course (Mar 2026).
-- NodeSimilarity blocked: estimated 130 GiB vs 24 GiB free — a fourth
-  algorithm-named memory-block anecdote (cf. E1's 52 GiB).
-- Delta-stepping OOM'd with 12 GB heap on a 63k-node graph (!).
-- Louvain on Yelp dataset: DB corruption + ~23 GB consumption.
-- `gds.graph.drop` does NOT return memory to the OS (JVM GC behavior)
-  — users forced into manual restarts. New complaint class for us:
-  our munmap actually releases.
-- Aura pricing quotes: "$70k a year isn't even nearly competitive";
-  Neptune claimed ~1/6th the price at similar provisioning (flagged
-  by the report itself as workload-dependent).
-- Workaround culture: projecting node IDs only and re-MATCHing
-  attributes — trading the memory wall for an I/O latency wall.
+Re-sourcing pass (2026-07): items we could independently locate now
+carry URLs and are VERIFIED; the rest stay [ext-unverified].
+
+- [VERIFIED] Aura FREE-TIER user OOM'd on `gds.graph.project()` while
+  following Neo4j's own Graph Academy GDS-fundamentals course:
+  https://community.neo4j.com/t/using-gds-graph-project-on-auradb-free-tier/76520
+  ("it is stated that it is possible to use AuraDB free tier for the
+  course. However, I have found this not to be true.")
+- [VERIFIED] NodeSimilarity blocked: "Procedure was blocked since
+  minimum estimated memory (130 GiB) exceeds current free memory
+  (24 GiB)" — on a graph they then shrank to 2,594 nodes and STILL
+  hit a 54 GiB estimate; "motivating us to look elsewhere for scale":
+  https://community.neo4j.com/t/comparing-jaccard-similarity-neo4j-3-4-to-node-similarity-on-neo4j-3-5-and-gds-1-1-1/37205
+- [VERIFIED] `gds.graph.drop` does NOT return memory to the OS (JVM GC
+  behavior) — user forced into stop/start restarts to reclaim RAM:
+  https://community.neo4j.com/t/when-i-drop-the-memory-graph-my-memory-usage-does-not-change/67604
+  New complaint class for us: our munmap actually releases.
+- [VERIFIED, adjacent] Louvain run taking 5 hours and >70 GB heap on a
+  60 GiB store (community 3.5, algo.louvain):
+  https://stackoverflow.com/questions/60050083/how-to-reduce-the-running-time-and-memory-utilization-of-the-louvain-algorithm-i
+- [ext-unverified] K8s sidecar with 120 GB provisioned still
+  OOM-crashed at ~40 GB used — manual JVM threshold management fails
+  even with headroom. (Could not locate the original post.)
+- [ext-unverified] Delta-stepping OOM'd with 12 GB heap on a 63k-node
+  graph. (Could not locate; nearest verified path-OOM evidence remains
+  E18/E19, GDS GitHub issues #55/#54.)
+- [ext-unverified] Louvain on Yelp dataset: DB corruption + ~23 GB
+  consumption. (Could not locate; the SO post above is the closest
+  verified analog.)
+- [ext-unverified] Aura pricing quotes: "$70k a year isn't even nearly
+  competitive"; Neptune claimed ~1/6th the price at similar
+  provisioning (flagged by the report itself as workload-dependent).
+- [ext-unverified] Workaround culture: projecting node IDs only and
+  re-MATCHing attributes — trading the memory wall for an I/O latency
+  wall.
 
 ### 10.2 GraphRAG cost-split confirmation
 
@@ -751,7 +801,9 @@ worth keeping: LOCAL AI agents on consumer hardware — an embedded,
 
 The report itself flags: the Neptune 1/6th-price and "custom Rust DB =
 1000x" claims are workload-dependent folklore. We additionally flag:
-all 10.x items lack exported URLs; before any item is used in public
-material it must be re-sourced. The core memory-wall thesis, however,
+the report's citation links were not exported, so a re-sourcing pass
+(2026-07) was run: four 10.1 items are now independently VERIFIED with
+URLs; the remainder stay [ext-unverified] and must not be used in
+public material until sourced. The core memory-wall thesis, however,
 is now triangulated three independent ways: our API sweeps (sec. 2, 6,
 7), GDS source code (Arch06), and this external pass.

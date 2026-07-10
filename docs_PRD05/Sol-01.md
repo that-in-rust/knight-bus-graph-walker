@@ -155,7 +155,7 @@ residency is controlled partly by the operating system. Strict mode needs:
 
 Sources:
 
-- [prd-l1.md](prd-l1.md)
+- [prd-l1.md](../docs_PRD04/prd-l1.md)
 - [Current-Codebase-Low-RAM-Patterns.md](../docs_PRD03/reference-learning/Current-Codebase-Low-RAM-Patterns.md)
 - [Memory-Estimate-Formula-Book.tsv](../docs_PRD03/implementation-readiness/Memory-Estimate-Formula-Book.tsv)
 
@@ -173,8 +173,8 @@ Let GRAIN codecs earn adoption through benchmark results later.
 
 Sources:
 
-- [Arch05.md](Arch05.md)
-- [Arch06.md](Arch06.md)
+- [Arch05.md](../docs_PRD04/Arch05.md)
+- [Arch06.md](../docs_PRD04/Arch06.md)
 - [Cells-Adoption-Falsifier-Plan.md](../docs_PRD03/implementation-readiness/Cells-Adoption-Falsifier-Plan.md)
 
 ### Correction 5: A sidecar proof is not yet a Neo4j rewrite
@@ -191,7 +191,7 @@ Neo4j-compatible Rust database: not yet
 
 That narrower claim is a strength. It keeps the first proof falsifiable.
 
-Source: [gtm-POC-01.md](gtm-POC-01.md)
+Source: [gtm-POC-01.md](../docs_PRD04/gtm-POC-01.md)
 
 ## Evidence Baseline
 

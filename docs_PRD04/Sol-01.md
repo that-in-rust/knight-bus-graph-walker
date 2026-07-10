@@ -6,11 +6,12 @@ Date: 2026-07-10
 
 Status: proposed architecture and execution strategy
 
-Source scope: `docs_PRD03/`, the current Rust implementation, and the local
-reference repositories already cited by `docs_PRD03/`. No new internet claims
-were added in this pass. Where an older document contains a web-derived claim,
-this document treats it as inherited evidence and does not independently
-re-verify it.
+Source scope: the architecture and PRD notes in `docs_PRD04/`, the evidence
+subfolders that remain under `docs_PRD03/`, the current Rust implementation,
+and the local reference repositories cited by those notes. The three research
+questions added on 2026-07-10 include targeted internet verification using
+current official documentation and primary systems/production papers. Their
+URLs and the limits of what each source establishes are recorded inline.
 
 This document records evidence, conclusions, assumptions, tradeoffs, and
 verification gates. It does not expose private chain-of-thought.
@@ -91,9 +92,10 @@ behavior. Neither number may be presented as the other.
 
 ## Premise Check
 
-The premise is sound: `docs_PRD03/` contains enough architecture research,
-source evidence, public-surface inventory, oracle planning, and current-code
-knowledge to begin implementation.
+The premise is sound: `docs_PRD04/` plus the evidence subfolders under
+`docs_PRD03/` contain enough architecture research, source evidence,
+public-surface inventory, oracle planning, and current-code knowledge to begin
+implementation.
 
 Five corrections are necessary before acting on it.
 
@@ -153,7 +155,7 @@ residency is controlled partly by the operating system. Strict mode needs:
 
 Sources:
 
-- [prd-l1.md](../docs_PRD03/prd-l1.md)
+- [prd-l1.md](prd-l1.md)
 - [Current-Codebase-Low-RAM-Patterns.md](../docs_PRD03/reference-learning/Current-Codebase-Low-RAM-Patterns.md)
 - [Memory-Estimate-Formula-Book.tsv](../docs_PRD03/implementation-readiness/Memory-Estimate-Formula-Book.tsv)
 
@@ -171,8 +173,8 @@ Let GRAIN codecs earn adoption through benchmark results later.
 
 Sources:
 
-- [Arch05.md](../docs_PRD03/Arch05.md)
-- [Arch06.md](../docs_PRD03/Arch06.md)
+- [Arch05.md](Arch05.md)
+- [Arch06.md](Arch06.md)
 - [Cells-Adoption-Falsifier-Plan.md](../docs_PRD03/implementation-readiness/Cells-Adoption-Falsifier-Plan.md)
 
 ### Correction 5: A sidecar proof is not yet a Neo4j rewrite
@@ -189,7 +191,7 @@ Neo4j-compatible Rust database: not yet
 
 That narrower claim is a strength. It keeps the first proof falsifiable.
 
-Source: [gtm-POC-01.md](../docs_PRD03/gtm-POC-01.md)
+Source: [gtm-POC-01.md](gtm-POC-01.md)
 
 ## Evidence Baseline
 
@@ -390,6 +392,89 @@ and creates stable seams for future adapters and formats.
 Risk: it may look narrower than a rewrite. The remedy is not broader scope; it
 is a clear evolution map showing which temporary adapters are replaced later.
 
+### Architecture F: Read-Shape Foundry
+
+Blend 1, streaming storage: borrow Apache Iggy's separation between sealed
+immutable segments, sidecar indexes, configurable index residency, and a fixed
+memory pool. Translate a stream partition into a graph **relationship channel**
+partitioned by relationship type, orientation, and source-ID range.
+
+Blend 2, database views: a named GDS graph begins as a logical projection, not
+as another copied CSR. Its durable identity is:
+
+```text
+projection = generation
+           + node selector
+           + relationship selector
+           + orientation
+           + property column handles
+           + semantic/configuration hash
+```
+
+Blend 3, compiler architecture: compile `(projection, procedure, graph stats,
+budget, hardware class)` into one physical read shape:
+
+```text
+direct masked channel scan
+or ephemeral compact CSR
+or factorized incidence execution
+or generation-published algorithm artifact
+```
+
+Blend 4, real-time scheduling: the plan owns a fixed buffer pool and declares
+its future block order. It can bypass cache for one-pass blocks, pin blocks that
+will be revisited, prefetch the next block, and co-locate the matching algorithm
+state range with each edge block.
+
+The resulting durable shape is:
+
+```text
+Neo4j-shaped OLTP
+        |
+Projection Build Store
+        |
+sealed relationship channels + exact block metadata
+        |
+immutable generation manifest
+        |
+logical projection algebra
+        |
+read-shape compiler
+   |             |                  |
+direct view   ephemeral CSR   factorized/artifact view
+        \          |          /
+       plan-owned buffers + co-sharded state
+                       |
+             exact result + receipt + lineage
+```
+
+Why it could be better than GRAIN alone:
+
+- GRAIN optimizes the encoding of a graph after materialization; F first asks
+  whether the projected graph needs materialization at all.
+- A filtered projection can avoid reading unrelated relationship channels and
+  properties instead of copying selected edges into another graph.
+- Factorized incidence can preserve `Account -> Device <- Account` without
+  expanding it into an account-account clique.
+- Exact block metadata can prove that an inactive block cannot contribute to
+  the current frontier, allowing it to be skipped without approximation.
+- Algorithm state can be opened in the same ranges as topology rather than
+  keeping every `O(V)` vector resident.
+
+Why it can fail:
+
+- channel fragmentation can create tiny files and file-descriptor pressure;
+- a schedule compiler can become a research project before one workload wins;
+- compression and metadata can slow the flat whole-graph scan that CSR already
+  serves well;
+- differential or factorized execution is not valid for every procedure;
+- extra physical artifacts can quietly become an unbounded disk portfolio.
+
+Keep as: the durable post-proof storage and planning destination. Architecture
+E remains the 90-day delivery strategy. E's `GraphView`, `AccessPlan`, budget,
+receipt, and parity seams must be capable of admitting F later, but the first
+WCC proof must not wait for relationship channels or a schedule compiler.
+
 ### Comparison
 
 Scores are strategic judgments, not measured facts. `5` is strongest.
@@ -401,16 +486,21 @@ Scores are strategic judgments, not measured facts. `5` is strongest.
 | C. GRAIN foundry | 2 | 3 | 3 | 4 | 2 | Elegant format before proven execution |
 | D. Algorithm factory | 3 | 3 | 4 | 3 | 2 | Budget and spill retrofit after family-specific debt |
 | E. Proof-carrying strangler | 5 | 5 | 5 | 5 | 5 | Narrow proof mistaken for full compatibility |
+| F. Read-shape foundry | 3 | 5 | 4 | 4 | 2 | Planner/index complexity before representative workloads exist |
 
 ## Chosen Thesis
 
-Choose Architecture E, using three pieces from the other paths:
+Choose Architecture E for the first 90 days and keep its durable seams
+compatible with Architecture F. Use four pieces from the other paths:
 
 - B contributes a tiny protocol/plugin canary, not the quarter's main work.
 - C contributes an extensible generation manifest and declared capabilities,
   not new codecs yet.
 - D contributes WCC as the first real kernel and NodeSimilarity as the first
   architecture-breaking spike, not seven-family breadth.
+- F contributes logical projections, future channel-backed `GraphView`
+  implementations, and plan-owned buffers, but no new serving format before
+  the flat-CSR WCC proof establishes the measurement baseline.
 
 The key distinction is between the **durable product architecture** and the
 **temporary delivery architecture**.
@@ -448,6 +538,684 @@ Everything below SourceGraphAdapter and ProcedureAdapter is durable Rust.
 
 The temporary components must be behind explicit ports so replacing them does
 not disturb algorithm correctness or memory evidence.
+
+## Research Question 1: Are The Seven Algorithm Families Enough?
+
+Research date: 2026-07-10. Method: compare the claims in `Arch02.md`,
+`Arch04.md`, `simulation01.md`, and `AlgoExplainers-ASCII.md` with current
+official Neo4j documentation, another graph vendor's use-case documentation,
+Microsoft GraphRAG documentation, and primary production papers.
+
+### Answer first
+
+The seven are useful, but the current wording overstates what is known.
+
+They are seven **algorithm families**, not seven graph shapes and not seven
+business use cases. They are a good initial workload portfolio because they
+exercise global scans, iterative state, pair-candidate explosion, paths,
+embeddings, and set intersections. They are not enough to claim either the
+complete Neo4j GDS surface or the complete market for graph workloads.
+
+The `~20%`, `~15%`, and cumulative `~85%` figures are not confirmed usage
+telemetry. `Arch02.md` correctly says Neo4j publishes no procedure-invocation
+ranking. These percentages must remain explicitly labeled **modeled adoption
+weights**. They may guide experiment ordering, but they cannot support a market
+share, compatibility, or product-completeness claim.
+
+### Claim audit
+
+| Existing claim | Truth-seeking verdict | Confidence | Required correction |
+| --- | --- | --- | --- |
+| "These are the seven top graph use cases" | Incorrect category: they are algorithm families | High | Separate business use cases, query workloads, and algorithm families |
+| "About 85% of GDS adoption uses them" | Plausible prioritization hypothesis; not publicly verifiable | Low-medium | Keep ordinal priority; remove any implication of measured telemetry |
+| "They are enough to stress the storage architecture" | Mostly true for static batch analytics | Medium-high | Add filtered retrieval, temporal change, DAG, and artifact-lifecycle probes |
+| "They cover the current GDS algorithm surface" | False | High | Current GDS separately exposes DAG and topological link-prediction categories, Pregel, and ML pipelines |
+| "They cover the major graph business uses" | False | High | Major uses also depend on pattern matching, k-hop retrieval, reasoning, dynamic updates, and operational traversals |
+| "One physical graph layout can serve all seven well" | Unsupported and unlikely | High | Treat them as a portfolio of access signatures compiled from one logical generation |
+
+### Primary and official source ledger
+
+These links verify categories and mechanisms, not the unobservable adoption
+percentages:
+
+| Source | What it establishes | What it does not establish |
+| --- | --- | --- |
+| [Neo4j GDS graph algorithms](https://neo4j.com/docs/graph-data-science/current/algorithms/) | Current categories include centrality, community detection, similarity, path finding, DAG algorithms, node embeddings, topological link prediction, and Pregel | Relative usage or revenue by category |
+| [Neo4j GDS machine learning](https://neo4j.com/docs/graph-data-science/current/machine-learning/machine-learning/) | Node classification, link prediction, and node regression are end-to-end pipeline surfaces with model artifacts | That these pipelines fit inside the seven static kernel families |
+| [Neo4j DAG algorithms](https://neo4j.com/docs/graph-data-science/current/algorithms/dag/dag-algorithms/) | Topological sort and longest path are explicit dependency-graph workloads | Their adoption share |
+| [Neo4j topological link prediction](https://neo4j.com/docs/graph-data-science/current/algorithms/linkprediction/) | Common Neighbors, Adamic Adar, Resource Allocation, Preferential Attachment, and related scores are a separate category | That NodeSimilarity is a complete substitute |
+| [Neo4j use cases](https://neo4j.com/use-cases/) | Neo4j markets AI systems, GenAI, fraud, supply chain, recommendations, IAM, compliance, network/IT operations, knowledge graphs, pattern matching, digital twins, and metadata management | Which algorithms dominate those uses |
+| [Amazon Neptune graph applications](https://docs.aws.amazon.com/neptune/latest/userguide/graph-get-started.html) | Independent vendor documentation names knowledge, identity, fraud, social, routing, logistics, diagnostics, science, regulation, and network/security graphs | That one vendor's taxonomy is complete |
+| [Microsoft GraphRAG indexing overview](https://microsoft.github.io/graphrag/index/overview/) | GraphRAG extracts entities and relationships, detects communities, generates summaries, and embeds text | That Leiden alone is the GraphRAG workload |
+| [Twitter Who-To-Follow paper](https://web.stanford.edu/~rezab/papers/wtf_overview.pdf) | A production recommendation system used personalized graph ranking and SALSA-style computation | General market share |
+| [Pinterest Pixie paper](https://arxiv.org/abs/1711.07601) | Production recommendation used random-walk-style retrieval over a multi-billion-scale graph | That batch PageRank alone serves online recommendation |
+| [PinSage paper](https://arxiv.org/abs/1806.01973) | Production-scale recommendation combines graph sampling, learned embeddings, and downstream serving | That FastRP covers graph ML generally |
+
+### Business use cases versus computational workloads
+
+The market/use-case taxonomy and the engine workload taxonomy intersect, but
+they are not interchangeable:
+
+| Business use case | Seven-family coverage | Important work outside the seven |
+| --- | --- | --- |
+| Fraud, AML, and entity resolution | Strong: WCC, community, centrality, similarity, paths, triangles | Time-windowed motifs, circular-flow patterns, streaming updates, investigator k-hop queries, merge/split correction |
+| Recommendations and personalization | Strong: similarity, embeddings, ranking | Random walks, candidate sampling, link-prediction pipelines, low-latency neighborhood retrieval, feature/model lifecycle |
+| Knowledge graphs and GraphRAG | Partial: community, centrality, embeddings | Typed pattern joins, k-hop retrieval, provenance, source citations, hybrid vector+graph retrieval, continuous re-indexing |
+| Supply chain and dependency analysis | Partial: paths and components | DAG topological order, SCC/cycle detection, impact reachability, longest path, scenario views, flow/capacity constraints |
+| Network, IT operations, IAM, and security | Partial: paths, components, centrality | Temporal event correlation, authorization path proofs, pattern matching, attack-path enumeration, incremental topology |
+| Customer 360 and master data | Strong initial WCC/similarity fit | Explainable evidence paths, incremental entity merge/split, typed property joins, survivorship rules |
+| Life sciences and drug discovery | Partial: similarity, community, paths, embeddings | Heterogeneous typed subgraphs, motif/substructure search, knowledge reasoning, provenance-heavy joins |
+| Social and influence graphs | Strong static coverage | Temporal diffusion, feed retrieval, online random walks, evolving-community analysis |
+
+### What is actually missing
+
+Do not respond by adding twenty more algorithms to the first release. Add four
+**workload gates** that expose architectural blind spots:
+
+1. **Filtered pattern/retrieval gate.** A typed, property-filtered two-to-four
+   hop query with high selectivity. This tests relationship channels, property
+   late materialization, and whether an OLAP projection can avoid a full copy.
+2. **DAG/dependency gate.** Topological sort plus cycle/SCC detection over a
+   directed dependency graph. This tests directionality and ordered execution
+   that WCC cannot represent.
+3. **Temporal-generation gate.** Apply a small exact edge delta, publish W+1,
+   and decide whether to reuse or recompute. This tests the freshness problem
+   already identified by `Arch04.md`.
+4. **Artifact-pipeline gate.** Produce a feature, train or register a model-like
+   artifact, and bind it to graph generation/configuration identity. This tests
+   the catalog and lifecycle surface that a kernel-only roadmap misses.
+
+The revised verification portfolio is therefore **seven algorithm families
+plus four cross-cutting gates**, not "eleven top algorithms":
+
+```text
+seven families
+  = static analytical access and workspace signatures
+
+four gates
+  = selective query + directed dependency + change over time + artifact life
+```
+
+### Product and architecture consequence
+
+- Retain WCC, Louvain/Leiden, PageRank, NodeSimilarity/KNN, paths, FastRP, and
+  triangles as the first algorithm workload portfolio.
+- Stop displaying the percentages as facts. Label them `modeled_priority` and
+  attach source/confidence/falsifier fields.
+- Do not use the seven to claim Neo4j surface parity. Surface parity also needs
+  catalogs, modes, projections, DAG/link prediction, pipelines, and result
+  semantics.
+- Design storage around computational signatures, not around a presumed fixed
+  market ranking.
+- Collect opt-in anonymous procedure counters or customer workload manifests
+  before replacing modeled priorities with measured ones.
+
+### Falsifier
+
+This conclusion should be revisited if Neo4j publishes representative
+procedure telemetry, or if five target users provide workload manifests in
+which a different class dominates. Until then the seven are a disciplined MVP
+hypothesis, not discovered ground truth.
+
+## Research Question 2: Can Exact Storage Reduce RAM While Preserving The Neo4j Surface?
+
+### Answer first
+
+Yes, because the Neo4j-compatible surface and the OLAP physical representation
+do not have to be the same thing. Bolt, Cypher-facing procedure signatures,
+catalog identity, modes, and result semantics can remain Neo4j-shaped while the
+OLAP engine compiles each named projection into one or more exact physical
+datasets.
+
+The largest RAM win is not a cleverer integer codec. It is **representation
+elimination**:
+
+- do not copy a projection that can remain a logical view;
+- do not create pair edges when an incidence factor is enough;
+- do not keep both orientations resident when one can be streamed;
+- do not load properties an algorithm never reads;
+- do not retain all generations' duplicate blocks;
+- do not keep the full algorithm state resident when ranges can be processed
+  and spilled exactly.
+
+Some options below trade latency for a smaller hard memory envelope. That is
+acceptable in this section; the next research question isolates dual wins.
+
+### Exactness contract
+
+Every physical dataset must prove that it represents the same logical graph
+view. "Compressed" or "factorized" is not permission to change semantics.
+
+For projection `P`, publish:
+
+```text
+P.identity = hash(
+  source_generation,
+  node_selector,
+  relationship_selector,
+  orientation,
+  aggregation_rules,
+  property_types,
+  default/null semantics
+)
+
+P.edge_truth  = normalized edge-stream checksum
+P.node_truth  = normalized node-id checksum
+P.prop_truth  = checksum per typed property column
+P.capability  = exact operations this physical dataset supports
+```
+
+An alternative representation is accepted only when its decoded canonical
+stream matches the oracle projection and its algorithm output matches stock GDS
+under the procedure's documented ordering/tolerance rules. Approximate sketches
+may estimate cost or guide prefetch; they may never silently justify dropping
+an edge from an exact plan.
+
+### Storage option A: Sealed relationship channels
+
+Store immutable edge facts in moderate-sized channels keyed approximately by:
+
+```text
+relationship type x orientation x source-ID range
+```
+
+Each sealed channel contains contiguous edge payload plus small sidecars:
+
+```text
+channel-00421/
+  edges.bin
+  source.offsets
+  source.membership
+  destination.membership
+  property-zone-map
+  checksum
+```
+
+Rare relationship types share overflow channels; labels remain masks rather
+than exploding into one file per label combination. The generation manifest
+publishes only sealed channels. This adapts the ordered sealed-segment, sidecar
+index, and configurable-residency ideas documented by the
+[Apache Iggy storage engine](https://iggy.apache.org/docs/server/storage-engine/).
+
+RAM mechanism: a filtered graph opens only selected channels and bounded
+indexes. Cost: an unfiltered global scan may open more extents than flat CSR.
+
+### Storage option B: Virtual projection manifests
+
+A named graph initially stores handles, masks, and semantics rather than copied
+topology:
+
+```text
+fraud_graph@W = {
+  generation: W,
+  node_mask: labels(Account),
+  channels: [TRANSFER, USES_DEVICE],
+  orientation: NATURAL,
+  properties: [amount, timestamp],
+  projection_hash: ...
+}
+```
+
+The planner chooses among:
+
+- execute directly through masks and channels;
+- build a bounded ephemeral CSR when selectivity makes dense IDs valuable;
+- publish a reusable CSR when repeated execution repays build and disk cost.
+
+RAM mechanism: avoid simultaneous OLTP representation + source projection +
+algorithm copy. Cost: masks add branches and broad views may scan irrelevant
+records unless channels and page indexes are selective enough.
+
+### Storage option C: Succinct adjacency pages
+
+Encode adjacency pages independently using delta gaps, reference similarity,
+Elias-Fano offsets, or run encodings while retaining random access boundaries.
+Google's [Zuckerli](https://research.google/pubs/zuckerli-a-new-compressed-representation-for-graphs/)
+demonstrates that large graphs can remain directly addressable without full
+decompression; the source reports smaller representations than WebGraph on its
+tested graphs with comparable decompression resource use.
+
+RAM mechanism: fewer topology bytes enter buffers or page cache. Cost: decode
+CPU and graph-order sensitivity. Keep plain `u32` pages as a codec, not as a
+separate architecture.
+
+### Storage option D: Factorized incidence and hyperedge datasets
+
+Many "derived graphs" are lossy expansions of a smaller exact relation:
+
+```text
+expanded similarity graph        factorized incidence
+
+Account A ---- Account B         Account A -- Device X
+Account A ---- Account C                    -- Account B
+Account B ---- Account C                    -- Account C
+```
+
+For entity resolution, recommendation, and fraud, preserve
+`entity -> feature <- entity` and teach kernels to consume the factor. WCC can
+union entities through a factor; NodeSimilarity can intersect factor lists;
+candidate generation can remain bucketed without ever materializing the full
+entity-entity graph.
+
+This is supported as a mechanism by factorized query processing in
+[Kuzu's CIDR paper](https://vldb.org/cidrdb/papers/2023/p48-jin.pdf) and by the
+set-oriented layouts and joins in
+[EmptyHeaded](https://arxiv.org/abs/1503.02368). Neither source proves a Knight
+Bus GDS kernel; that remains a parity and benchmark task.
+
+RAM mechanism: avoid potentially quadratic intermediate edges and repeated
+factor values. Cost: only applicable when projection semantics can be expressed
+through retained factors; arbitrary user-supplied projected edges fall back to
+ordinary adjacency.
+
+### Storage option E: Orientation-on-demand exact topology
+
+The canonical generation can retain one orientation plus a compact source
+index and build/stream the transpose into bounded runs for pull algorithms.
+Alternatively, publish reverse orientation only for projections whose observed
+plans justify it.
+
+RAM/disk mechanism: remove the unconditional second edge array. Cost: PageRank
+and other pull-heavy workloads pay transpose or additional indirection latency.
+This is a strict-mode option, not an assumed default.
+
+### Storage option F: Co-sharded state capsules
+
+Partition algorithm state by exactly the same dense-ID ranges as topology:
+
+```text
+range-00042.edges
+range-00042.labels
+range-00042.frontier
+range-00042.result
+```
+
+Open a topology range and its state capsule, process it, persist the dirty
+state, then release both. GraphChi's
+[parallel sliding windows](https://www.usenix.org/conference/osdi12/technical-sessions/presentation/kyrola)
+is evidence that organizing external-memory graph computation around aligned
+shards can make large exact computations practical on small machines.
+
+RAM mechanism: resident state becomes `O(window)` instead of always `O(V)`.
+Cost: extra passes, synchronization, and writes; use only when in-core vectors
+fail admission.
+
+### Storage option G: Content-addressed generations
+
+Name immutable blocks by content hash and let generation manifests reference
+them:
+
+```text
+W   = [a, b, c, d]
+W+1 = [a, b, e, d]
+```
+
+Only `e` is new. This mainly reduces disk and build pressure, but also reduces
+cache churn because unchanged blocks retain stable identities across
+generations. Garbage collection is manifest-reachability plus reader pins.
+
+RAM mechanism: fewer duplicated indexes and build buffers during publication.
+Cost: reference accounting, compaction, and adversarial small-block metadata.
+
+### Storage option H: Typed late-materialized property plane
+
+Keep topology, node properties, and relationship properties physically
+separate. Encode each property with its own null bitmap, dictionary or fixed
+width values, and block statistics. An algorithm opens only declared columns.
+
+RAM mechanism: WCC does not touch `amount`, PageRank does not deserialize text,
+and a path plan reads only its weight column. Cost: a procedure needing several
+properties may perform more coordinated reads. Property defaults, numeric
+coercions, missing values, and aggregation semantics must be parity-tested.
+
+### One logical graph, multiple exact OLAP datasets
+
+The foundry should not generate all layouts eagerly. It should publish the
+canonical fact representation, then promote exact artifacts under a disk and
+build budget:
+
+| Dataset | Physical shape | Primary families | Exact information preserved |
+| --- | --- | --- | --- |
+| `topology_scan` | Forward channels or flat CSR | WCC, FastRP, global push | Every selected edge and endpoint |
+| `rank_pull` | Reverse channels + exact out-degree vector | PageRank-class | Every reverse edge and normalization degree |
+| `community_undirected` | Canonical undirected pair once + weight | WCC, Louvain/Leiden | Undirected multiplicity/aggregation semantics |
+| `similarity_incidence` | Feature-to-entity inverted lists | NodeSimilarity/KNN, ER | Original bipartite relation; no synthetic clique |
+| `path_weighted` | Type-filtered adjacency + exact weight columns | BFS, Dijkstra, A* | Direction and every weight value |
+| `motif_intersection` | Degree-oriented sorted lists; optional dense hub pages | Triangles/LCC | Edge existence with an orientation rule that counts once |
+| `embedding_operator` | Sparse normalized blocks + feature handles | FastRP/propagation | Exact selected topology and declared numeric inputs |
+
+Every artifact carries `source_generation`, `projection_hash`, `config_hash`,
+`canonical_stream_checksum`, byte size, build receipt, and capabilities. It can
+be evicted without losing truth because the canonical generation can rebuild
+it.
+
+### Low-RAM option scorecard
+
+Scores are hypotheses to prioritize experiments, not measured results. `5` is
+best; latency-cost `5` means the largest likely slowdown.
+
+| Option | Peak-RAM potential | Latency cost | Breadth | Complexity | First falsifier |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Relationship channels | 4 | 2 | 5 | 3 | filtered projection reads materially fewer bytes than flat CSR |
+| Virtual projections | 5 | 2 | 5 | 4 | direct view beats projection copy at representative selectivity |
+| Succinct pages | 4 | 3 | 4 | 3 | decode does not erase I/O savings |
+| Factorized incidence | 5 | 2 | 2 | 4 | exact NodeSimilarity/WCC avoids pair-edge explosion |
+| Orientation on demand | 3 | 5 | 3 | 2 | saved reverse bytes justify PageRank penalty |
+| State capsules | 5 | 5 | 4 | 5 | strict job completes under cap with tolerable write amplification |
+| Content-addressed generations | 3 | 1 | 5 | 3 | small update reuses most blocks without metadata blowup |
+| Late property plane | 4 | 1 | 5 | 3 | property-heavy and property-free plans both remain efficient |
+
+### Recommendation for the low-RAM lane
+
+Use virtual projections over sealed relationship channels as the default
+research direction. Add a typed property plane and content-addressed immutable
+blocks as orthogonal capabilities. Keep succinct codecs and state capsules as
+admission-selected strict plans. Add factorized incidence only for a concrete
+fraud/recommendation projection that proves expansion is the dominant bill.
+
+Do not replace flat dual CSR yet. It remains the oracle, global-scan baseline,
+and fallback when a specialized representation cannot prove a win.
+
+## Research Question 3: Can Exact Storage Reduce Both RAM And Latency?
+
+### Answer first
+
+Sometimes, but only when the design **eliminates work or movement**. Merely
+compressing the same work exchanges I/O for CPU and may not reduce latency.
+The credible dual-win mechanisms are:
+
+1. avoid building or copying a representation;
+2. prove that blocks cannot contribute and skip them;
+3. preserve a smaller factor instead of expanding derived edges;
+4. make the execution plan control buffers and future reads;
+5. choose representations and traversal direction from graph statistics;
+6. reuse exact unchanged work across immutable generations.
+
+The target is not "one magic format." It is an exact physical-design compiler
+that selects among multiple graph-shaped datasets while keeping one logical
+projection contract.
+
+### Dual-win option 1: Projection-free direct execution
+
+Compile a logical projection directly into channel and mask iterators. Delay
+dense-ID remapping and property materialization until a kernel demonstrates it
+needs them. For one-shot or broad projections this removes both projection RAM
+and projection-build latency.
+
+Materialize an ephemeral CSR only when the estimated savings from dense IDs and
+contiguous adjacency exceed its build bill:
+
+```text
+materialize when
+  repeated_edge_reads * direct_view_penalty
+    > build_time + build_IO + temporary_bytes_cost
+```
+
+This decision must be recorded in the execution receipt, not hidden in a cache.
+
+### Dual-win option 2: Exact graph page indexes
+
+Add conservative metadata to each edge/property page:
+
+```text
+source-ID range and exact/encoded membership
+destination-ID range and membership
+relationship-type bitmap
+property min/max and null count
+edge count and degree bounds
+payload offset, length, codec, checksum
+```
+
+At each frontier or filter step, the plan asks whether a page can contribute.
+It skips the page only when the answer is provably no. False positives cost a
+read; false negatives are forbidden. This adapts the page-pruning mechanism in
+the official [Apache Parquet page-index specification](https://parquet.apache.org/docs/file-format/pageindex/)
+to graph frontiers and relationship filters.
+
+RAM win: irrelevant pages never become resident. Latency win: storage and
+decode work disappear. Full scans can ignore the index, preserving the CSR-like
+fallback.
+
+### Dual-win option 3: Codec-adaptive micro-pages
+
+Choose a codec per page from a small closed set:
+
+```text
+flat u32          random sparse neighborhoods
+delta bit-pack    locally ordered sparse neighborhoods
+Elias-Fano        monotone lists with useful universe/list ratio
+run container     long consecutive ranges
+dense bit tile    dense hub-to-range blocks and intersections
+```
+
+Group pages by codec so execution dispatches once per run, not once per edge.
+Maintain codec-specialized kernels for scan, membership, intersection, and
+frontier expansion. [Zuckerli](https://research.google/pubs/zuckerli-a-new-compressed-representation-for-graphs/)
+supports the feasibility of directly accessible compressed adjacency;
+[Bit-GraphBLAS](https://arxiv.org/abs/2201.08560) supports dense bit tiles for
+locally dense matrix blocks. These are mechanism precedents, not expected
+Knight Bus benchmark results.
+
+RAM win: fewer bytes read and retained. Latency win exists only where reduced
+I/O/cache misses exceed decode and dispatch cost. Plain pages remain mandatory.
+
+### Dual-win option 4: Plan-owned future-aware buffers
+
+Do not delegate strict execution to an opaque OS page-cache policy. The access
+plan already knows much of its future block sequence, so it can:
+
+- bypass cache for a one-pass scan;
+- double-buffer the next sequential block;
+- pin a small hot index or high-degree block used every iteration;
+- evict by declared next-use distance rather than generic recency;
+- reserve topology, state, result, and spill buffers before graph open;
+- assign one shard owner to avoid duplicate decompression and cache lines.
+
+This combines Iggy's documented fixed memory-pool idea with graph-plan
+knowledge. It makes memory deterministic and can improve latency by preventing
+useful pages from being displaced by one-pass traffic.
+
+### Dual-win option 5: Graph schedule compiler
+
+Keep algorithm semantics independent from the physical schedule. Compile:
+
+```text
+algorithm IR
+  + projection statistics
+  + available physical datasets
+  + memory budget
+  + hardware profile
+  -> direction, frontier representation, codec kernels,
+     block order, fusion, prefetch, state placement, concurrency
+```
+
+The schedule choices include sparse push, dense pull, hybrid direction,
+bit-vector versus sparse frontier, direct versus materialized view, and state
+window size. [GraphIt](https://graphit-lang.org/) demonstrates the value of
+separating an algorithm from schedules controlling traversal direction, data
+layout, parallelism, and locality.
+
+Cache a winning schedule only under a key containing algorithm/config class,
+projection fingerprint, graph-statistics bucket, format version, and hardware
+class. Revalidate it after meaningful distribution or hardware changes.
+
+### Dual-win option 6: Factor-native kernels
+
+Execute on the smallest exact relation rather than a convenient expanded
+graph. Examples:
+
+- WCC unions accounts encountered under each device factor.
+- NodeSimilarity intersects device/product incidence lists and retains bounded
+  top-K heaps without constructing every candidate pair.
+- Recommendation propagation alternates entity and feature partitions.
+- Typed GraphRAG retrieval traverses entity-document-community incidence
+  without flattening every relationship into one homogeneous projection.
+
+RAM and latency both fall when avoided expansion dominates factor traversal.
+The kernel must declare exactly which projection semantics it supports and
+fall back when parallel edges, weights, or aggregation rules would differ.
+
+### Dual-win option 7: Topology-state fusion by range
+
+For strict or NUMA plans, store state capsules in the same ID ranges as edge
+pages and fuse operations while both are hot:
+
+```text
+read edge page i
+read state slab i
+decode -> update -> reduce -> emit dirty slab
+release both
+```
+
+Avoid creating a decoded edge buffer when a codec iterator can feed the kernel
+directly. Avoid separate passes for a property when its narrow typed values can
+be decoded alongside selected edges. This reduces peak buffers and memory
+traffic; whether it reduces wall time depends on write amplification.
+
+### Dual-win option 8: Differential generation lineage
+
+Record which content-addressed input blocks and configuration produced each
+result chunk or acceleration artifact. On generation W+1:
+
+1. identify changed input blocks;
+2. invalidate dependent result/state chunks;
+3. propagate exact changes;
+4. stop only at an algorithm-specific fixed-point certificate;
+5. fall back to full recomputation when the dirty region or retained state is
+   estimated to cost more.
+
+[GraphSurge](https://arxiv.org/abs/2004.05297) demonstrates declarative graph
+views, shared differential computation across view collections, and adaptive
+choice between differential and from-scratch execution. Knight Bus should copy
+the adaptive decision, not assume incremental is always cheaper.
+
+RAM win: avoid rebuilding unchanged state and topology. Latency win: small
+deltas can touch a small region. Risk: deletions, high-centrality changes, and
+global normalization can invalidate most of the graph; retained arrangements
+can themselves consume too much RAM.
+
+### Dual-win option 9: Exact certified skeletons
+
+Publish small, evictable, generation-bound accelerators rather than another
+complete topology:
+
+| Family | Exact accelerator | How it helps without changing the answer |
+| --- | --- | --- |
+| WCC | spanning forest plus component labels | unchanged components can be validated/reused; changed bridges trigger repair/full fallback |
+| SCC | condensation DAG | many reachability operations run over a much smaller graph |
+| shortest path | landmark lower-bound distances | A* explores fewer nodes; admissible bounds preserve optimality |
+| triangles | degeneracy/degree orientation | each triangle is intersected and counted once |
+| PageRank | previous exact vector as initial state | fewer iterations when convergence is verified against the same tolerance |
+
+These artifacts require source generation, algorithm configuration, checksum,
+and invalidation rules. A warm start is not an exact answer; the normal
+convergence or optimality certificate still decides completion.
+
+### Per-family read shapes
+
+This is the concrete interpretation of "storage in the shape of the read":
+
+| Family | Preferred exact dataset | State shape | Main dual-win hypothesis |
+| --- | --- | --- | --- |
+| WCC | canonical undirected edge channel, each pair once | sharded parent/label slabs | half the orientation bytes plus sequential union; no full copied projection |
+| Louvain/Leiden | undirected weighted adjacency grouped by current community range | community/degree slabs; ephemeral coarsened levels | coarsening levels spill and reuse buffers instead of coexisting in RAM |
+| PageRank | reverse channels + exact out-degree column | two rank slabs or delta/residual slabs | pull-contiguous reads, pinned degrees, block convergence skips where sound |
+| NodeSimilarity/KNN | feature-to-entity incidence | bucketed candidate/top-K state | never materialize the candidate-pair graph |
+| Paths | type/weight-filtered channels + optional landmarks | sparse frontier/priority queue + windowed dist | avoid unrelated relationship/property pages; landmarks reduce expansions |
+| FastRP/propagation | normalized sparse operator blocks | output matrix row blocks | fuse edge decode and blockwise vector writes; never retain full output if sink streams |
+| Triangles/LCC | degree-oriented sorted lists + dense hub bit pages | counters and small intersection buffers | fewer duplicate intersections and SIMD/bitset work on dense local blocks |
+
+### Dual-win scorecard
+
+Scores are hypotheses. `5` means strongest expected effect or highest risk.
+
+| Mechanism | RAM reduction | Latency reduction | Exactness ease | Engineering risk | Recommended phase |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Projection-free execution | 5 | 4 | 4 | 3 | First |
+| Exact page index | 4 | 5 for selective/frontier plans | 5 | 3 | First |
+| Future-aware buffer manager | 4 | 4 | 5 | 3 | First |
+| Schedule compiler | 3 | 5 | 4 | 5 | Second, with a tiny schedule vocabulary |
+| Codec-adaptive pages | 4 | 3-5 by distribution | 5 | 4 | Second |
+| Factor-native kernels | 5 | 5 when expansion is large | 3 | 5 | NodeSimilarity spike |
+| Topology-state fusion | 4 | 3 | 4 | 4 | Strict-lane second phase |
+| Differential lineage | 3-5 | 1-5 by delta | 3 | 5 | After atomic generations |
+| Certified skeletons | 2-4 | 3-5 | 3 | 4 | Workload-driven only |
+
+### Recommended composite
+
+The best architecture is not to replace GRAIN with another fixed format. It is
+to turn GRAIN into one family of physical artifacts under the Read-Shape
+Foundry:
+
+```text
+canonical exact facts
+  = sealed relationship channels + typed property columns
+
+logical graph
+  = generation-bound projection algebra
+
+physical graph portfolio
+  = flat CSR | succinct pages | factorized incidence
+    | algorithm-shaped exact artifacts
+
+execution
+  = schedule compiler + plan-owned fixed buffers + state capsules
+
+time
+  = content-addressed generations + adaptive differential lineage
+
+proof
+  = normalized graph checksum + stock-GDS parity + memory/latency receipt
+```
+
+The first Architecture F experiment, after Architecture E's WCC execution
+spine is green, should be only:
+
+1. virtual projection descriptor over the existing flat generation;
+2. exact page metadata for one relationship/property filter;
+3. fixed plan-owned buffer pool in strict mode;
+4. direct-view versus ephemeral-CSR planner decision;
+5. WCC and one filtered path query as falsifiers.
+
+That subset tests the central thesis without building channels, five codecs,
+differential dataflow, and nine kernels at once.
+
+### Verification experiments and promotion gates
+
+| Experiment | Compared plans | Required evidence | Kill criterion |
+| --- | --- | --- | --- |
+| E1 projection elimination | copied flat CSR vs direct virtual view vs ephemeral CSR | same normalized edges/results; build bytes; first-result and total time; cgroup peak | direct view loses on both memory and latency at representative selectivity |
+| E2 page skipping | scan all pages vs exact page index | skipped-page proof; physical bytes; cold/warm p50/p95 | metadata saves <10% bytes on target filtered/frontier workloads |
+| E3 fixed buffers | mmap fast lane vs explicit fixed pool at 512 MiB/2 GiB/8 GiB | cgroup peak, I/O, faults, wall time, rejection behavior | budget is exceeded or slowdown is unacceptable for the strict product promise |
+| E4 factorized similarity | expanded candidate graph vs incidence-native top-K | exact top-K parity including ties; candidate count; spill; peak | factor traversal does not materially reduce candidate/state bill |
+| E5 generation differential | full W+1 recompute vs lineage-driven update | exact final result, invalidation trace, retained-state bill | planner cannot reliably identify when full recompute is cheaper |
+
+A **dual-win** claim requires, on the same published generation, configuration,
+hardware, and output semantics:
+
+- at least 20% lower whole-process/cgroup peak memory;
+- at least 10% lower median and p95 wall time across repeated cold and warm
+  trials, with confidence intervals reported;
+- no output mismatch beyond the stock procedure's documented numeric tolerance;
+- build time, disk amplification, and retained artifact bytes reported beside
+  execution results;
+- flat CSR retained as fallback until the win reproduces on at least two graph
+  distributions.
+
+These thresholds are proposed promotion gates, not current performance claims.
+
+### What not to do
+
+- Do not partition physically by every label/property combination.
+- Do not publish every algorithm layout for every projection.
+- Do not call mmap residency "free RAM."
+- Do not use Bloom filters or sketches as proof that an exact page is irrelevant
+  unless the direction of error makes false negatives impossible.
+- Do not quantize IDs, weights, or properties under an exact compatibility
+  claim without proving procedure-level equivalence.
+- Do not retain differential state when its memory bill exceeds recomputation.
+- Do not let the schedule compiler choose a plan that the admission ledger has
+  not reserved and the receipt cannot explain.
 
 ## Proposed Internal Architecture
 
@@ -1431,8 +2199,9 @@ No. Its novelty is the integration of ordinary mechanisms into a stronger
 contract:
 
 ```text
-generation identity + explicit plan + enforced budget + exact/approx flag
-+ streamed result + oracle verdict + measured reconciliation
+generation identity + logical projection + selected physical read shape
++ explicit plan + enforced budget + exact/approx flag + streamed result
++ oracle verdict + measured reconciliation
 ```
 
 Each mechanism has precedent. Their composition makes a graph run independently
@@ -1448,10 +2217,16 @@ rewriting.
 
 ## Final Synthesis
 
-`docs_PRD03/` has already done the broad thinking. It has separated OLTP from
+`docs_PRD04/` has already done the broad thinking. It has separated OLTP from
 OLAP, inventoried GDS, mapped memory and algorithm families, cataloged reference
 systems, designed publication semantics, and explored flat, cellular,
 compressed, algebraic, and out-of-core architectures.
+
+The internet verification in this revision also corrects one planning premise:
+the seven are algorithm families and modeled priorities, not seven complete
+graph use cases or measured adoption telemetry. Keep them as the static
+analytics workload portfolio, then add the four gates for filtered retrieval,
+directed dependencies, temporal generations, and artifact lifecycle.
 
 The project now needs a narrowing move.
 
@@ -1461,12 +2236,20 @@ budgeted plans, execute through one common kernel contract, publish generations
 atomically, stream results through bounded sinks, compare against GDS, and
 persist the receipt that ties correctness and memory to an exact watermark.
 
+The strongest durable storage destination is the Read-Shape Foundry: preserve
+canonical exact graph facts, represent named graphs logically when possible,
+and compile each admitted algorithm into direct channels, an ephemeral CSR, a
+factorized view, or an exact generation-bound artifact. Plan-owned buffers,
+page-skip proofs, and co-sharded state are more promising than expecting one
+universal compressed CSR to win every workload. This destination is a
+falsifiable hypothesis, not a reason to delay the first WCC proof.
+
 The decisive sequencing rule is:
 
 ```text
 Do not add kernel number two until kernel number one proves the execution spine.
-Do not add a new format until a measurement proves the current payload is the
-bottleneck.
+Do not add a new serving payload until a measurement proves the current payload
+or projection materialization is the bottleneck.
 Do not claim compatibility beyond the canaries that pass.
 Do not claim strict RAM from heap accounting or mmap alone.
 ```
@@ -1499,6 +2282,15 @@ round:
    multi-crate workspace?
 10. Which user observation would cause Quarter 2 to prioritize Bolt/Cypher
     canaries over PageRank or NodeSimilarity?
+11. Which real filtered projection should falsify relationship channels and
+    exact page skipping after the WCC spine is green?
+12. What disk/build budget governs promotion and eviction of algorithm-shaped
+    exact artifacts?
+13. Which generation changes are eligible for exact differential reuse, and
+    which force full recomputation immediately?
+14. What opt-in customer workload evidence would be sufficient to replace the
+    seven modeled priorities with measured ordering?
 
-The first four questions can be fixed during Week 1. The others should remain
-open until the WCC evidence makes them cheaper to answer.
+The first four questions can be fixed during Week 1. Questions 11-13 belong to
+the post-WCC Architecture F experiments. The others should remain open until
+the WCC evidence makes them cheaper to answer.

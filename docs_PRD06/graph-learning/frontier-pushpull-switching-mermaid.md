@@ -138,5 +138,15 @@ flowchart TD
   `roaring-bitmap-idsets` (compressed dense-side frontiers).
 - Next in category: label-propagation components; delta-stepping SSSP
   (bucketed frontiers).
+- Storage kinship: the switch's amortization argument mirrors
+  compaction triggers (`lsm-compaction-tradeoff` §scoring) — measure
+  cheap proxies (scout_count / level sizes), flip strategy only past
+  a margin, keep hysteresis so the system doesn't thrash between the
+  two regimes.
+- For differential verification (docs_PRD06 thesis): push and pull
+  MUST produce identical results — a free self-check every
+  direction-switching engine ships implicitly. Running both
+  directions and diffing outputs is the cheapest oracle in this
+  category.
 - 202606 digest overlap: digests named the duality; this pair adds
   thresholds, hysteresis constants, and both topology regimes.

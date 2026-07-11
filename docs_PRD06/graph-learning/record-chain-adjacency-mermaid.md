@@ -110,6 +110,21 @@ flowchart TD
     K7 & K1 & K17 & K4 --> LAW["corpus law: a graph store is a set<br/>decision (which edges) + a layout<br/>decision (chains, CSR, or KV) —<br/>and the layout decision is exactly the<br/>OLTP/OLAP fork"]
 ```
 
+## 9b. The third camp, drawn out
+
+```mermaid
+sequenceDiagram
+    participant A as application
+    participant J as JanusGraph layer
+    participant KV as KV store (Cassandra/HBase/<br/>RocksDB — pattern 1)
+    A->>J: expand(v, OUT, KNOWS)
+    J->>KV: get row key = vertex v
+    Note over J,KV: EdgeSerializer packs each edge as a<br/>column entry under the vertex's key —<br/>sort order (direction, type, sort key)<br/>makes the KNOWS slice contiguous<br/>(janusgraph-core .../database/EdgeSerializer.java)
+    KV-->>J: column slice = serialized edge list
+    J-->>A: deserialized neighbors
+    Note over A,KV: adjacency = a posting list (17) stored<br/>as a value; traversal cost = the KV<br/>store's read path (memtables, SSTables,<br/>blooms — patterns 1/6), NOT pointer<br/>arithmetic. Scale-out for free,<br/>hop latency paid per level
+```
+
 ## 10. Citing repos
 
 | Repo | Path | Role |
@@ -118,6 +133,7 @@ flowchart TD
 | neo4j | `reference-repos-neo4j-family/neo4j-src/community/record-storage-engine/src/main/java/org/neo4j/kernel/impl/store/format/standard/RelationshipRecordFormat.java` | 34-byte rel record, dual chains (35, 70-82, 129-139) |
 | kuzu | `reference-repos-competitors/kuzu-src/src/include/storage/table/rel_table_data.h` | CSRHeaderColumns (23-26) |
 | kuzu | `reference-repos-competitors/kuzu-src/src/include/storage/table/csr_node_group.h` | CSRIndex (81-98), PackedCSRInfo (100-110) |
+| janusgraph | `reference-repos-competitors/janusgraph-src/janusgraph-core/src/main/java/org/janusgraph/graphdb/database/EdgeSerializer.java` | the KV camp's witness: edges as column entries under vertex keys |
 
 ## 11. Cross-references
 
@@ -130,3 +146,7 @@ flowchart TD
   as a slogan; this pair adds record byte layouts, the
   chain-splice write path, density-calibrated packed CSR, and
   the numeric read/write trade.
+- Rewrite relevance: any Rust re-implementation of the Neo4j
+  surface can pick EITHER layout — the observable contract is
+  neighbor sets, not bytes — which is why this pattern matters
+  for the docs_PRD06 convergence loop's storage freedom.

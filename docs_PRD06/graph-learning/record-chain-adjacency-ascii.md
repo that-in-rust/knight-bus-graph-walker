@@ -145,6 +145,7 @@ kuzu:   51 offset lookups + 51 contiguous runs ~ 100-150 page
 | neo4j | `reference-repos-neo4j-family/neo4j-src/community/record-storage-engine/src/main/java/org/neo4j/kernel/impl/store/format/standard/RelationshipRecordFormat.java` | 34-byte rel record, two doubly-linked chains (35, 70-82, 129-139) |
 | kuzu | `reference-repos-competitors/kuzu-src/src/include/storage/table/rel_table_data.h` | CSRHeaderColumns offset+length (23-26) |
 | kuzu | `reference-repos-competitors/kuzu-src/src/include/storage/table/csr_node_group.h` | CSRIndex deltas (81-98), PackedCSRInfo density calibration (100-110) |
+| janusgraph | `reference-repos-competitors/janusgraph-src/janusgraph-core/src/main/java/org/janusgraph/graphdb/database/EdgeSerializer.java` | the KV camp's witness: edges serialized into column-family values under vertex keys |
 
 ## 9. Cross-references
 

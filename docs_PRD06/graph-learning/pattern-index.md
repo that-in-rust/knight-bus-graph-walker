@@ -22,6 +22,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 15 | DiskANN Vamana disk layout | storage | DiskANN, pgvectorscale, knowhere | diskann-vamana-layout-{ascii,mermaid}.md | 2026-07-08 |
 | 16 | IVF partitioned probe | execution | faiss, knowhere, cuvs | ivf-partitioned-probe-{ascii,mermaid}.md | 2026-07-08 |
 | S3 | Vector ANN category synthesis | execution | hnswlib, qdrant, faiss, DiskANN, pgvectorscale, knowhere, cuvs | vector-ann-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
+| 17 | Posting block compression | storage | lucene, tantivy, quickwit | posting-block-compression-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

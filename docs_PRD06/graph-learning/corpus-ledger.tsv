@@ -1,39 +1,39 @@
 category	repo	url	stars	last_push	language	local_clone	flags	description
-graph-db	surrealdb/surrealdb	https://github.com/surrealdb/surrealdb	32654	2026-07-06	Rust	-	-	A scalable, distributed, collaborative, document-graph database, for the realtime web
+graph-db	surrealdb/surrealdb	https://github.com/surrealdb/surrealdb	32654	2026-07-06	Rust	reference-repos-corpus/surrealdb-src/	cloned:2026-07-08:53M	A scalable, distributed, collaborative, document-graph database, for the realtime web
 graph-db	dgraph-io/dgraph	https://github.com/dgraph-io/dgraph	21735	2026-07-09	Go	reference-repos-competitors/dgraph-src	-	high-performance graph database for real-time use cases
 graph-db	neo4j/neo4j	https://github.com/neo4j/neo4j	16864	2026-07-08	Java	reference-repos-neo4j-family/neo4j-src	-	Graphs for Everyone
-graph-db	cayleygraph/cayley	https://github.com/cayleygraph/cayley	15048	2026-05-05	Go	-	-	An open-source graph database
+graph-db	cayleygraph/cayley	https://github.com/cayleygraph/cayley	15048	2026-05-05	Go	reference-repos-corpus/cayley-src/	cloned:2026-07-08:14M	An open-source graph database
 graph-db	arangodb/arangodb	https://github.com/arangodb/arangodb	14232	2026-07-11	C++	reference-repos-competitors/arangodb-src	-	🥑 ArangoDB is a native multi-model database with flexible data models for documents, graphs, and key-values. B
 graph-db	vesoft-inc/nebula	https://github.com/vesoft-inc/nebula	12272	2026-05-18	C++	reference-repos-competitors/nebula-src	-	  A distributed, fast open-source graph database featuring horizontal scalability and high availability
 graph-db	JanusGraph/janusgraph	https://github.com/JanusGraph/janusgraph	5807	2026-07-03	Java	reference-repos-competitors/janusgraph-src	-	JanusGraph: an open-source, distributed graph database
-graph-db	tonsky/datascript	https://github.com/tonsky/datascript	5774	2025-10-11	Clojure	-	-	Immutable database and Datalog query engine for Clojure, ClojureScript and JS
-graph-db	HelixDB/helix-db	https://github.com/HelixDB/helix-db	5615	2026-07-05	Rust	-	-	HelixDB is an OLTP graph-vector database built in Rust on Object Storage.
-graph-db	orientechnologies/orientdb	https://github.com/orientechnologies/orientdb	4969	2026-07-09	Java	-	-	OrientDB is the most versatile DBMS supporting Graph, Document, Reactive, Full-Text and Geospatial models in o
+graph-db	tonsky/datascript	https://github.com/tonsky/datascript	5774	2025-10-11	Clojure	reference-repos-corpus/datascript-src/	cloned:2026-07-08:1.4M	Immutable database and Datalog query engine for Clojure, ClojureScript and JS
+graph-db	HelixDB/helix-db	https://github.com/HelixDB/helix-db	5615	2026-07-05	Rust	reference-repos-corpus/helix-db-src/	cloned:2026-07-08:9.2M	HelixDB is an OLTP graph-vector database built in Rust on Object Storage.
+graph-db	orientechnologies/orientdb	https://github.com/orientechnologies/orientdb	4969	2026-07-09	Java	reference-repos-corpus/orientdb-src/	cloned:2026-07-08:80M	OrientDB is the most versatile DBMS supporting Graph, Document, Reactive, Full-Text and Geospatial models in o
 graph-db	FalkorDB/FalkorDB	https://github.com/FalkorDB/FalkorDB	4746	2026-07-10	C	reference-repos-competitors/falkordb-src	-	A super fast Graph Database uses GraphBLAS under the hood for its sparse adjacency matrix graph representation
 graph-db	apache/age	https://github.com/apache/age	4665	2026-07-09	C	reference-repos-competitors/apache-age-src	-	Graph database optimized for fast analysis and real-time data processing. It is provided as an extension to Po
-graph-db	typedb/typedb	https://github.com/typedb/typedb	4374	2026-07-11	Rust	-	-	TypeDB: Built for systems, not records
+graph-db	typedb/typedb	https://github.com/typedb/typedb	4374	2026-07-11	Rust	reference-repos-corpus/typedb-src/	cloned:2026-07-08:13M	TypeDB: Built for systems, not records
 graph-db	memgraph/memgraph	https://github.com/memgraph/memgraph	4231	2026-07-10	C++	reference-repos-competitors/memgraph-src	-	High-performance open-source in-memory graph database for GraphRAG, AI memory, agentic AI, and real-time graph
-graph-db	cozodb/cozo	https://github.com/cozodb/cozo	4053	2024-12-04	Rust	-	-	A transactional, relational-graph-vector database that uses Datalog for query. The hippocampus for AI!
+graph-db	cozodb/cozo	https://github.com/cozodb/cozo	4053	2024-12-04	Rust	reference-repos-corpus/cozo-src/	cloned:2026-07-08:8.1M	A transactional, relational-graph-vector database that uses Datalog for query. The hippocampus for AI!
 graph-db	kuzudb/kuzu	https://github.com/kuzudb/kuzu	4003	2025-10-10	C++	reference-repos-competitors/kuzu-src	archived	Embedded property graph database built for speed. Vector search and full-text search built in. Implements Cyph
 graph-db	alibaba/GraphScope	https://github.com/alibaba/GraphScope	3553	2026-07-02	C++	reference-repos-competitors/graphscope-src	-	🔨 🍇 💻 🚀 GraphScope: A One-Stop Large-Scale Graph Computing System from Alibaba | 一站式图计算系统
-graph-db	terminusdb/terminusdb	https://github.com/terminusdb/terminusdb	3346	2026-07-10	Prolog	-	-	TerminusDB is a distributed, collaborative database designed for building, sharing, versioning, and reasoning 
-graph-db	apache/hugegraph	https://github.com/apache/hugegraph	3124	2026-07-10	Java	-	-	A graph database that supports more than 100+ billion data, high performance and scalability (Include OLTP Eng
-graph-db	indradb/indradb	https://github.com/indradb/indradb	2454	2025-08-16	Rust	-	-	A graph database written in rust
-graph-db	apache/tinkerpop	https://github.com/apache/tinkerpop	2137	2026-07-11	Java	-	-	Apache TinkerPop - a graph computing framework
-graph-db	gchq/Gaffer	https://github.com/gchq/Gaffer	1788	2025-06-06	Java	-	archived	A large-scale entity and relation database supporting aggregation of properties
-graph-db	oxigraph/oxigraph	https://github.com/oxigraph/oxigraph	1751	2026-07-10	Rust	-	-	SPARQL graph database
+graph-db	terminusdb/terminusdb	https://github.com/terminusdb/terminusdb	3346	2026-07-10	Prolog	reference-repos-corpus/terminusdb-src/	cloned:2026-07-08:12M	TerminusDB is a distributed, collaborative database designed for building, sharing, versioning, and reasoning 
+graph-db	apache/hugegraph	https://github.com/apache/hugegraph	3124	2026-07-10	Java	reference-repos-corpus/hugegraph-src/	cloned:2026-07-08:32M	A graph database that supports more than 100+ billion data, high performance and scalability (Include OLTP Eng
+graph-db	indradb/indradb	https://github.com/indradb/indradb	2454	2025-08-16	Rust	reference-repos-corpus/indradb-src/	cloned:2026-07-08:1012K	A graph database written in rust
+graph-db	apache/tinkerpop	https://github.com/apache/tinkerpop	2137	2026-07-11	Java	reference-repos-corpus/tinkerpop-src/	cloned:2026-07-08:265M	Apache TinkerPop - a graph computing framework
+graph-db	gchq/Gaffer	https://github.com/gchq/Gaffer	1788	2025-06-06	Java	reference-repos-corpus/Gaffer-src/	cloned:2026-07-08:35M	A large-scale entity and relation database supporting aggregation of properties
+graph-db	oxigraph/oxigraph	https://github.com/oxigraph/oxigraph	1751	2026-07-10	Rust	reference-repos-corpus/oxigraph-src/	cloned:2026-07-08:9.2M	SPARQL graph database
 graph-db	TuGraph-family/tugraph-db	https://github.com/TuGraph-family/tugraph-db	1745	2026-05-11	C++	reference-repos-competitors/tugraph-src	-	TuGraph: A High Performance Graph Database.
-graph-db	skaiworldwide-oss/agensgraph	https://github.com/skaiworldwide-oss/agensgraph	1496	2026-07-03	C	-	-	AgensGraph, a transactional graph database based on PostgreSQL
-graph-db	apache/jena	https://github.com/apache/jena	1377	2026-07-11	Java	-	-	Apache Jena, A free and open source Java framework for building Semantic Web and Linked Data applications.
-graph-db	krotik/eliasdb	https://github.com/krotik/eliasdb	1037	2022-08-14	Go	-	-	EliasDB a graph-based database.
-graph-db	blazegraph/database	https://github.com/blazegraph/database	987	2023-04-16	Java	-	classic;archived	Blazegraph High Performance Graph Database
-graph-db	openlink/virtuoso-opensource	https://github.com/openlink/virtuoso-opensource	967	2026-06-11	C	-	-	Virtuoso is a high-performance and scalable Multi-Model RDBMS, Data Integration Middleware, Linked Data Deploy
-graph-db	ad-freiburg/qlever	https://github.com/ad-freiburg/qlever	862	2026-07-10	C++	-	-	Graph database implementing the RDF and SPARQL standards. Very fast and scales to more than a trillion triples
-graph-db	pkumod/gStore	https://github.com/pkumod/gStore	838	2026-04-09	C++	-	-	gStore - a graph based RDF triple store.
-graph-db	orneryd/NornicDB	https://github.com/orneryd/NornicDB	827	2026-07-09	Go	-	-	Nornicdb is a distributed low-latency, Graph+Vector, Temporal MVCC with all sub-ms HNSW search, graph traversa
+graph-db	skaiworldwide-oss/agensgraph	https://github.com/skaiworldwide-oss/agensgraph	1496	2026-07-03	C	reference-repos-corpus/agensgraph-src/	cloned:2026-07-08:182M	AgensGraph, a transactional graph database based on PostgreSQL
+graph-db	apache/jena	https://github.com/apache/jena	1377	2026-07-11	Java	reference-repos-corpus/jena-src/	cloned:2026-07-08:138M	Apache Jena, A free and open source Java framework for building Semantic Web and Linked Data applications.
+graph-db	krotik/eliasdb	https://github.com/krotik/eliasdb	1037	2022-08-14	Go	reference-repos-corpus/eliasdb-src/	cloned:2026-07-08:68M	EliasDB a graph-based database.
+graph-db	blazegraph/database	https://github.com/blazegraph/database	987	2023-04-16	Java	reference-repos-corpus/database-src/	cloned:2026-07-08:173M	Blazegraph High Performance Graph Database
+graph-db	openlink/virtuoso-opensource	https://github.com/openlink/virtuoso-opensource	967	2026-06-11	C	reference-repos-corpus/virtuoso-opensource-src/	cloned:2026-07-08:432M	Virtuoso is a high-performance and scalable Multi-Model RDBMS, Data Integration Middleware, Linked Data Deploy
+graph-db	ad-freiburg/qlever	https://github.com/ad-freiburg/qlever	862	2026-07-10	C++	reference-repos-corpus/qlever-src/	cloned:2026-07-08:198M	Graph database implementing the RDF and SPARQL standards. Very fast and scales to more than a trillion triples
+graph-db	pkumod/gStore	https://github.com/pkumod/gStore	838	2026-04-09	C++	reference-repos-corpus/gStore-src/	cloned:2026-07-08:90M	gStore - a graph based RDF triple store.
+graph-db	orneryd/NornicDB	https://github.com/orneryd/NornicDB	827	2026-07-09	Go	reference-repos-corpus/NornicDB-src/	cloned:2026-07-08:47M	Nornicdb is a distributed low-latency, Graph+Vector, Temporal MVCC with all sub-ms HNSW search, graph traversa
 graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src;neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
-graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	-	-	Eclipse RDF4J: scalable RDF for Java
+graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	reference-repos-corpus/rdf4j-src/	cloned:2026-07-08:1.2G	Eclipse RDF4J: scalable RDF for Java
 graph-db	neo4j/apoc	https://github.com/neo4j/apoc	211	2026-07-10	Java	reference-repos-neo4j-family/neo4j-apoc-src	-	-
 dataflow-compute	apache/spark	https://github.com/apache/spark	43603	2026-07-11	Scala	-	-	Apache Spark - A unified analytics engine for large-scale data processing
 dataflow-compute	apache/flink	https://github.com/apache/flink	26160	2026-07-11	Java	-	-	Apache Flink

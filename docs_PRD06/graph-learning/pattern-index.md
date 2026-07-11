@@ -36,6 +36,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 25 | Incremental delta iteration | execution | timely-dataflow, differential-dataflow, datafrog | incremental-delta-iteration-{ascii,mermaid}.md | 2026-07-08 |
 | 26 | Superstep message convergence | execution | spark, giraph | superstep-message-convergence-{ascii,mermaid}.md | 2026-07-08 |
 | S7 | Dataflow compute category synthesis | execution | timely-dataflow, differential-dataflow, datafrog, spark, giraph | dataflow-compute-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
+| 27 | Metamorphic oracle testing | execution | sqlancer, jepsen | metamorphic-oracle-testing-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

@@ -9,6 +9,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 2 | WAL group commit (fsync amortization) | storage | rocksdb, pebble, sqlite, slatedb, turso | wal-group-commit-{ascii,mermaid}.md | 2026-07-08 |
 | 3 | Roaring bitmap ID sets (per-chunk containers) | storage | CRoaring, RoaringBitmap(Java), roaring-rs | roaring-bitmap-idsets-{ascii,mermaid}.md | 2026-07-08 |
 | 4 | MVCC snapshot visibility | storage | toydb, badger, rocksdb, tikv, memgraph | mvcc-snapshot-visibility-{ascii,mermaid}.md | 2026-07-08 |
+| 5 | COW tree snapshot (path copy + root flip) | storage | lmdb, bbolt, redb, sled | cow-tree-snapshot-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

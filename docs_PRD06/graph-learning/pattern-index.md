@@ -28,6 +28,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | S4 | Full-text search category synthesis | execution | lucene, tantivy, quickwit, elasticsearch, OpenSearch, paradedb | full-text-search-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 | 20 | Record chain adjacency | storage | neo4j, kuzu | record-chain-adjacency-{ascii,mermaid}.md | 2026-07-08 |
 | 21 | Pull operator pipeline | execution | memgraph, kuzu, neo4j | pull-operator-pipeline-{ascii,mermaid}.md | 2026-07-08 |
+| 22 | Triple permutation indexing | storage | oxigraph, qlever | triple-permutation-indexing-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

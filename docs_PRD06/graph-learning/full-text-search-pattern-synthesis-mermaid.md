@@ -144,3 +144,9 @@ flowchart LR
   precondition FTS needs; a Lucene-vs-tantivy harness is a
   weekend project — the cheapest place to practice the
   docs_PRD06 convergence loop before pointing it at Neo4j.
+- Category coverage note: 17 of 17 full-text-search ledger rows
+  are shallow-cloned; patterns were extracted from the two
+  reference implementations (lucene, tantivy) and inheritance
+  verified against the downstream engines' dependency on them
+  (ES/OpenSearch/Solr vendor lucene; quickwit/lnx/paradedb
+  vendor tantivy).

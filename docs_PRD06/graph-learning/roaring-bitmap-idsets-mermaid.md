@@ -114,7 +114,28 @@ flowchart LR
     RB -. positional queries instead<br/>of membership .-> SD[sdsl-lite rank/select<br/>succinct alternative]
 ```
 
-## 8. Citing repos
+## 8. Serialization — why the format is the structure
+
+Roaring's portable serialization is essentially the in-memory layout
+written out — which is why the format is interoperable across the C,
+Java, and Rust implementations and why BITMAP containers can be
+memory-mapped in place:
+
+```mermaid
+flowchart LR
+    SER["portable format"] --> HDR["header: cookie +<br/>container count"]
+    HDR --> KEYS["sorted (key, cardinality)<br/>descriptor array"]
+    KEYS --> OFF["offset table<br/>(random access to containers)"]
+    OFF --> DATA["container payloads:<br/>u16 arrays / 8 KB bitmaps /<br/>run pairs, back to back"]
+    DATA -. "mmap + offset table =<br/>query without deserializing" .-> Q[reader]
+```
+
+Cross-implementation compatibility is exercised in each repo's test
+suites (`reference-repos-corpus/roaring-rs-src/roaring/src/bitmap/ops_with_serialized.rs`
+even implements set operations directly against the serialized form —
+the zero-copy endpoint of this design).
+
+## 9. Citing repos
 
 | Repo | Path | Role |
 | --- | --- | --- |
@@ -126,7 +147,7 @@ flowchart LR
 | roaring-rs | `reference-repos-corpus/roaring-rs-src/roaring/src/bitmap/container.rs` | Rust container enum |
 | roaring-rs | `reference-repos-corpus/roaring-rs-src/roaring/src/bitmap/ops.rs` | Rust set-op dispatch |
 
-## 9. Cross-references
+## 10. Cross-references
 
 - Sibling patterns: posting-list compression (Roaring vs delta-varint
   blocks); CSR adjacency layout (shared dense-ID prerequisite).

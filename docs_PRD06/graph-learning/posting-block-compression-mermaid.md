@@ -108,6 +108,25 @@ flowchart TD
     K7 & K3 & K1 & K16 --> CORE["one corpus-wide law: sorted IDs + deltas +<br/>blocks + a skip level = the universal<br/>read-optimized set format"]
 ```
 
+## 9b. The write path — how blocks get built
+
+```mermaid
+sequenceDiagram
+    participant D as documents
+    participant W as postings_writer (in RAM)
+    participant S as segment files (immutable)
+    D->>W: tokenize; per term, append<br/>(doc_id, freq, positions) —<br/>tantivy postings_writer.rs
+    Note over W: per-term buffers keep doc IDs in<br/>arrival order = already sorted<br/>(doc IDs are assigned monotonically)
+    W->>S: on segment flush: for each term,<br/>delta-encode, cut 128/256-blocks,<br/>pick per-block num_bits, pack,<br/>interleave skip entries
+    Note over S: the encoding happens ONCE, at flush —<br/>blocks are never edited in place;<br/>updates create new segments and<br/>deletes are tombstone bitmaps<br/>(the LSM discipline, patterns 1/4)
+    S->>S: merges re-decode, re-map doc IDs,<br/>re-encode — cheap because decode is<br/>a linear SIMD pass
+```
+
+Write-once is why the format can afford per-block optimal bit
+widths and interleaved skips: no update path ever has to patch a
+packed block. Mutable-set workloads flip to roaring bitmaps
+(pattern 3) precisely because they cannot make this promise.
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

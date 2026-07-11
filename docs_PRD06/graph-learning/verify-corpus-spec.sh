@@ -51,7 +51,8 @@ for f in "$HERE"/*-ascii.md; do
   [ -e "$f" ] || continue
   base="${f%-ascii.md}"
   name="$(basename "$f")"
-  echo "$name" | grep -Eq '^[a-z0-9]+-[a-z0-9]+-[a-z0-9]+-ascii\.md$' || bad CHK-PUB-001 "$name not four-word"
+  # three-noun pattern names, or <category>-pattern-synthesis names
+  echo "$name" | grep -Eq '^([a-z0-9]+-[a-z0-9]+-[a-z0-9]+|[a-z0-9-]+-pattern-synthesis)-ascii\.md$' || bad CHK-PUB-001 "$name not four-word"
   [ -e "$base-mermaid.md" ] || bad CHK-PUB-001 "$(basename "$base")-mermaid.md missing twin"
   for side in "$f" "$base-mermaid.md"; do
     [ -e "$side" ] || continue

@@ -16,3 +16,4 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 
 | Category | Synthesis pair | Date |
 | --- | --- | --- |
+| storage-engine | storage-engine-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |

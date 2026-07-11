@@ -33,6 +33,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 23 | PackStream wire encoding | storage | neo4rs, neo4j-python-driver | packstream-wire-encoding-{ascii,mermaid}.md | 2026-07-08 |
 | 24 | Stub script conformance | execution | testkit, neo4j-python-driver, neo4j-go-driver | stub-script-conformance-{ascii,mermaid}.md | 2026-07-08 |
 | S6 | Neo4j ecosystem category synthesis | execution | neo4rs, neo4j-python-driver, testkit, neo4j-go-driver | neo4j-ecosystem-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
+| 25 | Incremental delta iteration | execution | timely-dataflow, differential-dataflow, datafrog | incremental-delta-iteration-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

@@ -115,6 +115,19 @@ flowchart TD
     RW --> NEXT["next: neo4j-ecosystem — drivers,<br/>Bolt/PackStream, APOC, testkit:<br/>the wire-level observable surface"]
 ```
 
+## 9b. The design walk (pick your engine shape)
+
+```mermaid
+flowchart TD
+    START["workload: graph queries over<br/>N nodes, M edges"]
+    START --> Q1{"data model?"}
+    Q1 -->|"property graph,<br/>transactional"| C1["chains or KV: neo4j-shaped<br/>(write locality, point expands)<br/>or janusgraph-shaped (scale-out<br/>on a rented KV substrate)"]
+    Q1 -->|"property graph,<br/>analytical"| C2["disk CSR + vectorized pulls:<br/>kuzu-shaped — scans and multi-hop<br/>joins dominate"]
+    Q1 -->|"triples / open schema /<br/>federation"| C3["permutation indexes:<br/>oxigraph-shaped (LSM families)<br/>or qlever-shaped (compressed<br/>blocks, merge joins)"]
+    C1 & C2 & C3 --> T["then the pipeline is NOT a choice:<br/>everyone builds pattern 21 —<br/>only tuple/vector/compiled varies"]
+    T --> V["and verification is identical for all:<br/>result multisets against a pre-paid<br/>oracle (TCK / W3C / process tests)"]
+```
+
 ## 10. Citing repos (category roll-up)
 
 | Repo | Path | Role |

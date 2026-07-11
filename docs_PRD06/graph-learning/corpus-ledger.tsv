@@ -26,6 +26,7 @@ graph-db	skaiworldwide-oss/agensgraph	https://github.com/skaiworldwide-oss/agens
 graph-db	apache/jena	https://github.com/apache/jena	1377	2026-07-11	Java	-	-	Apache Jena, A free and open source Java framework for building Semantic Web and Linked Data applications.
 graph-db	krotik/eliasdb	https://github.com/krotik/eliasdb	1037	2022-08-14	Go	-	-	EliasDB a graph-based database.
 graph-db	blazegraph/database	https://github.com/blazegraph/database	987	2023-04-16	Java	-	classic;archived	Blazegraph High Performance Graph Database
+graph-db	orneryd/NornicDB	https://github.com/orneryd/NornicDB	827	2026-07-09	Go	-	-	Nornicdb is a distributed low-latency, Graph+Vector, Temporal MVCC with all sub-ms HNSW search, graph traversa
 graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src;neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
 graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	-	-	Eclipse RDF4J: scalable RDF for Java
@@ -42,20 +43,27 @@ neo4j-ecosystem	neo4j-labs/neo4rs	https://github.com/neo4j-labs/neo4rs	298	2026-
 neo4j-ecosystem	neo4j/neo4j-dotnet-driver	https://github.com/neo4j/neo4j-dotnet-driver	247	2026-07-10	C#	reference-repos-neo4j-family/neo4j-dotnet-driver-src	-	Neo4j Bolt driver for .NET
 neo4j-ecosystem	neo4j/graph-data-science-client	https://github.com/neo4j/graph-data-science-client	243	2026-07-09	Python	reference-repos-neo4j-family/neo4j-gds-client-src	-	A Python client for the Neo4j Graph Data Science (GDS) library
 neo4j-ecosystem	neo4j/cypher-dsl	https://github.com/neo4j/cypher-dsl	226	2026-07-06	Java	reference-repos-neo4j-family/cypher-dsl-src	-	A Java DSL (Builder) for the Cypher Query Language
+neo4j-ecosystem	cleishm/libcypher-parser	https://github.com/cleishm/libcypher-parser	160	2023-06-08	C	-	-	Cypher Parser Library
 neo4j-ecosystem	neo4j/cypher-shell	https://github.com/neo4j/cypher-shell	89	2023-07-06	Java	reference-repos-neo4j-family/cypher-shell-src	archived	Cypher Shell has moved to https://github.com/neo4j/neo4j
 neo4j-ecosystem	neo4j-contrib/gds-agent	https://github.com/neo4j-contrib/gds-agent	87	2026-07-10	Python	reference-repos-neo4j-family/gds-agent-src	-	Neo4j Graph Data Scientist Agent (MCP Server & Skills)
+neo4j-ecosystem	opencypher/front-end	https://github.com/opencypher/front-end	59	2026-01-14	Scala	-	-	Parsing, AST and semantic analysis for the Cypher Query Language
 neo4j-ecosystem	neo4j-drivers/testkit	https://github.com/neo4j-drivers/testkit	13	2026-07-09	Python	reference-repos-neo4j-family/neo4j-testkit-src	-	Drivers integration/conformance tests
 neo4j-ecosystem	neo4j/docs-bolt	https://github.com/neo4j/docs-bolt	7	2026-04-22	JavaScript	reference-repos-neo4j-family/neo4j-docs-bolt-src	-	Neo4j Bolt Protocol Documentation
+graph-analytics	pyg-team/pytorch_geometric	https://github.com/pyg-team/pytorch_geometric	23886	2026-07-06	Python	-	-	Graph Neural Network Library for PyTorch
 graph-analytics	networkx/networkx	https://github.com/networkx/networkx	17086	2026-07-10	Python	reference-repos-competitors/networkx-src	-	Network Analysis in Python
+graph-analytics	dmlc/dgl	https://github.com/dmlc/dgl	14288	2025-07-31	Python	-	-	Python package built to ease deep learning on graph, on top of existing DL frameworks.
 graph-analytics	petgraph/petgraph	https://github.com/petgraph/petgraph	3962	2026-04-04	Rust	-	-	Graph data structure library for Rust.
 graph-analytics	jgrapht/jgrapht	https://github.com/jgrapht/jgrapht	2773	2026-07-07	Java	-	-	Master repository for the JGraphT project
 graph-analytics	snap-stanford/snap	https://github.com/snap-stanford/snap	2286	2023-12-10	C++	reference-repos-competitors/snap-src	classic	Stanford Network Analysis Platform (SNAP) is a general purpose network analysis and graph mining library.
+graph-analytics	microsoft/GraphEngine	https://github.com/microsoft/GraphEngine	2254	2024-10-08	C#	-	-	Microsoft Graph Engine
 graph-analytics	rapidsai/cugraph	https://github.com/rapidsai/cugraph	2205	2026-07-11	Cuda	reference-repos-competitors/cugraph-src	-	cuGraph - RAPIDS Graph Analytics Library
 graph-analytics	igraph/igraph	https://github.com/igraph/igraph	1992	2026-07-01	C	reference-repos-competitors/igraph-src	-	Library for the analysis of networks
+graph-analytics	feldera/feldera	https://github.com/feldera/feldera	1979	2026-07-11	Rust	-	-	The Feldera Incremental Computation Engine
 graph-analytics	gunrock/gunrock	https://github.com/gunrock/gunrock	1096	2026-02-28	C++	-	-	Programmable CUDA/C++ GPU Graph Analytics
 graph-analytics	KarypisLab/METIS	https://github.com/KarypisLab/METIS	1034	2026-06-10	C	-	-	METIS - Serial Graph Partitioning and Fill-reducing Matrix Ordering
 graph-analytics	networkit/networkit	https://github.com/networkit/networkit	866	2026-07-10	C++	reference-repos-competitors/networkit-src	-	NetworKit is a growing open-source toolkit for large-scale network analysis.
 graph-analytics	GraphChi/graphchi-cpp	https://github.com/GraphChi/graphchi-cpp	810	2019-01-02	C++	reference-repos-competitors/graphchi-cpp-src	classic	GraphChi's C++ version.  Big Data - small machine.
+graph-analytics	Pometry/Raphtory	https://github.com/Pometry/Raphtory	628	2026-07-10	Rust	-	-	Scalable graph analytics database powered by a multithreaded, vectorized temporal engine, written in Rust
 graph-analytics	apache/giraph	https://github.com/apache/giraph	619	2023-04-14	Java	-	classic;archived	Mirror of Apache Giraph
 graph-analytics	jshun/ligra	https://github.com/jshun/ligra	495	2024-02-18	C++	reference-repos-competitors/ligra-src	classic	Ligra: A Lightweight Graph Processing Framework for Shared Memory
 graph-analytics	KaHIP/KaHIP	https://github.com/KaHIP/KaHIP	488	2026-04-15	C++	-	-	KaHIP -- HIGH Quality Partitioning.
@@ -67,6 +75,8 @@ graph-analytics	IntelligentSoftwareSystems/Galois	https://github.com/Intelligent
 graph-analytics	GraphBLAS/LAGraph	https://github.com/GraphBLAS/LAGraph	272	2026-07-09	C	-	-	This is a library plus a test harness for collecting algorithms that use the GraphBLAS.  For test coverage rep
 graph-analytics	flashxio/FlashX	https://github.com/flashxio/FlashX	237	2020-03-31	C++	reference-repos-competitors/flashx-src	-	FlashX is a collection of big data analytics tools that perform data analytics in the form of graphs and matri
 graph-analytics	ParAlg/gbbs	https://github.com/ParAlg/gbbs	226	2026-06-02	C++	reference-repos-competitors/gbbs-src	-	GBBS: Graph Based Benchmark Suite
+graph-analytics	pdclab/graphbolt	https://github.com/pdclab/graphbolt	150	2021-05-11	C++	-	-	GraphBolt: Dependency-Driven Synchronous Processing of Streaming Graphs 
+graph-analytics	thu-pacman/GridGraph	https://github.com/thu-pacman/GridGraph	130	2018-05-07	C++	-	-	Out-of-core graph processing on a single machine.
 graph-analytics	ldbc/ldbc_snb_interactive_v1_impls	https://github.com/ldbc/ldbc_snb_interactive_v1_impls	113	2026-03-26	Java	-	-	Reference implementations for LDBC Social Network Benchmark's Interactive workload.
 graph-analytics	KatanaGraph/katana	https://github.com/KatanaGraph/katana	104	2022-06-08	C++	-	-	-
 graph-analytics	vigna/webgraph	https://github.com/vigna/webgraph	86	2026-04-23	Java	-	-	WebGraph is a framework for graph compression.
@@ -86,6 +96,7 @@ vector-ann	lance-format/lance	https://github.com/lance-format/lance	6778	2026-07
 vector-ann	nmslib/hnswlib	https://github.com/nmslib/hnswlib	5277	2026-03-28	C++	-	-	Header-only C++/python library for fast approximate nearest neighbors
 vector-ann	unum-cloud/USearch	https://github.com/unum-cloud/USearch	4207	2026-07-10	C++	-	-	Fast Open-Source Search & Clustering engine × for Vectors & Arbitrary Objects × in C++, C, Python, JavaScript,
 vector-ann	nmslib/nmslib	https://github.com/nmslib/nmslib	3589	2026-04-13	C++	-	-	Non-Metric Space Library (NMSLIB): An efficient similarity search library and a toolkit for evaluation of k-NN
+vector-ann	timescale/pgvectorscale	https://github.com/timescale/pgvectorscale	3080	2026-04-30	Rust	-	-	Postgres extension for vector search (DiskANN), complements pgvector for performance and scale. Postgres OSS l
 vector-ann	tensorchord/pgvecto.rs	https://github.com/tensorchord/pgvecto.rs	2177	2025-02-26	Rust	-	-	Scalable, Low-latency and Hybrid-enabled Vector Search in Postgres. Revolutionize Vector Search, not Database.
 vector-ann	microsoft/DiskANN	https://github.com/microsoft/DiskANN	1872	2026-07-11	Rust	-	-	A vector indexing library to bring fast, fresh and filtered search to your database
 vector-ann	datastax/jvector	https://github.com/datastax/jvector	1731	2026-07-10	Java	-	-	JVector: the most advanced embedded vector search engine
@@ -93,6 +104,9 @@ vector-ann	vdaas/vald	https://github.com/vdaas/vald	1708	2026-07-11	Go	-	-	Vald.
 vector-ann	spotify/voyager	https://github.com/spotify/voyager	1582	2026-03-01	C++	-	-	🛰️ An approximate nearest-neighbor search library for Python and Java with a focus on ease of use, simplicity,
 vector-ann	epsilla-cloud/vectordb	https://github.com/epsilla-cloud/vectordb	875	2025-11-29	C++	-	-	Epsilla is a high performance Vector Database Management System
 vector-ann	NVIDIA/cuvs	https://github.com/NVIDIA/cuvs	810	2026-07-11	Cuda	-	-	cuVS - a library for vector search and clustering on the GPU
+vector-ann	zilliztech/knowhere	https://github.com/zilliztech/knowhere	372	2026-07-11	C++	-	-	Vector search engine inside Milvus, integrating FAISS, HNSW, DiskANN.
+vector-ann	djc/instant-distance	https://github.com/djc/instant-distance	347	2026-06-22	Rust	-	-	Fast approximate nearest neighbor searching in Rust, based on HNSW index
+vector-ann	jean-pierreBoth/hnswlib-rs	https://github.com/jean-pierreBoth/hnswlib-rs	244	2026-07-03	Rust	-	-	Rust implementation of the HNSW algorithm (Malkov-Yashunin)
 full-text-search	elastic/elasticsearch	https://github.com/elastic/elasticsearch	77571	2026-07-11	Java	-	-	Free and Open Source, Distributed, RESTful Search Engine
 full-text-search	meilisearch/meilisearch	https://github.com/meilisearch/meilisearch	58493	2026-07-09	Rust	-	-	A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.
 full-text-search	typesense/typesense	https://github.com/typesense/typesense	26289	2026-06-29	C++	-	-	Open Source alternative to Algolia + Pinecone and an Easier-to-Use alternative to ElasticSearch ⚡ 🔍 ✨ Fast, ty
@@ -130,8 +144,12 @@ storage-engine	cockroachdb/pebble	https://github.com/cockroachdb/pebble	5951	202
 storage-engine	mit-pdos/noria	https://github.com/mit-pdos/noria	5239	2021-10-30	Rust	-	-	Fast web applications through dynamic, partially-stateful dataflow
 storage-engine	cberner/redb	https://github.com/cberner/redb	4645	2026-07-10	Rust	-	-	An embedded key-value database in pure Rust
 storage-engine	skyzh/mini-lsm	https://github.com/skyzh/mini-lsm	4053	2026-04-22	Rust	-	-	A course of building an LSM-Tree storage engine (database) in a week.
+storage-engine	slatedb/slatedb	https://github.com/slatedb/slatedb	3199	2026-07-11	Rust	-	-	A cloud native embedded storage engine built on object storage.
 storage-engine	LMDB/lmdb	https://github.com/LMDB/lmdb	3012	2026-06-30	C	-	-	Read-only mirror of official repo on openldap.org. Issues and pull requests here are ignored. Use OpenLDAP ITS
 storage-engine	wiredtiger/wiredtiger	https://github.com/wiredtiger/wiredtiger	2409	2026-07-11	C	-	-	WiredTiger's source tree
+storage-engine	lotusdblabs/lotusdb	https://github.com/lotusdblabs/lotusdb	2253	2025-02-18	Go	-	-	Most advanced key-value database written in Go, extremely fast, compatible with LSM tree and B+ tree.
 storage-engine	fjall-rs/fjall	https://github.com/fjall-rs/fjall	2212	2026-07-07	Rust	-	-	🗻 Log-structured, embeddable key-value storage engine written in Rust
+storage-engine	couchbase/forestdb	https://github.com/couchbase/forestdb	1330	2025-11-21	C++	-	-	A Fast Key-Value Storage Engine Based on Hierarchical B+-Tree Trie
 storage-engine	speedb-io/speedb	https://github.com/speedb-io/speedb	1009	2024-06-12	C++	-	-	A RocksDB compliant high performance scalable embedded key-value store
 storage-engine	meilisearch/heed	https://github.com/meilisearch/heed	906	2026-06-04	Rust	-	-	Fully typed LMDB wrappers with minimum overhead 🐦
+storage-engine	fjall-rs/lsm-tree	https://github.com/fjall-rs/lsm-tree	428	2026-07-05	Rust	-	-	K.I.S.S. LSM-tree implementation in safe Rust

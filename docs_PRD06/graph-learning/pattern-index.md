@@ -17,6 +17,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 10 | Component hooking + shortcutting | algorithm | gapbs, LAGraph, gbbs, ligra | component-hooking-shortcutting-{ascii,mermaid}.md | 2026-07-08 |
 | 11 | PageRank iteration + convergence | algorithm | gapbs, LAGraph, networkit, graphit | pagerank-iteration-convergence-{ascii,mermaid}.md | 2026-07-08 |
 | 12 | Delta-stepping buckets (parallel SSSP) | algorithm | gapbs, gbbs, LAGraph, graphit | delta-stepping-buckets-{ascii,mermaid}.md | 2026-07-08 |
+| 13 | HNSW layered greedy search | algorithm | hnswlib, qdrant, faiss, knowhere | hnsw-layered-greedy-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

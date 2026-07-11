@@ -112,6 +112,26 @@ flowchart TD
     K17 & K13 & K16 & K12 --> LAW["corpus law: every top-k system pairs a<br/>rising floor with cheap upper bounds,<br/>and wins by never touching the losers"]
 ```
 
+## 9b. Where the statistics come from — the segment problem
+
+```mermaid
+sequenceDiagram
+    participant W as Bm25Weight (query time)
+    participant S1 as segment 1
+    participant S2 as segment 2
+    participant Q as scorer per segment
+    W->>S1: doc_freq(term), doc_count, avg fieldnorm
+    W->>S2: same statistics
+    Note over W: tantivy sums idf across the searched<br/>segments (bm25.rs:121-127) so the weight<br/>is INDEX-wide, not per-segment —<br/>otherwise the same doc would score<br/>differently depending on which segment<br/>it landed in after merges
+    W->>Q: one weight, per-segment norms<br/>(fieldnorm tables)
+    Q-->>W: top-k per segment -> global merge<br/>of the k-heaps
+    Note over W,Q: deleted docs still count in n and N until<br/>merged away — scores DRIFT as segments<br/>compact; another reason differential<br/>tests must pin the index state
+```
+
+The statistics plumbing is where cross-engine score differences
+actually come from in practice — the formula is identical
+everywhere, the bookkeeping is not.
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

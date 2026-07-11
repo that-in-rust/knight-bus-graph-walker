@@ -19,6 +19,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 12 | Delta-stepping buckets (parallel SSSP) | algorithm | gapbs, gbbs, LAGraph, graphit | delta-stepping-buckets-{ascii,mermaid}.md | 2026-07-08 |
 | 13 | HNSW layered greedy search | algorithm | hnswlib, qdrant, faiss, knowhere | hnsw-layered-greedy-{ascii,mermaid}.md | 2026-07-08 |
 | 14 | Product quantization ladder | storage | faiss, qdrant, pgvectorscale | product-quantization-ladder-{ascii,mermaid}.md | 2026-07-08 |
+| 15 | DiskANN Vamana disk layout | storage | DiskANN, pgvectorscale, knowhere | diskann-vamana-layout-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

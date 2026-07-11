@@ -1,284 +1,195 @@
-# SPEC: Graph Learning Corpus Research
+# SPEC: Graph Learning Corpus — Clone, Map, Extract, Publish
 
 | Field | Value |
 | --- | --- |
-| Version | 2 — rebuilt on the completed Phase A research (three rounds, 172 verified repos) |
-| Status | Active — Phase A DONE; Phase B (clone + map) next |
+| Version | 3 — restructured per `executable-specs-01` skill; repo selection removed (owned by `corpus-ledger.tsv`) |
+| Status | Active — awaiting owner "go" for execution |
 | Owner | That in Rust |
 | Executor | Devin sessions attached to this repo |
 | Home | `docs_PRD06/graph-learning/` |
-| Kind | Executable research spec (codexplorer-style): REQ contracts, measurable exit gates, traceable output ledger |
+| Corpus | The 172 verified repos in `corpus-ledger.tsv` (selection is DONE and out of scope here) |
 
-## 1. Purpose
+## 0. Request Parse (five inputs)
 
-Build an in-depth, evidence-grounded education corpus about graph systems —
-and their neighbors in vector search, full-text search, storage engines, and
-dataflow compute — by:
-
-1. holding a **verified 172-repository corpus** (done: `corpus-ledger.tsv`);
-2. **shallow-cloning every corpus repo** and mapping each with the installed
-   code-exploration tools;
-3. extracting the **fundamental algorithm patterns**, **storage patterns**,
-   and **execution patterns** (how the algorithms are actually run);
-4. publishing findings as **paired documents** — one ASCII document and one
-   Mermaid document per pattern — with **four-word file names**, accumulating
-   in this folder as the research proceeds.
-
-End state: a pattern library that teaches graphs in depth from real source
-code, not textbook prose — cross-referenced to the papers ledger and the
-proprietary-endpoint landscape.
-
-## 2. Phase A — DONE (evidence base)
-
-Three research rounds are complete and committed:
-
-| Artifact | Content |
+| Input | Value |
 | --- | --- |
-| `corpus-ledger.tsv` | 172 repos, 8 categories, all GitHub-API-verified (stars, last push, language, archived flag, local-clone path) |
-| `corpus-research-findings.md` | The three rounds: topic-search round (117), glossary-seeded round (154), gap-focused round (172: dataflow-compute, bench-testing, RDF/SPARQL, roaring/succinct) |
-| `domain-keywords-glossary.md` | The domain vocabulary, 8 sections, ★-marked terms central to this repo's thesis |
-| `research-papers-ledger.md` | 18 arXiv-verified papers + canonical venue papers, cross-linked to corpus repos |
-| `proprietary-tools-landscape.md` | Closed systems (Neptune, Pinecone, Turbopuffer, ScaNN…) treated as behavior-endpoints, not source |
+| Feature outcome | A pattern library teaching graph/vector/search/storage systems in depth from real source code: paired ASCII+Mermaid docs, every claim file-path-cited into local shallow clones |
+| Actors and boundaries | Executor: Devin sessions. Oracle for selection: `corpus-ledger.tsv` (frozen; changes only via owner). Inputs: 172 shallow clones. Outputs: MD pairs + `pattern-index.md` in this folder only |
+| Failure modes | clone failures (rename/404/size), mapping-tool failures on giant JVM/C++ trees, uncited claims (memory instead of source), doc pairs that disagree, index drift, disk exhaustion |
+| Performance and reliability limits | ≤ 50 GB new clone volume; 10–15 repos mapped per session; doc 150–400 lines; ≥ 2 cited repos per pattern; incremental commits |
+| Language/runtime constraints | Reading-only research — no building or benchmarking cloned systems; plain `git clone --depth 1` for everything (owner directive), no sparse/partial clones |
 
-Verified corpus composition (REQ-GLC-001/002 satisfied):
+Prior assets (inputs, not work): `corpus-ledger.tsv` (172 rows, API-verified),
+`corpus-research-findings.md`, `domain-keywords-glossary.md`,
+`research-papers-ledger.md`, `proprietary-tools-landscape.md`, 40 legacy
+clones in `reference-repos-neo4j-family/` + `reference-repos-competitors/`
+(~3.4 GB, reused in place), 11 exploration tools in `.agents/skills/`, and
+the 202606 pattern digests (new docs extend, never repeat them).
 
-| Category | Repos | Notes |
-| --- | ---: | --- |
-| graph-db | 36 | incl. RDF/SPARQL (QLever, Virtuoso, gStore) and Datalog (cozo, datascript) |
-| graph-analytics | 33 | incl. out-of-core classics, GraphBLAS family, GNN frameworks (PyG, DGL) |
-| storage-engine | 33 | incl. roaring/succinct kernels (CRoaring, sdsl-lite) |
-| vector-ann | 25 | incl. Rust HNSW impls, knowhere, pgvectorscale |
-| neo4j-ecosystem | 18 | drivers, APOC, openCypher spec, testkit, Cypher parsers |
-| full-text-search | 17 | Lucene family + Tantivy/Meilisearch/Typesense peers |
-| dataflow-compute | 6 | timely/differential-dataflow, Flink, Spark, Velox, datafrog |
-| bench-testing | 4 | SQLancer, ann-benchmarks, Jepsen, LDBC Graphalytics |
-| **Total** | **172** | 40 already cloned locally |
+## 1. Executable Requirements
 
-Corpus is declared **saturated**: further additions are collection, not
-learning. New repos enter only by replacing a dead/renamed row.
+### Acquisition
 
-## 3. Scope
+#### REQ-GLC-010.1: Shallow-clone every corpus repo
 
-### In scope
+**WHEN** a ledger repo has no `local_clone` path
+**THEN** the executor SHALL run plain `git clone --depth 1` into `reference-repos-corpus/<name>-src/`
+**AND** SHALL record clone date and `du -sh` size in the ledger row
+**SHALL** reuse the 40 legacy clones in place and never re-clone them
 
-- Everything in the 8 ledger categories; reading-only research.
-- **Shallow clones (`--depth 1`) of ALL 172 corpus repos** — including the
-  40 already on disk, which are reused in place and never re-cloned.
-- Pattern extraction with file-path citations into local clones.
+#### REQ-GLC-011.1: No partial or filtered clones
 
-### Out of scope
+**WHEN** a repo is large (Spark, Flink, Elasticsearch, Milvus, Velox)
+**THEN** the executor SHALL still use a plain full-tree `--depth 1` clone
+**AND** SHALL record any clone > 2 GB in the ledger and inform the owner
+**SHALL** never use sparse-checkout or blob filters
 
-- Running or benchmarking the systems.
-- Modifying any cloned reference repo.
-- Full-history clones (`--depth 1` only; disk budget §8).
-- Proprietary systems as *source* (they appear only as behavior-endpoints
-  per `proprietary-tools-landscape.md`).
+#### REQ-GLC-012.1: Clone failures are recorded, never silent
 
-## 4. Prior Assets (do not redo)
+**WHEN** a clone fails (404, rename, network)
+**THEN** the executor SHALL record the failure and cause in the ledger `flags` column
+**AND** SHALL attempt the renamed/canonical URL once before flagging
+**SHALL** never drop the row from the ledger
 
-| Asset | Location | Reuse |
-| --- | --- | --- |
-| 40 reference repos already shallow-cloned (~3.4 GB) | `reference-repos-neo4j-family/` (20), `reference-repos-competitors/` (20) | Count toward the 172; ledger `local_clone` column records each path; never re-clone |
-| 5-layer pattern digests from the 202606 study | `graph-database-rewrite-references-202606/` | Seed vocabulary; new docs must extend, not repeat |
-| Installed exploration tools + skills | `.agents/skills/` (11 tools) | The mapping pipeline of §7 |
-| Algorithm explainers | `docs_PRD04/AlgoExplainers-ASCII.md` | Style baseline for ASCII/Mermaid pairs |
+#### REQ-GLC-013.1: Disk budget enforcement
 
-## 5. Requirements
+**WHEN** a clone batch is about to start
+**THEN** the executor SHALL check free disk and cumulative new-clone volume
+**AND** SHALL stop and inform the owner before exceeding 50 GB of new clones
 
-Format: `REQ-GLC-<NNN>` (Graph Learning Corpus), WHEN/THEN/SHALL.
+### Mapping
 
-### Phase A — Corpus selection (SATISFIED)
+#### REQ-GLC-020.1: Structural map per repo
 
-- **REQ-GLC-001** ✅ WHEN the candidate list is built THEN it SHALL contain
-  at least 100 repositories, each with GitHub URL, star count, last-push
-  date, primary language, and category in `corpus-ledger.tsv`.
-  *Met: 172 rows, all API-verified.*
-- **REQ-GLC-002** ✅ WHEN a repo is proposed THEN it SHALL meet liveness and
-  substance gates: a push within 24 months OR historical-classic status
-  (flagged in the `flags` column), and real engine/library substance.
-  *Met: classics and archived repos flagged; 95%-noise topic hits rejected.*
-- **REQ-GLC-003** WHEN the list is complete THEN it SHALL be presented to
-  the owner for approval before mass cloning. *Presented at 117, 154, and
-  172; owner directed spec creation — cloning starts on explicit go.*
+**WHEN** a repo is cloned
+**THEN** the executor SHALL build at least one structural index (mcp-codebase-index or cocoindex-code for breadth; Serena/GitNexus/tessera for precision)
+**AND** SHALL capture three artifacts per ledger row: top-level module map, core engine entry points, storage-layer directory
+**SHALL** record a mapping failure + manual-skim substitute when tools cannot parse the repo
 
-### Phase B — Acquisition and mapping
+### Extraction
 
-- **REQ-GLC-010** WHEN a corpus repo is acquired THEN it SHALL be cloned
-  `--depth 1` into `reference-repos-corpus/<name>-src/` and its ledger row
-  updated with clone date and on-disk size. Every one of the 172 repos SHALL
-  end up with a local shallow clone: the 40 pre-existing clones satisfy this
-  in place; the ~132 new ones are cloned in category batches. Total volume
-  SHALL respect §8.
-- **REQ-GLC-011** WHEN a repo is mapped THEN at minimum one structural index
-  SHALL be built (mcp-codebase-index or cocoindex-code for breadth;
-  GitNexus/tessera/Serena where precision pays) and three artifacts captured
-  per ledger row: top-level module map, core entry points, storage-layer
-  directory.
-- **REQ-GLC-012** WHEN mapping fails (tool/parser limits — expected for the
-  giant JVM/C++ repos) THEN the failure SHALL be recorded, a manual skim
-  SHALL substitute, and the repo SHALL NOT be silently dropped.
-- **REQ-GLC-013** WHEN any repo is acquired — including the giants (Spark,
-  Flink, Elasticsearch, Milvus, Velox) — THEN it SHALL be a full-tree
-  `git clone --depth 1` (owner directive: everything is a plain shallow
-  clone; no sparse-checkout, no blob filters). If a shallow clone still
-  exceeds the per-repo cap of §8, the size SHALL be recorded in the ledger
-  and the owner informed before proceeding with further batches.
+#### REQ-GLC-030.1: Pattern kind and evidence floor
 
-### Phase C — Pattern extraction
+**WHEN** a pattern is extracted
+**THEN** it SHALL be classified as exactly one of `algorithm`, `storage`, or `execution`
+**AND** SHALL cite at least 2 corpus repos with file paths into local clones
+**SHALL** be rejected (not published) if only one witness repo exists
 
-- **REQ-GLC-020** WHEN a pattern is extracted THEN it SHALL be one of three
-  kinds — `algorithm`, `storage`, or `execution` — and SHALL cite at least
-  **two** corpus repos implementing it, with file paths into local clones.
-- **REQ-GLC-021** WHEN a pattern claim is written THEN every factual claim
-  about a repo SHALL be traceable to a file path (weak-model contract: no
-  claims from memory, only from inspected source). Paper citations SHALL use
-  the verified IDs in `research-papers-ledger.md`; proprietary systems may
-  be cited descriptively only.
-- **REQ-GLC-022** WHEN a pattern duplicates one already documented in
-  `graph-database-rewrite-references-202606/` THEN the new doc SHALL link
-  the old one and add only cross-corpus deltas.
+#### REQ-GLC-031.1: No claims from memory
 
-### Phase D — Publication contract
+**WHEN** any factual claim about a repo is written
+**THEN** it SHALL be traceable to an inspected file path in a local clone
+**AND** paper citations SHALL use verified IDs from `research-papers-ledger.md`
+**SHALL** cite proprietary systems descriptively only (no source claims)
 
-- **REQ-GLC-030** WHEN a pattern is published THEN it SHALL produce exactly
-  two MD files in this folder, four-word names
-  `<noun>-<noun>-<noun>-<form>.md`, form ∈ {ascii, mermaid}: e.g.
-  `csr-adjacency-layout-ascii.md` + `csr-adjacency-layout-mermaid.md`.
-- **REQ-GLC-031** WHEN an ASCII doc is written THEN it SHALL contain: the
-  pattern's job, raw data shape, memory/disk layout in ASCII, step-by-step
-  walkthrough, two worked numeric examples, and the citing-repos table
-  (repo, path, one-line role).
-- **REQ-GLC-032** WHEN a Mermaid doc is written THEN it SHALL render the
-  same pattern as Mermaid diagrams plus the same citing-repos table; each
-  of the pair SHALL stand alone.
-- **REQ-GLC-033** WHEN any doc is added THEN `pattern-index.md` SHALL be
-  updated in the same commit: pattern name, kind, repos cited, pair, date.
+#### REQ-GLC-032.1: Extend, don't repeat, the 202606 digests
 
-### Phase E — Cadence and integrity
+**WHEN** a pattern overlaps `graph-database-rewrite-references-202606/`
+**THEN** the new doc SHALL link the prior digest
+**AND** SHALL add only cross-corpus deltas
 
-- **REQ-GLC-040** WHEN a session works this spec THEN it SHALL commit
-  completed doc pairs incrementally and push to the working branch.
-- **REQ-GLC-041** WHEN a category completes THEN a synthesis pair
-  (`<category>-pattern-synthesis-{ascii,mermaid}.md`) SHALL summarize the
-  dominant patterns of that category.
+### Publication
 
-## 6. Pattern backlog (seeded from Phase A evidence)
+#### REQ-GLC-040.1: Four-word ASCII+Mermaid pairs
 
-Initial extraction targets, ordered by cross-category reach (each already
-has ≥2 known implementations in the corpus; final citations at write time):
+**WHEN** a pattern is published
+**THEN** it SHALL produce exactly two MD files named `<noun>-<noun>-<noun>-<form>.md` with form ∈ {ascii, mermaid}
+**AND** each file SHALL be 150–400 lines
+**SHALL** place both files in `docs_PRD06/graph-learning/`
 
-| # | Candidate pattern | Kind | Likely witnesses |
-| --- | --- | --- | --- |
-| 1 | CSR adjacency layout | storage | ligra, gbbs, kuzu, cugraph, this repo |
-| 2 | HNSW greedy descent | algorithm | hnswlib, qdrant, instant-distance, jvector |
-| 3 | Graph-on-disk memory budget | execution | DiskANN, pgvectorscale, graphchi, GridGraph |
-| 4 | LSM compaction tradeoff | storage | rocksdb, pebble, fjall, mini-lsm, slatedb |
-| 5 | Push-pull frontier switching | execution | ligra, gapbs, gbbs, networkit |
-| 6 | Posting-list skip compression | storage | lucene, tantivy, RediSearch, RUM |
-| 7 | Immutable segment merging | execution | lucene, tantivy, quickwit + graph snapshots here |
-| 8 | Sparse-matrix graph algebra | algorithm | GraphBLAS, LAGraph, falkordb, graphblast |
-| 9 | Roaring bitmap ID sets | storage | CRoaring, roaring-rs, lucene, pilosa-descendants |
-| 10 | WAL group commit discipline | storage | rocksdb, sqlite, tikv, neo4j |
-| 11 | MVCC snapshot visibility | execution | memgraph, tikv, lmdb, datascript |
-| 12 | Copy-on-write tree snapshots | storage | lmdb, sled, aspen(parlaylib), datascript |
-| 13 | Product quantization compression | algorithm | faiss, knowhere, cuvs, qdrant |
-| 14 | Vertex-centric superstep scheduling | execution | giraph, graphscope, flink-gelly, pregel-descendants |
-| 15 | Differential incremental computation | execution | differential-dataflow, feldera, materialize-lineage |
-| 16 | Two-phase query planning | execution | neo4j, kuzu, memgraph, cozo |
-| 17 | Louvain-Leiden community refinement | algorithm | gds, networkit, igraph, cugraph |
-| 18 | Delta-varint edge encoding | storage | webgraph(+rs), lucene, tantivy, snap |
-| 19 | Bloom-filter read shortcut | storage | rocksdb, pebble, badger, quickwit |
-| 20 | Differential oracle testing | execution | sqlancer, testkit, ann-benchmarks, ldbc impls |
+#### REQ-GLC-041.1: ASCII doc content contract
 
-Count floats: fundamental patterns only; expected 30–50 pairs at completion.
+**WHEN** an ASCII doc is written
+**THEN** it SHALL contain: the pattern's job, raw data shape, memory/disk layout in ASCII, step-by-step walkthrough, two worked numeric examples
+**AND** SHALL contain a citing-repos table (repo, path, one-line role)
 
-## 7. Pipeline (per repo)
+#### REQ-GLC-042.1: Mermaid doc parity
 
-```text
-select (ledger row, category batch)
-   |
-   v
-clone --depth 1  ->  reference-repos-corpus/<name>-src/      [REQ-GLC-010/013]
-   |                 (40 legacy clones reused in place)
-   v
-map: mcp-codebase-index / cocoindex-code (breadth)           [REQ-GLC-011]
-     GitNexus / tessera / serena (precision when needed)
-   |
-   v
-locate: engine entry points, storage layer, algorithm kernels
-   |
-   v
-extract patterns (>=2-repo rule)                             [REQ-GLC-020..022]
-   |
-   v
-publish four-word ASCII + Mermaid pair, update index         [REQ-GLC-030..033]
-   |
-   v
-commit + push incrementally                                  [REQ-GLC-040]
-```
+**WHEN** a Mermaid doc is written
+**THEN** it SHALL render the same pattern as Mermaid diagrams with the same citing-repos table
+**AND** the pair SHALL agree such that either file alone teaches the pattern
 
-Batch order (interleaved: map a category → write its patterns → next):
+#### REQ-GLC-043.1: Index updated atomically
 
-1. storage-engine (grounds every later "X sits on RocksDB" sentence)
-2. graph-analytics (algorithm kernels; most patterns per repo-hour)
-3. vector-ann (HNSW/DiskANN — the graph algorithms in disguise)
-4. full-text-search (segment/posting patterns)
-5. graph-db (largest repos; mapped last, informed by all prior vocabulary)
-6. neo4j-ecosystem + dataflow-compute + bench-testing (surface + harness)
+**WHEN** any doc pair is added
+**THEN** `pattern-index.md` SHALL be updated in the same commit (name, kind, repos cited, pair, date)
+**SHALL** never leave a published pair unindexed
 
-## 8. Budgets
+### Cadence
 
-| Budget | Value | Rationale |
-| --- | --- | --- |
-| Disk for new clones | ≤ 50 GB total; check `df` before each batch | ~132 new shallow clones; existing 40 ≈ 3.4 GB |
-| Per-repo size cap | none — all plain `--depth 1` (REQ-GLC-013); sizes recorded, owner informed if a clone is unusually large | spark/flink/elasticsearch shallow-clone fine (~1-2 GB each) |
-| Repos per session batch | 10–15 mapped per session | incremental, reviewable commits |
-| Pattern doc size | 150–400 lines per file | deep enough to teach, short enough to read |
-| Evidence per pattern | ≥ 2 repos, file-path cited | REQ-GLC-020 |
+#### REQ-GLC-050.1: Incremental commits
 
-## 9. Verification Matrix
+**WHEN** a session works this spec
+**THEN** it SHALL commit completed doc pairs incrementally (never one end-of-session dump)
+**AND** SHALL push to the working branch after each pattern pair or clone batch
 
-| req_id | check | how verified |
-| --- | --- | --- |
-| REQ-GLC-001/002 | ledger completeness + gates | every row has url/stars/date/lang/category; API-sourced ✅ |
-| REQ-GLC-003 | owner approval | recorded in ledger header / session log |
-| REQ-GLC-010/013 | clone discipline | `du -sh` per clone in ledger; sum under budget; partial flags recorded |
-| REQ-GLC-011/012 | mapping artifacts | ledger row has module map + entry points + storage dir, or recorded failure+skim |
-| REQ-GLC-020/021 | citation integrity | spot-check: every cited path exists in the local clone |
-| REQ-GLC-030..033 | publication contract | docs in pairs, four-word names, index updated same commit |
-| REQ-GLC-041 | category syntheses | one pair per completed category |
+#### REQ-GLC-051.1: Category synthesis
 
-## 10. Deliverable Shape Of This Folder (end state)
+**WHEN** all repos of a category are mapped and its patterns written
+**THEN** a synthesis pair `<category>-pattern-synthesis-{ascii,mermaid}.md` SHALL summarize the dominant patterns of that category
 
-```text
-docs_PRD06/graph-learning/
-  SPEC-graph-learning-corpus-research.md   (this file)
-  corpus-ledger.tsv                        (172 approved rows + clone/map columns)
-  corpus-research-findings.md              (Phase A record)
-  domain-keywords-glossary.md
-  research-papers-ledger.md
-  proprietary-tools-landscape.md
-  pattern-index.md                         (running index of all pairs)
-  csr-adjacency-layout-ascii.md            (pattern pairs, four-word names)
-  csr-adjacency-layout-mermaid.md
-  hnsw-greedy-descent-ascii.md
-  hnsw-greedy-descent-mermaid.md
-  ...
-  storage-engine-pattern-synthesis-ascii.md  (category syntheses)
-  storage-engine-pattern-synthesis-mermaid.md
-```
+## 2. Test Matrix (traceability)
 
-## 11. Decisions (formerly open questions — resolved defaults)
+| req_id | test_id | test_type | assertion | target |
+| --- | --- | --- | --- | --- |
+| REQ-GLC-010.1 | CHK-CLONE-001 | script | every ledger row has non-empty local_clone + size after its batch | completeness |
+| REQ-GLC-011.1 | CHK-CLONE-002 | script | `git rev-parse --is-shallow-repository` = true for every clone; no `.git/info/sparse-checkout` | clone discipline |
+| REQ-GLC-012.1 | CHK-CLONE-003 | inspect | failed rows carry a `clone-failed:<cause>` flag, none deleted | integrity |
+| REQ-GLC-013.1 | CHK-DISK-001 | script | `du -s reference-repos-corpus` ≤ 50 GB before each batch | budget |
+| REQ-GLC-020.1 | CHK-MAP-001 | inspect | ledger row has module map + entry points + storage dir, or failure+skim note | mapping |
+| REQ-GLC-030.1 | CHK-PAT-001 | script | every published pattern cites ≥ 2 distinct repos | evidence floor |
+| REQ-GLC-031.1 | CHK-PAT-002 | spot-check | every cited path exists in the local clone (`test -e` sample per doc) | citation integrity |
+| REQ-GLC-032.1 | CHK-PAT-003 | inspect | overlapping patterns link the 202606 digest | non-duplication |
+| REQ-GLC-040.1 | CHK-PUB-001 | script | docs come in pairs; names match `^\w+-\w+-\w+-(ascii\|mermaid)\.md$`; 150–400 lines | naming/shape |
+| REQ-GLC-041.1 | CHK-PUB-002 | inspect | ASCII doc has all six required sections | content |
+| REQ-GLC-042.1 | CHK-PUB-003 | inspect | Mermaid doc diagrams + table match ASCII twin | parity |
+| REQ-GLC-043.1 | CHK-PUB-004 | script | commit adding a pair also touches pattern-index.md | atomicity |
+| REQ-GLC-050.1 | CHK-GIT-001 | inspect | git log shows per-pair/per-batch commits | cadence |
+| REQ-GLC-051.1 | CHK-SYN-001 | inspect | one synthesis pair per completed category | synthesis |
 
-1. **Corpus mix**: fixed by evidence — the verified 8-category split of §2
-   (owner may still trim rows).
-2. **Classics policy**: archived/classic repos stay, flagged in the ledger
-   (`classic`, `archived`) — they carry the cleanest teaching code.
-3. **Clone location**: single `reference-repos-corpus/` sibling folder for
-   all new clones; the two legacy folders remain untouched; all three are
-   gitignored working material.
-4. **Pattern granularity**: count floats; §6 backlog is the seed; expected
-   30–50 fundamental pairs.
-5. **Sequencing**: interleave per §7 batch order.
-6. **Everything shallow**: all 172 repos get a local `--depth 1` clone
-   (owner directive) — nothing is studied API-only.
+## 3. Execution Plan (STUB → VERIFY, adapted for research)
+
+1. **STUB** — Create `pattern-index.md` skeleton and `reference-repos-corpus/`
+   (gitignored). Add the CHK scripts above as a single `verify-corpus-spec.sh`
+   in this folder so every gate is runnable, not narrative.
+2. **RED** — Run `verify-corpus-spec.sh`: expect failures (no clones, no
+   docs). Recorded baseline proves the checks detect absence.
+3. **GREEN** — Work category batches in this order, satisfying the
+   requirements batch by batch:
+   storage-engine → graph-analytics → vector-ann → full-text-search →
+   graph-db → neo4j-ecosystem/dataflow-compute/bench-testing.
+   Per batch: clone (REQ-010–013) → map (REQ-020) → extract (REQ-030–032)
+   → publish pairs (REQ-040–043) → commit/push (REQ-050).
+4. **REFACTOR** — After each category: write the synthesis pair (REQ-051),
+   prune weak patterns (single-witness ones), tighten the index.
+5. **VERIFY** — Run `verify-corpus-spec.sh` at end of every session; all
+   CHK gates green before the session reports done.
+
+Pattern backlog seeding the GREEN phase (kind, likely witnesses — final
+citations at write time): CSR adjacency layout; HNSW greedy descent;
+graph-on-disk memory budget; LSM compaction tradeoff; push-pull frontier
+switching; posting-list skip compression; immutable segment merging;
+sparse-matrix graph algebra; roaring bitmap ID sets; WAL group commit;
+MVCC snapshot visibility; copy-on-write tree snapshots; product
+quantization; vertex-centric supersteps; differential incremental
+computation; two-phase query planning; Louvain–Leiden refinement;
+delta-varint edge encoding; bloom-filter read shortcut; differential
+oracle testing. Count floats; expected 30–50 pairs.
+
+## 4. Quality Gates (pre-commit, every session)
+
+- [ ] Every requirement above has a stable `REQ-GLC-*.*` ID.
+- [ ] Every `REQ-GLC-*` has at least one CHK gate in §2, and
+      `verify-corpus-spec.sh` passes.
+- [ ] Every published doc pair: four-word names, both forms, index updated
+      in the same commit.
+- [ ] Every factual repo claim has a file path that exists on disk.
+- [ ] No clone is non-shallow, sparse, or filtered.
+- [ ] Disk under budget; clone sizes recorded.
+- [ ] No TODO/STUB/FIXME in published docs.
+- [ ] Commits are incremental and pushed.
+
+## 5. Open Questions
+
+None blocking. The corpus ledger is frozen at 172; changes to it are owner
+decisions outside this spec. Execution starts on owner "go".

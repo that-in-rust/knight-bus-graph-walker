@@ -35,16 +35,16 @@ graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	80
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
 graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	reference-repos-corpus/rdf4j-src/	cloned:2026-07-08:1.2G	Eclipse RDF4J: scalable RDF for Java
 graph-db	neo4j/apoc	https://github.com/neo4j/apoc	211	2026-07-10	Java	reference-repos-neo4j-family/neo4j-apoc-src	-	-
-dataflow-compute	apache/spark	https://github.com/apache/spark	43603	2026-07-11	Scala	-	-	Apache Spark - A unified analytics engine for large-scale data processing
-dataflow-compute	apache/flink	https://github.com/apache/flink	26160	2026-07-11	Java	-	-	Apache Flink
-dataflow-compute	facebookincubator/velox	https://github.com/facebookincubator/velox	4166	2026-07-11	C++	-	-	A composable and fully extensible C++ execution engine library for data management systems.
-dataflow-compute	TimelyDataflow/timely-dataflow	https://github.com/TimelyDataflow/timely-dataflow	3626	2026-07-08	Rust	-	-	A modular implementation of timely dataflow in Rust
-dataflow-compute	TimelyDataflow/differential-dataflow	https://github.com/TimelyDataflow/differential-dataflow	2980	2026-07-10	Rust	-	-	An implementation of differential dataflow using timely dataflow on Rust.
-dataflow-compute	rust-lang/datafrog	https://github.com/rust-lang/datafrog	886	2025-12-14	Rust	-	-	A lightweight Datalog engine in Rust
-bench-testing	jepsen-io/jepsen	https://github.com/jepsen-io/jepsen	7437	2026-07-03	Clojure	-	-	A framework for distributed systems verification, with fault injection
-bench-testing	erikbern/ann-benchmarks	https://github.com/erikbern/ann-benchmarks	5698	2026-07-10	Python	-	-	Benchmarks of approximate nearest neighbor libraries in Python
-bench-testing	sqlancer/sqlancer	https://github.com/sqlancer/sqlancer	1737	2026-07-11	Java	-	-	Automated testing to find logic and performance bugs in database systems
-bench-testing	ldbc/ldbc_graphalytics	https://github.com/ldbc/ldbc_graphalytics	88	2024-12-19	Java	-	-	Generic driver for LDBC Graphalytics implementation
+dataflow-compute	apache/spark	https://github.com/apache/spark	43603	2026-07-11	Scala	reference-repos-corpus/spark-src/	-	Apache Spark - A unified analytics engine for large-scale data processing
+dataflow-compute	apache/flink	https://github.com/apache/flink	26160	2026-07-11	Java	reference-repos-corpus/flink-src/	-	Apache Flink
+dataflow-compute	facebookincubator/velox	https://github.com/facebookincubator/velox	4166	2026-07-11	C++	reference-repos-corpus/velox-src/	-	A composable and fully extensible C++ execution engine library for data management systems.
+dataflow-compute	TimelyDataflow/timely-dataflow	https://github.com/TimelyDataflow/timely-dataflow	3626	2026-07-08	Rust	reference-repos-corpus/timely-dataflow-src/	-	A modular implementation of timely dataflow in Rust
+dataflow-compute	TimelyDataflow/differential-dataflow	https://github.com/TimelyDataflow/differential-dataflow	2980	2026-07-10	Rust	reference-repos-corpus/differential-dataflow-src/	-	An implementation of differential dataflow using timely dataflow on Rust.
+dataflow-compute	rust-lang/datafrog	https://github.com/rust-lang/datafrog	886	2025-12-14	Rust	reference-repos-corpus/datafrog-src/	-	A lightweight Datalog engine in Rust
+bench-testing	jepsen-io/jepsen	https://github.com/jepsen-io/jepsen	7437	2026-07-03	Clojure	reference-repos-corpus/jepsen-src/	-	A framework for distributed systems verification, with fault injection
+bench-testing	erikbern/ann-benchmarks	https://github.com/erikbern/ann-benchmarks	5698	2026-07-10	Python	reference-repos-corpus/ann-benchmarks-src/	-	Benchmarks of approximate nearest neighbor libraries in Python
+bench-testing	sqlancer/sqlancer	https://github.com/sqlancer/sqlancer	1737	2026-07-11	Java	reference-repos-corpus/sqlancer-src/	-	Automated testing to find logic and performance bugs in database systems
+bench-testing	ldbc/ldbc_graphalytics	https://github.com/ldbc/ldbc_graphalytics	88	2024-12-19	Java	reference-repos-corpus/ldbc_graphalytics-src/	-	Generic driver for LDBC Graphalytics implementation
 neo4j-ecosystem	neo4j-contrib/neo4j-apoc-procedures	https://github.com/neo4j-contrib/neo4j-apoc-procedures	1868	2026-07-08	Java	reference-repos-neo4j-family/neo4j-apoc-procedures-src	-	"Awesome Procedures On Cypher for Neo4j - codenamed ""apoc""                     If you like it, please ★ above ⇧"
 neo4j-ecosystem	neo4j/neo4j-python-driver	https://github.com/neo4j/neo4j-python-driver	1047	2026-07-02	Python	reference-repos-neo4j-family/neo4j-python-driver-src	-	Neo4j Bolt driver for Python
 neo4j-ecosystem	opencypher/openCypher	https://github.com/opencypher/openCypher	1013	2026-03-20	Gherkin	reference-repos-neo4j-family/opencypher-src	-	Specification of the Cypher property graph query language
@@ -57,10 +57,10 @@ neo4j-ecosystem	neo4j-labs/neo4rs	https://github.com/neo4j-labs/neo4rs	298	2026-
 neo4j-ecosystem	neo4j/neo4j-dotnet-driver	https://github.com/neo4j/neo4j-dotnet-driver	247	2026-07-10	C#	reference-repos-neo4j-family/neo4j-dotnet-driver-src	-	Neo4j Bolt driver for .NET
 neo4j-ecosystem	neo4j/graph-data-science-client	https://github.com/neo4j/graph-data-science-client	243	2026-07-09	Python	reference-repos-neo4j-family/neo4j-gds-client-src	-	A Python client for the Neo4j Graph Data Science (GDS) library
 neo4j-ecosystem	neo4j/cypher-dsl	https://github.com/neo4j/cypher-dsl	226	2026-07-06	Java	reference-repos-neo4j-family/cypher-dsl-src	-	A Java DSL (Builder) for the Cypher Query Language
-neo4j-ecosystem	cleishm/libcypher-parser	https://github.com/cleishm/libcypher-parser	160	2023-06-08	C	-	-	Cypher Parser Library
+neo4j-ecosystem	cleishm/libcypher-parser	https://github.com/cleishm/libcypher-parser	160	2023-06-08	C	reference-repos-corpus/libcypher-parser-src/	-	Cypher Parser Library
 neo4j-ecosystem	neo4j/cypher-shell	https://github.com/neo4j/cypher-shell	89	2023-07-06	Java	reference-repos-neo4j-family/cypher-shell-src	archived	Cypher Shell has moved to https://github.com/neo4j/neo4j
 neo4j-ecosystem	neo4j-contrib/gds-agent	https://github.com/neo4j-contrib/gds-agent	87	2026-07-10	Python	reference-repos-neo4j-family/gds-agent-src	-	Neo4j Graph Data Scientist Agent (MCP Server & Skills)
-neo4j-ecosystem	opencypher/front-end	https://github.com/opencypher/front-end	59	2026-01-14	Scala	-	-	Parsing, AST and semantic analysis for the Cypher Query Language
+neo4j-ecosystem	opencypher/front-end	https://github.com/opencypher/front-end	59	2026-01-14	Scala	reference-repos-corpus/front-end-src/	-	Parsing, AST and semantic analysis for the Cypher Query Language
 neo4j-ecosystem	neo4j-drivers/testkit	https://github.com/neo4j-drivers/testkit	13	2026-07-09	Python	reference-repos-neo4j-family/neo4j-testkit-src	-	Drivers integration/conformance tests
 neo4j-ecosystem	neo4j/docs-bolt	https://github.com/neo4j/docs-bolt	7	2026-04-22	JavaScript	reference-repos-neo4j-family/neo4j-docs-bolt-src	-	Neo4j Bolt Protocol Documentation
 graph-analytics	pyg-team/pytorch_geometric	https://github.com/pyg-team/pytorch_geometric	23886	2026-07-06	Python	reference-repos-corpus/pytorch_geometric-src	cloned:2026-07-11:20M	Graph Neural Network Library for PyTorch

@@ -124,7 +124,24 @@ flowchart LR
     COW --> KZ["Kuzu / DuckDB: COW column segments +<br/>manifest flip — same shape at file granularity"]
 ```
 
-## 8. Citing repos
+## 8. The freelist — where COW's garbage goes
+
+The pattern's hidden ledger: every superseded page must eventually be
+reused, but only when no live reader can still reach it.
+
+```mermaid
+flowchart TD
+    OLD["superseded pages (R, A, L1)<br/>tagged with txid of the commit<br/>that replaced them"] --> Q{any reader with<br/>read txid older?}
+    Q -- yes --> WAIT["stay on pending list —<br/>a long-lived read txn pins<br/>the WHOLE file's reuse<br/>(the classic LMDB 'file keeps growing' trap)"]
+    Q -- no --> FREE["move to freelist —<br/>next write txn allocates from it,<br/>file stops growing"]
+```
+
+bbolt ships two freelist backends (array and hashmap —
+`reference-repos-corpus/bbolt-src/db.go`, FreelistType at lines 21–29);
+redb stores the freed-table root inside each commit slot so the
+freelist itself is versioned by the same flip (header.rs:27).
+
+## 9. Citing repos
 
 | Repo | Path | Role |
 | --- | --- | --- |
@@ -135,7 +152,7 @@ flowchart LR
 | redb | `reference-repos-corpus/redb-src/src/tree_store/btree_mutator.rs` | Rust path-copying mutation |
 | sled | `reference-repos-corpus/sled-src/src/flush_epoch.rs` | epoch-batched flip generalization |
 
-## 9. Cross-references
+## 10. Cross-references
 
 - Sibling patterns: `mvcc-snapshot-visibility` (per-key vs whole-tree
   versions); `lsm-compaction-tradeoff` (opposing write philosophy);

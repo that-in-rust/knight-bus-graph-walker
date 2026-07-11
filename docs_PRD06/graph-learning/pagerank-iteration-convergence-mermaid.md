@@ -133,7 +133,8 @@ sequenceDiagram
   delta variants re-frontier); `semiring-matrix-traversal` (mxv per
   iteration); `csr-adjacency-layout` (the streaming access pattern).
 - Next in category: out-of-core edge-grid execution (the systems the
-  section-5 cost model motivates) or graph-analytics synthesis.
+  section-5 cost model motivates), delta-stepping SSSP, or the
+  graph-analytics category synthesis pair rolling up patterns 7-11.
 - Storage kinship: the double-buffered scores array is the same
   publish-atomically instinct as the storage category's root flips —
   readers of iteration k never see a half-written k+1; gapbs gets

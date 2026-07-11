@@ -39,6 +39,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 27 | Metamorphic oracle testing | execution | sqlancer, jepsen | metamorphic-oracle-testing-{ascii,mermaid}.md | 2026-07-08 |
 | 28 | Tolerant equivalence validation | execution | ldbc_graphalytics, ann-benchmarks | tolerant-equivalence-validation-{ascii,mermaid}.md | 2026-07-08 |
 | S8 | Bench testing category synthesis | execution | sqlancer, jepsen, ldbc_graphalytics, ann-benchmarks | bench-testing-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
+| S9 | Corpus capstone synthesis (all categories) | execution | rocksdb, kuzu, neo4j, tantivy, faiss, differential-dataflow, sqlancer, ldbc_graphalytics | corpus-capstone-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

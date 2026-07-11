@@ -2,14 +2,14 @@
 
 A source-grounded study of how graph systems actually work, extracted from a
 frozen corpus of 172 shallow-cloned repositories (`corpus-ledger.tsv`) and
-published as 28 pattern pairs + 8 category syntheses. Every factual claim
+published as 28 pattern pairs, 8 category syntheses, and a capstone (`corpus-capstone-pattern-synthesis-*`). Every factual claim
 cites a local source file; every pattern ships as two standalone documents
 (`*-ascii.md` prose/diagrams, `*-mermaid.md` diagrams) with worked numerical
 examples. Gates enforced by `verify-corpus-spec.sh`.
 
 ## Start here
 
-1. `pattern-index.md` — the complete map (28 patterns, 8 syntheses).
+1. `pattern-index.md` — the complete map (28 patterns, 8 category syntheses + capstone).
 2. Read a category synthesis first, then its member patterns:
 
 | Category | Synthesis | Members |

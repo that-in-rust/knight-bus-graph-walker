@@ -142,6 +142,11 @@ sequenceDiagram
   (boolean matrices over compressed bitmaps).
 - Next in category: connected-components hooking/shortcutting
   (FastSV) and PageRank iteration structure.
+- Paper trail: the GraphBLAS C API specification (the vanilla BFS
+  template credits its appendix directly) and the SuiteSparse
+  GraphBLAS papers — see `research-papers-ledger.md` for verified
+  entries; FastSV and the GAP PageRank variant each have their own
+  entries there.
 - 202606 digest overlap: digests named GraphBLAS as FalkorDB's
   engine; this pair adds the semiring table, mask semantics, and the
   masked-triangle arithmetic.

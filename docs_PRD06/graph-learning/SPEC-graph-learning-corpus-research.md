@@ -117,10 +117,12 @@ Format: `REQ-GLC-<NNN>` (Graph Learning Corpus), WHEN/THEN/SHALL.
 - **REQ-GLC-012** WHEN mapping fails (tool/parser limits — expected for the
   giant JVM/C++ repos) THEN the failure SHALL be recorded, a manual skim
   SHALL substitute, and the repo SHALL NOT be silently dropped.
-- **REQ-GLC-013** WHEN a clone would exceed the per-repo size cap (§8) THEN
-  a `--depth 1 --filter=blob:limit=1m` partial clone or sparse-checkout of
-  the engine directories SHALL be used instead, and the ledger flags column
-  SHALL record `partial`.
+- **REQ-GLC-013** WHEN any repo is acquired — including the giants (Spark,
+  Flink, Elasticsearch, Milvus, Velox) — THEN it SHALL be a full-tree
+  `git clone --depth 1` (owner directive: everything is a plain shallow
+  clone; no sparse-checkout, no blob filters). If a shallow clone still
+  exceeds the per-repo cap of §8, the size SHALL be recorded in the ledger
+  and the owner informed before proceeding with further batches.
 
 ### Phase C — Pattern extraction
 
@@ -229,7 +231,7 @@ Batch order (interleaved: map a category → write its patterns → next):
 | Budget | Value | Rationale |
 | --- | --- | --- |
 | Disk for new clones | ≤ 50 GB total; check `df` before each batch | ~132 new shallow clones; existing 40 ≈ 3.4 GB |
-| Per-repo size cap | 2 GB shallow; above it use partial clone (REQ-GLC-013) | spark/flink/velox/elasticsearch/milvus are the risks |
+| Per-repo size cap | none — all plain `--depth 1` (REQ-GLC-013); sizes recorded, owner informed if a clone is unusually large | spark/flink/elasticsearch shallow-clone fine (~1-2 GB each) |
 | Repos per session batch | 10–15 mapped per session | incremental, reviewable commits |
 | Pattern doc size | 150–400 lines per file | deep enough to teach, short enough to read |
 | Evidence per pattern | ≥ 2 repos, file-path cited | REQ-GLC-020 |

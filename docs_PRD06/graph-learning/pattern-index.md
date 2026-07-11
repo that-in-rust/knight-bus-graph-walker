@@ -12,6 +12,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 5 | COW tree snapshot (path copy + root flip) | storage | lmdb, bbolt, redb, sled | cow-tree-snapshot-{ascii,mermaid}.md | 2026-07-08 |
 | 6 | Bloom filter read shortcut | storage | mini-lsm, badger, rocksdb, fjall/lsm-tree | bloom-filter-shortcut-{ascii,mermaid}.md | 2026-07-08 |
 | 7 | CSR adjacency layout | storage | gapbs, gunrock, ligra, kuzu, webgraph-rs, parlaylib | csr-adjacency-layout-{ascii,mermaid}.md | 2026-07-08 |
+| 8 | Frontier push/pull switching | execution | gapbs, ligra, graphit, gunrock, gbbs | frontier-pushpull-switching-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

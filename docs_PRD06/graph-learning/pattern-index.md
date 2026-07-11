@@ -5,6 +5,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 
 | # | Pattern | Kind | Repos cited | Pair | Date |
 | --- | --- | --- | --- | --- | --- |
+| 1 | LSM compaction tradeoff (leveled vs tiered) | storage | rocksdb, pebble, mini-lsm, fjall/lsm-tree, slatedb | lsm-compaction-tradeoff-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

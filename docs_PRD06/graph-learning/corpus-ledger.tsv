@@ -45,7 +45,7 @@ bench-testing	jepsen-io/jepsen	https://github.com/jepsen-io/jepsen	7437	2026-07-
 bench-testing	erikbern/ann-benchmarks	https://github.com/erikbern/ann-benchmarks	5698	2026-07-10	Python	-	-	Benchmarks of approximate nearest neighbor libraries in Python
 bench-testing	sqlancer/sqlancer	https://github.com/sqlancer/sqlancer	1737	2026-07-11	Java	-	-	Automated testing to find logic and performance bugs in database systems
 bench-testing	ldbc/ldbc_graphalytics	https://github.com/ldbc/ldbc_graphalytics	88	2024-12-19	Java	-	-	Generic driver for LDBC Graphalytics implementation
-neo4j-ecosystem	neo4j-contrib/neo4j-apoc-procedures	https://github.com/neo4j-contrib/neo4j-apoc-procedures	1868	2026-07-08	Java	reference-repos-neo4j-family/neo4j-apoc-procedures-src	-	"Awesome Procedures On Cypher for Neo4j - codenamed ""apoc""                     If you like it, please ★ above ⇧"
+neo4j-ecosystem	neo4j-contrib/neo4j-apoc-procedures	https://github.com/neo4j-contrib/neo4j-apoc-procedures	1868	2026-07-08	Java	reference-repos-neo4j-family/neo4j-apoc-procedures-src	-	Awesome Procedures On Cypher for Neo4j - codenamed "apoc"                     If you like it, please ★ above ⇧
 neo4j-ecosystem	neo4j/neo4j-python-driver	https://github.com/neo4j/neo4j-python-driver	1047	2026-07-02	Python	reference-repos-neo4j-family/neo4j-python-driver-src	-	Neo4j Bolt driver for Python
 neo4j-ecosystem	opencypher/openCypher	https://github.com/opencypher/openCypher	1013	2026-03-20	Gherkin	reference-repos-neo4j-family/opencypher-src	-	Specification of the Cypher property graph query language
 neo4j-ecosystem	neo4j/neo4j-javascript-driver	https://github.com/neo4j/neo4j-javascript-driver	916	2026-07-03	JavaScript	reference-repos-neo4j-family/neo4j-javascript-driver-src	-	Neo4j Bolt driver for JavaScript
@@ -138,36 +138,36 @@ full-text-search	apache/solr	https://github.com/apache/solr	1640	2026-07-11	Java
 full-text-search	lnx-search/lnx	https://github.com/lnx-search/lnx	1447	2025-10-14	Rust	-	-	A flexible, performant and reliable search database without the AI bullshit.
 full-text-search	xapian/xapian	https://github.com/xapian/xapian	876	2026-07-01	C++	-	-	Mirror of the Xapian repository.  You're welcome to open pull requests on github (they'll just get merged indi
 full-text-search	mchaput/whoosh	https://github.com/mchaput/whoosh	661	2024-01-03	Python	-	-	Pure-Python full-text search library
-storage-engine	redis/redis	https://github.com/redis/redis	75394	2026-07-10	C	-	-	For developers, who are building real-time data-driven applications, Redis is the preferred, fastest, and most
-storage-engine	duckdb/duckdb	https://github.com/duckdb/duckdb	39288	2026-07-10	C++	-	-	DuckDB is an analytical in-process SQL database management system
-storage-engine	google/leveldb	https://github.com/google/leveldb	39231	2026-03-11	C++	-	classic	LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string key
-storage-engine	facebook/rocksdb	https://github.com/facebook/rocksdb	31854	2026-07-09	C++	-	-	A library that provides an embeddable, persistent key-value store for fast storage.
-storage-engine	dragonflydb/dragonfly	https://github.com/dragonflydb/dragonfly	30851	2026-07-11	C++	-	-	A modern replacement for Redis and Memcached
-storage-engine	valkey-io/valkey	https://github.com/valkey-io/valkey	26489	2026-07-11	C	-	-	A flexible distributed key-value database that is optimized for caching and other realtime workloads.
-storage-engine	tursodatabase/turso	https://github.com/tursodatabase/turso	22740	2026-07-11	Rust	-	-	Turso is an in-process SQL database, compatible with SQLite.
-storage-engine	tikv/tikv	https://github.com/tikv/tikv	16758	2026-07-09	Rust	-	-	Distributed transactional key-value database, originally created to complement TiDB
-storage-engine	apple/foundationdb	https://github.com/apple/foundationdb	16498	2026-07-11	C++	-	-	FoundationDB - the open source, distributed, transactional key-value store
-storage-engine	dgraph-io/badger	https://github.com/dgraph-io/badger	15701	2026-07-11	Go	-	-	Fast key-value DB in Go.
-storage-engine	Snapchat/KeyDB	https://github.com/Snapchat/KeyDB	12492	2024-05-29	C++	-	-	A Multithreaded Fork of Redis
-storage-engine	sqlite/sqlite	https://github.com/sqlite/sqlite	10023	2026-07-10	C	-	-	Official Git mirror of the SQLite source tree
-storage-engine	etcd-io/bbolt	https://github.com/etcd-io/bbolt	9623	2026-07-08	Go	-	-	An embedded key/value database for Go.
-storage-engine	spacejam/sled	https://github.com/spacejam/sled	9046	2026-04-04	Rust	-	-	the champagne of beta embedded databases
-storage-engine	erikgrinaker/toydb	https://github.com/erikgrinaker/toydb	7261	2026-06-14	Rust	-	-	Distributed SQL database in Rust, written as an educational project
-storage-engine	microsoft/FASTER	https://github.com/microsoft/FASTER	6631	2026-07-09	C#	-	-	Fast persistent recoverable log and key-value store + cache, in C# and C++.
-storage-engine	cockroachdb/pebble	https://github.com/cockroachdb/pebble	5951	2026-07-11	Go	-	-	RocksDB/LevelDB inspired key-value database in Go
-storage-engine	mit-pdos/noria	https://github.com/mit-pdos/noria	5239	2021-10-30	Rust	-	-	Fast web applications through dynamic, partially-stateful dataflow
-storage-engine	cberner/redb	https://github.com/cberner/redb	4645	2026-07-10	Rust	-	-	An embedded key-value database in pure Rust
-storage-engine	skyzh/mini-lsm	https://github.com/skyzh/mini-lsm	4053	2026-04-22	Rust	-	-	A course of building an LSM-Tree storage engine (database) in a week.
-storage-engine	RoaringBitmap/RoaringBitmap	https://github.com/RoaringBitmap/RoaringBitmap	3888	2026-07-10	Java	-	-	A better compressed bitset in Java: used by Apache Spark, Netflix Atlas, Apache Pinot, Tablesaw, and many othe
-storage-engine	slatedb/slatedb	https://github.com/slatedb/slatedb	3199	2026-07-11	Rust	-	-	A cloud native embedded storage engine built on object storage.
-storage-engine	LMDB/lmdb	https://github.com/LMDB/lmdb	3012	2026-06-30	C	-	-	Read-only mirror of official repo on openldap.org. Issues and pull requests here are ignored. Use OpenLDAP ITS
-storage-engine	wiredtiger/wiredtiger	https://github.com/wiredtiger/wiredtiger	2409	2026-07-11	C	-	-	WiredTiger's source tree
-storage-engine	simongog/sdsl-lite	https://github.com/simongog/sdsl-lite	2303	2023-06-02	C++	-	-	Succinct Data Structure Library 2.0
-storage-engine	lotusdblabs/lotusdb	https://github.com/lotusdblabs/lotusdb	2253	2025-02-18	Go	-	-	Most advanced key-value database written in Go, extremely fast, compatible with LSM tree and B+ tree.
-storage-engine	fjall-rs/fjall	https://github.com/fjall-rs/fjall	2212	2026-07-07	Rust	-	-	🗻 Log-structured, embeddable key-value storage engine written in Rust
-storage-engine	RoaringBitmap/CRoaring	https://github.com/RoaringBitmap/CRoaring	1858	2026-07-01	C	-	-	Roaring bitmaps in C (and C++), with SIMD (AVX2, AVX-512 and NEON) optimizations: used by Apache Doris, ClickH
-storage-engine	couchbase/forestdb	https://github.com/couchbase/forestdb	1330	2025-11-21	C++	-	-	A Fast Key-Value Storage Engine Based on Hierarchical B+-Tree Trie
-storage-engine	speedb-io/speedb	https://github.com/speedb-io/speedb	1009	2024-06-12	C++	-	-	A RocksDB compliant high performance scalable embedded key-value store
-storage-engine	RoaringBitmap/roaring-rs	https://github.com/RoaringBitmap/roaring-rs	943	2026-05-12	Rust	-	-	A better compressed bitset in Rust
-storage-engine	meilisearch/heed	https://github.com/meilisearch/heed	906	2026-06-04	Rust	-	-	Fully typed LMDB wrappers with minimum overhead 🐦
-storage-engine	fjall-rs/lsm-tree	https://github.com/fjall-rs/lsm-tree	428	2026-07-05	Rust	-	-	K.I.S.S. LSM-tree implementation in safe Rust
+storage-engine	redis/redis	https://github.com/redis/redis	75394	2026-07-10	C	reference-repos-corpus/redis-src	cloned:2026-07-11:25M	For developers, who are building real-time data-driven applications, Redis is the preferred, fastest, and most
+storage-engine	duckdb/duckdb	https://github.com/duckdb/duckdb	39288	2026-07-10	C++	reference-repos-corpus/duckdb-src	cloned:2026-07-11:352M	DuckDB is an analytical in-process SQL database management system
+storage-engine	google/leveldb	https://github.com/google/leveldb	39231	2026-03-11	C++	reference-repos-corpus/leveldb-src	classic;cloned:2026-07-11:1M	LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string key
+storage-engine	facebook/rocksdb	https://github.com/facebook/rocksdb	31854	2026-07-09	C++	reference-repos-corpus/rocksdb-src	cloned:2026-07-11:62M	A library that provides an embeddable, persistent key-value store for fast storage.
+storage-engine	dragonflydb/dragonfly	https://github.com/dragonflydb/dragonfly	30851	2026-07-11	C++	reference-repos-corpus/dragonfly-src	cloned:2026-07-11:16M	A modern replacement for Redis and Memcached
+storage-engine	valkey-io/valkey	https://github.com/valkey-io/valkey	26489	2026-07-11	C	reference-repos-corpus/valkey-src	cloned:2026-07-11:24M	A flexible distributed key-value database that is optimized for caching and other realtime workloads.
+storage-engine	tursodatabase/turso	https://github.com/tursodatabase/turso	22740	2026-07-11	Rust	reference-repos-corpus/turso-src	cloned:2026-07-11:53M	Turso is an in-process SQL database, compatible with SQLite.
+storage-engine	tikv/tikv	https://github.com/tikv/tikv	16758	2026-07-09	Rust	reference-repos-corpus/tikv-src	cloned:2026-07-11:48M	Distributed transactional key-value database, originally created to complement TiDB
+storage-engine	apple/foundationdb	https://github.com/apple/foundationdb	16498	2026-07-11	C++	reference-repos-corpus/foundationdb-src	cloned:2026-07-11:51M	FoundationDB - the open source, distributed, transactional key-value store
+storage-engine	dgraph-io/badger	https://github.com/dgraph-io/badger	15701	2026-07-11	Go	reference-repos-corpus/badger-src	cloned:2026-07-11:1M	Fast key-value DB in Go.
+storage-engine	Snapchat/KeyDB	https://github.com/Snapchat/KeyDB	12492	2024-05-29	C++	reference-repos-corpus/KeyDB-src	cloned:2026-07-11:22M	A Multithreaded Fork of Redis
+storage-engine	sqlite/sqlite	https://github.com/sqlite/sqlite	10023	2026-07-10	C	reference-repos-corpus/sqlite-src	cloned:2026-07-11:120M	Official Git mirror of the SQLite source tree
+storage-engine	etcd-io/bbolt	https://github.com/etcd-io/bbolt	9623	2026-07-08	Go	reference-repos-corpus/bbolt-src	cloned:2026-07-11:1018K	An embedded key/value database for Go.
+storage-engine	spacejam/sled	https://github.com/spacejam/sled	9046	2026-04-04	Rust	reference-repos-corpus/sled-src	cloned:2026-07-11:1M	the champagne of beta embedded databases
+storage-engine	erikgrinaker/toydb	https://github.com/erikgrinaker/toydb	7261	2026-06-14	Rust	reference-repos-corpus/toydb-src	cloned:2026-07-11:3M	Distributed SQL database in Rust, written as an educational project
+storage-engine	microsoft/FASTER	https://github.com/microsoft/FASTER	6631	2026-07-09	C#	reference-repos-corpus/FASTER-src	cloned:2026-07-11:7M	Fast persistent recoverable log and key-value store + cache, in C# and C++.
+storage-engine	cockroachdb/pebble	https://github.com/cockroachdb/pebble	5951	2026-07-11	Go	reference-repos-corpus/pebble-src	cloned:2026-07-11:26M	RocksDB/LevelDB inspired key-value database in Go
+storage-engine	mit-pdos/noria	https://github.com/mit-pdos/noria	5239	2021-10-30	Rust	reference-repos-corpus/noria-src	cloned:2026-07-11:3M	Fast web applications through dynamic, partially-stateful dataflow
+storage-engine	cberner/redb	https://github.com/cberner/redb	4645	2026-07-10	Rust	reference-repos-corpus/redb-src	cloned:2026-07-11:1M	An embedded key-value database in pure Rust
+storage-engine	skyzh/mini-lsm	https://github.com/skyzh/mini-lsm	4053	2026-04-22	Rust	reference-repos-corpus/mini-lsm-src	cloned:2026-07-11:1M	A course of building an LSM-Tree storage engine (database) in a week.
+storage-engine	RoaringBitmap/RoaringBitmap	https://github.com/RoaringBitmap/RoaringBitmap	3888	2026-07-10	Java	reference-repos-corpus/RoaringBitmap-src	cloned:2026-07-11:176M	A better compressed bitset in Java: used by Apache Spark, Netflix Atlas, Apache Pinot, Tablesaw, and many othe
+storage-engine	slatedb/slatedb	https://github.com/slatedb/slatedb	3199	2026-07-11	Rust	reference-repos-corpus/slatedb-src	cloned:2026-07-11:46M	A cloud native embedded storage engine built on object storage.
+storage-engine	LMDB/lmdb	https://github.com/LMDB/lmdb	3012	2026-06-30	C	reference-repos-corpus/lmdb-src	cloned:2026-07-11:888K	Read-only mirror of official repo on openldap.org. Issues and pull requests here are ignored. Use OpenLDAP ITS
+storage-engine	wiredtiger/wiredtiger	https://github.com/wiredtiger/wiredtiger	2409	2026-07-11	C	reference-repos-corpus/wiredtiger-src	cloned:2026-07-11:60M	WiredTiger's source tree
+storage-engine	simongog/sdsl-lite	https://github.com/simongog/sdsl-lite	2303	2023-06-02	C++	reference-repos-corpus/sdsl-lite-src	cloned:2026-07-11:3M	Succinct Data Structure Library 2.0
+storage-engine	lotusdblabs/lotusdb	https://github.com/lotusdblabs/lotusdb	2253	2025-02-18	Go	reference-repos-corpus/lotusdb-src	cloned:2026-07-11:603K	Most advanced key-value database written in Go, extremely fast, compatible with LSM tree and B+ tree.
+storage-engine	fjall-rs/fjall	https://github.com/fjall-rs/fjall	2212	2026-07-07	Rust	reference-repos-corpus/fjall-src	cloned:2026-07-11:23M	🗻 Log-structured, embeddable key-value storage engine written in Rust
+storage-engine	RoaringBitmap/CRoaring	https://github.com/RoaringBitmap/CRoaring	1858	2026-07-01	C	reference-repos-corpus/CRoaring-src	cloned:2026-07-11:333M	Roaring bitmaps in C (and C++), with SIMD (AVX2, AVX-512 and NEON) optimizations: used by Apache Doris, ClickH
+storage-engine	couchbase/forestdb	https://github.com/couchbase/forestdb	1330	2025-11-21	C++	reference-repos-corpus/forestdb-src	cloned:2026-07-11:4M	A Fast Key-Value Storage Engine Based on Hierarchical B+-Tree Trie
+storage-engine	speedb-io/speedb	https://github.com/speedb-io/speedb	1009	2024-06-12	C++	reference-repos-corpus/speedb-src	cloned:2026-07-11:63M	A RocksDB compliant high performance scalable embedded key-value store
+storage-engine	RoaringBitmap/roaring-rs	https://github.com/RoaringBitmap/roaring-rs	943	2026-05-12	Rust	reference-repos-corpus/roaring-rs-src	cloned:2026-07-11:1M	A better compressed bitset in Rust
+storage-engine	meilisearch/heed	https://github.com/meilisearch/heed	906	2026-06-04	Rust	reference-repos-corpus/heed-src	cloned:2026-07-11:3M	Fully typed LMDB wrappers with minimum overhead 🐦
+storage-engine	fjall-rs/lsm-tree	https://github.com/fjall-rs/lsm-tree	428	2026-07-05	Rust	reference-repos-corpus/lsm-tree-src	cloned:2026-07-11:1M	K.I.S.S. LSM-tree implementation in safe Rust

@@ -94,7 +94,33 @@ flowchart LR
     G --> G4["succinct rank/select (sdsl-lite):<br/>deferred to graph-analytics,<br/>where it meets CSR"]
 ```
 
-## 8. Citing repos (category roll-up)
+## 8. The category as a verification target
+
+For the convergence-loop thesis (docs_PRD06 README): if generated code
+must match a storage engine, these are the observable surfaces per
+pattern — what a differential harness can and cannot see:
+
+```mermaid
+flowchart TD
+    subgraph OBS [observable via API diffing — loop converges alone]
+        O1["p4 visibility: read-your-writes,<br/>snapshot repeatability, prefix order"]
+        O2["p3 bitmaps: exact set semantics,<br/>bit-for-bit serialized format"]
+        O3["p1/p6 read results: correctness<br/>(which value), not which file was skipped"]
+    end
+    subgraph HID [invisible to API diffing — needs engineered harnesses]
+        H1["p2 group commit: fsync count —<br/>needs io tracing or failpoint crash tests"]
+        H2["p5 torn-meta recovery: needs<br/>crash-point injection between fsyncs"]
+        H3["p1 WA/SA: needs io accounting,<br/>not query results"]
+    end
+    OBS --> LOOP["cheap: let generation grind"]
+    HID --> HUMAN["expensive: the human-built<br/>part of the harness"]
+```
+
+This split — which pattern properties are free to verify and which
+need instrumentation — is the category's direct payment toward the
+rewrite program.
+
+## 9. Citing repos (category roll-up)
 
 | Repo | Patterns witnessed | Signature path |
 | --- | --- | --- |
@@ -115,7 +141,7 @@ flowchart LR
 | sqlite | 2 | `reference-repos-corpus/sqlite-src/src/wal.c` |
 | turso | 2 | `reference-repos-corpus/turso-src/core/storage/wal.rs` |
 
-## 9. Cross-references
+## 10. Cross-references
 
 - Pattern pairs 1-6 in `pattern-index.md`.
 - Next category (graph-analytics): CSR layout, rank/select, frontier

@@ -8,6 +8,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 1 | LSM compaction tradeoff (leveled vs tiered) | storage | rocksdb, pebble, mini-lsm, fjall/lsm-tree, slatedb | lsm-compaction-tradeoff-{ascii,mermaid}.md | 2026-07-08 |
 | 2 | WAL group commit (fsync amortization) | storage | rocksdb, pebble, sqlite, slatedb, turso | wal-group-commit-{ascii,mermaid}.md | 2026-07-08 |
 | 3 | Roaring bitmap ID sets (per-chunk containers) | storage | CRoaring, RoaringBitmap(Java), roaring-rs | roaring-bitmap-idsets-{ascii,mermaid}.md | 2026-07-08 |
+| 4 | MVCC snapshot visibility | storage | toydb, badger, rocksdb, tikv, memgraph | mvcc-snapshot-visibility-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

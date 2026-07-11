@@ -71,13 +71,13 @@ if [ "$pairs" -eq 0 ]; then bad CHK-PUB-001 "no pattern pairs published yet"; el
 # CHK-PAT-001/002: every pattern doc cites >=2 repos and cited local paths exist
 for f in "$HERE"/*-ascii.md "$HERE"/*-mermaid.md; do
   [ -e "$f" ] || continue
-  cites=$(grep -oE '(reference-repos-[a-z-]+|src)/[A-Za-z0-9._/-]+' "$f" | grep -c 'reference-repos')
-  repos=$(grep -oE 'reference-repos-[a-z-]+/[A-Za-z0-9._-]+' "$f" | sort -u | wc -l)
+  cites=$(grep -oE '(reference-repos-[a-z0-9-]+|src)/[A-Za-z0-9._/-]+' "$f" | grep -c 'reference-repos')
+  repos=$(grep -oE 'reference-repos-[a-z0-9-]+/[A-Za-z0-9._-]+' "$f" | sort -u | wc -l)
   if [ "$repos" -lt 2 ]; then bad CHK-PAT-001 "$(basename "$f") cites $repos distinct repos (<2)"; fi
   while read -r p; do
     [ -z "$p" ] && continue
     [ -e "$ROOT/$p" ] || bad CHK-PAT-002 "$(basename "$f") cites missing path $p"
-  done < <(grep -oE 'reference-repos-[a-z-]+/[A-Za-z0-9._/-]+' "$f" | sort -u)
+  done < <(grep -oE 'reference-repos-[a-z0-9-]+/[A-Za-z0-9._/-]+' "$f" | sort -u)
 done
 
 # CHK-PUB-004: pattern-index.md lists every pair

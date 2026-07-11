@@ -144,5 +144,7 @@ rewrite program.
 ## 10. Cross-references
 
 - Pattern pairs 1-6 in `pattern-index.md`.
+- ASCII twin: `storage-engine-pattern-synthesis-ascii.md` (same model,
+  same roll-up table).
 - Next category (graph-analytics): CSR layout, rank/select, frontier
   management — the structures these engines store.

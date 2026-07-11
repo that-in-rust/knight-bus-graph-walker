@@ -21,6 +21,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 14 | Product quantization ladder | storage | faiss, qdrant, pgvectorscale | product-quantization-ladder-{ascii,mermaid}.md | 2026-07-08 |
 | 15 | DiskANN Vamana disk layout | storage | DiskANN, pgvectorscale, knowhere | diskann-vamana-layout-{ascii,mermaid}.md | 2026-07-08 |
 | 16 | IVF partitioned probe | execution | faiss, knowhere, cuvs | ivf-partitioned-probe-{ascii,mermaid}.md | 2026-07-08 |
+| S3 | Vector ANN category synthesis | execution | hnswlib, qdrant, faiss, DiskANN, pgvectorscale, knowhere, cuvs | vector-ann-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

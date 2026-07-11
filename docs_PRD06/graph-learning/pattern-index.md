@@ -38,6 +38,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | S7 | Dataflow compute category synthesis | execution | timely-dataflow, differential-dataflow, datafrog, spark, giraph | dataflow-compute-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 | 27 | Metamorphic oracle testing | execution | sqlancer, jepsen | metamorphic-oracle-testing-{ascii,mermaid}.md | 2026-07-08 |
 | 28 | Tolerant equivalence validation | execution | ldbc_graphalytics, ann-benchmarks | tolerant-equivalence-validation-{ascii,mermaid}.md | 2026-07-08 |
+| S8 | Bench testing category synthesis | execution | sqlancer, jepsen, ldbc_graphalytics, ann-benchmarks | bench-testing-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

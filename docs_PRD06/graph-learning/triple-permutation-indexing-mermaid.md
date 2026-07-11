@@ -105,6 +105,24 @@ flowchart TD
     K1 & K17 & K19 & K20 --> LAW["corpus law: dictionary-encode once,<br/>sort redundantly, compress the shared<br/>prefixes — the schema-free way to make<br/>every access path a range scan"]
 ```
 
+## 9b. A SPARQL join, end to end
+
+```mermaid
+sequenceDiagram
+    participant Q as SPARQL: ?x knows ?y . ?y age ?a
+    participant PL as planner
+    participant P1 as POS scan (knows)
+    participant P2 as PSO scan (age)
+    participant J as merge join on ?y
+    Q->>PL: two patterns, shared variable ?y
+    PL->>P1: bound {P=knows} -> POS prefix scan,<br/>?y is the OBJECT: output SORTED by O
+    PL->>P2: bound {P=age} -> PSO prefix scan,<br/>?y is the SUBJECT: output SORTED by S
+    P1-->>J: (y,x) pairs ordered by y
+    P2-->>J: (y,a) pairs ordered by y
+    Note over PL,J: the planner picks permutations so JOIN<br/>INPUTS ARRIVE PRE-SORTED on the join<br/>variable — merge joins without sort<br/>steps; this is why QLever keeps all six<br/>orders: more orders = more sort-free<br/>join plans (ScanSpecification.h:19 is<br/>the planner's currency)
+    J-->>Q: (x, y, a) rows, streamed —<br/>a pull pipeline (pattern 21) whose<br/>leaves are permutation range scans
+```
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

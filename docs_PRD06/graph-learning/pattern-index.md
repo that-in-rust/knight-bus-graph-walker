@@ -31,6 +31,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 22 | Triple permutation indexing | storage | oxigraph, qlever | triple-permutation-indexing-{ascii,mermaid}.md | 2026-07-08 |
 | S5 | Graph DB category synthesis | execution | neo4j, kuzu, memgraph, janusgraph, oxigraph, qlever | graph-db-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
 | 23 | PackStream wire encoding | storage | neo4rs, neo4j-python-driver | packstream-wire-encoding-{ascii,mermaid}.md | 2026-07-08 |
+| 24 | Stub script conformance | execution | testkit, neo4j-python-driver, neo4j-go-driver | stub-script-conformance-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

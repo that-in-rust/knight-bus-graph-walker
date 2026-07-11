@@ -106,6 +106,27 @@ flowchart TD
     K17 & K6 & K13 & K3 --> LAW["corpus law: sorted input + shared<br/>structure = compression AND navigation<br/>from one build pass"]
 ```
 
+## 9b. Building and merging dictionaries
+
+```mermaid
+sequenceDiagram
+    participant I as indexer (segment flush)
+    participant B as MapBuilder (sorted insert)
+    participant M as merger (fst_termdict/merger.rs)
+    participant S as new segment
+    I->>B: terms arrive SORTED (from the<br/>in-RAM term hash, sorted at flush) —<br/>MapBuilder rejects out-of-order keys
+    Note over B: minimality is maintained INCREMENTALLY:<br/>when a prefix can no longer be extended,<br/>its finished sub-automaton is hashed and<br/>deduped against already-frozen states —<br/>one pass, no global minimization step
+    B-->>I: byte[] FST + term-info table
+    I->>M: on segment merge: k sorted term<br/>streams -> heap-merge into one<br/>sorted stream
+    M->>S: rebuild FST for the union;<br/>remap ordinals; posting lists<br/>concatenated/re-mapped per pattern 17
+    Note over M,S: dictionaries are write-once like every<br/>segment file (patterns 1/17): no in-place<br/>insert into an FST — mutation = rebuild,<br/>amortized by the LSM merge schedule
+```
+
+Sorted input is the load-bearing assumption of the whole
+category: it makes delta compression work (17), block maxima
+meaningful (18), and single-pass minimal FST construction
+possible (19).
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

@@ -145,3 +145,8 @@ sequenceDiagram
   `research-papers-ledger.md`.
 - Next in category: the graph-db category synthesis pair
   rolling up patterns 20-22.
+- Rewrite relevance (docs_PRD06 thesis): SPARQL engines are a
+  friendlier convergence target than Cypher engines — the data
+  model is a bare set, canonical comparison is just triple
+  sorting, and W3C test suites play the openCypher-TCK role
+  with even tighter semantics.

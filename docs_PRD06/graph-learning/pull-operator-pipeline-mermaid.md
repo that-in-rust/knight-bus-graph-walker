@@ -111,6 +111,21 @@ flowchart TD
     R1 & R2 & R3 --> RW["rewrite relevance: results must match;<br/>tuple vs vector vs compiled execution is<br/>a free choice — three camps in<br/>production are the proof"]
 ```
 
+## 9b. Pipeline breakers — where pull stops streaming
+
+```mermaid
+sequenceDiagram
+    participant R as root (Produce)
+    participant SO as Sort / Aggregate /<br/>HashJoin-build
+    participant CH as child subtree
+    R->>SO: first Pull
+    SO->>CH: Pull... Pull... Pull (DRAIN)
+    Note over SO,CH: a breaker must consume its ENTIRE child<br/>before yielding row one — this is where<br/>memory blows up, where spill-to-disk<br/>lives, and where kuzu's vectors pay off<br/>most (bulk build of hash tables /<br/>sort runs from contiguous batches)
+    CH-->>SO: exhausted (false)
+    SO-->>R: now yields sorted/aggregated rows,<br/>one Pull at a time from its buffer
+    Note over R,SO: planners fight to push breakers DOWN<br/>(pre-aggregate before expand) or remove<br/>them (index-backed ORDER BY: neo4j's<br/>planner picks an index scan whose order<br/>makes Sort unnecessary — plan-as-data<br/>rewrites, §5)
+```
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

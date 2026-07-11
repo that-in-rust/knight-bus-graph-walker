@@ -147,3 +147,5 @@ flowchart LR
   problem); `roaring-bitmap-idsets` (exact sets for iteration and
   intersection); `mvcc-snapshot-visibility` (newest-first probe order).
 - 202606 digest overlap: none — read-path filters were untouched.
+- Paper trail: Bloom (1970); RocksDB's Ribbon filter paper — see
+  `research-papers-ledger.md` for verified entries.

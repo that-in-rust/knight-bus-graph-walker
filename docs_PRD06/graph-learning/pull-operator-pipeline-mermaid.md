@@ -144,5 +144,8 @@ sequenceDiagram
 - Kinship law: Volcano's next() is the same shape as pattern
   17's advance() and HNSW's candidate pop (13) — demand-driven
   iteration is the corpus's universal execution idiom.
+- Paper trail: Graefe's Volcano paper and MonetDB/X100
+  ("vectorized execution") — the two poles of §7 — queued in
+  `research-papers-ledger.md`.
 - Next in category: property/columnar value storage, then the
   graph-db category synthesis.

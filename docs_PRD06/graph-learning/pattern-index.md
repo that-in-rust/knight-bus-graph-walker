@@ -14,6 +14,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 7 | CSR adjacency layout | storage | gapbs, gunrock, ligra, kuzu, webgraph-rs, parlaylib | csr-adjacency-layout-{ascii,mermaid}.md | 2026-07-08 |
 | 8 | Frontier push/pull switching | execution | gapbs, ligra, graphit, gunrock, gbbs | frontier-pushpull-switching-{ascii,mermaid}.md | 2026-07-08 |
 | 9 | Semiring matrix traversal | algorithm | LAGraph, GraphBLAS, falkordb | semiring-matrix-traversal-{ascii,mermaid}.md | 2026-07-08 |
+| 10 | Component hooking + shortcutting | algorithm | gapbs, LAGraph, gbbs, ligra | component-hooking-shortcutting-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

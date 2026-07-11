@@ -10,6 +10,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 3 | Roaring bitmap ID sets (per-chunk containers) | storage | CRoaring, RoaringBitmap(Java), roaring-rs | roaring-bitmap-idsets-{ascii,mermaid}.md | 2026-07-08 |
 | 4 | MVCC snapshot visibility | storage | toydb, badger, rocksdb, tikv, memgraph | mvcc-snapshot-visibility-{ascii,mermaid}.md | 2026-07-08 |
 | 5 | COW tree snapshot (path copy + root flip) | storage | lmdb, bbolt, redb, sled | cow-tree-snapshot-{ascii,mermaid}.md | 2026-07-08 |
+| 6 | Bloom filter read shortcut | storage | mini-lsm, badger, rocksdb, fjall/lsm-tree | bloom-filter-shortcut-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

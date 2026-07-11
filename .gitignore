@@ -19,3 +19,4 @@ reference-repos-competitors/
 /.tessera/
 # mcp-codebase-index
 .codebase-index-cache.pkl
+reference-repos-corpus/

@@ -26,6 +26,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 18 | BM25 + WAND pruning | algorithm | tantivy, lucene, quickwit | bm25-wand-pruning-{ascii,mermaid}.md | 2026-07-08 |
 | 19 | FST term dictionary | storage | lucene, tantivy | fst-term-dictionary-{ascii,mermaid}.md | 2026-07-08 |
 | S4 | Full-text search category synthesis | execution | lucene, tantivy, quickwit, elasticsearch, OpenSearch, paradedb | full-text-search-pattern-synthesis-{ascii,mermaid}.md | 2026-07-08 |
+| 20 | Record chain adjacency | storage | neo4j, kuzu | record-chain-adjacency-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

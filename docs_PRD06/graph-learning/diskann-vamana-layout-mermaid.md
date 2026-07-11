@@ -109,6 +109,32 @@ flowchart TD
     K13 & K14 & K7 & K15 --> C["the vector-ann category is the storage and<br/>analytics categories meeting geometry:<br/>every design here is an old pattern<br/>re-priced for a new cost model"]
 ```
 
+## 9b. Build pipeline — where the alpha passes fit
+
+```mermaid
+sequenceDiagram
+    participant D as dataset
+    participant G as in-progress graph
+    participant P as occlude pruner
+    D->>G: initialize with random edges<br/>(degree ~R)
+    loop 2 passes over all points (typical)
+        D->>G: greedy-search point p from the medoid<br/>over the CURRENT graph
+        G->>P: visited set = candidate pool for p
+        P->>P: occlude_list, alpha pass 1.0 -> alpha<br/>(index.rs:2598-2605)
+        P->>G: p's pruned out-edges (<= R)
+        G->>G: add REVERSE edges; if a target<br/>overflows R, re-prune ITS list
+        Note over G,P: same bidirectional-connect-then-prune<br/>shape as HNSW insertion (pattern 13 §8b)
+    end
+    G->>D: final pass writes packed sectors<br/>(disk_index_writer.rs)
+    Note over D,G: build cost is dominated by the greedy<br/>searches — build IS repeated search,<br/>exactly like HNSW; only the pruning<br/>rule and the layout differ
+```
+
+The two-pass structure (first at alpha=1.0, then at the configured
+alpha) means early edges are strictly diversity-pruned and the
+second pass adds the redundant long-range shortcuts — order
+matters, because shortcuts are only useful once the local
+structure exists.
+
 ## 10. Citing repos
 
 | Repo | Path | Role |

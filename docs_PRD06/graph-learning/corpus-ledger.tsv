@@ -31,7 +31,7 @@ graph-db	openlink/virtuoso-opensource	https://github.com/openlink/virtuoso-opens
 graph-db	ad-freiburg/qlever	https://github.com/ad-freiburg/qlever	862	2026-07-10	C++	reference-repos-corpus/qlever-src/	cloned:2026-07-08:198M	Graph database implementing the RDF and SPARQL standards. Very fast and scales to more than a trillion triples
 graph-db	pkumod/gStore	https://github.com/pkumod/gStore	838	2026-04-09	C++	reference-repos-corpus/gStore-src/	cloned:2026-07-08:90M	gStore - a graph based RDF triple store.
 graph-db	orneryd/NornicDB	https://github.com/orneryd/NornicDB	827	2026-07-09	Go	reference-repos-corpus/NornicDB-src/	cloned:2026-07-08:47M	Nornicdb is a distributed low-latency, Graph+Vector, Temporal MVCC with all sub-ms HNSW search, graph traversa
-graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src;neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
+graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src/	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
 graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	reference-repos-corpus/rdf4j-src/	cloned:2026-07-08:1.2G	Eclipse RDF4J: scalable RDF for Java
 graph-db	neo4j/apoc	https://github.com/neo4j/apoc	211	2026-07-10	Java	reference-repos-neo4j-family/neo4j-apoc-src	-	-

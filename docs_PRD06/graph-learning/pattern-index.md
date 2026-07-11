@@ -15,6 +15,7 @@ same commit as any pair). Kind ∈ {algorithm, storage, execution}.
 | 8 | Frontier push/pull switching | execution | gapbs, ligra, graphit, gunrock, gbbs | frontier-pushpull-switching-{ascii,mermaid}.md | 2026-07-08 |
 | 9 | Semiring matrix traversal | algorithm | LAGraph, GraphBLAS, falkordb | semiring-matrix-traversal-{ascii,mermaid}.md | 2026-07-08 |
 | 10 | Component hooking + shortcutting | algorithm | gapbs, LAGraph, gbbs, ligra | component-hooking-shortcutting-{ascii,mermaid}.md | 2026-07-08 |
+| 11 | PageRank iteration + convergence | algorithm | gapbs, LAGraph, networkit, graphit | pagerank-iteration-convergence-{ascii,mermaid}.md | 2026-07-08 |
 
 ## Category syntheses
 

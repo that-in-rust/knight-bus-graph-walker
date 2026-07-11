@@ -147,3 +147,6 @@ packed block. Mutable-set workloads flip to roaring bitmaps
 - 202606 digest overlap: digests covered FTS at the "inverted
   index exists" level; this pair adds block/skip mechanics with
   line cites and the cost arithmetic.
+- Term dictionary (term -> posting-list pointer) is its own
+  pattern: FSTs in Lucene, `termdict/` in tantivy — a candidate
+  pair after the segment lifecycle.

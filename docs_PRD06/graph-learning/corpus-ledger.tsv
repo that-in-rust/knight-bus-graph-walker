@@ -6,6 +6,7 @@ graph-db	cayleygraph/cayley	https://github.com/cayleygraph/cayley	15048	2026-05-
 graph-db	arangodb/arangodb	https://github.com/arangodb/arangodb	14232	2026-07-11	C++	reference-repos-competitors/arangodb-src	-	🥑 ArangoDB is a native multi-model database with flexible data models for documents, graphs, and key-values. B
 graph-db	vesoft-inc/nebula	https://github.com/vesoft-inc/nebula	12272	2026-05-18	C++	reference-repos-competitors/nebula-src	-	  A distributed, fast open-source graph database featuring horizontal scalability and high availability
 graph-db	JanusGraph/janusgraph	https://github.com/JanusGraph/janusgraph	5807	2026-07-03	Java	reference-repos-competitors/janusgraph-src	-	JanusGraph: an open-source, distributed graph database
+graph-db	tonsky/datascript	https://github.com/tonsky/datascript	5774	2025-10-11	Clojure	-	-	Immutable database and Datalog query engine for Clojure, ClojureScript and JS
 graph-db	HelixDB/helix-db	https://github.com/HelixDB/helix-db	5615	2026-07-05	Rust	-	-	HelixDB is an OLTP graph-vector database built in Rust on Object Storage.
 graph-db	orientechnologies/orientdb	https://github.com/orientechnologies/orientdb	4969	2026-07-09	Java	-	-	OrientDB is the most versatile DBMS supporting Graph, Document, Reactive, Full-Text and Geospatial models in o
 graph-db	FalkorDB/FalkorDB	https://github.com/FalkorDB/FalkorDB	4746	2026-07-10	C	reference-repos-competitors/falkordb-src	-	A super fast Graph Database uses GraphBLAS under the hood for its sparse adjacency matrix graph representation
@@ -26,11 +27,24 @@ graph-db	skaiworldwide-oss/agensgraph	https://github.com/skaiworldwide-oss/agens
 graph-db	apache/jena	https://github.com/apache/jena	1377	2026-07-11	Java	-	-	Apache Jena, A free and open source Java framework for building Semantic Web and Linked Data applications.
 graph-db	krotik/eliasdb	https://github.com/krotik/eliasdb	1037	2022-08-14	Go	-	-	EliasDB a graph-based database.
 graph-db	blazegraph/database	https://github.com/blazegraph/database	987	2023-04-16	Java	-	classic;archived	Blazegraph High Performance Graph Database
+graph-db	openlink/virtuoso-opensource	https://github.com/openlink/virtuoso-opensource	967	2026-06-11	C	-	-	Virtuoso is a high-performance and scalable Multi-Model RDBMS, Data Integration Middleware, Linked Data Deploy
+graph-db	ad-freiburg/qlever	https://github.com/ad-freiburg/qlever	862	2026-07-10	C++	-	-	Graph database implementing the RDF and SPARQL standards. Very fast and scales to more than a trillion triples
+graph-db	pkumod/gStore	https://github.com/pkumod/gStore	838	2026-04-09	C++	-	-	gStore - a graph based RDF triple store.
 graph-db	orneryd/NornicDB	https://github.com/orneryd/NornicDB	827	2026-07-09	Go	-	-	Nornicdb is a distributed low-latency, Graph+Vector, Temporal MVCC with all sub-ms HNSW search, graph traversa
 graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src;neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
 graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	-	-	Eclipse RDF4J: scalable RDF for Java
 graph-db	neo4j/apoc	https://github.com/neo4j/apoc	211	2026-07-10	Java	reference-repos-neo4j-family/neo4j-apoc-src	-	-
+dataflow-compute	apache/spark	https://github.com/apache/spark	43603	2026-07-11	Scala	-	-	Apache Spark - A unified analytics engine for large-scale data processing
+dataflow-compute	apache/flink	https://github.com/apache/flink	26160	2026-07-11	Java	-	-	Apache Flink
+dataflow-compute	facebookincubator/velox	https://github.com/facebookincubator/velox	4166	2026-07-11	C++	-	-	A composable and fully extensible C++ execution engine library for data management systems.
+dataflow-compute	TimelyDataflow/timely-dataflow	https://github.com/TimelyDataflow/timely-dataflow	3626	2026-07-08	Rust	-	-	A modular implementation of timely dataflow in Rust
+dataflow-compute	TimelyDataflow/differential-dataflow	https://github.com/TimelyDataflow/differential-dataflow	2980	2026-07-10	Rust	-	-	An implementation of differential dataflow using timely dataflow on Rust.
+dataflow-compute	rust-lang/datafrog	https://github.com/rust-lang/datafrog	886	2025-12-14	Rust	-	-	A lightweight Datalog engine in Rust
+bench-testing	jepsen-io/jepsen	https://github.com/jepsen-io/jepsen	7437	2026-07-03	Clojure	-	-	A framework for distributed systems verification, with fault injection
+bench-testing	erikbern/ann-benchmarks	https://github.com/erikbern/ann-benchmarks	5698	2026-07-10	Python	-	-	Benchmarks of approximate nearest neighbor libraries in Python
+bench-testing	sqlancer/sqlancer	https://github.com/sqlancer/sqlancer	1737	2026-07-11	Java	-	-	Automated testing to find logic and performance bugs in database systems
+bench-testing	ldbc/ldbc_graphalytics	https://github.com/ldbc/ldbc_graphalytics	88	2024-12-19	Java	-	-	Generic driver for LDBC Graphalytics implementation
 neo4j-ecosystem	neo4j-contrib/neo4j-apoc-procedures	https://github.com/neo4j-contrib/neo4j-apoc-procedures	1868	2026-07-08	Java	reference-repos-neo4j-family/neo4j-apoc-procedures-src	-	"Awesome Procedures On Cypher for Neo4j - codenamed ""apoc""                     If you like it, please ★ above ⇧"
 neo4j-ecosystem	neo4j/neo4j-python-driver	https://github.com/neo4j/neo4j-python-driver	1047	2026-07-02	Python	reference-repos-neo4j-family/neo4j-python-driver-src	-	Neo4j Bolt driver for Python
 neo4j-ecosystem	opencypher/openCypher	https://github.com/opencypher/openCypher	1013	2026-03-20	Gherkin	reference-repos-neo4j-family/opencypher-src	-	Specification of the Cypher property graph query language
@@ -144,12 +158,16 @@ storage-engine	cockroachdb/pebble	https://github.com/cockroachdb/pebble	5951	202
 storage-engine	mit-pdos/noria	https://github.com/mit-pdos/noria	5239	2021-10-30	Rust	-	-	Fast web applications through dynamic, partially-stateful dataflow
 storage-engine	cberner/redb	https://github.com/cberner/redb	4645	2026-07-10	Rust	-	-	An embedded key-value database in pure Rust
 storage-engine	skyzh/mini-lsm	https://github.com/skyzh/mini-lsm	4053	2026-04-22	Rust	-	-	A course of building an LSM-Tree storage engine (database) in a week.
+storage-engine	RoaringBitmap/RoaringBitmap	https://github.com/RoaringBitmap/RoaringBitmap	3888	2026-07-10	Java	-	-	A better compressed bitset in Java: used by Apache Spark, Netflix Atlas, Apache Pinot, Tablesaw, and many othe
 storage-engine	slatedb/slatedb	https://github.com/slatedb/slatedb	3199	2026-07-11	Rust	-	-	A cloud native embedded storage engine built on object storage.
 storage-engine	LMDB/lmdb	https://github.com/LMDB/lmdb	3012	2026-06-30	C	-	-	Read-only mirror of official repo on openldap.org. Issues and pull requests here are ignored. Use OpenLDAP ITS
 storage-engine	wiredtiger/wiredtiger	https://github.com/wiredtiger/wiredtiger	2409	2026-07-11	C	-	-	WiredTiger's source tree
+storage-engine	simongog/sdsl-lite	https://github.com/simongog/sdsl-lite	2303	2023-06-02	C++	-	-	Succinct Data Structure Library 2.0
 storage-engine	lotusdblabs/lotusdb	https://github.com/lotusdblabs/lotusdb	2253	2025-02-18	Go	-	-	Most advanced key-value database written in Go, extremely fast, compatible with LSM tree and B+ tree.
 storage-engine	fjall-rs/fjall	https://github.com/fjall-rs/fjall	2212	2026-07-07	Rust	-	-	🗻 Log-structured, embeddable key-value storage engine written in Rust
+storage-engine	RoaringBitmap/CRoaring	https://github.com/RoaringBitmap/CRoaring	1858	2026-07-01	C	-	-	Roaring bitmaps in C (and C++), with SIMD (AVX2, AVX-512 and NEON) optimizations: used by Apache Doris, ClickH
 storage-engine	couchbase/forestdb	https://github.com/couchbase/forestdb	1330	2025-11-21	C++	-	-	A Fast Key-Value Storage Engine Based on Hierarchical B+-Tree Trie
 storage-engine	speedb-io/speedb	https://github.com/speedb-io/speedb	1009	2024-06-12	C++	-	-	A RocksDB compliant high performance scalable embedded key-value store
+storage-engine	RoaringBitmap/roaring-rs	https://github.com/RoaringBitmap/roaring-rs	943	2026-05-12	Rust	-	-	A better compressed bitset in Rust
 storage-engine	meilisearch/heed	https://github.com/meilisearch/heed	906	2026-06-04	Rust	-	-	Fully typed LMDB wrappers with minimum overhead 🐦
 storage-engine	fjall-rs/lsm-tree	https://github.com/fjall-rs/lsm-tree	428	2026-07-05	Rust	-	-	K.I.S.S. LSM-tree implementation in safe Rust

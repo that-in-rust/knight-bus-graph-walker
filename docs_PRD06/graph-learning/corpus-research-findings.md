@@ -66,7 +66,51 @@ would be new shallow clones.
   patterns need it), `marqo-ai/marqo` (orchestration layer, thin engine).
 - Renames recorded per finding 2.
 
+## Round 2 (glossary-seeded) — ledger 117 → 154
+
+Keyword searches seeded from `domain-keywords-glossary.md` surfaced 18 real
+additions the topic searches missed: pgvectorscale (DiskANN inside
+Postgres), slatedb (LSM over object storage), Raphtory (temporal graph,
+Rust), GridGraph + GraphBolt (out-of-core / streaming classics), knowhere
+(Milvus's extracted index core), instant-distance + hnswlib-rs (Rust HNSW),
+libcypher-parser + opencypher/front-end (standalone Cypher parsing — direct
+rewrite assets), forestdb + lotusdb (B+trie / hybrid LSM), PyG + DGL (GNN
+frameworks), feldera (incremental computation), GraphEngine, NornicDB.
+Also added a `neo4j-ecosystem` category so every locally cloned satellite
+(drivers, APOC, openCypher, testkit, neo4rs, browser…) has a ledger row.
+Companion docs added: `research-papers-ledger.md` (18 arXiv-verified +
+canonical venue papers) and `proprietary-tools-landscape.md` (closed
+systems as behavior-endpoints).
+
+## Round 3 (gap-focused) — ledger 154 → 172
+
+Five gaps closed deliberately:
+
+1. **Dataflow / incremental compute** (new category `dataflow-compute`, 6):
+   timely-dataflow + differential-dataflow (McSherry — incremental
+   computation directly relevant to the OLAP-lag/visibility-tiers problem),
+   Flink, Spark (GraphX/GraphFrames live inside it), Velox (execution-engine
+   patterns), datafrog (minimal Datalog engine in Rust).
+2. **Bench / verification harnesses** (new category `bench-testing`, 4):
+   SQLancer (differential DB testing — the convergence-loop tool family),
+   ann-benchmarks (recall/latency methodology), Jepsen (fault-injection
+   verification), LDBC Graphalytics.
+3. **RDF/SPARQL depth** (into graph-db): QLever (trillion-triple SPARQL,
+   C++), Virtuoso, gStore; plus datascript (immutable Datalog store —
+   functional-snapshot kinship with this repo).
+4. **Bitmap / succinct kernels** (into storage-engine): CRoaring (SIMD
+   bitmaps used by half the corpus for ID sets), RoaringBitmap (Java),
+   roaring-rs, sdsl-lite (succinct structures — rank/select underpins
+   compressed graph layouts).
+5. **Teaching implementations**: mini-lsm and toydb were already present;
+   searches found no graph-DB equivalent worth adding (the niche is empty —
+   itself a finding: no "mini-graph-db" pedagogical repo exists with
+   traction).
+
+Judgment: the corpus is now saturated — further additions would be
+collection, not learning. 172 repos across 8 categories.
+
 ## Next decision point
 
 The ledger is the Phase A deliverable (REQ-GLC-001/002). Owner approval of
-the 117-repo corpus (REQ-GLC-003) gates Phase B cloning and mapping.
+the 172-repo corpus (REQ-GLC-003) gates Phase B cloning and mapping.

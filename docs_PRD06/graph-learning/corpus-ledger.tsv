@@ -26,10 +26,27 @@ graph-db	skaiworldwide-oss/agensgraph	https://github.com/skaiworldwide-oss/agens
 graph-db	apache/jena	https://github.com/apache/jena	1377	2026-07-11	Java	-	-	Apache Jena, A free and open source Java framework for building Semantic Web and Linked Data applications.
 graph-db	krotik/eliasdb	https://github.com/krotik/eliasdb	1037	2022-08-14	Go	-	-	EliasDB a graph-based database.
 graph-db	blazegraph/database	https://github.com/blazegraph/database	987	2023-04-16	Java	-	classic;archived	Blazegraph High Performance Graph Database
-graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
+graph-db	neo4j/graph-data-science	https://github.com/neo4j/graph-data-science	803	2026-07-10	Java	reference-repos-neo4j-family/graph-data-science-src;neo4j-gds-src	-	Source code for the Neo4j Graph Data Science library of graph algorithms.
 graph-db	cwida/duckpgq-extension	https://github.com/cwida/duckpgq-extension	431	2026-07-10	C++	reference-repos-competitors/duckpgq-src	-	DuckDB extension that adds support for SQL/PGQ and graph algorithms
 graph-db	eclipse-rdf4j/rdf4j	https://github.com/eclipse-rdf4j/rdf4j	405	2026-07-11	Java	-	-	Eclipse RDF4J: scalable RDF for Java
 graph-db	neo4j/apoc	https://github.com/neo4j/apoc	211	2026-07-10	Java	reference-repos-neo4j-family/neo4j-apoc-src	-	-
+neo4j-ecosystem	neo4j-contrib/neo4j-apoc-procedures	https://github.com/neo4j-contrib/neo4j-apoc-procedures	1868	2026-07-08	Java	reference-repos-neo4j-family/neo4j-apoc-procedures-src	-	"Awesome Procedures On Cypher for Neo4j - codenamed ""apoc""                     If you like it, please ★ above ⇧"
+neo4j-ecosystem	neo4j/neo4j-python-driver	https://github.com/neo4j/neo4j-python-driver	1047	2026-07-02	Python	reference-repos-neo4j-family/neo4j-python-driver-src	-	Neo4j Bolt driver for Python
+neo4j-ecosystem	opencypher/openCypher	https://github.com/opencypher/openCypher	1013	2026-03-20	Gherkin	reference-repos-neo4j-family/opencypher-src	-	Specification of the Cypher property graph query language
+neo4j-ecosystem	neo4j/neo4j-javascript-driver	https://github.com/neo4j/neo4j-javascript-driver	916	2026-07-03	JavaScript	reference-repos-neo4j-family/neo4j-javascript-driver-src	-	Neo4j Bolt driver for JavaScript
+neo4j-ecosystem	neo4j/neo4j-browser	https://github.com/neo4j/neo4j-browser	825	2026-07-01	TypeScript	reference-repos-neo4j-family/neo4j-browser-src	-	Neo4j Browser is the general purpose user interface for working with Neo4j. Query, visualize, administrate and
+neo4j-ecosystem	neo4j/neo4j-go-driver	https://github.com/neo4j/neo4j-go-driver	553	2026-07-09	Go	reference-repos-neo4j-family/neo4j-go-driver-src	-	Neo4j Bolt Driver for Go
+neo4j-ecosystem	neo4j/neo4j-ogm	https://github.com/neo4j/neo4j-ogm	358	2026-07-06	Java	reference-repos-neo4j-family/neo4j-ogm-src	-	Java Object-Graph Mapping Library for Neo4j
+neo4j-ecosystem	neo4j/neo4j-java-driver	https://github.com/neo4j/neo4j-java-driver	344	2026-06-26	Java	reference-repos-neo4j-family/neo4j-java-driver-src	-	Neo4j Bolt driver for Java
+neo4j-ecosystem	neo4j-labs/neo4rs	https://github.com/neo4j-labs/neo4rs	298	2026-06-11	Rust	reference-repos-neo4j-family/neo4rs-src	-	Rust driver for Neo4j
+neo4j-ecosystem	neo4j/neo4j-dotnet-driver	https://github.com/neo4j/neo4j-dotnet-driver	247	2026-07-10	C#	reference-repos-neo4j-family/neo4j-dotnet-driver-src	-	Neo4j Bolt driver for .NET
+neo4j-ecosystem	neo4j/graph-data-science-client	https://github.com/neo4j/graph-data-science-client	243	2026-07-09	Python	reference-repos-neo4j-family/neo4j-gds-client-src	-	A Python client for the Neo4j Graph Data Science (GDS) library
+neo4j-ecosystem	neo4j/cypher-dsl	https://github.com/neo4j/cypher-dsl	226	2026-07-06	Java	reference-repos-neo4j-family/cypher-dsl-src	-	A Java DSL (Builder) for the Cypher Query Language
+neo4j-ecosystem	neo4j/cypher-shell	https://github.com/neo4j/cypher-shell	89	2023-07-06	Java	reference-repos-neo4j-family/cypher-shell-src	archived	Cypher Shell has moved to https://github.com/neo4j/neo4j
+neo4j-ecosystem	neo4j-contrib/gds-agent	https://github.com/neo4j-contrib/gds-agent	87	2026-07-10	Python	reference-repos-neo4j-family/gds-agent-src	-	Neo4j Graph Data Scientist Agent (MCP Server & Skills)
+neo4j-ecosystem	neo4j-drivers/testkit	https://github.com/neo4j-drivers/testkit	13	2026-07-09	Python	reference-repos-neo4j-family/neo4j-testkit-src	-	Drivers integration/conformance tests
+neo4j-ecosystem	neo4j/docs-bolt	https://github.com/neo4j/docs-bolt	7	2026-04-22	JavaScript	reference-repos-neo4j-family/neo4j-docs-bolt-src	-	Neo4j Bolt Protocol Documentation
+graph-analytics	networkx/networkx	https://github.com/networkx/networkx	17086	2026-07-10	Python	reference-repos-competitors/networkx-src	-	Network Analysis in Python
 graph-analytics	petgraph/petgraph	https://github.com/petgraph/petgraph	3962	2026-04-04	Rust	-	-	Graph data structure library for Rust.
 graph-analytics	jgrapht/jgrapht	https://github.com/jgrapht/jgrapht	2773	2026-07-07	Java	-	-	Master repository for the JGraphT project
 graph-analytics	snap-stanford/snap	https://github.com/snap-stanford/snap	2286	2023-12-10	C++	reference-repos-competitors/snap-src	classic	Stanford Network Analysis Platform (SNAP) is a general purpose network analysis and graph mining library.
@@ -47,6 +64,8 @@ graph-analytics	DrTimothyAldenDavis/GraphBLAS	https://github.com/DrTimothyAldenD
 graph-analytics	sbeamer/gapbs	https://github.com/sbeamer/gapbs	395	2025-03-09	C++	-	-	GAP Benchmark Suite
 graph-analytics	GraphIt-DSL/graphit	https://github.com/GraphIt-DSL/graphit	391	2022-12-19	C++	-	-	GraphIt - A High-Performance Domain Specific Language for Graph Analytics
 graph-analytics	IntelligentSoftwareSystems/Galois	https://github.com/IntelligentSoftwareSystems/Galois	354	2024-05-16	C++	-	-	Galois: C++ library for multi-core and multi-node parallelization
+graph-analytics	GraphBLAS/LAGraph	https://github.com/GraphBLAS/LAGraph	272	2026-07-09	C	-	-	This is a library plus a test harness for collecting algorithms that use the GraphBLAS.  For test coverage rep
+graph-analytics	flashxio/FlashX	https://github.com/flashxio/FlashX	237	2020-03-31	C++	reference-repos-competitors/flashx-src	-	FlashX is a collection of big data analytics tools that perform data analytics in the form of graphs and matri
 graph-analytics	ParAlg/gbbs	https://github.com/ParAlg/gbbs	226	2026-06-02	C++	reference-repos-competitors/gbbs-src	-	GBBS: Graph Based Benchmark Suite
 graph-analytics	ldbc/ldbc_snb_interactive_v1_impls	https://github.com/ldbc/ldbc_snb_interactive_v1_impls	113	2026-03-26	Java	-	-	Reference implementations for LDBC Social Network Benchmark's Interactive workload.
 graph-analytics	KatanaGraph/katana	https://github.com/KatanaGraph/katana	104	2022-06-08	C++	-	-	-

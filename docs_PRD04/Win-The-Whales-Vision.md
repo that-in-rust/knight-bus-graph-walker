@@ -1,6 +1,6 @@
 # Win-The-Whales-Vision — Product Strategy For Large, Paying Neo4j Users
 
-Date: 2026-07-25
+Date: 2026-07-25 · **REVISED 2026-07-26 — consistency pass**
 Method: Doshi-lens strategy analysis — premise audit, council debate, conceptual
 blending, parametrized comparison, chain-of-verification.
 Status: **judgment.** Facts sourced in `evidence01.md` (URL-cited, verified
@@ -9,14 +9,30 @@ those sources is marked inline.
 Companions: `Real-Pain-Wrong-Product.md` (the verdict), `Not-First-Still-Different.md`
 (priority), `gtm-POC-01.md` (the mechanism this vision rides on).
 
+> ### REVISION LOG — 2026-07-26
+>
+> Four documents written after this one contradicted parts of it. All are now
+> reconciled here rather than left to rot:
+>
+> | # | What was wrong | Corrected by |
+> | --- | --- | --- |
+> | 1 | **"Whales don't care about cost"** was an overreach built on a quote about *ability* to pay | `Everything-We-Know-Now.md` §2 (C5) — cost is the **loudest** theme 2011–2026, but **licensing-shaped**, not RAM-shaped |
+> | 2 | §0/§8 said "don't sell cost" while **rung V2 and the north-star metric are cost pitches** — a self-contradiction | Resolved below: cost is a **justifier**, not a trigger. V2 is legitimate; it just must not be the opening line |
+> | 3 | **V1's proof ("zero heap growth") is necessary but INSUFFICIENT** — page-cache eviction and IOPS contention degrade OLTP p99 without touching heap | `A01-202607260102.md` §1.3, §1.5 |
+> | 4 | The vision assumed **in-process execution only**; the reference topology is now the **hybrid** (tiny in-process exporter + separate OLAP box) | `A01-202607260102.md` PART 1B |
+>
+> Everything below reflects these corrections. Where a claim was softened, the
+> original is shown struck through in the text rather than deleted.
+
 ---
 
 ## 0. The premise audit — three flaws, in descending order of consequence
 
-### Flaw 1: the central contradiction (fatal if unaddressed)
+### Flaw 1: the central tension (real, but narrower than first stated)
 
 The brief asks for a vision that wins **large Neo4j users** for a product whose
-differentiation is **low RAM**. These are mutually hostile requirements.
+differentiation is **low RAM**. These pull against each other — but not, as the
+first draft claimed, fatally.
 
 ```text
 Neo4j staff engineer paul.horn, on the record, 2025-03-17:
@@ -26,13 +42,38 @@ Neo4j staff engineer paul.horn, on the record, 2025-03-17:
    (SOME EVEN HAD 12TB RAM)"
 ```
 
-**Large Neo4j customers are, by definition, the population that solves RAM
-scarcity with a purchase order.** Selling frugality to them is selling a cure for
-a disease they already vaccinated against with capex.
+**Large Neo4j customers are the population that solves RAM scarcity with a
+purchase order.** So RAM cost is not a *blocking* pain for them — they are not
+stuck.
 
-If the vision is "cheaper RAM," the honest answer to "how do we get whales to
-adopt us" is **none of them will**, and no execution quality fixes it. Everything
-below is the search for what whales *do* bleed from.
+> **CORRECTED 2026-07-26.** The first draft continued: *"If the vision is 'cheaper
+> RAM,' the honest answer is none of them will adopt us."* **That was an
+> overreach**, and it was built on a quote about *ability* to pay, which is not the
+> same as *willingness*. `simulation01.md` §7.8 records **pricing/licensing as the
+> loudest complaint theme across 2011–2026 — louder than memory.** A strategy that
+> ignores the loudest signal in its own evidence base is not a strategy.
+
+The corrected position, in four parts:
+
+```text
+  1. Cost IS a real, loud, durable pain.            (loudest theme, 15 years)
+  2. It is LICENSING-shaped, not RAM-consumption-shaped:
+       "insane licenses" / "bait and switch" / "totally inflexible ...
+        outdated licensing model" / "10% of our ARR" / "expensive in a cluster"
+     -> a frugality product mostly MISSES this pain.
+  3. For whales specifically it is a PROCUREMENT GRIEVANCE (opacity,
+     inflexibility, lock-in), not an existential budget threat. They
+     budgeted it, negotiated it, resent it, and pay it.
+  4. Therefore: cost is a JUSTIFIER, not a TRIGGER.
+       CONDITION: "we spend too much"      -> chronic, budgeted, tolerated
+                                              -> goes in the business case
+       TRIGGER:   "analytics OOM'd prod"   -> acute, unbudgeted, someone
+                                              is accountable -> starts a project
+```
+
+**Practical consequence for this document:** frugality does not open the meeting,
+but it absolutely closes the deal — which is exactly the role rung **V2** plays.
+Everything below is the search for what whales bleed from *acutely*.
 
 ### Flaw 2: "without worrying about time and money"
 
@@ -168,9 +209,30 @@ instrument** — the one category enterprises buy without price sensitivity.
 
 **Selection: hybrid A+B+C.** They compose without friction and each removes a
 different blocker: A solves *how it gets installed*, B solves *who signs*, C solves
-*why they renew*. Critically, **all three are only reachable from inside a live
-Neo4j** — the one position no competitor can take without abandoning its own
-architecture.
+*why they renew*.
+
+> **CORRECTED 2026-07-26.** The first draft added: *"all three are only reachable
+> from inside a live Neo4j."* **Not true.** B (peak shaving) and C (provenance)
+> work perfectly well from a separate OLAP box — Aura Graph Analytics does exactly
+> that. Only **A, the adoption path, requires in-process presence.**
+>
+> This matters because it is what makes the **hybrid topology** possible:
+>
+> ```text
+>   IN-PROCESS  (tiny, ~200 lines, extraction ONLY, no algorithms)
+>       -> preserves the one-line adoption path       <- the uncontested asset
+>       -> kills the export cliff (the #1 documented adoption blocker)
+>       -> keeps GPL/derivative-work exposure minimal
+>
+>   SEPARATE BOX  (the whole OLAP runtime)
+>       -> no page-cache eviction, no IOPS war with the WAL
+>       -> "zero heap contact" becomes structurally true, not a measurement
+>       -> our 2-5x storage lands on hardware we sized deliberately
+> ```
+>
+> See `A01-202607260102.md` PART 1B. The strategic asset was never *"our
+> algorithms run in your process."* It was **"getting started costs you one
+> line"** — and a 200-line exporter preserves that completely.
 
 ### 2.6 Structured debate
 
@@ -225,14 +287,30 @@ never crosses the boundary — Rust reads its own snapshot."
 
 ### 2.7 Master synthesis — the core thesis
 
-> **Stop selling frugality. Sell blast-radius elimination, peak-capacity
-> retirement, and auditable provenance — delivered as a deletable jar inside the
-> customer's existing Neo4j.**
+> **Stop *leading* with frugality. Lead with blast-radius elimination; close with
+> peak-capacity retirement and auditable provenance — entered through a deletable
+> jar inside the customer's existing Neo4j, executed on a box they control.**
 >
-> Low RAM stops being the product and becomes the *mechanism*. Whales do not buy
-> cheaper memory; they buy the removal of a production risk, the retirement of
-> fleet-wide peak provisioning, and an answer for the auditor. And the plugin is
-> the only architecture in the market that asks a whale for **nothing**.
+> Low RAM stops being the headline and becomes the *mechanism*. Whales do not buy
+> cheaper memory as an opening proposition — they buy the removal of a production
+> risk, and then **justify the purchase** with retired fleet-wide peak
+> provisioning and an answer for the auditor. And the in-process entry point is
+> the only adoption path in the market that asks a whale for **nothing**.
+
+**And one pitch this document originally omitted entirely.** Since licensing — not
+gigabytes — is the loudest fifteen-year complaint theme, `simulation01.md` §8's
+badge #5 was mis-rated as *"table-stakes hygiene, not a moat"*:
+
+```text
+  PROMOTE:  permissively licensed. No meter. No seat count. No audit.
+            No bait-and-switch. A single static binary, no JVM to tune.
+
+  It is a weaker TECHNICAL claim than low-RAM and a much stronger
+  EMOTIONAL one -- and emotional carrier waves are what get pilots approved.
+  Evidence: "insane licenses", "bait and switch with the license model",
+  "totally inflexible ... outdated licensing model" (sales-side),
+  plus years of AGPL/Commons Clause/PureThink litigation on HN's front page.
+```
 
 ---
 
@@ -250,11 +328,16 @@ never crosses the boundary — Rust reads its own snapshot."
 | **cuGraph** | Vertical acceleration | GPU speed | ML platform with GPUs | VRAM | Rewrite | Python | NVIDIA halo | RAPIDS | Feature | Medium | Needs GPU budget; VRAM is scarcer than RAM |
 | **igraph / NetworKit** | Academic default | Free, trusted, cited | Researcher | RAM only | Rewrite | Python/R | None | Academia | — | Poor | No storage layer by design |
 | **US — `prd-l1` as written** | Full displacement | "Rewrite Neo4j in Rust" | Undefined | Own OLTP + snapshots | **Total (migration + trust)** | Bolt/Cypher/APOC/575 procedures | Undefined | None yet | — | **Fatal** — asks a whale to replace its SoR | A decade of work against solo capacity |
-| **US — `gtm-POC-01` plugin** | **Ecosystem parasite + blast-radius removal** | `grain.wcc.stream` beside `gds.wcc.stream` | **Platform owner / SRE; the OOM page or the audit finding** | mmap snapshot, `O(V)` resident | **~Zero: one jar + one config line** | **`gds.*` call shape**, parity by `diff` | Enterprise licence on receipts / audit / SLA | **Neo4j's own install base** | Feature x **position** | **Excellent — uniquely so** | Aura ban (irrelevant at whale scale); GPL review; `unrestricted` config |
+| **US — hybrid** *(revised 2026-07-26)* | **Ecosystem parasite + blast-radius removal** | `grain.snapshot.build` in-process; `grain.*` algorithms on a separate box | **Platform owner / SRE; the OOM page or the audit finding** | **Extraction in-process (throttled, resumable, or read from the BACKUP); execution on a separate box, `O(V)` resident** | **~Zero: one jar + one config line** | **`gds.*` call shape**, parity by `diff` | Enterprise licence on receipts / audit / SLA | **Neo4j's own install base** | Feature x **position** | **Excellent — uniquely so** | Aura ban (irrelevant at whale scale); GPL review *(much reduced under hybrid)*; `unrestricted` config; **extraction is now the top risk** |
+| ~~**US — in-process only**~~ *(superseded)* | — | all algorithms inside the Neo4j JVM host | — | mmap snapshot inside the DB machine | ~Zero | same | same | same | same | Good | **Page-cache eviction + IOPS contention with the WAL** — see `A01` §1.3 |
 
 > **The single most important column is Adoption Tax.** Every credible rival
 > charges a migration. Whales cannot pay it. We are the only entrant whose tax is
 > a jar.
+>
+> **Revised 2026-07-26:** the hybrid keeps that column at ~zero while moving heavy
+> execution off the production host. The adoption tax — not the execution
+> location — was always the asset.
 
 ---
 
@@ -262,7 +345,8 @@ never crosses the boundary — Rust reads its own snapshot."
 
 | # | Evidence (verbatim where the quote carries the weight) | Source · date | Conf. | Enterprise pain proven | Implication for the vision |
 | --- | --- | --- | --- | --- | --- |
-| W1 | *"GDS is a product primarily sold to enterprises, and so far we've not had customers who weren't able to rent a big enough machine in the cloud (**some even had 12TB ram**)"* | Neo4j staff `paul.horn`, forum · **2025-03-17** | **VERIFIED** | Whales are **not** RAM-poor | **Kill the frugality pitch for whales.** Frugality is mechanism, never promise |
+| W1 | *"GDS is a product primarily sold to enterprises, and so far we've not had customers who weren't able to rent a big enough machine in the cloud (**some even had 12TB ram**)"* | Neo4j staff `paul.horn`, forum · **2025-03-17** | **VERIFIED** — but proves *ability*, not *willingness*; survivorship-biased (describes customers who stayed) | Whales are not **blocked** by RAM cost | **Do not LEAD with frugality.** It is the mechanism and the business case — not the opening line. *(Softened 2026-07-26; the original read "kill the frugality pitch", which W15 contradicts.)* |
+| **W15** *(added 2026-07-26)* | *"insane licenses"* · *"bait and switch with the license model"* · *"totally inflexible … outdated licensing model"* (sales-side) · *"10% of our ARR"* · *"very expensive in a cluster"* · plus years of AGPL/Commons Clause/PureThink litigation | HN 2011–2026; `simulation01` §7.4, §7.8 | **VERIFIED** | **Pricing/licensing is the LOUDEST complaint theme in the entire 15-year record — louder than memory** | Cost pain is real but **licensing-shaped, not RAM-shaped**. A frugality product misses it; **permissive licensing + no meter** hits it directly. Promote badge #5 |
 | W2 | *"the risk is **OOMing your database**"* — official guidance to a user with 100Ms of nodes on 32 GB | Neo4j GDS product lead (A. Frame) · 2022 | **VERIFIED** | **Analytics can take down the system of record** | **THE WHALE WEDGE. A SEV, not a cost line.** |
 | W3 | *"The graph algorithms library operates completely on the heap"*; remedy set = drop graphs / raise heap / *"sudo mode which allows you to manually skip heap control"* | GDS docs · current | **VERIFIED** | Co-tenancy is architectural, not misconfiguration | "Zero heap contact on your OLTP instance" becomes a *provable* claim |
 | W4 | *"For purely analytical workloads … **decrease the configured PageCache in favor of an increased heap**"* | GDS System Requirements | **VERIFIED** | Tuning for analytics degrades transactional performance | Analytics tuning and OLTP tuning are in direct conflict — we end the conflict |
@@ -285,7 +369,7 @@ never crosses the boundary — Rust reads its own snapshot."
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Neo4j** | Ecosystem is the real moat | Overwhelming | **Owns it** | Total (the meter) | Meter blocks frugality; InfiniGraph shows they defend on scale-*out* | **Wins by default** — not because they solved it, but because switching costs exceed the pain | **~70%** |
 | **Grafeo** | Feature superset; low memory as one bullet | 707* and climbing | **None** — must win a bake-off | Unclear | Must beat an incumbent on trust to get in | *"Impressive engineering aimed at greenfield. Whales don't run bake-offs for analytics."* | **~5%** |
-| **Slater** | **Sharp and correct** — decouples RAM from graph size | 93*, four days old | Bolt means drivers work, but it still replaces the DB | Unclear | Read-replica shaped, not a system of record | *"Best insight in the field. Wrong buyer for whales; right buyer for mid-market."* | **~5%** |
+| **Slater** | **Sharp and correct** — decouples RAM from graph size | 93*; repo created 2026-06-10, announced on HN 2026-07-21 | Bolt means drivers work, but it still replaces the DB | Unclear | Read-replica shaped, not a system of record | *"Best insight in the field. Wrong buyer for whales; right buyer for mid-market."* | **~5%** |
 | **LadybugDB** | Embedded OLAP | 1,475* + lineage | None | Unclear | Governance post-acquisition | *"Strong for local/RAG. Not an enterprise motion."* | **~2%** |
 | **US — plugin** | **Position, not feature:** co-residency | **Zero today** | **Only entrant that lives where the pain occurs** | Clear: receipts / audit / SLA licence | Solo capacity; GPL review; `unrestricted` config | *"The only strategy with a credible whale path — IF it exists as code within a quarter. It does not exist yet, and that is the whole risk."* | **~15%**, conditional on shipping |
 | **US — `prd-l1`** | — | — | — | — | Asks a whale to replace its SoR | *"Not a strategy. A wish."* | **~0%** |
@@ -306,9 +390,10 @@ is the strategic asset, and it is worth more than the four features beneath it.
 
 | Rung | Promise, in the buyer's own words | Buyer | Trigger | Proof required | Mechanism | Monetization | Time-priced |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **V0** | *"Same answer as GDS, verified by one `diff`."* | Data scientist | Curiosity | WCC partition parity, canonicalized by min member; empty diff | Plugin + JNI + mmap snapshot | **$0** — this buys trust, not revenue | **2 weeks** |
-| **V1** | *"Your analytics can no longer take down your database."* | **Platform owner / SRE** | The OOM page (W2, W8) | Seven families run with **zero heap growth** on the OLTP instance; `munmap` returns memory | `O(V)` resident, edges streamed | Enterprise licence | Q1 |
+| **V0** | *"Same answer as GDS, verified by one `diff`."* | Data scientist | Curiosity | WCC partition parity, canonicalized by min member; empty diff. **Plus: prove the node-ID mapping, don't assume it** (`gtm-POC-01`: "the single most likely source of silent wrongness") | In-process exporter + JNI + mmap snapshot | **$0** — this buys trust, not revenue | **2 weeks** |
+| **V1** | *"Your analytics can no longer take down your database."* | **Platform owner / SRE** | The OOM page (W2, W8) | **REVISED:** heap-flat is necessary and **INSUFFICIENT**. The proof is **"your OLTP p50/p99 did not move"** during a full run — heap, **page-cache pressure, blkio, and major faults** all captured. `munmap` returns memory. See `A01` §1.3, §1.5 | Execution on a **separate box**; extraction throttled/resumable or read from the backup | Enterprise licence | Q1 |
 | **V2** | *"Retire the 254 GB you keep for FastRP — in every environment."* | **Capacity planner / FinOps** | Budget cycle; fleet audit (W5, W10) | Before/after peak-provisioning report across the fleet | Peak shaving; N stateless readers from one image | **Share of retired peak capacity** | Q2 |
+| | *(V2 is a **cost** pitch, and that is now explicitly consistent with §0: cost is a **justifier**, not a trigger. V1 opens the door; V2 signs the cheque. Never invert them.)* | | | | | | |
 | **V3** | *"Every score names the data generation that produced it, and infeasible jobs refuse to start."* | **Compliance / model risk** | Audit finding (W13) | Watermarked immutable generations + pre-run receipt + deterministic refusal | Manifest-as-estimator (`Arch05` G3) + generation catalog | Audit / SLA tier — **the renewal moat** | Q3 |
 | **V4** | *"Your five-hour Louvain re-runs in twenty minutes because we remember yesterday."* | Fraud/AML lead | Nightly-batch SLA (W9) | Warm start from the prior generation; delta convergence | `Arch-Summary` AXIS 2 (memoized results) | Solution pricing | Y2 |
 
@@ -316,9 +401,13 @@ is the strategic asset, and it is worth more than the four features beneath it.
 
 ```text
 Graph analytics that cannot hurt production, cannot surprise your budget,
-and can testify in an audit -- installed as one file inside the Neo4j
-you already run.
+and can testify in an audit -- entered through one file inside the Neo4j
+you already run, executed on a box you control.
 ```
+
+*(Revised 2026-07-26: "installed as one file inside" -> "entered through one file
+inside ... executed on a box you control", to match the hybrid topology. The
+adoption path stays in-process; the runtime does not.)*
 
 ### The north-star metric
 
@@ -341,8 +430,13 @@ say.
   REFUSE: rewriting Neo4j's OLTP, WAL, locks, transactions
   REFUSE: Bolt, Cypher, drivers, APOC, the 575-procedure surface
   REFUSE: greenfield bake-offs against Grafeo and Slater
-  REFUSE: "cheaper than Aura" as the headline
+  REFUSE: "cheaper than Aura" as the HEADLINE
+          (but DO use it in the business case -- cost is a justifier;
+           see the §0 correction. The original "refuse cost entirely"
+           contradicted rung V2 and the north-star metric.)
   REFUSE: benchmarks whose unit is speed rather than retired capacity
+  REFUSE: shipping V1 on "heap stayed flat" alone -- that claim is
+          necessary and insufficient (A01 §1.3)
 ```
 
 ---
@@ -355,29 +449,41 @@ say.
 | V2 | Did Neo4j really advise a customer that the workaround risks OOMing their database? | Yes — GDS product lead, verbatim. Load-bearing for rung V1. | VERIFIED |
 | V3 | FastRP 212-254 GB on LDBC100? | Yes, Neo4j's own configuration guide; figures vary by edition, both editions support the claim. | VERIFIED, variance noted |
 | V4 | Does Aura's plugin ban kill this strategy? | **No — it inverts.** Sessions cap at 512 GB, AuraDS ~1,952 GB, so 12 TB workloads structurally cannot be on Aura. Excludes small accounts, not whales. | VERIFIED fact; **inference** on segmentation |
-| V5 | Can the plugin be licensed as we wish? | **UNRESOLVED — needs counsel.** APOC-as-Apache-plugin is precedent but is general knowledge, not from this session's sources. Mitigation: standalone Apache-2.0 Rust binary + thin separately licensed shim. | **OPEN LEGAL RISK** |
-| V6 | Is "zero heap contact" actually provable? | Mechanically plausible — the graph never crosses JNI; results cross as one direct ByteBuffer. **Unmeasured.** This is the `grain.ping` spike. | **UNPROVEN — the gate** |
-| V7 | Do whales feel the Aura billing pain (W11)? | **Probably not** — W1 says they buy hardware. W11 is real arithmetic aimed at mid-market. **Do not lead with it for enterprise.** | **Corrected in draft** |
+| V5 | Can the plugin be licensed as we wish? | **UNRESOLVED — needs counsel.** APOC-as-Apache-plugin is precedent but is general knowledge, not from this session's sources. **Materially reduced under the hybrid:** a thin in-process *exporter* is a far smaller derivative-work surface than an in-process algorithm engine. | **OPEN LEGAL RISK — severity lowered 2026-07-26** |
+| V6 | Is "zero heap contact" actually provable? | Mechanically plausible — the graph never crosses JNI; results cross as one direct ByteBuffer. **Unmeasured.** Under the hybrid it becomes *structurally* true for execution. This is the `grain.ping` spike. | **UNPROVEN — the gate** |
+| V7 | Do whales feel the Aura billing pain (W11)? | ~~"Probably not."~~ **CORRECTED 2026-07-26: UNMEASURED — and the evidence leans the other way.** We hold zero enterprise invoices, zero procurement documents, and zero interviews, and no Aura cost-complaint corpus exists (`evidence01` §3.11). Meanwhile W15 shows pricing/licensing is the **loudest** theme in the record. What survives is narrower: cost is a **justifier, not a trigger**, and the anger is **licensing-shaped**, not RAM-shaped. | **UNMEASURED — do not assert either way** |
 | V8 | Is "peak GB retired" measurable pre-product? | No. Requires V1 shipped plus a customer fleet audit. V2's metric only becomes real in Q2. | honest-uncertainty |
 | V9 | Are the win probabilities measured? | No — calibrated judgment. The dominant term is *whether code exists within a quarter*, which is under our control and nobody else's. | honest-uncertainty |
+| **V10** *(added 2026-07-26)* | Does "we never touch your heap" actually mean "we never hurt production"? | **NO.** Page-cache eviction and IOPS contention degrade OLTP p99 with the heap perfectly flat. In-process mmap can evict Neo4j's hot store pages; a long extraction scan can starve WAL fsync. **The hybrid contains this; the measurement is still mandatory.** | **KNOWN GAP — see `A01` §1.3** |
+| **V11** *(added 2026-07-26)* | Is the separate-OLAP-server architecture novel? | **No — it is the dominant pattern, and Aura Graph Analytics (GA 2025-05-07) *is* it.** Never pitch it as new. Our differentiation is the **in-process entry point + enforced budget + receipt**, not the topology. | VERIFIED — `evidence01`; `PMF03` BUG-1 |
 
-**Correction the verification forced:** the initial draft used Aura
-over-provisioning arithmetic (W11) as a whale argument. V7 kills that — it
-contradicts W1. Cost arguments are a **mid-market** wedge. For whales the argument
-is **production risk (W2), fleet peak (W5 + W10), and audit (W13)**. The tables
-above reflect the correction.
+**Corrections the verification forced (two rounds):**
+
+1. *(2026-07-25)* The draft used Aura over-provisioning arithmetic (W11) as a whale
+   argument. That contradicts W1. Cost arguments are a **mid-market** wedge.
+2. *(2026-07-26)* **The correction above over-corrected.** Saying whales "probably
+   don't feel" cost pain was itself unsupported — W15 shows pricing/licensing is
+   the loudest theme in fifteen years of record. The defensible line is
+   **trigger vs justifier**, not *pain vs no pain*. Both tables now say so.
+
+For whales the *opening* argument remains **production risk (W2, V10)**; the
+*closing* arguments are **fleet peak (W5 + W10)**, **audit (W13)**, and
+**licensing honesty (W15)**.
 
 ---
 
 ## 8. The one paragraph, if nothing else survives
 
-Whales will never adopt us for using less memory, because a 12 TB purchase order
-already solved that for them. They will adopt us for three things their own
-vendor's documentation admits it cannot give: analytics that **cannot OOM the
-system of record**, peak capacity **retired across the whole fleet** rather than
-bought for the worst algorithm in every environment, and a **provenance receipt**
-that survives an audit. And they will only ever adopt something that asks them for
+Whales will not *start* a project to use less memory, because a 12 TB purchase
+order already removed that as a blocker — though they will happily *justify* one
+with the savings, and they resent the licensing bill enough to listen. What starts
+the project is the thing money cannot buy immunity from: analytics that **cannot
+degrade the system of record** — not merely "cannot touch the heap", since
+page-cache eviction and IOPS contention hurt production with the heap flat. What
+closes it is peak capacity **retired across the whole fleet**, a **provenance
+receipt** that survives an audit, and a **licence with no meter and no
+bait-and-switch**. And they will only ever adopt something that asks them for
 **nothing** — which is why the deletable jar inside a running Neo4j is not the
-humble version of this strategy. It is the only version that can win, and it is
-the one thing three well-built competitors structurally cannot copy, because each
-of them *is* the database you would have to leave.
+humble version of this strategy. It is the **entry point**, not the runtime, and
+it is the one thing three well-built competitors structurally cannot copy, because
+each of them *is* the database you would have to leave.

@@ -19,6 +19,137 @@ supremely — even absurdly — specialized.
 
 ---
 
+## 0. Conventions, assumptions, and the unit of the product
+
+*Added 2026-07-26 after two corrections. Read this before any number below.*
+
+### 0.1 RELOCATE vs ELIMINATE — the distinction the first draft blurred
+
+Moving work to build time **does not reduce latency. It relocates it.** Total
+work may even rise — you compute PageRank at publish whether or not anyone asks.
+Deleting work reduces latency because the work never happens at either time.
+
+The six architectures split cleanly, and the first draft sold two of them as
+something they are not:
+
+| Architecture | Mechanism | Total work | Query latency | Build cost |
+| --- | --- | --- | --- | --- |
+| **ARCH-I** answer-is-artifact | **RELOCATE** | same or worse | ~100× better | worse |
+| **ARCH-V** query-shaped index | **RELOCATE** | much worse | 100–1000× better | much worse |
+| ARCH-II precision ladder | **ELIMINATE bytes** | better | better | ~neutral |
+| ARCH-III self-compaction | **ELIMINATE work** | better | better | n/a (mid-run) |
+| ARCH-IV peeling | **ELIMINATE work** | better | better | tiny cost, big saving |
+| ARCH-VI quotient | **ELIMINATE work** | better | better | tiny cost, big saving |
+
+### 0.2 The lag assumption, stated explicitly
+
+```text
+  ASSUMPTION L1: OLAP lag of about one hour is acceptable, and the
+                 watermark is reported.  (prd-l1 already grants this.)
+
+  CONSEQUENCE:   build cost is amortized to ~zero for the buyer.
+                 We optimize T_repeat, not T_first.
+```
+
+**Every latency figure in §6 and §7 is `T_repeat`.** PRD05 Duck 15/16 requires
+all three be reported, so:
+
+```text
+   T_first    = T_prepare + T_open + T_execute + T_materialize
+   T_repeat   =             T_open + T_execute + T_materialize
+   T_total(N) = T_prepare + N * T_repeat
+
+   N_break_even = (P_ours - P_theirs) / (R_theirs - R_ours)
+```
+
+**On `T_first`, ARCH-I and ARCH-V are SLOWER than the baseline, not faster.**
+Their break-even counts differ by three orders of magnitude:
+
+```text
+   ARCH-IV peeling         break-even ~0        pays on the first run
+   ARCH-VI quotient        break-even ~0        pays on the first run
+   ARCH-I  precompute WCC  break-even ~1-2      nearly always worth it
+   ARCH-V  hub labels      break-even ~1000s    only for a query SERVICE
+```
+
+### 0.3 Under L1, four of six become BUILD-BUDGET architectures
+
+If the answer is precomputed there is no query-time gather to optimize. So:
+
+| | Without L1 | **Under L1 (build ~free)** |
+| --- | --- | --- |
+| ARCH-I, ARCH-V | query win, build cost | **the entire query-latency win** |
+| ARCH-II, III, IV, VI | query wins | **BUILD-BUDGET optimizations** |
+
+They are not devalued — they are **what keeps a build inside its refresh
+window**, which is the only reason ARCH-I and ARCH-V are affordable at all.
+ARCH-VI's 2–10× vertex reduction is the difference between a build that fits its
+cadence and one that does not. **Do not sell II/III/IV/VI as query wins.**
+
+### 0.4 The unit of the product — and why nothing is summed
+
+```text
+   THE UNIT IS:   (algorithm)  x  (query shape)  x  (refresh cadence)
+                       |              |                    |
+                       v              v                    v
+                  one artifact   one result shape    its own window,
+                  one receipt                        its own budget
+```
+
+`WCC @ hourly` and `Louvain @ weekly` are **two independent products** that
+happen to read the same Build Store. Neither has to fit in the other's window.
+**There is no sweep to budget, and build costs must never be added together.**
+
+Evidence for one-at-a-time, from the corpus:
+
+```text
+  EVERY complaint in the corpus is about a SINGLE algorithm:
+    "clustering ... 52 GiB exceeds 5120 MiB free"
+    "NodeSimilarity blocked at 130 GiB vs 24 GiB free"
+    "Louvain: 5 hours, >70 GB heap"
+    "shortestPath OutOfMemoryError"
+  Not one is about a multi-algorithm sweep.
+
+  GDS ergonomics are one-at-a-time: project once, then one CALL per procedure.
+  Aura Graph Analytics is a SESSION: declare a size, run a workload, tear down,
+  10-minute floor. A session model is inherently one-workload-shaped.
+
+  simulation01 §13.2: 2 of 3 buyer segments use 1-2 families (reco = NodeSim +
+  FastRP; GraphRAG = Leiden alone). Only fraud/AML lists four "together" -- and
+  together in a PIPELINE is not together in an HOUR. ER runs nightly; ring
+  detection runs weekly. Different cadences, different windows.
+```
+
+This also corrects A01 PART 0's own rule being violated: *"build ON DEMAND —
+only what is actually run."* Pricing a full sweep is Arch01 Option D's retired
+failure mode.
+
+### 0.5 What does NOT improve, including one thing we currently lose
+
+```text
+  T_open       WE ARE CURRENTLY WORSE. v002 measured Rust cold-open at
+               189.979 ms vs Neo4j 90.446 ms. Precomputation does not touch
+               it, and for frequent small queries T_open IS the latency.
+               Fix independently: lazy manifest validation instead of the
+               full offsets + node-record + key-index scan on open.
+
+  T_materialize CAN MASK EVERYTHING. Streaming all 200M PageRank scores is
+               ~3.2 GB over Bolt -> 6-30 s at realistic throughput, which
+               swamps a 0.3 s read.
+
+                 "stream all scores"  0.3s compute + 6-30s serialize
+                                      -> serialization wins, 1000x invisible
+                 "top 100 by score"   ~0 compute + ~0 serialize
+                                      -> the 1000x is REAL
+
+  => KNOWING THE QUERY IS WORTH MORE THAN KNOWING THE ALGORITHM.
+       know "PageRank"                 -> store ranks.f32[V]   0.8 GiB
+       know "PageRank, top 100"        -> store a sorted top-K    4 KB
+       know "PageRank, label X, top100"-> store per-label top-K   tiny
+```
+
+---
+
 ## 1. Where PageRank's RAM and time ACTUALLY go
 
 The corpus has consistently modelled PageRank as a bytes-of-topology problem.
@@ -389,22 +520,46 @@ pure 3.6× storage win even if the cache bet loses.
 
 Three numbers, under three weeks, and they determine the entire design.
 
+**Three more, added after the L1 correction. Y1–Y3 test the MEMORY claim;
+these test the LATENCY claim, which is the weaker one.**
+
+```text
+  Z1  T_OPEN ON THE CURRENT RUNTIME.                        2 days
+      We currently LOSE to Neo4j: 189.979 ms vs 90.446 ms (v002).
+      Precomputation cannot fix this, and for frequent small queries
+      T_open IS the whole latency. Try lazy manifest validation
+      instead of the full offsets + node-record + key-index open scan.
+
+  Z2  DOES ONE ALGORITHM'S BUILD FIT ITS OWN CADENCE?       1 week
+      NOT a sweep -- ONE unit. Does WCC-precompute on a 50 GiB graph
+      finish inside an hourly window? (Expect ~5-15 min.)
+      NEVER add unit build costs together (§0.4).
+
+  Z3  END-TO-END LATENCY INCLUDING SERIALIZATION.           2 days
+      "stream all 200M scores" vs "top 100".
+      If top-K dominates real usage, the precomputed SORTED result is
+      the product -- and the engine work matters far less than assumed.
+```
+
 ---
 
 ## 6. PageRank — the estimate table
 
 **All figures MODELED at V=200M, E=1B directed. Basis shown. Not measured.**
+**All latency figures are `T_repeat` under assumption L1 (§0.2) — build excluded.
+On `T_first` the last two rows are SLOWER than baseline, not faster.**
 
-| Design | Resident RAM | Topology I/O per run | Est. wall-clock vs tuned resident GDS | Exact? | Basis |
-| --- | ---: | ---: | ---: | --- | --- |
-| **Neo4j GDS (tuned, resident)** | **88–144 GiB** | 0 (all resident) | **1.0× baseline** | exact | PRD05 model; LDBC100 guide 110 GB |
-| Our flat CSR, f64, naive | 5.22 + 4.47 = **9.7 GiB** | 104 GiB | 1.5–5× slower | exact | PRD05 Duck 14 |
-| Our flat CSR, f32, streamed | **2.3 GiB** | 104 GiB | 1.5–4× slower | exact | PRD05 |
-| **+ ARCH-II precision ladder** | **1.0 GiB** | 104 GiB | **0.8–2.0×** | mode | 448 MB × 2 vectors; gather hits ↑ |
-| **+ ARCH-IV peeling** | **0.5–0.7 GiB** | 42–73 GiB | 0.6–1.5× | **exact** | 30–60% of V removed |
-| **+ ARCH-III self-compaction** | 0.5–0.7 GiB | **~15–25 GiB** | 0.5–1.2× | **exact** | 4.9× I/O cut (§2) |
-| **+ ARCH-VI quotient (ER graph)** | **0.1–0.35 GiB** | **3–12 GiB** | **0.15–0.6×** | **exact** | 2–10× V and E reduction |
-| **ARCH-I precomputed answer** | **0.4–0.8 GiB** | **0** | **~0.01×** at query | exact | `ranks.f32[V]`, `O(V)` stream |
+| Design | Mech (§0.1) | Resident RAM | Topology I/O per run | **`T_repeat`** vs tuned resident GDS | Exact? | Basis |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| **Neo4j GDS (tuned, resident)** | — | **88–144 GiB** | 0 (all resident) | **1.0× baseline** | exact | PRD05 model; LDBC100 guide 110 GB |
+| Our flat CSR, f64, naive | — | 5.22 + 4.47 = **9.7 GiB** | 104 GiB | 1.5–5× slower | exact | PRD05 Duck 14 |
+| Our flat CSR, f32, streamed | — | **2.3 GiB** | 104 GiB | 1.5–4× slower | exact | PRD05 |
+| **+ ARCH-II precision ladder** | ELIM | **1.0 GiB** | 104 GiB | **0.8–2.0×** | mode | 448 MB × 2 vectors; gather hits ↑ |
+| **+ ARCH-IV peeling** | ELIM | **0.5–0.7 GiB** | 42–73 GiB | 0.6–1.5× | **exact** | 30–60% of V removed |
+| **+ ARCH-III self-compaction** | ELIM | 0.5–0.7 GiB | **~15–25 GiB** | 0.5–1.2× | **exact** | 4.9× I/O cut (§2) |
+| **+ ARCH-VI quotient (ER graph)** | ELIM | **0.1–0.35 GiB** | **3–12 GiB** | **0.15–0.6×** | **exact** | 2–10× V and E reduction |
+| **ARCH-I precomputed answer** | **RELOC** | **0.4–0.8 GiB** | **0** | **~0.01×** on `T_repeat`; **>1.0× on `T_first`** | exact | `ranks.f32[V]`, `O(V)` stream |
+| **ARCH-I + precomputed top-K** | **RELOC** | **~0** | **0** | **~0.001×**, and no serialization tail | exact | 4 KB result vs 3.2 GB (§0.5) |
 
 **Headline claims, stated with their uncertainty:**
 
@@ -423,16 +578,25 @@ Three numbers, under three weeks, and they determine the entire design.
             EXTERNALIZING bytes. ARCH-II/IV/VI ELIMINATE bytes -- the other
             mechanism from Correction 6, which reduces RAM *and* latency.
 
-  QUERY-TIME (ARCH-I): ~0.01x -- but T_first now includes a full PageRank,
-            and PRD05 requires reporting T_first, T_repeat, and T_total(N)
-            separately. Amortizes after ~1 re-read.
+  QUERY-TIME (ARCH-I): ~0.01x on T_repeat -- but T_first now includes a full
+            PageRank, so on a single-shot run it is SLOWER than baseline.
+            Amortizes after ~1-2 re-reads. Under L1 (one-hour lag accepted),
+            T_first is the builder's problem, not the buyer's.
+
+  AND THE CEILING, which is not in the engine at all:
+            if the QUERY is known to be "top 100", the precomputed answer is
+            4 KB and there is no serialization tail. That is the largest
+            single win available here and it costs nothing to build.
 ```
 
 ---
 
 ## 7. The other hard / high-use algorithms
 
-| Algorithm | Best architecture | Custom artifact | Est. RAM | Est. speed | Exact? |
+**Latency column is `T_repeat` under L1. Each row is its own product unit
+(`algorithm × query × cadence`, §0.4) — these costs are NEVER summed.**
+
+| Algorithm | Best architecture | Custom artifact | Est. RAM | Est. `T_repeat` | Exact? |
 | --- | --- | --- | ---: | ---: | --- |
 | **WCC** *(20% adoption)* | **ARCH-I** — no contest | `component.u32[V]`, computed once at build | **0.745 GiB**, zero topology | **~100×** at query | **exact** |
 | | +ARCH-VI | quotient first → labels on classes | **0.1–0.4 GiB** | ~100× | exact |

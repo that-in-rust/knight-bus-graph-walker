@@ -29,12 +29,59 @@ not normal. We know the question BEFORE we build the storage.
    +--------------------+             +--------------------+
 
    The trick is NOT "squeeze the graph smaller".
-   The trick is "move work to build time, and DELETE the
-   parts the algorithm provably never looks at".
+   There are TWO tricks, and they are DIFFERENT:
+
+     MOVE   work to build time  -> queries get faster,
+                                   total work does NOT drop
+     DELETE work entirely       -> total work drops, so
+                                   everything gets faster
 ```
 
 Squeezing gets you 2x to 4x. Moving and deleting gets you
-10x to 1000x. That is the whole document in four lines.
+10x to 1000x. But keep them separate in your head. Moving
+work is a trade, not a saving.
+
+```text
+   WHICH IDEA DOES WHICH
+
+   MOVE (relocate)      ARCH-I    precomputed answers
+                        ARCH-V    highway-map indexes
+                        -> these are the QUERY-SPEED wins
+
+   DELETE (eliminate)   ARCH-II   precision boxes
+                        ARCH-III  thinning the file
+                        ARCH-IV   stripping decoration
+                        ARCH-VI   squashing twins
+                        -> under a one-hour lag these become
+                           BUILD-BUDGET wins: they are what
+                           keeps a build inside its window
+```
+
+### The one assumption everything rests on
+
+```text
+   ASSUMPTION: an hour of staleness is acceptable, and we
+               always say which snapshot the answer came from.
+
+   THEN: build time is the builder's problem, not the buyer's.
+         Every speed number below is REPEAT-query time.
+         On the very FIRST run, ARCH-I and ARCH-V are SLOWER.
+```
+
+### One more thing: nothing is added up
+
+```text
+   THE UNIT OF THE PRODUCT IS:
+       (one algorithm) x (one query shape) x (one refresh rate)
+
+   "WCC every hour" and "Louvain every week" are TWO SEPARATE
+   PRODUCTS. Neither has to fit in the other's window.
+   So we never add their build times together.
+
+   Evidence: every complaint we have ever collected is about
+   ONE algorithm failing. Nobody has ever said "my sweep of
+   seven algorithms did not fit".
+```
 
 ---
 
@@ -230,21 +277,28 @@ bar is the tool everyone uses today.
 ```
 
 ```text
-   SPEED, HONESTLY
+   SPEED, HONESTLY  (all of this is REPEAT-query time)
 
    Today (GDS)  : fast, because it holds everything in memory
    Ours         : 0.5x to 1.2x of that time
                   SIMILAR SPEED, on 1/100th the memory
+   Precomputed  : about 1000x faster to answer
+                  ...but SLOWER on the very first run
 
-   Why can less memory also be faster? Because there are two
-   ways to use less memory, and they are opposites:
+   Three different moves, three different effects:
 
-     MOVING bytes to disk -> less memory, SLOWER  (the usual way)
-     DELETING bytes       -> less memory, FASTER  (what we do)
+     MOVING bytes to disk   -> less memory, SLOWER
+                               (the usual disappointment)
+     DELETING bytes/work    -> less memory, FASTER
+                               (ideas II, III, IV, VI)
+     MOVING work to BUILD   -> same total work,
+                               much faster queries,
+                               slower first run
+                               (ideas I and V)
 
-   Ideas II, IV and VI all DELETE. That is why this does not
-   contradict the earlier warning that disk-based PageRank
-   runs 1.5x-5x slower.
+   Only the middle one is a real saving. The third is a trade,
+   and it is a good trade ONLY because we accepted an hour of
+   staleness.
 ```
 
 ---
@@ -344,6 +398,31 @@ Each is one pass over the data.
    |     Share of nodes with 0 or 1 things pointing    |
    |     at them.                                      |
    |     If under 20% -> skip ARCH-IV.                 |
+   +---------------------------------------------------+
+```
+
+Those three test the MEMORY story. Three more test the SPEED
+story, which is the shakier of the two.
+
+```text
+   +---------------------------------------------------+
+   | Z1  HOW SLOW IS JUST OPENING THE FILE?    2 days  |
+   |     We currently LOSE to Neo4j here:              |
+   |     190 ms for us vs 90 ms for them.              |
+   |     Precomputing does not help this at all, and   |
+   |     for small frequent queries it IS the wait.    |
+   +---------------------------------------------------+
+   | Z2  DOES ONE ALGORITHM'S BUILD FIT?       1 week  |
+   |     ONE algorithm, not a sweep. Does WCC finish   |
+   |     inside an hourly window? (Expect 5-15 min.)   |
+   |     Never add different algorithms together.      |
+   +---------------------------------------------------+
+   | Z3  HOW LONG TO HAND OVER THE ANSWER?     2 days  |
+   |     All 200M scores is ~3.2 GB down the wire:     |
+   |     6-30 seconds, which HIDES a 0.3 s read.       |
+   |     "Top 100" is 4 KB and hides nothing.          |
+   |     If people mostly want top-K, then the         |
+   |     precomputed SORTED list is the real product.  |
    +---------------------------------------------------+
 ```
 

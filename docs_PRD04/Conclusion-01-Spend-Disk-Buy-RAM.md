@@ -59,21 +59,125 @@ budget to defend.
 
 ---
 
-## 3. The headline table
+## 2.5 RUBBER-DUCK PASS — which PageRank, exactly?
 
-| What the buyer actually feels | Neo4j GDS today | Ours, built once | Change |
-|---|---|---|---|
-| **RAM to run the job** | 88–144 GiB | **0.15–0.6 GiB** | **~150–900× less** |
-| **RAM once precomputed** | 88–144 GiB, *every run* | **~0.1–0.2 GiB** (streamed) | **~500–1000× less** |
-| **Machine you must provision** | 128–256 GiB class | **8–16 GiB class** | procurement event → a laptop |
-| **Latency, all 200M scores** | 3–9 min | **~0.4 s** | **~400–1400×** |
-| **Latency, "top 100"** | 3–9 min | **~190 ms** | **~950–2800×** |
-| **Disk, whole system** | ~50 GiB | **~76–96 GiB** | **1.5–1.9× MORE** |
-| **Freshness** | live projection | up to 1 h stale, watermarked | worse, by design |
-| **Exact?** | exact | **exact** | no approximation anywhere |
+*Added after a duck-debugging pass. The original table said "PageRank", and that
+vagueness was doing real work in my favour. "PageRank" is at least eight
+different queries with different answers.*
+
+### The query I was actually claiming (and never said so)
+
+```text
+  CALL gds.pageRank.stream('g')
+
+  IMPLIED, NEVER STATED:
+    mode                    = stream          (all rows out)
+    dampingFactor           = 0.85            (the default)
+    maxIterations           = 20              (the default)
+    tolerance               = 1e-7            (the default)
+    relationshipWeightProperty = NONE         (unweighted)
+    sourceNodes             = NONE            (GLOBAL, not personalized)
+    nodeLabels / relationshipTypes = ALL      (unfiltered)
+```
+
+**Change any one of those and the numbers move, sometimes catastrophically.**
+
+### The eight PageRank queries, and whether the design serves them
+
+| Query | Precomputable? | Verdict |
+| --- | --- | --- |
+| `pageRank.stream`, global, default params | **YES** | the claim as written |
+| `pageRank.stats` (aggregates only, no rows) | **YES** | **best case — no serialization floor** |
+| `pageRank.stream` + `ORDER BY … LIMIT k` | **YES**, as a sorted top-K artifact | **the headline case** |
+| `pageRank.write` / `.mutate` | Partly | we precompute; the write-back cost is common to both engines |
+| **weighted** (`relationshipWeightProperty`) | YES *if* weights are stable per generation | one artifact per weight property |
+| **`dampingFactor` varied by the user** | **NO** | config-hash miss → falls to the live path |
+| **personalized (`sourceNodes`)** | **NO — arbitrary seeds cannot be precomputed** | **the real hole. See §8.1** |
+| **filtered** (arbitrary label/reltype subsets) | **NO** in general | combinatorial artifact explosion |
+
+### The correction the duck actually forced: serialization is a SHARED floor
+
+My "~400–1400×" was **compute-only**. For a query that returns all 200M rows,
+*both* engines must serialize them, and that cost is common:
+
+```text
+  200M rows x ~16 B = 3.2 GB over Bolt
+  at realistic Bolt throughput (100-500 MB/s) = 6.4 to 32 SECONDS
+
+  GDS   : 180-540 s compute  +  6.4-32 s serialize  =  186-572 s
+  OURS  :   0.34-0.44 s      +  6.4-32 s serialize  =  6.7-32.4 s
+                                ^^^^^^^^^^^^^^^^^^ the SAME floor for both
+
+  END-TO-END RATIO = 186/32.4  to  572/6.7  =  ~6x to ~85x
+                     NOT 400-1400x.
+```
+
+**So the honest headline depends entirely on result size:**
+
+```text
+  "give me all 200M scores"    ->  ~6-85x    (serialization dominates BOTH)
+  "give me the top 100"        ->  ~980-3000x (no floor on our side; GDS still
+                                              computes and materializes all)
+  "give me the stats"          ->  ~980-3000x (same reason)
+```
+
+The ~1000× claim is **real only for small-result queries.** That is a much
+narrower claim than the original table implied, and it is the single most
+important thing this pass corrected.
+
+---
+
+## 3. The headline table — worst, average, best
+
+Three named scenarios. Each fixes the graph shape *and* the query, so the
+numbers are falsifiable rather than aspirational.
+
+```text
+  WORST   graph: no duplicate structure, low skew (mesh / road / uniform random)
+          query: personalized PageRank, arbitrary sourceNodes, stream all rows
+          -> NO precompute, NO quotient, NO peel. Layer 0 only.
+
+  AVERAGE graph: power-law social/transaction, moderate duplication (quotient
+                 2-3x), peel 30-40%
+          query: global default-param stream of all rows
+          -> precompute works; serialization floor bites
+
+  BEST    graph: identity/ER, heavy exact duplication (quotient 8-10x),
+                 high skew (peel 55-60%)
+          query: precomputed sorted top-K (or stats), T_open fixed to ~20 ms
+          -> everything lands
+```
+
+| Metric | Neo4j GDS | **WORST** | **AVERAGE** | **BEST** |
+|---|---|---|---|---|
+| **RAM to run** | 88–144 GiB | **2.3 GiB** | 0.6–1.2 GiB | **0.15–0.4 GiB** |
+| **RAM at query** (precomputed) | 88–144 GiB *every run* | n/a — no precompute | 0.1–0.2 GiB | **~0.1 GiB** |
+| **RAM improvement** | 1× | **~38–63×** | ~100–240× | **~600–1400×** |
+| **Machine class** | 128–256 GiB | 8–16 GiB | 8 GiB | **8 GiB / laptop** |
+| **Compute latency** | 180–540 s | **1.5–5× SLOWER** | ~0.4 s | **~20 ms** |
+| **End-to-end latency** | 186–572 s | **270–2700 s** | 6.7–32 s | **~20 ms** |
+| **End-to-end improvement** | 1× | **0.2–0.7× (WORSE)** | **~6–85×** | **~9,300–28,600×** |
+| **Disk, whole system** | ~50 GiB | 1.5–1.9× more | 1.5–1.9× more | **~1.5× more** |
+| **Freshness** | live | up to 1 h stale | up to 1 h stale | up to 1 h stale |
+| **Exact?** | exact | **exact** | **exact** | **exact** |
+
+### Reading the table
+
+**The worst case is not a disaster — it is a different product.** With no
+precompute, no quotient and no peel, we still get **~40–60× on RAM** purely from
+streaming topology instead of holding it resident. And we are **1.5–5× slower**,
+exactly as PRD05 Duck 14 predicted. That is the *capacity* product: "it finishes
+on hardware where GDS cannot start." It is not the *speed* product.
+
+**The average case is the honest expected value**, and its end-to-end number
+(~6–85×) is far below the compute number (~400–1400×) because Bolt serialization
+is a floor both engines pay.
+
+**The best case requires three things to all be true** — an ER-shaped graph, a
+small-result query, and `T_open` fixed. Two of the three are within our control.
 
 **The trade, in one sentence:** *we spend disk and freshness — both cheap — to
-buy RAM and latency, which are the two things the buyer is actually short of.*
+buy RAM always, and latency only when the result set is small.*
 
 ---
 
@@ -299,18 +403,94 @@ Enterprise. It is a legitimate product claim and an illegitimate engineering one
 
 | Claim | Confidence | Basis |
 |---|---|---|
-| RAM 150–1000× less | **HIGH** | deterministic arithmetic, §4.2–4.5 |
+| **RAM ~40–60× less, worst case** | **HIGHEST** | pure arithmetic; needs only streamed topology. Requires *no* quotient, *no* peel, *no* precompute |
+| RAM ~100–240×, average | **HIGH** | arithmetic + a moderate quotient |
+| RAM ~600–1400×, best | **MEDIUM** | needs quotient 8–10×, which is unmeasured |
 | Disk 1.5–1.9× more | **HIGH** | arithmetic, §4.7 |
-| `T_open` = 190 ms and we lose to Neo4j | **MEASURED** | v002 |
-| Latency of "top 100" ~190 ms | **MEDIUM-HIGH** | dominated by a *measured* quantity |
-| Latency of "all scores" ~0.4 s | **MEDIUM** | read bandwidth assumption |
-| Peel fraction 30–60% | **MEDIUM** | power-law property; graph-shape dependent |
-| **Quotient 2–10×** | **LOW** | **entirely data-dependent. Unmeasured.** |
-| Speedup vs GDS ~400–2800× | **MEDIUM** | inherits the quotient's uncertainty |
+| `T_open` = 190 ms, we lose 2.1× to Neo4j | **MEASURED** | v002 |
+| Serialization floor 6–32 s for 200M rows | **MEDIUM-HIGH** | Bolt throughput assumption; applies to *both* engines |
+| End-to-end ~6–85× on stream-all | **MEDIUM** | dominated by the shared floor above |
+| End-to-end ~980–3000× on top-K | **MEDIUM-HIGH** | dominated by a *measured* `T_open` |
+| Peel fraction 30–60% | **MEDIUM** | power-law property; dead on meshes |
+| **Quotient 2–10×** | **LOW** | **entirely data-dependent. Unmeasured. Sets the whole spread.** |
+| Worst case is 1.5–5× SLOWER | **MEDIUM-HIGH** | PRD05 Duck 14, and consistent with its own model |
 
-**Lead with RAM.** It is arithmetic, it survives a hostile audit, and it is the
-axis the incumbent meters. The latency numbers are real but inherit the
-quotient's uncertainty, and `PMF01`'s rule stands: *never lead with speed.*
+> **The single most robust claim in this document is the WORST case:
+> ~40–60× less RAM.** It needs nothing except streaming topology instead of
+> holding it resident — no quotient, no peel, no precompute, no graph-shape
+> assumption. Everything above 60× is earned by assumptions that may not hold.
+
+**Lead with RAM, and lead with the worst-case RAM number.** It is arithmetic, it
+survives a hostile audit, it holds on *any* graph, and it is the axis the
+incumbent meters. `PMF01`'s rule stands: *never lead with speed* — and after this
+pass there is a second reason, which is that the speed number swings from
+**0.2× (worse) to 28,600× (better)** depending on the query. A claim with a
+five-order-of-magnitude range is not a claim; it is a conversation.
+
+---
+
+## 7.5 Anti-requirements — what must NOT be present
+
+*Each of these degrades or destroys the claim. Ordered by how badly.*
+
+| # | If this is true… | Effect | Severity |
+|---|---|---|---|
+| A1 | **Personalized PageRank with arbitrary `sourceNodes`** | Cannot precompute at all. Falls to Layer 0–3 live execution: RAM win survives (~40–240×), speed win **inverts to 1.5–5× slower** | **FATAL to the speed claim** |
+| A2 | **Result set is all 200M rows and that is the dominant pattern** | Bolt serialization is a shared 6–32 s floor. ~1000× collapses to ~6–85× | **SEVERE** |
+| A3 | **Users vary `dampingFactor` / `tolerance` / `maxIterations`** | Config-hash miss on every non-default call → live path | **SEVERE** |
+| A4 | **Arbitrary label / relationship-type filtering** | Combinatorial artifact explosion; cannot precompute the cross-product | **SEVERE** |
+| A5 | **Sub-minute freshness requirement** | Kills assumption L1, kills every precompute, kills warm start | **FATAL to the whole design** |
+| A6 | **No duplicate structure in the graph** | Quotient → 1×. RAM degrades from ~900× to ~100× | MODERATE |
+| A7 | **Low-skew degree distribution** (mesh, road, regular) | Peel → <20%, and degree-ordering's cache win evaporates | MODERATE |
+| A8 | **High churn between generations** (> ~20% edges) | Warm start stops working; every generation is a cold rebuild; `T_first` objection returns | MODERATE |
+| A9 | **Many small frequent queries** | `T_open` dominates, and we are **currently 2.1× slower** than Neo4j there (MEASURED) | MODERATE — fixable in 2 days |
+| A10 | **Colocated on the production Neo4j box** | Page-cache eviction and IOPS contention degrade OLTP p99 with heap flat (`A01` §1.3) | MODERATE — the hybrid topology fixes it |
+| A11 | **HDD instead of NVMe** | `Arch06`: streaming degrades ~10× | MODERATE |
+| A12 | **Weights that change per query** rather than per generation | The weight plane is part of the artifact; per-query weights force live execution | MODERATE |
+
+> **A1 is the one that keeps me honest.** Personalized PageRank is not
+> hypothetical — it is in the corpus as real user pain (`simulation01` E19: GDS
+> issues #139/#132, *"personalized PageRank fails with OutOfMemoryError: unable
+> to create native thread"*), and fraud teams genuinely use it to score money
+> flow from a suspect account. **The precompute design does not serve it.** The
+> Layer 0–3 live path does, at ~40–240× RAM and 1.5–5× slower — which is still
+> a real product for someone who currently cannot run it at all, but it is not
+> the headline.
+
+## 7.6 The ideal profile — what makes it best
+
+The technically ideal workload, stated so it can be qualified for in a sales
+conversation:
+
+| # | Ideal condition | Why it matters |
+|---|---|---|
+| I1 | **Identity / entity-resolution graph** | Built by joining records on shared attributes → exact structural twins are the dominant structure, not an accident. Quotient 8–10× |
+| I2 | **Power-law degree distribution** | Peel reaches 55–60%; degree-ordered hot 1% fits L3 |
+| I3 | **Fixed algorithm parameters** | One artifact serves every call; no config-hash misses |
+| I4 | **Small result sets** — `topK`, `stats`, per-label top-N | No serialization floor. **This is where ~1000× lives** |
+| I5 | **Read-heavy: many queries per generation** | Build amortizes immediately; break-even is ~1–2 reads |
+| I6 | **Hourly-or-slower freshness tolerance** | Satisfies L1, licenses all precomputation |
+| I7 | **Low churn between generations** (< ~5% edges) | Warm start converges in 2–4 iterations instead of 20 |
+| I8 | **Unweighted, or weights stable per generation** | The weight plane can live in the artifact |
+| I9 | **Dedicated NVMe box, separate from production** | No page-cache war; streaming at full bandwidth |
+| I10 | **Repeat queries on the same generation** | Every re-read is pure profit |
+
+**The convergence worth noticing:** I1 + I5 + I7 + I10 describe *exactly* the
+fraud/AML profile `simulation01` §13.2 identifies as **re-run-heavy and the
+deepest-pocketed segment.** The technically ideal workload and the
+best-paying buyer are the same workload. That is not luck — it is why entity
+resolution was chosen as the wedge.
+
+**And the qualification question that falls out of this table** — the one to ask
+a prospect in the first ten minutes:
+
+```text
+   "When you run PageRank, do you ask for all the scores, or the top N?
+    And do you ever run it from a specific starting account?"
+
+   all scores + specific start  ->  WORST case. We are a capacity product.
+   top N + global               ->  BEST case. We are a 1000x product.
+```
 
 ---
 
@@ -341,6 +521,37 @@ to 10–30× the one time it read actual GDS source.
 
   NOT claimed: anything measured. Zero of these figures come from our engine
                running PageRank, because our engine has never run PageRank.
+```
+
+### 8.1 The hole, named plainly: personalized PageRank
+
+```text
+  gds.pageRank.stream('g', {sourceNodes: [suspectAccount]})
+
+  This CANNOT be precomputed for arbitrary seeds -- there are 2^V possible
+  seed sets. ARCH-I is useless here, and ARCH-I is where the 1000x lives.
+
+  WHAT SURVIVES: the live path, Layers 0-3.
+                 degree ordering + peel + quotient all still apply.
+                 -> RAM ~40-240x better
+                 -> latency 1.5-5x WORSE than resident GDS
+
+  WHY IT MATTERS: this is real, documented user pain, not a hypothetical.
+    simulation01 E19 / GDS issues #139, #132:
+      "personalized PageRank fails with OutOfMemoryError:
+       unable to create native thread"
+    And fraud teams use exactly this to score money flow outward from a
+    suspect account.
+
+  THE HONEST POSITION: for personalized PageRank we are a CAPACITY product
+  ("it finishes where GDS cannot start"), not a SPEED product. That is still
+  worth selling to someone currently blocked -- but it must not be sold with
+  the top-K numbers.
+
+  PARTIAL MITIGATION: if the seed sets are drawn from a small known pool
+  (e.g. the ~10k accounts currently under investigation), precompute per
+  seed set. That is ARCH-V logic -- an index shaped by the query -- and it
+  works only when the pool is small and stable.
 ```
 
 ---

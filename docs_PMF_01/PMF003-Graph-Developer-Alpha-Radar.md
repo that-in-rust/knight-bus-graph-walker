@@ -68,6 +68,7 @@ Privacy posture: private chat messages are treated as directional evidence. This
 | 054 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Adaptive/partitioned streaming evidence: ADWISE total-latency partitioning tradeoff, 2PS two-pass clustering before edge partitioning, StreamCPI run-length compressed block assignments, Buffered Streaming/HeiStream/HeiStreamE/FREIGHT batch and hypergraph partitioning, BuffCut priority buffers, CUTTANA database/analytics partition quality, and prioritized restreaming order control | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 055 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GraphBLAS/LAGraph oracle evidence: LAGraph verified-algorithm project, Basic-vs-Advanced cached-property split, PageRank standard vs GAP sink semantics, BFS push/pull vs push-only and valid-parent tests, FastSV/Boruvka connected components, delta-stepping SSSP with min-plus semiring and light/heavy edge split, triangle count method/presort matrix, semiring vocabulary, GAP benchmark harness, and checker functions | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 056 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GBBS performance-lane evidence: active benchmark suite, compressed/binary/mmap graph formats, `vertexSubset` plus `edgeMap` sparse/dense scheduling vocabulary, PageRank full and residual-delta variants, non-deterministic BFS parent frontier loop, ConnectIt sampling/Afforest-style components prepass, union-find path-compression/CAS rules, triangle degree/degeneracy ordering, and progress-reporting phase hooks | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 057 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Partition-to-latency bridge evidence: CUTTANA buffering/subpartition/refinement code and application-study benchmarks, Triparts Bloom/Triangle/High-degree map implementation and community-preserving partition heuristics, TuskFlow workload-pattern partitioning for graph database tail latency, plus codebase-memory indexes over CUTTANA and Triparts artifact repos | Reclaim/open X chat and continue upward from Jun 1 2026 |
 
 ## Current Working Thesis
 
@@ -647,6 +648,13 @@ The group chat is valuable less as "graph database market research" and more as 
 | Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/Connectivity/UnionFind/union_find_rules.h | GBBS/UnionFind maintainers | Union-find variants include atomic split/halve path compression and `UniteRemCAS`. `UniteRemCAS` links high to low, uses atomic compare-and-swap to update parents, compresses endpoints for non-naive find modes, and splices/compresses locally after CAS failure. | This is a concurrency and determinism lesson. Low-RAM CC profiles still need to expose parent-array state, atomic update policy, representative equivalence, and retry/compression behavior. | Add `profile_union_find_policy_v1`: receipts include find/compress/unite variant, parent state bytes, CAS failure/retry counters when available, and representative equivalence checker. | High. Source read with codebase-memory. |
 | Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/TriangleCounting/ShunTangwongsan15/Triangle.h | GBBS/TriangleCounting maintainers | Triangle counting dispatches by ordering mode: degree, Goodrich degeneracy, k-core degeneracy, or Barenboim-Elkin. Degree ordering ranks nodes, filters/directs the graph from lower to higher rank, stores only out-neighbors for the directed graph to save memory, and then uses balanced intersection work blocks. | Triangle counting is storage-shaped by construction. Ordering, directed projection, neighbor-list intersection, and work balancing decide memory and latency before the first triangle is counted. | Add `profile_triangle_ordering_policy_v1`: receipts declare ordering method, directed projection bytes, rank/permutation bytes, intersection work estimate, block size, and exact count. | Very high. Source read with codebase-memory. |
 | Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/gbbs/helpers/progress_reporting.h | GBBS maintainers | `IterationProgressReporter` separates preprocessing, iteration completion, early convergence, optional postprocessing, and monotonic progress reporting. PageRank uses it to report preprocessing complete and iteration progress. | This is tiny but product-important. Long-running bounded graph jobs need progress split by phase, not a spinner that hides projection cost and convergence behavior. | Add `profile_progress_reporter_phase_v1`: receipts and status commands expose preprocessing, per-iteration, early-stop, postprocessing, and final verification phases. | High. Source searched with codebase-memory. |
+| Aug 7 partition-to-latency source deepening | https://arxiv.org/abs/2312.08356 | Milad Rezaei Hajidehi, Sraavan Sridhar, Margo Seltzer / CUTTANA | CUTTANA frames streaming partitioning as a latency problem for analytics and graph databases, not only a partition-quality problem. The arXiv page reports delayed assignment through buffering, coarsening/refinement for a fuller graph view, up to 59% analytics runtime improvement, and up to 23% higher graph-database query throughput without hurting tail latency. | This is the strongest partitioning bridge back to our Neo4j-family question: a physical graph layout can change PageRank/CC/SSSP runtime and graph DB throughput, but it must be measured as total workload cost. | Upgrade `profile_partition_quality_to_latency_v1` to `profile_partition_quality_to_latency_v2`: separate partition-build time, algorithm runtime, graph-query throughput, tail latency, edge-cut, communication volume, and amortization count. | Very high. arXiv page read; key claims cross-checked against code artifact shape. |
+| Aug 7 partition-to-latency source deepening | https://github.com/cuttana/cuttana-partitioner | CUTTANA maintainers | Local codebase-memory indexing found a compact C++ partitioner implementation: 547 nodes, 1,800 edges, entry points in `partitioners/ogpart*.cpp`, buffering in `add_buffer`/`evict_buffer`, subpartition/refinement in `partitioners/refine.cpp`, and verification code that restreams input to compute edge cut, imbalance, replication factor, and communication volume. GitHub metadata showed MIT license, default branch `main`, 5 stars, 1 fork, and recent activity in Jan 2025. | This makes CUTTANA implementable as a receipt template: do not just report "better partition"; report buffer capacity, buffered vertices, eviction count, subpartition count, refinement time, edge-cut, communication volume, and partition imbalance. | Add `profile_cuttana_buffer_refine_v1`: a layout profile that declares buffer cap, subpartition count, refinement threshold, vertex/edge balance mode, and independent verification pass. | Very high. codebase-memory index plus GitHub README/metadata read. |
+| Aug 7 partition-to-latency source deepening | https://github.com/cuttana/application-study | CUTTANA maintainers, building on Pacaci et al. benchmarking framework | The application-study repo wires CUTTANA into both PowerLyra analytics and JanusGraph/Cassandra interactive workloads. The analytics runner covers PageRank, SSSP, and connected components on large configs such as Twitter (~1.47B edges) and UK2007 (~3.74B edges). The JanusGraph runner measures one-hop/two-hop LDBC workloads, throughput, and Cassandra read-load distribution; the Groovy scripts record traversal durations and per-node backend reads. | This is the exact benchmark-contract shape Knight Bus needs: source decode, layout lookup, algorithm runtime, query throughput, traversal duration, backend read skew, and tail latency should be one reproducible receipt family. | Add `profile_graphdb_latency_receipt_v1`: if we claim graph DB speedup, include traversal profile, backend read counts, per-partition skew, throughput at medium/high load, and p99/tail fields. | Very high. Artifact repo indexed; benchmark scripts/configs sampled locally. |
+| Aug 7 partition-to-latency source deepening | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | Ruchi Bhoot, Tuhin Khare, Manoj Agarwal, Siddharth Jaiswal, Yogesh Simmhan / Triparts | Triparts argues that edge balance and replication factor can miss the real downstream objective: preserving community structure. It adds a local-triangle objective, uses Bloom Filters, Triangle Map, and High Degree Map, evaluates graphs up to 1.6B edges, reports up to 4-8.3x better triangle-count metric than DBH/HDRF, and reports 500k edges/sec ingest on a 16-node cluster. | This is the algorithm-shaped-storage proof: the "right" physical metric depends on the algorithm family. For community/clustering/triangle-heavy jobs, local triangle conservation may matter more than a generic cut metric. | Add `profile_partition_metric_selection_v1` and `profile_triangle_locality_partition_v1`: profile manifests must say whether the objective is edge cut, communication volume, replication, locality, triangle preservation, or tail latency. | Very high. PVLDB PDF read. |
+| Aug 7 partition-to-latency source deepening | https://github.com/dream-lab/triparts | Dream Lab / Triparts maintainers | Local codebase-memory indexing found a Java/Thrift distributed implementation with 2,752 nodes and 8,732 edges. The code has `bloomFilterArray`, `vertexTrianglePartitionMap`, `vertexFirstTrianglePartitionMap`, and `vertexHDPartitionDegreeMap`; `PartitionerThread` chooses partitions through ordered rules over triangle sets, high-degree sets, Bloom-filter replica sets, and lightest-partition fallback; worker code records triangle intersection and lock/sync timing. GitHub metadata showed Apache-2.0 license, default branch `VLDB2025`, 2 stars, 2 forks, and recent activity in Nov 2025. | Triparts is not a direct Neo4j replacement. It is evidence that a bounded auxiliary state budget can improve downstream graph-mining quality when the state is shaped to the algorithm's invariants. | Add `profile_auxiliary_state_roi_v1`: every extra map/sketch must report memory bytes, update/sync overhead, quality delta, and which algorithm families can reuse it. | High. codebase-memory index, source snippets, README, and PVLDB artifact link read. |
+| Aug 7 partition-to-latency source deepening | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | Ruchi Bhoot, Tuhin Khare, Manoj Agarwal, Siddharth Jaiswal, Yogesh Simmhan / Triparts | The paper's overhead section is a useful reality check: lock overhead is reported around 5-8% with 8 threads and 8-10% with 16 threads; sync overhead is usually a small share except on one graph; peak high-degree map size is about 2.3-4.2% of vertices, while triangle-map size varies widely with graph density; largest Twitter leader memory is reported as about 15-17% of 128GB depending on partition count. | This sharpens our RAM story. Auxiliary graph state can be cheap or expensive depending on density; it needs budget gates, not blanket praise. | Add `profile_partition_state_budget_v1`: profile receipts must include auxiliary map cardinality, density sensitivity, leader/worker memory, sync overhead, lock overhead, and a kill condition. | Very high. PVLDB overhead section read. |
+| Aug 7 partition-to-latency source deepening | https://www.vldb.org/pvldb/vol18/p4777-theodorakis.pdf | TuskFlow / PVLDB 2025 graph DB transaction paper | TuskFlow is not an OLAP storage paper, but it is relevant because it shows graph-aware physical planning can reduce graph database tail latency. The paper reports graph tagging and partitioning into hot/cold communities based on access patterns; 1-hop and 2-hop pattern-aware partitioning often reduces tail latency substantially, while overly broad pattern use can cost much more partitioning time or even harm some workloads. | This is a warning for Knight Bus: workload-pattern partitions beat generic partitions only when the pattern matches the workload. A low-RAM profile should be selected by observed query/algorithm shape, not by ideology. | Add `profile_workload_pattern_partition_v1` and `profile_tail_latency_partition_gate_v1`: profile selection records dominant query/algorithm pattern, partition-build cost, p99/tail result, and rejected patterns. | Medium-high. PVLDB PDF read; used as an analogue rather than a direct OLAP proof. |
 
 ## Insight Notes
 
@@ -6493,6 +6501,366 @@ What should be built first?
   mode. BFS and CC follow because their invariant checkers are clear.
 ```
 
+#### Partition Quality Must Pay Rent In Latency
+
+The CUTTANA/Triparts/TuskFlow pass upgrades the partitioning story from
+"better layout might help" to a sharper product rule:
+
+```text
+Layout is not good because it is elegant.
+Layout is good only when it buys a measured downstream budget.
+```
+
+CUTTANA gives the latency bridge. It says a streaming partitioner should not
+only be judged by how fast it assigns vertices; it should be judged by the
+total cost of partitioning plus the graph workload that follows. The paper and
+artifact repo connect partition quality to PageRank, connected components,
+SSSP, and JanusGraph/LDBC throughput. The local code confirms the receipt shape:
+buffering, eviction, subpartition graph construction, refinement, and a verify
+pass that restreams the graph and computes edge cut, imbalance, replication
+factor, and communication volume.
+
+Triparts gives the metric-selection bridge. It says generic balance and
+replication can miss what the downstream algorithm actually needs. If the
+future workload is community detection, clustering, GNN sampling, triangle
+counting, or other locality-sensitive mining, then "how many local triangles
+survive inside each partition?" may be more predictive than generic edge cut.
+Its Bloom Filter, Triangle Map, and High Degree Map are not free; the paper's
+overhead section makes clear that auxiliary state must have a budget and an ROI
+test.
+
+TuskFlow gives the OLTP-adjacent warning. Pattern-aware partitioning can reduce
+tail latency for graph database workloads, but only when the dominant access
+pattern is real. A broad all-pattern partition can cost much more to build and
+can even harm locality for the wrong workload. That applies directly to Knight
+Bus: profile selection should come from observed algorithm/query shape, not
+from a favorite storage format.
+
+The clean synthesis:
+
+| Source | What It Teaches | Knight Bus Contract |
+|---|---|---|
+| CUTTANA | Buffered delay plus refinement can improve analytics/runtime and graph DB throughput, but build cost must be visible | `partition_build_ms + layout_bytes + algorithm_ms + query_tput + p99 + edge_cut + communication_volume` |
+| CUTTANA code | The implementation has explicit buffers, queues, subpartition graphs, timers, and a verification restream | `profile_cuttana_buffer_refine_v1` with buffer cap, eviction count, subpartition count, refinement threshold, verify pass |
+| CUTTANA application study | The benchmark surface spans PowerLyra PageRank/SSSP/CC and JanusGraph/Cassandra LDBC one-hop/two-hop workloads | `profile_graphdb_latency_receipt_v1` with traversal duration, backend reads, read skew, throughput, tail latency |
+| Triparts paper | Partition quality must match algorithm semantics, especially community/triangle preservation | `profile_partition_metric_selection_v1` and `profile_triangle_locality_partition_v1` |
+| Triparts code | Bloom filters, triangle maps, high-degree maps, sync, and critical-section metrics make auxiliary state explicit | `profile_auxiliary_state_roi_v1` with memory, sync, lock, and quality-delta receipts |
+| TuskFlow | Workload-pattern partitioning can cut p99, but wrong/broad patterns add cost or damage locality | `profile_workload_pattern_partition_v1` and `profile_tail_latency_partition_gate_v1` |
+
+This changes how we should think about custom OLAP storage:
+
+```text
+Bad version:
+  build a clever graph file format
+  hope PageRank, BFS, CC, and community workloads all benefit
+
+Better version:
+  run layout_probe_v1
+  classify the algorithm/query family
+  choose the relevant physical metric
+  build the smallest layout/sketch that can plausibly improve that metric
+  prove total latency/RAM/correctness against no-layout and baseline-layout modes
+```
+
+Algorithm-family implications:
+
+| Algorithm / Workload | Better Physical Metric | Likely Storage/Profile Direction | Why |
+|---|---|---|---|
+| PageRank | edge cut, communication volume, degree/cache locality, transpose availability | CSR/CSC or blocked CSR with optional partitioned layout; exact sink semantics pinned by oracle | PageRank is bulk iterative and communication/cache sensitive; generic community preservation is secondary. |
+| Connected Components | cross-partition edges, large-component coverage, sampling/probe quality | Afforest/ConnectIt-style probe plus union-find parent arrays; optional partitioning if it reduces cross edges | CC can benefit from a cheap structure probe before full processing. |
+| SSSP | edge-weight distribution, delta light/heavy split, frontier locality | light/heavy edge layout, frontier budget, possibly partitioned edge buckets | Weight semantics and frontier evolution matter more than unweighted edge balance alone. |
+| Triangle Count | local triangle preservation, degree/degeneracy ordering, intersection locality | directed degree-ordered projection, local-neighborhood blocks, possible Triparts-style triangle locality partition | Triangle count is harmed by storage that scatters wedges across partitions. |
+| Community / clustering | local triangles, LCC/transitivity, modularity-like locality, stable component boundaries | Triparts-like auxiliary state, community-preserving partitions, bounded map/sketch budgets | The downstream objective is locality/community structure, not only edge count. |
+| Graph DB one-hop/two-hop reads | dominant query pattern, backend read skew, p99 tail latency | workload-pattern partitioning plus hot/cold or access-shape tagging | The query pattern determines whether partitioning helps or hurts. |
+
+The executable-spec candidates from this pass:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_partition_quality_to_latency_v2` | WHEN a layout profile claims better partition quality, THEN it SHALL report partition-build time, algorithm runtime, graph-query throughput if applicable, p99/tail latency, edge cut, communication volume, and amortization count |
+| `profile_cuttana_buffer_refine_v1` | WHEN a CUTTANA-like profile runs, THEN it SHALL record buffer capacity, buffered vertices, eviction count, subpartition count, refinement threshold, balance mode, and independent verification pass metrics |
+| `profile_graphdb_latency_receipt_v1` | WHEN a graph DB workload is benchmarked, THEN traversal duration, backend read counts, read-skew percentiles, throughput tier, and p99/tail latency SHALL be recorded |
+| `profile_partition_metric_selection_v1` | WHEN a layout is chosen, THEN the profile SHALL declare the physical metric it optimizes: edge cut, communication volume, replication, triangle locality, community preservation, p99, or cache locality |
+| `profile_triangle_locality_partition_v1` | WHEN triangle/community profiles run, THEN local-triangle preservation and degree/intersection locality SHALL be measured beside RAM and latency |
+| `profile_auxiliary_state_roi_v1` | WHEN a profile keeps Bloom/triangle/high-degree/sketch state, THEN bytes, cardinality, update overhead, sync overhead, lock overhead, and quality delta SHALL be in the receipt |
+| `profile_partition_state_budget_v1` | WHEN partition metadata exists, THEN leader/worker memory, assignment-index bytes, map density sensitivity, and kill conditions SHALL be explicit |
+| `profile_workload_pattern_partition_v1` | WHEN a pattern-aware partition is selected, THEN the dominant access pattern and rejected candidate patterns SHALL be recorded |
+| `profile_tail_latency_partition_gate_v1` | WHEN a layout claims latency benefit, THEN p50/p95/p99 or equivalent tail fields SHALL be compared against no-layout and baseline-layout modes |
+| `profile_repartition_policy_v1` | WHEN graph updates can degrade layout quality, THEN the profile SHALL declare incremental, background, periodic, or no-repartition policy |
+| `profile_dataset_scale_sweetspot_v1` | WHEN a layout has build overhead, THEN the profile SHALL declare the graph-size and reuse-count region where it is expected to pay off |
+
+The rubber-duck check:
+
+```text
+Does better edge cut always mean faster workload?
+  No. It is a proxy. CUTTANA is useful because it reports downstream analytics
+  and graph DB measurements, not because it worships edge cut alone.
+
+Does Triparts prove lower RAM?
+  Not directly. It proves algorithm-shaped auxiliary state can preserve a
+  downstream property. For Knight Bus, that state has to be budgeted and killed
+  if it does not buy enough quality or runtime.
+
+Does TuskFlow mean we should rewrite OLTP?
+  No. It is an analogue. It warns us that graph-aware physical planning can
+  affect tail latency, but the profile must match the real access pattern.
+
+What is the product decision?
+  Build `layout_probe_v1` so the system can classify the graph and workload
+  before choosing `full_memory`, `streaming`, `partitioned_latency`,
+  `triangle_locality`, or `graphdb_pattern_latency` profiles.
+```
+
+#### Passes 053-057 Executable Spec Spine
+
+This section converts the strongest public-source research spine into a coding
+target. The key move is to stop treating "low RAM" as one feature and instead
+make every physical profile prove four things:
+
+```text
+1. What graph semantics did it run?
+2. What physical storage/state shape did it choose?
+3. What did it consume: RAM, mapped bytes, spill, passes, time?
+4. Why should we believe the answer: oracle, invariant, receipt, baseline?
+```
+
+The first implementation bundle should be four specs, not one:
+
+| Spec | Why First | Primary Evidence |
+|---|---|---|
+| `layout_probe_v1` | Prevents expensive or impossible runs before durable work starts | GraphChi, X-Stream, GridGraph, FlashGraph, Sage, 2PS, StreamCPI, CUTTANA |
+| `pagerank_full_edge_map_v1` | First exact-ish graph algorithm with clear state and oracle | LAGraph PageRank, GBBS PageRank, GAPBS |
+| `pagerank_residual_delta_v1` | First alternative physical profile for the same logical algorithm | GBBS PageRankDelta, frontier/sparse-dense switch evidence |
+| `profile_partition_quality_to_latency_v2` | Makes layout claims pay rent in total workload latency | CUTTANA, application-study, Triparts, TuskFlow |
+
+The shared proof skeleton:
+
+```text
+input graph
+  -> layout_probe_v1
+  -> selected profile or fail-before-work
+  -> algorithm run
+  -> oracle/invariant check
+  -> baseline comparison
+  -> receipt
+```
+
+##### SPEC-058-001: `layout_probe_v1`
+
+Purpose: a bounded preflight phase that estimates whether a requested graph
+algorithm can run under a RAM/time/spill budget, and which physical profile is
+legal.
+
+Evidence sources:
+
+| Evidence | URL | What It Contributes |
+|---|---|---|
+| GraphChi | https://www.usenix.org/conference/osdi12/technical-sessions/presentation/kyrola | vertex-state-in-RAM plus disk/windowed edge schedule |
+| X-Stream | https://dl.acm.org/doi/10.1145/2517349.2522740 | edge-stream pass model and update streams |
+| GridGraph | https://www.usenix.org/conference/atc15/technical-session/presentation/zhu | active-block skipping and 2D edge blocks |
+| FlashGraph | https://www.usenix.org/conference/fast15/technical-sessions/presentation/zheng | semi-external SSD edge-list fetch with vertex state in RAM |
+| Sage | https://www.vldb.org/pvldb/vol13/p1598-dhulipala.pdf | read-only topology plus mutable O(V) state |
+| 2PS | https://arxiv.org/abs/2001.07086 | cheap first pass before committing to a partition/layout |
+| StreamCPI | https://arxiv.org/abs/2410.07732 | compressed assignment metadata can dominate low-RAM viability |
+
+Acceptance criteria:
+
+| ID | Executable Requirement |
+|---|---|
+| `LAYOUT-PROBE-001` | WHEN a graph is submitted, THEN the system SHALL compute and receipt `node_count`, `edge_count`, directedness, self-edge count, isolated-node count, zero-out-degree count, min/max/percentile degree summary, and whether weights are present. |
+| `LAYOUT-PROBE-002` | WHEN a requested algorithm is PageRank, BFS, CC, SSSP, triangle count, or community/locality mode, THEN the system SHALL estimate mandatory mutable state bytes before choosing a profile. |
+| `LAYOUT-PROBE-003` | WHEN the graph would require derived topology such as transpose, CSC, L/U, light/heavy edge split, block index, or partition assignment, THEN the probe SHALL estimate build bytes and build time separately from algorithm runtime. |
+| `LAYOUT-PROBE-004` | WHEN a RAM cap is provided, THEN the probe SHALL reject before durable work if estimated mandatory mutable state exceeds the cap with no legal spill/windowed fallback. |
+| `LAYOUT-PROBE-005` | WHEN multiple physical profiles are legal, THEN the probe SHALL return selected profile plus rejected candidate profiles with reasons. |
+| `LAYOUT-PROBE-006` | WHEN a profile needs multiple passes over edges, THEN the probe SHALL estimate pass count and scanned bytes. |
+| `LAYOUT-PROBE-007` | WHEN assignment or partition metadata is created, THEN compressed and uncompressed assignment-index byte estimates SHALL be recorded. |
+| `LAYOUT-PROBE-008` | WHEN the probe result is reused, THEN the receipt SHALL include source graph identity, source hash or manifest hash, probe version, and invalidation condition. |
+
+Minimal test fixture set:
+
+| Fixture | Why |
+|---|---|
+| tiny directed graph with a sink | catches PageRank semantic-mode errors |
+| undirected graph with isolated nodes | catches CC/BFS invariant and isolated-node semantics |
+| weighted graph with zero/negative edge candidates | gates SSSP policy |
+| skewed power-law-ish toy graph | forces supernode/degree-tail reporting |
+| triangle-rich community toy graph | distinguishes triangle-locality mode from edge-cut-only mode |
+
+Receipt fields:
+
+```yaml
+layout_probe_v1:
+  graph_identity: ...
+  graph_shape:
+    nodes: ...
+    edges: ...
+    directed: ...
+    weighted: ...
+    self_edges: ...
+    zero_out_degree: ...
+    isolated_nodes: ...
+    degree_summary: ...
+  requested_budget:
+    ram_bytes: ...
+    spill_bytes: ...
+    max_passes: ...
+    max_wall_ms: ...
+  estimated_state:
+    topology_bytes: ...
+    mutable_vertex_state_bytes: ...
+    frontier_bytes: ...
+    derived_layout_bytes: ...
+    partition_metadata_bytes: ...
+    receipt_overhead_bytes: ...
+  candidate_profiles:
+    - name: ...
+      legal: true|false
+      reason: ...
+  selected_profile: ...
+  invalidation:
+    source_hash: ...
+    graph_version: ...
+```
+
+##### SPEC-058-002: `pagerank_full_edge_map_v1`
+
+Purpose: first PageRank profile that is easy to verify, explicit about sink
+semantics, and honest about state arrays.
+
+Evidence sources:
+
+| Evidence | URL | What It Contributes |
+|---|---|---|
+| LAGraph standard PageRank | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRank.c | production sink handling, transpose/out-degree preconditions, convergence failure semantics |
+| LAGraph GAP PageRank | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRankGAP.c | benchmark-compatible semantic divergence warning |
+| LAGraph PageRank tests | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_PageRank.c | sink-node and convergence fixtures |
+| GBBS PageRank | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank.h | `p_curr`, `p_next`, dangling nodes, non-dangling frontier, weighted out-degree, `no_output` edgeMap path |
+| GBBS edgeMap/vertexSubset | https://github.com/ParAlg/gbbs/blob/master/gbbs/edge_map_data.h | physical traversal path vocabulary |
+
+Acceptance criteria:
+
+| ID | Executable Requirement |
+|---|---|
+| `PAGERANK-FULL-001` | WHEN PageRank runs, THEN `semantic_mode` SHALL be one of `production_correct` or `gap_compatible`, with `production_correct` as default. |
+| `PAGERANK-FULL-002` | WHEN `production_correct` runs on a graph with sinks, THEN sink rank SHALL be handled according to the manifest and checked by rank-sum/tolerance rules. |
+| `PAGERANK-FULL-003` | WHEN `gap_compatible` is selected, THEN the receipt SHALL warn that sink handling may differ from production semantics. |
+| `PAGERANK-FULL-004` | WHEN PageRank runs, THEN damping, tolerance, iteration cap, iteration count, convergence status, rank-sum check, and output vector hash SHALL be recorded. |
+| `PAGERANK-FULL-005` | WHEN a transpose/CSC or out-degree cache is built or reused, THEN source, bytes, build time, and invalidation condition SHALL be recorded. |
+| `PAGERANK-FULL-006` | WHEN weighted PageRank is requested, THEN weighted out-degree cache bytes and zero-weight dangling semantics SHALL be recorded. |
+| `PAGERANK-FULL-007` | WHEN the profile completes, THEN output SHALL be compared against a LAGraph/GraphBLAS oracle or small exact fixture within declared tolerance. |
+| `PAGERANK-FULL-008` | WHEN the profile runs under a RAM cap, THEN `p_curr`, `p_next`, degree cache, dangling list, frontier/non-dangling set, topology access, and receipt overhead bytes SHALL be split in the receipt. |
+
+State budget model:
+
+```text
+mandatory:
+  p_curr: O(V)
+  p_next: O(V)
+  out_degree or weighted_out_degree: O(V)
+  dangling/non_dangling representation: O(V) bitmap or O(D) packed list
+
+conditional:
+  transpose/CSC: O(E) if materialized
+  source set for personalized mode: O(S) or O(V) depending representation
+  oracle output: O(V) for strict proof runs
+```
+
+##### SPEC-058-003: `pagerank_residual_delta_v1`
+
+Purpose: first alternative physical profile for the same PageRank semantics,
+intended to prove that active-state shrinkage can reduce work on some graph
+families while still exposing extra state and numerical differences.
+
+Evidence sources:
+
+| Evidence | URL | What It Contributes |
+|---|---|---|
+| GBBS PageRankDelta | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank_delta.h | `p`, `Delta`, `nghSum`, active frontier, `local_eps`, sparse/dense dispatch |
+| GBBS vertexSubset | https://github.com/ParAlg/gbbs/blob/master/gbbs/vertex_subset.h | sparse vs dense active-set representation |
+| LAGraph PageRank | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRank.c | semantic oracle and tolerance reference |
+
+Acceptance criteria:
+
+| ID | Executable Requirement |
+|---|---|
+| `PAGERANK-DELTA-001` | WHEN residual PageRank runs, THEN manifest SHALL declare residual threshold, `local_eps`, damping, tolerance, max iterations, and semantic mode. |
+| `PAGERANK-DELTA-002` | WHEN residual state is allocated, THEN bytes for `p`, `Delta`, `nghSum`, active frontier, all-vertex frontier, and scratch SHALL be recorded separately. |
+| `PAGERANK-DELTA-003` | WHEN sparse/dense dispatch occurs, THEN each round SHALL record active vertex count, frontier degree sum if available, switch threshold, selected path, and reason. |
+| `PAGERANK-DELTA-004` | WHEN the residual profile stops early, THEN stopping reason SHALL be one of `converged`, `iteration_cap`, `frontier_empty`, `budget_exceeded`, or `oracle_refuted`. |
+| `PAGERANK-DELTA-005` | WHEN compared to full PageRank, THEN receipt SHALL include error/tolerance, rank-order stability if computed, runtime delta, RAM delta, and extra-state cost. |
+| `PAGERANK-DELTA-006` | WHEN residual mode does not beat full mode under the selected budget, THEN the receipt SHALL preserve the negative result instead of silently promoting the profile. |
+
+Rubber-duck warning:
+
+```text
+Residual mode is not "free faster PageRank."
+It owns extra arrays and can be worse on graphs where the active set remains
+large. The profile is valuable only if the receipt proves active work shrank
+enough to pay for the extra state and complexity.
+```
+
+##### SPEC-058-004: `profile_partition_quality_to_latency_v2`
+
+Purpose: make any partition/layout claim prove its effect on downstream work,
+not merely on an abstract quality metric.
+
+Evidence sources:
+
+| Evidence | URL | What It Contributes |
+|---|---|---|
+| CUTTANA paper | https://arxiv.org/abs/2312.08356 | partition quality tied to analytics runtime and graph DB throughput |
+| CUTTANA partitioner | https://github.com/cuttana/cuttana-partitioner | buffer/refine/verify implementation shape |
+| CUTTANA application-study | https://github.com/cuttana/application-study | PowerLyra PageRank/SSSP/CC and JanusGraph/LDBC benchmark shape |
+| Triparts paper | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | algorithm-specific partition objective for triangle/community preservation |
+| Triparts repo | https://github.com/dream-lab/triparts | Bloom/Triangle/High-degree map and sync/lock overhead implementation |
+| TuskFlow paper | https://www.vldb.org/pvldb/vol18/p4777-theodorakis.pdf | workload-pattern partitioning and tail-latency caveats |
+
+Acceptance criteria:
+
+| ID | Executable Requirement |
+|---|---|
+| `PARTITION-LATENCY-001` | WHEN a profile claims partition quality improves performance, THEN it SHALL report partition-build time, partition metadata bytes, algorithm runtime, verification time, total runtime, and amortized runtime for configured reuse count. |
+| `PARTITION-LATENCY-002` | WHEN partition quality is measured, THEN edge cut, communication volume, replication factor, balance/imbalance, and selected profile-specific metric SHALL be recorded where applicable. |
+| `PARTITION-LATENCY-003` | WHEN the workload is PageRank, CC, or SSSP, THEN algorithm runtime SHALL be compared across at least `no_layout`, `baseline_layout`, and `candidate_layout` when feasible. |
+| `PARTITION-LATENCY-004` | WHEN the workload is graph DB traversal/query, THEN throughput and p99/tail latency SHALL be compared, and backend read skew SHALL be recorded if the backend exposes it. |
+| `PARTITION-LATENCY-005` | WHEN a Triparts-like auxiliary state profile runs, THEN Bloom/triangle/high-degree/sketch state bytes, cardinality, sync overhead, lock overhead, and quality delta SHALL be recorded. |
+| `PARTITION-LATENCY-006` | WHEN a workload-pattern partition is selected, THEN dominant pattern, rejected patterns, and partition-build overhead SHALL be recorded. |
+| `PARTITION-LATENCY-007` | WHEN partition-build overhead exceeds downstream savings for the declared reuse count, THEN the profile SHALL be marked `not_promoted_for_this_workload`. |
+| `PARTITION-LATENCY-008` | WHEN graph updates can invalidate the layout, THEN the receipt SHALL name the repartition policy: `none`, `incremental`, `background`, `periodic`, or `manual`. |
+
+Promotion gate:
+
+```text
+candidate_layout may be promoted only if:
+  correctness is confirmed
+  peak RAM is within budget
+  total latency or amortized latency wins beyond deadzone
+  p99/tail is not worse beyond allowed slack
+  partition metadata bytes are inside budget
+  build/repartition policy is declared
+```
+
+##### First Coding Goal Prompt
+
+This is the clean next goal to give Codex when moving from research to code:
+
+```text
+/goal Use docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md, especially
+"Passes 053-057 Executable Spec Spine", and implement the first TDD slice:
+`layout_probe_v1` plus the receipt schema needed by `pagerank_full_edge_map_v1`.
+
+Use verification-first development. Write executable specs/tests first for:
+1. graph shape probe fields,
+2. mandatory mutable-state byte estimates for PageRank,
+3. fail-before-work when RAM cap is impossible,
+4. profile candidate selection with rejected reasons,
+5. receipt serialization with graph identity and invalidation fields.
+
+Do not implement full PageRank yet unless the probe and receipt contracts are
+green. Use codebase-memory/codegraph tools before touching code. Keep the
+implementation small, Rust-idiomatic, and benchmark-phase-aware.
+```
+
 ### Graphiti Shows Profiles Are Already Hiding Inside Agent Memory
 
 The Graphiti source pass makes the architecture lesson concrete. The interesting thing is not just that Graphiti has a graph. It is that its memory graph operations already have implicit profiles:
@@ -7582,6 +7950,31 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 | 518 | https://github.com/GraphBLAS/LAGraph/tree/stable/src/test | Read in pass 055; next reuse checker-suite pattern for executable specs. |
 | 519 | https://github.com/GraphBLAS/GraphBLAS-Pointers | Metadata read in pass 055; next use as GraphBLAS standard/link hub if writing background section. |
 | 520 | https://github.com/SparseLinearAlgebra/spla-bench | Metadata read in pass 055; possible lower-priority benchmark comparison lane. |
+| 521 | https://github.com/ParAlg/gbbs | Read in pass 056; next use as the performance-implementation lane beside LAGraph's oracle lane. |
+| 522 | https://github.com/ParAlg/gbbs/blob/master/README.md | Read in pass 056; next adapt graph-format, compression, mmap, scheduler, and warm/cold disclosure fields into benchmark receipts. |
+| 523 | https://github.com/ParAlg/gbbs/tree/master/benchmarks/PageRank | Read in pass 056; next define the PageRank profile family and fixture commands. |
+| 524 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank.h | Read in pass 056; next draft `pagerank_full_edge_map_v1` state-array and semantics spec. |
+| 525 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank_delta.h | Read in pass 056; next draft `pagerank_residual_delta_v1` with active-set and residual-state receipts. |
+| 526 | https://github.com/ParAlg/gbbs/tree/master/benchmarks/BFS | Read in pass 056; next adapt BFS frontier/parent fixture and output-equivalence checker. |
+| 527 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/BFS/NonDeterministicBFS/BFS.h | Read in pass 056; next use parent-array, atomic update, and sparse/dense flags in `bfs_frontier_parent_v1`. |
+| 528 | https://github.com/ParAlg/gbbs/tree/master/benchmarks/Connectivity | Read in pass 056; next compare ConnectIt, UnionFind, SimpleUnionAsync, LiuTarjan, ShiloachVishkin, and WorkEfficientSDB14 profiles. |
+| 529 | https://github.com/ParAlg/gbbs/tree/master/benchmarks/Connectivity/ConnectIt | Read in pass 056; next define `cc_sampling_pipeline_v1` and sampler metadata. |
+| 530 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/Connectivity/ConnectIt/sampling.h | Read in pass 056; next adapt Afforest-style structure probe into `layout_probe_v1`. |
+| 531 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/Connectivity/UnionFind/union_find_rules.h | Read in pass 056; next define union-find policy and representative-equivalence receipt fields. |
+| 532 | https://github.com/ParAlg/gbbs/tree/master/benchmarks/TriangleCounting | Read in pass 056; next defer as phase-two layout stress profile. |
+| 533 | https://github.com/ParAlg/gbbs/blob/master/benchmarks/TriangleCounting/ShunTangwongsan15/Triangle.h | Read in pass 056; next draft triangle ordering/directed-projection memory spec. |
+| 534 | https://github.com/ParAlg/gbbs/blob/master/gbbs/vertex_subset.h | Read in pass 056; next define frontier representation receipt fields. |
+| 535 | https://github.com/ParAlg/gbbs/blob/master/gbbs/edge_map_data.h | Read in pass 056; next define sparse/dense switch receipts and edgeMap physical path gates. |
+| 536 | https://arxiv.org/abs/2312.08356 | Read in pass 057; next convert CUTTANA's partition-quality-to-workload-latency evidence into `profile_partition_quality_to_latency_v2`. |
+| 537 | https://www.seltzer.com/assets/publications/Cuttana-2024.pdf | Read in pass 057; next use Table 4 and JanusGraph/LDBC sections when drafting benchmark receipt fields. |
+| 538 | https://github.com/cuttana | Read in pass 057; next keep as organization hub for CUTTANA artifact repos. |
+| 539 | https://github.com/cuttana/cuttana-partitioner | Cloned/indexed in pass 057; next draft `profile_cuttana_buffer_refine_v1` from `ogpart`, `refine`, and verify paths. |
+| 540 | https://github.com/cuttana/application-study | Cloned/indexed in pass 057; next mine PowerLyra and JanusGraph scripts when writing graph DB latency benchmark specs. |
+| 541 | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | Read in pass 057; next convert Triparts local-triangle/community-preservation evidence into partition metric selection specs. |
+| 542 | https://github.com/dream-lab/triparts | Cloned/indexed in pass 057; next use `PartitionerThread`, `MultiThreadedMaster`, and `MultiThreadedWorker` when writing auxiliary-state ROI specs. |
+| 543 | https://dblp.uni-trier.de/rec/journals/pvldb/BhootKAJS25.html | Queued in pass 057 as bibliographic cross-check for Triparts metadata. |
+| 544 | https://www.vldb.org/pvldb/vol18/p4777-theodorakis.pdf | Read in pass 057; next keep TuskFlow as graph DB pattern-aware partitioning analogue, not direct OLAP proof. |
+| 545 | https://arxiv.org/abs/1301.5121 | Queued in pass 057; next inspect only if we need older graph database partitioning background. |
 
 ## Product Implications So Far
 
@@ -8145,6 +8538,41 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 558. Add `profile_oracle_checker_suite_v1`: first-class algorithms need exact fixtures, invariant checkers, invalid-input tests, cache-missing tests, and memory-failure gates.
 559. First-kernel correction: implement PageRank first, but implement both `production_correct` and `gap_compatible` modes so the benchmark/reference distinction is honest from day one.
 560. Product principle: GraphBLAS/LAGraph is the math and oracle layer; Knight Bus differentiation remains budget-bounded physical profiles plus proof-carrying receipts.
+561. Add `profile_gbbs_performance_lane_v1`: every first algorithm spec should separate correctness oracle evidence from performance-implementation evidence.
+562. Add `profile_gbbs_fixture_mode_v1`: source format, converted format, mmap/page-cache posture, scheduler, symmetric flag, and warm/cold state belong in benchmark receipts.
+563. Add `profile_frontier_edge_map_v1`: traversal profiles should record frontier count, degree sum, threshold, flags, chosen sparse/dense path, and output-elision mode.
+564. Add `profile_frontier_representation_v1`: dense bitmap, sparse list, data-bearing subset, cached degree sum, conversion count, and bytes are first-class state fields.
+565. Add `profile_sparse_dense_switch_receipt_v1`: if the runtime changes physical traversal mode, the reason and observed values must be visible.
+566. Add `profile_pagerank_frontier_modes_v1`: PageRank needs non-dangling frontier, dangling list, edge-access direction, rank-state arrays, and convergence fields.
+567. Add `profile_personalized_pagerank_mode_v1`: PageRank source seeds require source-set representation, teleport policy, source count, and non-source update rule.
+568. Add `profile_weighted_outdegree_v1`: weighted PageRank must disclose weighted degree cache bytes and zero-weight dangling semantics.
+569. Add `profile_residual_delta_pagerank_v1`: residual PageRank is a separate profile with `Delta`, `nghSum`, `local_eps`, active-set sizes, and dense/sparse rounds.
+570. Add `profile_bfs_nondeterministic_parent_v1`: BFS parent outputs should be checked by invariants unless canonical parent selection is declared.
+571. Add `profile_cc_sampling_pipeline_v1`: connected-components profiles may start with sampler/probe phases, but sample cost and coverage must be explicit.
+572. Add `profile_cc_afforest_probe_v1`: Afforest-style neighbor-round probes can become the first `layout_probe_v1` implementation pattern.
+573. Add `profile_union_find_policy_v1`: CC union-find variants should expose find/compress/unite policy, parent bytes, atomic update policy, and representative checker.
+574. Add `profile_triangle_ordering_policy_v1`: triangle count memory claims are meaningless without ordering method, directed projection bytes, rank/permutation bytes, and intersection work estimate.
+575. Product principle: LAGraph tells us what answer is correct; GBBS tells us what state and frontier machinery serious implementations need; Knight Bus wins by making both proof-carrying and budget-bounded.
+576. Upgrade `profile_partition_quality_to_latency_v1` to `profile_partition_quality_to_latency_v2`: layout quality must be tied to downstream latency, throughput, tail behavior, and amortization, not only edge cut.
+577. Add `profile_cuttana_buffer_refine_v1`: buffer cap, buffered vertices, eviction count, subpartition count, refinement threshold, and independent verification restream belong in the receipt.
+578. Add `profile_graphdb_latency_receipt_v1`: graph DB comparisons need traversal duration, backend read counts, read-skew percentiles, throughput tier, and p99/tail latency.
+579. Add `profile_partition_metric_selection_v1`: the planner must declare the metric a layout optimizes before it runs.
+580. Add `profile_triangle_locality_partition_v1`: triangle/community workloads need local-triangle and community-preservation metrics beside RAM and latency.
+581. Add `profile_auxiliary_state_roi_v1`: Bloom filters, triangle maps, high-degree maps, sketches, and assignment indices must justify their bytes with quality or latency delta.
+582. Add `profile_partition_state_budget_v1`: leader/worker memory, map cardinality, density sensitivity, sync overhead, and lock overhead are first-class partition-state fields.
+583. Add `profile_workload_pattern_partition_v1`: pattern-aware layouts must name the observed query or algorithm family that justified the physical shape.
+584. Add `profile_tail_latency_partition_gate_v1`: if a profile claims latency improvement, p50/p95/p99 or equivalent tail fields must be compared against no-layout and baseline-layout modes.
+585. Add `profile_repartition_policy_v1`: dynamic or append-heavy graphs need explicit incremental, background, periodic, or no-repartition policy.
+586. Add `profile_dataset_scale_sweetspot_v1`: every expensive layout should declare the graph scale and reuse count where it is expected to pay for itself.
+587. Do not treat partitioning as universally good; small one-off jobs may lose once partition-build time is counted.
+588. Use CUTTANA-style analytics plus JanusGraph receipts as a template for total-cost benchmarking, not as a guarantee that Knight Bus wins automatically.
+589. Use Triparts as evidence that algorithm-shaped auxiliary state can be valuable, but only with RAM/overhead kill gates.
+590. Product principle: layout is a reusable economic artifact; it must pay rent in measured downstream cost, and the receipt should prove whether it did.
+591. Passes 053-057 now collapse into a first coding wedge: `layout_probe_v1` before `pagerank_full_edge_map_v1`.
+592. The first PageRank implementation should not start with the kernel; it should start with graph-shape probing, state-byte estimates, fail-before-work admission, and receipt serialization.
+593. `pagerank_full_edge_map_v1` and `pagerank_residual_delta_v1` should be separate profiles over the same logical algorithm so RAM/latency tradeoffs are comparable instead of hidden.
+594. Partitioned layouts should not be promoted by quality metrics alone; promotion requires correctness, peak RAM, total/amortized latency, tail-latency slack, and metadata budget gates.
+595. The next coding prompt should explicitly forbid implementing full PageRank until `layout_probe_v1` and its receipt contracts are green.
 
 ## Next Capture Steps
 

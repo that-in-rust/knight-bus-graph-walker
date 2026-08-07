@@ -2,7 +2,7 @@
 
 - Task: Capture one year of graph technology developers chat URLs and budget-bounded compute insights
 - Created: 2026-08-07 04:36:05Z
-- Updated: 2026-08-07 09:22:55Z
+- Updated: 2026-08-07 09:54:31Z
 - Current Phase: Green
 - Status: active
 
@@ -1247,3 +1247,103 @@ Source-deepening pass on Omnigraph cost gates, traversal dispatch, benchmark hyg
 
 #### Performance/Metrics:
 - Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 051 added Omnigraph operational/cost gate depth and profile verification-spine specs but no older private-chat coverage
+
+### Session: 2026-08-07 09:31:45Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_39: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_omnigraph_cli_server_surface: passing - Read Omnigraph CLI reference, RFC-010/RFC-011, server/policy docs, CLI plane/scope/client source, server handler/query/workload/export source, and CLI/server tests; extracted product/API boundary architecture
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 052 ledger row, Omnigraph CLI/server surface evidence rows, product-boundary synthesis, URL queue through 462, and product implications through 514
+
+#### Current Focus:
+Source-deepening pass on Omnigraph CLI/server product boundaries, stored contracts, admission budgets, actor binding, parity, OpenAPI surface gates, and registry lifecycle; no older X chat date claimed
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- Otherwise convert passes 048-052 into executable specs for capsules, lakehouse graph profiles, cost-slope gates, and CLI/server profile contracts
+- If continuing public-source deepening, inspect Graphiti/AtomicRAG/Harness-G or convert Omnigraph lessons into a first pagerank_lowram_v1 spec
+
+#### Context Notes:
+- Omnigraph CLI/server surfaces teach that low-RAM storage formats need finite access planes, typed stored contracts, visible scope resolution, admission budgets before work, local/server parity, and pinned public API paths.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 052 added Omnigraph CLI/server product-boundary depth and profile contract specs but no older private-chat coverage
+
+### Session: 2026-08-07 09:42:14Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_40: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_low_ram_graph_processing: passing - Read GraphChi, X-Stream, GridGraph, FlashGraph, GAP, GraphIt, SuiteSparse GraphBLAS, and Sage/GBBS sources; extracted bounded-RAM graph profile architecture
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 053 ledger row, low-RAM graph processing evidence rows, synthesis, URL queue through 486, and product implications through 530
+
+#### Current Focus:
+Source-deepening pass on out-of-core/semi-external graph algorithms as prior art for budget-bounded graph compute; no older X chat date claimed
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- Otherwise convert passes 048-053 into executable specs, with first pagerank_lowram_v1 using GAP baseline plus semi-external/streaming profile receipt
+- If continuing public-source deepening, inspect StreamCPI/ADWISE/2PS or GraphBLAS algorithm examples for partition and semiring-specific profile designs
+
+#### Context Notes:
+- Low-RAM graph compute has deep prior art; Knight Bus differentiation is productized per-algorithm storage profiles with receipts, budget admission, and parity/oracle loops.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 053 added bounded-RAM graph-processing prior-art depth but no older private-chat coverage
+
+### Session: 2026-08-07 09:48:23Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_41: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_adaptive_partitioning: passing - Read ADWISE, 2PS, StreamCPI, Buffered Streaming Edge Partitioning, HeiStream, FREIGHT, BuffCut, CUTTANA, and prioritized restreaming sources; extracted partitioning-as-profile architecture
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 054 ledger row, adaptive partitioning evidence rows, partitioning synthesis, URL queue through 498, and product implications through 545
+
+#### Current Focus:
+Source-deepening pass on adaptive/partitioned streaming graph processing as prior art for layout probes, compressed metadata, bounded buffers, and preprocessing-total-cost receipts; no older X chat date claimed
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- Otherwise turn passes 053-054 into executable specs for layout_probe_v1 plus pagerank_lowram_v1 with partition/build/compute/verify cost separation
+- If continuing public-source deepening, inspect GraphBLAS algorithm examples or Triparts/CUTTANA implementation evidence for database-latency partition metrics
+
+#### Context Notes:
+- Partitioning is a first-class profile, not hidden setup: ADWISE/2PS/StreamCPI/HeiStream/BuffCut/CUTTANA show preprocessing can lower total cost only when layout quality, memory, pass count, and amortization are explicit.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 054 added adaptive partitioning and layout-probe prior-art depth but no older private-chat coverage
+
+### Session: 2026-08-07 09:54:31Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_42: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_graphblas_lagraph_oracle: passing - Read LAGraph repo, paper, docs, stable algorithm headers/source, PageRank/BFS/CC/SSSP/Triangle tests, semiring docs, and GAP benchmark README; extracted oracle-lane and profile-checker architecture
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 055 ledger row, GraphBLAS/LAGraph evidence rows, oracle-lane synthesis, URL queue through 520, and product implications through 560
+
+#### Current Focus:
+Source-deepening pass on GraphBLAS/LAGraph as the correctness-oracle layer for budget-bounded algorithm profiles; no older X chat date claimed
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- Otherwise convert passes 053-055 into executable specs for layout_probe_v1 plus pagerank_lowram_v1 with production_correct and gap_compatible modes
+- If continuing public-source deepening, inspect Triparts/CUTTANA database-latency partition metrics or GBBS PageRank/BFS/CC implementations for second oracle lane
+
+#### Context Notes:
+- GraphBLAS/LAGraph should be the math/oracle layer, not the product UX: expose user-readable profiles while receipts keep semiring, mask, cached-property, tolerance, and checker details.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 055 added LAGraph oracle/checker depth but no older private-chat coverage

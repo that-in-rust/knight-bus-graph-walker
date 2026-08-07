@@ -63,6 +63,11 @@ Privacy posture: private chat messages are treated as directional evidence. This
 | 049 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Memvid source: single-file `.mv2` capsule format, embedded WAL, header/footer validation, commit footer scanning, time index track, manifest WAL, graph-aware query planner, graph-filtered hybrid search, bounded deserialization, vector dimension/model identity checks, encryption capsule tests, crash recovery doctor, replay integrity, and single-file integration tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 050 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Omnigraph source/docs: declared cluster model, Lance dataset storage, object-store graph roots, `__manifest` coordination, graph commit/head rows, strict internal-schema strand, branch and merge model, derived index lifecycle, CSR/CSC runtime graph index, LRU cache keyed by physical edge-table identity, partial-index correctness tests, traversal equivalence tests, branch tests, and merge truth-table tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 051 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Omnigraph operational/cost evidence: execution docs, traversal cost model, constants, maintenance/repair/error docs, RFC-013 write-latency analysis, cost harness, write/read cost gates, S3 opener split, phased benchmark contracts, merge cost gates, proptest equivalence, recovery sidecars, failpoint surfaces, and research-blocked RFCs for durable heads, checkpoint retention, lineage merge deltas, and MemWAL ingest | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 052 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Omnigraph CLI/server surface evidence: declared capability planes, scope profiles, one embedded-vs-remote GraphClient split, cluster-only server boot, OpenAPI path gate, typed stored-query catalog, invoke-query double gates, bearer-token actor binding, export transport budget, per-actor admission caps, schema-apply control-plane guard, CLI parity matrix, wrong-plane errors, and cluster apply/status/refresh/reimport lifecycle tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 053 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Low-RAM/out-of-core graph processing evidence: GraphChi parallel sliding windows, X-Stream edge-centric streaming partitions, GridGraph 2D edge blocks and dual sliding windows, FlashGraph semi-external SSD edge lists, GAP benchmark kernels, GraphIt algorithm/schedule split, SuiteSparse GraphBLAS semiring algebra, and Sage PSAM/NVRAM vertex-state model | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 054 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Adaptive/partitioned streaming evidence: ADWISE total-latency partitioning tradeoff, 2PS two-pass clustering before edge partitioning, StreamCPI run-length compressed block assignments, Buffered Streaming/HeiStream/HeiStreamE/FREIGHT batch and hypergraph partitioning, BuffCut priority buffers, CUTTANA database/analytics partition quality, and prioritized restreaming order control | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 055 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GraphBLAS/LAGraph oracle evidence: LAGraph verified-algorithm project, Basic-vs-Advanced cached-property split, PageRank standard vs GAP sink semantics, BFS push/pull vs push-only and valid-parent tests, FastSV/Boruvka connected components, delta-stepping SSSP with min-plus semiring and light/heavy edge split, triangle count method/presort matrix, semiring vocabulary, GAP benchmark harness, and checker functions | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 056 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GBBS performance-lane evidence: active benchmark suite, compressed/binary/mmap graph formats, `vertexSubset` plus `edgeMap` sparse/dense scheduling vocabulary, PageRank full and residual-delta variants, non-deterministic BFS parent frontier loop, ConnectIt sampling/Afforest-style components prepass, union-find path-compression/CAS rules, triangle degree/degeneracy ordering, and progress-reporting phase hooks | Reclaim/open X chat and continue upward from Jun 1 2026 |
 
 ## Current Working Thesis
 
@@ -498,6 +503,27 @@ The group chat is valuable less as "graph database market research" and more as 
 | Aug 7 Omnigraph blocked-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0025-checkpoint-retention.md | ModernRelay / Omnigraph maintainers | Checkpoint-retention RFC keeps checkpoint rows as logical authority and Lance tags as physical pins, but activation is blocked because the proposed in-manifest BTREE access shape failed a history-flat physical-I/O gate. Crash ordering intentionally over-retains, never under-retains. | This teaches a precise retention model for graph-profile artifacts: logical receipt roots and physical storage pins are separate, and cleanup must not destroy reconstructability. | Add `profile_retention_pin_v1`: create physical pins before publishing logical authority; tombstone logical authority before releasing physical pins. | High. RFC read. |
 | Aug 7 Omnigraph blocked-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0027-lineage-merge-deltas.md | ModernRelay / Omnigraph maintainers | Lineage-merge-deltas RFC recommends discovering changed row IDs from storage lineage and fetching wide values only for candidates, but blocks production because live-row version filters remain physical O(rows) without an index/change-feed and deleted rows lack live version columns. | This is exactly how to avoid false O(delta) claims. PageRank/community/profile-update deltas need deletion-delta and candidate-discovery proofs, not just nice metadata. | Add `profile_delta_discovery_gate_v1`: O(delta) claims require insert/update/delete candidate discovery bounded by changed set, with fallback reasons recorded. | Very high. RFC read. |
 | Aug 7 Omnigraph rejected-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0026-memwal-streaming-ingest.md | ModernRelay / Omnigraph maintainers | MemWAL streaming ingest was implemented experimentally and then rejected/removed. The RFC says Lance MemWAL could durably accept per-dataset rows, but graph-level validation, token authority, fold, correction, lifecycle, and cross-dataset publication dominated and created a durability-before-visibility contract the product did not need. | This is an architecture warning: a lower-level storage speedup can lose once product-level graph consistency is counted. | Add `profile_storage_feature_kill_gate_v1`: reject clever substrate features when coordination/validation/visibility cost dominates the promised win. | Very high. RFC read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/reference.md | ModernRelay / Omnigraph maintainers | The CLI reference divides commands into capability families: `any`, `served`, `direct`, `control`, and `local`. Data commands may run served or direct; maintenance is direct-storage only; cluster/policy/query registry commands live on the control plane; local verbs touch only operator config. Wrong-scope flags fail loudly. | This is a product-surface template for Knight Bus. Algorithm profiles should declare where they can run: local capsule, served graph, direct lakehouse maintenance, or control-plane registry. | Add `profile_surface_capability_v1`: every profile verb declares capability, allowed flags, forbidden flags, and remediation text. | Very high. CLI reference read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-011-cli-refactoring.md | ModernRelay / Omnigraph maintainers | RFC-011 says the ontology is `store`, `server`, `cluster`, `catalog`, and `profile`. Addressing is scope plus graph; access path is derived from capability. Profiles are named scope bundles, not mutable execution state. | This maps cleanly to budget-bounded compute: a profile name should bind source scope, default graph, algorithm family, budget mode, exactness mode, and output format without becoming hidden state. | Add `profile_scope_bundle_v1`: profiles are reproducible config bindings; each invocation resolves them fresh and prints the resolved scope. | Very high. RFC read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-010-cli-planes-restructure.md | ModernRelay / Omnigraph maintainers | RFC-010 makes planes explicit because previous CLI behavior silently mixed served data, direct storage, cluster control, and local config. Maintenance commands intentionally have no server counterpart. | Knight Bus should not let high-risk storage/profile maintenance look like an ordinary served query. It should be a privileged direct/control operation with different confirmation, receipts, and failure language. | Add `profile_direct_maintenance_plane_v1`: optimize, rebuild, repair, and cleanup operate on direct profile artifacts and cannot be accidentally sent through the served API. | High. RFC read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/planes.rs | ModernRelay / Omnigraph maintainers | `command_plane` is exhaustive on purpose: adding a command variant fails compile until its plane is declared. `flag_applies` is a single matrix for `--server`, `--cluster`, `--graph`, `--store`, `--as`, and `--profile`. | This is a strong anti-drift pattern for an LLM-coded CLI. New Knight Bus profile commands should fail compilation or spec validation until capability, scope flags, and error text are declared. | Add `profile_command_plane_matrix_v1`: command registration requires capability, accepted flags, rejected flags, and acceptance tests. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/scope.rs | ModernRelay / Omnigraph maintainers | Scope resolution has explicit precedence: primitive address wins, then `--profile` or env profile, then defaults. Store/server/cluster primitives are mutually exclusive; `--graph` is rejected when a store already identifies one graph. | Knight Bus should make run resolution debuggable: "I ran PageRank on exactly this graph snapshot, through this access path, with this actor, budget, and profile." | Add `profile_scope_resolution_receipt_v1`: every run records the pre-resolution flags, final resolved scope, access path, graph id, and budget binding. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/client.rs | ModernRelay / Omnigraph maintainers | `GraphClient` is the one embedded-vs-remote branch point. Command bodies call uniform verbs; a parity matrix compares direct local graph behavior against a spawned server twin. Served writes resolve actor identity from bearer token, not `--as`. | Knight Bus can expose local and server modes without duplicating algorithms if it keeps one command body and one transport split, then proves parity under scrubbed volatile fields. | Add `profile_embedded_remote_parity_v1`: local capsule and served profile runs produce the same logical receipt after volatile fields are scrubbed. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/server.md | ModernRelay / Omnigraph maintainers | The server is cluster-only, routes graph operations under `/graphs/{id}/...`, keeps `/healthz` and `/graphs` flat, quarantines graph-attributed startup failures, and validates stored queries at startup. | Knight Bus should separate operator-owned cluster/catalog state from runtime invocation. The served product should boot from an applied registry, not mutate the registry casually at query time. | Add `profile_cluster_control_apply_v1`: served profile registries are applied through a control-plane revision and read at server boot. | Very high. Server docs read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/policy.md | ModernRelay / Omnigraph maintainers | Policy docs define per-graph actions, server-scoped `graph_list`, actor identity as signed-claim-only, default-deny states, and engine-layer enforcement as defense in depth. | Knight Bus should treat algorithm execution and artifact mutation as policy-bearing actions, especially when a run can expose private graph structure or create expensive durable artifacts. | Add `profile_auth_actor_binding_v1`: remote runs bind actor from credentials only, never request fields, and receipts record the resolved actor. | Very high. Policy docs read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/openapi.rs | ModernRelay / Omnigraph maintainers | OpenAPI tests pin the exact served paths, require OpenAPI 3.1, keep `/openapi.json` unauthenticated, and fail if unexpected paths appear. Export documents every pre-header failure status. | A profile server should not grow accidental endpoints. API surface area is part of verification, especially when agents will call it. | Add `profile_openapi_surface_gate_v1`: public endpoints, methods, auth, and error schemas are pinned by tests with no unexpected paths. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/auth_policy.rs | ModernRelay / Omnigraph maintainers | Auth tests prove protected routes require bearer tokens, multiple tokens map to actors, unknown token is 401, policy denial is 403, and `X-Actor-Id` spoof-up/spoof-down attempts cannot override bearer identity. | Budget-bounded compute has abuse and cost surfaces. The actor who spends memory, writes artifacts, or sees graph topology must be authenticated at the boundary and stamped into the receipt. | Add `profile_auth_spoof_guard_v1`: actor identity for served runs cannot be supplied by headers, query params, or request body. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/queries.rs | ModernRelay / Omnigraph maintainers | Stored queries are a registry of named, parameter-typed `.gq` files. The manifest key must equal the query symbol. Exposed queries claim unique MCP tool names. Type-check breakages block boot; vector params on MCP-exposed queries warn because agents cannot supply raw vectors well. | Knight Bus algorithm profiles should be stored tools: typed parameters, description, instruction, mutation/read classification, budget contract, tool name, validation report, and deploy-time schema check. | Add `profile_stored_contract_v1`: named algorithm contracts are parsed, identity-checked, type-checked, and exposed as tools only when tool-safe. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/handlers.rs | ModernRelay / Omnigraph maintainers | `/query` is read-only and rejects mutation source; `/mutate` is canonical for writes; `/queries/{name}` invokes stored queries through an outer `invoke_query` gate plus inner read/change gate; denied invoke is indistinguishable from missing. Schema apply is disabled on cluster-backed serving after auth, to avoid topology leaks. | Knight Bus should make read, write, profile-build, and registry-mutation boundaries distinct. A user or agent should not accidentally run a mutating expensive profile through a read API. | Add `profile_stored_contract_invoke_v1`: named profile invocations are double-gated where needed and wrong verb/expectation mismatches are typed 400s. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/workload.rs | ModernRelay / Omnigraph maintainers | `WorkloadController` enforces per-actor in-flight request count and byte budget with semaphores and atomic byte accounting. Defaults are 16 in-flight requests and 4 GiB estimated bytes per actor. Rejections map to HTTP 429. | This is almost directly our thesis: budgets belong at admission, not only after the algorithm has already consumed memory. | Add `profile_admission_budget_v1`: run requests reserve memory/spill/concurrency budget before engine work and return typed overload errors. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/export_transport.rs | ModernRelay / Omnigraph maintainers | Export streaming uses two queued chunks, 64 KiB max encoded chunks, 256 KiB per-response reservation, 2 MiB process aggregate queue budget, 250 ms reservation timeout, terminal frames, and disconnect-safe lease ownership. | Large graph-result export should have its own bounded transport envelope. A run can be RAM-bounded internally and still blow up in output buffering unless the transport has a separate budget. | Add `profile_stream_export_budget_v1`: result streaming reserves bounded queue memory, backpressures producers, and reports partial-stream failure honestly. | Very high. Source read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/parity_matrix.rs | ModernRelay / Omnigraph maintainers | The parity matrix runs identical CLI invocations against local direct storage and a spawned remote server twin, scrubs declared volatile fields, and requires exact JSON equality. Known divergences must be listed explicitly. | This is the verification loop for offering both local and server Knight Bus modes. Claims like "same surface area" need parity tests, not vibes. | Add `profile_parity_known_divergence_v1`: local/server differences are scrubbed or declared, never discovered accidentally by users. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_data.rs | ModernRelay / Omnigraph maintainers | CLI data tests pin wrong-plane errors, graph-vs-store contradictions, remote-URI rejection, served-write `--as` rejection, non-local destructive confirmation with `--yes`, cleanup confirmation, profile list/show shape, and embed modes. | Knight Bus should invest early in error text and destructive confirmations. Agent users will misaddress profiles; the tool should teach the right plane without silently doing something expensive. | Add `profile_wrong_plane_error_v1`: every invalid address/flag/profile combination fails before work and names the intended remedy. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_queries.rs | ModernRelay / Omnigraph maintainers | Stored-query CLI tests remove legacy aliases, make aliases own their scope, reject global flags that aliases bind, require cluster scope for `queries validate/list`, and surface `@description`/`@instruction` in human and JSON output. | Algorithm-profile aliases should be convenience handles over explicit stored contracts, not hidden extra addressing. Descriptions and instructions are part of agent usability. | Add `profile_alias_binding_v1`: aliases bind server, graph, profile, algorithm contract, and params while rejecting conflicting global scope flags. | High. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_cluster_e2e.rs | ModernRelay / Omnigraph maintainers | Cluster lifecycle tests cover import, plan, apply, status, refresh, schema change, force-unlock, lost-state reimport, out-of-band drift convergence, graph-root destruction, approval-gated deletion, and payload self-healing. | Knight Bus needs a control-plane lifecycle before many storage innovations land. Registry changes, profile updates, destructive deletes, and drift correction should be planned, applied, approved, and rechecked. | Add `profile_registry_lifecycle_v1`: profile registries have import/plan/apply/status/refresh/approve/reimport flows with digest-backed convergence. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/data_routes.rs | ModernRelay / Omnigraph maintainers | Data-route tests show export returns JSONL, invalid filters fail before success headers, stalled exports refuse a second immutable cut, disconnect releases ownership, canonical `/query` and `/mutate` avoid deprecation headers, aliases advertise deprecation, and per-actor admission returns structured 429 plus `Retry-After`. | Knight Bus should test not just algorithm output but request lifecycle: pre-header failures, body polling order, disconnect cleanup, canonical vs deprecated routes, and overload semantics. | Add `profile_request_lifecycle_gate_v1`: profile endpoints prove pre-effect authorization, pre-header validation, overload headers, and disconnect cleanup. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/schema_routes.rs | ModernRelay / Omnigraph maintainers | Schema-route tests prove cluster-backed schema apply denies unauthorized actors with 403 before returning the authorized 409, rejects stored-query breakage before publishing, keeps the graph unchanged, and avoids implicit physical index convergence. | A profile registry change must validate every dependent stored algorithm before publication and should not secretly rebuild heavy physical layouts in the schema/control path. | Add `profile_schema_registry_guard_v1`: schema/profile changes reject dependent-profile breakage before publish and leave physical rebuild to explicit maintenance. | Very high. Test read. |
+| Aug 7 Omnigraph CLI/server source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/multi_graph.rs | ModernRelay / Omnigraph maintainers | Multi-graph tests include a concurrent branch-ops morphological matrix and server cluster boot behavior: same/different merge targets, merge vs change, branch create/delete interactions, reopen consistency, closed-by-default graph listing, process export queue budget, quarantine, and cluster boot refusals. | Knight Bus should test algorithm/profile operations as operation-pair matrices. Concurrency bugs often hide in interactions, not individual verbs. | Add `profile_operation_matrix_v1`: branch/profile build/export/delete/merge/update pairs have named success, conflict, quarantine, or unsupported outcomes. | Very high. Test read. |
 | Aug 7 GHCLI ecosystem pass on taOSmd | https://github.com/jaylfc/taosmd | jaylfc / taOSmd maintainers | GHCLI metadata: Python primary language, 72 stars, 3 forks, pushed Aug 2 2026, updated Aug 4 2026. README describes local-first AI memory that runs offline on 8 GB+ RAM, keeps a zero-loss append-only archive, derives searchable memory from that archive, verifies extracted facts against source text, and reports LongMemEval-S Recall@5 and stricter end-to-end judge numbers separately with methodology caveats. | Extremely relevant to our PMF. It makes local/offline/8 GB memory a real product posture and explicitly separates retrieval metrics from generation/judge metrics. | Use taOSmd as a benchmark-honesty and local-hardware model: receipts must keep retrieval, generation, judge, hardware tier, model profile, and unsupported-fact rate separate. | High for repo/README claims; performance still repo-claimed. |
 | Aug 7 taOSmd benchmark source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | jaylfc / taOSmd maintainers | Benchmark notes separate LongMemEval-S retrieval-only Recall@5 from stricter end-to-end Judge metrics. They also record a previous mislabeling of retrieval as Judge and a judge-parser correction where `INCORRECT` had been vulnerable to substring scoring as `CORRECT`. | This is a direct warning for Knight Bus. A graph profile cannot conflate retrieval, algorithm output, answer generation, judge behavior, and product utility. | Add `local_memory_receipt_v1` with separate sections for retrieval score, generated answer score, judge family, parser version, hardware tier, model/quant, RAM cap, and unsupported fact rate. | High. Raw benchmark doc read. Metrics are repo-claimed until replicated. |
 | Aug 7 taOSmd benchmark source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | jaylfc / taOSmd maintainers | LoCoMo notes emphasize full 1540 QA validation, tri-judge reporting, MaxSim plus rerank recipes, and local/small-model tiers including 4 GB, 8 GB, 12 GB GPU, and Orange Pi NPU posture. The doc explicitly marks some hardware numbers as measured and some as extrapolated or queued. | This is the closest public pattern to our bounded local compute thesis: different profiles produce different quality, RAM, latency, and hardware tradeoffs, and the document keeps those tradeoffs visible. | Knight Bus receipts should label every row as measured, extrapolated, queued, failed, or invalid. RAM-bound modes should never hide quality loss. | High for methodology. Exact performance requires independent rerun. |
@@ -567,6 +593,60 @@ The group chat is valuable less as "graph database market research" and more as 
 | Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/executor.py | KumihoIO Revka maintainers | The executor persists checkpoints, reloads failed or paused runs, sweeps terminal checkpoints after retention, enforces max total time and cost guards, observes cancellation, handles human approval pauses, persists workflow state after waves, supports retries, records result status, and supports parallel join strategies. | This supplies the operational shape for long graph jobs: they must be resumable, cancellable, bounded, and externally inspectable. | Knight Bus graph jobs should checkpoint phase state, persist terminal state outside disposable caches, expose cancel and resume, enforce cost/RAM/time guards, and record wave-level progress. | High. GHCLI source read. |
 | Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/run_log.py | KumihoIO Revka maintainers | RunLog writes append-only JSONL per agent with timestamps, tool calls, args/results, shell commands, exit codes, stdout/stderr tails, files touched, reasoning, assistant messages, errors, lifecycle failures, prompts, status, token usage, and cost. It is persistent and queryable after completion, unlike capped in-memory event buffers. | This is the audit format analogue for graph compute receipts. | Knight Bus should create append-only run-event logs containing source frontiers, artifact hashes, slabs loaded, spill events, verifier outcomes, fallback/switch decisions, RAM counters, and terminal status. | High. GHCLI source read. |
 | Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/tool_handlers/workflow_revisions.py | KumihoIO Revka maintainers | Workflow revision operations are applied as structured ops such as add, edit, delete, reorder, wire, unwire, parallel insert/extract, and rename. Every change produces a new Kumiho revision rather than editing in place, and failed ops return typed skipped reasons like step_not_found, duplicate_id, cycle_detected, reference_broken, or validation_failed. | This is exactly how profile evolution should work: structured mutations, new immutable versions, and typed repair feedback. | Knight Bus profile updates should be revision-native and op-based; failed profile edits should return typed reasons agents can fix, not raw parser errors. | High. GHCLI source read. |
+| Aug 7 low-RAM graph processing source deepening | https://www.usenix.org/conference/osdi12/technical-sessions/presentation/kyrola | Aapo Kyrola, Guy Blelloch, Carlos Guestrin / GraphChi | GraphChi frames single-machine disk-based processing of billion-edge graphs around parallel sliding windows. The paper motivation distinguishes mutable vertex values from much larger edge/topology storage and argues that the window schedule minimizes non-sequential disk access. | This is direct prior art for the Knight Bus thesis: lower RAM is plausible when the algorithm can keep small mutable state in memory and scan or window the edge store predictably. | Add `profile_parallel_sliding_windows_v1`: vertex-interval shards, source-cut manifest, pass-count receipt, non-sequential-read counter, and exactness oracle against an in-memory baseline. | Very high. Primary paper page and PDF read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/GraphChi/graphchi-cpp | GraphChi maintainers | The C++ repository describes GraphChi as "Big Data - small machine" and is a historical implementation reference rather than a modern active dependency. | Historical repos are valuable for physical ideas, preprocessing formats, and test datasets, but they should not become the core dependency path for a new Rust product. | Add `profile_legacy_reference_caution_v1`: every legacy architecture reference gets an activity/reproducibility note before it is treated as a build base. | Medium. GHCLI metadata checked. |
+| Aug 7 low-RAM graph processing source deepening | https://dl.acm.org/doi/10.1145/2517349.2522740 | Amitabha Roy, Ivo Mihailovic, Willy Zwaenepoel / X-Stream | X-Stream uses edge-centric scatter-gather with streaming partitions. It accepts unordered edge lists, keeps vertex state in memory, and turns graph computation into sequential scans over edges and updates. Its paper reports large-scale WCC runs in both RAM and SSD/disk modes. | This validates an alternate low-RAM profile family: do not preserve adjacency locality if the algorithm can be expressed as repeated edge-stream passes. | Add `profile_edge_stream_partition_v1`: edge-stream partitions, update streams, vertex-state bytes, pass count, scanned-edge bytes, spill files, and deterministic reducer receipts. | High. Primary DOI plus PDF source read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/bindsch/x-stream | X-Stream maintainers | The repository identifies itself as an edge-centric graph processing system using streaming partitions, but it is small and historically quiet. | Use the code to understand file format and phase structure, while treating modern Rust implementation and current benchmark harnesses as separate work. | Keep X-Stream as a reference pattern for streaming partitions, not as a direct runtime dependency. | Medium. GHCLI metadata checked. |
+| Aug 7 low-RAM graph processing source deepening | https://www.usenix.org/conference/atc15/technical-session/presentation/zhu | Xiaowei Zhu, Wentao Han, Wenguang Chen / GridGraph | GridGraph combines 1D vertex chunks with 2D edge blocks, then uses dual sliding windows and selective scheduling so active-set shrinkage can skip irrelevant edge blocks. The paper's key move is to make the layout match streaming apply and block-level activity. | This is closer to a product-grade budget mode than a pure stream: it gives an admission planner a visible block matrix and a way to justify skipped work. | Add `profile_grid_block_schedule_v1`: block matrix manifest, active-block bitmap, skipped-block receipt, dual-window byte counters, and fallback to full scan when activity metadata is stale. | Very high. Primary paper page and PDF read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/thu-pacman/GridGraph | GridGraph maintainers | The GridGraph repository describes out-of-core graph processing on a single machine and remains a compact implementation reference for block-based layouts. | Its usefulness is architectural: block construction, active scheduling, and reproducible examples are more important than copying implementation details. | Add a small GridGraph-inspired fixture where the same graph runs full-block and active-block modes and proves identical output. | Medium-high. GHCLI metadata checked. |
+| Aug 7 low-RAM graph processing source deepening | https://www.usenix.org/conference/fast15/technical-sessions/presentation/zheng | Da Zheng and coauthors / FlashGraph | FlashGraph is semi-external: vertex state stays in RAM while edge lists live on SSD. It emphasizes selective edge-list access, merged I/O requests, overlap between computation and I/O, and paper-reported BFS over 129B edges using 22 GB memory. | This is the strongest "GB not TB" signal, with the caveat that vertex state must fit and the hardware/storage assumptions matter. | Add `profile_semi_external_ssd_v1`: edge-list fetch queues, merged I/O receipts, vertex-state budget, SSD/NVMe backend class, frontier access pattern, and cache-hit counters. | Very high. Primary paper page and PDF read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/sbeamer/gapbs | Scott Beamer / GAP Benchmark Suite maintainers | GAPBS provides optimized baseline kernels for BFS, SSSP, PageRank, Connected Components, Betweenness Centrality, and Triangle Counting. Its README is unusually honest about full benchmark build costs, including large disk and RAM needs. | This should become the first verification spine for algorithm choice: not all graph algorithms matter equally, and these six kernels cover the core systems shapes we need to prove. | Add `profile_gap_kernel_baseline_v1`: use GAP inputs/oracles where possible and report setup, graph build, measured run, verification, peak RSS, and output hash separately. | Very high. Repository docs and metadata read. |
+| Aug 7 low-RAM graph processing source deepening | https://arxiv.org/abs/1805.00923 | Yunming Zhang, Mengjiao Yang, Riyadh Baghdadi, Shoaib Kamil, Julian Shun, Saman Amarasinghe / GraphIt | GraphIt separates algorithm definition from scheduling decisions such as direction, layout, parallelization, cache, NUMA, and fusion. Its paper reports strong results against shared-memory graph frameworks. | This is a conceptual key for Knight Bus: the user-visible algorithm should be stable while storage/schedule profiles vary by budget and hardware. | Add `profile_algorithm_schedule_split_v1`: logical algorithm contract, physical schedule contract, schedule-legal proof, output parity gate, and schedule-specific metric receipt. | Very high. Primary arXiv page and project docs read. |
+| Aug 7 low-RAM graph processing source deepening | https://graphit-lang.org/ | GraphIt authors and maintainers | The public site reinforces the same split: describe graph algorithms separately from performance engineering choices. | Knight Bus can productize this as a planner UX: "same PageRank, different schedule/storage profile, different RAM/time envelope." | Make profile manifests separate `algorithm`, `storage`, `schedule`, `budget`, `exactness`, and `verification` sections. | High. Public project page read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/GraphIt-DSL/graphit | GraphIt maintainers | The GraphIt repository is a useful compiler/scheduling reference, but its most important lesson is the contract boundary rather than the concrete language. | The Knight Bus implementation can be Rust-native while borrowing the algorithm/schedule separation as product grammar. | Add GraphIt to the "compiler/planner inspiration" lane, not the runtime dependency lane. | Medium-high. GHCLI metadata checked. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/DrTimothyAldenDavis/GraphBLAS | Timothy A. Davis / SuiteSparse GraphBLAS maintainers | SuiteSparse GraphBLAS implements graph algorithms as sparse linear algebra over semirings and is active. Its README presents it as a complete GraphBLAS implementation used in serious production contexts. | GraphBLAS gives Knight Bus a correctness/oracle language for PageRank, BFS, CC, triangle-like kernels, and algebraic receipts. It also keeps us honest when custom storage formats drift from graph math. | Add `profile_semiring_reference_lane_v1`: every eligible algorithm profile gets a semiring formulation, reference output path, and tolerance/hash rule. | Very high. Repository docs and metadata read. |
+| Aug 7 low-RAM graph processing source deepening | https://graphblas.org/ | GraphBLAS Forum | The GraphBLAS Forum defines graph algorithms in the language of linear algebra, with building blocks rather than one-off graph APIs. | This is the right abstraction for verification-first coding: even if the fast path is custom, the proof path can often be algebraic. | Keep GraphBLAS in the verification lane and use it to name semirings, masks, accumulators, and matrix/vector contracts in specs. | High. Public standard/forum page read. |
+| Aug 7 low-RAM graph processing source deepening | https://www.vldb.org/pvldb/vol13/p1598-dhulipala.pdf | Laxman Dhulipala, Charles McGuffey, Hongbo Kang, Yan Gu, Guy E. Blelloch, Phillip B. Gibbons, Julian Shun / Sage | Sage's PSAM model stores the graph read-only in non-volatile memory while keeping mutable state proportional to vertices in DRAM. It implements 18 graph problems and reports near-DRAM performance on a very large Hyperlink2012 graph under the paper's Optane setup. | This is the cleanest theory-to-systems template for bounded-RAM Knight Bus: make edges/topology mostly immutable, keep mutable state small, and avoid writes to the huge structure. | Add `profile_vertex_state_edge_stream_v1` and `profile_write_avoidance_v1`: mutable-state formulas, read-only edge store checks, edge-write prohibition, and exceptions for algorithms needing edge bits. | Very high. Primary PVLDB PDF read. |
+| Aug 7 low-RAM graph processing source deepening | https://paralg.github.io/gbbs/docs/sage/sage/ | ParAlg / GBBS maintainers | The Sage documentation points into GBBS-style implementations for semi-asymmetric graph processing and large benchmark-oriented graph algorithms. | GBBS/Sage should be a reference implementation family for algorithms and evaluation choices, not a replacement for our product surface. | Add `profile_gbbs_reference_oracle_v1`: choose small extractable reference kernels and compare on generated adversarial graphs before benchmarking large inputs. | High. Public docs read. |
+| Aug 7 low-RAM graph processing source deepening | https://github.com/ParAlg/gbbs | ParAlg maintainers | GBBS is an active graph benchmark/codebase around shared-memory and semi-asymmetric graph processing ideas. | The practical use is to mine tests, datasets, and algorithm variants for our first verification suite. | Read GBBS PageRank, BFS, CC, and triangle code only when writing the corresponding Knight Bus executable spec. | Medium-high. GHCLI metadata checked. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/1712.08367 | Christian Mayer, Ruben Mayer, Muhammad Adnan Tariq, Heiko Geppert, Larissa Laich, Lukas Rieger, Kurt Rothermel / ADWISE | ADWISE argues that minimizing partitioning latency alone is the wrong objective; total graph-analysis latency is partitioning latency plus processing latency. Its adaptive window chooses edges from a runtime-sized candidate window and reports 23-47% lower total latency versus state of the art in its evaluation. | This is a crisp product lesson: Knight Bus should optimize end-to-end run cost, not only hot algorithm time. Spending more preprocessing can be rational if it shrinks repeated graph-processing cost and stays within a budget. | Add `profile_preprocess_total_cost_v1`: every profile receipt separates partition/build/preprocess time from compute time and reports whether preprocessing was amortized over one run or many. | Very high. arXiv page and PDF text extracted. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2001.07086 | Ruben Mayer, Kamil Orujzade, Hans-Arno Jacobsen / 2PS | 2PS addresses early-stream ignorance by making one lightweight streaming clustering pass, then re-streaming the graph so edge partitioning can use the cluster map. The paper claims replication-factor quality comparable to heavyweight random-access partitioners with orders-of-magnitude lower memory overhead. | This is the planner version of "look before you leap": one cheap structural pass can buy a much better physical layout without loading the whole graph. | Add `profile_two_pass_structure_probe_v1`: first pass computes a bounded cluster/summary sketch; second pass materializes partitions and records the summary bytes, pass count, and replication-factor estimate. | Very high. arXiv page and PDF text extracted. |
+| Aug 7 adaptive partitioning source deepening | https://github.com/mayerrn/two_phase_streaming | Ruben Mayer / Two-Phase Streaming maintainers | The repo describes an out-of-core edge partitioner and exposes practical knobs such as partition count, prepartitioner type, HDRF scoring, shuffle, memory chunk size, balance ratio, stream clustering iterations, and stats flags. It notes that stats printing itself can increase runtime and memory. | This is a receipt-design gem: even observability has a memory and runtime cost. Benchmark mode and proof mode may need different settings. | Add `profile_observability_overhead_v1`: every metric family should be tagged as always-on, benchmark-only, debug-only, or proof-only with its own RAM/time overhead. | High. GitHub README and metadata read. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2410.07732 | Adil Chhabra, Florian Kurpicz, Christian Schulz, Dominik Schweisgut, Daniel Seemaier / StreamCPI | StreamCPI reduces streaming partitioner memory by run-length compressing block assignments and modifying an LA-vector bit vector for append support. The paper reports Fennel partitioning of a 17B-node, 1.03T-edge graph on a Raspberry Pi with better quality than Hashing. | This is strong evidence that "metadata shape" matters as much as edge shape. The partition index itself can dominate memory unless compressed around repeated assignment runs. | Add `profile_compressed_assignment_index_v1`: block/partition assignment arrays must be budgeted, compressible, appendable, and validated against an uncompressed fixture. | Very high. arXiv page and PDF text extracted. |
+| Aug 7 adaptive partitioning source deepening | https://github.com/KaHIP/CompressedStreamingGraphPartitioning | KaHIP maintainers / StreamCPI | The repo provides StreamCPI as a C++20 CLI with run-length compressed partition indices, modified Fennel scoring, batch-wise compression, external-memory priority queue support, FlatBuffer result logs, streaming graph generation, and compression modes including uncompressed vector, full RLE, external PQ, and batch-wise compression. | This is immediately useful for Knight Bus profile UX: expose compression mode as a declared physical profile, not a hidden optimization. | Add `profile_assignment_compression_mode_v1`: profile manifests declare `uncompressed`, `full_rle`, `batch_rle`, or `external_pq` style index modes and record the selected mode in receipts. | High. GitHub README, GHCLI metadata, and topics checked. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2402.11980 | Adil Chhabra, Marcelo Fonseca Faraj, Christian Schulz, Daniel Seemaier / Buffered Streaming Edge Partitioning | The paper introduces HeiStreamE and FreightE. HeiStreamE uses an adapted Split-and-Connect graph model plus Fennel-based multilevel partitioning, while FreightE partitions a hypergraph representation. The abstract stresses linear time/memory dependency on graph size without dependency on partition-block count and better memory behavior when edges greatly outnumber vertices. | This expands the storage menu: some graph workloads should be treated as hypergraph partitioning problems, and block-count dependence must be an explicit cost term. | Add `profile_hypergraph_partition_mode_v1` and `profile_block_count_independence_gate_v1`: when a profile claims block-count independence, sweep `k` and prove memory/time slope. | Very high. arXiv page and PDF text extracted. |
+| Aug 7 adaptive partitioning source deepening | https://github.com/KaHIP/HeiStream | KaHIP maintainers / HeiStream | HeiStream exposes batch size, priority buffer size, optional parallel pipeline, edge-partitioning mode, restreaming passes, streamed output to avoid O(m) overhead, benchmark mode, profiling for IO/model/postprocess/buffer/partition timings, and FlatBuffer logs. | This is close to a Knight Bus command grammar: batch, buffer, passes, streamed output, benchmark mode, and profiling should all be profile-visible knobs with stable receipts. | Add `profile_priority_buffer_batch_v1`: bounded buffers and batch sizes become first-class budget parameters, with receipts for IO/model/buffer/partition timings. | Very high. GitHub README and GHCLI metadata read. |
+| Aug 7 adaptive partitioning source deepening | https://github.com/KaHIP/FREIGHT | KaHIP maintainers / FREIGHT | FREIGHT is a streaming hypergraph partitioner based on Fennel. Its README exposes graph and hypergraph partitioning CLIs, connectivity/cut-net metrics, restream passes, optional RAM streaming, output suppression, and a two-pass low-memory converter from hMETIS to node-centric net-list format. | Hypergraph mode is relevant for property-graph OLAP when a "relationship" or n-ary event is better modeled as a net than as many pairwise edges. | Add `profile_netlist_projection_v1`: provide a low-memory projection from property graph events to graph or hypergraph net-list, with metric choice and conversion pass count in the receipt. | High. GitHub README and GHCLI metadata read. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2602.21248 | Linus Baumgaertner, Adil Chhabra, Marcelo Fonseca Faraj, Christian Schulz / BuffCut | BuffCut uses a bounded priority buffer to delay poorly informed assignments under adversarial stream order, builds high-locality batches, and then applies multilevel partitioning. Its abstract reports fewer edge cuts, faster runtime, and lower memory than prioritized-buffering baselines. | This gives Knight Bus a very usable planner heuristic: when stream order is adversarial, spend a bounded buffer to recover locality before committing physical layout. | Add `profile_adversarial_stream_guard_v1`: profile receipts record stream-order risk, priority-buffer size, delayed-decision count, and locality recovery score. | High. arXiv page and HeiStream repo reference read. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2312.08356 | Milad Rezaei Hajidehi, Sraavan Sridhar, Margo Seltzer / CUTTANA | CUTTANA connects partitioning quality directly to graph analytics and distributed graph-database latency. The abstract reports up to 59% analytics runtime improvement versus streaming partitioners and up to 23% higher graph-database query throughput without hurting tail latency. | This is the strongest bridge back to Neo4j-family concerns: partitioning is not only preprocessing purity; it can change database query throughput and analytics latency. | Add `profile_partition_quality_to_latency_v1`: if we claim a partition helps, benchmark both algorithm latency and query/traversal latency, with edge-cut and communication-volume metrics. | Very high. arXiv page read. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2102.09384 | Marcelo Fonseca Faraj, Christian Schulz / Buffered Streaming Graph Partitioning | This paper formalizes buffered streaming as the middle ground between low-memory one-pass streaming and high-quality in-memory multilevel partitioning. It stores a small batch before assignment, builds a model graph, and reports much better partitions than Fennel using small buffers. | This validates a general Knight Bus pattern: bounded delay can improve quality without abandoning memory constraints. | Add `profile_bounded_delay_quality_v1`: every delayed-assignment profile records buffer bytes, delayed items, quality improvement, and maximum added wall-clock delay. | High. arXiv page read. |
+| Aug 7 adaptive partitioning source deepening | https://arxiv.org/abs/2007.03131 | Amel Awadelkarim, Johan Ugander / Prioritized Restreaming | Prioritized restreaming combines restreaming, balanced label propagation, multiplicative-weights constraint management, and priority-based stream ordering. The authors report that dynamic ordering by ambivalence performs broadly best, with degree order close behind. | This is useful for "predictability" rather than only performance: the same edge stream can yield different partitions, so ordering policy must be declared and reproducible. | Add `profile_stream_order_policy_v1`: profile manifests declare source order, degree order, ambivalence/dynamic order, random seed, and restream count. | High. arXiv page read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph | GraphBLAS/LAGraph contributors | LAGraph describes itself as a library plus test harness for collecting algorithms that use GraphBLAS, with stable source algorithms for BFS, connected components, centrality, PageRank, SSSP, and triangle counting. Repo metadata shows active development on the `stable` branch. | This is the best near-term oracle lane: use LAGraph to define graph math and correctness checks while Knight Bus experiments with lower-RAM physical profiles. | Add `profile_lagraph_oracle_lane_v1`: each first algorithm profile names a LAGraph or GraphBLAS reference path, fixture, tolerance/hash, and known semantic divergences. | Very high. README, source tree, and GHCLI metadata read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/papers/lagraph-grapl19.pdf | Tim Mattson, Timothy A. Davis, Manoj Kumar, Aydin Buluc, Scott McMillan, Jose Moreira, Carl Yang / LAGraph paper | The GrAPL 2019 paper frames LAGraph as the next phase after the GraphBLAS C API: collect high-level graph algorithms on top of GraphBLAS and move toward verified production-worthy code. | This validates the "verification first, storage second" architecture: custom physical modes still need a stable mathematical reference. | Treat LAGraph not as UI inspiration but as the algebraic verification substrate for profile correctness and regression tests. | High. Paper PDF text extracted. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://lagraph.readthedocs.io/en/latest/intro.html | LAGraph documentation authors | The docs explain that GraphBLAS gives sparse-matrix objects and algebraic semirings, while LAGraph adds high-level graph algorithms. It also says cached graph properties such as transposes can use extra storage but may more than repay the cost across workflows. | This gives a precise vocabulary for Knight Bus reusable layouts: cached derived properties are paid memory trades, not free acceleration. | Add `profile_cached_property_contract_v1`: every cached transpose/degree/symmetry/layout artifact records build cost, memory cost, invalidation rule, and reuse count. | Very high. Local docs and README read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/include/LAGraph.h | LAGraph maintainers | LAGraph splits Basic APIs that compute needed cached properties from Advanced APIs where the caller must precompute them. Advanced BFS, PageRank, SSSP, CC, Betweenness, and TriangleCount have explicit preconditions and typed error returns. | This is exactly how Knight Bus should expose profiles: simple safe mode for normal users, advanced mode for profile authors who pin derived artifacts and budgets. | Add `profile_basic_advanced_contract_v1`: Basic mode may build/cache artifacts with receipts; Advanced mode requires artifact preconditions and fails closed if absent. | Very high. Header API comments read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRank.c | Timothy A. Davis and Mohsen Aznaveh / LAGraph | Production PageRank requires `G->AT` and `G->out_degree`, handles sinks correctly, maintains centrality sum, tracks convergence with an L1-like difference, and returns convergence failure if iteration cap is exceeded. | PageRank exactness is not one thing. Sink semantics, tolerance, iteration cap, transpose availability, and degree cache are part of the contract. | Add `profile_pagerank_semantics_v1`: receipt names sink handling, damping, tolerance, itermax, iterations used, rank-sum check, transpose source, and degree-cache identity. | Very high. Source and tests read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRankGAP.c | Timothy A. Davis and Mohsen Aznaveh / LAGraph | GAP-style PageRank intentionally does not handle sinks and is marked benchmark-only. The tests show this can be expected to be wrong on a directed example with sink nodes while standard PageRank matches the reference. | Benchmark compatibility and production semantics can conflict. A profile must declare which truth it is optimizing for. | Add `profile_benchmark_semantic_mode_v1`: separate `gap_compatible` from `production_correct` modes and require explicit warnings for semantic shortcuts. | Very high. Source and test read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_BreadthFirstSearch.c | Scott McMillan / LAGraph | BFS dispatches to a SuiteSparse push/pull method when extensions and cached `AT/out_degree` are available, otherwise to a push-only vanilla GraphBLAS method. Outputs may include level, parent, or both. | This is a ready-made physical-mode split for Knight Bus traversal profiles: push-only lower-prep mode versus push/pull higher-cache mode. | Add `profile_bfs_push_pull_mode_v1`: profile receipts declare push-only or push/pull, frontier policy, cache preconditions, output mode, and level/parent validity checks. | Very high. Source and docs read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_BreadthFirstSearch.c | Scott McMillan, Timothy A. Davis / LAGraph tests | BFS tests recognize that multiple parent vectors can be valid, verify levels exactly, use `LG_check_bfs`, test invalid sources and null-output errors, and exercise extended max-level/destination termination. | This is a subtle verification lesson: some graph outputs are equivalence classes, not one canonical vector. | Add `profile_output_equivalence_checker_v1`: BFS-like profiles verify invariants/equivalence, not byte-identical parent vectors unless canonicalization is declared. | Very high. Test source read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_ConnectedComponents.c | Timothy A. Davis and contributors / LAGraph | Connected Components dispatches to FastSV under SuiteSparse GraphBLAS or Boruvka otherwise, requires undirected/symmetric structure, and returns a dense component vector where isolated nodes form their own components. | CC is a strong first low-RAM candidate because correctness can be checked by component invariants even if representative IDs differ by implementation. | Add `profile_cc_component_invariant_v1`: verify density, representative validity, edge endpoints in same component, isolated-node semantics, and representative canonicalization if needed. | High. Source and tests read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_SingleSourceShortestPath.c | Jinhao Chen, Scott Kolodziej, Timothy A. Davis / LAGraph | SSSP uses delta stepping with min-plus semirings, separates light and heavy edge matrices (`AL` and `AH`), supports numeric weight types, requires/uses `emin` for negative-edge checks, and notes that constructing `AH` can be a major cost. | Weighted graph profiles need more than topology. Weight type, delta, min-plus semiring, light/heavy edge layout, negative weights, and construction cost all affect memory and latency. | Add `profile_sssp_delta_light_heavy_v1`: receipt reports delta, weight type, min/max edge bound, AL/AH materialization bytes, negative-edge policy, and check oracle. | Very high. Source and tests read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_TriangleCount.c | Timothy A. Davis / LAGraph | TriangleCount exposes Burkhardt, Cohen, and Sandia variants, plus presort modes. It requires symmetric structure, no self edges, out-degree cache for auto-sort, materializes L/U triangular matrices, and returns the chosen method/presort. | Triangle counting should come later because it is a storage-layout stress test: L/U materialization and degree ordering can dominate RAM. | Add `profile_triangle_method_presort_v1`: method, presort, L/U bytes, self-edge policy, symmetry proof, and degree-order rule must be visible. | Very high. Source and tests read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/rtdocs/utils.rst | LAGraph documentation authors | LAGraph documents reusable semiring families such as `plus_first`, `plus_second`, `plus_one`, and `any_one`, with the docs calling `any_one` useful for unweighted structure-only algorithms. | Semiring choice is the machine-checkable grammar behind profile correctness. | Add `profile_semiring_manifest_v1`: each oracle-backed profile names semiring, mask, accumulator, descriptor/transpose choice, and value-vs-structure semantics. | Very high. Docs read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/blob/stable/src/benchmark/README.md | LAGraph maintainers | LAGraph's GAP benchmark README separates MatrixMarket loading from binary `.grb` conversion and warns that full GAP benchmarking needs a large filesystem; it also distinguishes push/pull and push-only BFS variants. | Benchmark harnesses must isolate input decoding, binary conversion, algorithm runtime, and output verification. Otherwise the storage story gets muddied. | Add `profile_input_format_phase_v1`: receipts separate source decoding, binary/cache conversion, derived layout build, measured algorithm, and verification phases. | High. Benchmark README read. |
+| Aug 7 GraphBLAS/LAGraph oracle source deepening | https://github.com/GraphBLAS/LAGraph/tree/stable/src/test | LAGraph maintainers | The stable test suite includes standalone checkers for BFS, CC, SSSP, and triangle count, PageRank MATLAB-reference arrays and convergence failure tests, cached-property tests, graph validation tests, and brutal malloc tests. | This is the shape of the first Knight Bus verification suite: exact tests, invariant checkers, error-mode tests, cache/invalidation tests, and allocation-failure tests. | Add `profile_oracle_checker_suite_v1`: every first-class algorithm gets exact fixture outputs, invariant checkers, invalid-input tests, cache-missing tests, and memory-failure gates. | Very high. Test tree and targeted files read. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs | ParAlg / GBBS maintainers | GBBS is an active MIT-licensed C++ Graph Based Benchmark Suite. GH metadata captured default branch `master`, 226 stars, 64 forks, and recent push date `2026-06-02T15:15:51Z`. A codebase-memory index over the clone produced 3,175 nodes and 10,781 edges, with benchmark packages for PageRank, BFS, Connectivity, TriangleCounting, SSSP, centrality, clique/cycle counting, k-core, maximal independent set, and more. | GBBS should be the performance-implementation lane beside LAGraph's oracle lane. It tells us what high-performance shared-memory graph code materializes, which modes it switches between, and which state arrays need budget receipts. | Add `profile_gbbs_performance_lane_v1`: first algorithm specs cite both an oracle lane and a performance-implementation lane, with separate semantic and physical evidence. | Very high. GHCLI metadata, source tree, and codebase-memory architecture/index read. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/README.md | GBBS maintainers | GBBS supports uncompressed Ligra-compatible adjacency graphs, bytePDA compressed graphs, binary CSR-like on-disk graphs, Bazel/Make builds, Homegrown/Cilk/OpenMP/serial scheduler modes, symmetric graph flags, `-c` compressed input, `-b` binary input, and mmap behavior. Its README explicitly warns that mmap/page-cache state affects first-run versus warm-run performance. | This is benchmark-disclosure gold. Graph input format, compression, binary conversion, mmap, page cache, scheduler, symmetric flag, and run-count all affect claimed RAM and latency. | Add `profile_gbbs_fixture_mode_v1`: benchmark receipts declare source format, converted format, mmap/page-cache posture, scheduler, symmetric/directed flag, and warm/cold run phase. | Very high. README read through codebase-memory and local source. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/gbbs/edge_map_data.h | GBBS maintainers | `edgeMapData` selects dense versus sparse execution based on active frontier size, graph size, out-degree sum, threshold, and flags such as `dense_only`, `dense_forward`, `no_dense`, and `no_output`. Sparse mode uses chunked edge-map execution, while dense mode can convert the frontier and run dense or dense-forward traversal. | This is the physical dispatch vocabulary Knight Bus needs. The profile cannot simply say "BFS" or "PageRank"; it must say which frontier representation and edge-map path actually ran. | Add `profile_frontier_edge_map_v1` and `profile_sparse_dense_switch_receipt_v1`: receipts include frontier count, degree sum, threshold, flags, chosen sparse/dense path, and skipped output state. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/gbbs/vertex_subset.h | GBBS maintainers | `vertexSubsetData` represents frontiers as sparse arrays of vertex IDs or dense boolean arrays, tracks nonzero count and cached out-degree sum, and provides `vertexMap`, `vertexFilter_sparse`, and `vertexFilter_dense`. | This is the core RAM tradeoff for frontier algorithms. A dense bitmap can be predictable but O(V); a sparse list can be cheaper when active sets are small but may need packing and degree summaries. | Add `profile_frontier_representation_v1`: every traversal/profile receipt says dense bitmap, sparse list, data-bearing subset, cached degree sum, conversion count, and bytes. | Very high. Source searched with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank.h | GBBS maintainers | `PageRank_edgeMap` handles empty graphs, optional personalized source sets, damping/tolerance/max-iteration parameters, weighted out-degree calculation, dangling-node packing, a non-dangling frontier, dense-forward mode when in-edges are not materialized, `no_output` edgeMap traversal, L1 convergence, `p_curr` and `p_next` swapping, and progress callbacks after preprocessing/iterations. | PageRank RAM is not only the rank vector. It includes current rank, next rank, weighted degree cache, dangling-node list, source-set representation, frontier representation, and possible transpose/in-edge materialization. | Add `profile_pagerank_frontier_modes_v1`, `profile_personalized_pagerank_mode_v1`, and `profile_weighted_outdegree_v1`: PageRank receipts split all these arrays and semantics. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/PageRank/PageRank_delta.h | GBBS maintainers | `PageRankDelta` uses residual/delta propagation: arrays for `p`, `Delta`, `nghSum`, all-vertex and active frontiers, `local_eps`, and `sparse_or_dense` dispatch. Dense mode in `sparse_or_dense` uses an `EdgeMap` reduce path when the frontier exceeds `G.n / 5`; sparse mode uses edgeMap with `PR_Delta_F`. | This gives Knight Bus a second PageRank profile, not merely an optimization flag. Residual mode may save work when active sets shrink, but it owns extra state arrays and different numerical behavior. | Add `profile_residual_delta_pagerank_v1`: receipts declare residual threshold, `local_eps`, active vertices per round, extra state arrays, and equivalence/tolerance against the standard PageRank mode. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/BFS/NonDeterministicBFS/BFS.h | GBBS maintainers | Non-deterministic BFS initializes a `Parents` array to `UINT_E_MAX`, sets `Parents[src] = src`, loops while `Frontier` is nonempty, prints frontier size, accumulates reachable count, and calls `edgeMap` with `sparse_blocked` and `dense_parallel` flags. `BFS_F` updates parents by assignment or atomic compare-and-swap and tests unvisited nodes with `cond`. | This confirms the LAGraph lesson: BFS parent vectors are often valid-but-noncanonical. The implementation shape is parent array plus frontier evolution, and physical flags change the traversal path. | Add `profile_bfs_nondeterministic_parent_v1`: BFS receipts include checker class, parent canonicalization policy, frontier sizes per round, sparse/dense flags, reachable count, and source ID. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/tree/master/benchmarks/Connectivity/ConnectIt | GBBS/ConnectIt maintainers | ConnectIt composes samplers and algorithms. Its README shows `unite_rem_cas` with no sampling, k-out sampling, BFS sampling, and LDD sampling. `SamplingAlgorithmTemplate.components` runs an initial sampler, finds the frequent component, initializes the algorithm, optionally relabels the largest component for Liu-Tarjan/label-prop modes, and then computes components. | Connected components should have a structure-probe phase. A cheap sampling pass can reduce or route later work before the full algorithm pays. | Add `profile_cc_sampling_pipeline_v1`: CC receipts include sampler type, sample time, frequent component percentage, relabeling policy, and full compute phase. | Very high. README and source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/Connectivity/ConnectIt/sampling.h | GBBS/ConnectIt maintainers | `initial_components_afforest` initializes every parent to itself, then for each neighbor round links each vertex to its r-th neighbor when present and fully compresses parent pointers. Benchmark helpers record percentage covered by the frequent component and intercomponent-edge percentage. | This is a first-principles match for `layout_probe_v1`: first learn enough structure to predict the remaining work and choose a physical mode, while keeping the probe memory bounded. | Add `profile_cc_afforest_probe_v1`: a CC or layout-probe receipt records neighbor rounds, parent array bytes, compression rounds, frequent-component coverage, and intercomponent-edge estimate. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/Connectivity/UnionFind/union_find_rules.h | GBBS/UnionFind maintainers | Union-find variants include atomic split/halve path compression and `UniteRemCAS`. `UniteRemCAS` links high to low, uses atomic compare-and-swap to update parents, compresses endpoints for non-naive find modes, and splices/compresses locally after CAS failure. | This is a concurrency and determinism lesson. Low-RAM CC profiles still need to expose parent-array state, atomic update policy, representative equivalence, and retry/compression behavior. | Add `profile_union_find_policy_v1`: receipts include find/compress/unite variant, parent state bytes, CAS failure/retry counters when available, and representative equivalence checker. | High. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/benchmarks/TriangleCounting/ShunTangwongsan15/Triangle.h | GBBS/TriangleCounting maintainers | Triangle counting dispatches by ordering mode: degree, Goodrich degeneracy, k-core degeneracy, or Barenboim-Elkin. Degree ordering ranks nodes, filters/directs the graph from lower to higher rank, stores only out-neighbors for the directed graph to save memory, and then uses balanced intersection work blocks. | Triangle counting is storage-shaped by construction. Ordering, directed projection, neighbor-list intersection, and work balancing decide memory and latency before the first triangle is counted. | Add `profile_triangle_ordering_policy_v1`: receipts declare ordering method, directed projection bytes, rank/permutation bytes, intersection work estimate, block size, and exact count. | Very high. Source read with codebase-memory. |
+| Aug 7 GBBS performance-lane source deepening | https://github.com/ParAlg/gbbs/blob/master/gbbs/helpers/progress_reporting.h | GBBS maintainers | `IterationProgressReporter` separates preprocessing, iteration completion, early convergence, optional postprocessing, and monotonic progress reporting. PageRank uses it to report preprocessing complete and iteration progress. | This is tiny but product-important. Long-running bounded graph jobs need progress split by phase, not a spinner that hides projection cost and convergence behavior. | Add `profile_progress_reporter_phase_v1`: receipts and status commands expose preprocessing, per-iteration, early-stop, postprocessing, and final verification phases. | High. Source searched with codebase-memory. |
 
 ## Insight Notes
 
@@ -5435,6 +5515,984 @@ What should we build first from this?
   modes on generated adversarial graphs and emits one receipt with slope terms.
 ```
 
+#### Omnigraph CLI And Server Surface Teach Product Boundaries
+
+The third Omnigraph pass is about surface area discipline. It is tempting to think the hard part of Knight Bus is only graph storage. The Omnigraph CLI/server design says the product boundary is equally important:
+
+```text
+engine truth:
+  graph data
+  branch snapshots
+  stored query registry
+  policy
+  schema
+
+operator surface:
+  data verbs
+  direct maintenance verbs
+  control-plane registry verbs
+  local profile/config verbs
+
+verification surface:
+  OpenAPI path inventory
+  local/remote parity matrix
+  wrong-plane error tests
+  auth spoofing tests
+  lifecycle/convergence tests
+  export/admission budget tests
+```
+
+For Knight Bus, the direct translation is that "algorithm profile" should mean both a physical storage layout and a product contract. A low-RAM PageRank layout that can be invoked ambiguously, rebuilt implicitly, or exported with unbounded buffering is not yet a product. It is just a clever file format.
+
+The better shape is:
+
+```text
+profile contract:
+  name
+  algorithm family
+  typed params
+  budget mode
+  exactness mode
+  input graph scope
+  allowed access planes
+  auth/policy action
+  receipt schema
+  export envelope
+  maintenance lifecycle
+```
+
+The most useful Omnigraph vocabulary for us is the capability split:
+
+| Capability | Omnigraph Meaning | Knight Bus Translation |
+|---|---|---|
+| `any` | graph data command can run direct or served | algorithm run can execute on a local capsule or through a server |
+| `served` | requires server registry/catalog | list available profile contracts or invoke stored team profiles |
+| `direct` | storage-native maintenance, no server | rebuild, optimize, repair, compact, or inspect profile artifacts |
+| `control` | cluster/config/catalog lifecycle | import, plan, apply, approve, status, refresh profile registry |
+| `local` | no graph addressed | profile list/show, login/logout, local aliases, local templates |
+
+This should be an early design principle:
+
+```text
+Do not make every command a graph command.
+Do not make every graph command a server command.
+Do not make every server command a mutation command.
+Do not let a local alias silently override a scoped contract.
+```
+
+The reason this matters for AI-native coding is that agents will call our product. Agents are very good at following explicit menus and very bad at inferring hidden operational boundaries. So Knight Bus should make the action menu finite, typed, and wrong-plane-resistant.
+
+The stored-query system is especially relevant. Omnigraph treats stored queries as typed server-side tools:
+
+```text
+stored query:
+  manifest key equals query symbol
+  typed params
+  description
+  instruction
+  read/mutation classification
+  optional tool name
+  registry validation
+  schema type-check at deploy/boot
+  boundary invoke gate
+  inner read/change gate
+```
+
+That is almost exactly how a Knight Bus profile should be exposed:
+
+```text
+stored profile:
+  profile key equals profile symbol
+  algorithm family
+  typed params
+  description
+  instruction
+  expected output schema
+  budget envelope
+  exactness/approximation declaration
+  public tool name
+  registry validation
+  graph/schema/profile compatibility check
+  invoke gate
+  inner read/build/export gates
+```
+
+The server-side budget story also generalizes directly. Omnigraph has separate limits for:
+
+1. per-actor request count,
+2. per-actor in-flight bytes,
+3. raw request body bytes,
+4. stream export cuts,
+5. stream transport queue bytes,
+6. concurrency/quarantine at server boot.
+
+For Knight Bus, that becomes:
+
+```text
+profile admission:
+  requested peak RAM
+  spill budget
+  output queue budget
+  concurrent run slots
+  per-actor cost budget
+  per-artifact mutation budget
+  recovery scan budget
+```
+
+The key is admission before irreversible work. If a run asks for a 5 GB cap and the planner can already see that the chosen profile mode needs a 12 GB frontier bitmap, it should fail with a typed budget error before opening a mutable run. If the output channel can only reserve 512 MB, it should not capture source-cut authority and then wait behind a stalled client.
+
+The OpenAPI tests teach another product rule:
+
+```text
+The public surface area is part of the spec.
+```
+
+For Knight Bus, API drift is dangerous because external agents and benchmark harnesses will depend on stable route names and response fields. Every new profile endpoint should have an expected-path test, an unexpected-path test, auth status tests, and error-schema tests.
+
+The parity matrix is the verification heart:
+
+```text
+local capsule mode:
+  same profile contract
+  direct storage
+  local actor or no actor
+  same logical receipt
+
+served mode:
+  same profile contract
+  HTTP transport
+  actor resolved from bearer token
+  same logical receipt
+
+parity referee:
+  run both on twin graph cuts
+  scrub volatile ids/timestamps/paths
+  compare JSON exactly
+  record every known divergence explicitly
+```
+
+That gives us a way to preserve the user's "same surface area" instinct without promising a full Neo4j rewrite. We can say:
+
+```text
+We will make one profile contract behave identically across local and served modes.
+Then we will add more profile contracts.
+Each new contract brings its own storage shape, budgets, correctness oracle, and parity matrix.
+```
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_surface_capability_v1` | WHEN a profile command is registered, THEN it SHALL declare `any`, `served`, `direct`, `control`, or `local` capability and reject inapplicable scope flags |
+| `profile_scope_bundle_v1` | WHEN a named profile is invoked, THEN it SHALL resolve from explicit flags, env profile, or defaults with deterministic precedence and record the final scope |
+| `profile_scope_resolution_receipt_v1` | WHEN a run starts, THEN the receipt SHALL include pre-resolution flags, final resolved graph, access path, actor source, budget binding, and output format |
+| `profile_command_plane_matrix_v1` | WHEN a new CLI verb is added, THEN tests SHALL fail until capability, accepted flags, rejected flags, and remediation text are declared |
+| `profile_wrong_plane_error_v1` | WHEN a user combines a command with the wrong address plane, THEN the command SHALL fail before work and name the correct plane |
+| `profile_direct_maintenance_plane_v1` | WHEN rebuild/repair/compact/cleanup is requested, THEN it SHALL run only as a direct/control-plane maintenance action unless an explicit served-maintenance design exists |
+| `profile_embedded_remote_parity_v1` | WHEN the same profile runs local and served on twin source cuts, THEN scrubbed receipts SHALL match exactly or list a known divergence |
+| `profile_parity_known_divergence_v1` | WHEN a local/server difference is intentional, THEN it SHALL be declared in a visible divergence table with release-note rationale |
+| `profile_openapi_surface_gate_v1` | WHEN the served API is generated, THEN expected paths/methods/auth/error schemas SHALL be pinned and unexpected paths SHALL fail tests |
+| `profile_auth_actor_binding_v1` | WHEN served execution is authenticated, THEN actor identity SHALL come only from the credential boundary and be stamped into receipts |
+| `profile_auth_spoof_guard_v1` | WHEN a request supplies header/query/body actor fields, THEN they SHALL NOT override the bearer-token actor |
+| `profile_stored_contract_v1` | WHEN an algorithm profile is published, THEN its key/symbol, typed params, description, instruction, budget, exactness, and tool name SHALL be validated |
+| `profile_stored_contract_invoke_v1` | WHEN a stored profile is invoked, THEN outer invocation policy and inner read/build/export permissions SHALL be enforced separately |
+| `profile_admission_budget_v1` | WHEN a run request exceeds actor, RAM, spill, output, or concurrency budget, THEN it SHALL reject before engine work with structured overload detail |
+| `profile_stream_export_budget_v1` | WHEN exporting large results, THEN transport memory SHALL be separately reserved, bounded, backpressured, and failure-reported |
+| `profile_cluster_control_apply_v1` | WHEN a served profile registry changes, THEN it SHALL go through import/plan/apply/status/refresh rather than ad hoc runtime mutation |
+| `profile_registry_lifecycle_v1` | WHEN profile state drifts, is lost, or requires approval, THEN status/refresh/apply/reimport/approve flows SHALL converge or report blocked digests |
+| `profile_schema_registry_guard_v1` | WHEN graph schema or profile schema changes, THEN dependent stored profiles SHALL be checked before publish and physical rebuild SHALL remain explicit |
+| `profile_alias_binding_v1` | WHEN an alias is invoked, THEN it SHALL own its declared scope and reject conflicting global scope flags |
+| `profile_output_format_v1` | WHEN a profile command returns output, THEN `json`, `jsonl`, `csv`, `table`, and receipt-file modes SHALL have stable schemas and tests |
+| `profile_request_lifecycle_gate_v1` | WHEN a served request runs, THEN auth, validation, admission, success headers, stream disconnect, and recovery semantics SHALL be separately tested |
+| `profile_operation_matrix_v1` | WHEN two profile operations can overlap, THEN the operation-pair matrix SHALL name success, conflict, quarantine, blocked, or unsupported outcomes |
+
+The rubber-duck check:
+
+```text
+Does this tell us how to reduce RAM directly?
+  Indirectly. It tells us how to expose and enforce low-RAM modes without
+  accidental surface-area drift, fake parity, or hidden unbounded transport cost.
+
+Is this overkill for one PageRank demo?
+  The full control plane is overkill. But capability declaration, typed params,
+  admission budgets, receipts, and local/server parity are not overkill. They
+  are the parts that make the demo credible.
+
+What is the first artifact this suggests?
+  A `kb profile run pagerank_lowram_v1` command whose local and served modes
+  share one profile contract, one receipt schema, one budget declaration, and
+  one exactness oracle.
+
+What should not be copied blindly?
+  Omnigraph's exact route names, policy language, or cluster implementation.
+  We want the principle: finite planes, typed contracts, visible scopes,
+  admission gates, and parity referees.
+```
+
+#### Out-Of-Core Graph Engines Prove Bounded RAM Is A Design Space
+
+This pass changes the confidence level of the core product thesis. Budget-bounded graph compute is not a speculative trick. There is a long systems lineage proving that many graph algorithms can run with much less DRAM than a fully materialized in-memory graph, if the physical representation is shaped around the algorithm's access pattern.
+
+The common invariant is almost boring once seen:
+
+```text
+large immutable topology:
+  edge lists
+  adjacency blocks
+  sorted shards
+  read-only graph image
+
+small mutable state:
+  vertex scores
+  visited/frontier bitmaps
+  component ids
+  distance labels
+  work queues
+
+predictable access:
+  sequential edge scans
+  sliding windows
+  block-grid reads
+  selective edge-list fetch
+  active-block skip
+
+receipts:
+  pass count
+  scanned edge bytes
+  random reads
+  vertex-state bytes
+  frontier bytes
+  spill bytes
+  skipped blocks
+  output hash
+```
+
+That is the Knight Bus wedge in one sentence:
+
+```text
+Keep the graph math stable,
+choose a physical profile per algorithm and budget,
+then prove the profile's correctness, RAM, pass count, and I/O behavior.
+```
+
+The prior-art systems map cleanly into product-profile families:
+
+| Source | Physical Idea | Best Algorithm Fit | Cost / Risk |
+|---|---|---|---|
+| GraphChi | Parallel sliding windows over disk shards | Vertex-centric iterative algorithms where vertex state fits and edges can be windowed | Repeated passes, preprocessing, shard ordering, limited modern code activity |
+| X-Stream | Edge-centric streaming partitions and update streams | Scan-friendly scatter-gather: WCC/CC, PageRank-like propagation, bulk relaxation | More passes, update-stream management, weaker random-neighborhood interactivity |
+| GridGraph | 2D edge blocks plus dual sliding windows and selective scheduling | Algorithms with shrinking active sets: BFS/SSSP/CC variants | Preprocessing and stale activity metadata can erase savings |
+| FlashGraph | Vertex state in RAM, edge lists on SSD, selective edge fetch, overlapped I/O | Traversal-heavy workloads on fast local storage: BFS, PPR, neighborhood expansion | Requires vertex state to fit; SSD/NVMe behavior becomes part of the contract |
+| Sage / PSAM | Read-only edges in NVRAM, mutable O(V) state in DRAM, avoid graph writes | Broad graph algorithm families where edge topology is mostly immutable | Hardware assumptions and algorithms needing mutable edge state need explicit exceptions |
+| GraphIt | Algorithm/schedule separation | Product grammar for "same algorithm, different budget/storage/schedule" | Compiler complexity if copied literally; borrow the contract boundary first |
+| SuiteSparse GraphBLAS | Semiring algebra over sparse matrices | Correctness/oracle lane for BFS, PR, CC, TC-like kernels | Not automatically the lowest-RAM fast path; use as reference and spec language |
+| GAP Benchmark Suite | Standardized kernel set: BFS, SSSP, PR, CC, BC, TC | First verification suite and Pareto algorithm family | Full benchmark costs are large; start with scaled fixtures and receipts |
+
+The strongest design lesson is that "low RAM" is not one architecture. It is a menu:
+
+```text
+PageRank:
+  pull CSR/CSC vector iteration
+  streaming edge partitions
+  blocked edge matrix
+  semiring reference lane
+
+Connected Components:
+  edge-stream union/update passes
+  Afforest/SV baseline
+  block-scheduled active shrink
+  component-id state receipt
+
+BFS / SSSP:
+  frontier bitmap
+  direction-optimizing baseline
+  semi-external edge-list fetch
+  active-block skip
+
+Triangle Counting:
+  degree-ordered adjacency intersections
+  compressed sorted lists
+  block-wise candidate scheduling
+  harder RAM bound because intersections want locality
+
+Betweenness Centrality:
+  exact mode is expensive
+  approximate/sample mode may be the product mode
+  receipt must disclose samples, error model, and memory terms
+```
+
+This answers the user's "terabytes versus GB" question more carefully:
+
+```text
+Yes, for some algorithms and datasets, the graph topology can leave DRAM.
+No, that does not make the mutable state free.
+No, this does not prove automatic speedup over Neo4j/GDS.
+Yes, it creates a controllable tradeoff:
+  more passes / more I/O / more preprocessing
+  in exchange for a bounded RAM envelope.
+```
+
+The first pass should not be "rewrite Neo4j." It should be one proof-carrying kernel with three modes:
+
+```text
+pagerank_lowram_v1
+
+mode A: in-memory exact
+  fastest local baseline
+  larger RAM
+
+mode B: blocked/semi-external exact
+  bounded RAM
+  more passes and I/O
+
+mode C: GraphBLAS/reference oracle
+  slower or smaller fixture
+  verifies math and output tolerance
+```
+
+The receipt should make hidden tradeoffs impossible to hide:
+
+```text
+rss_peak_bytes
+vertex_state_bytes
+frontier_or_rank_bytes
+edge_store_mapped_bytes
+edge_store_scanned_bytes
+random_edge_reads
+sequential_edge_reads
+spill_bytes
+pass_count
+preprocess_ms
+compute_ms
+verification_ms
+output_hash
+baseline_delta
+```
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gap_kernel_baseline_v1` | WHEN a first algorithm profile is implemented, THEN it SHALL name its GAP-equivalent kernel, input fixture, baseline, output hash, and exactness tolerance |
+| `profile_algorithm_schedule_split_v1` | WHEN a user selects PageRank/BFS/CC/etc., THEN the logical algorithm contract SHALL remain separate from physical storage and schedule choices |
+| `profile_parallel_sliding_windows_v1` | WHEN an iterative profile uses disk windows, THEN vertex interval shards, pass count, random-read count, and output parity SHALL be reported |
+| `profile_edge_stream_partition_v1` | WHEN a streaming profile runs, THEN it SHALL report edge-stream partitions, update streams, scanned bytes, pass count, and deterministic reducer state |
+| `profile_grid_block_schedule_v1` | WHEN a block-grid profile runs, THEN it SHALL report block matrix identity, active blocks, skipped blocks, stale-activity fallback, and output parity |
+| `profile_semi_external_ssd_v1` | WHEN edges are off-DRAM on SSD/NVMe, THEN receipts SHALL include backend class, edge-list fetches, merged I/O batches, cache hits, and vertex-state bytes |
+| `profile_vertex_state_edge_stream_v1` | WHEN a low-RAM exact profile is claimed, THEN mutable state SHALL be expressed as vertex/frontier/output terms and edge/topology state SHALL be read-only or explicitly accounted |
+| `profile_write_avoidance_v1` | WHEN a profile uses immutable edge storage, THEN the system SHALL reject hidden edge mutations or declare edge-side bitmap/sidecar state separately |
+| `profile_semiring_reference_lane_v1` | WHEN an algorithm has a GraphBLAS formulation, THEN a reference lane SHALL name semiring, mask, accumulator, tolerance, and hash rules |
+| `profile_pass_count_receipt_v1` | WHEN RAM is reduced by streaming/windowing, THEN pass count and scanned bytes SHALL be first-class metrics next to latency |
+| `profile_frontier_state_budget_v1` | WHEN BFS/SSSP/PPR-like profiles run, THEN frontier, visited, distance, and queue memory SHALL be separately budgeted |
+| `profile_active_block_skip_v1` | WHEN a profile claims active-set savings, THEN skipped work SHALL be visible and the fallback path SHALL remain correct |
+| `profile_legacy_reference_caution_v1` | WHEN historical systems are used as evidence, THEN activity, reproducibility, and dependency risk SHALL be recorded separately from the idea's validity |
+
+The rubber-duck check:
+
+```text
+Does this prove Knight Bus beats Neo4j?
+  No. It proves there is a real bounded-RAM graph-compute design space.
+  Knight Bus still has to win with receipts, UX, profile selection, and
+  algorithm-specific implementation.
+
+What is new if GraphChi/X-Stream/GridGraph/FlashGraph/Sage already exist?
+  The product layer: profile contracts, budget admission, local/server parity,
+  receipt-native verification, and a modern developer loop where LLMs can read
+  the spec, run the fixture, and know whether a storage profile is legal.
+
+What is the first demo that would make this believable?
+  PageRank on a reproducible fixture with in-memory exact, bounded exact,
+  and GraphBLAS/reference modes. The demo should show the same output within
+  tolerance while RAM, scanned bytes, pass count, and preprocessing cost are
+  explicitly separated.
+
+What is the honest caveat?
+  If the vertex count itself is huge, O(V) state can still dominate RAM.
+  If properties are wide, if the algorithm mutates edge state, or if the job
+  needs random low-latency adjacency probes, the bounded profile may be slower
+  or require a different physical mode.
+```
+
+#### Partitioning Is A First-Class Profile, Not Hidden Setup
+
+The adaptive partitioning pass adds an important correction to the previous out-of-core synthesis. GraphChi, X-Stream, GridGraph, FlashGraph, and Sage prove that bounded-RAM graph processing is possible. ADWISE, 2PS, StreamCPI, HeiStream, FREIGHT, BuffCut, and CUTTANA say how to make that bounded mode predictable before the algorithm begins.
+
+The key product insight:
+
+```text
+preprocessing is not setup
+preprocessing is a resource trade
+resource trades need contracts
+contracts need receipts
+```
+
+ADWISE gives the cleanest economic framing. Optimizing only partitioning latency is wrong when better partitions lower downstream processing latency enough to win on total latency. That maps directly to Knight Bus:
+
+```text
+bad benchmark:
+  "PageRank took 22 seconds."
+
+good receipt:
+  partition_build_ms: 14_000
+  partition_quality: replication_factor / edge_cut / locality_score
+  compute_ms: 22_000
+  verification_ms: 3_000
+  layout_reuse_count: 1
+  amortized_total_ms_per_run: 39_000
+```
+
+If the same layout runs once, expensive preprocessing may be foolish. If the same layout feeds a hundred daily jobs, it may be the core moat.
+
+The partitioning family gives a hierarchy of Knight Bus profile modes:
+
+| Profile Mode | Source Inspiration | User-Facing Meaning | Receipt Must Prove |
+|---|---|---|---|
+| single-pass streaming | Fennel/HDRF/DBH family | fastest low-memory layout build | stream order, balance, cut/replication quality, low memory |
+| adaptive window streaming | ADWISE | spend bounded extra candidate memory to improve total latency | window-size policy, partition/compute split, total latency delta |
+| two-pass structure probe | 2PS | first pass learns communities/clusters, second pass partitions | probe memory, pass count, cluster-map size, replication factor |
+| compressed assignment index | StreamCPI | shrink partition metadata itself | compressed vs uncompressed bytes, append cost, decode proof |
+| bounded batch model graph | Buffered Streaming / HeiStream | buffer a small batch to recover local structure before assignment | batch size, buffer bytes, model build time, quality delta |
+| hypergraph/net-list projection | FREIGHT / HeiStreamE | represent n-ary events or edge-partitioning as nets | projection semantics, metric choice, conversion passes |
+| priority-buffer guard | BuffCut | delay poorly informed decisions under adversarial stream order | buffer policy, priority score, delayed decisions, locality recovery |
+| partition-to-latency proof | CUTTANA | connect better partition quality to real query/algorithm speed | edge-cut/communication volume plus workload latency |
+
+This matters for the Neo4j rewrite question because it separates three things people often collapse:
+
+```text
+OLTP storage:
+  graph is mutable, transactional, indexed for surface-area queries
+
+OLAP projection:
+  selected graph cut is materialized or streamed into a profile layout
+
+Partition/profile layout:
+  a reusable physical contract optimized for a class of algorithms
+```
+
+The first Knight Bus wedge can therefore be narrower and more believable:
+
+```text
+Do not rewrite all Neo4j storage first.
+Take a Neo4j/GDS-compatible graph projection.
+Build one or two low-RAM partition/profile layouts.
+Run one algorithm family with proof.
+Show whether preprocessing amortizes across repeated runs.
+```
+
+A useful mental model:
+
+```text
+source graph
+  |
+  | cheap scan / profile planner
+  v
+structure sketch
+  |                \
+  |                 -> reject: cannot meet budget honestly
+  v
+partition/profile layout
+  |
+  | repeated runs
+  v
+algorithm kernels
+  |
+  v
+correctness + RAM + latency receipts
+```
+
+The user-facing product knob should be budget mode, not algorithm internals:
+
+| User Says | Planner Should Consider |
+|---|---|
+| "Run under 5 GB, even if it takes longer" | two-pass probe, compressed assignment index, edge-stream scan, small batch buffer |
+| "Run under 30 seconds" | in-memory or cached profile layout, larger batch/window, fewer proof metrics |
+| "I will run this every day" | higher preprocessing allowed if layout can be reused and receipts prove amortization |
+| "This stream order is messy" | priority buffer, degree/ambivalence ordering, restream pass |
+| "This graph has many event-like edges" | hypergraph/net-list projection before ordinary adjacency |
+| "I need predictable memory" | compressed metadata, fixed buffer, fixed frontier, fail-before-work admission |
+
+The most important implementation detail is that partition metadata can itself become the memory bug. StreamCPI is a sharp reminder that low-RAM graph compute is not only about edges. Arrays like:
+
+```text
+vertex_to_block
+edge_to_partition
+partition_membership
+frontier_state
+component_id
+rank_vector
+visited_bitmap
+```
+
+must be designed and measured as first-class storage. The same logic that compresses block assignments can apply to Knight Bus algorithm state when values repeat over long vertex ranges or sorted IDs.
+
+Concrete design consequence:
+
+```text
+profile memory budget:
+  graph topology bytes:
+    off-DRAM / mmap / SSD / object-store / compressed
+
+  partition metadata bytes:
+    assignment arrays
+    compressed assignment vectors
+    cut/replication summaries
+
+  algorithm mutable bytes:
+    rank/component/distance/frontier
+    queues and scratch
+
+  observability bytes:
+    logs
+    counters
+    proof artifacts
+    debug traces
+```
+
+The evidence also creates a warning about "verification first." Some systems note that stats/profiling/logging changes runtime and memory. That means the verification loop needs tiers:
+
+| Tier | What It Measures | When To Use |
+|---|---|---|
+| always-on receipt | peak memory, pass count, bytes scanned, output hash | every run |
+| benchmark receipt | phase timings, quality metrics, baseline comparison | benchmark runs |
+| proof receipt | extra parity/oracle state, detailed sampled comparisons | release gates |
+| debug receipt | verbose logs, per-block/per-window traces | investigations only |
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_preprocess_total_cost_v1` | WHEN a profile builds any derived layout, THEN receipt SHALL separate preprocessing, compute, verification, output, and amortized-per-run cost |
+| `profile_two_pass_structure_probe_v1` | WHEN a profile uses a structure-learning pass, THEN it SHALL report probe memory, pass count, summary size, and second-pass quality effect |
+| `profile_observability_overhead_v1` | WHEN metrics/logging are enabled, THEN the profile SHALL classify them as always-on, benchmark-only, proof-only, or debug-only and report overhead |
+| `profile_compressed_assignment_index_v1` | WHEN partition/block assignment metadata is stored, THEN compressed and uncompressed sizes SHALL be recorded and decode parity SHALL be tested |
+| `profile_assignment_compression_mode_v1` | WHEN a profile chooses assignment storage, THEN `uncompressed`, `full_rle`, `batch_rle`, or `external_pq` style mode SHALL be declared |
+| `profile_hypergraph_partition_mode_v1` | WHEN graph data has n-ary/event-like relationships, THEN profile planner MAY choose a hypergraph/net-list projection with explicit metric semantics |
+| `profile_block_count_independence_gate_v1` | WHEN a profile claims time or memory independent of partition-block count, THEN a `k` sweep SHALL prove slope within slack |
+| `profile_priority_buffer_batch_v1` | WHEN priority buffering or batching is used, THEN buffer size, batch size, priority score, delayed items, and locality delta SHALL be reported |
+| `profile_netlist_projection_v1` | WHEN source data is converted to a graph or hypergraph net-list, THEN conversion passes, memory, metric, and semantic loss SHALL be recorded |
+| `profile_adversarial_stream_guard_v1` | WHEN stream order can hurt quality, THEN the profile SHALL record stream-order policy, seed, degree/order summary, and mitigation choice |
+| `profile_partition_quality_to_latency_v1` | WHEN partition quality is used as a reason for a layout, THEN workload latency, edge-cut/replication/communication-volume metrics, and query tail behavior SHALL be measured |
+| `profile_bounded_delay_quality_v1` | WHEN assignment is delayed for quality, THEN max delay, buffer bytes, quality improvement, and wall-clock overhead SHALL be bounded |
+| `profile_stream_order_policy_v1` | WHEN a streaming profile runs, THEN source order, randomized order, degree order, ambivalence order, or priority order SHALL be declared and reproducible |
+
+The rubber-duck check:
+
+```text
+Is partitioning the same as running the algorithm?
+  No. It is a physical planning phase. But for repeated graph analytics,
+  physical planning can dominate whether the whole product feels cheap,
+  fast, and predictable.
+
+Does this mean we should always do a two-pass or buffered partition?
+  No. For one-off small jobs, preprocessing can be waste. For repeated
+  jobs, adversarial streams, distributed/server execution, or strict memory
+  caps, it can be the winning move.
+
+Does StreamCPI prove trillion-edge PageRank on a laptop?
+  No. It proves memory-efficient partition metadata for enormous graphs.
+  It supports the "GB not TB" direction for the planning layer, not the
+  entire graph algorithm by itself.
+
+What should we build first from this?
+  A `layout_probe_v1` stage before `pagerank_lowram_v1`: scan the graph,
+  estimate O(V) state, choose `in_memory`, `edge_stream`, `blocked`,
+  or `compressed_assignment` mode, and either admit the run or fail before
+  durable work.
+```
+
+#### GraphBLAS/LAGraph Should Be The Oracle Lane
+
+The GraphBLAS/LAGraph pass clarifies how to make "verification first" concrete for graph algorithms.
+
+The architecture should not expose raw GraphBLAS to ordinary users. That would make the product feel like a sparse-linear-algebra toolkit. But GraphBLAS and LAGraph are almost perfect as an internal reference language:
+
+```text
+user-facing product:
+  pagerank_lowram_v1
+  bfs_budgeted_v1
+  cc_streaming_v1
+  triangle_exact_v1
+
+verification lane:
+  semiring
+  mask
+  accumulator
+  descriptor / transpose
+  cached properties
+  invariant checker
+  tolerance / hash rule
+```
+
+This creates a clean three-lane architecture:
+
+```text
+logical algorithm contract
+  "PageRank with sink handling, damping=0.85, tol=1e-4"
+
+physical profile contract
+  "blocked CSR/CSC, 5 GB cap, 3 pass max, rank vector in RAM, edges mmap"
+
+oracle contract
+  "LAGraph standard PageRank reference, rank-sum check, max error < 1e-4"
+```
+
+LAGraph's Basic/Advanced API split is exactly the product grammar Knight Bus needs:
+
+| LAGraph Pattern | Knight Bus Translation |
+|---|---|
+| Basic algorithm computes required cached properties | Safe user mode may build derived layouts and report cost |
+| Advanced algorithm requires cached properties up front | Expert/profile mode fails closed if required artifacts are absent |
+| Cached transpose/out-degree/degree/symmetry are explicit | Profile artifacts are visible, invalidated, and budgeted |
+| Graph object can hold cached properties | A Knight Bus graph cut can hold multiple layout profiles |
+| Advanced method does not modify the graph | Algorithm run should not mutate source graph or hidden profile state unless declared |
+
+The PageRank split is the most important immediate lesson. LAGraph has both production PageRank and GAP PageRank. They are not interchangeable. The difference is sink handling:
+
+```text
+GAP PageRank:
+  benchmark compatible
+  intentionally ignores sink rank leakage
+  useful for comparing to GAP benchmark
+
+standard PageRank:
+  handles sinks correctly
+  maintains rank-sum semantics
+  better production default
+```
+
+So the first Knight Bus PageRank profile needs this in the manifest:
+
+```yaml
+algorithm: pagerank
+semantic_mode: production_correct # or gap_compatible
+damping: 0.85
+tolerance: 1e-4
+iteration_cap: 100
+sink_handling: redistribute
+rank_sum_check: true
+reference: lagraph_standard_pagerank
+```
+
+BFS gives the physical profile split:
+
+```text
+push-only:
+  fewer cached prerequisites
+  easier low-memory first path
+  often slower
+
+push/pull:
+  needs transpose and out-degree
+  can be much faster
+  pays extra cached-property memory
+```
+
+That means BFS receipts should say:
+
+```text
+mode: push_only | push_pull
+frontier_representation: sparse_vector | bitmap | hybrid
+transpose_artifact: absent | built | reused
+degree_artifact: absent | built | reused
+output: level | parent | both
+checker: bfs_invariant_equivalence
+```
+
+The BFS tests also teach a subtle but important verification rule: multiple parent vectors can be valid. Byte-for-byte equality is too strict unless canonicalization is part of the algorithm. So Knight Bus needs two checker classes:
+
+| Output Type | Checker |
+|---|---|
+| rank vector | numeric tolerance plus rank-sum / top-k stability |
+| BFS levels | exact level vector |
+| BFS parents | valid-parent invariant or canonical-parent equality |
+| connected components | component equivalence, representative canonicalization optional |
+| SSSP | distance equality/tolerance and unreachable sentinel semantics |
+| triangle count | exact integer count, plus method/presort disclosure |
+
+SSSP is the warning label for weighted graphs. LAGraph's delta-stepping implementation is not "just traversal." It needs:
+
+```text
+weight type
+delta
+emin / negative-edge knowledge
+light-edge matrix
+heavy-edge matrix
+min-plus semiring
+reachable/frontier masks
+unreachable sentinel
+negative-cycle caveat
+```
+
+That should push SSSP later than PageRank/BFS/CC in our implementation order unless the use case specifically needs weighted paths.
+
+Triangle counting is even more storage-sensitive. LAGraph exposes six methods and presort choices, and materializes lower/upper triangular matrices. This is the kind of algorithm where "custom storage per algo" is obviously meaningful, but it is also where careless RAM claims die. It should be a phase-two differentiator, not the first demo.
+
+The recommended implementation order after this pass:
+
+| Order | Algorithm | Why |
+|---:|---|---|
+| 1 | PageRank | Clear rank-vector state, strong sink-semantic lesson, easy tolerance oracle |
+| 2 | Connected Components | Strong invariant checker, useful exactness story, lower output complexity |
+| 3 | BFS | Great frontier/cached-property profile, but parent equivalence needs care |
+| 4 | SSSP | Weighted semantics and delta/light-heavy layout add complexity |
+| 5 | Triangle Count | High differentiation but heavy layout/memory sensitivity |
+| 6 | Betweenness | Approximation semantics and many-source runtime make it a later product profile |
+
+GraphBLAS/LAGraph also gives us the right receipt language:
+
+```text
+semiring:
+  min_plus
+  any_one
+  plus_second
+  plus_one
+
+mask:
+  structural
+  complement
+  value
+
+descriptor:
+  transpose
+  replace
+  structural mask
+
+cached property:
+  AT
+  out_degree
+  in_degree
+  nself_edges
+  symmetric_structure
+  emin
+
+artifact state:
+  absent
+  built_this_run
+  reused
+  invalidated
+```
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_lagraph_oracle_lane_v1` | WHEN a profile is marked exact, THEN it SHALL name a LAGraph/GraphBLAS reference, fixture, tolerance/hash, and semantic divergences |
+| `profile_cached_property_contract_v1` | WHEN a derived property is built or reused, THEN build cost, memory cost, invalidation rule, and reuse count SHALL be recorded |
+| `profile_basic_advanced_contract_v1` | WHEN running safe mode, THEN required artifacts MAY be built with receipts; WHEN running advanced mode, THEN missing artifacts SHALL fail closed |
+| `profile_pagerank_semantics_v1` | WHEN PageRank runs, THEN sink handling, damping, tolerance, iter cap, iterations used, rank sum, transpose, and degree source SHALL be visible |
+| `profile_benchmark_semantic_mode_v1` | WHEN benchmark-compatible semantics differ from production semantics, THEN the mode SHALL be explicit and warnings SHALL be emitted |
+| `profile_bfs_push_pull_mode_v1` | WHEN BFS runs, THEN push-only versus push/pull mode, frontier representation, cached artifacts, output mode, and checker class SHALL be recorded |
+| `profile_output_equivalence_checker_v1` | WHEN graph outputs have multiple valid forms, THEN invariant/equivalence checks SHALL be available before byte-equality checks are required |
+| `profile_cc_component_invariant_v1` | WHEN connected components runs, THEN dense vector, representative validity, isolated nodes, and edge endpoint consistency SHALL be checked |
+| `profile_sssp_delta_light_heavy_v1` | WHEN weighted SSSP runs, THEN delta, weight type, min-plus semiring, AL/AH bytes, negative-edge policy, and unreachable sentinel SHALL be recorded |
+| `profile_triangle_method_presort_v1` | WHEN triangle counting runs, THEN method, presort, L/U materialization, self-edge policy, symmetry proof, and exact count SHALL be recorded |
+| `profile_semiring_manifest_v1` | WHEN an oracle-backed profile is published, THEN semiring, mask, accumulator, descriptor, and value-vs-structure semantics SHALL be declared |
+| `profile_input_format_phase_v1` | WHEN benchmarking, THEN source decode, binary/cache conversion, layout build, algorithm, and verification phases SHALL be separated |
+| `profile_oracle_checker_suite_v1` | WHEN an algorithm graduates to first-class status, THEN exact fixtures, invariant checkers, invalid-input tests, cache-missing tests, and memory-failure gates SHALL exist |
+
+The rubber-duck check:
+
+```text
+Should Knight Bus just wrap LAGraph?
+  No. LAGraph is an oracle/reference and algorithm vocabulary. The product
+  differentiation is budget-bounded physical profiles and proof-carrying
+  receipts, likely in Rust with our own storage/runtime choices.
+
+Should users see semiring names?
+  Most users should not. Profile authors and receipts should. The manifest can
+  expose a readable algorithm contract and keep the semiring fields under an
+  `oracle` or `math` section.
+
+Does GraphBLAS solve low RAM?
+  Not by itself. It defines mathematical kernels over sparse objects. The
+  physical storage mode still decides whether topology, transpose, L/U, degree,
+  frontier, and scratch live in RAM, mmap, SSD, or compressed profiles.
+
+What does this add to the first demo?
+  PageRank must have two explicit semantic modes: `production_correct` and
+  `gap_compatible`. The demo should show why sink handling matters, then show
+  RAM/latency tradeoffs only after correctness mode is pinned.
+```
+
+#### GBBS Gives The Performance-Implementation Lane
+
+The GBBS pass gives us the second half of the verification-first architecture.
+LAGraph is the algebraic/oracle lane: what does a correct answer mean? GBBS is
+the performance-implementation lane: what does a serious shared-memory graph
+implementation actually materialize and switch between?
+
+The most useful translation is this:
+
+```text
+LAGraph:
+  semiring / descriptor / cached property / checker
+  answer semantics first
+
+GBBS:
+  vertexSubset / edgeMap / sparse-dense switch / blocked edge processing
+  physical execution first
+
+Knight Bus:
+  profile manifest + storage layout + receipt + oracle checker
+  budget-bounded execution with both semantics and physical path visible
+```
+
+The vocabulary we should steal shamelessly, but not literally, is:
+
+| GBBS Concept | What It Means | Knight Bus Translation |
+|---|---|---|
+| `vertexSubset` | The active vertex set, sparse or dense | Frontier/state view with declared bytes and representation |
+| `edgeMap` | Apply an edge function from/into the frontier | Traversal kernel with explicit physical path |
+| `vertexFilter` | Transform/filter active vertices | Active-set transition with before/after counts |
+| `sparse_blocked` | Sparse frontier path using blocked edge work | Low-active-set mode with block/work receipts |
+| `dense_parallel` | Dense frontier path with parallel scan | High-active-set mode with O(V) bitmap/state receipt |
+| `dense_forward` | Forward traversal when in-edges are absent | Fallback mode when transpose/CSC is not materialized |
+| `no_output` | Mutate side arrays without returning a new subset | Scratch-output elision declared in receipt |
+| threshold rules | Switch based on frontier size/degree/work | Planner-visible sparse/dense switch receipt |
+
+This suggests the first internal architecture should not be:
+
+```text
+algorithm = pagerank
+storage = low_ram
+```
+
+It should be closer to:
+
+```text
+profile = pagerank_full_edge_map_v1
+semantic_mode = production_correct
+oracle = lagraph_standard_pagerank
+frontier_representation = dense_non_dangling_bitmap
+rank_state = p_curr + p_next
+degree_state = out_degree or weighted_out_degree
+dangling_state = packed_dangling_nodes
+edge_access = csr_or_csc_or_dense_forward
+switching = none for full mode
+receipt = state bytes + edge bytes touched + iterations + L1 convergence
+```
+
+For residual PageRank:
+
+```text
+profile = pagerank_residual_delta_v1
+semantic_mode = approximate_or_exact_with_tolerance
+oracle = lagraph_standard_pagerank within tolerance
+state = p + Delta + nghSum + Frontier + All
+switching = dense if frontier > n / 5, otherwise sparse edgeMap
+parameters = eps + local_eps + damping + max_iters
+receipt = active vertices per round + residual L1 + state arrays + chosen path
+```
+
+That tells us something important: "custom storage per algorithm" does not mean
+one clever graph file. It means a family of named physical profiles that make
+state arrays, edge access, frontier representation, and switching rules explicit.
+
+| Algorithm | GBBS Evidence | First Knight Bus Profile Shape |
+|---|---|---|
+| PageRank full | `p_curr`, `p_next`, dangling nodes, non-dangling frontier, optional source set, weighted degree | `pagerank_full_edge_map_v1` with exact state-array receipt |
+| PageRank residual | `p`, `Delta`, `nghSum`, active frontier, sparse/dense switch at `n / 5` | `pagerank_residual_delta_v1` with active-set shrink and tolerance receipt |
+| BFS | parent array, frontier loop, `sparse_blocked + dense_parallel`, atomic CAS parent update | `bfs_frontier_parent_v1` with valid-parent checker and frontier history |
+| Connected Components | sampling pipeline, frequent component, k-out/BFS/LDD sampling, parent compression | `cc_afforest_probe_v1` then `cc_union_find_v1` |
+| Triangle Count | degree/degeneracy ordering, directed projection, out-neighbor-only memory saving, balanced intersections | `triangle_ordered_intersection_v1` as phase-two stress profile |
+
+The first architectural decision this changes:
+
+```text
+Do not build "one PageRank low-RAM profile."
+
+Build:
+  1. pagerank_full_edge_map_v1
+  2. pagerank_residual_delta_v1
+
+Then compare:
+  semantic parity against LAGraph standard PageRank
+  physical state against GBBS-inspired state model
+  RAM/latency against Neo4j/GDS and our own all-in-memory mode
+```
+
+The second architectural decision:
+
+```text
+Implement layout_probe_v1 before over-investing in any algorithm.
+
+layout_probe_v1 should estimate:
+  n, m, directed/symmetric, weighted/unweighted
+  zero-out-degree count
+  degree distribution and supernode tail
+  estimated CSR/CSC bytes
+  rank/frontier/parent/component vector bytes
+  feasible full/residual/streaming/blocked modes
+  expected verifier/oracle cost
+
+Then it should admit, reject, or route the run before durable work starts.
+```
+
+The third architectural decision:
+
+```text
+Separate correctness oracle from performance oracle.
+
+correctness oracle:
+  LAGraph / GraphBLAS / invariant checker / fixture hash
+
+performance implementation reference:
+  GBBS / GAPBS / GraphIt / out-of-core papers
+
+baseline product comparator:
+  Neo4j GDS / maybe Neptune-like graph workload / custom CPU code
+```
+
+This makes our research loop less confused. Neo4j/GDS is not the only source of
+truth. Neo4j/GDS is the compatibility/product baseline. LAGraph is the
+mathematical correctness lane. GBBS is the implementation-shape lane. The
+bounded storage papers are the memory-reduction lane.
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gbbs_performance_lane_v1` | WHEN a profile cites a performance implementation, THEN it SHALL distinguish physical-path evidence from semantic correctness evidence |
+| `profile_gbbs_fixture_mode_v1` | WHEN a benchmark uses GBBS-style fixtures, THEN source format, converted format, mmap/page-cache posture, scheduler, symmetric flag, and warm/cold state SHALL be recorded |
+| `profile_frontier_edge_map_v1` | WHEN a traversal kernel runs, THEN frontier count, degree sum, threshold, flags, chosen sparse/dense path, and output-elision mode SHALL be recorded |
+| `profile_frontier_representation_v1` | WHEN a profile maintains an active set, THEN dense bitmap, sparse list, data-bearing subset, cached degree sum, conversion count, and bytes SHALL be visible |
+| `profile_sparse_dense_switch_receipt_v1` | WHEN a runtime switches sparse/dense modes, THEN the switch condition and observed values SHALL be included in the receipt |
+| `profile_pagerank_frontier_modes_v1` | WHEN PageRank runs, THEN non-dangling frontier, dangling list, edge-access direction, and rank-state arrays SHALL be declared |
+| `profile_personalized_pagerank_mode_v1` | WHEN PageRank uses source seeds, THEN source-set representation, teleport policy, source count, and non-source update rule SHALL be declared |
+| `profile_weighted_outdegree_v1` | WHEN PageRank runs on weighted graphs, THEN weighted out-degree cache bytes and zero-weight dangling semantics SHALL be recorded |
+| `profile_residual_delta_pagerank_v1` | WHEN residual PageRank runs, THEN `Delta`, `nghSum`, `local_eps`, active-set sizes, and dense/sparse rounds SHALL be recorded |
+| `profile_bfs_nondeterministic_parent_v1` | WHEN BFS emits parents, THEN output validity SHALL be checked by parent/level invariants unless canonical parent selection is declared |
+| `profile_cc_sampling_pipeline_v1` | WHEN connected components uses sampling, THEN sampler, sample time, frequent component percentage, relabeling policy, and compute phase SHALL be recorded |
+| `profile_cc_afforest_probe_v1` | WHEN an Afforest-style probe runs, THEN neighbor rounds, parent bytes, compression rounds, frequent-component coverage, and intercomponent-edge estimate SHALL be recorded |
+| `profile_union_find_policy_v1` | WHEN union-find CC runs, THEN find/compress/unite variant, parent bytes, atomic update policy, and representative-equivalence checker SHALL be recorded |
+| `profile_triangle_ordering_policy_v1` | WHEN triangle counting runs, THEN ordering method, directed projection bytes, rank/permutation bytes, intersection work estimate, and exact count SHALL be recorded |
+| `profile_progress_reporter_phase_v1` | WHEN a long-running profile reports progress, THEN preprocessing, iteration, early-stop, postprocessing, and verification phases SHALL be separated |
+
+The rubber-duck check:
+
+```text
+Does GBBS prove Knight Bus can run Neo4j-scale OLAP in tiny RAM?
+  No. GBBS is primarily a shared-memory benchmark suite, not a low-RAM product.
+  It proves something narrower but very valuable: real implementations are made
+  of frontier/state choices, derived layouts, scheduling thresholds, and
+  algorithm-specific state arrays.
+
+Why read GBBS if our differentiator is lower RAM?
+  Because lower RAM still needs correct high-performance algorithm shape. GBBS
+  helps prevent the LLM from writing naive graph loops and calling them
+  "PageRank" or "BFS." It gives us the state vocabulary to budget.
+
+Does residual PageRank automatically beat full PageRank?
+  No. It may shrink active work on some graphs, but it carries extra arrays and
+  different convergence behavior. It should be a named profile, not an
+  invisible optimization.
+
+What should be built first?
+  `layout_probe_v1`, then `pagerank_full_edge_map_v1` with LAGraph oracle
+  checks, then `pagerank_residual_delta_v1` as the first alternative physical
+  mode. BFS and CC follow because their invariant checkers are clear.
+```
+
 ### Graphiti Shows Profiles Are Already Hiding Inside Agent Memory
 
 The Graphiti source pass makes the architecture lesson concrete. The interesting thing is not just that Graphiti has a graph. It is that its memory graph operations already have implicit profiles:
@@ -6441,6 +7499,89 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 | 435 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0025-checkpoint-retention.md | Read in pass 051; next design logical retention authority versus physical pins for profile artifacts. |
 | 436 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0027-lineage-merge-deltas.md | Read in pass 051; next require insert/update/delete delta-discovery gates before O(delta) profile claims. |
 | 437 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0026-memwal-streaming-ingest.md | Read in pass 051; next add kill gate for substrate features whose graph-level coordination cost dominates. |
+| 438 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/reference.md | Read in pass 052; next convert capability families and wrong-plane messages into Knight Bus profile CLI spec. |
+| 439 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-011-cli-refactoring.md | Read in pass 052; next design profile scope bundles as config, not hidden execution state. |
+| 440 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-010-cli-planes-restructure.md | Read in pass 052; next decide which Knight Bus verbs are data, direct maintenance, control, or local. |
+| 441 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/server.md | Read in pass 052; next design cluster/registry boot, quarantined graph handling, and typed stored-profile catalog. |
+| 442 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/policy.md | Read in pass 052; next map actor, policy, default-deny, and signed-claim-only identity rules to profile runs. |
+| 443 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/openapi.rs | Read in pass 052; next write API path inventory gates for Knight Bus served profile surface. |
+| 444 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/auth_policy.rs | Read in pass 052; next write actor-binding/spoof-guard tests for served runs. |
+| 445 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/data_routes.rs | Read in pass 052; next convert pre-header validation, overload, stream disconnect, and deprecation tests into request-lifecycle gates. |
+| 446 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/schema_routes.rs | Read in pass 052; next design stored-profile breakage checks before schema/profile publish. |
+| 447 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/tests/multi_graph.rs | Read in pass 052; next write profile operation-pair matrix for concurrent build/export/delete/merge/update. |
+| 448 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/parity_matrix.rs | Read in pass 052; next create local-vs-served parity referee for one first profile. |
+| 449 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_data.rs | Read in pass 052; next port wrong-plane, non-local destructive, profile list/show, and remote actor tests. |
+| 450 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_queries.rs | Read in pass 052; next design alias ownership and stored-profile catalog display tests. |
+| 451 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/cli_cluster_e2e.rs | Read in pass 052; next convert import/plan/apply/status/refresh/reimport/approve into profile-registry lifecycle. |
+| 452 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/system_remote.rs | Partly read in pass 052 context; next extract remote end-to-end command flows when designing served profile smoke tests. |
+| 453 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/tests/system_local.rs | Partly read in pass 052 context; next extract local end-to-end command flows when designing capsule-mode smoke tests. |
+| 454 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/api.rs | Read in pass 052; next define shared CLI/server DTO projection for profile catalog entries. |
+| 455 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/handlers.rs | Read in pass 052; next model canonical read/mutate/profile-run endpoints, stored invocation, and schema/control guards. |
+| 456 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/policy.rs | Read in pass 052 as shim plus policy docs; next use policy crate boundaries as reminder to keep authorization reusable beyond HTTP. |
+| 457 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/queries.rs | Read in pass 052; next make stored profiles typed, identity-checked, tool-name-unique, and schema-checked. |
+| 458 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/workload.rs | Read in pass 052; next implement admission-budget spec around per-actor in-flight count and bytes. |
+| 459 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-server/src/export_transport.rs | Read in pass 052; next design bounded result-stream export envelope separate from algorithm RAM budget. |
+| 460 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/planes.rs | Read in pass 052; next make command plane registration exhaustive in Knight Bus CLI. |
+| 461 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/scope.rs | Read in pass 052; next build deterministic scope resolution and receipt fields. |
+| 462 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph-cli/src/client.rs | Read in pass 052; next centralize embedded-vs-remote dispatch before implementing many profile verbs. |
+| 463 | https://www.usenix.org/conference/osdi12/technical-sessions/presentation/kyrola | Read in pass 053; next extract GraphChi preprocessing, shard format, and PageRank/BFS fixture details. |
+| 464 | https://www.usenix.org/system/files/conference/osdi12/osdi12-final-126.pdf | Read in pass 053; next mine exact equations and reported datasets for receipt fields. |
+| 465 | https://github.com/GraphChi/graphchi-cpp | Read in pass 053 metadata; next inspect file formats only if writing `profile_parallel_sliding_windows_v1`. |
+| 466 | https://dl.acm.org/doi/10.1145/2517349.2522740 | Read in pass 053; next extract X-Stream algorithm API and edge-stream correctness rules. |
+| 467 | https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2025_2026/papers/roy_SOSP_2013.pdf | Read in pass 053 as accessible X-Stream PDF copy; next capture reported benchmark table carefully. |
+| 468 | https://github.com/bindsch/x-stream | Read in pass 053 metadata; next inspect streaming partition layout when writing an edge-stream profile. |
+| 469 | https://www.usenix.org/conference/atc15/technical-session/presentation/zhu | Read in pass 053; next extract GridGraph block construction and selective scheduling details. |
+| 470 | https://github.com/thu-pacman/GridGraph | Read in pass 053 metadata; next inspect block layout code when writing `profile_grid_block_schedule_v1`. |
+| 471 | https://www.usenix.org/conference/fast15/technical-sessions/presentation/zheng | Read in pass 053; next extract FlashGraph I/O scheduler and vertex-state assumptions. |
+| 472 | https://www.usenix.org/system/files/conference/fast15/fast15-paper-zheng.pdf | Read in pass 053; next capture exact memory/performance claims with hardware setup. |
+| 473 | https://github.com/sbeamer/gapbs | Read in pass 053; next use BFS, PR, CC, SSSP, BC, and TC kernels as first verification matrix. |
+| 474 | https://arxiv.org/abs/1508.03619 | Queued from pass 053; next read the GAP benchmark paper before claiming benchmark completeness. |
+| 475 | https://arxiv.org/abs/1805.00923 | Read in pass 053; next translate algorithm/schedule split into Knight Bus profile manifest grammar. |
+| 476 | https://graphit-lang.org/ | Read in pass 053; next compare GraphIt schedule knobs to profile knobs. |
+| 477 | https://github.com/GraphIt-DSL/graphit | Read in pass 053 metadata; next inspect only if building a schedule DSL. |
+| 478 | https://github.com/DrTimothyAldenDavis/GraphBLAS | Read in pass 053; next define semiring reference lane for the first PageRank/BFS/CC specs. |
+| 479 | https://graphblas.org/ | Read in pass 053; next use terminology for semiring/mask/accumulator sections. |
+| 480 | https://www.vldb.org/pvldb/vol13/p1598-dhulipala.pdf | Read in pass 053; next mine Sage algorithm table and mutable-state formulas. |
+| 481 | https://paralg.github.io/gbbs/docs/sage/sage/ | Read in pass 053; next inspect Sage references when drafting PSAM-inspired profile specs. |
+| 482 | https://github.com/ParAlg/gbbs | Read in pass 053 metadata; next inspect PageRank/BFS/CC/TC implementations when writing executable specs. |
+| 483 | https://arxiv.org/abs/1712.08367 | Read in pass 054; ADWISE adaptive sliding-window partitioning strengthens total-cost preprocessing receipts. |
+| 484 | https://arxiv.org/abs/2001.07086 | Read in pass 054; 2PS two-pass clustering/re-streaming suggests bounded structure probes before layout build. |
+| 485 | https://arxiv.org/abs/2410.07732 | Read in pass 054; StreamCPI run-length compressed block assignments suggest compressed profile metadata. |
+| 486 | https://arxiv.org/abs/2402.11980 | Read in pass 054; Buffered Streaming Edge Partitioning suggests batch, hypergraph, and block-count-slope profile gates. |
+| 487 | https://github.com/mayerrn/two_phase_streaming | Read in pass 054; next mine source knobs for memory chunking, stats overhead, and stream clustering fixtures. |
+| 488 | https://github.com/KaHIP/CompressedStreamingGraphPartitioning | Read in pass 054; next inspect CPI vector, FlatBuffer logs, compression modes, and external-memory PQ implementation. |
+| 489 | https://github.com/kurpicz/cpi | Read metadata in pass 054; next inspect as standalone compressed vector reference if implementing assignment metadata. |
+| 490 | https://github.com/KaHIP/HeiStream | Read in pass 054; next inspect priority buffer, batch model graph, timing/log schema, and streamed output implementation. |
+| 491 | https://github.com/KaHIP/FREIGHT | Read in pass 054; next inspect graph-to-hypergraph/net-list conversion and metric-specific output checks. |
+| 492 | https://arxiv.org/abs/2602.21248 | Read in pass 054; BuffCut priority buffers suggest adversarial stream-order mitigation. |
+| 493 | https://arxiv.org/abs/2312.08356 | Read in pass 054; CUTTANA connects partition quality to graph analytics/database latency and throughput. |
+| 494 | https://arxiv.org/abs/2102.09384 | Read in pass 054; buffered streaming model justifies bounded delay as a product knob. |
+| 495 | https://arxiv.org/abs/2007.03131 | Read in pass 054; prioritized restreaming suggests reproducible stream-order policy in receipts. |
+| 496 | https://github.com/KaHIP | Read search result in pass 054; next survey KaHIP family only if partitioning becomes the first implementation wedge. |
+| 497 | https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SEA.2026.5 | Queued from pass 054; official BuffCut SEA 2026 page can verify arXiv claims and citation. |
+| 498 | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | Queued from pass 054; Triparts may add cloud/commodity streaming partitioning comparison. |
+| 499 | https://github.com/GraphBLAS/LAGraph | Read in pass 055; next use stable algorithms as oracle/reference lane for first profile specs. |
+| 500 | https://github.com/GraphBLAS/LAGraph/blob/stable/papers/lagraph-grapl19.pdf | Read in pass 055; next cite LAGraph verified-algorithm framing in the executable spec. |
+| 501 | https://lagraph.readthedocs.io/en/latest/intro.html | Read in pass 055 via local rtdocs; next adapt cached-property vocabulary to Knight Bus profile artifacts. |
+| 502 | https://github.com/GraphBLAS/LAGraph/blob/stable/include/LAGraph.h | Read in pass 055; next convert Basic/Advanced API split into product-level safe/expert modes. |
+| 503 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRank.c | Read in pass 055; next draft `profile_pagerank_semantics_v1`. |
+| 504 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_PageRankGAP.c | Read in pass 055; next define `gap_compatible` vs `production_correct` semantic modes. |
+| 505 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_PageRank.c | Read in pass 055; next reuse sink-node and convergence-failure fixture ideas. |
+| 506 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_BreadthFirstSearch.c | Read in pass 055; next define push-only vs push/pull traversal profile modes. |
+| 507 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/template/LG_BreadthFirstSearch_vanilla_template.c | Read in pass 055; next mine sparse-frontier and mask semantics for low-RAM BFS. |
+| 508 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_BreadthFirstSearch.c | Read in pass 055; next adapt valid-parent equivalence checks and max-level/destination fixtures. |
+| 509 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_ConnectedComponents.c | Read in pass 055; next define connected-component invariant checker. |
+| 510 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LG_CC_FastSV6.c | Read in pass 055; next inspect FastSV state arrays if CC becomes second kernel. |
+| 511 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_ConnectedComponents.c | Read in pass 055; next adapt dense vector and representative-count checks. |
+| 512 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_SingleSourceShortestPath.c | Read in pass 055; next defer SSSP until delta/light-heavy weighted profile is needed. |
+| 513 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_SingleSourceShortestPath.c | Read in pass 055; next adapt weight-type, positive/negative edge, and oracle check fixtures. |
+| 514 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/algorithm/LAGr_TriangleCount.c | Read in pass 055; next draft triangle method/presort/LU materialization budget spec. |
+| 515 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/test/test_TriangleCount.c | Read in pass 055; next adapt all-method exact-count and cache-missing tests. |
+| 516 | https://github.com/GraphBLAS/LAGraph/blob/stable/rtdocs/utils.rst | Read in pass 055; next use semiring vocabulary in `oracle` manifest sections. |
+| 517 | https://github.com/GraphBLAS/LAGraph/blob/stable/src/benchmark/README.md | Read in pass 055; next separate input decode, binary conversion, layout build, measured algorithm, and verification phases. |
+| 518 | https://github.com/GraphBLAS/LAGraph/tree/stable/src/test | Read in pass 055; next reuse checker-suite pattern for executable specs. |
+| 519 | https://github.com/GraphBLAS/GraphBLAS-Pointers | Metadata read in pass 055; next use as GraphBLAS standard/link hub if writing background section. |
+| 520 | https://github.com/SparseLinearAlgebra/spla-bench | Metadata read in pass 055; possible lower-priority benchmark comparison lane. |
 
 ## Product Implications So Far
 
@@ -6934,6 +8075,76 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 488. Add `profile_retention_pin_v1`: logical retention authority and physical pins are separate; cleanup must never under-retain a receipt-reconstructable artifact.
 489. Add `profile_delta_discovery_gate_v1`: O(delta) claims require bounded insert, update, and delete discovery, or an explicit fallback reason.
 490. Add `profile_storage_feature_kill_gate_v1`: clever substrate features should be killed or kept experimental when graph-level validation, correction, and publication cost dominates.
+491. Add `profile_surface_capability_v1`: every profile command declares whether it is data, served-only, direct-storage, control-plane, or local.
+492. Add `profile_scope_bundle_v1`: named profiles are reproducible scope bundles, not hidden mutable run state.
+493. Add `profile_scope_resolution_receipt_v1`: every run records pre-resolution flags, final graph, access path, actor source, budget binding, and output mode.
+494. Add `profile_command_plane_matrix_v1`: new CLI verbs fail tests until capability, accepted flags, rejected flags, and remediation text are declared.
+495. Add `profile_wrong_plane_error_v1`: invalid flag/address combinations should fail before work and teach the right plane.
+496. Add `profile_direct_maintenance_plane_v1`: rebuild, repair, optimize, compact, and cleanup are privileged direct/control operations by default.
+497. Add `profile_embedded_remote_parity_v1`: local capsule and served runs must match on scrubbed logical receipts.
+498. Add `profile_parity_known_divergence_v1`: intentional local/server differences are declared in a visible divergence table.
+499. Add `profile_openapi_surface_gate_v1`: served endpoints, methods, auth state, and error schemas are pinned with expected and unexpected path tests.
+500. Add `profile_auth_actor_binding_v1`: served runs bind actor identity from credentials only and stamp it into receipts.
+501. Add `profile_auth_spoof_guard_v1`: actor identity cannot be supplied or overridden by request headers, params, or body.
+502. Add `profile_stored_contract_v1`: algorithm profiles should be typed, named, described, instructed, budgeted, exactness-declared tools.
+503. Add `profile_stored_contract_invoke_v1`: stored profile invocation needs an outer invoke gate and inner read/build/export gates.
+504. Add `profile_admission_budget_v1`: run requests reserve RAM, spill, output queue, concurrency, and actor budget before engine work.
+505. Add `profile_stream_export_budget_v1`: result streaming has its own bounded queue budget and disconnect semantics.
+506. Add `profile_cluster_control_apply_v1`: served profile registries are changed by import/plan/apply/status/refresh, not ad hoc route mutation.
+507. Add `profile_registry_lifecycle_v1`: drift, payload loss, destructive deletes, approvals, and reimport need digest-backed lifecycle tests.
+508. Add `profile_schema_registry_guard_v1`: schema/profile changes check all dependent stored profiles before publish.
+509. Add `profile_alias_binding_v1`: aliases own their server/graph/profile/contract binding and reject conflicting global scope flags.
+510. Add `profile_output_format_v1`: `json`, `jsonl`, `csv`, `table`, and receipt-file outputs need stable schemas.
+511. Add `profile_request_lifecycle_gate_v1`: served requests prove auth, validation, admission, success headers, stream disconnect, and recovery paths.
+512. Add `profile_operation_matrix_v1`: profile operation pairs get named outcomes such as success, conflict, quarantine, blocked, or unsupported.
+513. First implementation wedge: one `pagerank_lowram_v1` stored profile with typed params, local/server parity, admission budget, exactness oracle, and receipt schema.
+514. Product principle: low-RAM storage formats become credible only when the CLI/API surface makes their budgets, access planes, and failure modes impossible to hide.
+515. Add `profile_gap_kernel_baseline_v1`: the first verification suite should start with GAP-style BFS, SSSP, PageRank, Connected Components, Betweenness Centrality, and Triangle Counting kernels.
+516. Add `profile_algorithm_schedule_split_v1`: keep logical graph algorithm identity separate from physical storage layout, traversal direction, scheduling, and hardware backend.
+517. Add `profile_parallel_sliding_windows_v1`: model GraphChi-style vertex windows as a bounded-RAM mode with pass-count and random-read receipts.
+518. Add `profile_edge_stream_partition_v1`: model X-Stream-style edge scans as a bounded-RAM mode where latency is traded for sequential I/O and update-stream passes.
+519. Add `profile_grid_block_schedule_v1`: model GridGraph-style 2D edge blocks and active-block skipping as a bounded mode for shrinking-frontier algorithms.
+520. Add `profile_semi_external_ssd_v1`: model FlashGraph-style vertex-state-in-RAM plus SSD/NVMe edge-list fetch as the most promising "GB not TB" traversal profile.
+521. Add `profile_vertex_state_edge_stream_v1`: every low-RAM profile should state mutable memory as vertex/frontier/output terms and account for immutable edge/topology separately.
+522. Add `profile_write_avoidance_v1`: if edges/topology are treated as immutable, hidden edge writes or edge-bit sidecars must be rejected or separately budgeted.
+523. Add `profile_semiring_reference_lane_v1`: use GraphBLAS-style semiring formulations as correctness/oracle language where the algorithm permits it.
+524. Add `profile_pass_count_receipt_v1`: when RAM falls because work is streamed/windowed, pass count and scanned bytes must sit next to latency in the receipt.
+525. Add `profile_frontier_state_budget_v1`: BFS, SSSP, PPR, and traversal profiles should expose frontier, visited, distance, queue, and output-buffer memory separately.
+526. Add `profile_active_block_skip_v1`: when active-set scheduling saves work, skipped blocks and stale-metadata fallback must be measured and testable.
+527. Treat GraphChi, X-Stream, GridGraph, FlashGraph, and Sage as architecture references, not proof that Knight Bus beats Neo4j.
+528. Treat GAP, GraphBLAS, and GBBS/Sage as verification/oracle sources before they are treated as product dependencies.
+529. Report RAM as a breakdown: `vertex_state_bytes + frontier_bytes + scheduler_bytes + output_buffer_bytes + cache_bytes`, with mapped edge/topology bytes separate from DRAM/RSS.
+530. State the central tradeoff honestly: lower-RAM graph modes usually buy memory boundedness with preprocessing, more passes, more I/O, or stricter algorithm eligibility.
+531. Add `profile_preprocess_total_cost_v1`: partition/build/probe time is not invisible setup; it must be counted and optionally amortized over repeated runs.
+532. Add `profile_two_pass_structure_probe_v1`: a cheap first pass can compute cluster/summary metadata before committing to a low-RAM layout.
+533. Add `profile_observability_overhead_v1`: metric/log/proof modes can change memory and latency, so observability tier belongs in the receipt.
+534. Add `profile_compressed_assignment_index_v1`: partition/block assignment metadata can be compressed and verified separately from edge/topology storage.
+535. Add `profile_assignment_compression_mode_v1`: profile manifests should declare uncompressed, full-RLE, batch-RLE, or external-priority-queue metadata storage.
+536. Add `profile_hypergraph_partition_mode_v1`: event-like property graph data may deserve a hypergraph/net-list projection instead of forced pairwise edges.
+537. Add `profile_block_count_independence_gate_v1`: if a profile claims memory or runtime does not scale with partition count `k`, sweep `k` and prove slope.
+538. Add `profile_priority_buffer_batch_v1`: buffer size, batch size, priority score, delayed decisions, and locality recovery are first-class budget terms.
+539. Add `profile_netlist_projection_v1`: graph/hypergraph conversion must report semantic loss, metric choice, conversion passes, and output identity.
+540. Add `profile_adversarial_stream_guard_v1`: when stream order is hostile, the planner should choose priority buffering, degree ordering, ambivalence ordering, or restreaming.
+541. Add `profile_partition_quality_to_latency_v1`: edge-cut, replication factor, communication volume, and workload latency must be measured together.
+542. Add `profile_bounded_delay_quality_v1`: delaying assignment can be legitimate only when delay, buffer bytes, quality delta, and wall-clock overhead are bounded.
+543. Add `profile_stream_order_policy_v1`: source order, shuffled order, degree order, priority order, ambivalence order, seed, and restream count must be reproducible.
+544. First concrete implementation addition: add a `layout_probe_v1` phase before `pagerank_lowram_v1` that can admit, reject, or choose a physical mode before durable work.
+545. Product principle: a layout is a reusable economic artifact; its value depends on how many jobs reuse it, not only the first run's elapsed time.
+546. Add `profile_lagraph_oracle_lane_v1`: exact profiles should name LAGraph/GraphBLAS reference path, fixture, tolerance/hash, and semantic divergences.
+547. Add `profile_cached_property_contract_v1`: cached `AT`, degree, symmetry, `emin`, L/U, or layout artifacts need build cost, memory cost, invalidation, and reuse count.
+548. Add `profile_basic_advanced_contract_v1`: safe mode may build artifacts; advanced mode must fail closed when required artifacts are absent.
+549. Add `profile_pagerank_semantics_v1`: PageRank receipts need sink handling, damping, tolerance, iteration cap, rank-sum check, transpose source, and degree-cache identity.
+550. Add `profile_benchmark_semantic_mode_v1`: benchmark-compatible semantics such as GAP PageRank must be visibly different from production-correct semantics.
+551. Add `profile_bfs_push_pull_mode_v1`: BFS should expose push-only versus push/pull mode, frontier representation, cache preconditions, output mode, and checker class.
+552. Add `profile_output_equivalence_checker_v1`: graph outputs such as BFS parents and component representatives need invariant/equivalence checkers, not only byte equality.
+553. Add `profile_cc_component_invariant_v1`: connected components should verify dense vector, representative validity, isolated node behavior, and edge endpoint consistency.
+554. Add `profile_sssp_delta_light_heavy_v1`: SSSP profiles should report delta, weight type, min-plus semiring, light/heavy edge materialization bytes, negative-edge policy, and unreachable sentinels.
+555. Add `profile_triangle_method_presort_v1`: triangle count profiles should expose method, presort, L/U materialization, self-edge policy, symmetry proof, and exact integer count.
+556. Add `profile_semiring_manifest_v1`: oracle-backed profiles should declare semiring, mask, accumulator, descriptor, and value-vs-structure semantics.
+557. Add `profile_input_format_phase_v1`: benchmark receipts must separate source decoding, binary/cache conversion, derived layout build, measured algorithm, and verification.
+558. Add `profile_oracle_checker_suite_v1`: first-class algorithms need exact fixtures, invariant checkers, invalid-input tests, cache-missing tests, and memory-failure gates.
+559. First-kernel correction: implement PageRank first, but implement both `production_correct` and `gap_compatible` modes so the benchmark/reference distinction is honest from day one.
+560. Product principle: GraphBLAS/LAGraph is the math and oracle layer; Knight Bus differentiation remains budget-bounded physical profiles plus proof-carrying receipts.
 
 ## Next Capture Steps
 

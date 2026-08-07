@@ -2,7 +2,7 @@
 
 - Task: Capture one year of graph technology developers chat URLs and budget-bounded compute insights
 - Created: 2026-08-07 04:36:05Z
-- Updated: 2026-08-07 15:08:40Z
+- Updated: 2026-08-07 15:26:59Z
 - Current Phase: Green
 - Status: active
 
@@ -2156,6 +2156,84 @@ Document Neo4j GDS estimate pipeline and schema contract while preserving the Ju
 
 #### Context Notes:
 - Pass 087 conclusion: GDS estimation is a public API contract with named graph and implicit/fictitious graph modes; Knight Bus should build estimate/admission/schema parity before hot-loop optimization.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:16:26Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_75: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_memory_tree_spine: passing - Used codebase-memory over neo4j-gds-local to inspect MemoryTree.renderMap/render, MemoryEstimations.Builder, CompositeTree, CompositeMaxTree, MemoryRange, Estimate.humanReadable, MemoryTreeTest, and inbound MemoryEstimateResult constructor path
+- doc_update_gds_memory_accounting_spine: passing - PMF003 updated with pass 088 ledger row, GDS memory-tree accounting evidence row, accounting-algebra synthesis, URL queue entries 943-947, and product implications 988-994
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS memory-tree accounting/rendering semantics and Knight Bus estimate-tree implications
+
+#### Current Focus:
+Document Neo4j GDS memory-tree accounting semantics while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect GDS memory-validation/admission failure paths or run a tiny GDS estimate fixture to capture actual returned schema and bytes
+- If switching to implementation, draft profile_memory_tree_render_schema_v1, profile_estimate_accounting_operator_v1, and profile_high_water_phase_tree_v1 executable specs
+
+#### Context Notes:
+- Pass 088 conclusion: GDS memory estimates are tree-shaped accounting artifacts; Knight Bus should preserve tree/map compatibility while adding accounting operators, numeric per-node byte ranges, cap admission, and measured high-water runtime receipts.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:22:04Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_76: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_memory_admission_spine: passing - Used codebase-memory over neo4j-gds-local to inspect MemoryUsageValidator, GraphProjectMemoryUsageService.validateMemoryUsage, GenericProjectApplication.projectGraph, MemoryTracker, DefaultMemoryGuard, MemoryRequirement, MemoryUsageValidatorTest, and DefaultMemoryGuardTest
+- doc_update_gds_admission_guard_spine: passing - PMF003 updated with pass 089 ledger row, projection validation and algorithm guard evidence rows, admission-router synthesis, URL queue entries 948-955, and product implications 995-1008
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS memory validation/admission guard evidence and Knight Bus cap-router implications
+
+#### Current Focus:
+Document Neo4j GDS memory validation and admission guard paths while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect actual GDS estimate fixture execution or memory validation settings/config defaults
+- If switching to implementation, draft profile_projection_memory_admission_receipt_v1, profile_algorithm_memory_guard_receipt_v1, and profile_profile_alternative_admission_receipt_v1 executable specs
+
+#### Context Notes:
+- Pass 089 conclusion: GDS already turns estimates into projection/build and algorithm/run guards; Knight Bus differentiation should be profile-aware cap routing, not just smaller estimates.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:26:59Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_77: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_memory_policy_observability_spine: passing - Used codebase-memory over neo4j-gds-local to inspect MemoryEstimationSettings, GdsSettings, ProcedureExecutorSpec.graphCreationFactory, ProcedureGraphCreation.validateMemoryEstimation, MemoryEstimationExecutor.computeEstimate, MemoryProc, MemoryFacade, UserEntityMemory, UserMemorySummary, MemoryProcTest, GraphMemoryUsage, and GraphInfo.withMemoryUsage
+- doc_update_gds_policy_observability_spine: passing - PMF003 updated with pass 090 ledger row, validation-policy and memory-observability evidence rows, policy/observability synthesis, URL queue entries 956-967, and product implications 1009-1018
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS validation policy defaults and memory observability surface evidence for Knight Bus cap-ledger design
+
+#### Current Focus:
+Document Neo4j GDS validation policy and memory observability surfaces while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect actual GDS estimate fixture execution or GDS graph-size detail internals for which memory components are surfaced
+- If switching to implementation, draft profile_validation_policy_setting_receipt_v1, profile_estimate_only_no_reservation_receipt_v1, and profile_live_reservation_ledger_v1 executable specs
+
+#### Context Notes:
+- Pass 090 conclusion: GDS separates estimate-only rows, admission/reservation paths, and memory observability procedures; Knight Bus should make those states explicit with per-job cap policy and live reservation/high-water ledger rows.
 
 #### Performance/Metrics:
 - Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges

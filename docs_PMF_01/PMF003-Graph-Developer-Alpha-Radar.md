@@ -99,6 +99,9 @@ Privacy posture: private chat messages are treated as directional evidence. This
 | 085 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j community Cypher complex-read comparator deepened from local Neo4j family clone `neo4j-src` at branch `release/5.26.0`, commit `c68156edf24164435ab1ac257ec633134c2887f7`, and codebase-memory project `neo4j-community-local` with 218,480 nodes and 1,186,989 edges; concrete state from regular slotted variable-length expansion, interpreted and slotted BFS-pruning expansion, directed and undirected BFS-pruning cursors, planner rewrite eligibility, trail-to-pruning guard, heap-tracked frontier collections, `MemoryTracker`, and `BFSPruningVarLengthExpandTestBase` correctness fixtures | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 086 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j Graph Data Science OLAP/projection comparator deepened from local Neo4j family clone `neo4j-gds-src` at branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local` with 54,265 nodes and 284,022 edges; concrete state from public projection and algorithm `.estimate` surfaces, native/cypher graph-project estimate paths, graph-project memory validation and loading estimates, PageRank Pregel state, PageRank degree precompute, BFS state inventory and chunk synchronization, and WCC disjoint-set plus sampled/unsampled strategy selection | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 087 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j GDS algorithm-estimate pipeline deepened from the same `neo4j-gds-src` branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local`; concrete state from public PageRank/BFS/WCC stream estimate procedures, local procedure facades, centrality/pathfinding/community estimation facades, `AlgorithmEstimationTemplate`, named-graph vs map/fictitious graph handling, `MemoryEstimationGraphConfigParser`, database vs fictitious graph-store estimation services, `MemoryEstimateResult` schema, WCC estimate integration tests, and graph-project estimate tests including large virtual graph dimensions | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 088 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j GDS memory-tree rendering and accounting semantics deepened from the same `neo4j-gds-src` branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local`; concrete state from `MemoryTree.renderMap/render`, `MemoryEstimations.Builder`, `CompositeTree`, `CompositeMaxTree`, `MemoryRange`, `Estimate.humanReadable`, `MemoryTreeTest`, and the `MemoryEstimateResult` inbound trace showing `AlgorithmEstimationTemplate.estimate` as the critical constructor path | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 089 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j GDS memory validation/admission paths deepened from the same `neo4j-gds-src` branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local`; concrete state from projection `MemoryUsageValidator`, `GraphProjectMemoryUsageService.validateMemoryUsage`, `GenericProjectApplication.projectGraph`, progress-tracking `MemoryTracker`, algorithm-run `DefaultMemoryGuard`, `MemoryRequirement`, and validator/guard tests for insufficient memory, min-vs-max estimates, sudo override, failure logging, and task reservation | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 090 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j GDS memory policy and observability surfaces deepened from the same `neo4j-gds-src` branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local`; concrete state from `MemoryEstimationSettings.validate_using_max_memory_estimation`, `GdsSettings.validateUsingMaxMemoryEstimation`, `ProcedureExecutorSpec.graphCreationFactory`, `ProcedureGraphCreation.validateMemoryEstimation`, `MemoryEstimationExecutor.computeEstimate`, public `gds.memory.list` / `gds.memory.summary`, `MemoryFacade`, `UserEntityMemory`, `UserMemorySummary`, `MemoryProcTest`, `GraphMemoryUsage`, and graph catalog `GraphInfo.withMemoryUsage` | Reclaim/open X chat and continue upward from Jun 1 2026 |
 
 ## Current Working Thesis
 
@@ -831,6 +834,11 @@ The group chat is valuable less as "graph database market research" and more as 
 | Aug 7 GDS estimate pipeline deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/AlgorithmEstimationTemplate.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/MemoryEstimationGraphConfigParser.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/DatabaseGraphStoreEstimationService.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/FictitiousGraphStoreEstimationService.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MemoryEstimateResult.java | Neo4j GDS algorithm machinery and memory-estimation maintainers, read through codebase-memory | `AlgorithmEstimationTemplate` is the central generic estimation path. It accepts an algorithm config, `graphNameOrConfiguration`, and a `MemoryEstimation`. If the graph argument is a map, it parses implicit graph creation through `MemoryEstimationGraphConfigParser`, chooses store projection vs Cypher projection by mutually exclusive projection/query key pairs, estimates graph memory via database or fictitious graph-store services, adds a `"graph"` memory component, then adds the `"algorithm"` memory component. If the graph argument is a string, it loads the named graph from the catalog, computes dimensions from the actual `GraphStore`, and estimates only the algorithm over those dimensions. `MemoryEstimateResult` renders `requiredMemory`, `treeView`, `mapView`, `bytesMin`, `bytesMax`, `nodeCount`, `relationshipCount`, and heap percentages based on current max JVM heap. | This is the exact baseline for Knight Bus's verification loop. A good rewrite should not treat graph projection and algorithm state as separate stories. It should produce a composite estimate, then a composite runtime receipt, for both already-materialized graph artifacts and implicit graph configs. | Add `profile_estimate_input_mode_receipt_v1`, `profile_graph_algorithm_composite_estimate_v1`, `profile_named_graph_catalog_estimate_v1`, `profile_fictitious_graph_estimate_v1`, and `profile_estimate_result_schema_parity_v1`: input mode, parsed projection kind, graph component bytes, algorithm component bytes, transformed dimensions, concurrency, required-memory range, tree/map render, node/relationship counts, heap percentages, cap, admission, and post-run high-water SHALL be recorded. | Very high. This is the source-level contract Knight Bus must match and extend. |
 | Aug 7 GDS procedure-to-template chain deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/path-finding/src/main/java/org/neo4j/gds/paths/traverse/BfsStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/main/java/org/neo4j/gds/wcc/WccStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/centrality/LocalCentralityProcedureFacade.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/pathfinding/LocalPathFindingProcedureFacade.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java | Neo4j GDS procedure/facade maintainers, read through codebase-memory | The public wrappers are thin and stable-looking: `PageRankStreamProc.estimate` is annotated as `gds.pageRank.stream.estimate` and delegates to `facade.algorithms().centrality().pageRankStreamEstimate`; `BfsStreamProc.estimate` delegates to `facade.algorithms().pathFinding().breadthFirstSearchStreamEstimate`; `WccStreamProc.estimate` delegates to `facade.algorithms().community().wccStreamEstimate`. The local facades parse the algorithm configuration into mode-specific configs (`PageRankStreamConfig`, `BfsStreamConfig`, `WccStreamConfig`) and then call the corresponding estimation-mode business facade. The business facade selects the algorithm memory definition and delegates to `AlgorithmEstimationTemplate`. | For a Neo4j-compatible product, the public estimate chain is part of the API surface. Knight Bus can keep a familiar `.estimate` surface but return richer receipt fields or link to a receipt bundle. The important design point is uniformity: every algorithm should have the same estimate-to-admission-to-run-to-receipt envelope even if its storage format is custom. | Add `profile_public_estimate_call_chain_v1`, `profile_algorithm_config_parse_receipt_v1`, and `profile_uniform_estimate_envelope_v1`: procedure name, input parameter names, parsed config type, algorithm family, estimate facade, memory-definition class, template path, output schema, receipt URL/artifact ID, and unsupported-field behavior SHALL be recorded. | High. This is procedure-path evidence rather than benchmark evidence, but it is essential for API compatibility and LLM-coded wrappers. |
 | Aug 7 GDS estimate fixture deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/integrationTest/java/org/neo4j/gds/wcc/WccStreamProcTest.java and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/test/java/org/neo4j/gds/catalog/GraphProjectProcEstimateTest.java | Neo4j GDS test maintainers, read through codebase-memory | `WccStreamProcTest.fictitiousMemoryEstimation` calls `gds.wcc.stream.estimate` with `{nodeCount: 10, relationshipCount: 7, nodeProjection: '*', relationshipProjection: '*'}` and asserts one result row with nonblank `requiredMemory`, nonblank `treeView`, nonempty `mapView`, positive min/max bytes, node/relationship counts, and heap percentages. `memoryEstimationNativeProjection` does the same for `{nodeProjection: 'Label', relationshipProjection: 'TYPE'}` and expects counts from an actual graph. `GraphProjectProcEstimateTest.computeMemoryEstimationForCypherProjection` pins exact byte values for Cypher projection estimation, and `computeMemoryEstimationForVirtualGraphWithLargeValues` pins exact byte values and counts for a virtual graph with 5 billion nodes and 20 billion relationships. | GDS tests make estimates a compatibility contract, not a best-effort log line. Knight Bus should port this idea: estimates should be executable fixtures with fixed schemas, known byte ranges for small graphs, large-dimension overflow guards, and explicit cap/admission outcomes. | Add `profile_estimate_fixture_schema_v1`, `profile_large_virtual_graph_estimate_v1`, and `profile_cap_admission_fixture_v1`: single-row guarantee, required fields, exact byte expectations for reference fixtures, large node/relationship counts, heap percentage behavior, cap value, admitted/rejected result, and typed rejection reason SHALL be tested. | Very high for verification-first planning. This is the shape that lets LLMs safely implement estimates before algorithm hot loops. |
+| Aug 7 GDS memory-tree accounting deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryTree.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryEstimations.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryRange.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/Estimate.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/test/java/org/neo4j/gds/mem/MemoryTreeTest.java | Neo4j GDS memory-estimation maintainers, read through codebase-memory | `MemoryTree.renderMap` produces a nested machine-readable map with `name`, `memoryUsage`, and optional `components`; `render` produces the human-readable ASCII tree. `MemoryTreeTest.renderLeaf` and `renderChildren` pin the map structure and show additive child accounting. `CompositeTree.memoryUsage` sums child `MemoryRange` values, while `CompositeMaxTree.memoryUsage` takes the max child range for high-water mark style accounting. `MemoryEstimations.Builder` supports fixed, per-node, per-node-vector, per-thread, per-graph-dimension, range-per-node/range-per-graph-dimension, nested fields, and `max(...)`. `MemoryRange` validates nonnegative min/max, rejects `max < min`, uses exact arithmetic for add/multiply/subtract, and renders exact values or `[min ... max]` ranges through `Estimate.humanReadable`. | This is a direct architecture clue for lower-RAM Knight Bus. We need a memory-accounting algebra, not a flat byte estimate: sum for simultaneously resident state, max for sequential phases or profile alternatives, ranges for uncertainty, and post-run measured high-water receipts for whether the estimate held. | Add `profile_memory_tree_render_schema_v1`, `profile_estimate_accounting_operator_v1`, `profile_estimate_range_arithmetic_guard_v1`, `profile_high_water_phase_tree_v1`, and `profile_machine_numeric_map_view_v1`: every estimate node SHALL record name, accounting operator, numeric min/max bytes, display string, child nodes, phase/profile tag, cap/admission status, and measured high-water delta after run. | Very high. This is small code, but it gives the exact accounting vocabulary needed for budget-bounded algorithm profiles. |
+| Aug 7 GDS projection memory validation deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/MemoryUsageValidator.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphProjectMemoryUsageService.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GenericProjectApplication.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/MemoryTracker.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/integrationTest/java/org/neo4j/gds/applications/graphstorecatalog/MemoryUsageValidatorTest.java | Neo4j GDS graph-store catalog and progress-tracking maintainers, read through codebase-memory | `GenericProjectApplication.projectGraph` validates projection memory before starting the expensive graph-store load, then builds the graph store and inserts it into the catalog. `GraphProjectMemoryUsageService.validateMemoryUsage` calls `MemoryUsageValidator.tryValidateMemoryUsage("Loading", config, getEstimate(...))`. `MemoryUsageValidator` estimates memory, chooses min or max based on `validateUsingMaxMemoryEstimation`, checks `memoryTracker.availableMemory()`, logs and throws when required bytes exceed available bytes, returns `MemoryRange.empty()` when estimation is not implemented, and bypasses the check under `sudo` while still tracking the chosen estimate. `MemoryTracker` reserves task bytes by username/task/job and computes available memory as initial memory minus graph-store reservations minus task reservations. Tests pin insufficient-memory failure text, `sudo: true` bypass behavior, failure logging, and min/max failure modes. | This is admission-before-costly-work in production form. It proves that `.estimate` is not only informational; it gates graph projection. Knight Bus should preserve that discipline but improve it from binary admit/block/sudo into profile-aware cap admission with slower alternatives and measured receipts. | Add `profile_projection_memory_admission_receipt_v1`, `profile_task_memory_reservation_receipt_v1`, `profile_sudo_override_waiver_receipt_v1`, `profile_memory_validation_failure_receipt_v1`, and `profile_estimation_missing_guard_receipt_v1`: task name, job ID, username, input mode, estimate tree, chosen min/max policy, cap/free bytes, required bytes, graph/task reserved bytes, admitted/rejected/sudo/skipped status, log message, and post-run release SHALL be recorded. | Very high. This is the exact operational step Knight Bus must strengthen for budget-bounded batch compute. |
+| Aug 7 GDS algorithm memory guard deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/DefaultMemoryGuard.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MemoryRequirement.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/test/java/org/neo4j/gds/applications/algorithms/machinery/DefaultMemoryGuardTest.java | Neo4j GDS algorithm machinery maintainers, read through codebase-memory | `DefaultMemoryGuard.assertAlgorithmCanRun` computes a `MemoryRequirement` from the algorithm memory estimation, graph dimensions, dimension transformer, algorithm config, concurrency, and min-vs-max policy. If `sudo` is set, it directly tracks/reserves required bytes. Otherwise it calls `MemoryTracker.tryToTrack` and converts `MemoryReservationExceededException` into an `IllegalStateException` with required and available bytes. `MemoryRequirement.create` runs the estimation over transformed dimensions and picks either `memoryRange.min` or `memoryRange.max`. Tests prove minimum-estimate failure reserves/compares `117b`, maximum-estimate failure compares `243b`, and `sudo` bypasses the failed guard. | Algorithm admission is separate from projection admission. Knight Bus should make both visible: projection/build cap and algorithm/run cap can fail independently, choose different storage profiles, or propose slower spill/frontier profiles. | Add `profile_algorithm_memory_guard_receipt_v1`, `profile_min_max_policy_receipt_v1`, `profile_dimension_transform_admission_receipt_v1`, and `profile_profile_alternative_admission_receipt_v1`: algorithm label, graph dimensions, transformed dimensions, concurrency, min/max policy, selected profile, alternative profiles, required bytes per profile, available/cap bytes, reservation result, sudo status, and failure reason SHALL be recorded. | Very high. This turns GDS's binary memory guard into the product wedge: cap-bounded profile selection before algorithm execution. |
+| Aug 7 GDS validation policy setting deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/neo4j-settings/src/main/java/org/neo4j/gds/settings/MemoryEstimationSettings.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/neo4j-settings/src/main/java/org/neo4j/gds/settings/GdsSettings.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/ProcedureExecutorSpec.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/ProcedureGraphCreation.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/MemoryEstimationExecutor.java | Neo4j GDS settings/executor maintainers, read through codebase-memory | `MemoryEstimationSettings.validate_using_max_memory_estimation` defines `gds.validate_using_max_memory_estimation` with description "Use maximum memory estimation in procedure memory guard" and default `false`. `GdsSettings.validateUsingMaxMemoryEstimation` exposes that setting. `GraphProjectMemoryUsageService.memoryUsageValidator` and `ProcedureExecutorSpec.graphCreationFactory` both read the setting from Neo4j `Config`; the procedure executor then builds a `ProcedureGraphCreationFactory` with a `MemoryUsageValidator`. `ProcedureGraphCreation.validateMemoryEstimation` builds a `ProcedureMemoryEstimation` from graph dimensions and the algorithm factory and validates it through `MemoryUsageValidator.tryValidateMemoryUsage("Loading", ...)`. `MemoryEstimationExecutor.computeEstimate` computes estimate rows for map-based implicit graph configs or named catalog graphs without itself reserving memory. | GDS has a global min-vs-max guard policy. Knight Bus should make this more explicit and more local: per-job cap policy, per-profile risk policy, and exact fallback behavior should be in the receipt rather than hidden in a server setting. | Add `profile_validation_policy_setting_receipt_v1`, `profile_estimate_only_no_reservation_receipt_v1`, and `profile_per_job_cap_policy_v1`: global setting value, job override, estimate-only versus admission mode, min/max/risk policy, selected cap, selected profile, and whether any memory reservation was attempted SHALL be recorded. | High. This clarifies a real GDS default and prevents Knight Bus from accidentally mixing "estimate display" with "admission reservation." |
+| Aug 7 GDS memory observability surface deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/misc/src/main/java/org/neo4j/gds/memory/MemoryProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/memory-facade/src/main/java/org/neo4j/gds/procedures/memory/MemoryFacade.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/UserEntityMemory.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/UserMemorySummary.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/misc/src/integrationTest/java/org/neo4j/gds/MemoryProcTest.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog-results/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphMemoryUsage.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/graph-catalog-facade-api/src/main/java/org/neo4j/gds/procedures/catalog/GraphInfo.java | Neo4j GDS memory/procedure and graph-catalog maintainers, read through codebase-memory | `MemoryProc` exposes `gds.memory.list` and `gds.memory.summary`. `MemoryFacade.list` returns all reservations for admins or only the current user's reservations for non-admins; `memorySummary` follows the same admin/non-admin rule. `UserEntityMemory` rows contain `user`, `name`, `entity`, and `memoryInBytes`; graph rows use entity `"graph"` and task rows use the job ID as the entity. `UserMemorySummary` contains `user`, `totalGraphsMemory`, and `totalTasksMemory`. `MemoryProcTest` shows empty list/summary behavior, graph rows after `gds.graph.generate`, running task rows, and per-user isolation. Separately, `GraphMemoryUsage.of` and `GraphInfo.withMemoryUsage` compute graph memory display fields such as `memoryUsage`, `sizeInBytes`, and detail maps for catalog outputs. | Budget-bounded compute needs a visible ledger. GDS already surfaces reservations and graph memory, but Knight Bus should add cap, selected profile, estimate tree, measured high-water, spill bytes, and release status so users can audit why a job was admitted and whether it kept its promise. | Add `profile_memory_observability_proc_v1`, `profile_user_memory_isolation_receipt_v1`, `profile_graph_size_detail_receipt_v1`, and `profile_live_reservation_ledger_v1`: user, task/job, graph, profile, reservation bytes, cap bytes, current status, graph bytes, task bytes, spill bytes, high-water bytes, and release timestamp SHALL be queryable. | Very high for PMF. A lower-RAM product must be inspectable while jobs are running, not only after a benchmark report. |
 
 ## Insight Notes
 
@@ -9929,6 +9937,259 @@ Make it schema-compatible enough to feel familiar, but stronger by adding:
   measured high-water receipt link
 ```
 
+#### GDS Memory Trees Give Us The Accounting Algebra
+
+Pass 088 adds a subtle but important lesson: the estimate result is not only a
+row schema. Under it is a tree-shaped accounting model.
+
+GDS has two accounting operators that matter for Knight Bus:
+
+| Accounting Shape | GDS Evidence | Knight Bus Use |
+|---|---|---|
+| Additive resident tree | `CompositeTree.memoryUsage` sums child ranges | graph projection + algorithm state + output state that are resident together |
+| Max/high-water tree | `CompositeMaxTree.memoryUsage` takes max child range | sequential phases, profile alternatives, spill pipelines, and "only one frontier slab at a time" profiles |
+| Range arithmetic | `MemoryRange` carries `min` and `max` and uses exact arithmetic | uncertainty bands, large-dimension overflow guards, and cap admission |
+| Human render | `MemoryTree.render` and `Estimate.humanReadable` | familiar `.estimate` UX |
+| Machine render | `MemoryTree.renderMap` with `name`, `memoryUsage`, `components` | LLM-readable, testable receipt structure |
+
+This changes how we should design low-RAM estimates. A flat "bytes required"
+number is too blunt. The estimate should be a proof-shaped tree:
+
+```text
+estimate_tree
+  root: PageRank under 10GB cap
+  operator: max_of_phases
+
+  phase: projection/build
+    operator: sum
+    components: id-map, adjacency, weights, properties
+
+  phase: algorithm/run
+    operator: sum_or_streaming_max
+    components: rank-vector, delta-vector, degree-cache, message-slab
+
+  phase: output/writeback
+    operator: max
+    components: stream-buffer, write-batch, checksum
+```
+
+The product implication is strong. A lower-RAM profile is not credible because
+it says "we use less RAM." It is credible when its accounting tree explains
+which state is simultaneous, which state is sequential, what numeric min/max
+bytes were admitted under the cap, and what measured high-water mark happened
+after the run.
+
+Rubber duck check:
+
+```text
+If Knight Bus only copies GDS treeView/mapView:
+  We get compatibility, but not enough differentiation.
+
+If Knight Bus adds accounting operators and measured phase receipts:
+  We can prove why a profile fits in 5GB/10GB without pretending every
+  algorithm state is resident at once.
+
+If Knight Bus hides numeric bytes behind human strings:
+  LLMs and tests will struggle. Keep display strings, but add machine numeric
+  min/max bytes per node.
+```
+
+The pass-088 product decision:
+
+```text
+Build estimate trees as first-class artifacts.
+Each node should have:
+  name
+  accounting operator
+  numeric min/max bytes
+  display string
+  phase/profile tag
+  child nodes
+  cap/admission decision
+  measured runtime high-water delta
+```
+
+#### GDS Guards Turn Estimates Into Admission
+
+Pass 089 adds the next layer above the estimate tree: admission control. GDS
+does not only display an estimate. It uses estimates to block or reserve work.
+
+There are two distinct guard points:
+
+| Guard Point | GDS Mechanism | Why It Matters |
+|---|---|---|
+| Projection/build admission | `GraphProjectMemoryUsageService.validateMemoryUsage` -> `MemoryUsageValidator` before `GraphStoreFromDatabaseLoader.graphStore()` | avoids paying graph load/build cost when the estimate cannot fit |
+| Algorithm/run admission | `DefaultMemoryGuard.assertAlgorithmCanRun` -> `MemoryRequirement` -> `MemoryTracker.tryToTrack` | avoids starting algorithm work when the task reservation cannot fit |
+
+The important GDS behavior:
+
+```text
+Projection path:
+  estimate projection memory
+  choose min or max estimate by config
+  compare to available memory
+  if insufficient:
+    log exact block reason
+    throw IllegalStateException
+  if sudo:
+    bypass check but still track reservation
+
+Algorithm path:
+  compute graph dimensions
+  transform dimensions
+  estimate algorithm memory with concurrency
+  choose min or max required bytes
+  reserve bytes with MemoryTracker
+  if insufficient:
+    throw required-vs-available error
+```
+
+For Knight Bus, the wedge is not "we have a guard." GDS already has guards. The
+wedge is "our guard can route between physical profiles under an explicit cap."
+
+```text
+GDS-like binary guard:
+  estimate -> min/max policy -> admit OR block OR sudo
+
+Knight Bus cap router:
+  estimate profiles -> sort by RAM/latency tradeoff
+  -> admit exact in-RAM profile if it fits
+  -> else admit spill/streaming/chunked profile if it fits
+  -> else reject with typed reason and suggested cap/runtime tradeoff
+  -> after run, attach measured high-water receipt
+```
+
+This is the heart of budget-bounded batch compute. The user should be able to
+say:
+
+```text
+Run WCC under 5GB.
+Prefer exact output.
+Accept up to 90 minutes.
+Fail closed if no exact profile fits.
+```
+
+The product should respond with a proof, not a vibe:
+
+```text
+selected_profile: wcc_partitioned_union_find_spill_v1
+admission: admitted
+cap_bytes: 5_000_000_000
+estimated_peak_bytes: 4_420_000_000
+estimated_runtime: 71 minutes
+rejected_profiles:
+  - wcc_in_memory_gds_compatible_v1: 18_700_000_000 bytes
+  - wcc_bitmap_frontier_v1: 6_300_000_000 bytes
+receipt_after_run:
+  measured_peak_bytes: ...
+  output_checksum: ...
+  comparator_delta: ...
+```
+
+Rubber duck check:
+
+```text
+What GDS already gives us:
+  Projection and algorithm memory checks, min/max policy, task reservation,
+  failure messages, sudo bypass, and missing-estimate fallback.
+
+What Knight Bus must add:
+  Multiple physical profiles, explicit cap, typed rejection reasons, profile
+  alternatives, waiver receipts, and measured high-water reconciliation.
+
+What would be weak:
+  A smaller byte estimate with no guard, no reservation, no runtime receipt, or
+  no explanation of why a slower lower-RAM profile was selected.
+```
+
+The pass-089 product decision:
+
+```text
+Design cap admission as a first-class router:
+  projection/build admission
+  algorithm/run admission
+  output/writeback admission
+  profile alternatives
+  sudo/override waiver
+  reservation receipt
+  high-water reconciliation receipt
+```
+
+#### GDS Separates Estimate Policy From Memory Observability
+
+Pass 090 adds two operational details that matter for product shape.
+
+First, the min-vs-max policy is global and defaults to the minimum estimate.
+GDS defines `gds.validate_using_max_memory_estimation` with default `false`.
+That means the default guard uses the lower bound of an estimate range unless
+the setting is enabled.
+
+Second, GDS exposes memory state through procedures:
+
+```text
+CALL gds.memory.list
+  user
+  name
+  entity
+  memoryInBytes
+
+CALL gds.memory.summary
+  user
+  totalGraphsMemory
+  totalTasksMemory
+```
+
+The tests show two important semantics:
+
+```text
+Non-admin user:
+  sees own graph/task memory only
+
+Admin user:
+  sees all graph/task memory
+```
+
+This splits the product surface into three modes:
+
+| Mode | GDS Shape | Knight Bus Shape |
+|---|---|---|
+| Estimate-only | `.estimate` returns a result row; no reservation is made | produce estimate tree and profile alternatives, explicitly mark no reservation |
+| Admission | projection/algorithm guard validates and reserves | route among profiles under cap, reserve selected profile, record rejected profiles |
+| Observability | `gds.memory.list/summary` show graph/task reservations | show reservation, cap, profile, high-water, spill bytes, release status, and estimate error |
+
+This is a subtle but decisive product distinction. If a user runs `.estimate`,
+they should know it is a prediction artifact. If a user runs the job, they
+should get an admission artifact and a reservation artifact. If the job is
+running, they should be able to query the live ledger.
+
+Rubber duck check:
+
+```text
+What GDS already gives:
+  A global min/max validation setting, memory list, memory summary, graph-size
+  fields, user/admin isolation, and task/graph reservation rows.
+
+What Knight Bus should improve:
+  Per-job cap policy instead of only global policy, live profile visibility,
+  measured high-water bytes, spill bytes, release timestamps, and estimate
+  error after completion.
+
+What would confuse users:
+  Letting estimate-only rows look like admitted jobs, or letting admitted jobs
+  disappear without a live reservation and completion receipt.
+```
+
+The pass-090 product decision:
+
+```text
+Make memory policy and observability first-class:
+  estimate_only_receipt
+  admission_receipt
+  reservation_ledger_row
+  running_job_memory_row
+  completed_job_reconciliation_row
+```
+
 #### DAHA And SANCUS Turn Planning Into A Runtime Contract
 
 DAHA and SANCUS add the next layer above "storage format." They say the physical
@@ -11876,6 +12137,31 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 | 940 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/community/src/main/java/org/neo4j/gds/applications/algorithms/community/CommunityAlgorithmsEstimationModeBusinessFacade.java | Read via codebase-memory/search-code in pass 087; WCC estimate selects `WccMemoryEstimateDefinition` with incremental flag and delegates to `AlgorithmEstimationTemplate`. |
 | 941 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/integrationTest/java/org/neo4j/gds/wcc/WccStreamProcTest.java | Read via codebase-memory in pass 087; WCC estimate tests cover fictitious graph config, native projection config, one-row guarantee, result schema, counts, and heap percentages. |
 | 942 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/test/java/org/neo4j/gds/catalog/GraphProjectProcEstimateTest.java | Read via codebase-memory in pass 087; graph-project estimate tests pin exact byte expectations for Cypher projection, virtual graph, and large 5B-node/20B-edge dimensions. |
+| 943 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryTree.java | Read via codebase-memory in pass 088; renders nested `mapView` and human-readable `treeView` from the same memory tree. |
+| 944 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryEstimations.java | Read via codebase-memory in pass 088; builder API models fixed, per-node, per-thread, per-graph-dimension, additive composite, and max/high-water composite estimates. |
+| 945 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/MemoryRange.java | Read via codebase-memory in pass 088; validates byte ranges and uses exact arithmetic for range operations. |
+| 946 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/mem/Estimate.java | Read via codebase-memory in pass 088; formats byte counts into human-readable units used by `MemoryRange.toString`. |
+| 947 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/test/java/org/neo4j/gds/mem/MemoryTreeTest.java | Read via codebase-memory in pass 088; tests pin leaf and child `renderMap` structure. |
+| 948 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/MemoryUsageValidator.java | Read via codebase-memory in pass 089; projection validation chooses min/max estimate, blocks on insufficient memory, logs failure, tracks sudo or admitted reservations, and returns empty range when estimation is unavailable. |
+| 949 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphProjectMemoryUsageService.java | Read via codebase-memory in pass 089; validates graph projection memory by running `getEstimate` through `MemoryUsageValidator` before load. |
+| 950 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GenericProjectApplication.java | Read via codebase-memory in pass 089; projection calls memory validation before `GraphStoreFromDatabaseLoader.graphStore()` and catalog insertion. |
+| 951 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/MemoryTracker.java | Read via codebase-memory in pass 089; tracks task reservations, graph-store reservations, per-user summaries, and available memory. |
+| 952 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/integrationTest/java/org/neo4j/gds/applications/graphstorecatalog/MemoryUsageValidatorTest.java | Read via codebase-memory in pass 089; tests pin projection insufficient-memory, sudo bypass, logging, and min/max failure behavior. |
+| 953 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/DefaultMemoryGuard.java | Read via codebase-memory in pass 089; algorithm-run memory guard reserves required bytes or blocks before execution. |
+| 954 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MemoryRequirement.java | Read via codebase-memory in pass 089; computes required bytes from transformed graph dimensions, concurrency, memory tree, and min-vs-max policy. |
+| 955 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/test/java/org/neo4j/gds/applications/algorithms/machinery/DefaultMemoryGuardTest.java | Read via codebase-memory in pass 089; tests prove min-estimate guard, max-estimate guard, and sudo bypass behavior. |
+| 956 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/neo4j-settings/src/main/java/org/neo4j/gds/settings/MemoryEstimationSettings.java | Read via codebase-memory in pass 090; defines `gds.validate_using_max_memory_estimation` with default `false`. |
+| 957 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/neo4j-settings/src/main/java/org/neo4j/gds/settings/GdsSettings.java | Read via codebase-memory in pass 090; exposes `validateUsingMaxMemoryEstimation()` to GDS code paths. |
+| 958 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/ProcedureExecutorSpec.java | Read via codebase-memory in pass 090; reads the validation setting and injects `MemoryUsageValidator` into procedure graph creation. |
+| 959 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/ProcedureGraphCreation.java | Read via codebase-memory in pass 090; validates procedure memory estimation via `tryValidateMemoryUsage("Loading", ...)`. |
+| 960 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/executor/src/main/java/org/neo4j/gds/executor/MemoryEstimationExecutor.java | Read via codebase-memory in pass 090; computes `.estimate` rows for map or named graph inputs without itself creating a reservation. |
+| 961 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/misc/src/main/java/org/neo4j/gds/memory/MemoryProc.java | Read via codebase-memory in pass 090; exposes `gds.memory.list` and `gds.memory.summary`. |
+| 962 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/memory-facade/src/main/java/org/neo4j/gds/procedures/memory/MemoryFacade.java | Read via codebase-memory in pass 090; applies admin/non-admin filtering for memory list and summary. |
+| 963 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/UserEntityMemory.java | Read via codebase-memory in pass 090; memory list row schema is user, name, entity, memoryInBytes. |
+| 964 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/progress-tracking/src/main/java/org/neo4j/gds/mem/UserMemorySummary.java | Read via codebase-memory in pass 090; memory summary row schema is user, totalGraphsMemory, totalTasksMemory. |
+| 965 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/misc/src/integrationTest/java/org/neo4j/gds/MemoryProcTest.java | Read via codebase-memory in pass 090; tests empty memory output, graph rows, running-task rows, summaries, and user isolation. |
+| 966 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog-results/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphMemoryUsage.java | Read via codebase-memory in pass 090; graph-size result records memoryUsage, sizeInBytes, detailSizeInBytes, nodeCount, relationshipCount. |
+| 967 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/graph-catalog-facade-api/src/main/java/org/neo4j/gds/procedures/catalog/GraphInfo.java | Read via codebase-memory in pass 090; graph catalog info can include `memoryUsage` and `sizeInBytes` when requested. |
 
 ## Product Implications So Far
 
@@ -12866,6 +13152,37 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 985. Product principle: build the first estimate API before the first heroic hot loop; the estimate API is where users learn whether the system is honest.
 986. Product principle: a lower-RAM Neo4j/GDS rewrite should feel familiar at the `.estimate` surface but stricter in cap admission and richer in receipt artifacts.
 987. Product principle: fictitious graph estimates are a PMF feature, not a toy. They let users ask whether a huge graph job can fit before paying projection/build cost.
+988. Add `profile_memory_tree_render_schema_v1`; estimate trees should preserve human `treeView` plus a machine `mapView` with stable node names, child ordering, and numeric byte fields.
+989. Add `profile_estimate_accounting_operator_v1`; every estimate node should declare whether children are summed, maxed as high-water phases, alternatives, spilled, cached, or informational.
+990. Add `profile_estimate_range_arithmetic_guard_v1`; range arithmetic should reject negative bytes, reject max less than min, detect overflow, and preserve exact numeric min/max before rendering display strings.
+991. Add `profile_high_water_phase_tree_v1`; runtime receipts should mirror the estimate tree with measured peak bytes per phase and a delta against admitted estimates.
+992. Add `profile_machine_numeric_map_view_v1`; `mapView` should include numeric `bytesMin` and `bytesMax` per node, not only human-readable `memoryUsage` strings.
+993. Product principle: low-RAM differentiation lives in the accounting operator. If phases are sequential, the right estimate is closer to max-of-phases than sum-of-everything.
+994. Product principle: compatibility should preserve GDS-like tree and map views, but PMF comes from turning them into proof-carrying cap-admission and measured-high-water artifacts.
+995. Add `profile_projection_memory_admission_receipt_v1`; projection/build should record estimate tree, min/max policy, cap/free bytes, graph/task reservations, admitted/rejected status, and reason before loading.
+996. Add `profile_algorithm_memory_guard_receipt_v1`; algorithm runs should record algorithm label, graph dimensions, transformed dimensions, concurrency, selected estimate range, reservation result, and failure reason before execution.
+997. Add `profile_task_memory_reservation_receipt_v1`; task admission should reserve bytes by username, task name, job ID, selected profile, and release status.
+998. Add `profile_min_max_policy_receipt_v1`; every admission decision should say whether it used minimum estimate, maximum estimate, strict cap, percentile/empirical cap, or another named policy.
+999. Add `profile_sudo_override_waiver_receipt_v1`; override paths should require an explicit waiver receipt with estimate, cap, bypassed reason, data-loss warning, and post-run high-water result.
+1000. Add `profile_memory_validation_failure_receipt_v1`; failures should be typed and user-readable: insufficient cap, insufficient free memory, estimate missing, overflow, unsupported exact profile, or reservation race.
+1001. Add `profile_estimation_missing_guard_receipt_v1`; missing estimates should not silently become product claims; the receipt should mark guard skipped, unsupported, or fallback-only.
+1002. Add `profile_dimension_transform_admission_receipt_v1`; algorithm admission should preserve raw graph dimensions, transformed dimensions, transform reason, and byte impact.
+1003. Add `profile_profile_alternative_admission_receipt_v1`; if the fastest profile fails the cap, receipts should list slower/lower-RAM alternatives with estimated bytes and latency tradeoff.
+1004. Add `profile_projection_algorithm_dual_guard_v1`; projection/build and algorithm/run caps can fail independently and should be reported as separate admission stages.
+1005. Add `profile_post_run_reservation_reconciliation_v1`; after completion, measured high-water, reserved bytes, released bytes, and estimate error ratio should be written back to the receipt.
+1006. Product principle: GDS guards are binary enough for safety; Knight Bus should make guards router-shaped for PMF.
+1007. Product principle: a budget-bounded product should propose exact lower-RAM profiles before telling the user to resize hardware or bypass validation.
+1008. Product principle: `sudo`-style bypass should be treated as a signed risk artifact, not a normal success path.
+1009. Add `profile_validation_policy_setting_receipt_v1`; receipts should record global validation setting, per-job override, min/max policy, cap policy, and whether the policy came from config or request.
+1010. Add `profile_estimate_only_no_reservation_receipt_v1`; `.estimate` outputs should clearly state that no memory reservation was attempted and no work was admitted.
+1011. Add `profile_per_job_cap_policy_v1`; users should be able to choose strict max, optimistic min, empirical percentile, or fail-closed cap policy per job.
+1012. Add `profile_memory_observability_proc_v1`; memory procedures should expose user, name, entity, memory bytes, profile, cap, status, and receipt ID.
+1013. Add `profile_user_memory_isolation_receipt_v1`; memory visibility should record admin/non-admin filtering and user ownership of graph/task rows.
+1014. Add `profile_graph_size_detail_receipt_v1`; projected graph memory outputs should include human display, numeric size, detail map, node count, relationship count, and profile/build source.
+1015. Add `profile_live_reservation_ledger_v1`; running jobs should be queryable as live ledger rows with reservation bytes, high-water bytes, spill bytes, and release status.
+1016. Add `profile_completed_job_reconciliation_row_v1`; completed jobs should preserve admitted estimate, measured peak, estimate error, release timestamp, output checksum, and comparator status.
+1017. Product principle: estimate-only, admission, live reservation, and completed reconciliation are different product states and should not share an ambiguous row shape.
+1018. Product principle: budget-bounded compute becomes trustworthy when users can query the memory ledger while jobs are running, not only read a post-hoc benchmark table.
 
 ## Next Capture Steps
 

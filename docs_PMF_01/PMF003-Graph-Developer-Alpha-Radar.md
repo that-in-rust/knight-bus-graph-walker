@@ -69,6 +69,36 @@ Privacy posture: private chat messages are treated as directional evidence. This
 | 055 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GraphBLAS/LAGraph oracle evidence: LAGraph verified-algorithm project, Basic-vs-Advanced cached-property split, PageRank standard vs GAP sink semantics, BFS push/pull vs push-only and valid-parent tests, FastSV/Boruvka connected components, delta-stepping SSSP with min-plus semiring and light/heavy edge split, triangle count method/presort matrix, semiring vocabulary, GAP benchmark harness, and checker functions | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 056 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GBBS performance-lane evidence: active benchmark suite, compressed/binary/mmap graph formats, `vertexSubset` plus `edgeMap` sparse/dense scheduling vocabulary, PageRank full and residual-delta variants, non-deterministic BFS parent frontier loop, ConnectIt sampling/Afforest-style components prepass, union-find path-compression/CAS rules, triangle degree/degeneracy ordering, and progress-reporting phase hooks | Reclaim/open X chat and continue upward from Jun 1 2026 |
 | 057 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Partition-to-latency bridge evidence: CUTTANA buffering/subpartition/refinement code and application-study benchmarks, Triparts Bloom/Triangle/High-degree map implementation and community-preserving partition heuristics, TuskFlow workload-pattern partitioning for graph database tail latency, plus codebase-memory indexes over CUTTANA and Triparts artifact repos | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 058 | Source-to-spec pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Converted passes 053-057 into an executable-spec spine: `layout_probe_v1`, `pagerank_full_edge_map_v1`, `pagerank_residual_delta_v1`, `profile_partition_quality_to_latency_v2`, receipt fields, fixtures, promotion gates, and first coding goal prompt | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 059 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Workload-aware graph DB/KG partitioning prior art: Averbuch/Neumann graph DB partitioning traffic and intermittent repartition, Loom query motifs/frequencies over online graph updates, WawPart query clustering plus query rewriting, and AWAPart adaptive workload-aware repartitioning | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 060 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Streaming and memory-budgeted partitioning ladder: CEUR LOOM workload-aware streaming details, Stanton/Kliot one-pass constraints and stream-order lower bounds, Restreaming LDG/FENNEL balance and parallelism, Buffered Streaming/HeiStream small-buffer multilevel model, 2PS two-phase clustering, HEP hybrid edge partitioning under memory constraints, S-PowerGraph vertex-cut for natural graphs, and on-the-fly recursive multi-section/process mapping | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 061 | Implementation-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | HEP implementation source indexed with codebase-memory: 345 nodes, 1,509 edges, 8 C++ files; concrete degree-split pipeline in `mem_graph_t::stream_build`, high-high edge sidecar `.h2h_edgelist`, optional low-degree sidecar `.low_edgelist`, HDRF/random streaming second phase, `--hdf` threshold knob, `--lambda` balance knob, dense-bitset boundary/core state, and extended replication/invalidation metrics | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 062 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GNN and batch graph learning evidence: EDBT 2025 partition strategies memory/speed/amortization, Marius/MariusGNN out-of-core storage hierarchy and partition caching, FreshGNN historical embedding cache with staleness/gradient criteria, CDFGNN adaptive cache/quantization/hierarchical partition, BGL sampling plus feature-fetch partition/cache bottlenecks, BatchGNN macrobatching/static feature fetch reuse, and FastGL match-reorder/memory-aware sampling | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 063 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GNN artifact source indexed with codebase-memory: `history-cache-pass063` 203 nodes/687 edges, `bgl-nsdi2023-pass063` 1,083 nodes/3,403 edges over sparse BGL surface, and `fastgl-ae-pass063` 304 nodes/865 edges; concrete state from `HistoryCache.lookup_and_load/update_history`, `HistoryTable.evict_by_staleness`, BGL `start_caching_process/caching_working_thread/training_recv_thread/BFSTraverseNodesWithMask`, and FastGL `MatchServer.init_cache/fresh_cache`, `match_reorder.reorder`, `FusedMapSampler.sample_blocks`, and `train_fastgl.load_subtensors` | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 064 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Marius/MariusGNN implementation source indexed with codebase-memory: `marius-pass064` 1,992 nodes/6,512 edges over focused sparse source; concrete state from `PartitionBuffer`, `PartitionBufferStorage`, `LookaheadBlock`, `AsyncWriteBlock`, `DataLoader.setBufferOrdering/getNextBatch`, `GraphModelStorage.useInMemorySubGraph/updateInMemorySubGraph`, and config fields for partition count, buffer capacity, prefetching, fine-to-coarse ratio, cache partitions, edge/node ordering, and dtype | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 065 | Source-catalog pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | CDFGNN paper plus living GNN-system catalogs: adaptive vertex feature/gradient cache, dynamic threshold, gather/scatter vertex replica consistency, quantization size/error formula, hierarchical vertex-cut partition objective, dataset scale, catalog lanes for distributed GNN training, out-of-core systems, quantized GNNs, dataloaders, temporal/dynamic placement, SANCUS, DUCATI, Zebra, DAHA, Hyperion, Ginex, GIDS, GNNLab, PaGraph, EXACT, and QGTC | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 066 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Hyperion implementation source indexed with codebase-memory: `hyperion-pass066` 1,453 nodes/4,384 edges, 94 tracked files at commit `676daac6ea002bc22eb874c71a2c43ae09b3d88a`; concrete state from GPU-initiated async SSD `IOStack`, `IOReq`, `UserQueue.dequeue`, `CompleteFeatureStorage.Build/IOSubmit/IOComplete`, `UnifiedCache.FeatCacheLookup/CacheProfiling`, `CompleteGraphStorage.Build/HyrbidGraphCache`, and IPC training backend `get_next/get_block_size` | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 067 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Ginex implementation source indexed with codebase-memory: `ginex-pass067` 220 nodes/827 edges, 18 tracked files at commit `fc2c085ad3406508dcf1dc3d750c8d24fb3b17cb`; concrete state from `FeatureCache.__init__/pass_1_and_2/pass_3/fill_cache/update`, C++ `cache_update`, `run_ginex.inspect/execute`, `GinexNeighborSampler.sample`, `NeighborCache.init_by_score/save`, C++ `sample_adj_ginex/load_neighbors_into_buffer`, `gather_ginex/gather_mmap`, `get_new_neighbor_buffer`, `load_float32`, `load_int64`, and `get_mmap_dataset` | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 068 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GIDS implementation source indexed with codebase-memory: `gids-pass068` 538 nodes/1,926 edges, 45 tracked files at commit `523836c6eb8a23cbf86da9212789e011b393036f`; concrete state from `GIDS.__init__/fetch_feature/window_buffering/set_cpu_buffer`, `GIDS_DGLDataLoader.__init__`, CUDA `init_GIDS_controllers/init_controllers/read_feature/read_feature_merged/read_feature_hetero`, `read_feature_kernel/read_feature_kernel_with_cpu_backing_memory`, CPU backing buffer, access counters, PageRank node-list generation, IGBH CSC/memmap dataset setup, and provided GIDS/BaM/baseline scripts | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 069 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Zebra implementation source indexed with codebase-memory: `zebra-pass069` 257 nodes/945 edges, 16 tracked files at commit `8e72d65e1a85c05ba335d5dd1edb4202a7598c8e`; concrete state from `GraphDiffusionEmbedding.__init__/compute_embedding_tppr_ensemble/pruning_topk/fill_tppr`, `tppr_finder.reset_tppr/streaming_topk/streaming_topk_no_fake/extract_streaming_tppr/compute_val_tppr/backup_tppr/restore_tppr`, `NeighborFinder.get_pruned_topk`, `TGN.compute_temporal_embeddings`, `Memory`, `SequenceMemoryUpdater.get_updated_memory`, and train-loop reset/fill/backup/restore gates | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 070 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DUCATI implementation source indexed with codebase-memory: `ducati-pass070` 149 nodes/661 edges, 20 tracked files at commit `9cc017f8453a26db72cf5c1c2fa1f4a3c9cee969`; concrete state from `DualCacheAllocator.allocate_dual_cache/get_slope`, `CacheConstructor.form_nfeat_cache/form_adj_cache/separate_features_idx`, `NeighborSamplerWithCache.sample`, `NfeatLoader.load`, `load_dc_realtime_process/load_dc_raw_with_counts/generate_stats`, and run allocation/DUCATI/SOTA entrypoints | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 071 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | PaGraph implementation source indexed with codebase-memory: `pagraph-pass071` 264 nodes/1,385 edges, 46 tracked files at commit `263fb13b84f27a8bd215bcde05b78cc3c4c17e7b`; concrete state from `GraphCacheServer.__init__/auto_cache/cache_fix_data/get_feat_from_server/fetch_data/fetch_from_cache/log_miss_rate/get_miss_rate`, `partition.dg.dg/dg_ind/in_neighbors_hop`, `partition.ordering.reordering`, `refine.build_train_graph`, `SampleDeliver.async_sample/one2all_sample/one2one_sample`, `examples.profile.pa_gcn.trainer`, `server.cache_server.main`, and `opt_cache_hit` oracle helpers | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 072 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | GNNLab implementation source indexed with codebase-memory: `gnnlab-pass072` 2,598 nodes/9,293 edges, 330 tracked files at commit `2d0dd92ce4e2efec3d47212ce73358cd03f8d3d8`; concrete state from `PreSampler.DoPreSample/GetRankNode`, `FrequencyHashmap.GetTopK`, `DoGPUSampleDyCache`, cache-manager kernels `count_miss_cache/get_cache_index/combine_cache_data`, `GPUEngine.RunSampleOnce`, `GPUShuffler.GetBatch`, `Profiler.ReportNodeAccess/ReportPreSampleSimilarity`, `cache_by_fake_optimal.procBatchTrainNode/randkingNodesToFile`, `cache_by_degree_hop.hopNodes/merge_degree_info`, `WorkspacePool::Pool.Alloc/Free`, README hardware/dataset notes, and experiment runtime matrix | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 073 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | EXACT/QGTC compression artifacts indexed with codebase-memory: `exact-pass073` 652 nodes/2,623 edges, 60 tracked files at commit `7e9e0f3b5e665b6e447835e5083e556f02029e17`; `qgtc-pass073` 260 nodes/929 edges, 54 tracked files at commit `bb7fc04aa5687b4e85437663702554158aeda809`; concrete state from EXACT `quantize_and_pack/dequantize_and_unpack/quantize_activation/dequantize_activation`, `QScheme.compute_quantization_bits`, `qlinear.forward/backward`, `qspmm_*`, debug memory/speed runners and correctness tests; QGTC `val2bit/bit2val`, `Quantize_val`, `bitMM2Bit/bitMM2Int`, tensor-core hidden kernels, zerojump/base counters, `main_qgtc`, and `ClusterIter` | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 074 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DAHA/SANCUS execution-planning artifacts indexed with codebase-memory: `daha-pass074` 62 nodes/173 edges, 3 tracked files at commit `9541f375ce39d972ecfe04dd88bb6f0ef2e69cf5`; `sancus-pass074` 180 nodes/689 edges, 21 tracked files at commit `65495aa8d2e851c875986b344b61b77b12953e29`; concrete state from DAHA `HybridCPUGPU.main/test_comm/test_op_gpu/test_sample/test_batch/test_stats`, `shuffle.main/load_data`; SANCUS `models.cached_gcn` globals, `use_cache`, `cached_broadcast`, `DistGCNLayer.forward/backward`, baseline `models.gcn.broadcast`, `GraphCache`, `COO_Graph.partition`, `DistEnv`, `dist_train.main/train`, and launcher `main.py` | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 075 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DGL GraphBolt modern data-loading/storage surface indexed with codebase-memory: source project `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-python-dgl-graphbolt` 647 nodes/3,212 edges, 41 Python files; test project `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-tests-python-pytorch-graphbolt` 394 nodes/2,078 edges; shallow DGL clone pinned commit `3d16000b4170fa741ed9e9667f22ba84d3493026`; concrete state from `FeatureFetcher`, `BasicFeatureStore`, `TorchBasedFeature`, `DiskBasedFeature`, `TorchBasedFeatureStore`, `GPUCachedFeature`, `OnDiskDataset.load/_load_graph`, `DataLoader`, `ItemSampler`, `FusedCSCSamplingGraph.sample_neighbors/pin_memory_`, and tests for feature fetch, cache, async reads, on-disk feature loading, dataloader, and sampled subgraphs | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 076 | Implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DGL GraphBolt native C++/CUDA/io_uring internals indexed with codebase-memory: native project `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-graphbolt` 739 nodes/2,009 edges, 51 files at commit `3d16000b4170fa741ed9e9667f22ba84d3493026`; concrete state from `io_uring.IsAvailable`, `OnDiskNpyArray.OnDiskNpyArray/IndexSelect/IndexSelectIOUringImpl`, `ReadRequest`, `ReadBufferSizePerThread`, `FeatureCache.Query/Replace/QueryAsync`, `BaseCachePolicy.QueryImpl/QueryAndReplaceImpl`, `PartitionedCachePolicy.QueryAndReplace`, `GpuCache.Query/Replace`, `GpuGraphCache.Query`, `set_max_uva_threads`, `UVAIndexSelectImpl_`, `UVAIndexSelectCSCCopyIndices`, CPU `SampleNeighborsImpl`, GPU `SampleNeighbors`, and the GraphBolt `TORCH_LIBRARY` binding surface | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 077 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | AWS GraphStorm downstream GraphBolt integration indexed with codebase-memory: `private-tmp-kb-graphstorm-pass077-Cftsid-graphstorm` 6,686 nodes/34,133 edges over 712 files at commit `42482dab3d17d2045a314794cf9344430423f213`; public repo metadata on Aug 7 2026: `awslabs/graphstorm`, Apache-2.0, Python, 452 stars, 75 forks, pushed Jun 30 2026; concrete state from GraphStorm docs, AWS ML blog, `convert_to_graphbolt.run_gb_conversion/parse_gbconv_args`, `sagemaker_gb_convert.run_gb_convert`, SageMaker pipeline `_create_gb_convert_step`, `PipelineArgs.__post_init__`, `GSConfig.use_graphbolt`, `gsf.initialize`, `gconstruct.utils.partition_graph`, `dist_partition_graph.main`, and GraphBolt e2e graph-construction/training/inference scripts | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 078 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | AWS GraphStorm SageMaker GraphBolt example deepened from the same indexed project/commit: `examples/sagemaker-pipelines-graphbolt` README, deploy scripts, Papers100M processing Dockerfile/script, `sagemaker_convert_papers100m.parse_args/main`, `convert_ogb_papers100m_to_gconstruct.process_data/process_and_upload_chunk/create_config/main`, `analyze_training_time.analyze_logs/print_training_summary`, and DGL 2.1 release benchmark context; concrete state covers baseline-vs-GraphBolt pipeline comparison, small/large resource envelopes, memory-mapped chunked preprocessing, local/CloudWatch timing extraction, and output artifact inspection | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 079 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DGL GraphBolt example code indexed with codebase-memory: `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-examples-graphbolt` 305 nodes/1,063 edges over 18 files at DGL commit `3d16000b4170fa741ed9e9667f22ba84d3493026`; concrete state from DGL 2.1 release, examples root, `node_classification.create_dataloader/parse_args`, `link_prediction.create_dataloader`, `disk_based_feature.node_classification.create_dataloader/parse_args/main`, `pyg.node_classification_advanced.create_dataloader/parse_args/main`, `pyg.multigpu.node_classification.create_dataloader/parse_args/run/GraphSAGE.forward`, `pyg.hetero.node_classification.main`, `pyg.labor.node_classification.main`, temporal dataloader, and disk/Labor READMEs | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 080 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | DGL GraphBolt test suite deepened from codebase-memory project `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-tests-python-pytorch-graphbolt` at DGL commit `3d16000b4170fa741ed9e9667f22ba84d3493026`; concrete state from cache-policy tests, CPU/GPU cached feature sync and async tests, disk-backed cached async reads, nested disk -> CPU cache -> GPU cache reads, GPU graph cache tests, disk feature and on-disk dataset manifest tests, feature-store device/pinned tests, fused CSC device/pinned tests, FeatureFetcher tests, DataLoader stage tests, and seed-edge exclusion tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 081 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | LDBC Graphalytics benchmark and validation spine deepened from official LDBC pages, the benchmark spec PDF, local `ldbc_graphalytics-src` at commit `7b8bde76cf7aab5e90b25ecd4b38829e2f98b292`, and local `ldbc_graphalytics_platforms_graphblas-src` at commit `4671056cb118c7db210571540fbeb374d735efa2`; concrete state from six benchmark algorithms, standard datasets/reference outputs, strict validation rules, driver lifecycle, DuckDB validators, dataset-scale ladder, three-run competition rules, price-performance framing, and GraphBLAS/LAGraph reference-driver conversion/runtime paths | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 082 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | ArcadeDB LDBC Graphalytics platform driver deepened from public ArcadeDB Graph OLAP/benchmark pages, GHCLI repo metadata, local `ldbc_graphalytics_platforms_arcadedb-src` at commit `70986fc9aad9f9cd4582ac2f6707f5825c54178c`, and codebase-memory project `kb-ldbc-graphalytics-arcadedb-pass082` with 719 nodes and 2,302 edges; concrete state from Graph Analytical View/CSR sidecar design, platform `olap` flag, GraphBatch loader, GAV ready/fallback behavior, six algorithm jobs, CSR-vs-OLTP paths, result property writeback, output serialization, native multi-vendor comparison harness, same-heap/timeout rules, LSQB query-shape comparison, and SurrealDB/Dgraph capability-failure notes | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 083 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Samyama Graph deepened from arXiv v2, GHCLI repo metadata, public README/benchmark/ADR files, local shallow clone `samyama-graph-src` at commit `a0e153de933e9810b5aba7751a4853ae95d331ab`, and codebase-memory project `Users-amuldotexe-Desktop-personal-repos-lane-knight-bus-graph-walker-gitrefrepo-samyama-graph-src` with 10,179 nodes and 64,304 edges; concrete state from Rust workspace crates, Graphalytics benchmark runner, `.v/.e` loader, dense-ID `GraphView`, CSR/CSC arrays, PageRank/CDLP implementations, algorithm procedure materialization, late materialization ADR, sparse column-store ADR, GPU CSR upload, LDBC SNB benchmark notes, GitHub Actions cancellation caveat, and GraphAlg/GDC/igraph context | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 084 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Samyama issue #296 and PR #295 deepened through GH CLI, public GitHub pages, LDBC SNB official page, local benchmark docs, and codebase-memory snippets from the pinned shallow clone; concrete state from issue-reported SF10 complex-read gaps, PR externalized substitution params, `benches/ldbc_benchmark.rs` query definitions and harness, variable-length `KNOWS*` expansion operator, aggregation and WITH barrier operators, graph-native planner comments, adjacency-aggregation detector, aggregate-then-expand detector, semi-join detector, and trie-join optimizer | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 085 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j community Cypher complex-read comparator deepened from local Neo4j family clone `neo4j-src` at branch `release/5.26.0`, commit `c68156edf24164435ab1ac257ec633134c2887f7`, and codebase-memory project `neo4j-community-local` with 218,480 nodes and 1,186,989 edges; concrete state from regular slotted variable-length expansion, interpreted and slotted BFS-pruning expansion, directed and undirected BFS-pruning cursors, planner rewrite eligibility, trail-to-pruning guard, heap-tracked frontier collections, `MemoryTracker`, and `BFSPruningVarLengthExpandTestBase` correctness fixtures | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 086 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j Graph Data Science OLAP/projection comparator deepened from local Neo4j family clone `neo4j-gds-src` at branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local` with 54,265 nodes and 284,022 edges; concrete state from public projection and algorithm `.estimate` surfaces, native/cypher graph-project estimate paths, graph-project memory validation and loading estimates, PageRank Pregel state, PageRank degree precompute, BFS state inventory and chunk synchronization, and WCC disjoint-set plus sampled/unsampled strategy selection | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 087 | Source and implementation-artifact pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Neo4j GDS algorithm-estimate pipeline deepened from the same `neo4j-gds-src` branch `2.13`, commit `dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9`, and codebase-memory project `neo4j-gds-local`; concrete state from public PageRank/BFS/WCC stream estimate procedures, local procedure facades, centrality/pathfinding/community estimation facades, `AlgorithmEstimationTemplate`, named-graph vs map/fictitious graph handling, `MemoryEstimationGraphConfigParser`, database vs fictitious graph-store estimation services, `MemoryEstimateResult` schema, WCC estimate integration tests, and graph-project estimate tests including large virtual graph dimensions | Reclaim/open X chat and continue upward from Jun 1 2026 |
 
 ## Current Working Thesis
 
@@ -655,6 +685,152 @@ The group chat is valuable less as "graph database market research" and more as 
 | Aug 7 partition-to-latency source deepening | https://github.com/dream-lab/triparts | Dream Lab / Triparts maintainers | Local codebase-memory indexing found a Java/Thrift distributed implementation with 2,752 nodes and 8,732 edges. The code has `bloomFilterArray`, `vertexTrianglePartitionMap`, `vertexFirstTrianglePartitionMap`, and `vertexHDPartitionDegreeMap`; `PartitionerThread` chooses partitions through ordered rules over triangle sets, high-degree sets, Bloom-filter replica sets, and lightest-partition fallback; worker code records triangle intersection and lock/sync timing. GitHub metadata showed Apache-2.0 license, default branch `VLDB2025`, 2 stars, 2 forks, and recent activity in Nov 2025. | Triparts is not a direct Neo4j replacement. It is evidence that a bounded auxiliary state budget can improve downstream graph-mining quality when the state is shaped to the algorithm's invariants. | Add `profile_auxiliary_state_roi_v1`: every extra map/sketch must report memory bytes, update/sync overhead, quality delta, and which algorithm families can reuse it. | High. codebase-memory index, source snippets, README, and PVLDB artifact link read. |
 | Aug 7 partition-to-latency source deepening | https://www.vldb.org/pvldb/vol18/p2992-simmhan.pdf | Ruchi Bhoot, Tuhin Khare, Manoj Agarwal, Siddharth Jaiswal, Yogesh Simmhan / Triparts | The paper's overhead section is a useful reality check: lock overhead is reported around 5-8% with 8 threads and 8-10% with 16 threads; sync overhead is usually a small share except on one graph; peak high-degree map size is about 2.3-4.2% of vertices, while triangle-map size varies widely with graph density; largest Twitter leader memory is reported as about 15-17% of 128GB depending on partition count. | This sharpens our RAM story. Auxiliary graph state can be cheap or expensive depending on density; it needs budget gates, not blanket praise. | Add `profile_partition_state_budget_v1`: profile receipts must include auxiliary map cardinality, density sensitivity, leader/worker memory, sync overhead, lock overhead, and a kill condition. | Very high. PVLDB overhead section read. |
 | Aug 7 partition-to-latency source deepening | https://www.vldb.org/pvldb/vol18/p4777-theodorakis.pdf | TuskFlow / PVLDB 2025 graph DB transaction paper | TuskFlow is not an OLAP storage paper, but it is relevant because it shows graph-aware physical planning can reduce graph database tail latency. The paper reports graph tagging and partitioning into hot/cold communities based on access patterns; 1-hop and 2-hop pattern-aware partitioning often reduces tail latency substantially, while overly broad pattern use can cost much more partitioning time or even harm some workloads. | This is a warning for Knight Bus: workload-pattern partitions beat generic partitions only when the pattern matches the workload. A low-RAM profile should be selected by observed query/algorithm shape, not by ideology. | Add `profile_workload_pattern_partition_v1` and `profile_tail_latency_partition_gate_v1`: profile selection records dominant query/algorithm pattern, partition-build cost, p99/tail result, and rejected patterns. | Medium-high. PVLDB PDF read; used as an analogue rather than a direct OLAP proof. |
+| Aug 7 workload-aware graph DB partitioning source deepening | https://arxiv.org/abs/1301.5121 | Alex Averbuch, Martin Neumann | `Partitioning Graph Databases - A Quantitative Evaluation` evaluates graph database partitioning with a prototype, three datasets, synthetic access patterns, repeatable simulation metrics, network traffic, load balance, and partition quality. The abstract reports 40-90% network-traffic reduction versus random partitioning and says intermittent execution during usage maintained partition quality with only 1% of the initial partitioning computation. | This turns partitioning from an aesthetic topology claim into an access-pattern claim. If Knight Bus says a graph DB/query layout is faster, it needs to show the access distribution and the traffic/load-balance proxy behind the claim. | Add `profile_traffic_metric_receipt_v1` and strengthen `profile_repartition_policy_v1`: receipts should record synthetic or observed access pattern, network/remote-traversal proxy, load balance, and maintenance cost. | High. arXiv page read; exact paper details beyond abstract should be verified before implementation-level claims. |
+| Aug 7 workload-aware graph DB partitioning source deepening | https://arxiv.org/abs/1711.06608 | Hugo Firth, Paolo Missier, Jack Aiston | Loom is query-aware partitioning for online graphs. The abstract says workload-agnostic partitioners can be suboptimal because queries traverse specific edge subsets more often; Loom uses graph pattern expressions and relative frequencies, captures common traversal patterns, compares incremental subgraphs against those patterns, and collocates frequent matches. | This is directly useful for our OLTP-surface/OLAP-custom boundary: query motifs and frequencies are inputs to physical layout. Workload fingerprinting should be a first-class artifact, not hidden planner intuition. | Add `profile_workload_fingerprint_v1` and `profile_query_motif_partition_v1`: receipts should include motif IDs, relative frequency, graph-update stream identity, matched subgraphs, and collocation choice. | High. arXiv page read; algorithm details need full paper read before code. |
+| Aug 7 workload-aware graph DB partitioning source deepening | https://arxiv.org/abs/2203.14888 | Amitabh Priyadarshi, Krzysztof J. Kochut | WawPart is workload-aware partitioning for knowledge graphs. The abstract says large KGs can exceed main-memory systems; distributed shards hurt query performance through distributed joins; WawPart uses query workload and KG features to cluster queries and partition the graph, then rewrites queries to account for partitioning. | This adds a missing receipt field: if layout changes query execution, the rewrite must be visible and checkable. A query-latency win without original-vs-rewritten query proof is too easy to fool ourselves with. | Add `profile_query_rewrite_receipt_v1`: original query hash, rewritten query hash/form, partition target, semantic-equivalence check, and distributed-join estimate. | High. arXiv page read; detailed rewrite mechanics need full paper. |
+| Aug 7 workload-aware graph DB partitioning source deepening | https://arxiv.org/abs/2203.14884 | Amitabh Priyadarshi, Krzysztof J. Kochut | AWAPart is adaptive workload-aware partitioning for knowledge graphs. The abstract says workload changes require continuous re-partitioning to maintain average processing time, because cut-edge distributed joins create communication cost. | This is the operational version of the same idea: a layout is not a one-time artifact if workload changes. Knight Bus needs a policy for keeping, retiring, or rebuilding profiles under changing access patterns. | Add `profile_adaptive_workload_repartition_v1`: workload snapshot identity, diff from previous workload, migrations performed, repartition cost, runtime delta, and rollback/kill condition. | High. arXiv page read; implementation specifics need full paper. |
+| Aug 7 streaming partition budget source deepening | https://ceur-ws.org/Vol-1558/paper26.pdf | Hugo Firth, Paolo Missier | `Workload-Aware Streaming Graph Partitioning` says offline METIS-style partitioning can be memory intensive on billion-element graphs and expensive under graph changes, while streaming partitioners use one-pass placement with small memory but are sensitive to stream order and usually workload-agnostic. The paper's LOOM sketch captures frequent query motifs, matches those motifs in a graph stream, and assigns matched subgraphs with LDG to reduce inter-partition traversals. | This gives Knight Bus a crisp product knob: streaming/buffered layout is not "worse in-memory"; it is a profile for bounded memory, online growth, and query motifs. The receipt must record stream order, buffer/window size, motif summary bytes, and balance exceptions. | Add `profile_stream_order_receipt_v1`, `profile_streaming_motif_window_v1`, and strengthen `profile_query_motif_partition_v1`. | High. PDF read; it is an early/work-in-progress LOOM paper, so keep claims as architecture evidence rather than benchmark proof. |
+| Aug 7 streaming partition budget source deepening | https://research.google.com/pubs/archive/41525.pdf | Isabelle Stanton, Gabriel Kliot | `Streaming Graph Partitioning for Large Distributed Graphs` / streaming balanced partitioning lineage gives the hard one-pass model: partition with access to current load and previous vertex locations, no movement after placement, no storage of all previous edges, and lower-bound examples where adversarial/random stream order hides useful edges. | This is a warning label for any "single pass low RAM" promise. If the stream order is bad, a low-memory partitioner may make irrevocable bad decisions. | Add `profile_stream_order_receipt_v1`: receipt declares ordering mode, whether reorder is allowed, one-pass/multipass count, move-after-placement policy, and quality risk. | Medium-high. Public PDF lines read; title/venue metadata should be cross-checked before formal citation. |
+| Aug 7 streaming partition budget source deepening | https://jugander.github.io/papers/kdd13-restream.pdf | Joel Nishimura, Johan Ugander | Restreaming LDG/FENNEL repeatedly streams the graph while reusing previous assignments. It targets the quality/memory tradeoff, keeps the O(n) memory footprint of streaming partitioning, supports stronger balance objectives such as node plus degree or strata balance, and can parallelize by communicating between stream iterations rather than during each stream. | This is very Knight Bus: if a user can spend more time but wants bounded RAM, repeated passes are a first-class product option. | Add `profile_restreaming_budget_v1`: passes, retained assignment bytes, balance objectives, per-pass quality curve, parallel worker fraction, and stop rule. | High. PDF read; exact implementation details would need separate code/artifact discovery. |
+| Aug 7 streaming partition budget source deepening | https://arxiv.org/abs/2102.09384 | Marcelo Fonseca Faraj, Christian Schulz | `Buffered Streaming Graph Partitioning` / HeiStream uses a buffer or batch of nodes before assignment, builds a model graph over buffered nodes plus current partition structure, applies multilevel partitioning to that model, and reports on average 75.9% better solutions than Fennel using a very small buffer size. | This supports a storage-shaped "small bounded lookahead" option. It can be sold as: give me 2 GB/5 GB/10 GB of working memory and I will trade buffer size against partition quality and later algorithm latency. | Add `profile_buffered_stream_partition_v1`: buffer bytes, batch size, model graph bytes, quality delta versus unbuffered streaming, and downstream algorithm impact. | High. arXiv abstract read. |
+| Aug 7 streaming partition budget source deepening | https://arxiv.org/abs/2001.07086 | Ruben Mayer, Kamil Orujzade, Hans-Arno Jacobsen | 2PS states the uninformed-assignment problem plainly: early stream edges are assigned without future-edge information, often increasing replication. Its answer is two-phase streaming: first lightweight clustering, then re-stream and edge-partition using those clusters, with replication factors comparable to heavyweight random-access partitioners and orders-of-magnitude lower memory overhead. | This is a perfect `layout_probe_v1` extension: spend one bounded clustering pass to avoid dumb irrevocable edge assignments in the real layout pass. | Add `profile_two_phase_streaming_v1`: phase-1 clustering bytes/time, phase-2 partition bytes/time, replication factor, pass count, and comparison to one-pass streaming. | High. arXiv abstract read. |
+| Aug 7 streaming partition budget source deepening | https://arxiv.org/abs/2103.12594 | Ruben Mayer, Hans-Arno Jacobsen | HEP frames the exact memory-vs-quality problem: in-memory partitioners have quality but high memory; streaming has low memory but lower quality. HEP splits the edge set so part of the graph is partitioned by memory-efficient NE++ and the rest by stateful streaming, flexibly adapting memory overhead. It reports experiments up to 64B edges and Spark/GraphX speedups. | This is one of the strongest architecture inspirations for "budget-bounded batch compute": do not choose RAM-first or stream-first globally; split the graph by degree/shape and apply different physical strategies to different edge classes. | Add `profile_hybrid_edge_partition_v1`: degree threshold, in-memory edge subset bytes, streaming subset bytes, NE++/streaming timings, replication factor, and downstream job speedup. | High. arXiv abstract and introduction read. |
+| Aug 7 streaming partition budget source deepening | https://arxiv.org/abs/1511.02586 | Cong Xie, Wu-Jun Li, Zhihua Zhang | S-PowerGraph argues streaming graph partitioning for natural graphs should use vertex-cut rather than edge-cut because natural graph degree distributions are highly skewed/power-law. It proposes an online vertex-cut method and reports better results than baselines on natural and synthetic graphs. | This is a graph-shape branching rule: if `layout_probe_v1` sees high skew, candidate profiles should include vertex-cut/replication modes, not only edge-cut/CSR partitioning. | Add `profile_vertex_cut_powerlaw_v1`: degree-skew threshold, replicated-vertex bytes, replication factor, high-degree policy, and algorithm compatibility. | Medium-high. arXiv abstract read; code/eval details not yet inspected. |
+| Aug 7 streaming partition budget source deepening | https://arxiv.org/abs/2202.00394 | Marcelo Fonseca Faraj, Christian Schulz | Recursive Multi-Section on the Fly performs shared-memory streaming recursive multi-section without knowing the overall input graph and can use system topology for process mapping. The abstract reports up to two orders of magnitude faster runtime at the cost of 5% more cut edges versus Fennel in graph partitioning. | This adds a hardware-shape dimension. For Knight Bus on one machine, the analogue is NUMA/cache/file-shard topology; for distributed mode, partition-to-machine mapping should be explicit in the receipt. | Add `profile_topology_mapping_receipt_v1`: machine/NUMA/storage topology, process/partition mapping, cut-edge penalty accepted, and communication-cost estimate. | Medium-high. arXiv abstract read. |
+| Aug 7 HEP implementation source deepening | https://github.com/mayerrn/hybrid_edge_partitioner | Ruben Mayer / HEP implementation repo | Shallow cloned and indexed with codebase-memory as `hep-hybrid-edge-partitioner-pass061`: 345 nodes, 1,509 edges, 8 C++ files. Architecture clusters around `dense_bitset`, `graph`, `hep_partitioner`, `ne_partitioner`, `min_heap`, `Vertex2EdgePart`, and conversion utilities. Main entry point chooses `hep`, `ne`, or `v2e`. | HEP is compact enough to become an implementation reference for the first partitioned-layout prototype after PageRank. It gives concrete file/state vocabulary instead of only paper-level nouns. | Add `profile_hep_source_reference_v1`: if HEP informs a Knight Bus profile, record source commit, indexed nodes/edges, functions cited, and which ideas were copied versus merely inspired. | High. Local clone indexed with codebase-memory; no formal benchmark run. |
+| Aug 7 HEP implementation source deepening | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/graph.cpp | HEP implementation repo | `mem_graph_t::stream_build` counts degrees in chunks, sets `high_degree_threshold = average_degree * high_degree_factor`, excludes high-degree vertices from the in-memory CSR-like column array, marks `is_high_degree` and `has_high_degree_neighbor`, writes high-degree/high-degree edges to `.h2h_edgelist`, and can write low-degree incident edges to `.low_edgelist`. | This is the concrete shape of budget-bounded storage: materialize the cheap/useful majority in memory and stream the expensive hub-hub residue through a sidecar. | Add `profile_hep_degree_split_receipt_v1`: average degree, `hdf`, threshold, high-degree vertex count, h2h edge count, low-edge count, sidecar bytes, and chunk size. | Very high. Exact function read through codebase-memory. |
+| Aug 7 HEP implementation source deepening | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/hep_partitioner.cpp | HEP implementation repo | `HepPartitioner::hdrf_streaming` reads the `.h2h_edgelist` in up-to-100k-edge chunks, chooses partitions with `best_scored_partition`, assigns edges, marks boundary bitsets, and updates min/max partition size. `compute_partition_score` refuses full partitions, scores boundary membership using endpoint degrees, and adds `lambda * balance`. | This turns "second-phase streaming" into a receiptable algorithm: a chunked high-degree sidecar stream plus explicit scoring terms. | Add `profile_hep_high_degree_stream_v1`: h2h chunk size, scoring terms, lambda, occupancy min/max, boundary-bitset bytes, full-partition refusals, and chosen buckets. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 HEP implementation source deepening | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/main.cpp | HEP implementation repo | The CLI exposes profile knobs that map naturally to Knight Bus manifests: `--p`, `--method hep|ne|v2e`, `--hdf`, `--lambda`, `--extended_metrics`, `--random_streaming`, `--write_low_degree_edgelist`, and `--hybrid_NE`. The README example partitions Orkut into 8 parts with `-hdf 10.0`. | This is product-gold: profile knobs should not be hidden. They should appear in a typed manifest and receipt with default, chosen, and effective values. | Add `profile_partition_manifest_knobs_v1`: every physical profile declares knobs, defaults, chosen values, effective derived values, and whether the knob was user-set or planner-set. | High. CLI/source read through codebase-memory. |
+| Aug 7 HEP implementation source deepening | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/hep_partitioner.cpp | HEP implementation repo | `compute_stats` reports normalized average degree for core/boundary sets, invalidated-edge fraction, degree-to-replication-factor buckets, and vertex fraction per degree bucket. `count_mirrors` uses boundary bitset popcounts to report mirror counts. | The stats surface is a strong receipt model: do not only say "partitioned"; publish skew, invalidation, mirrors, and replication-by-degree buckets. | Add `profile_partition_stats_receipt_v1`: normalized core/boundary degree, invalidation fraction, total mirrors, replication-factor histogram, and degree-bucket vertex share. | High. Exact functions read through codebase-memory. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/abs/2308.15602 and https://openproceedings.org/2025/conf/edbt/paper-22.pdf | Nikolai Merkel et al. | `An Experimental Comparison of Partitioning Strategies for Distributed Graph Neural Network Training` evaluates partitioning for distributed GNN training across graph type, feature size, GNN parameters, mini-batch size, and scale-out factor. The paper reports that high-quality partitioning can reduce memory footprint materially and that partitioning time can amortize after training speedups. | This widens the budget-bounded thesis from classical OLAP graph algorithms to graph learning. In GNNs, replication factor is not just an edge-placement statistic; it becomes a feature/embedding/gradient memory multiplier. | Add `profile_gnn_partition_training_v1`, `profile_gnn_feature_state_budget_v1`, and `profile_partition_amortization_epochs_v1`: receipts should include replication factor, vertex balance, feature size, hidden dimensions, mini-batch size, epochs-to-amortize, peak memory, and training-time delta. | High. arXiv abstract and EDBT PDF read; exact experimental tables should be revisited before hard numeric claims. |
+| Aug 7 GNN/batch graph learning source deepening | https://www.usenix.org/conference/osdi21/presentation/mohoney and https://www.usenix.org/system/files/osdi21-mohoney.pdf | Jason Mohoney, Roger Waleffe, Henry Xu, Theodoros Rekatsinas, Shivaram Venkataraman / Marius | `Marius` frames massive graph embeddings as a storage hierarchy and data-movement problem. It uses partition caching and buffer-aware data ordering, scales beyond GPU/CPU memory, and reports cost reductions against GPU-heavy baselines. | This is direct evidence that graph compute PMF is not only Neo4j/GDS. Storage order, partition cache hits, disk reads, and asynchronous movement can define whether a graph learning job is affordable. | Add `profile_graph_embedding_out_of_core_v1`: GPU bytes, CPU bytes, SSD bytes, partition-cache hit rate, buffer-aware ordering, disk-read volume, accuracy delta, training time, and cloud-cost estimate. | Very high. USENIX page and paper read. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/abs/2202.02365 and https://github.com/marius-team/marius | Roger Waleffe, Jason Mohoney, Theodoros Rekatsinas, Shivaram Venkataraman / MariusGNN | `MariusGNN` extends the same idea to out-of-core GNN training: use the full storage hierarchy, pipeline IO with compute, use optimized data structures for neighbor sampling/aggregation, and minimize IO while preserving similar accuracy. | The same Knight Bus planner can eventually offer graph-learning profiles if it treats storage tiering, ordering, and sampling/aggregation structures as receiptable physical choices. | Add `profile_storage_hierarchy_training_v1` and `profile_training_accuracy_delta_v1`: receipts should separate storage-tier placement, preprocessing, sampling, aggregation, IO overlap, training time, and accuracy/convergence delta. | High. arXiv page and Marius README read; implementation internals remain queued. |
+| Aug 7 GNN/batch graph learning source deepening | https://www.vldb.org/pvldb/vol17/p1473-huang.pdf and https://github.com/xxcclong/history-cache | Kezhao Huang, Haitian Jiang, Minjie Wang, Guangxuan Xiao, David Wipf, Xiang Song, Quan Gan, Zengfeng Huang, Jidong Zhai, Zheng Zhang / FreshGNN | `FreshGNN` reduces memory access by storing and reusing stable historical node embeddings, with cache decisions guided by gradient and staleness criteria. It reports large training speedups, memory-access reduction, and small accuracy impact. | This is algorithm-shaped caching with a correctness substitute: not exact equality, but controlled staleness plus accuracy/convergence evidence. That matters if Knight Bus expands from exact OLAP to ML-style graph compute. | Add `profile_staleness_cache_receipt_v1`: cache bytes, cached entity type, gradient threshold, staleness threshold, refresh policy, memory-access reduction, speedup, and accuracy delta. | High. PVLDB PDF read; artifact URL captured but not indexed. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/html/2408.00232v1 | Shuai Zhang, Zite Jiang, Haihang You / CDFGNN | `CDFGNN` targets distributed full-batch GNN training where remote feature and gradient access dominates communication. It combines adaptive caches for historical features/gradients, quantized messages, and hierarchical communication-aware partitioning. | This is the distributed version of the budget-bounded thesis: the receipt cannot stop at RAM. It must include communication hierarchy, feature/gradient bytes, compression, and convergence evidence. | Add `profile_hierarchical_comm_partition_v1` and `profile_gnn_quantized_message_receipt_v1`: remote-access reduction, quantization bits/error, within-node versus cross-node traffic, partition policy, cache hit rate, and convergence delta. | High. arXiv HTML read. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/abs/2112.08541 and https://www.usenix.org/conference/nsdi23/presentation/liu-tianfeng | Tianfeng Liu et al. / BGL | `BGL` says large-scale sampling-based GNN training is bottlenecked by subgraph sampling and feature retrieval, not only GPU math. It uses dynamic caching, sampling order, graph partitioning for sampling locality, and resource isolation. | This strongly supports "storage in the shape of the read." For sampling GNNs, the read shape is multi-hop neighborhood expansion plus feature fetches; partitions should preserve multi-hop locality and training-node balance. | Add `profile_gnn_sampling_io_v1`, `profile_multihop_partition_locality_v1`, and `profile_resource_isolation_receipt_v1`: sampled nodes/edges, feature bytes, cache hit rate, cross-partition sampling traffic, multi-hop locality metric, and isolated resource budgets. | High. arXiv abstract read; NSDI page queued for fuller source pass. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/abs/2306.13814 | Loc Hoang, Rita Brugarolas Brufau, Ke Ding, Bo Wu / BatchGNN | `BatchGNN` uses CPU-based distributed training and macrobatches multiple minibatches so subgraph sampling and static feature fetching can be shared instead of redundantly fetched for every minibatch. | This maps directly to budget-bounded batch compute: let users spend a planned batch window to reduce repeated feature movement and memory pressure. | Add `profile_gnn_macrobatch_fetch_v1`: minibatches per macro batch, static-feature reuse count, sampled-subgraph overlap, relay communication bytes, cache bytes, and total training-time delta. | High. arXiv abstract read. |
+| Aug 7 GNN/batch graph learning source deepening | https://arxiv.org/abs/2409.14939 and https://github.com/a1bc2def6g/fastgl-ae | Zeyu Zhu, Peisong Wang, Qinghao Hu, Gang Li, Xiaoyao Liang, Jian Cheng / FastGL | `FastGL` accelerates sampling-based GNN training through Match-Reorder to exploit graph-structure overlap, memory-aware compute, and Fused-Map. It explicitly targets subgraph sampling, memory IO, and computation bottlenecks. | Reordering is a physical storage/execution primitive, not a cosmetic optimization. Knight Bus should be able to say when it reorders work to lower traffic without increasing memory beyond the declared budget. | Add `profile_match_reorder_sampling_v1`: overlap score, reorder window, extra memory, traffic reduction, synchronization reduction, speed delta, and accuracy/convergence invariance. | Medium-high. arXiv abstract read; artifact queued but not indexed. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/xxcclong/history-cache | xxcclong / FreshGNN history-cache artifact | GitHub metadata: 29 files in the shallow clone, default branch `master`, 7 stars, 0 forks, no declared license in GH metadata, last push `2024-04-08T03:26:52Z`. codebase-memory indexed 203 nodes and 687 edges. README describes a high-performance cache for GNN training using historical embeddings and features, with `hiscache/history_cache.py`, `history_table.py`, `history_model.py`, trainers, CUDA aggregation, and grad-check kernels. | The implementation turns FreshGNN from "cache stable embeddings" into actual receiptable state: one buffer is shared between feature and embedding cache semantics, with full-to-cache and cache-to-full maps, UVM/mmap/distributed-store modes, history reconstruction masks, staleness thresholds, and gradient/rate policies. | Upgrade `profile_staleness_cache_receipt_v1` with fields for `feat_mode`, UVM/mmap/distributed mode, `start_history`, `staleness_thres`, `rate`, `method`, `header`, `num_stored_history`, feature-cache bytes, embedding-cache bytes, and invalidated feature rows. | High. Repo metadata plus codebase-memory index and snippets read. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/xxcclong/history-cache/blob/master/hiscache/history_cache.py and https://github.com/xxcclong/history-cache/blob/master/src/cpp/src/history_aggr.cu | history-cache implementation | `HistoryCache.lookup_and_load` separates feature-cache-only mode, no-cache mode, and historical-cache mode. It reconstructs used masks, loads cached embeddings and cached raw features from the shared buffer, falls back to UVM/mmap or distributed-store communication masks, and records hit-rate-like analysis fields. `update_history` records produced embeddings whose gradient norm is below a quantile threshold, refreshes at staleness intervals, invalidates overwritten feature rows, and updates full-to-embedding and embedding-to-full maps. CUDA kernels perform history aggregation and backward gradient propagation. | This is the most concrete proof that a graph-learning profile needs state-diff receipts, not just final epoch time. The cache changes which nodes load raw features, which nodes use historical embeddings, and which rows are invalidated. | Add `profile_gnn_cache_state_diff_v1`: per step/epoch, record candidate nodes, historical embedding hits, feature-cache hits, UVM/mmap loads, distributed loads, rows recorded, rows invalidated, gradient threshold, and cache header movement. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/leodestiny/BGL_NSDI2023 | leodestiny / BGL NSDI 2023 artifact | GitHub metadata: default branch `main`, Apache-2.0, 17 stars, 2 forks, last push `2026-04-27T06:03:39Z`. The sparse local clone exposed 1,179 tracked files and codebase-memory indexed the relevant surface into 1,083 nodes and 3,403 edges. README names three key components: feature cache engine, graph partition module, and async training pipeline; it points feature cache plus async training to `src/rpc/multi_gpu_tensor_cache_engine.cc` and proximity-aware ordering to `src/graph/graph_traversal.cc`. | BGL is a system-shape reference: the low-RAM/low-latency problem is feature movement, graph-structure movement, cache lookup, GPU preallocation, and queueing, not only a sampler kernel. | Add `profile_async_feature_pipeline_v1`: worker count, cache size per GPU, feature dimension, max input length, samples per worker, FIFO/IPC channel count, queue depth, cache hit/miss counts, GPU preallocation bytes, and graph-copy bytes. | Very high. GitHub README, GH metadata, sparse clone, and codebase-memory snippets read. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/leodestiny/BGL_NSDI2023/blob/main/src/rpc/multi_gpu_tensor_cache_engine.cc and https://github.com/leodestiny/BGL_NSDI2023/blob/main/src/graph/graph_traversal.cc | BGL implementation | `start_caching_process` initializes `worker_num`, `number_of_nodes`, `cache_size_per_gpu`, `feature_dim`, `max_inputs_length`, `samples_per_worker`, CPU feature buffer, per-NVLink cache maps, FIFOs, dispatch threads, and working threads. `caching_working_thread` splits node IDs into cached and not-cached groups, copies cached indices and not-cached feature rows, updates FIFO cache state, uses peer access and CUDA streams, and scatters results. `training_recv_thread` preallocates GPU CSR arrays for pending samples and layers, receives sample metadata, copies shared-memory graphs to GPU, and pushes feature/label tensors to the training queue. `BFSTraverseNodesWithMask` performs masked BFS ordering across connected components. | This makes the "storage in the shape of the read" idea operational: preallocate graph structures, classify feature requests, overlap movement, and make ordering explicit. | Add `profile_gnn_graph_feature_pipeline_v1`: preallocated CSR bytes, pending sample window, layer count, input length, feature bytes returned, labels copied, graph shared-memory names/counts, cached/not-cached split, P2P enablement, and ordering source. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/a1bc2def6g/fastgl-ae | a1bc2def6g / FastGL artifact | GitHub metadata: 30 files in the shallow clone, default branch `main`, 17 stars, 4 forks, no declared license in GH metadata, last push `2024-06-25T07:14:33Z`. codebase-memory indexed 304 nodes and 865 edges. README says FastGL uses dedicated CUDA operators, `FusedMapSampler.py`, `MatchReorderServer.py`, and `run_fig*/` scripts; it reports evaluation hardware with 512GB DRAM and eight RTX 3090 GPUs, while saying at least one GPU plus 128GB host DRAM can run it. | FastGL is a compact implementation reference for the "reuse overlap before reading again" branch of the planner. | Add `profile_match_reorder_artifact_v1`: source commit, file count, indexed nodes/edges, hardware assumption, model/dataset/fanout/batch-size/device fields, and which CUDA operators were used. | High. GitHub README, GH metadata, local clone, and codebase-memory snippets read. |
+| Aug 7 GNN implementation-artifact source deepening | https://github.com/a1bc2def6g/fastgl-ae/blob/main/MatchReorderServer.py, https://github.com/a1bc2def6g/fastgl-ae/blob/main/FusedMapSampler.py, and https://github.com/a1bc2def6g/fastgl-ae/blob/main/train_fastgl.py | FastGL implementation | `MatchServer.init_cache` computes available GPU memory from total, max allocated, max reserved, and a 2GB cushion, then caches all nodes, high-ranked nodes, or no nodes based on capability/cache ratio. `match_reorder.reorder` greedily computes overlap between sampled batches and reorders a window by match score. `FusedMapSampler.sample_blocks` samples blocks with `fastgl.sample_node`, runs `fastgl.transfer_edge_id`, and creates DGL blocks. `load_subtensors` chooses among CPU feature fetch, GPU cache, and last-batch feature reuse; `run` records sample time, graph-copy time, copy time, train time, back time, nodes, and samples. | This gives Knight Bus a complete receipt vocabulary for reorder/caching profiles: the receipt can explain why a batch was reordered, how much memory was available, which feature rows came from CPU/GPU/last batch, and whether extra ordering time paid for itself. | Upgrade `profile_match_reorder_sampling_v1` with GPU memory calculation, cache-ratio policy, high-node list identity, reorder window size, overlap matrix summary, CPU/GPU/last-batch feature split, sample nodes/edges, graph-copy time, copy time, train time, and backward time. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius | Marius team / Marius + MariusGNN | GitHub metadata refreshed on Aug 7 2026: Apache-2.0, default branch `main`, 169 stars, 47 forks, last push `2025-02-25T05:31:40Z`. README positions Marius as large-scale graph learning on a single machine using the full memory hierarchy; it names partition caching, buffer-aware data ordering, pipelined training/IO, DENSE for neighbor sampling/aggregation, COMET ordering, and in-memory/out-of-core CLI execution. | Marius is the clearest implementation reference so far for "storage hierarchy as product surface." It makes tiering, partition cache, and ordering visible as system behavior rather than an invisible backend choice. | Add `profile_storage_hierarchy_artifact_v1`: receipts should record source commit, index size, storage tiers, CLI mode, partition cache, ordering policy, and which Marius concepts were copied versus merely used as inspiration. | High. GitHub metadata, README, sparse clone, and codebase-memory architecture read. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius/tree/main/src/cpp/src/storage and https://github.com/marius-team/marius/tree/main/src/cpp/include/storage | Marius storage implementation | Sparse local clone `/tmp/kb-marius-pass064-a` was pinned at commit `2f27ffedfbffd405995e8d16d821849db1fe0535` with 476 tracked files in the sparse checkout. codebase-memory indexed focused source as `marius-pass064`: 1,992 nodes, 6,512 edges, 169 files, 93 C++ files, 62 C files, and 7 Python files. Architecture clusters highlighted storage/pipeline functions (`init_io`, `start`, `stop`), buffer functions (`load`, `performNextSwap`, `getNextAdmit`), and subgraph functions (`initializeInMemorySubGraph`, `useInMemorySubGraph`, `updateInMemorySubGraph`). | This gives Knight Bus a code-shaped reference for out-of-core graph learning receipts, not just paper vocabulary. | Add `profile_marius_source_reference_v1`: record repo URL, commit, sparse path, indexed nodes/edges, entry points, and cited functions before using it in architecture decisions. | Very high. codebase-memory architecture and source snippets read. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius/blob/main/src/cpp/src/storage/buffer.cpp | Marius `PartitionBuffer`, `LookaheadBlock`, and `AsyncWriteBlock` | `PartitionBuffer` constructs per-partition metadata from `capacity`, `num_partitions`, `fine_to_coarse_ratio`, `partition_size`, `embedding_size`, `total_embeddings`, `dtype`, `filename`, and `prefetching`; `load` allocates aligned memory with `capacity * partition_size * embedding_size * dtype_size`, reads the first `buffer_state` partitions, and starts lookahead/writeback threads when prefetching is enabled. `admit`, `evict`, `sync`, `LookaheadBlock.move_to_buffer`, and `AsyncWriteBlock.run` expose current partitions, next-admit partitions, copied bytes, async writes, and flush behavior. | This is the exact shape of a bounded-storage receipt: current state, next state, movement, and writeback are explicit. | Add `profile_partition_buffer_receipt_v1` and `profile_partition_prefetch_writeback_v1`: capacity, partition size, embedding size, dtype bytes, aligned bytes, loaded partition IDs, buffer indexes, next admit IDs, evict IDs, copied bytes, async write state, sync flush count, and partition-file bytes. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius/blob/main/src/cpp/src/data/dataloader.cpp and https://github.com/marius-team/marius/blob/main/src/cpp/src/storage/graph_storage.cpp | Marius data-loader and graph-storage implementation | `DataLoader.setBufferOrdering` chooses edge-bucket or node-partition ordering from `PartitionBufferOptions`; link prediction uses `getEdgeBucketOrdering`, node tasks use `getNodePartitionOrdering`, and both feed `graph_storage_->setBufferOrdering`. `DataLoader.getNextBatch` waits until `batches_left_ == 0` before calling `graph_storage_->updateInMemorySubGraph()` and reinitializing batches. `GraphModelStorage.updateInMemorySubGraph_` computes evict/admit partition IDs, filters old edge buckets, loads new edge buckets, remaps global-to-local IDs, rebuilds mapped edges, and refreshes in-memory graph state. | This converts a vague "swap subgraph" idea into a measurable phase boundary. A low-RAM planner must expose batch drain, swap IDs, active edge buckets, remapping bytes, and graph rebuild cost. | Add `profile_subgraph_swap_training_v1`: active partition IDs, edge-bucket IDs/sizes, evict/admit IDs, batch-drain wait, global-to-local map bytes, edges loaded from disk/storage, mapped-edge bytes, graph rebuild time, and batch reinitialization count. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius/blob/main/src/cpp/src/data/ordering.cpp and https://github.com/marius-team/marius/blob/main/src/cpp/src/configuration/config.cpp | Marius ordering/config implementation | `getEdgeBucketOrdering` dispatches OLD_BETA, NEW_BETA, ALL_BETA, COMET, and CUSTOM; COMET calls `getTwoLevelBetaOrdering` with `fine_to_coarse_ratio`, `num_cache_partitions`, and random/greedy edge-bucket assignment. `getNodePartitionOrdering` dispatches DISPERSED, SEQUENTIAL, and CUSTOM. `initStorageBackendConfig` exposes `PartitionBufferOptions`: `num_partitions`, `buffer_capacity`, `prefetching`, `fine_to_coarse_ratio`, `num_cache_partitions`, `edge_bucket_ordering`, `node_partition_ordering`, `randomly_assign_edge_buckets`, and `dtype`. | The product lesson is that a storage profile needs both user-visible knobs and derived effective state. Otherwise "bounded memory" is not auditable. | Add `profile_buffer_ordering_manifest_v1` and `profile_storage_profile_manifest_v1`: declare ordering family, generated buffer-state hash, cache partition count, fine-to-coarse ratio, random-assignment flag, dtype, and default/chosen/effective values. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Marius implementation-artifact source deepening | https://github.com/marius-team/marius/tree/main/src/cpp/include/pipeline | Marius pipeline implementation | codebase-memory architecture showed queue hot spots around `Queue.size`, `Queue.begin`, and `Queue.end`, with pipeline/worker classes such as load/update/batch transfer/compute paths visible in the indexed source. Marius' storage story is inseparable from queueing and overlap: partitions and batches move through CPU/GPU/IO stages, and queue sizes become part of the memory bill. | Knight Bus should avoid saying "we used only X GB" if pinned transfers, prefetch buffers, async write buffers, and in-flight queues were not counted. | Add `profile_pipeline_queue_receipt_v1`: queue sizes, batches in flight, worker roles, host/device transfer stages, pinned/prefetch buffer bytes, and stall/wait time. | Medium-high. Architecture/hotspot evidence read; detailed worker snippets remain a future pass. |
+| Aug 7 GNN source-catalog deepening | https://arxiv.org/html/2408.00232v1 and https://arxiv.org/abs/2408.00232 | Shuai Zhang, Zite Jiang, Haihang You / CDFGNN | CDFGNN frames distributed full-batch GNN training as a remote vertex-feature and gradient communication problem. It caches historical features/gradients of mirror/master vertices, uses an adaptive threshold `epsilon`, sends deltas when the infinity-norm relative error crosses threshold, preserves gather/scatter replica consistency, quantizes feature/gradient messages, and uses a hierarchy-aware vertex-cut partition objective. The arXiv abstract reports 63.14% average remote-access reduction and 30.39% speedup over compared distributed full-batch frameworks in its experiments. | This adds a new proof type to Knight Bus expansion planning: not exact equality, but remote-access reduction plus bounded error plus convergence/accuracy guard. | Add `profile_remote_vertex_access_budget_v1`, `profile_adaptive_threshold_cache_v1`, `profile_quantized_comm_receipt_v1`, `profile_hierarchical_partition_comm_v1`, and `profile_accuracy_convergence_guard_v1`. | High. arXiv abstract and HTML read; no public CDFGNN implementation artifact located in this pass. |
+| Aug 7 GNN source-catalog deepening | https://github.com/ch-wan/awesome-gnn-systems | ch-wan / Awesome GNN Systems maintainers | GitHub metadata refreshed on Aug 7 2026: 348 stars, 29 forks, default branch `main`, no declared license in GH metadata, last push `2026-08-06T01:45:19Z`. The README organizes the field into GNN libraries, kernels, compilers, distributed training systems, training systems for scaling graphs, quantized GNNs, dataloaders, training accelerators, and inference accelerators. Relevant queued systems include LeapGNN, NeutronTP, PipeGCN, Hyperion, MariusGNN, Ginex, EXACT, QGTC, GIDS, GNNLab, PaGraph, and BGL. | This is a route map for future evidence, not a single architecture source. It shows the graph-learning systems world already clusters around the same axes as Knight Bus: movement, storage tiering, compression, sampling/data loading, and scheduling. | Add `profile_gnn_research_route_map_v1`: every future GNN source pass should classify the system by movement target, memory target, exactness/accuracy proof type, and whether code exists. | Medium-high. Living catalog read; individual linked papers/code should be opened before implementation claims. |
+| Aug 7 GNN source-catalog deepening | https://github.com/SJTU-DMTai/Data-Management-for-GNN-Training | SJTU-DMTai / PVLDB 2024 tutorial maintainers | GitHub metadata refreshed on Aug 7 2026: 11 stars, 1 fork, default branch `main`, no declared license in GH metadata, last push `2024-09-06T02:17:53Z`. The tutorial list emphasizes data-management problems in large-graph GNN training: temporal/dynamic placement (ETC, SIMPLE, Orca), temporal personalized PageRank (Zebra), execution planning (DAHA), computation-aware caching (PaGraph), staleness-aware communication avoidance (SANCUS), feature-oriented sampling, and dual-cache systems (DUCATI). | This strengthens the PMF thesis that graph workloads are data-management workloads, not only algorithm kernels. It also links graph learning back to PageRank through Zebra's temporal personalized PageRank lane. | Add `profile_graph_learning_data_management_map_v1`: track dynamic placement, temporal state, cache/staleness policy, personalized PageRank linkage, execution planning, and dual-cache state as future expansion categories. | Medium-high. Tutorial README read; individual linked artifacts remain queued. |
+| Aug 7 Hyperion implementation-artifact deepening | https://github.com/RC4ML/Hyperion and https://wangzeke.github.io/doc/Hyperion-ICDE25.pdf | RC4ML / Jie Sun, Mo Sun, Zheng Zhang, Zuocheng Shi, Jun Xie, Zihan Yang, Jie Zhang, Zeke Wang, Fei Wu | GitHub metadata refreshed on Aug 7 2026: 24 stars, 4 forks, default branch `main`, no declared license in GH metadata, last push `2025-01-06T10:20:15Z`. The README and ICDE paper frame Hyperion as cost-efficient out-of-core GNN training on terabyte-scale graphs using GPU-initiated asynchronous SSD access. The paper says the async stack disaggregates IO submission and completion, uses about 1% GPU cores for SSD submission in its evaluated setup, and reports over 3.1x TPC versus out-of-core baselines plus up to 60x TPC versus a distributed in-memory baseline. | Hyperion is direct evidence that the product can be "spend cheaper storage and better orchestration before buying more RAM/GPU." For Knight Bus, this is future expansion evidence for disk-backed graph reads under a declared budget. | Add `profile_gpu_direct_ssd_artifact_v1`: repo URL, commit, device assumptions, SSD count, queue count, IO submission/completion blocks, cache policy, TPC metric, and hardware-cost comparison. | High. README, ICDE PDF, GitHub metadata, shallow clone, and codebase-memory index read. |
+| Aug 7 Hyperion implementation-artifact deepening | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/iostack.cuh | Hyperion GPU-initiated SSD IO stack | `IOStack` is constructed from `num_ssds`, `num_queues_per_ssd`, `num_TB_submission`, and `num_TB_completion`; it allocates SSD queue pairs, PRP tables, distributed request buffers, per-SSD request counters, IO buffer bases, and initializes each SSD. `init_ssd` opens `/dev/libnvm*`, mmaps controller BARs, registers IO memory, resets/enables NVMe controllers, creates admin and IO queues, allocates mapped IO buffers, and builds PRP lists. `io_submission` counts requests per SSD, prefix-sums micro-batches, distributes requests, submits NVMe read commands, rings SQ doorbells, and resets micro-batch counters. `io_completion` polls completions, copies IO buffers to request destinations, rings CQ doorbells, resets counts, and updates SQ tails. | This is a serious receipt template for disk-backed profiles: every disk-backed run should expose the IO topology and queue state, not just "used SSD." | Add `profile_gpu_direct_ssd_iostack_v1`: SSD count, queue count, queue depth, logical block size, submission blocks, completion blocks, request count, per-SSD request counts, PRP bytes, IO buffer bytes, SQ/CQ doorbell counts, and completion latency. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Hyperion implementation-artifact deepening | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/userqueue.cuh and https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/feature_storage.cu | Hyperion feature miss to SSD request path | `CompleteFeatureStorage.Build` constructs `IOStack(info->num_ssd, info->num_queues_per_ssd, 1, 32)` and a `UserQueue(32, 1024, 4000000)`, then allocates partitioned train/valid/test IDs and labels on devices. `IOSubmit` calls `queue_->dequeue(...)` and then `iostack_->io_submission(...)` using a device pointer for request count. `UserQueue.dequeue_kernel` turns `cache_idx < 0` into an `IOReq`: `start_lb` stripes across SSDs by node ID, `num_items` is feature-block size, and each `dest_addr` points into the destination feature buffer. `IOComplete` calls `iostack_->io_completion`. | This is the most transferable Hyperion idea: cache misses become GPU-resident storage requests with explicit destination addresses. | Add `profile_feature_miss_to_ioreq_v1`: sampled IDs, cache-index status, miss count, feature block size, SSD stripe function, logical block start, destination addresses, IO request count, and submit/complete stream. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Hyperion implementation-artifact deepening | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/cache/cache.cu and https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/cache/cache_impl.cuh | Hyperion unified cache implementation | `UnifiedCache.FeatCacheLookup` launches `feat_cache_lookup` over sampled IDs and cache indexes with CPU and GPU cache capacities. The kernel copies feature rows from CPU feature cache when the global cache index exceeds GPU capacity, or from GPU feature cache when it is within GPU capacity. `topo_cache_hit`, `feature_cache_hit`, and `CacheHitTimes` maintain hit counters through atomics. `CacheProfiling` routes sampled nodes, aggregation edges, node counters, and edge counters into the cache controller. | A disk-backed low-RAM profile needs cache proof by tier: CPU cache hit, GPU cache hit, SSD miss, and topology cache hit must be separate. | Add `profile_unified_cache_tier_receipt_v1`: CPU-cache capacity, GPU-cache capacity, feature length, topology hit count, feature hit count, miss count, sampled nodes, aggregation edges, and cache profiling stream. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Hyperion implementation-artifact deepening | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/graph_storage.cu and https://github.com/RC4ML/Hyperion/blob/main/training_backend/ipc_service.cpp | Hyperion graph storage and training IPC | `CompleteGraphStorage.Build` records partition count, node count, edge count, cache edge count, per-partition CSR pointers, batch sizes, and pinned CSR host/device pointers. `HyrbidGraphCache` builds a split GPU/CPU topology cache from a query table, computes neighbor counts, fills GPU CSR data, and optionally builds CPU mapped CSR data. The training backend `get_next` waits on IPC, returns IDs, float features, labels, aggregation sources/destinations, and node/edge counters; `get_block_size` derives hop block sizes from node counters. | This adds another receipt field family: the training step should publish graph/topology cache tiering, sampled block sizes, and IPC-visible counters. | Add `profile_topology_cache_ipc_receipt_v1`: partition count, pinned CSR bytes, GPU topology cache bytes, CPU topology cache bytes, node/edge counters, hop block sizes, IPC pipe index, and batch readiness wait. | High. Exact functions read through codebase-memory. |
+| Aug 7 Ginex implementation-artifact deepening | https://github.com/SNU-ARC/Ginex and http://arc.snu.ac.kr/pubs/vldb22_ginex.pdf | SNU-ARC / Yeonhong Park, Sunhong Min, Jae W. Lee | GitHub metadata refreshed on Aug 7 2026: 43 stars, 7 forks, default branch `main`, no declared license in GH metadata, last push `2024-07-10T10:05:21Z`. README frames Ginex as SSD-enabled billion-scale GNN training on one machine through provably optimal in-memory caching of SSD-resident feature vectors. The toy setup uses `ogbn_papers100M`, disables Linux read-ahead, uses cgroups to mimic an 8GB memory cap, recommends swap, creates 6GB neighbor and feature caches, uses `--sb-size 1500`, and reports a local example from 216.1687 seconds per epoch to 99.5562 seconds per epoch. | Ginex is one of the most transferable sources for budget-bounded compute because the RAM cap is explicit and the cache plan is precomputed from future superbatch traces. | Add `profile_ginex_source_reference_v1` and `profile_cgroup_memory_cap_receipt_v1`: source URL, commit, index size, memory cap, swap, read-ahead setting, storage device, cache sizes, superbatch size, baseline time, and Ginex time must be recorded before using its claims. | High for repo/README/source artifact; paper link is queued for deeper numeric validation before hard benchmark claims. |
+| Aug 7 Ginex implementation-artifact deepening | https://github.com/SNU-ARC/Ginex/blob/main/lib/cache.py | Ginex `FeatureCache` | `FeatureCache.__init__` derives address-table bytes as `4 * num_nodes`, derives feature-cache entry count from `(size - table_size) / 4 / feature_dim`, and constrains the trace window by `int16` limits. `pass_1_and_2` loads traced node IDs with 16 worker threads, builds a CUDA `int16` frequency vector, chooses initial cache indices until capacity fills, and builds `iterptr`/`iters` next-access state. `pass_3` simulates cache state with `cache_table`, `map_table`, threshold adjustment, candidate sets, and saved in/out changesets. | This is a direct model for Knight Bus "future-access cache plans": run a bounded probe/trace, build the cache plan, emit changesets, and make every byte and threshold visible. | Add `profile_future_access_cache_plan_v1`: cache size, effective trace window, node count, feature dim, table bytes, entry count, frequency bytes, iterptr/iters bytes, initial cache fill, candidate count, threshold trajectory, and changeset bytes. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Ginex implementation-artifact deepening | https://github.com/SNU-ARC/Ginex/blob/main/lib/cache.py, https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/update.cpp, and https://github.com/SNU-ARC/Ginex/blob/main/run_ginex.py | Ginex cache fill, update, and training execution | `fill_cache` initializes an `int32` address table and copies selected rows from mmapped features. C++ `cache_update` reuses evicted cache slots by copying incoming feature rows into the cache, updating `address_table[in]`, and invalidating `address_table[out]` under OpenMP. `run_ginex.inspect` overlaps `FeatureCache.pass_3` with neighbor sampling, loads neighbor-cache mmap files, and sets sampler/prefetch parameters; `execute` overlaps trace loading, gather, cache update, transfer, forward, backward, and cleanup queues. | This is the choreography we need to copy as a product concept: cache movement is a phase-accounted runtime event, not invisible magic. | Add `profile_cache_changeset_runtime_v1`: address-table bytes, feature-cache bytes, insert IDs, evict IDs, in positions, bytes copied, cache-update thread count, overlap boundary, queue depths, and per-phase timing. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Ginex implementation-artifact deepening | https://github.com/SNU-ARC/Ginex/blob/main/lib/neighbor_sampler.py and https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/sample.cpp | Ginex neighbor sampler and neighbor-cache O_DIRECT path | `GinexNeighborSampler.sample` writes trace files for node IDs and adjacency blocks by superbatch/batch. C++ `sample_adj_ginex` opens the column file with `O_DIRECT`, checks neighbor-cache hits by node, reads misses into aligned buffers with `pread`, supports full-neighbor/replacement/no-replacement fanout modes, uses Robert Floyd sampling in one path, and returns sampled adjacency plus output node IDs. `NeighborCache.init_by_score` fills neighbor cache by score until a byte-derived cache cap is reached, and `save` persists `.dat` plus JSON shape/dtype metadata. | This makes graph structure itself cacheable under a budget. For PageRank, the exact analogue is not GNN sampling but a visible topology/edge-access cache profile. | Add `profile_neighbor_cache_sampling_v1`: fanout, trace files, neighbor-cache bytes, address-table bytes, cached-node count, cache hit/miss by node, O_DIRECT read count, aligned buffer size, replacement policy, sampled edge count, and output node count. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Ginex implementation-artifact deepening | https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/gather.cpp, https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/mt_load.cpp, and https://github.com/SNU-ARC/Ginex/blob/main/lib/data.py | Ginex feature gather and mmap dataset surface | `gather_ginex` opens the feature file with `O_DIRECT`, routes cache hits through memcpy from the feature cache, and serves misses with aligned `pread` into a CPU tensor. `gather_mmap` is the simpler mmap baseline. `load_float32` and `load_int64` use O_DIRECT plus aligned allocation and OpenMP block reads, while `get_mmap_dataset` maps `indices.dat` and `features.dat` from shape/dtype metadata in `conf.json`. | This is the evidence that a low-RAM profile needs both physical format metadata and read-path receipts. The product should know which reads were mmap/page-cache, O_DIRECT, cache hits, and aligned misses. | Add `profile_odirect_feature_gather_v1`: file path, O_DIRECT flag, num IDs, feature dim, cache hits, cache misses, aligned offset, residual, read size, bytes read, OpenMP thread count, returned tensor shape, and mmap baseline comparison. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GIDS implementation-artifact deepening | https://arxiv.org/abs/2306.16384v2 and https://github.com/jeongminpark417/GIDS | Jeongmin Brian Park, Vikram Sharma Mailthody, Zaid Qureshi, Wen-mei Hwu / GIDS | arXiv identifies the paper as PVLDB 17(6):1227-1240, last revised Mar 6 2024, and frames GIDS as GPU-initiated direct storage access for GNN sampling/aggregation. The abstract says page-fault overhead enters the critical path when graph embeddings do not fit in CPU memory, and reports up to 392x acceleration versus the DGL dataloader in its evaluation. GitHub metadata refreshed on Aug 7 2026: 43 stars, 9 forks, default branch `main`, no declared license in GH metadata, last push `2025-06-13T23:51:37Z`. Local clone pinned commit `523836c6eb8a23cbf86da9212789e011b393036f`, 45 tracked files, 538 indexed nodes, and 1,926 edges. | GIDS is a direct comparator for "do not page fault blindly; make storage access an explicit GPU-visible path." It is future expansion evidence for SSD-backed profiles and immediate evidence that graph format choices can create huge hidden RAM cliffs. | Add `profile_gids_source_reference_v1`: repo URL, paper URL, commit, file count, index size, hardware/storage assumptions, benchmark mode, and copied-vs-inspired ideas SHALL be recorded. | High. arXiv page, README, GH metadata, local clone, and codebase-memory snippets read. |
+| Aug 7 GIDS implementation-artifact deepening | https://github.com/jeongminpark417/GIDS/blob/main/README.md and https://github.com/jeongminpark417/GIDS/blob/main/evaluation/run_GIDS_IGBH.sh | GIDS README and benchmark scripts | README says feature data is stored directly on SSDs, multiple SSDs are striped with page granularity, heterographs require per-node-type offsets, a constant CPU buffer can hold highly reusable node features, `page_rank_node_list_gen.py` generates a node list from reversed PageRank values, and CSC is fixed for graph structure because enabling COO plus CSC can trigger automatic COO-to-CSR conversion that consumes more than 700GB on terabyte-scale IGB. The provided GIDS IGBH run uses full IGBH, 1 epoch, RSAGE, 3 layers, fanout `10,5,5`, batch size 1024, 4GB cache, one SSD, 4096-byte pages, 1024-dim embeddings, window buffer size 8, CPU buffer 20%, and storage-access accumulator mode. | This gives Knight Bus two product-grade warning labels: "implicit format conversion can destroy the RAM budget" and "centrality/PageRank can become a cache-admission signal." | Add `profile_csc_format_memory_gate_v1` and `profile_gids_benchmark_knobs_v1`: graph format, conversion risk, dataset, fanout, model, batch size, page size, SSD count, cache MB, CPU-buffer percent, window size, and accumulator flag SHALL be recorded. | Very high. README and scripts read locally. |
+| Aug 7 GIDS implementation-artifact deepening | https://github.com/jeongminpark417/GIDS/blob/main/GIDS_Setup/GIDS/GIDS.py | GIDS Python dataloader orchestration | `GIDS.__init__` exposes page size, feature offset, cache dimension, element count, SSD count/list, cache size, controller index, window buffering, window size, accumulator flag, long/float type, heterograph mode, and heterograph offsets. It initializes `GIDS_Controllers` with queue depth 1024 and 128 queues, then initializes the BaM feature store. `GIDS_DGLDataLoader.__init__` wraps DGL sampling, pins graph memory when needed, and uses a custom collate path. `fetch_feature` appends sampled batches to a window, optionally pre-fills the window buffer, and either issues one read or merges several future reads based on required storage-access estimates and previous CPU-buffer hits. | This is a strong planner design: the dataloader exposes storage knobs, graph-type offsets, sample windowing, and merged reads instead of hiding them behind DGL. | Add `profile_gids_loader_manifest_v1`: page size, offset, cache dim, num elements, SSD list, queue depth, queue count, cache size, window size, heterograph offsets, accumulator inputs, and DGL sampler identity SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GIDS implementation-artifact deepening | https://github.com/jeongminpark417/GIDS/blob/main/gids_module/gids_nvme.cu and https://github.com/jeongminpark417/GIDS/blob/main/gids_module/gids_kernel.cu | GIDS CUDA NVMe read path | `init_GIDS_controllers` creates a controller per SSD from `ssd_list`, using queue depth 1024 and queue count 128. `init_controllers` derives feature page count from `cache_size * 1024 * 1024 / page_size`, creates a `page_cache_t`, creates a `range_t` with `STRIPE`, creates an `array_t`, and initializes a device CPU-access counter. `read_feature`, `read_feature_merged`, and `read_feature_hetero` launch feature-read kernels over CUDA streams and update `kernel_time`, `total_access`, and `cpu_access_count`. `read_feature_kernel` uses one warp per requested node row and calls `bam_ptr.read` for feature cells. | This is the GPU-visible storage profile we need to study later: controller count, queue depth, stripe policy, page cache size, CUDA streams, request row count, and access counters all belong in receipts. | Add `profile_gpu_initiated_feature_fetch_v1`: SSD list, queue depth, queue count, page size, page-cache pages, stripe/replicate mode, num indices, feature dim, cache dim, CUDA stream count, kernel time, total accesses, and CPU-buffer hit count SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GIDS implementation-artifact deepening | https://github.com/jeongminpark417/GIDS/blob/main/gids_module/gids_kernel.cu and https://github.com/jeongminpark417/GIDS/blob/main/gids_module/include/page_cache_backup.h | GIDS CPU backing buffer, window buffer, and page cache | `cpu_backing_buffer` allocates mapped pinned host memory with `cudaHostAllocMapped`, exposes a device pointer, records buffer dimension and length, and flips `cpu_buffer_flag`. `set_cpu_buffer` maps the selected node IDs into the range table and copies their feature rows into the CPU buffer. `read_feature_kernel_with_cpu_backing_memory` chooses CPU buffer or storage read per row, increments `d_cpu_access` on CPU hits, and supports sequential or mapped CPU-buffer modes. `set_window_buffering_kernel` increments a page-level window-buffer counter for upcoming node IDs. `array_d_t.pin_memory` shows the page-cache/coalescing surface with page lookup, global address lookup, `coalesce_page`, and cache-page address access. | This is the bounded-RAM product pattern: pin a declared subset, count hits, mark upcoming pages, and record the residual storage reads. | Add `profile_page_rank_pin_buffer_v1` and `profile_window_buffer_access_counter_v1`: pinned-node source, pinned count, buffer bytes, hit count, page-window size, page counters, coalesced page count, residual storage reads, and hit-rate delta SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GIDS implementation-artifact deepening | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/page_rank_node_list_gen.py and https://github.com/jeongminpark417/GIDS/blob/main/evaluation/dataloader.py | GIDS PageRank pin-list and IGBH dataset format | `compute_pagerank` and `compute_pagerank_hetero` use DGL PageRank-style iterations to rank nodes, including heterograph offsets by node type. The IGBH massive dataset loader uses `np.memmap`/`np.load(..., mmap_mode='r')`, names full and large node counts for paper/author features, builds heterograph relations and reverse relations, and forces `self.graph.formats('csc')`. | This is the strongest GIDS-to-Knight-Bus bridge: PageRank is not only an algorithm to run; it can produce storage/cache hints for later workloads. | Add `profile_centrality_cache_hint_v1`: centrality algorithm, iterations, damping, node-type offsets, top-k count, pinned bytes, downstream hit-rate delta, and correctness impact SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Zebra implementation-artifact deepening | https://www.vldb.org/pvldb/vol16/p1332-li.pdf and https://github.com/LuckyLYM/Zebra | Yiming Li, Yanyan Shen, Lei Chen, Mingxuan Yuan / Zebra | PVLDB paper says Zebra connects temporal message passing in T-GNNs with temporal random walks, uses temporal Personalized PageRank (T-PPR) to select influential temporal neighbors, develops a single-scan top-k T-PPR algorithm with approximation guarantees, and reports up to two orders of magnitude speedup versus state-of-the-art T-GNNs while retaining or improving predictive performance. GitHub metadata refreshed on Aug 7 2026: 12 stars, 1 fork, default branch `main`, no declared license in GH metadata, last push `2024-04-26T15:44:31Z`. Local clone pinned commit `8e72d65e1a85c05ba335d5dd1edb4202a7598c8e`, 16 tracked files, 257 indexed nodes, and 945 edges. | Zebra is a PageRank-family expansion source: it shows PPR can become a compute-budget primitive that avoids neighbor explosion by selecting only top-k influential temporal neighbors. | Add `profile_temporal_ppr_source_reference_v1`: paper URL, repo URL, commit, file count, index size, algorithmic guarantees cited, benchmark datasets, and copied-vs-inspired ideas SHALL be recorded. | High. PVLDB PDF, README, GH metadata, local clone, and codebase-memory snippets read. |
+| Aug 7 Zebra implementation-artifact deepening | https://github.com/LuckyLYM/Zebra/blob/main/README.md and https://github.com/LuckyLYM/Zebra/blob/main/train.py | Zebra usage and run surface | README lists six temporal graph datasets: Wikipedia, Reddit, MOOC, AskUbuntu, SuperUser, and Wiki-Talk. It exposes batch size, heads, epochs, layers, learning rate, GPU, patience, random seed, `topk`, `tppr_strategy` as `streaming` or `pruning`, and `alpha_list`/`beta_list`. Example usage runs `--tppr_strategy streaming --topk 20 --alpha_list 0.1 0.1 --beta_list 0.5 0.95`. `train.py` switches the embedding module to `diffusion` when T-PPR is active and logs T-PPR/train/validation/test timing. | This is a clean product lesson: approximate/dynamic profiles need explicit knobs and accuracy/latency receipts, not hidden heuristics. | Add `profile_tppr_manifest_knobs_v1`: strategy, top-k, alpha list, beta list, width, depth, batch size, layers, epochs, dataset, random seed, and timing fields SHALL be recorded. | High. README and train loop read locally. |
+| Aug 7 Zebra implementation-artifact deepening | https://github.com/LuckyLYM/Zebra/blob/main/modules/embedding_module.py | Zebra diffusion embedding integration | `GraphDiffusionEmbedding.__init__` stores `n_tppr`, `alpha_list`, `beta_list`, `topk`, `tppr_strategy`, width, and depth, and constructs a `tppr_finder` for streaming mode. `compute_embedding_tppr_ensemble` chooses streaming or pruning top-k, updates memory for selected nodes during training, transfers selected node/edge/time/weight arrays to GPU, normalizes weights, transforms source and neighbor embeddings, and concatenates embeddings from multiple T-PPR configurations. | This turns a graph metric into an execution plan: choose top-k neighbors, fetch only those states/features, and aggregate with visible weights. | Add `profile_topk_influence_budget_v1`: n-T-PPR, alpha/beta lists, top-k, selected nodes, selected edges, delta-time arrays, weight arrays, transfer bytes, normalization rule, and average top-k weight SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Zebra implementation-artifact deepening | https://github.com/LuckyLYM/Zebra/blob/main/utils/util.py | Zebra streaming and pruning T-PPR implementation | `tppr_finder.reset_tppr` creates `norm_list` and `PPR_list` for each T-PPR configuration, with one typed dictionary per node and a float64 norm array per node. `streaming_topk` processes edge interactions, extracts top-k entries before update, updates both endpoints' PPR dictionaries with alpha/beta scaling, trims dictionaries to top-k, and updates per-node norms. `compute_val_tppr` performs a one-pass fill for validation/test state. `NeighborFinder.get_pruned_topk` traverses temporal neighbors to bounded width/depth, maintains a dictionary keyed by `(edge_idx, node, timestamp)`, and returns top-k arrays. | This is a concrete bounded-state pattern for dynamic graphs: keep only top-k temporal influence state per node/configuration, record the approximating knobs, and fail closed if quality drops. | Add `profile_tppr_streaming_state_v1` and `profile_tppr_pruning_query_v1`: state dictionaries, norm arrays, node count, top-k cap, alpha/beta, edge count, update count, width/depth, selected entries, and approximation/quality guard SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 Zebra implementation-artifact deepening | https://github.com/LuckyLYM/Zebra/blob/main/model/tgn_model.py, https://github.com/LuckyLYM/Zebra/blob/main/modules/memory.py, and https://github.com/LuckyLYM/Zebra/blob/main/modules/memory_updater.py | Zebra temporal memory and phase gates | `TGN.compute_temporal_embeddings` builds source/destination/negative node batches, calls `compute_embedding_tppr_ensemble`, updates memory for unique positives during training, stores raw messages, and updates memory in test mode. `Memory` stores per-node memory dimensions, messages, timestamps, and last-update state. `SequenceMemoryUpdater.get_updated_memory` clones memory and last-update tensors, indexes changed nodes, applies a GRU/RNN updater, and records timing fields. The train loop resets T-PPR each epoch, fills T-PPR before validation/test, then backs up and restores both memory and T-PPR state around transductive/inductive evaluation. | Zebra reinforces the "phase receipt" discipline for dynamic graphs: train, fill, validate, restore, test, and memory-update boundaries must be explicit. | Add `profile_dynamic_graph_phase_receipt_v1`: epoch, batch, T-PPR reset/fill/backup/restore, memory backup/restore, changed-node count, message count, timing, and transductive/inductive split SHALL be recorded. | Very high. Exact functions and train-loop gates read through codebase-memory and local file reads. |
+| Aug 7 DUCATI implementation-artifact deepening | https://researchportal.hkust.edu.hk/en/publications/ducati-a-dual-cache-training-system-for-graph-neural-networks-on-/ and https://github.com/initzhang/DUCATI_SIGMOD | Xin Zhang, Yanyan Shen, Yingxia Shao, Lei Chen / DUCATI | Public paper metadata identifies DUCATI as a SIGMOD/Proceedings of the ACM on Management of Data 2023 paper with DOI `10.1145/3589311`. The source repo describes implementation of DUCATI plus SOTA scripts and depends on a customized DGL fork. GitHub metadata captured on Aug 7 2026: 16 stars, 1 fork, default branch `main`, no declared license in GH metadata, last push `2023-12-15T02:59:10Z`. Local clone pinned commit `9cc017f8453a26db72cf5c1c2fa1f4a3c9cee969`, 20 tracked files, 149 indexed nodes, and 661 edges. | DUCATI is the cleanest source so far for a multi-state memory-budget allocator. It does not only choose cache size; it chooses how scarce memory should be split between topology rows and feature rows. | Add `profile_ducati_source_reference_v1`: paper URL, DOI, repo URL, commit, file count, index size, customized dependency, benchmark mode, and copied-vs-inspired ideas SHALL be recorded. | High. Paper metadata, repo metadata, README, local clone, and codebase-memory snippets read. |
+| Aug 7 DUCATI implementation-artifact deepening | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/README.md, https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_allocate.py, https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_ducati.py, and https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_sota.py | DUCATI README and run workflow | README exposes three separate verification commands: `run_allocate.py` verifies the dual-cache allocation plan from `--total-budget`, `run_ducati.py` verifies DUCATI iteration time with `--adj-budget` and `--nfeat-budget`, and `run_sota.py` verifies single-feature-cache baseline time. It notes total budget can be derived from total GPU memory minus `torch.cuda.max_memory_allocated()` but leaves it as a configurable knob. Entry points expose dataset, fanout, batch count, run count, fake feature dimension, pre-epochs, pre-batches, model hidden size, dropout, and learning rate. | This is exactly the separation Knight Bus should copy: a preflight budget planner, a planned execution run, and a baseline run with the same workload knobs. | Add `profile_dual_cache_workflow_v1` and `profile_gpu_memory_budget_knob_v1`: total budget source, model/setup bytes, chosen budgets, workload knobs, warmup count, run count, and baseline identity SHALL be recorded. | Very high. README and entrypoint source read through codebase-memory/search_code. |
+| Aug 7 DUCATI implementation-artifact deepening | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/DualCacheAllocator.py | DUCATI dual-cache allocator | `allocate_dual_cache` converts `total_budget` into bytes, computes graph bytes from nodes/edges, computes one feature-row line size, derives adjacency and feature densities from access counts, slopes, row sizes, and degrees, marks adjacency candidates with negative IDs and feature candidates with positive IDs, sorts one combined table by density, and chooses the cutoff under the byte budget. It then materializes cached CSC `indptr/indices`, `gpu_flag`, `gpu_map`, and cached feature/label tensors, while writing effective `adj_budget` and `nfeat_budget` back onto args. | This is a first-principles planner pattern: put competing memory consumers into one marginal-benefit-per-byte ranking, then materialize only what fits. For PageRank, the competing states are topology windows, rank vectors, dangling mass, frontier/delta state, partition metadata, and checkpoint/proof state. | Add `profile_dual_cache_allocator_v1` and `profile_multi_state_budget_allocator_v1`: candidate class, candidate id, access count, row bytes, benefit slope, density score, chosen cutoff, state bytes, and effective budget per state class SHALL be recorded. | Very high. Exact allocator source read through codebase-memory. |
+| Aug 7 DUCATI implementation-artifact deepening | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/DualCacheAllocator.py | DUCATI slope profiler | `get_slope` profiles adjacency and feature cache benefit by sweeping cache ratios, warming recent seed batches, timing `pre_batches`, stopping early on CUDA out-of-memory, subtracting input-node transfer time for the feature path, and fitting hit-versus-duration curves with `np.polyfit`. The allocator then treats those slopes as marginal speedup estimates for topology and feature candidates. | This gives Knight Bus a concrete preflight pattern: do not guess which state deserves RAM; run small probes, record hit curves, record OOM/fallback, and use measured marginal benefit as a planner input. | Add `profile_cache_slope_probe_v1` and `profile_oom_early_stop_probe_v1`: ratio steps, candidate bytes, hits, duration, warmup policy, measured transfer subtraction, fitted slope, skipped ratios, OOM boundary, and confidence caveat SHALL be recorded. | Very high. Exact profiler source read through codebase-memory. |
+| Aug 7 DUCATI implementation-artifact deepening | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/CacheConstructor.py, https://github.com/initzhang/DUCATI_SIGMOD/blob/main/NeighborSamplerWithCache.py, and https://github.com/initzhang/DUCATI_SIGMOD/blob/main/NfeatLoader.py | DUCATI cache constructors and runtime routing | `form_adj_cache` builds a cached CSC prefix under an adjacency budget, with separate int64/int32 byte accounting. `form_nfeat_cache` sorts node-feature access counts, derives cached row count from `nfeat_budget / row_bytes`, creates `gpu_flag`, `gpu_map`, and cached tensors. `NeighborSamplerWithCache.sample` calls the customized DGL `sample_neighbors_with_cache` API with cached CSC tensors. `NfeatLoader.load` splits requested node IDs into GPU-cached and CPU-resident rows and writes into a caller-provided output buffer. | The runtime distinction is product-gold: budget planning is not enough; the execution path must prove each request used GPU cache, CPU fallback, or storage fallback under the declared cap. | Add `profile_adj_cache_receipt_v1`, `profile_nfeat_cache_receipt_v1`, and `profile_cache_aware_sampler_v1`: id width, cached rows, cached edges, flag/map bytes, buffer bytes, cached/miss row counts, sampler API identity, and per-batch hit/miss routing SHALL be recorded. | Very high. Exact constructor/sampler/loader source read through codebase-memory. |
+| Aug 7 DUCATI implementation-artifact deepening | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/load_graph.py and https://github.com/initzhang/DUCATI_SIGMOD/blob/main/CacheConstructor.py | DUCATI access-count profiling and graph reorder | `generate_stats` pre-samples training batches, increments `nfeat_counts` for input-layer nodes, and increments `adj_counts` for each block's destination nodes. `load_dc_realtime_process` pins the graph, profiles counts, unpins, then reorders graph topology by `adj_counts / (in_degree + 1)` before reconstructing CSC. `separate_features_idx` clears graph node/edge data, creates fake feature and label tensors as `UnifiedTensor`s, and returns counts. | This is the "storage in the shape of the read" evidence in DUCATI: the graph order is derived from workload access density before cache selection. | Add `profile_workload_count_reorder_v1`: pre-epochs, train-node selection, fanouts, sampled batch count, adjacency counts, feature counts, degree denominator, reorder mapping, graph format, fake/real feature dimensions, and pin/unpin phases SHALL be recorded. | Very high. Exact profiling/reorder source read through codebase-memory. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph and https://dl.acm.org/doi/10.1145/3419111.3421281 | Zhiqi Lin, Cheng Li, Youshan Miao, Yunxin Liu, Yinlong Xu / PaGraph | README cites the SoCC 2020 paper `PaGraph: Scaling GNN training on large graphs via computation-aware caching`, pages 401-415, and states that the `master` branch supports data caching and graph partition while an `overlap` branch adds overlapping data loading and GPU computation. GitHub metadata captured on Aug 7 2026: 51 stars, 14 forks, MIT license, default branch `master`, primary language Python, last push `2023-05-23T02:55:00Z`. Local clone pinned commit `263fb13b84f27a8bd215bcde05b78cc3c4c17e7b`, 46 tracked files, 264 indexed nodes, and 1,385 edges. | PaGraph is a compact computation-aware caching and partitioning reference. It is older DGL-era GNN training code, but it gives concrete low-RAM/cache receipt fields and a useful cache-policy baseline. | Add `profile_pagraph_source_reference_v1`: paper URL, repo URL, commit, branch, file count, index size, license, DGL/PyTorch assumptions, and copied-vs-inspired ideas SHALL be recorded. | High. README, GH metadata, local clone, and codebase-memory snippets read; ACM paper body not fully extracted. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/storage/storage.py | PaGraph `GraphCacheServer` | `GraphCacheServer.__init__` stores `nid_map`, initializes `gpu_flag`, `localid2cacheid`, `gpu_fix_cache`, per-field dimensions, and miss counters. `auto_cache` computes available GPU memory from total, peak allocated, peak cached, and a 1GB reserve; derives cache capacity from `total_dim * 4`; then fully caches all nodes or partially caches highest out-degree nodes. `cache_fix_data` maps local node IDs to cache IDs, copies per-field tensors to GPU, sets `gpu_flag`, and records whether the cache is full. | This gives a simple cache-policy rung below DUCATI: cache by capacity and out-degree before trying a more expensive marginal-benefit allocator. | Add `profile_degree_cache_admission_v1` and `profile_gpu_feature_cache_manifest_v1`: total memory, allocated memory, cached memory, reserve bytes, row width, capacity rows, cached IDs, degree policy, local-id mapping bytes, flag bytes, and cached tensor bytes SHALL be recorded. | Very high. Exact methods read through codebase-memory. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/storage/storage.py and https://github.com/zhiqi-0/PaGraph/blob/master/examples/profile/pa_gcn.py | PaGraph feature-fetch runtime | `fetch_data` routes every nodeflow layer through profiler-labeled phases: `cache-idxload`, `cache-index`, `cache-allocate`, `cache-gpu`, `cache-cpu`, and `cache-asign`. It splits node IDs by `gpu_flag`, pulls cached rows by `localid2cacheid`, fetches misses from the remote shared-memory graph server, assigns DGL frames, and optionally logs miss rate. The PaGraph trainer wraps this in `gpu-load` and separates it from `gpu-compute`, calls `auto_cache` after the first observed training step, and reports profiler tables and total time. | This is exactly the latency receipt habit Knight Bus needs: split load, cache lookup, fallback fetch, frame assignment, compute, and total time instead of publishing one aggregate number. | Add `profile_cache_route_phase_ledger_v1`, `profile_first_batch_cache_commit_v1`, and `profile_feature_miss_rate_v1`: phase names, per-phase time, cached row count, fallback row count, first-step observation, auto-cache trigger, miss numerator/denominator, and reset policy SHALL be recorded. | Very high. Exact methods and trainer source read through codebase-memory. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/dg.py, https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/refine.py, and https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/ordering.py | PaGraph partition and ordering code | `dg` converts adjacency to CSC, iterates training nodes, collects hop in-neighbors, scores partitions by already-belonging neighbors and balance-like terms, assigns training nodes, marks redundancy/reliance vertices, and prints vertex counts with and without self-reliance. `build_train_graph` extracts hop-specific train subgraphs and full-ID mappings. `reordering` sorts nodes by descending in-degree and rebuilds a remapped sparse graph; the source contains a suspicious neighbor-loop condition around `vmap[nid]` that should be treated as inspiration, not copied blindly. | PaGraph gives a receipt shape for GNN-layer-aware partitioning: partitions are not just edge cuts; they create replicated/redundant vertex state that multiplies feature/cache bytes. | Add `profile_layer_aware_partition_receipt_v1` and `profile_redundant_vertex_budget_v1`: partition count, hop count, training-node count, neighbor count, self vertices, redundancy vertices, mapping bytes, replication factor, suspicious-source caveat, and downstream cache bytes SHALL be recorded. | High. Exact partition/refine/order snippets read through codebase-memory; implementation should be revalidated before reuse. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/parallel/dataloader.py and https://github.com/zhiqi-0/PaGraph/blob/master/server/cache_server.py | PaGraph sampler delivery and shared-memory server | `server.cache_server.main` creates a DGL shared-memory graph store, attaches features/norms, optionally preprocesses GCN features, and can start remote sampling. `SampleDeliver.async_sample` chooses one-to-all or one-to-one sampler processes. `one2all_sample` uses DGL `NeighborSampler`, socket `SamplerSender`, trainer count, barrier interval, epoch-end makeup sends, and end-of-epoch signals. `one2one_sample` creates one sampler per trainer/rank. | This adds a contention/latency dimension: bounded graph compute needs to account for sampler placement, trainer count, queue/barrier behavior, and unbalanced epoch pieces. | Add `profile_sampler_delivery_mode_v1` and `profile_shared_graph_server_v1`: graph-store mode, worker count, trainer count, one-to-all vs one-to-one, barrier interval, sampler workers, hops, fanout, makeup sends, epoch signals, and server/preprocess bytes SHALL be recorded. | High. Exact server and dataloader snippets read through codebase-memory. |
+| Aug 7 PaGraph implementation-artifact deepening | https://github.com/zhiqi-0/PaGraph/blob/master/examples/opt_cache_hit.py | PaGraph oracle cache-hit helper | `count_vertex_freq` increments a frequency vector for each nodeflow layer's parent nodes. `optimal_cache_hit` takes a cached fraction, sorts frequencies, sums the highest-frequency rows, and divides by total access count. The example computes an "Oracle cache hit rate" for a fixed cached fraction. | This is a useful cheap comparator for Knight Bus cache policies: a real cache plan should be compared against an idealized frequency-top-k upper bound before claiming the policy is clever. | Add `profile_cache_oracle_hit_bound_v1`: observed access frequency, cached fraction, ideal top-frequency hit rate, actual policy hit rate, gap to oracle, and workload/probe identity SHALL be recorded. | Very high. Exact helper source read through codebase-memory. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab, https://dl.acm.org/doi/10.1145/3492321.3519557, https://sysartifacts.github.io/eurosys2022/summaries/gnnlab, and https://ipads.se.sjtu.edu.cn/zh/publications/YangEuroSys22.pdf | Jianbang Yang, Dahai Tang, Xiaoniu Song, Lei Wang, Qiang Yin, Rong Chen, Wenyuan Yu, Jingren Zhou / GNNLab | README frames GNNLab as a factored GPU system for sample-based GNN training that dedicates GPUs to either graph sampling or model training to eliminate GPU memory contention. The paper is EuroSys 2022. GitHub metadata captured on Aug 7 2026: Apache-2.0, primary language Python, default branch `main`, 46 stars, 7 forks, created `2022-03-28T01:13:13Z`, last push `2023-07-26T11:47:49Z`, and last repo update `2026-01-23T22:38:33Z`. Local shallow clone pinned commit `2d0dd92ce4e2efec3d47212ce73358cd03f8d3d8`, 330 tracked files, 2,598 indexed nodes, and 9,293 graph edges. | GNNLab is not exact OLAP proof, but it is strong evidence for the product principle that physical contention should be surfaced as explicit planes: layout/probe, cache planning, sampling/read, execution/training, and reporting. | Add `profile_gnnlab_source_reference_v1`: paper URL, DOI, artifact URL, repo URL, commit, indexed node/edge count, hardware assumption, dataset format, cache policy family, and copied-vs-inspired ideas SHALL be recorded. | High. README, GH metadata, artifact URLs, clone state, and codebase-memory architecture read; full paper tables remain future work. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/README.md, https://github.com/SJTU-IPADS/gnnlab/blob/main/datagen/README.md, and https://github.com/SJTU-IPADS/gnnlab/blob/main/exp/README.md | GNNLab README, dataset, and experiment surface | README records the paper hardware as eight NVIDIA V100 GPUs with 16GB each, two Intel Xeon Platinum 8163 CPUs, and 512GB RAM. `datagen/README.md` says datasets are converted into binary format for fast MMAP reads and shows CSR topology, feature, label, train/valid/test, uint32/uint64, and cache-rank files such as `cache_by_degree.bin` and `cache_by_random.bin`. `exp/README.md` automates each paper figure/table as a script, writes logs/parsed data/figures, reports expected runtimes, and shows an output table split into Sample, Extract, Train, and Total. | This gives Knight Bus a verification shape: separate preprocessed dataset manifest, experiment matrix, phase-split latency output, and hardware-dependent caveats. | Add `profile_binary_dataset_manifest_v1` and `profile_experiment_matrix_receipt_v1`: dataset root, topology files, feature/label files, id width, cache-rank files, mmap assumption, hardware profile, testcase count, expected runtime, output logs, and phase columns SHALL be recorded. | High. README files read locally from the pinned clone. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/pre_sampler.cc and https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/profiler.cc | GNNLab pre-sampling cache planner and similarity report | `PreSampler.DoPreSample` shuffles training work, runs either `DoGPUSample` or `DoGPUSampleAllNeighbour` depending on cache policy, copies sampled input nodes to CPU workspace, increments a frequency table in OpenMP, sorts nodes by frequency, and logs sample/copy/count/sort/reset phases. `GetRankNode` extracts ranked node IDs. `Profiler.ReportPreSampleSimilarity` writes each ranked node with pre-sample frequency and actual `_node_access` into a timestamped similarity file. | This is one of the best planner-receipt patterns in this source pass: cache plans should be predicted from a cheap probe, persisted, then compared against actual node access after execution. | Add `profile_presample_cache_plan_v1`, `profile_presample_frequency_table_v1`, and `profile_planner_actual_similarity_v1`: pre-sample epochs, steps, cache policy, sampled nodes, copy bytes, frequency table bytes, sorted rank, predicted frequency, actual access, similarity file path, and phase timings SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_frequency_hashmap.cu and https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_loops.cc | GNNLab GPU top-k and dynamic-cache sampling loop | `FrequencyHashmap.GetTopK` builds a multi-step GPU top-k pipeline: frequency/unique-edge count, prefix sums, unique-position generation, radix sort, unique-edge construction, output-prefix generation, top-k compaction, and hash-table reset, with separate timing logs for eleven steps. `DoGPUSampleDyCache` runs layer-by-layer sampling for supported sampling modes, allocates per-layer workspaces, calls a neighbor prefetch callback on the second layer, builds train-graph tensors, remaps edges, and logs sample/remap/prefetch/node/sample counts. | This turns "graph sampling is expensive" into accountable subphases. For Knight Bus PageRank/SSSP/community profiles, every storage shape should similarly expose top-k/planner substeps, remap cost, and prefetch callbacks as explicit receipt fields. | Add `profile_gpu_topk_subphase_receipt_v1`, `profile_prefetch_aware_sampling_v1`, and `profile_layer_sample_remap_receipt_v1`: input nodes/edges, K, unique counts, workspace bytes, grid/block sizing, per-step timings, layer fanouts, sampled edges/nodes, prefetch callback status, remap bytes, and graph-remapped flag SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_cache_manager_device.cu, https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_engine.cc, and https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_shuffler.cc | GNNLab cache routing, architecture gate, and batch source | Cache-manager kernels tile input nodes, count cache hits/misses via `count_miss_cache`, generate cached source/destination row indexes via `get_cache_index`, and copy resident cache rows into output via `combine_cache_data`. `RunConfig.UseGPUCache` gates cache by cache percentage and architecture mode. `GPUEngine.RunSampleOnce` switches among run architectures and logs memory after one batch. `GPUShuffler.GetBatch` controls epoch/step advance, reshuffle, batch offsets, last-batch size, and optional sanity checks. | This gives Knight Bus the shape for budget-bounded runtime receipts: mode chosen, cache gate reason, batch source, hit/miss route, resident-row copy, and memory after the batch. | Add `profile_gpu_cache_route_indices_v1`, `profile_cache_hit_miss_tile_receipt_v1`, `profile_run_arch_gate_v1`, and `profile_batch_memory_sanity_v1`: architecture mode, cache-percentage gate, batch epoch/step, miss/cache counts, cache index arrays, row-copy bytes, sanity-check status, and after-batch memory SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/utility/data-process/toolkit/cache/cache_by_fake_optimal.cc and https://github.com/SJTU-IPADS/gnnlab/blob/main/utility/data-process/toolkit/cache/cache_by_degree_hop.cc | GNNLab offline cache-policy utilities | `cache_by_fake_optimal.procBatchTrainNode` computes expected node-touch probability across hops from train nodes and fanout, compacts touched nodes, accumulates expectation scores, and `randkingNodesToFile` writes a ranked `cache_by_fake_optimal.bin`. `cache_by_degree_hop.hopNodes` builds a hop-reachable node bitmap from the train set and CSR, while `merge_degree_info` annotates whole-graph degree info for touched nodes. | This adds two baseline types we should steal: offline oracle ranking and hop-frontier-aware degree ranking. A custom OLAP storage format is much more credible if it beats both under equal byte caps. | Add `profile_fake_optimal_cache_oracle_v1` and `profile_hop_frontier_degree_cache_v1`: fanout, hop count, train-node range, touched-node bitmap bytes, miss-probability tables, expectation score, ranked file path, degree direction, and comparison against actual policy SHALL be recorded. | Very high. Exact utility snippets read through codebase-memory. |
+| Aug 7 GNNLab implementation-artifact deepening | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/workspace_pool.cc | GNNLab workspace allocator | `WorkspacePool::Pool.Alloc` page-aligns temporary allocations, scales new allocations when the free list cannot satisfy a request, chooses a smallest fit when available, and tracks allocated/free totals. `Free` has a quick path for last allocation, otherwise searches the allocation list, moves entries into a size-ordered free list, and updates free/allocated totals. | Low-RAM claims can be wrecked by temporary workspace spikes. This source reminds us to account for allocator behavior, page rounding, free-list reuse, and in-flight workspaces in the receipt. | Add `profile_workspace_allocator_receipt_v1`: requested bytes, page-rounded bytes, scale factor, allocation source, free-list bytes, allocated bytes, quick/free-list path, and peak temporary workspace SHALL be recorded. | High. Exact allocator snippets read through codebase-memory. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/zirui-ray-liu/Exact, https://experts.umn.edu/en/publications/exact-scalable-graph-neural-networks-training-via-extreme-activat/, and https://openreview.net/forum?id=vkaMaq95_rX | Zirui Liu, Kaixiong Zhou, Fan Yang, Li Li, Rui Chen, Xia Hu / EXACT | EXACT is the official code path for `EXACT: Scalable Graph Neural Networks Training via Extreme Activation Compression`. GitHub metadata captured on Aug 7 2026: primary language Python, default branch `main`, 21 stars, 1 fork, no declared license in GH metadata, created `2022-02-18T20:08:26Z`, last push `2022-03-23T00:27:25Z`, last update `2025-05-13T02:34:24Z`. Local shallow clone pinned commit `7e9e0f3b5e665b6e447835e5083e556f02029e17`, 60 tracked files, 652 indexed nodes, and 2,623 edges. The UMN publication page states source-claimed activation footprint up to 32x lower, 0.2-0.5 percent accuracy drop, 10-25 percent time overhead, and a three-layer full-batch GraphSAGE on ogbn-products moving from a 48GB GPU requirement to 12GB. | EXACT is not a proof that approximate compression is acceptable for exact Neo4j/GDS OLAP. It is strong evidence that compression must be surfaced as a first-class profile with bit width, scale/min metadata, reconstruction cost, memory breakdown, speed overhead, and quality loss. | Add `profile_exact_source_reference_v1`: repo URL, paper URL, commit, file count, index size, source-claimed compression/time/quality numbers, code-vs-paper caveat, and copied-vs-inspired ideas SHALL be recorded. | High for receipt shape. Medium for numeric transfer because source claims are not reproduced locally and OpenReview body was browser-verification blocked. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/ops.py, https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/qsheme.py, and https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/conf.py | EXACT activation compression code | `quantize_and_pack` computes or receives `mn`, `mx`, `scale`, `bits`, and stochastic state, then either simulates quantization or calls the native packer; `dequantize_and_unpack` restores tensor shape and may move swapped CPU state back to CUDA. `quantize_activation` either bypasses compression or stores `q_input`, `q_bits`, `q_scale`, and `q_min`; float32 scale/min are stored as bfloat16. `QScheme.compute_quantization_bits` flattens each row, records per-row min/max, and chooses configured activation bit width. `QuantizationConfig` exposes `compress_activation`, `activation_compression_bits`, `stochastic`, `simulate`, `swap`, `kept_frac`, `amp`, and cache-threshold flags. | Compression without receipts is a trust gap. Knight Bus exact profiles should start with exact-decode compression such as delta, varint, bitpacking, and checksummed block codecs; approximate profiles must explicitly declare error, stochasticity, and quality gates. | Add `profile_activation_compression_manifest_v1` and `profile_decode_parameter_receipt_v1`: original shape, compressed shape, bit width, per-block or per-row min/max/scale when lossy, exact-vs-approx flag, stochastic flag, swap tier, decode path, checksum or error metric, and metadata bytes SHALL be recorded. | Very high for code-path evidence. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/ops.py | EXACT reconstruct-on-use layers | `qlinear.forward` can random-project activations when `kept_frac < 1.0`, saves quantized state, weight, bias, random matrix, and original/projected shapes, while the forward result still uses `F.linear`. `qlinear.backward` dequantizes, reconstructs through `rp2input` when needed, deletes saved compressed state, and then computes gradients. The qSpMM functions save CSR/CSC topology plus quantized matrix state and reconstruct only when gradients require it; the mean-reduction backward path can use a dummy tensor when value gradients are not required. | This is the clearest warning label for low-RAM modes: if you save RAM by compressing or omitting state, the latency bill arrives at reconstruction time. A receipt should price saved bytes against decode/recompute seconds. | Add `profile_random_projection_receipt_v1`, `profile_reconstruct_on_backward_v1`, and `profile_compressed_spmm_receipt_v1`: kept fraction, projection matrix bytes, saved state bytes, topology bytes, reconstruct path, decode time, dummy/skip path, deleted-state bytes, and output/gradient correctness guard SHALL be recorded. | Very high for runtime-shape evidence. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/zirui-ray-liu/Exact/blob/main/test/test_op.py, https://github.com/zirui-ray-liu/Exact/blob/main/test/test_conv.py, https://github.com/zirui-ray-liu/Exact/blob/main/mem_speed_bench/arxiv/train_full_batch.py, and https://github.com/zirui-ray-liu/Exact/blob/main/mem_speed_bench/products/exp_mem_speed.py | EXACT tests and memory/speed harness | The tests compare quantized relu outputs and gradients against PyTorch reference outputs, measure memory deltas for repeated relu and SpMM/matmul cases, and compare GCNConv gradients including mean/std/bias over repeated quantized samples. The full-batch runner records model-only, data, total, activation, and max allocated CUDA memory, plus optional speed loops; the products experiment includes `binary_search_max_batch` to discover the largest passing batch under a benchmark config. | This is the verification pattern to steal: for any memory-saving profile, publish a correctness oracle, a memory breakdown, and a frontier search for maximum problem size under the cap. | Add `profile_compression_correctness_guard_v1`, `profile_activation_memory_breakdown_v1`, and `profile_ram_cap_frontier_search_v1`: reference output, gradient/output tolerance, repeated-run variance, model/data/topology/state/output/activation bytes, reserved vs allocated bytes, max allocated, cap, binary-search bounds, OOM point, and max passing workload SHALL be recorded. | High. Exact tests and runners read; not executed locally. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/YukeWang96/QGTC_PPoPP22, https://github.com/YukeWang96/PPoPP22_QGTC, https://arxiv.org/abs/2111.09547, and https://dl.acm.org/doi/10.1145/3503221.3508408 | Yuke Wang, Boyuan Feng, Yufei Ding / QGTC | QGTC is the artifact for `QGTC: Accelerating Quantized Graph Neural Networks via GPU Tensor Core`. GitHub canonical metadata resolved to `YukeWang96/QGTC_PPoPP22`: primary language Python, default branch `master`, 30 stars, 3 forks, topics `pytorch`, `cuda`, `tensorcore`, no declared license, created `2021-11-22T03:36:54Z`, last push `2022-02-12T00:33:20Z`, last update `2025-07-11T23:07:50Z`. Local clone pinned commit `bb7fc04aa5687b4e85437663702554158aeda809`, 54 tracked files, 260 indexed nodes, and 929 edges. The arXiv abstract states any-bitwidth computation for QGNNs, low-bit representation, bit-decomposed computation, Tensor-Core-tailored CUDA kernels, 3D stacked bit compression, zero-tile jumping, non-zero tile reuse, bandwidth-optimized CPU-to-GPU subgraph packing, PyTorch integration, and a source-claimed 2.7x average speedup vs DGL. | QGTC is strong evidence for "format in the shape of the next kernel." It is not a general exact graph-database answer. Its value for Knight Bus is layout specialization, packed tensor shape accounting, zero-skip ablations, and route-specific benchmark receipts. | Add `profile_qgtc_source_reference_v1`: canonical repo, clone URL, paper URL, DOI, commit, index size, bitwidth lane, tensor-core assumption, source-claimed speedup, and copied-vs-inspired ideas SHALL be recorded. | High for layout/receipt shape. Medium for direct transfer to CPU exact OLAP. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/QGTC_host.cpp, https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/QGTC_device.cu, https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/kernel.h, and https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_conv.py | QGTC bitpacked tensor layout and layers | `val2bit` quantizes values to int32, then packs different shapes for row-major activation, column-major hidden weights, and output-layer weights. `bit2val` decodes according to layout. `Quantize_val` clips to the configured bitwidth range and rounds. `GCNConv_Qnt.forward` bitpacks adjacency and features, then `Aggregation_Qnt.forward` routes input, hidden, and output cases through `bitMM2Bit` or `bitMM2Int` so intermediate state can remain bitpacked. | This gives an implementation-level principle: one compressed representation is probably wrong. A storage profile should declare multiple graph-shaped datasets or views for the same logical graph, each aligned to a hot kernel/read path. | Add `profile_bitpacked_tensor_layout_v1` and `profile_quantized_layer_role_v1`: logical tensor, role, bitwidth, row/column/output layout, padded dimensions, packed bytes, decode target, kernel identity, and role-specific compatibility SHALL be recorded. | Very high for layout evidence. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/kernel.h and https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/QGTC_device.cu | QGTC tensor-core kernels and zerojump counters | `QGTC_layer_hidden` uses BMMA 8x8x128 fragments, explicit padded offsets, bitwidth loops, K chunks, bit-product accumulation, quantization to output bits, and ballot-based packing. The base-count and zerojump-count variants keep the same output shape but differ by whether zero tiles are skipped; `bitMM2Bit_cuda_profile` loops the kernel and reports dimensions and TFLOPs. | This is a measurement pattern for Knight Bus: if we skip empty tiles, frontier gaps, zero deltas, settled vertices, or cold partitions, we need a paired base-vs-optimized counter so the saving is visible. | Add `profile_tensor_core_tile_receipt_v1`, `profile_zero_tile_ablation_receipt_v1`, and `profile_bit_kernel_profile_v1`: tile shape, padding bytes, bit loops, K chunks, base-tile count, skipped-zero count, nonzero-tile count, output packed bytes, elapsed time, and kernel config SHALL be recorded. | Very high for ablation discipline. |
+| Aug 7 compression implementation-artifact deepening | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/main_qgtc.py, https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/sampler.py, https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/unitest.py, https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/0_7a_eval_QGTC_cluster_GCN.py, and https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/0_7b_eval_QGTC_batched_GIN.py | QGTC benchmark and subgraph staging surface | `main_qgtc` exposes bit width, QGTC mode, zero-tile jumping, partition size, batch size, epochs, GIN/GCN selection, regular mode, deterministic seeds, cluster iteration, bitpacked weights, zerojump counting, and average epoch ms. `ClusterIter` caches graph partitions, builds dense cluster adjacency/features, bitpacks A and X, and stores CPU-side `ClusterTensor` state plus shape tuples. The unit/profile scripts provide base-vs-zerojump and bit-multiply smoke surfaces, while eval scripts sweep bitwidth and parse logs. | QGTC shows why preprocessing bytes must be counted. A profile can reduce hot-loop RAM but still create dense subgraph staging, bitpacked CPU buffers, and partition caches that should appear in the total budget. | Add `profile_bitpacked_subgraph_cache_v1` and `profile_compression_benchmark_matrix_v1`: partition size, batch size, dense A bytes, feature bytes, bitpacked A/X bytes, CPU staging bytes, bitwidth sweep, zerojump flag, base-vs-optimized counters, average epoch time, and correctness-test status SHALL be recorded. | High, with caveat that QGTC tests are thinner than EXACT's correctness tests. |
+| Aug 7 planning/communication implementation-artifact deepening | https://researchportal.hkust.edu.hk/en/publications/daha-accelerating-gnn-training-with-data-and-hardware-aware-execu/, https://www.vldb.org/pvldb/vol17/p1364-li.pdf, https://dl.acm.org/doi/abs/10.14778/3648160.3648176, and https://github.com/fr8nkL/DAHA | Zhiyuan Li, Xun Jian, Yue Wang, Yingxia Shao, Lei Chen / DAHA | HKUST metadata identifies DAHA as a PVLDB 17(6):1364-1376 paper from 2024. The abstract says mini-batch GNN training suffers from batch-preparation and data-transfer cost, and DAHA uses a lightweight data/hardware-aware cost model plus three pipeline optimizations: group-based in-turn pipelining, intra-batch rewriting, and inter-batch scheduling. GitHub metadata captured on Aug 7 2026: primary language Python, default branch `main`, 2 stars, 0 forks, no declared license, created `2023-07-31T12:08:24Z`, last push `2024-01-25T03:28:46Z`, last update `2025-12-03T13:39:10Z`. Local clone pinned commit `9541f375ce39d972ecfe04dd88bb6f0ef2e69cf5`, 3 tracked files, 62 indexed nodes, and 173 edges. | DAHA is directly relevant to Knight Bus because it turns execution planning into measurable cost vectors instead of a static "run algorithm" step. Its transfer is not GNN layers; it is cost-model discipline. | Add `profile_daha_source_reference_v1`: paper URL, DOI, repo URL, commit, file count, indexed node/edge count, planning levels, hardware assumption, and copied-vs-inspired ideas SHALL be recorded. | High for planning-shape evidence. |
+| Aug 7 planning/communication implementation-artifact deepening | https://github.com/fr8nkL/DAHA/blob/main/src/HybridCPUGPU.py | DAHA cost measurement and execution-plan artifact | `HybridCPUGPU.main` loads a DGL/OGB/PyG graph, records CUDA memory around adjacency/features/graph movement, samples random matrix-multiply observations for a linear cost model, measures DGL versus a hybrid path, measures CPU and GPU sampling time, computes transfer cost for the full adjacency and per-batch adjacency, and prints `classic_time`, `pre_tran_time`, `dgl`, `intra`, `hybrid_intra`, `hybrid_inter`, `inter_opt`, `comm_A_full_mean`, `hybrid_sample`, `gpu_sample_time`, and `cpu_sample_time`. `test_batch` explicitly measures `comm_A`, `comm_H`, `comm_HW`, `comm_W`, `spmm_gpu`, `spmm_cpu`, `mm_gpu`, `mm_cpu`, `spmm_gpu_AHW`, and `grad`. `test_stats` derives `time_pre_tran` and `time_gpu` from those vectors and prints aggregate speedup. | This is a receipt template for Knight Bus: a profile should decompose time into movement, compute, pre-transform, spill/read, writeback, and proof phases before claiming a storage layout is faster. | Add `profile_data_hardware_cost_model_v1`, `profile_batch_operation_cost_vector_v1`, and `profile_intra_inter_batch_plan_receipt_v1`: operation identity, input dimensions, sampled observations, fitted model, movement bytes/time, compute time, baseline time, pre-transform time, intra/inter plan estimate, and measured-vs-predicted delta SHALL be recorded. | Very high. Exact source read through codebase-memory. |
+| Aug 7 planning/communication implementation-artifact deepening | https://github.com/fr8nkL/DAHA/blob/main/src/shuffle.py | DAHA adaptive shuffle training path | `shuffle.main` builds DGL dataloaders with shuffle on/off, no-shuffle, interleave, and epoch switch modes such as `on & off` and `off & on`; it fixes seed, model, fanouts, hidden dimension, batch size, early stop, validation/test dataloaders, and records best validation/test accuracy. `load_data` normalizes OGB, Coauthor, Amazon, Reddit, Cora, Pubmed, and Citeseer paths, adds reverse edges and self loops, and returns split node IDs. | This adds a scheduler knob to the planning story: reordering work can improve locality or pipeline behavior, but it must be tracked as a mode with accuracy and reproducibility effects. | Add `profile_shuffle_policy_receipt_v1` and `profile_sampling_device_comparator_v1`: shuffle mode, switch epoch, seed, fanouts, batch size, sampler identity, CPU/GPU sampler time, validation/test metric, and reorder/locality hypothesis SHALL be recorded. | High. Exact source read through codebase-memory. |
+| Aug 7 planning/communication implementation-artifact deepening | https://www.ijcai.org/proceedings/2023/724, https://researchportal.hkust.edu.hk/en/publications/sancus-staleness-aware-communication-avoiding-full-graph-decentra-2/, https://vldb.org/pvldb/vol15/p1937-peng.pdf, https://dl.acm.org/doi/10.14778/3538598.3538614, and https://github.com/chenzhao/light-dist-gnn | Jingshu Peng, Zhao Chen, Yingxia Shao, Yanyan Shen, Lei Chen, Jiannong Cao / SANCUS | IJCAI/HKUST metadata identifies SANCUS as a staleness-aware communication-avoiding decentralized GNN system. Public abstracts say it introduces bounded embedding-staleness metrics, adaptively skips broadcasts, abstracts decentralized GNN processing as sequential matrix multiplication, uses historical embeddings via cache, and source-claims up to 74 percent communication avoided with at least 1.86x average throughput and no accuracy loss. GitHub metadata captured on Aug 7 2026: primary language Python, default branch `main`, 47 stars, 5 forks, no declared license, created `2021-11-08T20:14:25Z`, last push `2022-09-05T17:46:50Z`, last update `2025-12-06T00:51:26Z`. Local clone pinned commit `65495aa8d2e851c875986b344b61b77b12953e29`, 21 tracked files, 180 indexed nodes, and 689 edges. | SANCUS is the approximation-policy sibling of DAHA. It shows that "skip work" must come with staleness metrics, counters, and convergence/accuracy guards. Exact OLAP should only copy the skip shape where equality can be proven; approximate profiles can copy bounded-staleness gates. | Add `profile_sancus_source_reference_v1`: paper URLs, DOI, repo URL, commit, file count, index size, source-claimed communication/time/quality numbers, exactness caveat, and copied-vs-inspired ideas SHALL be recorded. | High for communication-skipping proof shape. |
+| Aug 7 planning/communication implementation-artifact deepening | https://github.com/chenzhao/light-dist-gnn/blob/main/models/cached_gcn.py and https://github.com/chenzhao/light-dist-gnn/blob/main/models/gcn.py | SANCUS cached versus baseline broadcast path | `models.cached_gcn` defines `g_cache`, `g_cache_enabled`, `g_bcast_counter`, and `g_epoch_counter`. `use_cache` admits `ForwardL1` after one broadcast and `ForwardL2` after more than 50 broadcasts on even epochs when enabled; backward caches are disabled in the artifact's final assignment. `cached_broadcast` increments epoch counters, loops across source ranks, broadcasts only when the cache gate fails, stores cloned feature tensors when enabled, otherwise reuses cached tensors, then runs SpMM for each source. Baseline `models.gcn.broadcast` always broadcasts per source before SpMM. | This is exactly the receipt shape for communication-avoiding graph compute: the baseline path and optimized path must be countable on the same work, with per-source skip/use decisions. | Add `profile_staleness_broadcast_cache_v1`, `profile_skip_broadcast_counter_v1`, and `profile_cached_vs_uncached_comm_ablation_v1`: tag, source rank, epoch, broadcast count, cache-hit decision, stored tensor bytes, skipped broadcasts, baseline broadcasts, SpMM time, output diff, and accuracy/convergence guard SHALL be recorded. | Very high. Exact source read through codebase-memory. |
+| Aug 7 planning/communication implementation-artifact deepening | https://github.com/chenzhao/light-dist-gnn/blob/main/models/cached_gcn.py | SANCUS distributed GCN layer | `DistGCNLayer.forward` saves features/weight, calls `cached_broadcast(adj_parts, features, 'Forward'+tag)`, then runs `torch.mm`. `backward` calls `cached_broadcast` over gradient output, computes feature and weight gradients with matrix multiply, then all-reduces `grad_weight`. `CachedGCN.forward` applies the cached layer for L1 and L2, with L2 taking hidden features. | This turns graph distributed execution into a phase sequence: broadcast or cache, SpMM, local dense compute, backward broadcast/cache, gradient compute, all-reduce. Knight Bus should emit a similar distributed or partitioned phase ledger even for CPU-only profiles. | Add `profile_distributed_spmm_mm_allreduce_v1`: phase name, rank count, partition ID, adjacency-part bytes, feature/gradient bytes, broadcast/cache decision, SpMM time, dense-mm time, all-reduce bytes/time, and output/gradient guard SHALL be recorded. | Very high. Exact source read through codebase-memory. |
+| Aug 7 planning/communication implementation-artifact deepening | https://github.com/chenzhao/light-dist-gnn/blob/main/coo_graph/parted_coo_graph.py, https://github.com/chenzhao/light-dist-gnn/blob/main/dist_utils/env.py, https://github.com/chenzhao/light-dist-gnn/blob/main/dist_train.py, and https://github.com/chenzhao/light-dist-gnn/blob/main/main.py | SANCUS partition/run harness | `COO_Graph.partition` splits sparse adjacency into 2D blocks, splits features by node range, pads feature/label/mask tensors to equal partition size, saves each partition through `GraphCache.parted_graph_path`, and reloads sparse tensors with `coalesce`. `DistEnv` records rank, world size, backend, device, process groups, all-reduce/broadcast/all-gather/barrier primitives, logger, timer, and file store. `dist_train.main` loads `Parted_COO_Graph`, logs CUDA memory summary, trains `CachedGCN`, and reports timer summaries. `main.py` sets NCCL environment, defaults to GPU count or 8 processes, and spawns processes. | This reminds us that communication-saving profiles need artifact boundaries too: partition files, padding bytes, sparse format, rank/world topology, and timing collection are part of the proof. | Add `profile_partitioned_graph_cache_artifact_v1`, `profile_distributed_run_manifest_v1`, and `profile_periodic_global_metric_receipt_v1`: partition count, split size, padding bytes, adjacency block bytes, feature block bytes, cache path, rank/world size, backend, process groups, half/CSR flags, gather frequency, global metric, and timer summary SHALL be recorded. | Very high. Exact source read through codebase-memory. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl, https://www.dgl.ai/dgl_docs/en/0.8.x/api/python/dgl.graphbolt.html, and https://github.com/dmlc/dgl/releases | DGL maintainers / GraphBolt maintainers, with v2.4.0 release notes by `@mfbalin` and contributors | Official docs describe `dgl.graphbolt` as a GNN data-loading framework with well-defined APIs for pipeline stages and standard implementations. The API surface explicitly separates `Dataset`, `OnDiskDataset`, `SamplingGraph`, `FusedCSCSamplingGraph`, `Feature`, `FeatureStore`, `BasicFeatureStore`, `TorchBasedFeature`, `DiskBasedFeature`, `CPUCachedFeature`, `GPUCachedFeature`, `DataLoader`, `ItemSampler`, `MiniBatch`, samplers, `FeatureFetcher`, `CopyTo`, and utility functions such as `numpy_save_aligned`. DGL v2.4.0 release notes say GraphBolt examples moved to `examples/graphbolt`, GraphBolt CUDA wheels became required for CUDA torch, `DiskBasedFeature` became ready for out-of-core training with io_uring, `numpy_save_aligned` became recommended for out-of-core features, CPUCachedFeature was added, and feature-fetching pipeline parallelization was a highlighted effort. GitHub metadata captured on Aug 7 2026: `dmlc/dgl`, Apache-2.0, primary language Python, default branch `master`, 14,277 stars, 3,050 forks, created `2018-04-20T14:49:09Z`, pushed `2025-07-31T23:53:10Z`, updated `2026-08-07T08:14:13Z`. Local shallow clone pinned commit `3d16000b4170fa741ed9e9667f22ba84d3493026`. | GraphBolt is not Neo4j/GDS OLAP, but it is strong evidence that graph systems are moving storage, feature access, sampling, caching, device transfer, and mini-batch construction into visible pipeline objects. That is the exact product posture Knight Bus needs for bounded graph compute. | Add `profile_graphbolt_source_reference_v1`: repo URL, docs URL, release URL, commit, indexed node/edge counts, API stage list, out-of-core/io_uring status, cache stage list, and copied-vs-inspired ideas SHALL be recorded. | Very high for pipeline-surface evidence; medium for direct OLAP transfer because GraphBolt targets GNN training data movement. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/tree/master/python/dgl/graphbolt | Focused GraphBolt codebase-memory source index | The focused source index has 647 nodes, 3,212 edges, and 41 Python files. `get_architecture` found 338 methods, 84 functions, 81 classes, and packages centered on `fused_csc_sampling_graph`, `neighbor_sampler`, `torch_based_feature_store`, `ondisk_dataset`, `cpu_cached_feature`, `gpu_cached_feature`, `FeatureStore`, `MiniBatch`, and `feature_fetcher`. Hotspots include `FeatureFetcher -> MiniBatch`, `FeatureStore -> Feature`, `read_async`, `wait`, `size`, `index_select`, and `BasicFeatureStore.keys`. The test index has 394 nodes, 2,078 edges, and tests for dataloader, feature fetcher, GPU cached feature, on-disk dataset, fused CSC sampling graph, item sampler, and feature cache behavior. | This gives a compact map of which folders/files are worth reading if we mine GraphBolt deeper: feature storage/fetching, cache layers, on-disk manifest loading, fused CSC graph topology, item/minibatch generation, dataloader partitioning, and tests. | Add `profile_graphbolt_index_map_v1`: source project name, test project name, file count, node/edge count, hotspot list, top package list, test surface list, clone path, and commit SHALL be recorded. | High. Codebase-memory architecture and search results read. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/torch_based_feature_store.py and https://www.dgl.ai/dgl_docs/generated/dgl.graphbolt.DiskBasedFeature.html | GraphBolt feature storage: `TorchBasedFeature`, `DiskBasedFeature`, and `TorchBasedFeatureStore` | `TorchBasedFeature` wraps a torch tensor that may be in memory or on disk via NumPy mmap, exposes `read`, `read_async`, `read_async_num_stages`, `size`, `count`, `update`, `pin_memory_`, `is_pinned`, and `to`. For CUDA reads from pinned CPU memory, it can overlap feature movement using UVA streams. `DiskBasedFeature` loads `.npy` with `mmap_mode='r+'`, requires C-contiguous data, uses `torch.ops.graphbolt.detect_io_uring()` to construct an on-disk NumPy array when available, reads indexed rows through io_uring when possible, has 3 async stages for CUDA ids and 1 stage for CPU ids, does not support update, and can `read_into_memory`. `TorchBasedFeatureStore` materializes feature specs into `TorchBasedFeature` for in-memory torch/numpy or `DiskBasedFeature` for numpy/out-of-memory, keyed by `(domain, type, name)`. | This is a direct reference for Knight Bus sidecars: one logical feature/state API can have in-memory, pinned, mmap, disk/io_uring, and cached implementations, and each path must expose stage count and update limitations. | Add `profile_feature_storage_backend_v1`, `profile_disk_feature_async_read_v1`, and `profile_feature_stage_count_v1`: logical feature key, file format, in-memory flag, mmap flag, io_uring availability, row count, feature shape, C-contiguity, pinning status, async stage count, update support, and fallback path SHALL be recorded. | Very high. Exact classes read through codebase-memory and official docs. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/feature_fetcher.py and https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/dataloader.py | GraphBolt feature fetch and dataloader pipeline | `FeatureFetcher` marks the feature-fetcher boundary, scans requested node/edge feature keys, asks each `Feature` for `read_async_num_stages` on CPU and CUDA, inserts staged `_execute_stage` transforms and buffers, resolves final futures in `_final_stage`, and optionally applies cooperative minibatching to reduce duplicate GPU work. `_read` populates `MiniBatch` node and edge features by graph homogeneity/heterogeneity and layer. `DataLoader` traverses the datapipe graph, inserts sharding after `ItemSampler` when multiprocessing, cuts/wraps the pipeline at the `FeatureFetcher` boundary, limits UVA threads when overlap is enabled, and wraps `CopyTo` with prefetch plus non-blocking device transfer. | This is the cleanest API lesson in the pass: pipeline boundaries should be explicit and inspectable. Knight Bus should have named phases for item/frontier generation, subgraph/partition materialization, feature/state fetch, compute, copy/spill, and finalization. | Add `profile_pipeline_stage_boundary_v1`, `profile_feature_fetch_phase_receipt_v1`, `profile_async_stage_buffer_receipt_v1`, and `profile_uva_thread_cap_receipt_v1`: phase name, input object, feature keys, layer count, stage count, buffer depth, cooperative flag, worker count, UVA thread cap, CopyTo/prefetch setting, and per-stage bytes/time SHALL be recorded. | Very high. Exact source read through codebase-memory. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/gpu_cached_feature.py and https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_gpu_cached_feature.py | GraphBolt GPU cached feature and tests | `GPUCachedFeature` wraps a fallback `Feature` and `GPUFeatureCache`, uses LRU policy, reads ids by querying cache, fetching missing keys from fallback, replacing cache entries, and returning values on GPU. `read_async` splits query, wait, fallback async stages, and final cache replacement into a staged generator; `read_async_num_stages` is `1 + fallback.read_async_num_stages`. It exposes `cache_size_in_bytes` and `miss_rate`. Tests set cache sizes in row-byte units, verify full and indexed reads, verify 100 percent hit behavior for large cache sizes by checking `total_miss`, compare `miss_rate`, validate `size`/`count`, validate full and indexed updates, and validate async reads against CUDA reference tensors. | This is almost a ready-made bounded-RAM cache receipt. Knight Bus should not only say "cache used"; it should record cache bytes, row width, requested ids, missing keys, miss count, miss rate, replacement count, and fallback bytes. | Add `profile_cached_feature_receipt_v1`, `profile_cache_miss_rate_guard_v1`, and `profile_async_cache_fallback_receipt_v1`: cache bytes, row bytes, capacity rows, cache policy, requested ids count, missing ids count, miss rate, fallback backend, replacement bytes, async stage count, and test oracle SHALL be recorded. | Very high. Exact source and tests read through codebase-memory. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/ondisk_dataset.py and https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_ondisk_dataset.py | GraphBolt on-disk dataset manifest and tests | `OnDiskDataset.load` converts YAML paths to absolute paths, constructs `OnDiskMetaData`, loads graph topology via `_load_graph`, builds `TorchBasedFeatureStore` from feature metadata, initializes selected tasks, initializes all-node sets, and marks the dataset loaded. `_load_graph` supports `FusedCSCSamplingGraph` topology via `torch.load`. `test_OnDiskDataset_load_feature` builds a random homogeneous GraphBolt graph, writes `metadata.yaml`, loads the dataset, modifies `in_memory`, `format`, and `path` fields, checks equality across in-memory changes, checks assertion when torch format is marked out-of-memory, checks invalid path failure, and checks absolute path resolution. | This is the job-manifest lesson: a dataset/run profile should load from a declarative manifest, support selective tasks, validate path/format/memory legality, and prove equivalent data when storage tier changes. | Add `profile_ondisk_dataset_manifest_v1`, `profile_storage_tier_equivalence_guard_v1`, and `profile_manifest_path_validation_v1`: metadata path, graph topology type/path, feature specs, task filter, in-memory/on-disk flags, path normalization, illegal mode checks, equality oracle, and load status SHALL be recorded. | Very high. Exact source and tests read through codebase-memory. |
+| Aug 7 DGL GraphBolt implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/fused_csc_sampling_graph.py, https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/item_sampler.py, https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_fused_csc_sampling_graph.py, and https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/test_dataloader.py | GraphBolt sampling graph, item sampler, and pipeline tests | `FusedCSCSamplingGraph.sample_neighbors` accepts tensor or hetero dict seeds, fanouts, replace flag, optional probability mask, optional async mode, and returns a sampled subgraph after homogeneous conversion and `_convert_to_sampled_subgraph`. `pin_memory_` can pin graph tensors in place through CUDA host registration and applies pinning across members. `ItemSampler` converts item sets into `MiniBatch` objects, calculates ranges across worker/distributed context, optionally shuffles with epoch seed, and yields batch-sized slices. Tests validate a full path `ItemSet -> ItemSampler -> NeighborSampler -> FeatureFetcher -> CopyTo -> DataLoader` with node/edge feature presence across layers, and validate sampled CSC sizes/original edge ids for homogeneous sampling under pinned/GPU variants. | This maps to exact OLAP frontiers: we need explicit item/frontier batches, graph topology format, seed/fanout/window definition, sampled/visited edge counts, pinned/mapped state, and output subgraph/partition receipt. | Add `profile_fused_csc_sampling_graph_v1`, `profile_item_frontier_sampler_v1`, `profile_sampled_subgraph_receipt_v1`, and `profile_pipeline_regression_guard_v1`: topology format, indptr/index dtypes, seed count, fanout/window, replace/probability mode, async flag, pinned flag, sampled edges/nodes, original-id retention, worker/rank slice, and layer feature presence SHALL be recorded. | Very high. Exact source and tests read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/tree/master/graphbolt | GraphBolt native C++/CUDA source index | Focused native index `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-graphbolt` has 739 nodes, 2,009 edges, and 51 files: 18 C++ files, 15 C files, one Bash file, one Python file, and associated headers/source. The hottest packages were `cuda`, `cache_policy`, `graphbolt`, `fused_csc_sampling_graph`, `shared_memory_helper`, `cnumpy`, `concurrent_id_hash_map`, `partitioned_cache_policy`, `feature_cache`, and `io_uring`. Hotspots included GPU/pinned-memory checks, stream selection, parallel loops, and `IndexSelectIOUringImpl`. | This upgrades GraphBolt from API analogy to byte-accounting evidence. The native index shows where the expensive physical choices actually live: direct I/O, cache policy, GPU cache, UVA copy, fused CSC sampling, and shared-memory surfaces. | Add `profile_graphbolt_native_index_map_v1`: project name, commit, file count, node/edge count, language split, top package list, hotspot list, source paths read, and copied-vs-inspired caveat SHALL be recorded. | Very high. Local native subtree indexed and queried through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/io_uring.cc, https://github.com/dmlc/dgl/blob/master/graphbolt/src/cnumpy.cc, and https://github.com/dmlc/dgl/blob/master/graphbolt/src/cnumpy.h | GraphBolt direct I/O and on-disk NumPy backend | `io_uring.IsAvailable` caches availability with `std::once_flag`, checks the Linux syscall and probe support for read/readv. `OnDiskNpyArray` is Linux/liburing-gated, parses the NumPy header, opens the file with `O_RDONLY` plus `O_DIRECT`, records file size and block size, rounds feature length to block alignment, initializes io_uring queues, limits worker threads, and allocates aligned read buffers. `ReadRequest` computes aligned offset, read buffer pointer, aligned read size, and minimum read size. `IndexSelectIOUringImpl` creates an output tensor, schedules read requests across workers, controls SQ/CQ in-flight pressure, handles out-of-range ids, resubmits partial reads, copies useful bytes into the result tensor, and throws precise errors. | This is a direct template for low-RAM state sidecars. "Uses disk" is too vague; the receipt must expose alignment, queue pressure, partial reads, output shape, and copied bytes. | Add `profile_direct_io_uring_backend_v1`, `profile_aligned_disk_row_read_v1`, `profile_io_uring_queue_receipt_v1`, and `profile_partial_read_recovery_v1`: O_DIRECT flag, NumPy/header offset, block size, aligned row size, queue count, thread count, SQ/CQ capacity, submitted/completed reads, partial-read count, out-of-range count, bytes copied, and result shape SHALL be recorded. | Very high. Exact functions and helper class read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/feature_cache.cc, https://github.com/dmlc/dgl/blob/master/graphbolt/src/cache_policy.cc, and https://github.com/dmlc/dgl/blob/master/graphbolt/src/partitioned_cache_policy.cc | GraphBolt CPU feature cache and cache-policy internals | `FeatureCache.Query` and `Replace` are explicit row-copy operations over row bytes with pinnedness-aware output allocation. `BaseCachePolicy.QueryImpl` splits found positions from missing keys and preserves original output indices. `QueryAndReplaceImpl` admits missing keys, initializes failure sentinels, rejects over-capacity insertion, and returns found/missing pointers and positions. `PartitionedCachePolicy.QueryAndReplace` offsets keys, partitions work, locks policy state, merges per-partition found/missing regions, adjusts positions by capacity slice, removes key offsets from missing keys, and returns found/missing offsets. | Cache evidence should become a structured receipt, not a single hit-rate number. The useful state is found/missing layout, row bytes, output reorder, admission failure, partition offsets, and lock/merge behavior. | Add `profile_row_copy_feature_cache_v1`, `profile_cache_query_result_shape_v1`, `profile_partitioned_cache_offsets_v1`, and `profile_cache_capacity_admission_guard_v1`: row bytes, requested rows, output indices, found count, missing count, missing keys, admission positions, capacity failure, partition count, per-partition offsets, and replacement bytes SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/extension/gpu_cache.cu, https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/extension/gpu_graph_cache.cu, and https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/max_uva_threads.cc | GraphBolt GPU cache, GPU graph cache, and UVA thread cap | `GpuCache.Query` validates device and shape, allocates values plus missing-index/missing-key buffers, runs cache lookup on the current stream, copies missing length to CPU, and slices outputs. `GpuCache.Replace` validates CUDA keys/values and repacks non-float-aligned bytes through a float view when needed. `GpuGraphCache.Query` locks state, rehashes when load factor would exceed threshold, inserts/finds seed positions, reduces threshold/new/hit counts, partitions valid positions, updates map size, and returns output indices, output positions, hit count, and threshold count. `set_max_uva_threads` exposes a global cap. | GPU cache claims need device, stream, dtype/shape, missing length, rehash/load-factor, and threshold counters. A cache receipt without these fields hides both RAM pressure and latency risk. | Add `profile_gpu_feature_cache_kernel_receipt_v1`, `profile_gpu_graph_cache_admission_receipt_v1`, `profile_cache_threshold_counter_v1`, and `profile_uva_global_cap_v1`: device id, stream id, key count, value shape/dtype, packed bytes, missing count, map capacity, rehash count, load factor, new/hit/threshold counts, output positions, and UVA cap SHALL be recorded. | Very high. Exact CUDA extension functions read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/index_select_impl.cu and https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/index_select_csc_impl.cu | GraphBolt UVA index-select and aligned CSC copy | `UVAIndexSelectImpl_` sorts requested indices to improve access pattern, carries a permutation, computes return length and aligned feature size, caps blocks through `max_uva_threads`, and chooses scalar, unaligned, or aligned kernels based on feature size and cache-line width. `UVAIndexSelectCSCCopyIndices` computes actual and aligned edge counts through scans, allocates output indices, caps grid size, chooses the smallest COO-row integer dtype by bit width, expands aligned indptr, and copies CSC indices with an aligned kernel. | This is the byte-level version of "read less state faster." Access ordering, feature width, alignment, chosen kernel, dtype width, and actual-vs-aligned edge count are all part of the product contract. | Add `profile_uva_sorted_index_select_v1`, `profile_csc_aligned_copy_receipt_v1`, and `profile_dtype_width_choice_receipt_v1`: sorted flag, permutation bytes, return length, feature size, aligned feature size, kernel path, block cap, actual edge count, aligned edge count, COO dtype, padding bytes, and output shape SHALL be recorded. | Very high. Exact CUDA functions read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/fused_csc_sampling_graph.cc and https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/neighbor_sampler.cu | GraphBolt native CPU/GPU sampling paths | CPU `SampleNeighborsImpl` separates work into calculating per-node pick counts, prefix-summing counts into `subgraph_indptr`, allocating picked edge IDs and indices, picking neighbors, remapping hetero IDs, copying edge types, and checking that picked counts match expectations. GPU `SampleNeighbors` assumes core tensors are GPU-resident, normalizes fanouts, slices CSC indptr, reduces max in-degree, handles probability and temporal masks, computes sampled degrees and output edge count, expands COO rows, chooses edge-id dtype, generates and sorts randoms for weighted/layered paths, batches sampled-edge copies, optionally sorts by edge type, remaps hetero offsets, and validates edge offsets. | Even when Knight Bus is not sampling for exact OLAP, this is the shape of a good temporary-view receipt: count, scan, allocate, select, copy, remap, validate. It also shows that "GPU path" usually has hidden residency assumptions. | Add `profile_native_sampling_subphase_receipt_v1`, `profile_gpu_sampling_residency_assumption_v1`, `profile_edge_id_dtype_selection_v1`, and `profile_hetero_remap_validation_v1`: input residency, fanout/window, count-scan-allocate-pick-copy-remap timings, sampled edge count, random dtype, sorted path, selected edge-id dtype, hetero offsets, and validation status SHALL be recorded. | Very high. Exact CPU and CUDA sampling functions read through codebase-memory. |
+| Aug 7 DGL GraphBolt native implementation-artifact deepening | https://github.com/dmlc/dgl/blob/master/graphbolt/src/python_binding.cc | GraphBolt native binding surface | The `TORCH_LIBRARY(graphbolt, m)` binding exports futures, `OnDiskNpyArray.index_select`, `FusedCSCSamplingGraph` topology and sampling methods, GPU cache and graph cache classes when CUDA is enabled, partitioned cache policy methods, feature cache methods, unique/compact operations, `index_select`, async variants, CSC index-select variants, `ondisk_npy_array`, `detect_io_uring`, `set_num_io_uring_threads`, `set_worker_id`, `set_seed`, `set_max_uva_threads`, `rank_sort`, and schema-level `expand_indptr`/`indptr_edge_ids`. | The native receipt fields are not hidden implementation gossip; GraphBolt deliberately exposes many of these physical controls and async objects through the Python operator surface. Knight Bus should copy that honesty for storage profiles. | Add `profile_native_binding_surface_v1`: exported operation name, enabled feature gate, async/future type, storage/cache/topology category, physical knob, and expected receipt schema SHALL be recorded. | High. Exact binding function read through codebase-memory. |
+| Aug 7 GraphStorm downstream GraphBolt source-deepening | https://github.com/awslabs/graphstorm, https://graphstorm.readthedocs.io/en/latest/advanced/using-graphbolt.html, and https://aws.amazon.com/blogs/machine-learning/faster-distributed-graph-neural-network-training-with-graphstorm-v0-4/ | AWS / GraphStorm maintainers; AWS blog by Theodore Vasiloudis, Florian Saupe, and Xiang Song | GraphStorm repo metadata captured Aug 7 2026: Apache-2.0, Python, 452 stars, 75 forks, pushed Jun 30 2026. The GraphStorm docs say v0.4 introduced GraphBolt support, require DGL at least 2.1.0 and recommend DGL 2.3.0 with PyTorch 2.3, warn that shared memory must be sufficient because DGL uses shared memory for graph structures and features, and show that `--use-graphbolt true` creates `fused_csc_sampling_graph.pt` under each partition. AWS's Feb 11 2025 blog describes GraphStorm v0.4 plus DGL-GraphBolt as compact graph representation plus pipelined sampling, reports 3.6x inference speedup and 1.4x per-epoch training speedup for the large-scale dataset examined, and says fused CSC can reduce heterogeneous graph storage memory by up to 56%. | This is downstream adoption evidence. GraphBolt is not just an internal DGL abstraction; a separate enterprise graph ML framework exposes it as a user-facing workflow mode and cloud pipeline option. | Add `profile_graphstorm_source_reference_v1`: repo URL, docs URL, AWS blog URL, authors, publication date, repo metadata date, commit, index size, DGL version requirement, GraphBolt artifact file, reported benchmark claims, and copied-vs-inspired caveat SHALL be recorded. | High for existence and workflow shape; medium for benchmark numbers because they are AWS-reported and not independently reproduced here. |
+| Aug 7 GraphStorm downstream GraphBolt source-deepening | https://github.com/awslabs/graphstorm/blob/main/docs/source/advanced/using-graphbolt.rst and https://github.com/awslabs/graphstorm/blob/main/docs/source/advanced/sagemaker-pipelines.rst | GraphStorm docs | The docs turn GraphBolt into an explicit preparation and run workflow. Local graph construction can pass `--use-graphbolt true` to GConstruct, distributed partitioning can pass the same flag to GSPartition, and existing partitioned graphs can be converted through `python -m graphstorm.gpartition.convert_to_graphbolt --metadata-filepath ...`. SageMaker workflows differ by size: small GConstruct flows can embed conversion in graph construction, while distributed GSProcessing plus GSPartition requires a separate `GraphBoltConvert` job after partitioning and before training. The pipeline docs define jobs `gconstruct`, `gsprocessing`, `dist_part`, `gb_convert`, `train`, and `inference`; `--use-graphbolt` is an explicit training config option. | This is exactly the product shape we want for Knight Bus: storage conversion is a workflow phase with preconditions, not a hidden library choice. The right UX is a pipeline with declared artifacts and gates. | Add `profile_graphbolt_workflow_step_receipt_v1`: graph source, construction mode, partition mode, conversion step, metadata file, artifact path, training flag, inference flag, cloud/local mode, and required job ordering SHALL be recorded. | Very high. Docs read from current clone and public ReadTheDocs page. |
+| Aug 7 GraphStorm downstream GraphBolt implementation-deepening | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gpartition/convert_to_graphbolt.py and https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/sagemaker/sagemaker_gb_convert.py | GraphStorm conversion source | `parse_gbconv_args` exposes `--metadata-filepath`, `--logging-level`, and `--njobs`. `run_gb_conversion` calls DGL `dgl_partition_to_graphbolt` with `store_eids=True` and `graph_formats=\"coo\"`; DGL below 2.4 forces `njobs=1`, while DGL 2.4 or newer passes `njobs`. SageMaker `run_gb_convert` requires the local metadata file, rejects DGL below 2.1, notes that one process per partition is used and that `njobs` partitions must fit into memory, runs conversion, uploads only new/modified fused files plus JSON metadata, and raises if any partition lacks `fused_csc_sampling_graph.pt`. | This gives Knight Bus two receipt duties: conversion parallelism is a memory contract, and artifact existence is a hard postcondition. A low-RAM storage profile should fail before conversion if selected parallelism cannot fit under the declared cap. | Add `profile_conversion_parallelism_memory_gate_v1` and `profile_partition_artifact_existence_guard_v1`: metadata path, DGL/runtime version, graph formats, edge-id retention, partition count, conversion `njobs`, memory fit estimate, output artifact list, upload list, and missing-artifact failure SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GraphStorm downstream GraphBolt implementation-deepening | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gconstruct/utils.py, https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gpartition/dist_partition_graph.py, https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gsf.py, and https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/config/argument.py | GraphStorm config, partition, and runtime initialization paths | `GSConfig.use_graphbolt` defaults false and validates the value is boolean. `gsf.initialize` passes `use_graphbolt` into `dgl.distributed.initialize` when DGL is at least 2.1 and raises otherwise. `gconstruct.utils.partition_graph` intentionally passes only graph structure into DGL partitioning to save memory and keeps node/edge features in external memory, then forwards `use_graphbolt` to DGL partitioning for DGL at least 2.1. `dist_partition_graph.main` builds a distributed graph and, if `--use-graphbolt` is true, runs conversion from the leader over a shared filesystem, retaining edge IDs and using COO graph format. | This broadens the lesson beyond GraphBolt: graph construction itself is a memory-sensitive pipeline. Feature tensors, original ID mapping, partition metadata, shared filesystem assumptions, and runtime initialization flags are all product-visible state. | Add `profile_graph_construction_memory_contract_v1`, `profile_runtime_storage_mode_flag_v1`, and `profile_shared_filesystem_conversion_v1`: structure-only partition input, external feature placement, original node/edge ID retention, DGL version gate, runtime init flag, leader-only conversion, shared filesystem assumption, and conversion timing SHALL be recorded. | Very high. Exact functions read through codebase-memory. |
+| Aug 7 GraphStorm downstream GraphBolt implementation-deepening | https://github.com/awslabs/graphstorm/blob/main/sagemaker/pipeline/pipeline_parameters.py, https://github.com/awslabs/graphstorm/blob/main/sagemaker/pipeline/create_sm_pipeline.py, https://github.com/awslabs/graphstorm/blob/main/tests/end2end-tests/graphbolt-gs-integration/graphbolt-graph-construction.sh, and https://github.com/awslabs/graphstorm/blob/main/tests/end2end-tests/graphbolt-gs-integration/graphbolt-training-inference.sh | GraphStorm SageMaker pipeline and e2e tests | `PipelineArgs.__post_init__` requires `gb_convert` after `dist_part` when `use_graphbolt` is true, appends `--use-graphbolt true` to GConstruct args when graph construction and training both use GraphBolt, and normalizes distributed partition metadata to `metadata.json` for DistPart/GBConvert. `_create_gb_convert_step` creates a SageMaker `ProcessingStep` named `GraphBoltConversion` with CPU image, one instance, configured volume size, input destination `/opt/ml/processing/dist_graph/`, and metadata filename argument. The graph-construction e2e script checks GConstruct GraphBolt output, deletes and regenerates fused files through standalone conversion, checks GSPartition GraphBolt output, and fails if `fused_csc_sampling_graph.pt` is missing. The training/inference e2e script runs GraphBolt link prediction, embedding generation, multiple negative-sampler variants, node classification, and inference, then checks model, optimizer, embedding, and prediction outputs. | This is the verification loop pattern: storage format promotion should require workflow-order checks, artifact-existence checks, and end-to-end training/inference output checks. For Knight Bus, algorithm storage profiles should not graduate until conversion, run, output, and receipt gates all pass. | Add `profile_pipeline_ordering_guard_v1`, `profile_cloud_processing_step_receipt_v1`, `profile_graphbolt_e2e_artifact_guard_v1`, and `profile_storage_mode_training_inference_guard_v1`: job sequence, inserted flags, metadata filename, processing image, instance count/type, volume size, input/output locations, required artifact files, model/output files, and failure messages SHALL be recorded. | Very high. Exact source and e2e scripts read via codebase-memory plus targeted file reads. |
+| Aug 7 GraphStorm SageMaker example source-deepening | https://github.com/awslabs/graphstorm/tree/main/examples/sagemaker-pipelines-graphbolt, https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/README.md, https://aws.amazon.com/blogs/machine-learning/faster-distributed-graph-neural-network-training-with-graphstorm-v0-4/, and https://www.dgl.ai/release/2024/03/06/release.html | AWS / GraphStorm maintainers; DGL 2.1 release by Muhammed Fatih Balin | The example README makes comparison a workflow: first create and execute a non-GraphBolt `ogbn-arxiv-gs-pipeline`, save local logs, inspect S3 outputs, then create `ogbn-arxiv-gs-graphbolt-pipeline` and compare logs. The README reports example local Arxiv averages of 7.43s epoch/2.25s eval without GraphBolt versus 6.83s epoch/1.99s eval with GraphBolt, then scales to Papers100M with separate non-GraphBolt and GraphBolt pipelines. For Papers100M it shows 111M nodes, 3.2B edges, default four `ml.g5.48xlarge` training instances, one `ml.r5.24xlarge` graph construction instance, expected multi-hour execution, and reported averages of 73.95s epoch/15.07s eval without GraphBolt versus 54.54s epoch/4.13s eval with GraphBolt. DGL 2.1's release page supplies the upstream context: GraphBolt acceleration is tied to stage placement, GPU-accessible graph/features, pinned memory, GPU feature cache, overlap of feature/graph fetch, mixed-width CSC storage, and benchmark scenarios. | This is a product-pattern gold nugget: users need paired baseline and optimized runs with named datasets, exact pipeline names, resource envelopes, output locations, logs, analyzer scripts, and source-attributed benchmark caveats. Knight Bus should ship this as a first-class comparison receipt, not as a paragraph in a blog post. | Add `profile_baseline_vs_storage_mode_comparison_v1`, `profile_dataset_scale_receipt_v1`, and `profile_resource_envelope_receipt_v1`: baseline pipeline name, optimized pipeline name, dataset, node/edge counts, execution mode, instance count/type, trainers, volume size, output prefix, log file/source, average phase timings, accuracy caveat, and source-attribution SHALL be recorded. | High for workflow and fields. Medium for performance values because they are example/source-reported and not reproduced locally. |
+| Aug 7 GraphStorm SageMaker example implementation-deepening | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/deploy_arxiv_pipeline.sh, https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/deploy_papers100M_pipeline.sh, https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/sagemaker_convert_papers100m.py, https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/process_papers100M.sh, https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/convert_ogb_papers100m_to_gconstruct.py, and https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/analyze_training_time.py | GraphStorm SageMaker example scripts | `deploy_arxiv_pipeline.sh` requires account, bucket, role, and `--use-graphbolt true|false`, then calls `create_sm_pipeline.py` with two instances, CPU training on `ml.m5.4xlarge`, graph construction on `ml.r5.4xlarge`, four trainers, 50GB volume, embeddings/predictions enabled, and the selected GraphBolt flag. `deploy_papers100M_pipeline.sh` uses four instances, `ml.r5.24xlarge` CPU/graph construction, `ml.g5.48xlarge` GPU training, eight trainers, 400GB volume, `--num-processes 16`, save embeddings/predictions, and the selected GraphBolt flag. `sagemaker_convert_papers100m.main` launches a SageMaker `ScriptProcessor` with one instance, 400GB volume, 8-hour runtime, and internet-enabled processing to run `process_papers100M.sh`. `process_papers100M.sh` uses `axel -n 16`, `ripunzip`, then runs the Python converter. `convert_ogb_papers100m_to_gconstruct.process_data` memory-maps NumPy arrays, computes row-byte estimates, bounds node/edge chunks to roughly 1GB, limits workers by available RAM assuming about 2GB per worker, writes Snappy Parquet chunks, and emits a GConstruct config with forward and reverse citation edges. `analyze_training_time.analyze_logs` reads local files or CloudWatch logs and extracts epoch/evaluation timing; `print_training_summary` prints total epochs/evals and average times. | This is the concrete workflow skeleton for Knight Bus cloud/offline benchmarking: resource envelope, preprocessing envelope, chunk sizing, RAM-derived worker caps, output schema/config, paired run flag, and timing-log parser all belong in the product receipt. | Add `profile_preprocess_chunk_memory_gate_v1`, `profile_pipeline_deploy_script_receipt_v1`, `profile_log_timing_analyzer_v1`, and `profile_output_artifact_inspection_v1`: required deploy parameters, resource defaults, processing image, runtime cap, chunk byte estimates, worker cap formula, output files/config, log source, regex/extraction rules, average phase times, and artifact prefixes SHALL be recorded. | Very high for implementation fields. Exact scripts and functions read locally and via codebase-memory. |
+| Aug 7 DGL GraphBolt examples source-deepening | https://www.dgl.ai/release/2024/03/06/release.html, https://github.com/dmlc/dgl/tree/master/examples/graphbolt, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/node_classification.py, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/link_prediction.py, and https://github.com/dmlc/dgl/blob/master/examples/graphbolt/temporal_link_prediction.py | DGL / GraphBolt maintainers; DGL 2.1 release by Muhammed Fatih Balin | The official DGL 2.1 release says GraphBolt accelerates graph sampling and feature fetching, lets the data-moving stage be placed earlier so later stages can run on GPU, supports pinned graph/features when GPU memory is limited, supports full GPU residency when memory allows, uses GPU feature cache when features do not fit, overlaps feature/graph fetch through pipeline parallelism, compares CPU/pinned/GPU/cache configurations, reports source-measured speedups, and states mixed-width CSC storage can approach 2x graph-storage savings for graphs like ogbn-papers100M. The indexed examples subtree has 305 nodes, 1,063 edges, and 18 files at DGL commit `3d16000b4170fa741ed9e9667f22ba84d3493026`. Representative `create_dataloader` functions build staged datapipes: `ItemSampler`, optional `copy_to`, sampling, optional edge exclusion or temporal constraints, feature fetch, final `copy_to`, and `DataLoader`. | This is the clearest formulation so far of "storage profile as staged physical plan." The storage mode is not one field; it is a placement plan over graph, features/state, compute device, copy stage, sampling/read stage, cache, and overlap behavior. | Add `profile_dgl_graphbolt_examples_index_map_v1`, `profile_storage_mode_triple_v1`, `profile_datapipe_stage_placement_v1`, `profile_copy_to_stage_receipt_v1`, and `profile_temporal_sampling_guard_v1`: examples commit, index size, mode string, graph tier, feature/state tier, compute tier, stage order, copy-before/after-sampling decision, async flag, overlap flag, temporal timestamp fields, and dataloader worker count SHALL be recorded. | High for workflow and implementation shape. Medium for source-reported speedups because they are not reproduced locally. |
+| Aug 7 DGL GraphBolt examples implementation-deepening | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/disk_based_feature/README.md, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/disk_based_feature/node_classification.py, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/node_classification_advanced.py, and https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/hetero/node_classification.py | GraphBolt disk feature, advanced PyG, and heterogeneous examples | `disk_based_feature/README.md` describes `DiskBasedFeature`, CPU cache policies SIEVE/S3-FIFO/LRU/CLOCK, io_uring for cache misses, ogbn-papers100M graph size 13GB and feature size 53GB, AWS EC2 g5.8xlarge context, source-reported cache-policy timing, source-reported layer-neighbor timing, and a comparison where DiskBasedFeature plus 20GB CPU cache and 5GB GPU cache has slower warmup but later epochs near in-memory performance. `disk_based_feature.node_classification.parse_args` exposes `graph-feature-train` mode triples, CPU cache policy, CPU cache GiB, GPU cache GiB, layer/batch dependency, sample mode, and inference flag. Its `main` forces selected features to load as `DiskBasedFeature`, moves graph/features to pinned/cuda/cpu, wraps CPU cache only when the feature is disk-backed, warns CPU cache should be at least four times sampled minibatch nodes to avoid deadlock, wraps GPU cache when features are not already cuda-resident, and passes GPU/CPU cache miss-rate functions into training/evaluation. Advanced and heterogeneous examples expose GPU cache size, GPU graph cached edge count, graph caching threshold, disk-feature detection, and per-feature cache wrapping. | This is a direct receipt template for budget-bounded sidecars. A serious low-RAM feature/state store needs a warmup story, cache policy matrix, cache miss counters, disk miss path, cache-capacity safety gate, and feature/state residency declaration. | Add `profile_disk_feature_cache_policy_matrix_v1`, `profile_cache_warmup_epoch_receipt_v1`, `profile_cache_capacity_deadlock_guard_v1`, `profile_graph_feature_residency_receipt_v1`, `profile_gpu_graph_cache_knob_receipt_v1`, and `profile_cache_miss_rate_observer_v1`: disk/in-memory feature flag, graph/feature/train mode, cache policy, cache bytes, min safe cache estimate, warmup epoch, CPU/GPU miss rate, graph cached edge count, cache threshold, and source-reported benchmark caveat SHALL be recorded. | Very high for implementation fields. Exact functions read through codebase-memory and READMEs read locally. |
+| Aug 7 DGL GraphBolt locality and multi-GPU source-deepening | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/labor/README.md, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/labor/node_classification.py, https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/multigpu/node_classification.py, and https://papers.nips.cc/paper_files/paper/2023/hash/51f9036d5e7ae822da8f6d4adda1fb39-Abstract-Conference.html | DGL GraphBolt examples; Labor / Cooperative Minibatching references | The Labor README explains `layer_dependency` and `batch_dependency`: layer dependency reuses sampling random variates across layers, while batch dependency increases temporal locality across minibatches and can reduce cache miss rate. Its examples report cache miss dropping from 62% to 22% as `batch_dependency` rises from 1 to 32, sampled nodes dropping to about 190k with layer dependency versus about 250k without, and original neighbor sampling using about 520k sampled nodes. The Labor implementation computes feature row bytes by reading one row, then sizes CPU/GPU caches by number of cached features times row bytes. The multi-GPU example uses `DistributedItemSampler`, `drop_uneven_inputs`, cooperative sampling/fetching flags, GPU graph-cache knobs, distributed data parallel training, and `CooperativeConvFunction` in the model forward path. | The idea to steal is locality as a first-class knob. Low-RAM graph OLAP can use exact locality knobs too: reorder frontiers, process blocks to reuse state, keep changed partitions warm, or use cooperative/minibatch-style grouping, but every such knob needs sampled/visited count, cache miss, output equality, and phase time receipts. | Add `profile_locality_knob_receipt_v1`, `profile_sampled_node_count_receipt_v1`, `profile_feature_row_bytes_cache_sizing_v1`, `profile_distributed_item_sampler_receipt_v1`, and `profile_cooperative_minibatch_receipt_v1`: layer dependency, batch dependency, row bytes, cached feature count, sampled/visited nodes, cache miss rate, distributed rank/world, uneven input policy, cooperative flag, compaction fields, and correctness/accuracy guard SHALL be recorded. | High. Exact implementation functions and READMEs read; Labor paper itself queued for deeper paper pass if needed. |
+| Aug 7 DGL GraphBolt tests implementation-deepening | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_feature_cache.py, https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_cpu_cached_feature.py, https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_gpu_cached_feature.py, and https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_gpu_graph_cache.py | GraphBolt cache and async-read tests | `test_feature_cache` validates query, replace, query-and-replace equivalence, missing-key order, partition-offset behavior, pinned output behavior, raw feature-cache index selection, and miss-rate parity between equivalent paths. `test_cpu_cached_feature` and `test_gpu_cached_feature` size caches in row-byte units, check full and indexed reads, check that sufficiently large warm caches produce no new misses, expose `miss_rate`, validate update behavior, and validate async reads by iterating the declared async stage count and comparing the final `wait()` result to the source tensor. `test_cpu_cached_disk_feature_read_async` proves a disk-backed feature can sit behind a CPU cache and still satisfy async read equivalence. `test_gpu_cached_nested_feature_async` composes disk -> GPU cache, disk -> CPU cache -> GPU cache, and disk -> pinned CPU cache -> GPU cache, then tests the async path. `test_gpu_graph_cache` repeatedly queries seeds, fetches missing CSC slices from the backing graph, replaces cache entries, and compares returned indptr/edge tensors against direct reference selection. | This is the acceptance-test spine for Knight Bus storage profiles: caches, async stages, disk fallback, nested tiering, and graph-cache admission must prove equivalence and expose miss/admission state before performance claims matter. | Add `profile_graphbolt_test_index_map_v1`, `profile_sync_async_equivalence_guard_v1`, `profile_cache_query_shape_test_v1`, `profile_cache_miss_observer_test_v1`, `profile_nested_cache_tier_guard_v1`, and `profile_gpu_graph_cache_reference_guard_v1`: test project, source commit, row-byte cache sizing, sync oracle, async stage count, found/missing layout, miss counters, fallback backend, nested tier path, and reference CSC equality SHALL be recorded. | Very high for verification-loop transfer; medium for direct OLAP transfer because these tests target GNN data loading rather than Neo4j/GDS algorithms. |
+| Aug 7 DGL GraphBolt tests implementation-deepening | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_disk_based_feature_store.py, https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_torch_based_feature_store.py, https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_fused_csc_sampling_graph.py, and https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_ondisk_dataset.py | GraphBolt storage placement, pinnedness, and manifest tests | `test_disk_based_feature` reads whole and indexed `.npy` features, checks pinned reads when GPU context is active, compares large indexed reads against `TorchBasedFeature`, checks `read_into_memory`, checks size/count/metadata, fails out-of-range ids, and rejects Fortran-contiguous arrays. `test_feature_store_to_device` builds `OnDiskFeatureData` records for node and edge features, moves a `TorchBasedFeatureStore` to CPU/pinned/CUDA, and asserts the original store remains on CPU. `test_torch_based_pinned_feature` verifies in-place and copied pinning, data-pointer preservation for in-place pinning, and CPU-vs-CUDA result placement based on index tensor placement. `test_csc_sampling_graph_to_device` and `test_csc_sampling_graph_to_pinned_memory` verify graph `.to(device)` and in-place pinning while preserving original graph placement or data pointer. `test_OnDiskDataset_load_feature` mutates `in_memory`, `format`, and `path` fields to test storage-tier equivalence, illegal format/memory combinations, invalid path failure, and absolute path normalization. `test_OnDiskDataset_load_1D_feature` verifies 1-D node features are reshaped into column tensors while task itemsets stay unchanged. | This turns manifest and placement choices into safety gates. Knight Bus profiles need the same discipline: illegal tier combinations fail early, physical placement is observable, pinning is not hand-waved, and tier changes prove logical equality. | Add `profile_disk_feature_roundtrip_test_v1`, `profile_device_residency_transition_test_v1`, `profile_pinned_memory_residency_test_v1`, `profile_manifest_mode_mutation_guard_v1`, `profile_on_disk_manifest_feature_test_v1`, and `profile_one_dimensional_state_shape_guard_v1`: feature format, contiguity, metadata, index size, out-of-range policy, original/target residency, data-pointer stability, path normalization, storage-tier equality, illegal mode failure, and state shape SHALL be recorded. | Very high for placement/manifest contracts; medium for direct OLAP transfer because graph OLAP state sidecars will differ from GNN feature tensors. |
+| Aug 7 DGL GraphBolt tests implementation-deepening | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_feature_fetcher.py, https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_dataloader.py, and https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_utils.py | GraphBolt pipeline and temporary-view correctness tests | `test_FeatureFetcher_invoke` checks both constructor and functional invocation over `ItemSampler -> NeighborSampler -> FeatureFetcher`. Homo and hetero edge-feature tests build minibatches with sampled subgraphs and original node/edge ids, fetch only requested node/edge feature keys, preserve per-layer edge-feature lists, and reject/uninclude features for edge types that are absent or not requested. `test_gpu_sampling_DataLoader` constructs two equivalent dataloaders across sampler, feature-fetch, overlap, cooperative, async, GPU cached edge, and graph-cache-threshold knobs; it counts inserted `Bufferer` pipeline nodes, compares feature outputs against a second dataloader under a fixed seed, and exercises cooperative CUDA output paths. `test_exclude_seed_edges_gpu` verifies GPU seed-edge exclusion through both datapipe and transform forms, including async wait behavior, and asserts original row ids, compacted CSC indices, indptr, and original column ids. | This is the temporary-view lesson. Low-RAM graph OLAP will create blocks, frontiers, partitions, and delta views; those views must preserve original ids, have deterministic stage graphs, and compare against a reference path under the same seed/workload. | Add `profile_feature_fetcher_minibatch_test_v1`, `profile_dataloader_stage_order_test_v1`, `profile_bufferer_count_guard_v1`, `profile_seed_edge_exclusion_guard_v1`, `profile_temp_graph_view_identity_guard_v1`, and `profile_reference_pipeline_equivalence_guard_v1`: requested feature keys, layer count, original id retention, bufferer count, async/cooperative flags, graph-cache knobs, fixed seed, reference dataloader, compacted topology, and output equality SHALL be recorded. | Very high for pipeline/temporary-view contracts; medium for exact OLAP transfer because the tests are sampling-oriented but the view-identity problem is shared. |
+| Aug 7 LDBC Graphalytics benchmark-spine source-deepening | https://ldbcouncil.org/benchmarks/graphalytics/, https://ldbcouncil.org/benchmarks/graphalytics/algorithms/, https://ldbcouncil.org/benchmarks/graphalytics/datasets/, https://ldbcouncil.org/benchmarks/graphalytics/rules/, and https://ldbcouncil.org/ldbc_graphalytics_docs/graphalytics_spec.pdf | LDBC Graphalytics maintainers | The official overview describes Graphalytics as an industrial-grade benchmark for graph analysis platforms, with reference implementations including GraphBLAS and Umbra. The algorithm page narrows the public Pareto family to six deterministic full-graph algorithms: BFS, PageRank, WCC, CDLP, LCC, and SSSP. The spec says the benchmark supplies standard datasets, synthetic generators, reference outputs, deep metrics for scalability and robustness, validation software, monitoring/sharing software, and a standard performance report. The dataset page says compressed archives are about 350GB and decompressed archives are about 1.5TB, notes corrected datasets/reference outputs in March 2023, and notes Parquet vertex/edge files in February 2026. The rules page allows single-node and distributed systems, allows partial implementations, requires each algorithm-dataset combination to run three times, ranks by arithmetic mean, includes performance and price-performance leaderboards, and subjects submissions to code review plus reproducibility attempts. | This is the public verification spine Knight Bus needs. It gives us a defensible algorithm set, dataset ladder, reference outputs, repetition policy, and comparison ritual without pretending it proves Neo4j API compatibility. | Add `profile_graphalytics_source_reference_v1`, `profile_graphalytics_algorithm_family_v1`, `profile_graphalytics_dataset_scale_receipt_v1`, `profile_benchmark_repetition_receipt_v1`, and `profile_price_performance_receipt_v1`: official source URLs, spec URL, algorithm list, dataset scale, reference-output version, run count, arithmetic mean, leaderboard category, and reproducibility/code-review status SHALL be recorded. | High for benchmark-shape evidence; medium for product-transfer because Graphalytics is an algorithm benchmark, not a complete Neo4j/GDS procedure compatibility suite. |
+| Aug 7 LDBC Graphalytics driver implementation-deepening | https://github.com/ldbc/ldbc_graphalytics, https://github.com/ldbc/ldbc_graphalytics/blob/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/domain/algorithms/Algorithm.java, https://github.com/ldbc/ldbc_graphalytics/blob/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/validation/rule/EpsilonValidationRule.java, and https://github.com/ldbc/ldbc_graphalytics/blob/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/execution/BenchmarkExecutor.java | LDBC Graphalytics generic driver source | GitHub metadata captured Aug 7 2026: `ldbc/ldbc_graphalytics`, Apache-2.0, 88 stars, 34 forks, default branch `main`, pushed Dec 19 2024, updated Apr 20 2026. Local codebase-memory project `kb-ldbc-graphalytics-pass081` indexed 2,815 nodes and 7,379 edges. `Algorithm.java` maps BFS and CDLP to exact long validation, PR, LCC, and SSSP to epsilon double validation, and WCC to equivalence-class validation. `LongVertexValidator` and `DoubleVertexValidator` load expected and actual output into DuckDB `validation.duckdb`, check vertex count and vertex IDs, then run the chosen validation rule query. `BenchmarkExecutor.runBenchmark` exposes the benchmark lifecycle: load/prepare, plugin startup, platform startup, platform execute, platform finalize, validation, retrieval, termination, Granula metrics, timeout/failure handling, and final makespan/processing-time checks. | This is the acceptance-contract skeleton for Knight Bus algorithm profiles: correctness is not one boolean, and timing is not one print statement. The validator, lifecycle, output retrieval, timeout, and metrics all need structured receipts. | Add `profile_algorithm_validation_rule_v1`, `profile_exact_long_output_guard_v1`, `profile_epsilon_double_output_guard_v1`, `profile_equivalence_class_output_guard_v1`, `profile_result_validator_duckdb_v1`, `profile_benchmark_lifecycle_receipt_v1`, and `profile_timeout_failure_receipt_v1`: algorithm, expected type, tolerance or equivalence rule, expected/actual row counts, missing/mismatched vertex IDs, validator database path, lifecycle phase timings, failure class, timeout, makespan, and processing time SHALL be recorded. | Very high for verification-loop transfer; exact code paths were read through codebase-memory and local source. |
+| Aug 7 LDBC Graphalytics GraphBLAS implementation-deepening | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas, https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/java/science/atlarge/graphalytics/graphblas/GraphblasLoader.java, https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/java/science/atlarge/graphalytics/graphblas/GraphblasJob.java, https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/c/src/graphio.cpp, and https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/c/src/algorithms/pr.cpp | LDBC Graphalytics GraphBLAS/LAGraph reference driver | GitHub metadata captured Aug 7 2026: `ldbc/ldbc_graphalytics_platforms_graphblas`, Apache-2.0, 5 stars, 7 forks, default branch `main`, pushed Apr 6 2026. Local codebase-memory project `kb-ldbc-graphalytics-graphblas-pass081` indexed 496 nodes and 853 edges. The README describes a SuiteSparse:GraphBLAS driver using LAGraph; raw `.v`/`.e` inputs are converted to `.vtx` dense-id mapping and `.mtx` Matrix Market artifacts using DuckDB, with a bijective sparse-uint64 to dense-contiguous mapping. `GraphblasLoader.load` declares graph name, input vertex/edge paths, output path, direction, and weight flags. `GraphblasJob.execute` passes benchmark, algorithm, dataset, platform config, and thread count to the executable. `GraphblasCollector.collectProcessingTime` extracts `START_PROC_TIME` and `END_PROC_TIME` from logs. Native `ReadMatrixMarket` can load binary `graph.lagraph` or text `graph.mtx`, `ReadMapping` loads ID mappings, `pr.main` runs LAGraph PageRank, serializes output, and frees matrix/vector state. | This gives Knight Bus a practical oracle lane: GraphBLAS/LAGraph can be the reference competitor for algorithm correctness and performance while Neo4j/GDS remains the surface-area compatibility competitor. It also makes sparse-ID relabeling and matrix-artifact conversion explicit product steps. | Add `profile_graphblas_reference_driver_v1`, `profile_sparse_id_relabel_receipt_v1`, `profile_matrix_artifact_conversion_v1`, and `profile_processing_time_log_contract_v1`: source graph paths, mapping artifact, dense-id count, matrix artifact, binary/text format, directed/weighted flags, thread count, algorithm executable, start/end processing markers, output serializer, and cleanup status SHALL be recorded. | High for oracle-lane design; medium for end-user product transfer because users may care about Neo4j/GDS procedure parity more than GraphBLAS implementation parity. |
+| Aug 7 ArcadeDB Graphalytics source-deepening | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb, https://arcadedb.com/blog/graph-olap-engine-the-fastest-graph-analytics-with-zero-compromises/, and https://arcadedb.com/benchmarks.html | Arcade Data / ArcadeDB maintainers; repo authored under `ArcadeData` | GHCLI metadata captured Aug 7 2026: `ArcadeData/ldbc_graphalytics_platforms_arcadedb`, Apache-2.0, primary language Python, 1 star, 1 fork, created Mar 11 2026, pushed Aug 7 2026, topics include `algorithms`, `benchmark`, `graph`, `graph-database`, and `performance-testing`. Local clone pinned commit `70986fc9aad9f9cd4582ac2f6707f5825c54178c`; codebase-memory project `kb-ldbc-graphalytics-arcadedb-pass082` indexed 719 nodes and 2,302 edges across Java, Python, and Bash. The public ArcadeDB Graph OLAP article describes Graph Analytical Views as read-optimized columnar graph representations that live beside OLTP data, use CSR `offsets`/`neighbors` arrays, maintain forward/backward indexes, store properties in typed flat arrays, and offer synchronous/asynchronous/manual update modes. The benchmark page positions LDBC Graphalytics and LSQB as public reproducible suites, while reporting vendor benchmark claims. | This is direct architecture evidence for our thesis: one system can preserve an OLTP graph surface while adding an algorithm-shaped OLAP sidecar. For Knight Bus, the useful idea is not the vendor speed claim; it is the explicit physical-view contract, staleness/update mode, and benchmark harness. | Add `profile_arcadedb_source_reference_v1`, `profile_gav_csr_projection_receipt_v1`, and `profile_oltp_olap_dual_path_receipt_v1`: repo URL, public article URL, benchmark page URL, commit, index size, CSR arrays, dense-id mapping, property-column layout, update mode, OLTP surface, and OLAP sidecar status SHALL be recorded. | High for architecture-shape evidence; medium for reported speedups and memory ratios because they are vendor-reported and not reproduced locally. |
+| Aug 7 ArcadeDB official driver implementation-deepening | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/README.md, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/config-template/platform.properties, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBPlatform.java, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBJob.java, and https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBLoader.java | ArcadeDB Graphalytics platform driver source | The README names three modes: official LDBC Graphalytics with per-algorithm isolation, native multi-vendor comparison, and LSQB pattern matching. Config exposes `platform.olap = false` by default, with comments explaining that enabling it builds a Graph Analytical View / CSR acceleration layer before each algorithm. `ArcadedbPlatform.run` maps Graphalytics algorithms to six jobs. `ArcadeDBJob.execute` builds GAV only when `olap` is true, then runs compute, serializes, and closes the database. `buildGraphOLAP` creates or restores a view named `benchmark`, skips persistence for benchmark-only views, includes vertex type, edge type, and edge weight property, waits up to 600 seconds for `GraphTraversalProviderRegistry.awaitAll`, logs stats if ready, and falls back to OLTP if the view fails or is not ready. `ArcadeDBLoader.load` uses embedded ArcadeDB, creates schema, uses `GraphBatch` with WAL disabled and non-light edges, builds a VID-to-RID map, then imports edges. | This is a concrete implementation template for Knight Bus profile lifecycle: load graph, build physical profile, wait for readiness, choose accelerated path or fallback, compute, serialize, and close. It also shows the risk: silent fallback must be a receipt field, not a hidden behavior. | Add `profile_gav_ready_wait_receipt_v1`, `profile_olap_fallback_policy_receipt_v1`, `profile_bulk_load_graphbatch_receipt_v1`, `profile_algorithm_path_selection_receipt_v1`, and `profile_vertex_result_serializer_receipt_v1`: platform flag, physical-view name, build mode, persistence mode, ready wait limit, ready status, fallback policy, loader batch size/WAL/light-edge settings, VID/RID mapping bytes, compute path, serialization path, and close status SHALL be recorded. | Very high for lifecycle and receipt transfer; exact code paths read through codebase-memory and local source. |
+| Aug 7 ArcadeDB algorithm-path implementation-deepening | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/bfs/BreadthFirstSearchComputation.java, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/sssp/SingleSourceShortestPathsComputation.java, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/cdlp/CommunityDetectionLPComputation.java, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/pr/PageRankComputation.java, and https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/OutputSerializer.java | ArcadeDB algorithm jobs and output serializer | BFS and SSSP explicitly check for a CSR-accelerated Graph Analytical View and fall back to OLTP paths otherwise. CSR BFS resolves the start VID to dense CSR ID, runs `GraphAlgorithms.shortestPathAll`, writes distances back to vertex properties, and logs reachable/unreachable counts; OLTP BFS iterates `Vertex` objects, sets default distances, and runs `AlgoBFS`. CSR SSSP runs Dijkstra on CSR with columnar edge weights. CDLP has a custom CSR implementation because LDBC requires VID-based labels and smallest-VID tie breaking; it initializes `long[]` labels, obtains a CSR neighbor view, precomputes max degree, reuses a neighbor-label buffer to reduce allocation, sorts neighbor labels per vertex to find the mode, allocates a new label array per iteration, and writes all labels back. PageRank uses ArcadeDB's built-in algorithm, disables early stop with tolerance `0.0`, records whether CSR acceleration occurred in the command context, and writes scores back. `OutputSerializer.serialize` iterates every `Vertex` and writes one output line per vertex. | The hot-loop win is only one part of the cost. Knight Bus receipts must include dense-ID lookup, algorithm state arrays, temp buffers, result writeback, and final output serialization. Otherwise we will fool ourselves with compute-only timings. | Add `profile_algorithm_state_writeback_receipt_v1`, `profile_dense_id_lookup_receipt_v1`, `profile_label_propagation_temp_state_v1`, `profile_result_property_materialization_v1`, and `profile_full_vertex_output_scan_v1`: source VID, dense ID, state vector bytes, temp buffer bytes, iteration count, changed flag, writeback row count, output rows, skipped unreachable rows, serializer scan count, and compute-vs-writeback-vs-serialize timing SHALL be recorded. | Very high for PageRank/BFS/WCC/CDLP profile design; exact methods read through codebase-memory. |
+| Aug 7 ArcadeDB native comparison and failure-mode harness deepening | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/shared/bench_common.py, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/ldbc-native/systems/arcadedb.py, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/ldbc-native/systems/neo4j.py, https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/SURREALDB.md, and https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/README.md | ArcadeDB native comparison harness and competitor failure notes | `shared.bench_common.run_timed` wraps each operation with `SIGALRM` and returns elapsed seconds, `timeout`, or `N/A`; `run_benchmarks` runs selected systems sequentially and always invokes cleanup hooks. `ldbc-native/systems/arcadedb.py` loads data with embedded Java, starts Docker for server execution, waits for readiness and GAV/CSR, then runs count-returning OpenCypher algorithm calls to avoid streaming hundreds of thousands of rows over HTTP. `ldbc-native/systems/neo4j.py` starts or connects to Neo4j Docker, loads EVLP data through batched Cypher, creates a GDS projection named `bench`, runs PageRank/WCC/BFS/LCC through GDS, and drops the projection. The README declares same-heap rules for Java systems, one-vendor-at-a-time execution, 300s operation timeouts, temp-dir/container cleanup, dataset/hardware disclosure, and both official Graphalytics and native comparison results. `SURREALDB.md` documents failure modes: no built-in graph algorithms, recursive traversal not reaching beyond one hop in tested cases, 1MB payload-driven load overhead, nested subquery timeouts, no aliases/self-joins, OOM crash, connection resets, and indefinite recursive traversal hang. | This is benchmark-harness evidence, not reproduced truth. The transferable lesson is that comparison products need capability matrices, timeouts, count-only caveats, cleanup rules, same-resource envelopes, and explicit failure receipts. | Add `profile_native_comparison_harness_v1`, `profile_same_heap_vendor_receipt_v1`, `profile_count_only_benchmark_caveat_v1`, `profile_query_shape_capability_matrix_v1`, and `profile_failure_mode_competitor_receipt_v1`: system version, license, embedded/server mode, heap/container resources, timeout, cleanup target, output materialization mode, projection path, unsupported algorithm/query, wrong-count status, timeout, crash/OOM, and reproducibility status SHALL be recorded. | High for harness/product design; medium for performance/capability claims because several are repo-authored/vendor-authored and were not re-run locally. |
+| Aug 7 Samyama graph-vector source-deepening | https://arxiv.org/html/2603.08036v2, https://github.com/samyama-ai/samyama-graph, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/README.md, and https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/BENCHMARKS.md | Samyama paper authors Madhulatha Mandarapu and Sandeep Kunkunuru; repo under `samyama-ai` | The arXiv v2 paper, dated Mar 10 2026, describes a Rust graph-vector database with RocksDB persistence, versioned-arena MVCC, a vectorized executor, cost-based planner, CSR analytics engine, RDF/SPARQL support, HNSW vector search, and in-database optimization. It reports Mac Mini M4 / 16GB evaluation numbers including 255K node/s ingestion, 115K Cypher QPS at 1M nodes, 4.0-4.7x late-materialization traversal speedup, 8.2x GPU PageRank speedup at 1M nodes, and 28/28 LDBC Graphalytics validation. GHCLI metadata captured Aug 7 2026: Apache-2.0, Rust, 156 stars, 11 forks, created Jan 19 2026, pushed Aug 5 2026, topics include `opencypher`, `graph-algorithms`, `graph-database`, `vector-search`, `billion-edges`, `graph-rag`, and `mcp-server`. The README claims a 74M-node/1B-edge biomedical graph query and links its own benchmark material; `docs/BENCHMARKS.md` says SNB Interactive numbers are self-published, at SF1/SF10, with commit `31a7e77`, and explicitly calls complex multi-hop reads an active optimization area. The latest ten GH Actions runs visible through `gh run list` were cancelled GPU CI runs, so no current green CI proof was captured in this pass. | This is high-alpha because it is a near-neighbor to Knight Bus: Rust, OpenCypher-like surface, graph algorithms, vector/RAG use cases, LDBC-flavored benchmarks, and commodity-RAM marketing. The Shreyas/Jeff-Dean lesson is to copy its brave integration ambition but tighten our claims: every number should say paper/repo/local-run, hardware, dataset, phase coverage, and validation status. | Add `profile_samyama_source_reference_v1`, `profile_claim_provenance_tier_v1`, and `profile_graph_vector_unified_surface_v1`: paper URL, repo URL, commit, authors, license, stars/forks, advertised surface, claim source, hardware, dataset, run count, CI status, local reproduction status, and benchmark caveat SHALL be recorded. | High for market/architecture adjacency; medium for performance numbers because the numbers are paper/repo claims and were not reproduced locally. |
+| Aug 7 Samyama Graphalytics implementation-deepening | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/graphalytics_benchmark.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/graphalytics_common/mod.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/common.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/pagerank.rs, and https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/cdlp.rs | Samyama Graphalytics benchmark and algorithm source | Local shallow clone pinned commit `a0e153de933e9810b5aba7751a4853ae95d331ab` with 533 tracked files. Codebase-memory project `Users-amuldotexe-Desktop-personal-repos-lane-knight-bus-graph-walker-gitrefrepo-samyama-graph-src` indexed 10,179 nodes and 64,304 edges across 289 Rust files, 42 Python files, 21 Bash files, and config/docs. `benches/graphalytics_benchmark.main` selects dataset, algorithm, size, validation, loads `.v/.e`, builds a `GraphView`, runs selected algorithms, prints a summary table, and exits non-zero on validation failures. `load_graphalytics_dataset` parses vertex and edge files, infers vertices when needed, dense-maps sparse IDs, builds outgoing/incoming adjacency lists plus optional weights, and calls `GraphView::from_adjacency_list`. `GraphView` stores `index_to_node`, `node_to_index`, `out_offsets`, `out_targets`, `in_offsets`, `in_sources`, and optional flat `weights`. `run_algorithm` maps BFS, PageRank, WCC, CDLP, LCC, and SSSP to implementations and validators. PageRank uses incoming CSR, two score buffers, dangling redistribution when configured, rayon for graphs with at least 1000 nodes, and optional GPU fallback only when the GPU path is eligible. CDLP initializes labels as original NodeIds, uses successor and predecessor neighbors, chooses the smallest label among max-frequency labels, and swaps label buffers per iteration. | This is a reference implementation style we can learn from quickly: simple runner, dense mapping, CSR arrays, exact Graphalytics parameter handling, and explicit validation functions. It is also a warning: the benchmark runner measures algorithm time on an already-built `GraphView`, so it does not by itself prove full-system projection/build/materialization cost. | Add `profile_samyama_graphalytics_runner_v1`, `profile_graphview_dense_csr_receipt_v1`, `profile_exact_ldbc_parameter_receipt_v1`, `profile_cpu_gpu_fallback_guard_v1`, and `profile_algorithm_hotloop_scope_caveat_v1`: source files, commit, index size, dataset files, dense map size, CSR/CSC arrays, weights, algorithm config, validation flag, GPU eligibility, fallback reason, and excluded phases SHALL be recorded. | Very high for implementation-shape evidence; medium for product claims because the benchmark path bypasses the full GraphStore/procedure surface. |
+| Aug 7 Samyama storage and materialization implementation-deepening | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/ADR/ADR-012-late-materialization.md, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/ADR/ADR-021-columnar-property-store.md, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/graph/storage/columnar.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/algo/mod.rs, and https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/operator.rs | Samyama runtime storage, query materialization, and algorithm procedure path | ADR-012 states the engine moved from full node/edge clones to `NodeRef`/`EdgeRef` values and resolves properties lazily in projection/filter paths. ADR-021 says primitive properties live in per-key sparse columns, with `Map`, `Array`, and `Vector` falling back to legacy per-node maps; it reports 5-10x memory reduction on multi-label graphs and records caveats such as type-on-first-write, read-side string clones, coexistence with legacy storage, and non-column-native persistence. The local `ColumnStore.set_property` confirms a per-key typed sparse-column shape for Integer/Float/String/Boolean and skips complex values. `AlgorithmOperator.execute_pagerank` builds a view from the `GraphStore`, runs PageRank, converts scores into records, fetches/clones nodes for result rows, binds `score`, and sorts by score descending. The late-materialization benchmark compares raw edge-cloning traversal, edge-target traversal, Cypher 1-hop/2-hop, full-node return, and property-only return. | This is directly relevant to our rewrite strategy. It says the biggest practical wins may come from not cloning/materializing graph records, not from Rust alone. For Knight Bus, procedure receipts must separate projection build, hot-loop compute, result materialization, sort, and property-return mode; otherwise a fast CSR core can be hidden by full-object output costs. | Add `profile_late_materialization_receipt_v1`, `profile_columnar_property_store_receipt_v1`, `profile_complex_property_fallback_v1`, `profile_algorithm_result_sort_receipt_v1`, and `profile_materialization_phase_split_v1`: NodeRef/EdgeRef count, materialized row count, column key/type/density, legacy fallback values, projection time, compute time, result clone count, sort count/time, output shape, and persistence caveat SHALL be recorded. | High. ADRs and source match the storage/materialization themes; exact memory reductions are self-reported and should be independently reproduced before use in external claims. |
+| Aug 7 Samyama benchmark-market caveat deepening | https://github.com/samyama-ai/samyama-graph/actions, https://github.com/samyama-ai/samyama-graph/issues/296, https://ldbcouncil.org/post/2025-graph-data-council-member-survey-report/, https://arxiv.org/abs/2601.06705, and https://igraph.discourse.group/t/implementing-the-ldbc-graphalytics-benchmark/417 | Samyama maintainers, GDC member-survey authors, GraphAlg authors Daan de Graaf, Robert Brijder, Soham Chakraborty, George Fletcher, Bram van de Wall, Nikolay Yakovets; igraph discussion participants including Gabor Szarnyas, Szabolcs Horvat, and Vincent Traag | The Samyama README badge advertises `2238` passing tests, but local test-marker counting saw 4,487 test-like markers and GHCLI showed the latest ten visible GitHub Actions runs as cancelled GPU CI runs; therefore this pass records test surface and public CI state, not verified-green status. The Samyama paper itself states first-execution Cypher latency can be dominated by parse/plan overhead and reports Samyama 1-hop Cypher slower than cited Neo4j/Memgraph numbers on approximate comparisons. `docs/BENCHMARKS.md` says complex SNB reads grow super-linearly from SF1 to SF10 and links issue #296 as active planner/executor work. The 2025 GDC member survey says some users want benchmark frameworks that take schema and query descriptions and report runtime and memory footprint, and that LDBC should consider LLM/GraphRAG benchmarks. The GraphAlg arXiv abstract argues current graph query languages cannot express algorithms like PageRank well and proposes compiling a graph-algorithm DSL to relational algebra. The igraph Graphalytics thread shows LDBC compatibility can require non-obvious deterministic semantics, such as CDLP minimum-label tie breaking for cross-implementation identity rather than community-quality realism. | This pass strengthens the product thesis: the buyer does not need another grand "rewrite Neo4j" slogan. They need verification-first graph compute: a benchmark/profile framework that can express algorithm semantics, memory footprint, query/runtime phases, and deterministic oracle behavior. Samyama is promising, but it also shows exactly why our product must be claim-disciplined. | Add `profile_public_ci_status_receipt_v1`, `profile_benchmark_claim_caveat_v1`, `profile_parse_plan_overhead_receipt_v1`, `profile_schema_to_benchmark_framework_v1`, `profile_algorithm_dsl_compilation_reference_v1`, and `profile_deterministic_semantics_guard_v1`: CI run URLs/status, README badge claim, local test-surface count, parser/planner/executor split, schema/query benchmark inputs, memory-footprint metric, DSL/language surface, deterministic tie-break rules, and reproducibility tier SHALL be recorded. | High for PMF/product strategy; medium for technical transfer because it mixes source evidence, public paper claims, survey quotes, and discussion-thread lessons. |
+| Aug 7 Samyama issue #296 complex-read deepening | https://github.com/samyama-ai/samyama-graph/issues/296, https://github.com/samyama-ai/samyama-graph/pull/295, and https://ldbcouncil.org/benchmarks/snb/ | Sandeep Kunkunuru / Samyama; Graph Data Council / LDBC SNB Task Force | Public issue #296, opened Jul 25 2026 and still open during this pass, says Samyama's SF10 LDBC SNB Interactive complex reads IC1/IC3/IC5/IC6/IC9 are 3-170x slower than Neo4j and TigerGraph while short reads remain fastest. The issue identifies the common shape as `KNOWS*1..2` or `KNOWS*1..3` expansion from a high-degree anchor followed by distinct, joins, posts/comments/tags, date filters, or aggregation. It explicitly suspects frontier deduplication, `KNOWS*` cardinality estimation, and whether aggregation lowers to hash aggregation or repeated scans. PR #295, merged Jul 24 2026, externalized SNB substitution parameters into `--params-file` so one benchmark binary can run identical logical queries across scale factors and engines; GitHub shows the merge commit as `31a7e77` and one failed GPU CI check on that PR page. The official LDBC SNB page frames the Interactive workload as neighbourhood reads plus updates and the BI workload as aggregation/join-heavy graph queries over a common dataset. | This is the cleanest public evidence yet that our wedge should not be "Rust graph DB" in the abstract. The sharp product surface is bounded, explainable, reproducible complex reads: frontier expansion, dedup, cardinality, join order, aggregation, and phase-level RAM. | Add `profile_complex_read_frontier_receipt_v1`, `profile_cross_engine_query_receipt_v1`, and `profile_scale_factor_substitution_receipt_v1`: query ID, logical query text, substitution file hash, dataset scale factor, anchor ID, edge expansion pattern, frontier cardinalities by depth, dedup mode, join/agg operator chosen, engine/version, in-process vs network mode, run count, median/min/max, and RAM peak SHALL be recorded. | Very high for PMF and verification-loop design. The cross-engine numbers are maintainer-reported and not reproduced locally; treat them as a targeting signal, not an external marketing claim. |
+| Aug 7 Samyama LDBC harness implementation-deepening | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/BENCHMARKS.md, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/ldbc_benchmark.rs, and https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/ldbc_common/mod.rs | Samyama benchmark source | Local `docs/BENCHMARKS.md` records Samyama's own SF1/SF10 SNB Interactive numbers, with SF1 at 3,181,724 nodes / 17,256,038 edges / 78.5s load and SF10 at 29,987,835 nodes / 176,623,433 edges / 575s load. It states timings are embedded, one warm-up plus three timed runs, median latency, commit `31a7e77`, and id-indexes on anchor labels. Local `benches/ldbc_benchmark.ldbc_queries` defines short reads IS1-IS7 and complex reads IC1-IC14; the worst issue #296 queries are exactly the `KNOWS*` plus `DISTINCT`, aggregation, post/tag/date, and friend-of-friend patterns. `run_benchmark` does one warm-up, then timed `query_readonly` runs for reads, records row count, min, median, max, and errors. `main` loads the dataset, builds id indexes for anchor labels, applies params, runs selected queries, prints per-query rows/min/median/max/status, prints AST cache hits/misses, and exits non-zero on errors. | This is a good benchmark skeleton but still not enough for Knight Bus. It gives load time, query wall-clock, and rows, but not phase split, peak RSS, frontier sizes, operator choice, result materialization bytes, or validator output. We need to extend this shape rather than merely copy it. | Add `profile_ldbc_interactive_harness_v1`, `profile_anchor_index_build_receipt_v1`, `profile_ast_cache_receipt_v1`, and `profile_query_result_latency_receipt_v1`: load time, index build time, anchor-index list, params hash, query category, warm-up count, timed run count, AST cache hits/misses, row count, min/median/max, error text, and exit policy SHALL be recorded. | Very high for harness design; medium for full correctness because this harness records success/error and row count, not full LDBC official validation. |
+| Aug 7 Samyama planner/operator implementation-deepening | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/operator.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/planner.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/adjacency_agg_detector.rs, https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/semi_join_detector.rs, and https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/logical_optimizer.rs | Samyama query executor/planner source, read through codebase-memory | `VarLengthExpandOperator` keeps a pending `VecDeque<Record>` per input record, gets owned outgoing/incoming edge target lists, filters edge types, performs BFS up to `max_hops`, keeps `visited` and `parent` hash maps/sets, buffers cloned base records, and optionally reconstructs paths. The planner has a regression test for variable-length reachability and another test noting variable-length paths may fall back from the graph-native planner. `AggregateOperator.execute_all` and `WithBarrierOperator.execute_all` batch upstream rows, build hash maps keyed by evaluated `Value` vectors, update aggregator states, then materialize output records; WITH can early-terminate only for simple no-sort/no-where/no-distinct limit cases. The adjacency-aggregation detector rejects variable-length edges, optional matches, multi-edge types, endpoint property constraints, multi-stage WITH, and many general expressions; `detect_aggregate_then_expand` similarly handles only constrained single-hop shapes. `semi_join_detector.detect` rejects variable-length edge lengths and requires exactly two single-segment MATCHes with one shared variable and narrow aggregate shape. `merge_cyclic_to_trie_join` can rewrite cyclic expand/expand-into shapes into trie joins, but that is not the same as optimizing `KNOWS*1..3` plus downstream aggregation. | This turns issue #296 into a concrete architecture lesson. The missing product primitive is a bounded complex-read profile: multi-hop frontier expansion as a measured artifact, with explicit dedup, compressed frontier storage, semi-join/agg lowering, and RAM/time budgets. | Add `profile_varlength_frontier_operator_v1`, `profile_frontier_dedup_strategy_v1`, `profile_hash_aggregate_state_receipt_v1`, `profile_barrier_materialization_receipt_v1`, `profile_special_case_detector_scope_v1`, and `profile_planner_fallback_receipt_v1`: per-depth frontier size, visited bytes, parent/path bytes, pending-row bytes, owned-edge-list bytes, record clone count, aggregation groups, distinct-set bytes, barrier rows, early-limit eligibility, detector accepted/rejected reason, and fallback plan SHALL be recorded. | Very high for architecture decisions. This is code-shape evidence from a near-neighbor, not a reproduced benchmark. |
+| Aug 7 Neo4j variable-length execution comparator deepening | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/slotted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/slotted/pipes/VarLengthExpandSlottedPipe.scala, https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/interpreted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/interpreted/pipes/BFSPruningVarLengthExpandPipe.scala, and https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/slotted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/slotted/pipes/BFSPruningVarLengthExpandSlottedPipe.scala | Neo4j Cypher runtime maintainers, read through local `neo4j-community-local` codebase-memory index | Regular slotted `VarLengthExpandSlottedPipe.varLengthExpand` allocates an operator `MemoryTracker`, heap-tracked node stack, heap-tracked relationship-container stack, and per-path `RelationshipContainer` values. It performs stack/DFS-style traversal, checks `rels.canAdd(relId)` for traversal uniqueness, filters node and relationship predicates, pushes the other node plus appended relationship container, then projects relationship lists and closes tracked stacks/containers. In contrast, interpreted and slotted `BFSPruningVarLengthExpandPipe` variants call a shared `bfsIterator`, pass node and relationship predicates plus `ExpandAll`/`ExpandInto` target handling, map end-node IDs back into rows, and optionally emit depth as a separate value. | Neo4j already separates "path materialization" from "unique endpoint/depth pruning." Knight Bus must make that split visible in profile selection: if the query needs full paths/relationship lists, the RAM shape is different from an endpoint-only frontier read. | Add `profile_path_materializing_varlength_v1`, `profile_bfs_pruning_endpoint_v1`, and `profile_depth_emission_receipt_v1`: traversal mode, direction, min/max depth, path/relationship variable downstream use, relationship-container bytes, stack/frontier bytes, emitted endpoint count, emitted depth count, predicate counts, and close/release status SHALL be recorded. | Very high for Neo4j-compatible complex reads. This is source-level comparator evidence, not GDS algorithm code. |
+| Aug 7 Neo4j pruning rewrite eligibility deepening | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/cypher-planner/src/main/scala/org/neo4j/cypher/internal/compiler/planner/logical/plans/rewriter/pruningVarExpander.scala and https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/cypher-planner/src/main/scala/org/neo4j/cypher/internal/compiler/planner/logical/plans/rewriter/LogicalPlanRewriter.scala | Neo4j Cypher planner maintainers, read through codebase-memory | `pruningVarExpander` rewrites `VarExpand` under `DISTINCT` or eligible aggregation horizons into `PruningVarExpand` or `BFSPruningVarExpand`. Its `canReplaceWithBfsPruning` requires a horizon plan, min length <= 1, valid max-length semantics, and no downstream relationship-variable dependency beyond min-path handling. `VarExpandRewritePolicy.default` is `PreferDFS`; `PreferBFS` exists, but the source comment warns BFS for `VarExpand(Into)` can hurt worst-case performance and is not enabled by default. `LogicalPlanRewriter.trailWithTwoFiltersToPruningVarExpand` first tries a trail rewrite, then accepts it only if the resulting plan is rewritable by `pruningVarExpander`; otherwise it discards the intermediate rewrite. | This is a product-grade rule: a faster-looking physical plan is only legal under a semantic horizon. Knight Bus should not silently swap in compressed/BFS/frontier profiles unless it can explain why the logical query no longer needs the skipped state. | Add `profile_varlength_rewrite_eligibility_v1`, `profile_aggregation_horizon_rewrite_v1`, `profile_expand_into_policy_receipt_v1`, and `profile_trail_rewrite_guard_v1`: horizon type, min/max depth, `ExpandAll` vs `ExpandInto`, rel/path variable downstream use, accepted rewrite, rejected rewrite, rejection reason, worst-case policy warning, and fallback plan SHALL be recorded. | Very high for planner architecture. This is exactly the kind of accept/reject receipt that can make aggressive low-RAM planning trustworthy. |
+| Aug 7 Neo4j frontier memory and verification fixture deepening | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/runtime-util/src/main/java/org/neo4j/internal/kernel/api/helpers/BFSPruningVarExpandCursor.java, https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/collections/src/main/java/org/neo4j/collection/trackable/HeapTrackingLongHashSet.java, https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/common/src/main/java/org/neo4j/memory/MemoryTracker.java, and https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/runtime-spec-suite/src/test/scala/org/neo4j/cypher/internal/runtime/spec/tests/BFSPruningVarLengthExpandTestBase.scala | Neo4j runtime utility, memory, and runtime-spec-suite maintainers, read through codebase-memory | `DirectedBFSPruningVarExpandCursor` uses heap-tracked `seen` and `queue` structures, emits the start node through a small state machine when eligible, expands via node and relationship cursors, adds unseen nodes after node/relationship predicate checks, reports `currentDepth`, and closes the tracked set/deque. `AllBFSPruningVarExpandCursor` for undirected pruning uses `prevFrontier`, `currFrontier`, and `seenNodesWithAncestors`, plus loop detection so the start node can be emitted at the correct depth. `HeapTrackingLongHashSet` tracks table allocations and releases through `MemoryTracker`; `MemoryTracker` exposes heap/native allocation, release, high-water mark, and scoped trackers. `BFSPruningVarLengthExpandTestBase` covers max length, min/max length, length zero, start-node inclusion, self-loops, shortcuts, directed/undirected behavior, node/relationship predicates, context predicates, RHS apply, `ExpandInto`, and traversal endpoint predicate semantics. | Neo4j gives us both the implementation comparator and the fixture menu. Knight Bus should port a focused subset of these shapes into executable tests before optimizing storage, then extend each test with frontier byte and cap receipts. | Add `profile_frontier_close_release_receipt_v1`, `profile_heap_tracked_collection_receipt_v1`, `profile_undirected_loop_frontier_receipt_v1`, `profile_varlength_fixture_matrix_v1`, and `profile_predicate_context_receipt_v1`: seen/frontier/queue bytes, loop/start-node state, predicate source, directedness, fixture family, depth output, high-water mark, scoped-close status, and oracle row set SHALL be recorded. | Very high for verification-first implementation. This also warns that our "same API" target includes many edge-case semantics before any RAM claim is meaningful. |
+| Aug 7 GDS public estimate surface and projection deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/main/java/org/neo4j/gds/catalog/GraphProjectProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/DefaultGraphCatalogApplications.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/NativeProjectApplication.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/CypherProjectApplication.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphProjectMemoryUsageService.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphStoreFromDatabaseLoader.java | Neo4j Graph Data Science maintainers, read through local `neo4j-gds-local` codebase-memory index | GDS exposes public estimate procedures for graph projection and for PageRank/BFS/WCC algorithm modes. `DefaultGraphCatalogApplications.estimateNativeProject` and `estimateCypherProject` parse native or Cypher projection configs and delegate to the corresponding project application. `NativeProjectApplication.estimate` and `CypherProjectApplication.estimate` call `GraphProjectMemoryUsageService.getEstimate`, which builds a loader context, creates a `GraphStoreFromDatabaseLoader`, computes graph dimensions, and estimates memory during loading with configured read concurrency. `validateMemoryUsage` routes loading through a `MemoryUsageValidator`. The local GDS index contains 54,265 nodes and 284,022 edges, so this is a large enough comparator to treat as a real system, not a toy. | GDS proves that memory estimation is table stakes in graph OLAP. Knight Bus should not claim novelty for "we estimate memory." The differentiation should be estimates converted into budget admission, profile alternatives, measured high-water receipts, projection-build/run/writeback phase separation, and cap-respecting fallback behavior. | Add `profile_gds_procedure_surface_matrix_v1`, `profile_gds_projection_estimate_receipt_v1`, `profile_projection_build_phase_receipt_v1`, and `profile_algorithm_estimate_surface_v1`: procedure name, mode, projection type, graph dimensions, read concurrency, loading estimate, validation decision, selected profile, cap, and measured build/run/writeback bytes SHALL be recorded. | Very high for Neo4j/GDS-compatible OLAP surface evidence. Source-level truth; not a reproduced benchmark run. |
+| Aug 7 GDS PageRank/Pregel state deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankMemoryEstimateDefinition.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankAlgorithm.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankComputation.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/DegreeFunctions.java | Neo4j GDS PageRank/Pregel maintainers, read through codebase-memory | PageRank estimate variants are public procedure surface (`gds.pageRank.stream.estimate`, plus stats/mutate/write estimate variants). The algorithm memory estimator delegates to Pregel with one named PageRank node value of type double. `PageRankAlgorithm.compute` runs the Pregel job, extracts the PageRank double-property vector, scales scores, and returns convergence/iteration metadata. `PageRankComputation.compute` accumulates incoming messages, applies damping/tolerance, updates node state, sends delta divided by degree, or votes to halt. `DegreeFunctions.pageRankDegreeFunction` builds a `DegreeCentrality` computation over natural orientation with concurrency and returns a degree lookup. | PageRank is not just "one array." The run also has degree precomputation, Pregel messages, convergence state, scaling, and result extraction. Knight Bus PageRank receipts should separate rank vector bytes, degree/precompute bytes, message/frontier bytes, convergence iterations, output materialization, and writeback/streaming. | Add `profile_pregel_state_vector_receipt_v1`, `profile_pagerank_degree_precompute_receipt_v1`, and `profile_pagerank_result_extraction_receipt_v1`: state property names, value type, vector bytes, degree function bytes, message/combine bytes, iterations, convergence flag, scaling path, output bytes, and comparator checksum SHALL be recorded. | Very high for first PageRank implementation spec. It directly constrains what "less RAM than GDS" must measure. |
+| Aug 7 GDS BFS state inventory deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/path-finding/src/main/java/org/neo4j/gds/paths/traverse/BfsStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BfsMemoryEstimateDefinition.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BFS.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BFSTask.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/path-finding/src/main/java/org/neo4j/gds/applications/algorithms/pathfinding/traverse/BreadthFirstSearch.java | Neo4j GDS BFS/path-finding maintainers, read through codebase-memory | BFS exposes public stream/stats/mutate estimate procedures. `BfsMemoryEstimateDefinition.memoryEstimation` names `visited`, `traversedNodes`, `weights`, `minimumChunk`, per-thread `localNodes`, `chunks`, and `resultNodes`. It explicitly computes a lower/upper range for local-node arrays using node count, relationship upper bound, and concurrency. `BFS.create` allocates node-count-sized `HugeLongArray`, `HugeDoubleArray`, and `HugeAtomicBitSet`. `BFS.compute` uses atomics for traversed length, target-found index, and minimum predecessor chunk, runs parallel tasks, synchronizes chunks sequentially to preserve traversal order, handles max-depth/target early exit, and copies only the result slice. `BFSTask.syncNextChunk` deduplicates via visited-set get-and-set; `relaxNode` updates minimum chunk atomically and appends local nodes under race-aware logic. | BFS is the clearest low-RAM challenge. An estimate knows named structures, but runtime peak depends on frontier shape, chunk duplication, concurrency, max depth, target early exit, result copying, and ordered synchronization. Knight Bus can differentiate by offering exact budget profiles: bitmap frontier, spill frontier, chunked frontier, and endpoint-only result mode, each with measured high-water marks. | Add `profile_bfs_state_inventory_receipt_v1`, `profile_chunked_frontier_order_receipt_v1`, and `profile_local_nodes_range_receipt_v1`: visited bytes, traversed-node bytes, weights bytes, minimum-chunk bytes, local-node range, chunk count, target-found path, max-depth stop, duplicate suppression count, copied-result bytes, and frontier high-water SHALL be recorded. | Very high for BFS implementation and benchmark design. This tells us where low-RAM wins or loses must be measured. |
+| Aug 7 GDS WCC disjoint-set strategy deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/main/java/org/neo4j/gds/wcc/WccStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/WccMemoryEstimateDefinition.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/Wcc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/SampledStrategy.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/UnsampledStrategy.java | Neo4j GDS WCC/community maintainers, read through codebase-memory | WCC exposes public stream/stats/mutate/write estimate procedures. Its memory estimate centers on the disjoint-set structure (`dss`) and whether the run is incremental. `Wcc.compute` initializes the disjoint set either from a seed property or from node count and concurrency. It chooses `SampledStrategy` when graph characteristics are undirected or inverse-indexed, otherwise `UnsampledStrategy`. `UnsampledStrategy.compute` partitions nodes into union tasks; `UnionTask.run` scans its node range, periodically asserts termination, logs progress by degree, and unions source/target pairs. `SampledStrategy.compute` partitions the graph, samples a sparse subgraph first, finds the largest component, and links remaining nodes; `LinkTask.run` skips nodes already in the largest component, handles high-degree nodes, and connects inverse relationships for correctness. | WCC is likely the cleanest first exact low-RAM profile because the core state is union-find-like and the edge stream can be shaped around partitions. The hard part is not algorithm correctness alone; it is strategy selection, seed initialization, high-degree handling, inverse-index correctness, and whether the output/writeback needs all component IDs materialized at once. | Add `profile_disjoint_set_state_receipt_v1`, `profile_wcc_strategy_selection_receipt_v1`, and `profile_seeded_component_init_receipt_v1`: node count, DSS bytes, incremental flag, seed-property bytes, graph characteristic flags, sampled/unsampled decision, partition count, union count, skipped largest-component count, inverse-link path, output materialization bytes, and comparator component checksum SHALL be recorded. | Very high for a first exact community/connected-components slice. |
+| Aug 7 GDS estimate pipeline deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/AlgorithmEstimationTemplate.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/MemoryEstimationGraphConfigParser.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/DatabaseGraphStoreEstimationService.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/FictitiousGraphStoreEstimationService.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MemoryEstimateResult.java | Neo4j GDS algorithm machinery and memory-estimation maintainers, read through codebase-memory | `AlgorithmEstimationTemplate` is the central generic estimation path. It accepts an algorithm config, `graphNameOrConfiguration`, and a `MemoryEstimation`. If the graph argument is a map, it parses implicit graph creation through `MemoryEstimationGraphConfigParser`, chooses store projection vs Cypher projection by mutually exclusive projection/query key pairs, estimates graph memory via database or fictitious graph-store services, adds a `"graph"` memory component, then adds the `"algorithm"` memory component. If the graph argument is a string, it loads the named graph from the catalog, computes dimensions from the actual `GraphStore`, and estimates only the algorithm over those dimensions. `MemoryEstimateResult` renders `requiredMemory`, `treeView`, `mapView`, `bytesMin`, `bytesMax`, `nodeCount`, `relationshipCount`, and heap percentages based on current max JVM heap. | This is the exact baseline for Knight Bus's verification loop. A good rewrite should not treat graph projection and algorithm state as separate stories. It should produce a composite estimate, then a composite runtime receipt, for both already-materialized graph artifacts and implicit graph configs. | Add `profile_estimate_input_mode_receipt_v1`, `profile_graph_algorithm_composite_estimate_v1`, `profile_named_graph_catalog_estimate_v1`, `profile_fictitious_graph_estimate_v1`, and `profile_estimate_result_schema_parity_v1`: input mode, parsed projection kind, graph component bytes, algorithm component bytes, transformed dimensions, concurrency, required-memory range, tree/map render, node/relationship counts, heap percentages, cap, admission, and post-run high-water SHALL be recorded. | Very high. This is the source-level contract Knight Bus must match and extend. |
+| Aug 7 GDS procedure-to-template chain deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/path-finding/src/main/java/org/neo4j/gds/paths/traverse/BfsStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/main/java/org/neo4j/gds/wcc/WccStreamProc.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/centrality/LocalCentralityProcedureFacade.java, https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/pathfinding/LocalPathFindingProcedureFacade.java, and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java | Neo4j GDS procedure/facade maintainers, read through codebase-memory | The public wrappers are thin and stable-looking: `PageRankStreamProc.estimate` is annotated as `gds.pageRank.stream.estimate` and delegates to `facade.algorithms().centrality().pageRankStreamEstimate`; `BfsStreamProc.estimate` delegates to `facade.algorithms().pathFinding().breadthFirstSearchStreamEstimate`; `WccStreamProc.estimate` delegates to `facade.algorithms().community().wccStreamEstimate`. The local facades parse the algorithm configuration into mode-specific configs (`PageRankStreamConfig`, `BfsStreamConfig`, `WccStreamConfig`) and then call the corresponding estimation-mode business facade. The business facade selects the algorithm memory definition and delegates to `AlgorithmEstimationTemplate`. | For a Neo4j-compatible product, the public estimate chain is part of the API surface. Knight Bus can keep a familiar `.estimate` surface but return richer receipt fields or link to a receipt bundle. The important design point is uniformity: every algorithm should have the same estimate-to-admission-to-run-to-receipt envelope even if its storage format is custom. | Add `profile_public_estimate_call_chain_v1`, `profile_algorithm_config_parse_receipt_v1`, and `profile_uniform_estimate_envelope_v1`: procedure name, input parameter names, parsed config type, algorithm family, estimate facade, memory-definition class, template path, output schema, receipt URL/artifact ID, and unsupported-field behavior SHALL be recorded. | High. This is procedure-path evidence rather than benchmark evidence, but it is essential for API compatibility and LLM-coded wrappers. |
+| Aug 7 GDS estimate fixture deepening | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/integrationTest/java/org/neo4j/gds/wcc/WccStreamProcTest.java and https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/test/java/org/neo4j/gds/catalog/GraphProjectProcEstimateTest.java | Neo4j GDS test maintainers, read through codebase-memory | `WccStreamProcTest.fictitiousMemoryEstimation` calls `gds.wcc.stream.estimate` with `{nodeCount: 10, relationshipCount: 7, nodeProjection: '*', relationshipProjection: '*'}` and asserts one result row with nonblank `requiredMemory`, nonblank `treeView`, nonempty `mapView`, positive min/max bytes, node/relationship counts, and heap percentages. `memoryEstimationNativeProjection` does the same for `{nodeProjection: 'Label', relationshipProjection: 'TYPE'}` and expects counts from an actual graph. `GraphProjectProcEstimateTest.computeMemoryEstimationForCypherProjection` pins exact byte values for Cypher projection estimation, and `computeMemoryEstimationForVirtualGraphWithLargeValues` pins exact byte values and counts for a virtual graph with 5 billion nodes and 20 billion relationships. | GDS tests make estimates a compatibility contract, not a best-effort log line. Knight Bus should port this idea: estimates should be executable fixtures with fixed schemas, known byte ranges for small graphs, large-dimension overflow guards, and explicit cap/admission outcomes. | Add `profile_estimate_fixture_schema_v1`, `profile_large_virtual_graph_estimate_v1`, and `profile_cap_admission_fixture_v1`: single-row guarantee, required fields, exact byte expectations for reference fixtures, large node/relationship counts, heap percentage behavior, cap value, admitted/rejected result, and typed rejection reason SHALL be tested. | Very high for verification-first planning. This is the shape that lets LLMs safely implement estimates before algorithm hot loops. |
 
 ## Insight Notes
 
@@ -6611,6 +6787,3333 @@ What is the product decision?
   `triangle_locality`, or `graphdb_pattern_latency` profiles.
 ```
 
+#### Query Shape Is A Partition Input
+
+The older graph database and knowledge-graph partitioning lineage sharpens the
+TuskFlow lesson. A graph can have the same topology and still deserve different
+physical layouts depending on which queries actually run.
+
+This is the distinction that matters for the Neo4j rewrite thesis:
+
+```text
+Topology-shaped layout:
+  graph structure -> partition/layout -> hope many workloads improve
+
+Workload-shaped layout:
+  graph structure + query motifs + access frequencies -> partition/layout
+  -> measured query/algorithm cost -> adaptive keep/rebuild/retire policy
+```
+
+Averbuch/Neumann are useful because they tie graph database partitioning to
+synthetic but explicit access patterns, network traffic, load balance, and
+intermittent maintenance. Loom is useful because it makes query pattern
+expressions and relative frequencies placement inputs for an online graph.
+WawPart and AWAPart are useful because they add query clustering, query
+rewriting, and adaptive re-partitioning as workload changes.
+
+The source-to-profile translation:
+
+| Source | Workload Signal | Knight Bus Profile Delta |
+|---|---|---|
+| Averbuch/Neumann graph DB partitioning | synthetic access patterns, network traffic, load balance, intermittent maintenance | `profile_traffic_metric_receipt_v1`, `profile_repartition_policy_v1` |
+| Loom | graph pattern expressions, relative frequencies, online update stream, matched subgraphs | `profile_workload_fingerprint_v1`, `profile_query_motif_partition_v1` |
+| WawPart | query-workload features, KG features, query clustering, query rewriting | `profile_query_rewrite_receipt_v1` |
+| AWAPart | changed workload snapshots, adaptive repartitioning, average processing time maintenance | `profile_adaptive_workload_repartition_v1` |
+
+New executable-spec candidates:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_workload_fingerprint_v1` | WHEN a graph DB/query latency profile is built, THEN the receipt SHALL record query pattern IDs, relative frequencies, edge-label/property filters, traversal depth, source distribution, update-stream identity if applicable, and top motifs. |
+| `profile_query_motif_partition_v1` | WHEN motif-aware placement is used, THEN the receipt SHALL record candidate motif matches, collocation decisions, rejected motifs, and the measured remote-traversal or tail-latency effect. |
+| `profile_traffic_metric_receipt_v1` | WHEN partition quality is used as a performance proxy, THEN network traffic, remote traversals, load balance, edge cut, communication volume, or an explicit "proxy unavailable" reason SHALL be recorded. |
+| `profile_query_rewrite_receipt_v1` | WHEN queries are rewritten because of graph partitioning, THEN original query hash, rewritten query hash/form, target partition plan, and semantic-equivalence checker output SHALL be recorded. |
+| `profile_adaptive_workload_repartition_v1` | WHEN workload changes can invalidate a profile, THEN workload snapshot identity, diff from previous snapshot, moved vertices/edges/triples, rebuild cost, runtime delta, and rollback/kill condition SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does workload-aware partitioning solve OLAP algorithm storage?
+  Not by itself. It is strongest for graph DB and KG query workloads.
+  For PageRank, CC, SSSP, and triangle count, the workload signal may be
+  algorithm family and graph shape rather than Cypher/SPARQL query motifs.
+
+Should this be in the first coding demo?
+  Probably no. The first demo should stay `layout_probe_v1` plus PageRank
+  receipt discipline. Query-aware partitioning becomes the later
+  `graphdb_pattern_latency` or KG workload profile.
+
+What changed in our architecture?
+  `profile_partition_quality_to_latency_v2` now needs a workload fingerprint
+  whenever it claims query latency. A topology-only partition metric is
+  insufficient evidence for graph DB performance.
+```
+
+#### Partitioning Becomes A Memory Budget Dial
+
+The streaming-partitioning pass gives us a sharper way to think about the
+user-facing product. Knight Bus should not expose "the graph partitioner." It
+should expose a ladder of physical choices, each with a RAM ceiling, pass count,
+quality target, and downstream workload receipt.
+
+```text
+More RAM / fewer passes:
+  full in-memory partitioning
+  hybrid in-memory + streaming
+  buffered streaming with model graph
+  two-phase streaming
+  restreaming
+  pure one-pass streaming
+Less RAM / more quality risk or more passes
+```
+
+The important subtlety is that "less RAM" does not always mean "one pass."
+For batch workloads, the better low-RAM answer may be:
+
+```text
+use bounded memory
+accept 2-20 sequential passes
+retain compact assignment/probe state
+improve partition/layout quality
+then run the expensive graph algorithm with a better physical plan
+```
+
+This is exactly aligned with the PMF thesis: budget-bounded batch compute. The
+customer says, "I have 5 GB or 10 GB of RAM, and I can wait longer." The system
+responds by choosing pass count, buffer size, and layout strategy.
+
+The design ladder:
+
+| Profile Family | RAM Posture | Time Posture | Best For | Main Risk |
+|---|---|---|---|---|
+| Full in-memory | highest | lowest partitioning friction | small/medium graphs, warm cluster, high reuse | violates budget on large graphs |
+| Hybrid edge partitioning | configurable | moderate | power-law graphs where low-degree and high-degree edges deserve different treatment | threshold tuning and metadata complexity |
+| Buffered streaming | bounded by buffer/model graph | moderate | large graphs where a little lookahead buys much better layout | buffer too small or motifs too large |
+| Two-phase streaming | bounded plus compact clustering state | two passes | reducing uninformed early assignments | first-pass clusters must be useful |
+| Restreaming | O(n)-style retained assignment state | many passes possible | batch jobs where time is cheaper than RAM | pass count can grow; quality curve may plateau |
+| Pure one-pass streaming | lowest | fastest ingest | true online ingest or severe memory caps | stream-order sensitivity and irrevocable bad choices |
+| Vertex-cut power-law | variable metadata for replicas | workload dependent | natural graphs with extreme high-degree hubs | replicated state can hurt memory and correctness receipts |
+| Topology/process mapping | topology metadata | planning overhead | NUMA/distributed/storage-aware execution | platform-specific complexity |
+
+Spec candidates from this pass:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_partition_budget_dial_v1` | WHEN a graph layout is requested, THEN the planner SHALL list legal profiles with RAM cap, estimated passes, expected layout bytes, quality proxy, and downstream workload risk. |
+| `profile_stream_order_receipt_v1` | WHEN a streaming partition profile runs, THEN stream-order mode, reorder allowance, one-pass/multipass count, move-after-placement policy, and order-risk label SHALL be recorded. |
+| `profile_buffered_stream_partition_v1` | WHEN buffered streaming runs, THEN buffer bytes, batch size, model-graph bytes, assignment delay, quality delta, and spill behavior SHALL be recorded. |
+| `profile_restreaming_budget_v1` | WHEN restreaming runs, THEN pass count, retained assignment bytes, per-pass quality curve, balance objective, stop rule, and parallel worker split SHALL be recorded. |
+| `profile_two_phase_streaming_v1` | WHEN two-phase streaming runs, THEN phase-1 clustering bytes/time, phase-2 partition bytes/time, replication factor, and comparison against one-pass baseline SHALL be recorded. |
+| `profile_hybrid_edge_partition_v1` | WHEN hybrid edge partitioning runs, THEN degree threshold, in-memory subset bytes, streaming subset bytes, replication factor, partition quality, and downstream job delta SHALL be recorded. |
+| `profile_vertex_cut_powerlaw_v1` | WHEN vertex-cut is selected, THEN degree-skew proof, replicated-vertex bytes, replication factor, high-degree policy, and algorithm compatibility SHALL be recorded. |
+| `profile_topology_mapping_receipt_v1` | WHEN partition placement uses hardware/distributed topology, THEN NUMA/storage/network/process mapping and communication-cost estimate SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does this mean we should build all partitioners first?
+  No. It means `layout_probe_v1` should emit enough graph-shape facts to choose
+  later partition profiles. The first PageRank proof can still run without
+  building every partitioning mode.
+
+What is the immediate architecture impact?
+  The planner cannot be binary: "fits RAM" versus "does not fit RAM." It needs
+  a profile menu with explicit time-for-RAM tradeoffs.
+
+Why does this matter for fame/PMF?
+  Because the product promise becomes legible: run graph jobs under a declared
+  RAM budget, show the tradeoff options before spending hours, and return a
+  receipt proving which budget was obeyed.
+```
+
+#### Graph Learning Widens The PMF Without Changing The Spine
+
+This pass says graph learning is not a distraction. It is the same
+budget-bounded, storage-shaped compute problem with different state and a
+different proof contract.
+
+```text
+Classical graph algorithm:
+  adjacency
+  + small per-vertex scalar/vector state
+  + exact or invariant-checkable output
+
+GNN / graph embedding workload:
+  adjacency
+  + high-dimensional features
+  + embeddings
+  + gradients
+  + sampled neighborhoods
+  + accuracy and convergence constraints
+```
+
+That difference matters because the memory bill moves. In PageRank, the state
+surface is dominated by graph storage plus a few dense vectors. In GNN and graph
+embedding workloads, feature vectors, embedding tables, cached historical
+embeddings, gradients, sampled subgraphs, and communication buffers can dominate.
+So a partitioning or caching decision is not just a topology decision. It is a
+state-budget decision.
+
+| Evidence Lane | Bottleneck | Knight Bus Lesson |
+|---|---|---|
+| EDBT 2025 GNN partition strategies | replication factor, vertex balance, feature size, hidden dimensions, mini-batch size, scale-out factor | Partition quality must be tied to peak memory, training time, and epochs-to-amortize. |
+| Marius / MariusGNN | graph embeddings and GNN state exceed GPU/CPU memory; IO/data movement dominates | Expose storage hierarchy as a profile: GPU, CPU, SSD, partition cache, ordering, and overlap. |
+| FreshGNN | repeated raw feature/embedding fetch and recompute | Cache stable historical embeddings, but require staleness, gradient, refresh, and accuracy receipts. |
+| CDFGNN | remote feature/gradient access and distributed communication | Add communication hierarchy, quantization, cache, and convergence fields to the receipt. |
+| BGL | subgraph sampling and feature retrieval dominate GPU math | Store and partition in the shape of multi-hop sampling plus feature reads. |
+| BatchGNN | redundant feature fetches across minibatches | Treat macro-batch windows as a time-for-RAM/data-movement tradeoff. |
+| FastGL | overlapping sampled neighborhoods and memory IO | Reorder execution to reuse structure without exceeding memory budget. |
+
+New executable-spec candidates from this pass:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gnn_partition_training_v1` | WHEN distributed GNN training is profiled, THEN partition algorithm, replication factor, vertex balance, graph type, scale-out factor, training-time delta, and peak memory delta SHALL be recorded. |
+| `profile_gnn_feature_state_budget_v1` | WHEN a GNN workload runs, THEN feature bytes, embedding bytes, gradient bytes, sampled-subgraph bytes, cache bytes, and communication-buffer bytes SHALL be reported separately. |
+| `profile_partition_amortization_epochs_v1` | WHEN a layout/projection has build cost, THEN the receipt SHALL report build time, per-epoch/job speedup, reuse count, and epochs/jobs required to amortize. |
+| `profile_graph_embedding_out_of_core_v1` | WHEN graph embedding training exceeds RAM/GPU memory, THEN GPU bytes, CPU bytes, SSD bytes, partition-cache hit rate, data-order policy, disk-read volume, accuracy delta, and cloud-cost estimate SHALL be recorded. |
+| `profile_storage_hierarchy_training_v1` | WHEN graph learning uses multiple storage tiers, THEN tier placement, movement policy, IO/computation overlap, queue depth, and measured stall time SHALL be recorded. |
+| `profile_training_accuracy_delta_v1` | WHEN an approximate/cached graph-learning profile runs, THEN validation metric, convergence curve, baseline accuracy, final accuracy, and allowed delta SHALL be recorded. |
+| `profile_staleness_cache_receipt_v1` | WHEN historical feature/embedding/gradient cache is used, THEN staleness threshold, gradient threshold, refresh policy, cached bytes, hit rate, memory-access reduction, speed delta, and accuracy delta SHALL be recorded. |
+| `profile_hierarchical_comm_partition_v1` | WHEN distributed graph learning uses topology-aware partitioning, THEN within-device, within-node, and cross-node communication bytes plus partition mapping SHALL be recorded. |
+| `profile_gnn_quantized_message_receipt_v1` | WHEN feature/gradient messages are quantized, THEN bit width, compression ratio, quantization error, communication reduction, and convergence/accuracy impact SHALL be recorded. |
+| `profile_gnn_sampling_io_v1` | WHEN sampling-based GNN training runs, THEN sampled nodes/edges, feature-fetch bytes, sampler time, feature retrieval time, GPU compute time, cache hit rate, and stall time SHALL be recorded. |
+| `profile_multihop_partition_locality_v1` | WHEN a partition is selected for sampling-based GNNs, THEN one-hop and multi-hop locality, cross-partition sample traffic, training-node balance, and feature locality SHALL be recorded. |
+| `profile_gnn_macrobatch_fetch_v1` | WHEN macrobatching is used, THEN minibatches per macro batch, overlap ratio, reused feature bytes, relay communication bytes, cache bytes, and total training-time delta SHALL be recorded. |
+| `profile_match_reorder_sampling_v1` | WHEN sampled subgraphs are reordered, THEN overlap score, reorder window, extra memory, traffic reduction, synchronization reduction, speed delta, and accuracy/convergence invariance SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does this mean the Neo4j rewrite should become a GNN platform?
+  No. It means the PMF may be "budget-bounded graph compute", with Neo4j/GDS
+  PageRank-style OLAP as the first wedge and graph learning as an expansion lane.
+
+Can we reuse the same verification spine?
+  Mostly yes, but the proof type changes. Classical algorithms can use exact
+  or invariant oracles. Graph learning also needs accuracy/convergence receipts.
+
+Does this support the RAM-bound user promise?
+  Yes. These sources repeatedly show high-dimensional feature, embedding, and
+  gradient state turning graph workloads into memory/data-movement problems.
+  Partitioning, caching, ordering, and macrobatching are all ways to trade
+  preprocessing or elapsed time for bounded memory and predictable movement.
+
+What is the immediate product impact?
+  Keep the first coding wedge as `layout_probe_v1` plus PageRank receipts.
+  Add GNN fields to the schema only after the exact OLAP receipt spine is
+  working, so the product does not sprawl before the first proof lands.
+```
+
+#### Implementation Artifacts Make GNN Receipts Concrete
+
+The papers told us the GNN bottleneck families. The artifact repos tell us the
+actual receipt fields.
+
+```text
+Paper-level claim:
+  "cache historical embeddings"
+  "optimize graph data IO"
+  "reorder sampled batches"
+
+Implementation-level receipt:
+  which rows were cached
+  which rows were invalidated
+  which rows came from CPU, GPU cache, UVM, mmap, distributed store, or last batch
+  how much graph structure was preallocated
+  how many samples/layers/pending windows were in flight
+  which reorder window and overlap matrix produced this batch order
+```
+
+| Artifact | Concrete State Surface | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| history-cache / FreshGNN | `full2embed`, `embed2full`, `feat2full`, shared buffer, `header`, `num_stored_history`, `staleness_thres`, `start_history`, `rate`, `method`, UVM/mmap/distributed mode, history reconstruction masks, CUDA history aggregation | cache state diff, historical hits, feature hits, UVM/mmap loads, distributed loads, recorded rows, invalidated rows, gradient threshold, staleness refresh, buffer header movement |
+| BGL feature pipeline | `worker_num`, `cache_size_per_gpu`, `feature_dim`, `max_inputs_length`, `samples_per_worker`, per-NVLink cache maps, FIFOs, concurrent queues, CUDA streams, peer access, cached/not-cached splits | cache budget, queue depth, cached count, not-cached count, CPU feature reads, GPU scatters, P2P mode, per-sample feature bytes, worker/topology mapping |
+| BGL graph pipeline | pending-sample window, `MAX_LAYERS`, preallocated CSR `indptr/indices/data`, shared-memory graph names, labels copied from CPU, training queue | graph structure preallocation bytes, layer count, samples in flight, graph-copy bytes, label-copy bytes, shared-memory object count, training result queue depth |
+| BGL ordering | masked BFS over CSR plus component coverage | ordering source, mask identity, source vertex, visited bytes, output sequence length, disconnected-component policy |
+| FastGL MatchServer | available GPU memory, `cache_ratio`, high-node list, GPU flag, last-batch flag, local-to-cache maps | available memory formula, reserve/cushion bytes, cache capacity, all/high/no-cache branch, high-node identity, cache-map bytes, last-batch reuse bytes |
+| FastGL Match-Reorder | greedy batch-overlap matrix over a `steps` window | reorder window, overlap matrix summary, selected order, duplicate-avoidance rule, ordering overhead, reuse delta |
+| FastGL FusedMapSampler | fanout list, `sample_node`, `transfer_edge_id`, block construction, sampled edge count | fanout, sampled edges, max source bound, transfer-edge-id bytes, block src/dst counts, event-sync timing |
+| FastGL run loop | sample time, graph-copy time, copy time, train time, backward time, epoch nodes, epoch samples | phase timing receipt and amortization curve |
+
+New executable-spec candidates from implementation artifacts:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gnn_cache_state_diff_v1` | WHEN a GNN cache profile runs, THEN the receipt SHALL report candidate nodes, historical embedding hits, feature-cache hits, UVM/mmap loads, distributed loads, rows recorded, rows invalidated, gradient threshold, staleness threshold, and cache-header movement. |
+| `profile_async_feature_pipeline_v1` | WHEN feature fetching is pipelined, THEN worker count, cache size per GPU, feature dimension, max input length, samples per worker, FIFO/IPC channel count, queue depth, cache hit/miss counts, GPU preallocation bytes, and feature-copy bytes SHALL be recorded. |
+| `profile_gnn_graph_feature_pipeline_v1` | WHEN graph structure and features move through separate paths, THEN preallocated CSR bytes, pending sample window, layer count, graph-copy bytes, feature bytes, label bytes, shared-memory object count, and queue depth SHALL be recorded. |
+| `profile_gpu_memory_cache_budget_v1` | WHEN a cache profile uses available GPU memory, THEN total memory, allocated memory, reserved memory, safety cushion, cache ratio, derived capacity, cached-node count, and rejected-cache reason SHALL be recorded. |
+| `profile_batch_overlap_reorder_v1` | WHEN sampled batches are reordered, THEN reorder window, overlap matrix summary, selected order, ordering overhead, feature-reuse bytes, graph-copy delta, and downstream phase timing SHALL be recorded. |
+| `profile_sampling_phase_timing_v1` | WHEN sampling-based training runs, THEN sample time, graph-copy time, feature-copy time, forward/train time, backward time, total epoch time, sampled nodes, and sampled edges SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Do these artifacts say "build GNN first"?
+  No. They say that if Knight Bus later expands into graph learning, the receipt
+  schema should be designed now with enough flexibility for feature/embedding
+  state, approximation, and phase timing. PageRank remains the first exact OLAP
+  slice.
+
+What is the most transferable idea to classical graph algorithms?
+  Phase accounting. FastGL and BGL separate sampling, graph copy, feature copy,
+  training, and backward time. Knight Bus should do the same for graph algorithms:
+  projection, layout build, state allocation, execution, verification, and output.
+
+What is the strongest PMF signal?
+  These systems are not fighting "graphs are slow" in the abstract. They are
+  fighting movement and predictability: where state lives, when it moves, how
+  much is in flight, and whether reuse is worth its memory. That is exactly our
+  budget-bounded batch compute thesis.
+```
+
+#### Marius Turns Storage Hierarchy Into A Receipt
+
+Marius is the first implementation artifact in this pass where the storage
+hierarchy looks almost like a Knight Bus planner trace. It does not merely say
+"out of core." It makes the choreography visible:
+
+```text
+Partitioned file on disk
+  -> PartitionBuffer(capacity, partition_size, dtype)
+  -> current buffer_state partitions in aligned host memory
+  -> LookaheadBlock prefetches next admit set
+  -> AsyncWriteBlock writes evicted partitions
+  -> DataLoader waits for in-flight batches
+  -> GraphModelStorage swaps the in-memory subgraph
+  -> pipeline workers move batches through CPU/GPU/IO stages
+```
+
+That is the exact discipline Knight Bus needs. A storage format by itself is not
+enough. The product must expose the whole operating plan: what is in memory, what
+is next, what is being evicted, which bytes were copied, which writes are async,
+which batches are still in flight, and which generated ordering decided the next
+phase.
+
+| Marius Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| `PartitionBuffer` constructor and `load` | capacity, partition count, fine-to-coarse ratio, partition size, embedding size, total embeddings, dtype, dtype bytes, aligned buffer allocation, initial `buffer_state` reads | capacity, partition size, embedding size, dtype bytes, aligned bytes, loaded partition IDs, num nodes in memory, partition-file offsets |
+| `PartitionBuffer.setBufferOrdering` | stores `buffer_states`, advances iterator, reloads if already loaded | ordering family, generated buffer-state hash, reload cost, planner/user source |
+| `PartitionBuffer.admit/evict/sync` | computes buffer addresses, reads admitted partitions, writes evicted partitions, flushes present partitions | admit IDs, evict IDs, buffer indexes, read bytes, async write bytes, sync flush count |
+| `LookaheadBlock.move_to_buffer` | waits for prefetched block, copies partition bytes into buffer, zeroes lookahead memory, installs tensor views | next admit IDs, lookahead wait time, copied bytes, prefetch memory bytes |
+| `AsyncWriteBlock.run` | waits for write block, writes partitions, clears `present` and `evicting`, notifies waiters | async write queue, partitions written, completion wait, writeback bytes |
+| `DataLoader.setBufferOrdering/getNextBatch` | selects edge/node ordering; waits for `batches_left_ == 0` before subgraph swap; reinitializes batches | buffer ordering mode, batches left, wait-for-batches time, swap boundary, batch reinit count |
+| `GraphModelStorage.updateInMemorySubGraph_` | computes evict/admit partitions, filters old edge buckets, reads new edge buckets, remaps global IDs, rebuilds mapped graph | active partition IDs, active edge buckets, global-to-local map bytes, new edge bytes, mapped-edge bytes, graph rebuild time |
+| `initStorageBackendConfig` | exposes partition-buffer options from config | default/chosen/effective values for partition count, buffer capacity, prefetching, cache partitions, ordering family, random assignment, dtype |
+| pipeline queues/workers | indexed queue hot spots and CPU/GPU/IO worker surface | queue size, batches in flight, pinned/prefetch bytes, host/device transfer state, stall time |
+
+New executable-spec candidates from Marius:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_partition_buffer_receipt_v1` | WHEN a bounded partition buffer is used, THEN capacity, partition size, embedding/vector width, dtype bytes, aligned allocation bytes, loaded partition IDs, and num records/nodes in memory SHALL be recorded. |
+| `profile_partition_prefetch_writeback_v1` | WHEN prefetching or async writeback is enabled, THEN current admit/evict IDs, next admit IDs, lookahead wait, copied bytes, async write state, sync flush count, and partition-file bytes SHALL be recorded. |
+| `profile_subgraph_swap_training_v1` | WHEN a run swaps an in-memory graph/subgraph, THEN active partitions, active edge buckets, evict/admit IDs, batch-drain wait, global-local map bytes, newly loaded edge bytes, mapped-edge bytes, and graph rebuild time SHALL be recorded. |
+| `profile_buffer_ordering_manifest_v1` | WHEN a planner generates buffer order, THEN ordering family, generated buffer-state hash, fine-to-coarse ratio, cache partitions, random-assignment flag, and rejected alternatives SHALL be recorded. |
+| `profile_pipeline_queue_receipt_v1` | WHEN execution overlaps IO, CPU, and GPU work, THEN queue sizes, batches in flight, worker roles, host/device transfer stages, pinned/prefetch buffer bytes, and stall time SHALL be recorded. |
+| `profile_storage_profile_manifest_v1` | WHEN a physical storage profile is selected, THEN all user-visible knobs plus default, chosen, and effective derived values SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does this mean Marius is Knight Bus?
+  No. Marius targets graph embeddings/GNNs, not a Neo4j-compatible OLAP slice.
+  The transferable part is the receipt discipline around storage hierarchy,
+  partition admission/eviction, prefetch, writeback, and batch swaps.
+
+Does this prove lower RAM for Neo4j/GDS PageRank?
+  No. It proves that a mature graph-learning implementation can make out-of-core
+  execution feasible by strict state accounting. PageRank still needs its own
+  proof against Neo4j/GDS with exact or invariant-based verification.
+
+Why is this useful before PageRank?
+  Because PageRank's bounded-storage mode will need the same visibility:
+  current partition, next partition, prefetch/writeback, phase wait, active
+  vectors, and verification bytes. Marius gives us names for those receipts.
+
+What is the product principle?
+  A bounded storage profile is not just a file format. It is a choreography of
+  admission, eviction, ordering, prefetch, writeback, batch scheduling, and
+  proof. If any of those are hidden, the RAM cap is not really auditable.
+```
+
+#### CDFGNN Shows The Expansion Proof Type
+
+CDFGNN is useful because it forces a clean distinction between exact graph
+algorithms and graph-learning workloads.
+
+```text
+Exact OLAP graph algorithm:
+  output should match a known oracle or invariant
+  receipts prove correctness, RAM, latency, and phase accounting
+
+Graph-learning workload:
+  output is a model/accuracy/convergence curve
+  receipts prove memory/communication reduction, bounded error, and accuracy
+```
+
+CDFGNN's system shape is:
+
+```text
+vertex-cut partition
+  -> master/mirror replica metadata
+  -> full-batch forward pass
+  -> gather/scatter feature synchronization
+  -> adaptive feature/gradient cache
+  -> quantized messages
+  -> hierarchy-aware placement: fewer cross-host messages,
+     more cheaper intra-node/GPU messages when worth it
+  -> convergence/accuracy guard
+```
+
+This is not the first product wedge, but it tells us what the second proof
+family looks like. The user promise becomes:
+
+```text
+I will spend extra planner/setup/accounting work.
+I want lower remote access, lower communication, or lower RAM.
+I accept bounded approximation only if the receipt shows accuracy/convergence.
+```
+
+The living GNN-system catalogs reinforce the same pattern. The field naturally
+clusters around:
+
+| Catalog Lane | Example Systems / Topics Seen | Product Meaning |
+|---|---|---|
+| distributed full-batch training | CDFGNN, SANCUS, PipeGCN, NeutronTP, LeapGNN | Communication is the budget, not only RAM. |
+| out-of-core / storage-tier training | MariusGNN, Hyperion, Ginex | SSD/CPU/GPU tier placement is a first-class profile. |
+| dataloaders and sampling IO | BGL, GIDS, GNNLab, PaGraph | The read shape is multi-hop sampling plus feature fetch. |
+| quantized/compressed GNNs | EXACT, QGTC, CDFGNN quantization | Compression must expose error and convergence impact. |
+| temporal/dynamic graph learning | ETC, SIMPLE, Orca, Zebra | Dynamic placement and time-aware PageRank-style workloads may be later wedges. |
+| execution planning and cache systems | DAHA, DUCATI, SANCUS, PaGraph | A planner can become famous if it makes data movement predictable. |
+
+New executable-spec candidates from this source-catalog pass:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_remote_vertex_access_budget_v1` | WHEN a distributed graph-learning profile runs, THEN local vertex accesses, remote vertex accesses, remote feature bytes, remote gradient bytes, avoided remote accesses, and per-layer communication share SHALL be recorded. |
+| `profile_adaptive_threshold_cache_v1` | WHEN adaptive feature/gradient caching is used, THEN threshold schedule, error norm, active vertices, messages sent, messages skipped, cache bytes, and refresh events SHALL be recorded. |
+| `profile_quantized_comm_receipt_v1` | WHEN messages are quantized, THEN original bit width, quantized bit width, min/max side metadata bytes, compression ratio, error bound, dequantization cost, and accuracy/convergence delta SHALL be recorded. |
+| `profile_hierarchical_partition_comm_v1` | WHEN partitioning targets hierarchical hardware, THEN GPU-level replicas, host-level replicas, cross-GPU messages, cross-host messages, edge imbalance, vertex imbalance, and evaluation weights SHALL be recorded. |
+| `profile_accuracy_convergence_guard_v1` | WHEN a profile uses approximation, cache staleness, or quantization, THEN baseline accuracy, profile accuracy, convergence curve, allowed delta, and fail-closed condition SHALL be recorded. |
+| `profile_gnn_research_route_map_v1` | WHEN a new GNN system source is added, THEN it SHALL be classified by movement target, memory target, storage tier, compression method, proof type, and public-code availability. |
+| `profile_graph_learning_data_management_map_v1` | WHEN graph-learning expansion is considered, THEN temporal state, dynamic placement, cache/staleness policy, personalized PageRank linkage, execution planning, and dual-cache state SHALL be tracked. |
+
+Rubber-duck check:
+
+```text
+Does CDFGNN make us less focused?
+  It should not. It gives a future route map. The first wedge remains exact
+  PageRank/OLAP because verification is cleaner and Neo4j/GDS is the baseline.
+
+Why include graph-learning catalogs now?
+  Because they prevent a narrow Neo4j rewrite trap. The durable PMF may be
+  budget-bounded graph/data-movement compute, with exact OLAP first and
+  graph-learning later.
+
+What changes in architecture?
+  The receipt schema should reserve fields for proof type: exact oracle,
+  invariant checker, tolerance checker, or accuracy/convergence guard. Without
+  that, future cache/quantization profiles will not be honest.
+```
+
+#### Hyperion Makes SSD A Budget Dial
+
+Hyperion is the strongest implementation artifact so far for a different
+architecture option:
+
+```text
+Do not make RAM the only expensive tier.
+Use cheap NVMe SSD capacity.
+Let the GPU orchestrate fine-grained feature reads.
+Disaggregate IO submission from IO completion.
+Keep cache lookup separate from disk IO.
+Overlap storage movement with model/graph computation.
+Expose throughput per cost, not only raw throughput.
+```
+
+For Knight Bus, this matters because it generalizes the PMF promise:
+
+```text
+User promise:
+  "I have a hard RAM budget.
+   I can accept more elapsed time, more SSD reads, or more preprocessing.
+   Tell me the legal profiles and prove what happened."
+
+Hyperion-shaped answer:
+  "Use a disk-backed profile.
+   Keep hot topology/features in CPU/GPU cache.
+   Convert misses into explicit IO requests.
+   Submit requests asynchronously.
+   Complete them at a safe phase boundary.
+   Count every tier, request, queue, and stall."
+```
+
+The artifact path is concrete:
+
+```text
+sampled_ids + cache_index
+  -> cache_idx >= 0: copy from CPU/GPU feature cache
+  -> cache_idx < 0: UserQueue creates IOReq
+  -> IOReq.start_lb stripes feature blocks across SSDs
+  -> IOReq.dest_addr points into the destination GPU feature buffer
+  -> IOStack.io_submission distributes requests per SSD/queue
+  -> NVMe SQ doorbells are rung
+  -> model/graph work can proceed on another CUDA stream
+  -> IOStack.io_completion polls completions and rings CQ doorbells
+  -> training backend receives IDs/features/labels/aggregation edges through IPC
+```
+
+| Hyperion Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| README / ICDE paper | GPU-initiated asynchronous disk IO, IO submission/completion disaggregation, cheap NVMe SSDs, TPC metric, hardware assumptions | hardware profile, SSD count, PCIe generation, GPU core allocation, cost basis, TPC numerator/denominator |
+| `IOStack` constructor | SSD queue pairs, PRP tables, distributed request buffers, per-SSD request counters, IO buffer bases | queue count, queue depth, PRP bytes, IO buffer bytes, per-SSD counters, submission/completion thread-block budget |
+| `init_ssd` | `/dev/libnvm*`, BAR mmap, admin queue, IO queues, mapped IO buffers, PRP lists | kernel/module requirement, mapped register bytes, queue setup result, controller reset/enable state |
+| `UserQueue.dequeue_kernel` | cache miss creates `IOReq`; `start_lb` stripes node feature blocks across SSDs; `dest_addr` targets the output feature buffer | miss count, stripe function, feature block size, logical block starts, destination-address span |
+| `CompleteFeatureStorage.IOSubmit/IOComplete` | queue-generated requests are submitted and later completed on a CUDA stream | submit stream, complete stream, request count, async boundary, completion wait |
+| `UnifiedCache.FeatCacheLookup` | cache indexes route feature rows to CPU or GPU cache | CPU hit count, GPU hit count, SSD miss count, feature length, cache capacity by tier |
+| `CompleteGraphStorage.HyrbidGraphCache` | topology cache is split across GPU and CPU mapped memory | GPU topology bytes, CPU topology bytes, neighbor counts, CSR pointer state |
+| training IPC | training backend receives sampled IDs, features, labels, aggregation source/destination, node/edge counters, hop block sizes | IPC wait, block sizes per hop, node counters, edge counters, batch readiness |
+
+New executable-spec candidates from Hyperion:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gpu_direct_ssd_artifact_v1` | WHEN a GPU-direct SSD artifact informs a profile, THEN repo URL, commit, hardware assumptions, SSD count, queue count, cache policy, throughput/cost metric, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_gpu_direct_ssd_iostack_v1` | WHEN GPU-direct SSD IO is used, THEN SSD count, queue count, queue depth, logical block size, submission blocks, completion blocks, request count, per-SSD request counts, PRP bytes, IO buffer bytes, SQ/CQ doorbell counts, and completion latency SHALL be recorded. |
+| `profile_feature_miss_to_ioreq_v1` | WHEN feature/cache misses are served from storage, THEN sampled IDs, cache-index status, miss count, feature block size, SSD stripe function, logical block start, destination addresses, IO request count, and submit/complete streams SHALL be recorded. |
+| `profile_unified_cache_tier_receipt_v1` | WHEN cache lookup spans CPU, GPU, and storage, THEN CPU-cache capacity, GPU-cache capacity, feature length, topology hit count, feature hit count, miss count, sampled nodes, aggregation edges, and cache profiling stream SHALL be recorded. |
+| `profile_topology_cache_ipc_receipt_v1` | WHEN graph topology and training data move through IPC, THEN partition count, pinned CSR bytes, GPU topology bytes, CPU topology bytes, node/edge counters, hop block sizes, IPC pipe index, and readiness wait SHALL be recorded. |
+| `profile_throughput_per_cost_v1` | WHEN a profile claims cost efficiency, THEN throughput, elapsed time, hardware cost basis, amortization window, SSD/GPU/CPU cost, and baseline cost SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Should PageRank use Hyperion-style GPU-direct SSD immediately?
+  No. It would overload the first wedge. PageRank should first prove exactness,
+  phase accounting, and bounded CPU/RAM behavior against Neo4j/GDS.
+
+Why still document Hyperion now?
+  Because it is a high-quality future option for "RAM cap plus SSD budget."
+  It shows how to make SSD reads explicit and measurable rather than treating
+  disk as a vague spill area.
+
+What is the transferable principle?
+  Cache misses should be first-class events. In a proof-carrying system, a miss
+  is not a performance accident; it is a receipt line with a source tier,
+  destination buffer, request size, queue, wait, and completion phase.
+```
+
+#### Ginex Turns Future Knowledge Into Cache Changesets
+
+Ginex is the bridge between the Marius-style "storage hierarchy as product
+surface" and the Hyperion-style "SSD is a first-class budget tier" idea. The
+important product move is not that Ginex is a GNN trainer. The important move is
+that it spends trace/preprocessing work to make future feature access visible,
+then turns that future knowledge into cache changesets under a declared memory
+cap.
+
+The source shape is concrete:
+
+```text
+superbatch trace ids
+  -> Pass 1 frequency + initial cache fill
+  -> Pass 2 iterptr/iters next-access index
+  -> Pass 3 simulate cache state with cache_table + map_table
+  -> save per-iteration in/out changesets
+  -> overlap changeset computation with neighbor sampling
+  -> runtime cache_update copies incoming features into evicted slots
+  -> gather/sample consult cache tables before O_DIRECT SSD reads
+```
+
+Why this matters for Knight Bus:
+
+```text
+Naive disk-backed story:
+  "If RAM is low, spill to disk."
+
+Ginex-shaped budget story:
+  "Given this memory cap and this future access trace,
+   here is the exact cache table size,
+   here are the rows admitted and evicted,
+   here are the O_DIRECT reads avoided or paid,
+   here is when the cache update overlaps useful work,
+   and here is the measured baseline-vs-profile result."
+```
+
+| Ginex Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| README / VLDB paper link | SSD as memory extension, cgroup memory cap, disabled read-ahead, 6GB neighbor/feature caches, `--sb-size 1500`, local example timing | source URL, commit, cap mode, swap, read-ahead, device, cache sizes, superbatch size, baseline and profile timing |
+| `FeatureCache.__init__` | address table bytes are derived from node count; entry count is derived from cache budget, table bytes, and feature dimension; `int16` bounds trace window | size, effective superbatch size, node count, feature dimension, table bytes, num entries, dtype limits |
+| `pass_1_and_2` | traced node IDs are loaded with worker threads; frequency, initial cache fill, `iterptr`, and `iters` are built before runtime | trace file count, loader threads, frequency bytes, initial cache indices, iterptr bytes, iters bytes, cache-fill status |
+| `pass_3` | cache state is simulated with `cache_table`, `map_table`, threshold adjustment, candidate sets, and saved changesets | candidate count, threshold trajectory, in IDs, out IDs, in positions, queue depth, changeset file bytes |
+| `fill_cache/update` | address table initialized; initial rows copied from mmapped features; C++ update reuses evicted slots and patches the address table | address-table bytes, feature-cache bytes, insert IDs, evict IDs, copied bytes, thread count, table-update count |
+| `sample_adj_ginex` | O_DIRECT neighbor reads, aligned neighbor buffers, cache hit/miss branch, fanout mode, replacement policy, output adjacency | fanout, cache hit/miss by node, row count, aligned buffer bytes, read bytes, sampled edges, output node count |
+| `gather_ginex` | O_DIRECT feature reads, cache-hit memcpy branch, aligned offset/residual logic, CPU tensor output | cache hit/miss, aligned offset, residual, read size, bytes read, thread count, tensor shape |
+| `run_ginex.inspect/execute` | cache-plan generation is overlapped with sampling/gather/update/model phases and queue boundaries | drop-cache/cgroup context, overlap boundary, queue depths, phase timings, trace superbatch ID, neighbor cache files |
+
+New executable-spec candidates from Ginex:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_ginex_source_reference_v1` | WHEN Ginex informs a Knight Bus profile, THEN repo URL, commit, file count, indexed nodes/edges, README/paper links, functions cited, copied ideas, and rejected ideas SHALL be recorded. |
+| `profile_cgroup_memory_cap_receipt_v1` | WHEN a benchmark uses an artificial memory cap, THEN cgroup cap, swap size, read-ahead setting, OS cache reset behavior, storage device, and uncapped baseline posture SHALL be recorded. |
+| `profile_future_access_cache_plan_v1` | WHEN future access is used to plan a cache, THEN trace window, table bytes, entry count, frequency bytes, iterptr/iters bytes, candidate count, threshold trajectory, and changeset bytes SHALL be recorded. |
+| `profile_cache_changeset_runtime_v1` | WHEN cache changesets are applied at runtime, THEN insert IDs, evict IDs, in positions, copied bytes, address-table updates, thread count, queue depth, and overlap boundary SHALL be recorded. |
+| `profile_neighbor_cache_sampling_v1` | WHEN graph topology sampling uses a cache or storage fallback, THEN fanout, cache hit/miss by node, O_DIRECT reads, aligned buffer size, replacement policy, output node count, and output edge count SHALL be recorded. |
+| `profile_odirect_feature_gather_v1` | WHEN feature rows are gathered from cache/storage, THEN cache hit/miss, aligned offset, residual, read size, read bytes, thread count, and returned tensor shape SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does Ginex prove exact Neo4j PageRank will be faster?
+  No. Ginex is a GNN training system. It is evidence for budget-bounded
+  storage/cache choreography, not a direct PageRank benchmark.
+
+What transfers cleanly to exact OLAP?
+  The pattern "trace/probe future access -> plan cache/layout -> emit
+  changeset receipt -> run under a cap -> compare phase-accounted results."
+
+How is Ginex different from Hyperion?
+  Hyperion makes SSD runtime explicit with GPU-initiated IO requests. Ginex
+  reduces SSD reads by using future access and saved cache changesets. Both are
+  valid budget profiles, but they answer different user tradeoffs.
+
+Should this change the first coding wedge?
+  No. The first wedge remains exact PageRank/Neo4j-GDS comparison. Ginex tells
+  us how to design later RAM-cap profiles so they are explainable and auditable.
+```
+
+#### GIDS Makes PageRank A Cache-Admission Hint
+
+GIDS gives a different branch of the storage-profile tree from Ginex and
+Hyperion.
+
+```text
+Ginex:
+  use future access traces to precompute cache changesets
+
+Hyperion:
+  convert misses into explicit GPU-initiated SSD IO requests
+
+GIDS:
+  let GPU warps fetch feature rows from striped SSD storage,
+  optionally pin reusable rows in CPU mapped memory,
+  and use PageRank-derived node lists as a cache admission signal
+```
+
+The source path is unusually relevant to Knight Bus because PageRank appears in
+the repo as a practical cache-planning utility. That changes how we should think
+about the first PageRank wedge. PageRank is not only a benchmark algorithm and
+not only a Neo4j/GDS compatibility test. It can also be a graph-shape probe that
+identifies high-reuse nodes for later bounded-memory execution.
+
+The GIDS-shaped runtime is:
+
+```text
+dataset + graph format + fanout + page size + SSD list
+  -> force graph structure to CSC to avoid hidden COO->CSR conversion
+  -> optional PageRank / reversed PageRank node list
+  -> allocate mapped CPU backing buffer for top reusable rows
+  -> window_buffer marks upcoming page IDs
+  -> fetch_feature collects sampled node IDs
+  -> accumulator may merge several future reads
+  -> CUDA streams launch feature-read kernels
+  -> each warp reads one requested feature row
+  -> CPU-buffer hits increment d_cpu_access
+  -> residual rows go through BaM / direct storage reads
+  -> receipt compares baseline mmap, BaM, and GIDS knobs
+```
+
+The hidden-RAM warning is also crucial. The README says enabling both COO and CSC
+can make DGL convert COO to CSR during sampling and consume more than 700GB on
+terabyte-scale IGB. That is exactly the kind of "same logical graph, different
+physical format, wildly different memory bill" trap Knight Bus should expose
+before the user runs a job.
+
+| GIDS Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| arXiv / PVLDB record | page-fault overhead when embeddings exceed CPU memory; GPU threads fetch feature vectors from storage; up to 392x versus DGL dataloader in paper evaluation | paper version, authors, baseline, reported speedup, workload class, page-fault posture, CPU/GPU/storage roles |
+| README | SSD feature storage, page-granularity striping across SSDs, heterograph node-type offsets, constant CPU buffer, PageRank node-list generator, CSC-only warning | SSD list, stripe policy, node-type offset map, CPU-buffer source, graph format, conversion-risk flag |
+| `GIDS.__init__` | page size, offset, cache dimension, element count, SSD list, cache size, controller index, window buffer, accumulator, heterograph map | loader manifest fields, default/chosen/effective knob values, heterograph offset map |
+| `GIDS_DGLDataLoader.__init__` | DGL graph sampler wrapping, graph pinning, tensorized dataset creation, custom collate path | sampler identity, batch size, graph pinning state, worker count, collate strategy |
+| `fetch_feature` | stores future batches in a window, optionally merges reads based on required storage access and prior CPU hits, calls merged/hetero read APIs | window length, merged-iteration count, current access, required access, previous CPU hits, return-buffer size |
+| `init_GIDS_controllers/init_controllers` | queue depth 1024, 128 queues, SSD controller list, page-cache page count, `STRIPE` range, device CPU-access counter | SSD count/list, queue depth, queue count, page size, cache pages, stripe/replicate mode, access-counter bytes |
+| `read_feature*` kernels | CUDA streams, one warp per row, `bam_ptr.read`, optional CPU backing path, `kernel_time`, `total_access`, `cpu_access_count` | num indices, feature dim, stream count, kernel time, total accesses, CPU hits, storage reads |
+| CPU backing/window buffer | mapped pinned host memory, top-k node rows copied into CPU buffer, page-level window counters | pinned bytes, pinned node count, centrality source, hit count, page-window count, residual read count |
+| PageRank node-list generator | DGL PageRank-style iterations for homogeneous and heterograph node ranking | centrality algorithm, damping, iteration count, node-type offsets, top-k/pin-file hash |
+| IGBH dataloader/scripts | full IGBH, RSAGE, fanout `10,5,5`, batch 1024, 4GB cache, one SSD, 4096-byte pages, CPU buffer 20%, window size 8, accumulator | benchmark dataset, model, fanout, batch, cache MB, page size, CPU-buffer percent, window size, accumulator flag |
+
+New executable-spec candidates from GIDS:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_gids_source_reference_v1` | WHEN GIDS informs a Knight Bus profile, THEN repo URL, paper URL, commit, file count, indexed nodes/edges, functions cited, hardware assumptions, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_gpu_initiated_feature_fetch_v1` | WHEN GPU-initiated feature fetching is used, THEN SSD list, queue depth, queue count, page size, page-cache pages, stripe mode, num indices, feature dim, CUDA stream count, kernel time, total accesses, and CPU-buffer hit count SHALL be recorded. |
+| `profile_page_rank_pin_buffer_v1` | WHEN PageRank or another centrality signal chooses pinned rows, THEN algorithm, damping/iterations, top-k count, pin-file hash, pinned bytes, hit count, and downstream runtime delta SHALL be recorded. |
+| `profile_window_buffer_access_counter_v1` | WHEN a window buffer predicts upcoming storage access, THEN window size, marked page count, merged-iteration count, previous CPU hits, required access estimate, residual storage reads, and stall time SHALL be recorded. |
+| `profile_csc_format_memory_gate_v1` | WHEN a graph loader can choose physical formats, THEN declared format, implicit conversion risk, projected conversion bytes, fail-before-work threshold, and actual format after loading SHALL be recorded. |
+| `profile_storage_accumulator_v1` | WHEN read batching is driven by bandwidth/latency estimates, THEN SSD bandwidth, SSD latency, system latency, peak-percent target, current access, required access, and chosen batch window SHALL be recorded. |
+| `profile_centrality_cache_hint_v1` | WHEN a graph metric is used for cache admission, THEN metric name, score vector bytes, selected node IDs, storage/cache target, hit-rate delta, and correctness/quality impact SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does GIDS prove our exact PageRank implementation is faster?
+  No. GIDS is about GNN sampling and feature aggregation. It does not benchmark
+  Neo4j PageRank or exact OLAP centrality.
+
+Why does it still matter for the PageRank wedge?
+  Because it uses PageRank-style node ranking as a practical input to a memory
+  profile. That means our first PageRank implementation can later become a
+  planner primitive, not just a product demo.
+
+What is the sharp warning from GIDS?
+  Hidden format conversion can blow the RAM budget before the algorithm even
+  starts. "Projection/build phase" and "graph format gate" must be measured
+  before kernel timing claims.
+
+Should GIDS-style GPU direct storage be v1?
+  No. Like Hyperion, it is a later expansion. The v1 value is the receipt shape:
+  graph format gate, pinned centrality list, page/window counters, storage
+  accumulator, and explicit comparison against a boring mmap baseline.
+```
+
+#### Zebra Makes Top-K Influence A Computation Budget
+
+Zebra is the most PageRank-native expansion artifact in the recent source pass.
+It is not a storage-engine paper in the same way as Marius, Ginex, Hyperion, or
+GIDS. It is a computation-shaping paper: avoid temporal neighbor explosion by
+using a PageRank-family influence metric to select the small set of neighbors
+that should actually participate in representation learning.
+
+The architecture pattern:
+
+```text
+continuous-time edge stream
+  -> maintain T-PPR state per node and alpha/beta configuration
+  -> each new interaction updates endpoint dictionaries and norms
+  -> keep only top-k influential temporal neighbors
+  -> export selected node IDs, edge IDs, delta times, and weights
+  -> update memory only for selected/changed nodes
+  -> transfer compact top-k arrays to GPU
+  -> aggregate selected features with normalized T-PPR weights
+  -> backup/restore T-PPR and memory state across val/test phases
+```
+
+This sharpens a first-principles distinction for Knight Bus:
+
+```text
+Exact PageRank profile:
+  compute the full centrality result and compare against Neo4j/GDS
+
+Centrality-as-layout profile:
+  use centrality to select pinned rows, cache candidates, or hot topology
+
+Top-k influence profile:
+  use PageRank/PPR-like influence to avoid touching low-value neighbors
+
+Dynamic graph profile:
+  maintain bounded influence state over time and prove accuracy/latency tradeoff
+```
+
+Zebra's state is not free. `tppr_finder.reset_tppr` creates one norm array per
+T-PPR configuration and one typed dictionary per node per configuration. The
+streaming path trims each dictionary to top-k, but the receipt must still count
+node count, T-PPR configurations, dictionary entries, norm bytes, selected-array
+bytes, and backup/restore cost. The product lesson is exactly aligned with our
+thesis: the graph metric reduces compute only if the auxiliary state pays rent.
+
+| Zebra Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| PVLDB paper | T-PPR estimates temporal influence, top-k query avoids neighbor explosion, single-scan algorithm with approximation guarantees, up to two orders of magnitude speedup in experiments | proof type, approximation guarantee cited, top-k, dynamic graph assumptions, accuracy metrics, speedup basis |
+| README/train args | `streaming`/`pruning`, `topk`, `alpha_list`, `beta_list`, batch size, layers, heads, epochs, datasets | strategy, top-k, alpha/beta lists, width/depth, dataset, seed, model config, timing fields |
+| `GraphDiffusionEmbedding.__init__` | stores `n_tppr`, alpha/beta, top-k, strategy, width, depth; constructs `tppr_finder` for streaming | manifest knobs, number of T-PPR configurations, selected strategy |
+| `compute_embedding_tppr_ensemble` | obtains selected nodes/edges/delta-time/weights, updates memory for selected nodes, transfers arrays to GPU, normalizes weights, aggregates embeddings | selected array shapes, transfer bytes, weight-sum handling, average top-k weight, memory-update node count |
+| `tppr_finder.streaming_topk` | processes edge interactions, extracts current top-k, updates endpoint PPR dictionaries, trims to top-k, updates norms | edge count, endpoint update count, per-node dict size, trim count, norm update count |
+| `NeighborFinder.get_pruned_topk` | bounded width/depth traversal before target timestamp, dictionary keyed by `(edge_idx, node, timestamp)`, top-k extraction | width, depth, traversed neighbors, candidate count, top-k cap, timestamp delta |
+| `compute_val_tppr` / train loop | one-pass validation fill, backup/restore T-PPR, backup/restore memory, transductive/inductive eval splits | phase boundary, fill time, backup bytes, restore bytes, val/test split, phase timings |
+| `Memory` / updater | per-node memory, messages, timestamps, last update, changed-node indexing, clone/update timing | memory bytes, message bytes, timestamp bytes, changed-node count, clone bytes, update time |
+
+New executable-spec candidates from Zebra:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_temporal_ppr_source_reference_v1` | WHEN Zebra/T-PPR informs a Knight Bus profile, THEN paper URL, repo URL, commit, file count, index size, algorithmic guarantee cited, datasets, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_tppr_manifest_knobs_v1` | WHEN T-PPR is used, THEN strategy, top-k, alpha list, beta list, width, depth, batch size, layers, epochs, dataset, seed, and timing fields SHALL be recorded. |
+| `profile_topk_influence_budget_v1` | WHEN top-k influence selects work, THEN selected node IDs, selected edge IDs, delta times, weights, transfer bytes, normalized weight rule, and average selected influence SHALL be recorded. |
+| `profile_tppr_streaming_state_v1` | WHEN streaming T-PPR state is maintained, THEN node count, T-PPR configuration count, norm-array bytes, dictionary entry count, top-k cap, update count, trim count, and backup/restore bytes SHALL be recorded. |
+| `profile_tppr_pruning_query_v1` | WHEN pruning answers top-k T-PPR, THEN width, depth, candidate count, timestamp boundary, selected count, skipped-empty count, and per-query time SHALL be recorded. |
+| `profile_dynamic_graph_phase_receipt_v1` | WHEN a dynamic graph profile runs, THEN train/reset/fill/validate/restore/test phases, memory backup/restore, T-PPR backup/restore, changed-node count, and phase timings SHALL be recorded. |
+| `profile_neighbor_explosion_escape_v1` | WHEN a profile claims it avoided neighbor explosion, THEN full recursive frontier estimate, selected top-k work, avoided work, memory delta, runtime delta, and accuracy delta SHALL be recorded. |
+| `profile_approximation_quality_guard_v1` | WHEN an approximate graph profile is promoted, THEN accuracy metric, tolerance, baseline, confidence interval or repeated-run rule, and fail-closed behavior SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does Zebra belong in the exact Neo4j/GDS rewrite path?
+  Not directly. Zebra is approximate/dynamic/learning-oriented. It should not
+  define the first exact PageRank implementation.
+
+Why include it anyway?
+  It shows the PageRank family can reduce work, not just produce an output. That
+  supports the broader PMF: graph metrics can shape storage, caching, and compute
+  budgets.
+
+What is the risk?
+  Approximation can hide correctness loss. Zebra-style profiles need accuracy
+  and convergence guards, not only RAM and latency receipts.
+
+What should v1 copy?
+  Copy the discipline, not the workload: declare top-k/influence knobs, count
+  auxiliary state, measure avoided work, and keep exact PageRank as the oracle
+  lane until approximate lanes have their own quality gates.
+```
+
+#### DUCATI Splits GPU Memory Into Topology And Feature Budgets
+
+DUCATI is the closest implementation artifact so far to the planner that Knight
+Bus keeps circling around. It is not an exact Neo4j/GDS OLAP system. It is a
+GNN training system. But the transferable move is very strong: under one fixed
+memory budget, DUCATI measures the marginal benefit of multiple state classes
+and then decides which class deserves the next byte.
+
+The architecture pattern:
+
+```text
+total GPU cache budget
+  -> profile adjacency hit curve
+  -> profile feature hit curve
+  -> fit marginal speedup slopes
+  -> count topology accesses and feature accesses
+  -> score every adjacency row and feature row by benefit density
+  -> sort one combined candidate table under the byte budget
+  -> materialize Adj-Cache and Nfeat-Cache
+  -> run cache-aware sampling and feature loading
+  -> compare allocation-plan output with DUCATI and SOTA iteration timing
+```
+
+The first-principles transfer to Knight Bus is this:
+
+```text
+DUCATI GNN state classes:
+  adjacency rows
+  node feature rows
+  gpu_flag/gpu_map routing state
+  per-batch output buffers
+  model/training state
+
+Knight Bus exact PageRank state classes:
+  topology partitions/windows
+  rank vector
+  next-rank or delta vector
+  dangling/sink mass
+  active frontier or residual set
+  partition/checkpoint metadata
+  proof and receipt state
+  output materialization
+```
+
+For a RAM-bounded PageRank or centrality profile, the product should not only
+ask "can the graph fit in RAM?" It should ask:
+
+```text
+Given a declared RAM cap and deadline,
+which state classes should be resident,
+which state classes should be streamed or spilled,
+what marginal benefit did the planner measure,
+and which requests actually hit the planned resident state?
+```
+
+The most important DUCATI implementation receipts:
+
+| DUCATI Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| `run_allocate.py` | separates allocation-plan verification from iteration-time verification | total budget, workload knobs, pre-batches, fitted slopes, effective adj/nfeat budgets |
+| `DualCacheAllocator.get_slope` | sweeps cache ratios, warms batches, times runs, stops on OOM, fits slopes | ratio steps, hit counts, durations, warmup policy, OOM boundary, fitted slope, confidence warning |
+| `DualCacheAllocator.allocate_dual_cache` | merges adjacency and feature candidates into one density-sorted byte budget | candidate type, candidate id, row bytes, access count, slope, density, chosen cutoff, per-class bytes |
+| `generate_stats` | pre-samples batches to derive `adj_counts` and `nfeat_counts` | pre-epochs, fanouts, seed batches, node counts, adjacency counts, feature counts |
+| `load_dc_realtime_process` | reorders graph by `adj_counts / (in_degree + 1)` before CSC reconstruction | reorder mapping, degree denominator, graph format, pin/unpin timing, rebuilt CSC bytes |
+| `form_adj_cache` | chooses cached CSC prefix under adjacency budget | id width, cached node count, cached edge count, cached indptr bytes, cached indices bytes |
+| `form_nfeat_cache` | chooses cached feature rows under feature budget | row bytes, cached row count, `gpu_flag` bytes, `gpu_map` bytes, cached tensor bytes |
+| `NeighborSamplerWithCache.sample` | routes sampling through customized DGL cache-aware API | sampler API identity, fanouts, seed count, cached topology hit/miss proxy, block sizes |
+| `NfeatLoader.load` | splits requested IDs into GPU-cached and CPU-resident rows | requested row count, cached row count, fallback row count, output buffer bytes |
+| `run_ducati.py` / `run_sota.py` | compares DUCATI dual-cache timing with single feature-cache SOTA | baseline identity, warmup exclusion, runs, mean latency, stddev, buffer bytes |
+
+New executable-spec candidates from DUCATI:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_ducati_source_reference_v1` | WHEN DUCATI informs a Knight Bus profile, THEN paper URL, DOI, repo URL, commit, file count, index size, customized dependency, benchmark mode, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_dual_cache_workflow_v1` | WHEN a profile has a planner step and execution step, THEN allocation-plan command, execution command, baseline command, shared workload knobs, and output metrics SHALL be recorded. |
+| `profile_gpu_memory_budget_knob_v1` | WHEN GPU/accelerator memory is capped, THEN total budget, model/setup bytes, free bytes, budget source, user-set versus planner-set flags, and effective state budgets SHALL be recorded. |
+| `profile_dual_cache_allocator_v1` | WHEN two cache families compete for memory, THEN every candidate's type, id, access count, row bytes, slope, density, cumulative bytes, and selected/not-selected state SHALL be recorded. |
+| `profile_multi_state_budget_allocator_v1` | WHEN a Knight Bus algorithm has more than one live state class, THEN topology/rank/frontier/checkpoint/proof/output bytes and marginal benefit estimates SHALL be recorded before execution. |
+| `profile_cache_slope_probe_v1` | WHEN the planner estimates marginal benefit, THEN probe ratios, warmup rule, measured duration, hit count, transfer subtraction, fitted slope, and sample-size caveat SHALL be recorded. |
+| `profile_oom_early_stop_probe_v1` | WHEN a probe exceeds memory, THEN attempted bytes, failed state class, exception class, last successful ratio, and fallback rule SHALL be recorded. |
+| `profile_adj_cache_receipt_v1` | WHEN topology rows are cached, THEN graph format, id width, cached row count, cached edge count, `indptr` bytes, `indices` bytes, and hit/miss proxy SHALL be recorded. |
+| `profile_nfeat_cache_receipt_v1` | WHEN feature/state rows are cached, THEN row bytes, cached IDs, flag/map bytes, cache tensor bytes, fallback rows, and per-batch routing counts SHALL be recorded. |
+| `profile_workload_count_reorder_v1` | WHEN workload access counts reshape storage, THEN profiling workload, counts, degree denominator, reorder mapping, format rebuild, and bytes moved SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does DUCATI prove exact PageRank can run under tiny RAM with no slowdown?
+  No. DUCATI is a GNN training system, and its cache benefit is tied to repeated
+  mini-batch sampling plus feature fetching. Exact PageRank has different state
+  and convergence rules.
+
+Why include it in the Knight Bus evidence base?
+  Because it shows a concrete planner loop: profile marginal benefit, allocate
+  scarce memory across competing graph-state classes, materialize only selected
+  state, and verify against a baseline.
+
+What should v1 copy?
+  Copy the receipt shape and allocation discipline. Do not copy the GNN-specific
+  approximation assumptions into exact PageRank. For v1, translate Adj/Nfeat
+  into topology/rank/frontier/checkpoint/proof classes and keep Neo4j/GDS or
+  GraphBLAS/LAGraph as the correctness oracle.
+
+What is the biggest risk?
+  Slope probes can overfit to a sampled workload. Receipts need to preserve the
+  probe workload, sample size, warmup rule, confidence caveat, and measured-vs-
+  predicted delta after the real run.
+```
+
+#### PaGraph Makes Cache Policy And Partition Replication Observable
+
+PaGraph is older than the recent DUCATI/GIDS/Hyperion/Ginex artifacts, but it
+adds a useful low-complexity rung to the planner. It shows a system that first
+tries a practical cache policy: after observing the first training step, compute
+available GPU memory, reserve a cushion, determine how many feature rows fit,
+then cache either all rows or the highest out-degree rows.
+
+The architecture pattern:
+
+```text
+shared-memory graph server
+  -> local partition/subgraph per trainer
+  -> local-to-full node-id mapping
+  -> first observed training step
+  -> compute available GPU memory minus reserve
+  -> derive cache row capacity from feature width
+  -> cache all nodes or top out-degree nodes
+  -> route every nodeflow layer by gpu_flag
+  -> fetch misses from remote shared-memory graph
+  -> log miss rate and profiler phase timings
+```
+
+This gives Knight Bus a useful cache-policy ladder:
+
+```text
+PaGraph:
+  simple degree/frequency cache policy
+  cheap to understand and benchmark
+
+DUCATI:
+  measured marginal-benefit allocator across topology/features
+  better planner discipline but more probe cost
+
+Ginex:
+  future-access trace plus cache changesets
+  useful when repeated batch windows are known
+
+GIDS:
+  centrality/PageRank-derived pin lists plus explicit storage path
+  useful when a graph metric predicts downstream feature/state reuse
+```
+
+The product move is not to choose one policy forever. The product move is to
+make cache policy selectable, measurable, and explainable under the same receipt
+schema.
+
+| PaGraph Artifact | Concrete Evidence | Receipt Fields Knight Bus Should Steal |
+|---|---|---|
+| README | branch distinction: `master` supports data caching and graph partition; `overlap` adds overlapped data loading/GPU compute | branch/feature mode, dependency versions, partition/training consistency requirements |
+| `GraphCacheServer.__init__` | `nid_map`, `gpu_flag`, `localid2cacheid`, `gpu_fix_cache`, dimensions, miss counters | local/full id mapping bytes, flag bytes, cache-id table bytes, per-field dims, miss counters |
+| `auto_cache` | total memory minus peak allocated/cached and 1GB reserve, row capacity from `total_dim * 4`, full cache or top out-degree cache | total/allocated/cached/reserve bytes, row width, capacity rows, degree policy, cached fraction |
+| `cache_fix_data` | populates local cache IDs and per-field GPU tensors, asserts rows match | cached IDs, cache ID mapping, tensor shapes, tensor bytes, full/partial flag |
+| `fetch_data` | profiler phases for index load, index split, allocation, GPU copy, CPU fetch, frame assignment | per-phase timings, cached rows, miss rows, allocated frame bytes, assignment time |
+| `log_miss_rate/get_miss_rate` | miss numerator/denominator and reset | miss rate window, reset boundary, total requests, misses |
+| `pa_gcn.trainer` | wraps `fetch_data` in `gpu-load`, separates `gpu-compute`, calls `auto_cache` after first step | first-step trigger, load time, compute time, epoch time, profiler table |
+| `dg` partitioner | assigns training nodes, adds hop in-neighbors, counts self versus redundancy vertices | partition count, hop count, training nodes, reliance vertices, redundancy vertices, replication factor |
+| `build_train_graph` | remaps hop-specific training graph and full IDs | subgraph node/edge count, full-id mapping bytes, invalid train-node behavior |
+| `SampleDeliver` | one-to-all or one-to-one sampler processes, socket sender, barrier interval, makeup sends | sampler mode, trainer count, worker count, barrier interval, unbalanced pieces, epoch signals |
+| `opt_cache_hit` | computes ideal top-frequency cache hit rate for a cached fraction | frequency vector bytes, cached fraction, oracle hit rate, actual hit rate, policy gap |
+
+New executable-spec candidates from PaGraph:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_pagraph_source_reference_v1` | WHEN PaGraph informs a Knight Bus profile, THEN paper URL, repo URL, commit, branch, file count, index size, license, DGL/PyTorch assumptions, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_degree_cache_admission_v1` | WHEN degree-based cache admission is used, THEN degree direction, cached fraction, row capacity, top-degree IDs, selected bytes, and expected hit metric SHALL be recorded. |
+| `profile_gpu_feature_cache_manifest_v1` | WHEN GPU feature/state cache is created, THEN total/allocated/cached/reserve bytes, row width, per-field dimensions, map bytes, flag bytes, and cached tensor bytes SHALL be recorded. |
+| `profile_cache_route_phase_ledger_v1` | WHEN cached/fallback data is fetched, THEN index-load, index-split, allocation, resident-copy, fallback-fetch, assign, and compute phases SHALL be timed separately. |
+| `profile_first_batch_cache_commit_v1` | WHEN cache policy depends on observed work, THEN first-step workload identity, trigger condition, pre-cache miss rate, selected policy, and post-cache comparison SHALL be recorded. |
+| `profile_feature_miss_rate_v1` | WHEN a feature/state cache is active, THEN miss numerator, request denominator, reset boundary, and miss-rate window SHALL be recorded. |
+| `profile_layer_aware_partition_receipt_v1` | WHEN partitioning is aware of model/algorithm hops, THEN partition count, hop count, consistency rule, train-node count, neighbor count, and mapping identity SHALL be recorded. |
+| `profile_redundant_vertex_budget_v1` | WHEN partitioning replicates vertices, THEN self vertices, redundancy vertices, replication factor, feature/state multiplier, and downstream cache bytes SHALL be recorded. |
+| `profile_sampler_delivery_mode_v1` | WHEN sampling or traversal delivery is remote/parallel, THEN one-to-all versus one-to-one mode, trainer count, sampler workers, barrier interval, makeup sends, and queue/signal events SHALL be recorded. |
+| `profile_cache_oracle_hit_bound_v1` | WHEN a cache policy claims good locality, THEN ideal top-frequency hit bound, actual hit rate, gap to oracle, and probe workload SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does PaGraph prove top-degree caching is enough?
+  No. Top-degree is a cheap heuristic. It is useful as a baseline and sometimes
+  a strong one on skewed graphs, but DUCATI/Ginex/GIDS show richer policies.
+
+Why include it after DUCATI?
+  Because the first implementation should include cheap baselines. If a clever
+  budget allocator cannot beat top-degree or top-frequency under the same cap,
+  the cleverness is not paying rent.
+
+What should v1 copy?
+  Copy the receipt fields: available memory, reserve, row capacity, cached IDs,
+  route phases, miss-rate counters, and oracle-hit bound. Do not copy old DGL
+  internals directly.
+
+What is the risk?
+  Degree/order code should be treated carefully; one read showed a suspicious
+  condition in the reordering neighbor loop. PaGraph is evidence and benchmark
+  inspiration, not copy-paste source for a Rust implementation.
+```
+
+#### GNNLab Factors Sampling, Cache Planning, And Training Into Measurable Planes
+
+GNNLab matters because it makes a system-level design move that is larger than
+GNN training: it separates physical contention into planes and then logs the
+planes. The README states the high-level thesis directly: dedicate GPUs to graph
+sampling or model training so sampling and training do not fight over the same
+GPU memory. That is not the same as our exact Neo4j/GDS OLAP wedge, but it is a
+very good mental model for Knight Bus.
+
+The transfer is:
+
+```text
+GNNLab:
+  dataset + run config
+    -> binary CSR/features/cache-rank manifest
+    -> choose run architecture and cache policy
+    -> pre-sample training work
+    -> count sampled input-node frequency
+    -> rank cache candidates
+    -> execute batches through sampler/trainer planes
+    -> route cache hits/misses
+    -> remap train graph edges
+    -> write node-access and pre-sample similarity reports
+
+Knight Bus:
+  Neo4j projection + algorithm profile
+    -> algorithm-shaped storage manifest
+    -> choose RAM cap and storage profile
+    -> run layout_probe_v1
+    -> predict hot topology/state/frontier/checkpoint bytes
+    -> materialize only chosen state classes
+    -> execute exact algorithm with phase receipts
+    -> route resident/spill/recompute reads
+    -> compare predicted access against actual access
+    -> compare correctness/RAM/latency against Neo4j/GDS
+```
+
+The new thing this contributes to the PMF thesis is not "use GPUs for PageRank."
+The new thing is "make every physical plane separately accountable." If PageRank
+needs topology streaming, rank vectors, dangling mass, partition boundaries,
+checkpoint state, convergence proof state, and output writeback, those should be
+visible in a profile just like GNNLab makes sample/extract/train visible in its
+experiment outputs.
+
+GNNLab also strengthens the argument for cheap planner baselines. It has
+preprocessed cache-rank files such as `cache_by_degree.bin`, `cache_by_random.bin`,
+and fake-optimal ranking utilities. That suggests our planner should never ship
+as a mystical optimizer. It should say:
+
+```text
+Under the same 5GB cap:
+  random cache baseline
+  degree cache baseline
+  hop-frontier degree baseline
+  offline/fake-optimal oracle
+  Knight Bus profile planner
+```
+
+Only then do we earn the right to claim differentiation.
+
+New executable-spec candidates from GNNLab:
+
+| Spec Candidate | Contract Shape |
+|---|---|
+| `profile_gnnlab_source_reference_v1` | WHEN GNNLab informs a Knight Bus profile, THEN paper URL, DOI, artifact URL, repo URL, commit, indexed node/edge count, hardware assumption, dataset format, cache policy family, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_binary_dataset_manifest_v1` | WHEN a binary graph dataset is used, THEN topology files, feature/label files, id width, cache-rank files, mmap assumption, dataset root, and total bytes SHALL be recorded. |
+| `profile_experiment_matrix_receipt_v1` | WHEN a benchmark suite is run, THEN hardware profile, testcase count, expected runtime, output log paths, parsed output paths, and phase columns SHALL be recorded. |
+| `profile_presample_cache_plan_v1` | WHEN a cache/storage plan is built from a pre-sample probe, THEN pre-sample epochs, steps, cache policy, sampled node count, copy bytes, count bytes, sort time, and reset time SHALL be recorded. |
+| `profile_presample_frequency_table_v1` | WHEN node access frequency is estimated, THEN frequency-table bytes, ranked node count, top-k cutoff, sort method, and selected-node IDs/hash SHALL be recorded. |
+| `profile_planner_actual_similarity_v1` | WHEN an execution completes after a planner probe, THEN predicted rank, predicted frequency, actual access count, similarity file path, and gap-to-plan summary SHALL be recorded. |
+| `profile_gpu_topk_subphase_receipt_v1` | WHEN top-k planner work is done on GPU or vectorized CPU, THEN each subphase, workspace bytes, unique counts, sort/compact time, and reset time SHALL be recorded. |
+| `profile_prefetch_aware_sampling_v1` | WHEN a profile performs lookahead or prefetch, THEN trigger layer/partition/batch, callback identity, prefetch bytes, and prefetch wait time SHALL be recorded. |
+| `profile_layer_sample_remap_receipt_v1` | WHEN a sampled/materialized graph is remapped, THEN per-layer node/edge counts, remap bytes, populate time, edge-map time, and remapped flag SHALL be recorded. |
+| `profile_gpu_cache_route_indices_v1` | WHEN cached state is routed, THEN cache hit rows, miss rows, source indexes, destination indexes, row width, and copied bytes SHALL be recorded. |
+| `profile_cache_hit_miss_tile_receipt_v1` | WHEN cache hits/misses are counted in tiles, THEN tile size, block count, hit count, miss count, prefix arrays, and reset policy SHALL be recorded. |
+| `profile_run_arch_gate_v1` | WHEN an execution architecture is selected, THEN run mode, cache-percentage gate, disabled-cache reason, supported modes, and chosen mode SHALL be recorded. |
+| `profile_batch_memory_sanity_v1` | WHEN a batch/partition is emitted, THEN epoch, step, batch offset, batch size, last-batch size, sanity-check status, and after-batch memory SHALL be recorded. |
+| `profile_node_access_distribution_v1` | WHEN a run records node access, THEN access count, in/out degree summaries, prefix access percentages, and similarity rows SHALL be recorded. |
+| `profile_fake_optimal_cache_oracle_v1` | WHEN an offline oracle baseline is built, THEN train range, fanout, hop miss-probability tables, expectation score, ranked file path, and oracle hit estimate SHALL be recorded. |
+| `profile_hop_frontier_degree_cache_v1` | WHEN a hop-aware degree baseline is built, THEN hop count, frontier bitmap bytes, touched-node count, degree source, merge rule, and output ranking SHALL be recorded. |
+| `profile_workspace_allocator_receipt_v1` | WHEN temporary workspace is allocated, THEN requested bytes, page-rounded bytes, scale factor, free-list bytes, allocated bytes, quick/free path, and peak temporary workspace SHALL be recorded. |
+
+Rubber duck check:
+
+What does GNNLab prove?
+  It proves that graph systems can expose cache planning, sampling, routing,
+  remapping, and benchmark phases as separate measurable planes.
+
+What does it not prove?
+  It does not prove our exact PageRank/SSSP/community algorithms will beat
+  Neo4j/GDS. GNNLab is GNN training evidence, built around sampling and feature
+  extraction on old CUDA/PyTorch/DGL assumptions.
+
+What should we copy?
+  Copy the receipt discipline, the binary dataset manifest idea, the offline
+  cache-rank files, the planner-vs-actual similarity report, and the factored
+  physical-plane architecture.
+
+What should we avoid?
+  Do not copy the training-specific GPU architecture as the first wedge. Keep
+  the first product slice exact and CPU/storage-profile oriented unless a
+  benchmark proves GPU helps under the same RAM cap.
+
+#### EXACT And QGTC Make Compression A Proof Obligation
+
+The compression pass adds a useful constraint to the whole PMF thesis:
+compression is not a product claim by itself. Compression is a bargain. It buys
+resident-memory reduction and sometimes bandwidth or tensor-kernel speed, but it
+charges the bill somewhere else: metadata bytes, decode/reconstruct time,
+stochastic error, approximation quality, preprocessing time, or layout
+specialization.
+
+EXACT and QGTC are graph-learning systems, so they should not be used as direct
+proof that an exact Neo4j/GDS OLAP algorithm can become quantized and remain
+correct. Their best contribution is the proof shape:
+
+```text
+Logical graph state
+  -> declare exact or approximate compression mode
+  -> choose bit width / block codec / layout role
+  -> persist metadata needed to decode or bound error
+  -> run kernel in the representation it expects
+  -> reconstruct only if the algorithm phase requires it
+  -> compare output/quality against an oracle
+  -> price saved bytes against overhead seconds
+```
+
+For Knight Bus, that means the first exact OLAP profiles should bias toward
+exact-decode compression before lossy approximation:
+
+```text
+Exact-first candidates:
+  CSR/CSC offsets with id-width gates
+  delta-coded sorted neighbor lists
+  varint or frame-of-reference edge blocks
+  bitset frontiers for Boolean active sets
+  block checksums and decode-count receipts
+  partition sidecars for high-degree residue
+
+Approximate-later candidates:
+  fixed-point rank vectors with declared tolerance
+  top-k influence pruning
+  stochastic or lossy state compression
+  quantized message/state exchange
+  repeated-run confidence guards
+```
+
+QGTC adds the strongest "storage in the shape of the read" reminder: the same
+logical tensor gets different physical layouts for row-major activation,
+column-major hidden state, and output-layer state. The graph-OLAP equivalent is
+not "one compressed graph file." It is multiple algorithm-shaped views:
+
+```text
+PageRank:
+  inbound CSC or out-neighbor CSR depending on formulation
+  rank vector and next/delta vector
+  dangling-node bitset
+  partition boundary sidecar
+  convergence proof counters
+
+SSSP:
+  weighted adjacency blocks
+  frontier buckets by distance range
+  settled/unsettled bitsets
+  light/heavy edge sidecars
+  relaxation-attempt counters
+
+Triangle count:
+  degree-ordered adjacency
+  intersect-friendly compressed blocks
+  high-degree wedge sidecar
+  duplicate-count prevention proof
+
+Community detection:
+  mutable label/community arrays
+  edge blocks ordered for local label reuse
+  active-vertex frontier
+  changed-community receipts
+```
+
+The product implication is sharp: every compressed mode needs a proof-carrying
+manifest, not a buried codec option.
+
+New executable-spec candidates from EXACT and QGTC:
+
+| Spec Candidate | Contract Shape |
+|---|---|
+| `profile_exact_source_reference_v1` | WHEN EXACT informs a Knight Bus profile, THEN repo URL, paper URL, commit, file count, index size, source-claimed compression/time/quality numbers, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_activation_compression_manifest_v1` | WHEN a state tensor or graph state is compressed, THEN original shape, compressed shape, bit width, metadata bytes, exact-vs-approx flag, stochastic flag, and storage tier SHALL be recorded. |
+| `profile_decode_parameter_receipt_v1` | WHEN compressed state is decoded, THEN scale/min/max or exact-codec parameters, checksum or error metric, decode path, decoded shape, and decode time SHALL be recorded. |
+| `profile_random_projection_receipt_v1` | WHEN dimension reduction is used, THEN kept fraction, projection matrix bytes, original/projected shapes, quality metric, and reconstruction path SHALL be recorded. |
+| `profile_reconstruct_on_backward_v1` | WHEN saved state is reconstructed later, THEN saved bytes, reconstructed bytes, decode/recompute time, deleted-state bytes, and downstream correctness check SHALL be recorded. |
+| `profile_compressed_spmm_receipt_v1` | WHEN sparse matrix computation uses compressed values, THEN topology bytes, value/state bytes, reduction type, gradient/value requirement, dummy/skip path, and output diff SHALL be recorded. |
+| `profile_compression_correctness_guard_v1` | WHEN a compression profile runs, THEN reference output, tolerance, repeated-run variance, seed, failure rule, and quality downgrade SHALL be recorded. |
+| `profile_activation_memory_breakdown_v1` | WHEN a memory-saving profile is benchmarked, THEN model/data/topology/state/output/activation bytes, reserved bytes, allocated bytes, and max allocated bytes SHALL be recorded. |
+| `profile_ram_cap_frontier_search_v1` | WHEN a RAM cap is advertised, THEN binary-search bounds, max passing workload, OOM boundary, fallback mode, and confidence caveat SHALL be recorded. |
+| `profile_qgtc_source_reference_v1` | WHEN QGTC informs a Knight Bus profile, THEN canonical repo, clone URL, paper URL, DOI, commit, index size, bitwidth lane, hardware assumption, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_bitpacked_tensor_layout_v1` | WHEN bitpacked layout is used, THEN logical tensor, role, bitwidth, row/column/output layout, padded dimensions, packed bytes, decode target, and kernel identity SHALL be recorded. |
+| `profile_quantized_layer_role_v1` | WHEN a compressed representation is role-specific, THEN layer/phase role, accepted input layout, produced output layout, and incompatible roles SHALL be recorded. |
+| `profile_tensor_core_tile_receipt_v1` | WHEN a tiled kernel runs, THEN tile shape, padding bytes, K chunks, bit loops, shared-memory bytes, grid/block config, and output packed bytes SHALL be recorded. |
+| `profile_zero_tile_ablation_receipt_v1` | WHEN empty-work skipping is claimed, THEN base tile count, optimized nonzero tile count, skipped tile count, same-input proof, runtime delta, and output equality SHALL be recorded. |
+| `profile_bit_kernel_profile_v1` | WHEN a bit-kernel benchmark is run, THEN dimensions, bit widths, repetitions, elapsed time, throughput metric, and hardware SHALL be recorded. |
+| `profile_bitpacked_subgraph_cache_v1` | WHEN a subgraph is preprocessed for compressed execution, THEN partition size, dense staging bytes, packed topology bytes, packed feature/state bytes, CPU staging bytes, and cache file path SHALL be recorded. |
+| `profile_compression_benchmark_matrix_v1` | WHEN compression options are compared, THEN bitwidth sweep, exact/approx mode, zero-skip flag, baseline, memory, latency, quality, and caveat SHALL be recorded. |
+
+Rubber duck check:
+
+```text
+Does EXACT prove we can quantize PageRank and still be correct?
+  No. EXACT is approximate activation compression for GNN training. It teaches
+  us to record bitwidth, decode metadata, reconstruction cost, and quality loss.
+
+Does QGTC prove bitpacked graph OLAP will be faster?
+  No. QGTC targets quantized GNN kernels on GPU tensor cores. It teaches us to
+  make layout role, tile shape, padding, and zero-skip counters explicit.
+
+What should exact PageRank copy?
+  Copy exact-decode compression discipline first: id-width gates, delta-coded
+  adjacency, varint or frame-of-reference edge blocks, bitset frontiers,
+  checksums, decode counters, and output equality against Neo4j/GDS.
+
+What should approximate profiles copy?
+  Copy quality gates: baseline, tolerance, seed, repeated-run variance, accuracy
+  or convergence delta, and a fail-closed downgrade when tolerance is exceeded.
+```
+
+#### GraphBolt Makes The Data Pipeline A First-Class Graph Artifact
+
+GraphBolt is useful to Knight Bus because it refuses to treat graph data loading
+as a background implementation detail. It gives names to the surfaces that many
+graph systems hide:
+
+```text
+OnDiskDataset
+  -> graph topology manifest
+  -> feature metadata
+  -> task selection
+  -> FusedCSCSamplingGraph
+  -> FeatureStore
+  -> ItemSampler
+  -> Neighbor/Subgraph sampler
+  -> FeatureFetcher
+  -> CopyTo / device transfer
+  -> DataLoader
+  -> MiniBatch
+```
+
+For GNN training, those are minibatch data-loading stages. For Knight Bus exact
+OLAP, the analogous objects are not necessarily "features" and "samplers." They
+are:
+
+```text
+GraphProjectionManifest
+  -> topology artifact
+  -> algorithm state sidecars
+  -> task/workload selection
+  -> CSR/CSC/COO/blocked topology profile
+  -> StateStore / FeatureStore
+  -> FrontierSampler / PartitionSampler
+  -> ReadPlan / SpillPlan / PrefetchPlan
+  -> ComputeKernel
+  -> OutputWriter
+  -> RunReceipt
+```
+
+The important lesson is not the exact class names. The important lesson is that
+every expensive movement of graph-shaped data should have a public object, an
+API boundary, a storage-mode flag, and a receipt.
+
+GraphBolt's `FeatureFetcher` is especially interesting. It asks the underlying
+feature implementations how many async stages a read needs, then inserts staged
+transforms and buffers into the data pipeline. That means the pipeline can
+overlap movement and compute only when the storage backend says overlap is real.
+For Knight Bus, this suggests a strict rule:
+
+```text
+A storage profile is not allowed to claim overlap, lower RAM, or lower latency
+unless the profile exposes:
+
+  - stage count
+  - bytes per stage
+  - wait/finalize points
+  - buffer depth
+  - fallback path
+  - predicted vs actual timing
+```
+
+This is the precise shape we want for budget-bounded batch compute. A profile
+should not merely say "use disk" or "use mmap." It should say:
+
+```text
+For PageRank under a 5 GB cap:
+  Stage 1: read compressed adjacency slab IDs
+  Stage 2: decode destination block
+  Stage 3: update rank delta state
+  Stage 4: spill/checkpoint changed block
+  Stage 5: finalize convergence receipt
+```
+
+Then the receipt should show which stages actually ran, how many bytes moved,
+whether the memory cap held, whether equality against the baseline held, and
+whether the planner's predicted cost was honest.
+
+`DiskBasedFeature` is the most directly relevant GraphBolt artifact. It wraps a
+NumPy file, uses mmap, checks C-contiguity, detects io_uring availability, and
+has explicit async-stage counts: one stage for CPU ids and three stages for CUDA
+ids. This is almost exactly the kind of backend-specific disclosure Knight Bus
+needs:
+
+```text
+StateSidecarBackend:
+  - storage_format: npy / arrow / custom slab / mmap block
+  - contiguity: required / optional
+  - io_path: mmap / pread / io_uring / direct-io
+  - async_stage_count: N
+  - update_support: yes/no
+  - read_into_memory_escape_hatch: yes/no
+```
+
+The escape hatch matters. GraphBolt lets disk-backed features become
+memory-backed features via `read_into_memory`. Knight Bus should copy that
+product honesty. A user may run:
+
+```text
+mode = low_ram_exact
+peak_cap = 5 GB
+```
+
+or:
+
+```text
+mode = ram_first_exact
+peak_cap = 64 GB
+```
+
+The two paths can share logical semantics while being physically different. The
+receipt should make the selected physical path obvious.
+
+`GPUCachedFeature` adds a second lesson: a cache is only a product primitive if
+it exposes accounting. GraphBolt exposes cache bytes and miss rate; its tests
+assert that the miss counter does not increase when a sufficiently large cache
+should have warmed. For Knight Bus, cache claims should have the same shape:
+
+```text
+CacheReceipt:
+  requested_ids
+  row_width
+  cache_capacity_rows
+  cache_bytes
+  hits
+  misses
+  replacements
+  miss_rate
+  fallback_backend
+  fallback_bytes
+  oracle_hit_bound
+```
+
+The "oracle hit bound" is where PaGraph and GNNLab connect to this pass. A cache
+receipt is stronger if it can say not only "we got 83 percent hit rate" but also
+"the observed-access top-k oracle would have gotten 91 percent, so our policy is
+within 8 points of the cheap upper bound."
+
+The `OnDiskDataset` and test surface add the manifest/equivalence rule. GraphBolt
+loads YAML metadata, normalizes paths, instantiates topology and feature stores,
+and tests storage-mode changes by comparing feature equality. For Knight Bus,
+this should become:
+
+```text
+StorageTierEquivalenceGuard:
+  logical graph hash
+  artifact manifest hash
+  in_memory_result_hash
+  mmap_result_hash
+  disk_result_hash
+  equality_status
+  unsupported_mode_reason
+```
+
+This is a critical guardrail. If we offer multiple storage formats per algorithm,
+we must prove they mean the same logical graph for exact modes. Otherwise "custom
+OLAP storage" becomes a correctness liability.
+
+`FusedCSCSamplingGraph` and `ItemSampler` give us the frontier/batch analogy.
+GraphBolt expresses input work as item sets, slices them into minibatches, maps
+heterogeneous IDs into homogeneous internal IDs when needed, samples graph
+neighborhoods, and preserves original edge IDs when the subgraph is returned.
+For exact OLAP, our equivalent should be:
+
+```text
+FrontierBatch:
+  logical node ids
+  physical partition ids
+  local remap range
+  source topology slabs
+  output state slab
+  original id retention
+  equality oracle path
+```
+
+This matters because low-RAM graph compute is often lost in remapping overhead.
+If a profile quietly builds a huge dense temporary subgraph or full-length reset
+vector, the product has not actually solved the RAM problem. The batch receipt
+must count temporary remap bytes as part of the budget.
+
+Rubber duck check:
+
+```text
+Does GraphBolt prove Knight Bus can beat Neo4j/GDS on PageRank RAM?
+  No. GraphBolt targets GNN data loading, sampling, feature fetch, and training
+  pipelines. It is not a Neo4j/GDS OLAP benchmark.
+
+Does GraphBolt prove io_uring alone is enough?
+  No. It shows io_uring is useful only as part of a storage backend with shape,
+  async stages, fallback behavior, and tests.
+
+What does GraphBolt prove for our thesis?
+  It proves that serious graph systems are making physical data movement a
+  first-class API surface: on-disk data, feature stores, cache wrappers, fused
+  CSC topology, staged async reads, pinned memory, device transfer, and pipeline
+  tests.
+
+What should Knight Bus copy?
+  Copy the artifact style: manifest -> physical store -> staged read -> cache
+  receipt -> batch/frontier receipt -> equality/performance guard.
+
+What should Knight Bus avoid?
+  Do not copy the GNN-specific assumption that sampling is the goal. For exact
+  OLAP, the goal is usually full-graph convergence or exact query output under
+  a resource cap. Sampling is only useful where the algorithm profile declares
+  approximation and quality gates.
+```
+
+The product consequence is sharp: Knight Bus should be sold less as "a Rust
+Neo4j rewrite" and more as "a profile-driven graph compute runtime where every
+algorithm has a manifest, a storage shape, a pipeline, and a receipt."
+
+#### GraphBolt Native Code Turns Pipeline Claims Into Byte Receipts
+
+Pass 075 explained the Python-level product shape: dataset, feature store,
+feature fetcher, cache wrapper, sampler, dataloader, and minibatch. Pass 076
+goes one layer lower. The native C++/CUDA code shows what those names have to
+mean if we want to make credible RAM and latency promises.
+
+The important shift is:
+
+```text
+Marketing claim:
+  "We use disk/cache/UVA/async reads."
+
+Useful engineering claim:
+  "This exact run used O_DIRECT, block size B, aligned row bytes R,
+   Q io_uring queues, T workers, N submitted reads, P partial reads,
+   C copied bytes, H cache hits, M misses, and K output rows."
+```
+
+That is the level at which Knight Bus has to operate. The differentiator is not
+only the storage format. The differentiator is that every physical path becomes
+auditable.
+
+The `OnDiskNpyArray` path is especially concrete. It does not merely "read from
+disk." It parses a NumPy header, opens the file with direct I/O, discovers block
+size, rounds row length to aligned length, allocates aligned read buffers, uses
+multiple io_uring queues, caps worker threads, prevents queue overrun, recovers
+from partial reads, and copies only the useful row bytes into the result. A
+Knight Bus low-RAM PageRank sidecar should copy that style of accounting:
+
+```text
+DiskStateReadReceipt:
+  logical_state: rank_delta / adjacency_slab / frontier_bitmap
+  file_format: npy / arrow / custom_slab
+  header_offset_bytes
+  block_size_bytes
+  logical_row_bytes
+  aligned_row_bytes
+  output_rows
+  output_bytes
+  io_engine: mmap / pread / io_uring / custom
+  queue_count
+  worker_count
+  submitted_reads
+  completed_reads
+  partial_reads
+  copied_bytes
+  error_policy
+```
+
+The cache internals give the second lesson. `FeatureCache` is plain row-copy
+state; the cache policies split found rows from missing keys; the partitioned
+policy offsets keys, partitions them, merges found/missing sections, and rejects
+over-capacity insertions. That tells us what a serious cache receipt needs:
+
+```text
+CacheAdmissionReceipt:
+  requested_keys
+  row_bytes
+  capacity_rows
+  capacity_bytes
+  found_count
+  missing_count
+  found_positions
+  missing_keys
+  output_indices
+  inserted_positions
+  evicted_positions
+  partition_count
+  per_partition_found_offsets
+  per_partition_missing_offsets
+  capacity_failure_status
+```
+
+The GPU cache and graph cache add a third lesson: accelerator paths are not just
+"faster." They carry device, stream, dtype packing, map-capacity, load-factor,
+rehash, hit/new/threshold counters, and global concurrency caps. If Knight Bus
+eventually has a GPU or async storage path, the run receipt must expose the
+control surface instead of hiding it behind a speed claim.
+
+The UVA and CSC CUDA paths are even more useful for storage-format imagination.
+GraphBolt sorts indices to improve access, preserves the permutation, selects
+different kernels based on feature width and cache-line alignment, caps block
+count, scans actual versus aligned edge counts, and chooses the smallest COO-row
+integer type that can fit the node count. This maps directly to our custom OLAP
+storage ambition:
+
+```text
+Algorithm-shaped storage should choose physical width and access order from the
+algorithm phase, then prove what padding, permutation, and decode work it added.
+```
+
+For exact PageRank, this suggests a physical layout family like:
+
+```text
+PageRankExactStorageProfile:
+  topology_view:
+    - CSC/CSR by phase
+    - id_width: u32/u40/u64 gate
+    - slab_size
+    - degree blocks
+    - checksum per slab
+
+  state_view:
+    - rank vector width
+    - delta/residual vector width
+    - dangling vector or aggregate
+    - frontier bitmap or changed-block list
+    - checkpoint cadence
+
+  access_plan:
+    - sorted block order
+    - block permutation file
+    - aligned read size
+    - decode path
+    - exact equality oracle
+```
+
+The native sampling code supplies the receipt pattern for temporary graph views:
+count, prefix-scan, allocate, select/pick, copy, remap, validate. Even when
+Knight Bus is not sampling, it will build temporary frontiers, partitions,
+changed-node blocks, converged-block sets, and output tables. Those are all
+temporary views. They must count scratch bytes, remap bytes, selected edge/node
+counts, and validation status.
+
+```text
+TemporaryGraphViewReceipt:
+  input_logical_ids
+  physical_partition_ids
+  count_phase_bytes
+  scan_phase_bytes
+  allocation_bytes
+  selected_nodes
+  selected_edges
+  remap_table_bytes
+  original_id_retention
+  validation_checks
+  output_shape
+```
+
+Rubber duck check:
+
+```text
+Does native GraphBolt prove our PageRank will use less RAM than Neo4j/GDS?
+  No. It is not a PageRank or GDS benchmark.
+
+Does it prove io_uring is the magic ingredient?
+  No. It shows io_uring is only useful when the physical backend also declares
+  alignment, queueing, worker, partial-read, and fallback behavior.
+
+Does it prove cache hit rate alone is enough?
+  No. The useful cache state includes found/missing layout, output reorder,
+  partition offsets, admission failure, and replacement bytes.
+
+Does it prove we should make physical paths public?
+  Yes. Many GraphBolt native controls are exposed through `TORCH_LIBRARY`: cache
+  policies, feature cache, on-disk arrays, io_uring detection, io_uring thread
+  count, index-select variants, futures, GPU cache, GPU graph cache, and UVA
+  thread caps.
+
+What should Knight Bus copy?
+  Copy the receipt discipline: each storage path should explain what it read,
+  what it cached, what it copied, what it aligned, what it remapped, what it
+  validated, and where the RAM cap was enforced.
+```
+
+The sharper product thesis after this pass:
+
+```text
+Knight Bus should not promise "custom storage" as a black box.
+
+It should promise proof-carrying storage profiles:
+  - declared physical representation
+  - declared algorithm phase
+  - declared RAM cap
+  - exact or approximate correctness mode
+  - measured physical movement
+  - baseline comparison
+  - machine-readable receipt
+```
+
+#### GraphStorm Turns GraphBolt Into A Workflow Contract
+
+Pass 075 gave us the Python-level GraphBolt pipeline. Pass 076 gave us the
+native byte receipts. Pass 077 gives the downstream operational lesson:
+GraphStorm treats GraphBolt not as a clever hidden optimization, but as a
+workflow mode with preparation, conversion, runtime flags, cloud-pipeline steps,
+artifact checks, and end-to-end tests.
+
+That is exactly the pattern Knight Bus needs for budget-bounded graph OLAP. The
+storage profile cannot be something that quietly appears inside `run_pagerank`.
+It needs to be a visible job boundary:
+
+```text
+small graph path:
+  GConstruct --use-graphbolt
+    -> fused_csc_sampling_graph.pt exists
+    -> train/infer --use-graphbolt
+
+distributed/cloud path:
+  GSProcessing
+    -> GSPartition
+    -> GraphBoltConvert
+    -> train/infer --use-graphbolt
+
+existing partition path:
+  convert_to_graphbolt(metadata.json)
+    -> fused_csc_sampling_graph.pt exists per partition
+    -> train/infer --use-graphbolt
+```
+
+For Knight Bus, the analogous loop should be:
+
+```text
+ProjectGraph
+  -> BuildStorageProfile
+  -> VerifyProfile
+  -> RunAlgorithm
+  -> CompareBaseline
+  -> EmitReceipt
+```
+
+The GraphStorm source makes this concrete. `convert_to_graphbolt` accepts a
+partition metadata file and optional job count, gates behavior on DGL version,
+keeps edge IDs, and writes GraphBolt artifacts. The SageMaker wrapper adds a
+sharp memory warning: because one process is used per partition, `njobs`
+partitions have to fit into memory. That is a product lesson, not an
+implementation footnote. If a user asks Knight Bus for `peak_ram <= 10GB`, the
+conversion planner should either prove that its parallelism and scratch space
+fit the cap or fail before the expensive algorithm run starts.
+
+GraphStorm also has pipeline-level assertions. If distributed partitioning is
+used with GraphBolt training, the pipeline requires a GraphBolt conversion job
+and normalizes the partition metadata filename. That maps cleanly to a Knight
+Bus invariant:
+
+```text
+If algorithm_run.storage_profile != logical_default:
+  require BuildStorageProfile step
+  require VerifyProfile step
+  require profile artifact existence checks
+  require profile compatibility/version gates
+  require receipt field coverage before publishing a speed/RAM claim
+```
+
+The end-to-end shell tests are a useful reminder of what "done" should mean.
+GraphStorm checks that `fused_csc_sampling_graph.pt` exists for each partition,
+then runs training and inference paths with GraphBolt enabled and checks model,
+embedding, and prediction artifacts. For Knight Bus, the equivalent is not just
+"PageRank returned numbers." It should be:
+
+```text
+StorageProfileE2E:
+  conversion artifacts exist
+  manifest paths resolve
+  profile compatibility gates pass
+  selected algorithm runs under the declared storage mode
+  output matches oracle for exact mode
+  RAM cap is enforced during conversion and execution
+  phase receipt exists
+  baseline comparison receipt exists
+```
+
+The AWS ML blog around GraphStorm v0.4 is also market evidence. AWS describes
+GraphBolt as compact graph representation plus pipelined sampling, and reports
+large speed and memory gains on its benchmark. I am treating those as
+AWS-reported claims, not independent proof. Still, the signal matters: users can
+understand and buy a graph product story where the performance feature is a
+named physical representation and pipeline mode.
+
+Rubber duck check:
+
+```text
+Does GraphStorm prove GraphBolt is a Neo4j/GDS OLAP replacement?
+  No. GraphStorm is a graph ML framework, and GraphBolt is used here for graph
+  sampling/training/inference workflows.
+
+Does it prove Knight Bus should copy the exact GraphBolt format?
+  No. Our storage profiles should be algorithm-shaped for PageRank, WCC, BFS,
+  community detection, similarity, and other OLAP jobs.
+
+What does it prove strongly?
+  It proves that storage conversion should be an explicit workflow artifact
+  with version gates, metadata, memory caveats, downstream runtime flags, and
+  artifact-existence tests.
+
+What is the main architecture implication?
+  Treat "custom OLAP storage" as a build/verify/run contract, not as an
+  invisible runtime optimization.
+
+What should Knight Bus copy first?
+  Copy the job boundary and evidence style: profile conversion, manifest,
+  per-partition artifact checks, memory-gated parallelism, run flag, e2e output
+  checks, and receipts.
+```
+
+The sharper product rule after GraphStorm:
+
+```text
+Every custom storage profile must be operationally boring before it is
+algorithmically clever.
+
+Users should be able to see:
+  - what profile was built
+  - from which logical projection
+  - with which version/compatibility gates
+  - under which RAM cap
+  - with which artifacts
+  - with which conversion parallelism
+  - with which run flag
+  - with which correctness oracle
+  - with which baseline comparison
+```
+
+#### GraphStorm Examples Make Comparison A Product Artifact
+
+The GraphStorm SageMaker GraphBolt example is useful because it does not stop at
+"turn GraphBolt on." It teaches the user to build a baseline pipeline, execute
+it, save logs, inspect S3 outputs, then build a GraphBolt-enabled pipeline and
+compare the same visible metrics. That is the exact posture Knight Bus needs.
+
+The workflow shape is:
+
+```text
+baseline pipeline:
+  dataset
+  resource envelope
+  construction/training/inference jobs
+  output prefixes
+  local or CloudWatch logs
+  timing summary
+
+optimized pipeline:
+  same dataset
+  declared storage mode
+  declared resource envelope
+  construction/conversion/training/inference jobs
+  output prefixes
+  local or CloudWatch logs
+  timing summary
+
+comparison:
+  epoch/phase latency
+  evaluation/inference latency
+  output artifact presence
+  accuracy/correctness caveat
+  source-attributed benchmark status
+```
+
+For Knight Bus, translate that from GNN terms into graph OLAP terms:
+
+```text
+BaselineVsStorageModeComparison:
+  logical_graph_id
+  projection_manifest
+  algorithm
+  exact_or_approx_mode
+
+  baseline:
+    engine: Neo4j/GDS or ram_first_knight_bus
+    storage_mode
+    resource_envelope
+    phase_timings
+    peak_rss
+    outputs
+
+  optimized:
+    engine: knight_bus
+    storage_profile
+    resource_envelope
+    conversion_timings
+    run_phase_timings
+    peak_rss
+    spill_bytes
+    outputs
+
+  verdict:
+    output_match_status
+    tolerance_or_exact_hash
+    ram_delta
+    latency_delta
+    confidence
+    caveat
+```
+
+The example also adds a scaling lesson. Arxiv is the small pipeline: two
+instances, CPU training, 50GB volume, four trainers, and local execution. The
+Papers100M path is the large pipeline: four instances, `ml.g5.48xlarge` GPU
+training, `ml.r5.24xlarge` graph construction, eight trainers, 400GB volume,
+large preprocessing, and asynchronous SageMaker execution. The storage flag is
+the same shape, but the resource envelope is not.
+
+Knight Bus should copy that distinction:
+
+```text
+LocalFixtureProfile:
+  tiny graph
+  exact oracle
+  developer laptop
+  seconds/minutes
+  used for correctness and API shape
+
+ScaleBenchmarkProfile:
+  large graph
+  baseline comparator
+  cloud or dedicated host
+  explicit quota/resource assumptions
+  hours allowed
+  used for credible RAM/latency claims
+```
+
+The Papers100M preprocessing code is a surprisingly direct RAM-bounded batch
+compute clue. It memory-maps NumPy arrays, computes approximate row bytes,
+chooses node and edge chunk sizes to fit around a 1GB chunk target, and caps
+workers based on available RAM while assuming each worker may need roughly 2GB.
+That is not GraphBolt-specific; that is the kind of mechanism our graph storage
+builder should have from day one.
+
+```text
+PreprocessChunkMemoryGate:
+  input_format
+  mmap_status
+  row_bytes
+  target_chunk_bytes
+  chosen_chunk_rows
+  available_ram
+  worker_memory_assumption
+  max_workers
+  output_file_count
+  output_format
+```
+
+The DGL 2.1 release page adds the upstream architecture context. GraphBolt's
+performance story is not "GPU equals faster." It is the composition of stage
+placement, pinned memory, GPU-accessible graph/features, GPU feature caching,
+overlap of feature and graph fetch, and mixed-width CSC storage. That reinforces
+the Knight Bus rule:
+
+```text
+Do not compare "Neo4j" versus "Rust."
+Compare a declared physical execution plan versus another declared physical
+execution plan.
+```
+
+Rubber duck check:
+
+```text
+Does the GraphStorm example prove our OLAP storage profiles will beat Neo4j/GDS?
+  No. It is a Graph ML benchmark/example, and its performance numbers are
+  source-reported.
+
+What does it prove?
+  It proves that serious graph users can follow a baseline-vs-optimized
+  comparison workflow when the system makes resources, outputs, logs, and
+  timing summaries explicit.
+
+What should Knight Bus copy?
+  Copy the comparison harness: paired run names, same dataset, explicit resource
+  envelope, output artifact inspection, log parsing, and source-attributed
+  benchmark caveats.
+
+What should Knight Bus avoid?
+Do not publish a speedup number without the comparator, dataset, resource
+envelope, exactness mode, and analyzer that produced it.
+```
+
+#### DGL GraphBolt Examples Turn Storage Modes Into Staged Dataflow
+
+The DGL GraphBolt examples give us an unusually crisp implementation pattern:
+the storage mode is a small string, but the string expands into a staged
+physical execution plan.
+
+In the examples, a mode such as:
+
+```text
+pinned-pinned-cuda
+```
+
+means:
+
+```text
+graph storage: pinned CPU memory
+feature storage: pinned CPU memory
+compute device: CUDA
+```
+
+Other modes move graph and features independently:
+
+```text
+cpu-cpu-cpu
+cpu-cpu-cuda
+cpu-pinned-cuda
+pinned-pinned-cuda
+cuda-pinned-cuda
+cuda-cuda-cuda
+```
+
+That maps almost directly to the Knight Bus OLAP runtime:
+
+```text
+KnightBusStorageModeTriple:
+  topology_tier: memory / pinned / mmap / disk / remote / gpu
+  state_tier: memory / pinned / mmap / disk / spill / gpu
+  compute_tier: cpu / gpu / distributed
+```
+
+The critical insight is that the mode triple is not enough. GraphBolt then uses
+the selected placement to decide where `copy_to` appears in the datapipe:
+
+```text
+ItemSampler
+  -> maybe copy_to(device)
+  -> sample_neighbor / sample_layer_neighbor / temporal sampler
+  -> maybe exclude seed edges
+  -> maybe copy_to(device)
+  -> fetch_feature
+  -> maybe copy_to(device)
+  -> DataLoader
+```
+
+This is exactly how a Knight Bus profile should be made auditable:
+
+```text
+AlgorithmProfileDataflow:
+  frontier/source item generation
+  optional topology copy/read
+  topology traversal or sampling/read phase
+  optional exclusion/filter/temporal guard
+  state/vector/feature fetch
+  optional state copy/decode
+  algorithm compute
+  output/writeback
+```
+
+The disk-backed feature example is the strongest low-RAM analogy. It forces
+selected features to be loaded as `DiskBasedFeature`, then optionally wraps them
+with a CPU cache and a GPU cache. It exposes cache policy, CPU cache size, GPU
+cache size, miss-rate observers, pinnedness, and a capacity warning: the CPU
+cache should be large enough relative to sampled minibatch nodes or the feature
+fetcher can hang. That is a serious product lesson for us:
+
+```text
+RAM caps are not just "nice to have."
+Some cache/storage modes have minimum safe capacities.
+Those must be preflight checks, not mystery runtime failures.
+```
+
+For Knight Bus, this becomes:
+
+```text
+StorageProfilePreflight:
+  requested_ram_cap
+  estimated_min_safe_cache
+  expected_frontier_or_block_size
+  row/state bytes
+  chosen cache policy
+  chosen cache bytes
+  deadlock_or_thrash_risk
+  fail_closed_status
+```
+
+The Labor example adds a second powerful idea: locality knobs are product knobs.
+`batch_dependency` deliberately increases temporal locality across minibatches;
+`layer_dependency` reduces repeated neighborhood expansion across layers. The
+example reports cache-miss and sampled-node deltas under those knobs. That is
+almost exactly what we want for exact graph OLAP, except our correctness guard
+must be stricter:
+
+```text
+ExactGraphLocalityKnob:
+  reorder frontiers
+  group partitions
+  keep hot state blocks warm
+  process related blocks together
+  skip equality-safe zero-delta blocks
+  preserve exact output hash
+```
+
+The multi-GPU example adds the distributed version of the same contract:
+`DistributedItemSampler`, `drop_uneven_inputs`, cooperative flags, GPU graph
+cache edge count, graph caching threshold, distributed process group, and
+cooperative compaction in the model. For Knight Bus this says distributed
+bounded compute must record:
+
+```text
+DistributedProfileReceipt:
+  rank
+  world_size
+  partition/item split
+  uneven-input policy
+  cooperative flag
+  cache-per-rank bytes
+  graph-cache threshold
+  compacted frontier ids
+  output merge/check status
+```
+
+Rubber duck check:
+
+```text
+Does DGL GraphBolt prove anything directly about Neo4j PageRank?
+  No. These are GNN sampling/data-loading examples, not exact GDS OLAP
+  benchmarks.
+
+What transfers cleanly?
+  The physical-plan vocabulary: storage mode triple, stage placement, pinned
+  memory, GPU residency, disk feature sidecar, CPU/GPU cache wrapping, cache
+  policy, cache miss observer, locality knobs, and distributed item splitting.
+
+What should Knight Bus avoid?
+  Do not copy sampling assumptions into exact algorithms unless the profile is
+  explicitly approximate. For exact OLAP, locality/reordering is allowed only
+  when the output equality oracle still passes.
+
+What should Knight Bus copy first?
+  Copy the manifest shape:
+    topology_tier
+    state_tier
+    compute_tier
+    stage_order
+    cache_policy
+    cache_bytes
+    overlap_flags
+    locality_knobs
+    preflight capacity checks
+    miss-rate/visited-count receipts
+```
+
+The sharper product rule after this pass:
+
+```text
+A storage profile is not a file format.
+
+It is:
+  physical placement
+  stage ordering
+  cache policy
+  locality policy
+  resource envelope
+  safety preflight
+  correctness guard
+  run receipt
+```
+
+#### GraphBolt Tests Turn The Profile Vocabulary Into Acceptance Criteria
+
+The GraphBolt examples gave us vocabulary. The GraphBolt tests tell us how to
+promote that vocabulary into a real product contract.
+
+The important move is subtle: GraphBolt does not only expose options such as
+`cpu`, `pinned`, `cuda`, disk feature, CPU cache, GPU cache, async read, overlap,
+and graph cache. It also tests that these options preserve observable behavior:
+
+```text
+Storage option -> acceptance proof
+
+cache query/replace
+  -> found/missing layout is stable
+  -> query_and_replace matches query + replace
+  -> miss-rate observers agree
+
+sync read vs async read
+  -> declared stage count can be advanced
+  -> final wait() output equals sync oracle
+
+disk -> CPU cache -> GPU cache
+  -> nested tiers preserve row values
+  -> fallback backend remains visible
+
+memory / pinned / CUDA placement
+  -> target residency changes
+  -> original object stays untouched when copy semantics are promised
+  -> in-place pinning preserves data pointer
+
+manifest mutation
+  -> legal tier changes preserve equality
+  -> illegal format/memory/path combinations fail before work
+
+pipeline and temporary views
+  -> inserted buffers are counted
+  -> original ids survive compaction
+  -> reference pipeline output remains equal under fixed seed
+```
+
+For Knight Bus, the transfer is straightforward: every custom OLAP storage
+profile needs a promotion suite before it is allowed into a benchmark table.
+
+```text
+KnightBusStorageProfilePromotion:
+  ManifestLoadTest
+  PlacementTransitionTest
+  SyncAsyncEquivalenceTest
+  CacheQueryShapeTest
+  CacheMissObserverTest
+  DiskStateRoundTripTest
+  NestedTierFallbackTest
+  DataloaderStageOrderTest
+  TemporaryGraphViewIdentityTest
+  ReferencePipelineEquivalenceTest
+  ErrorFailClosedTest
+```
+
+For exact PageRank, this becomes concrete:
+
+```text
+PageRankDiskProfilePromotion:
+  load graph projection manifest
+  prove memory/mmap/disk state sidecars represent the same logical graph
+  run one iteration sync and async, compare rank vector
+  run cached and uncached rank-block fetch, compare rank vector
+  force cache miss path, record fallback rows and bytes
+  build block/frontier view, verify original node ids and edge ids survive
+  compare against Neo4j/GDS or GraphBLAS/LAGraph oracle
+  fail closed on path, format, dtype overflow, or RAM-cap preflight violation
+```
+
+Rubber duck check:
+
+```text
+Does this prove our low-RAM OLAP path will be faster?
+  No. It proves how to avoid fooling ourselves before speed claims begin.
+
+Does it transfer from GNN tests to Neo4j/GDS exact algorithms?
+  The algorithms differ, but the physical risks are shared: tier movement,
+  cache misses, async waits, temporary views, original-id retention, manifest
+  legality, and reference-path equivalence.
+
+What should be documented next?
+  A table that maps each proposed Knight Bus profile to its mandatory promotion
+  tests, oracle, RAM fields, latency fields, and failure modes.
+```
+
+The product rule after this pass:
+
+```text
+No custom storage profile gets marketed as a RAM/latency win until it has:
+  a manifest
+  a reference oracle
+  a physical-stage receipt
+  a fail-closed error suite
+  a same-input baseline comparison
+```
+
+#### Graphalytics Turns Verification Into A Public Benchmark Spine
+
+Graphalytics is not merely "some benchmark we could cite." It is the cleanest
+public spine so far for deciding what the first serious Knight Bus proof should
+measure.
+
+The important distinction:
+
+```text
+Neo4j/GDS:
+  compatibility oracle for surface area, procedure semantics, projection shape,
+  and user expectations
+
+Graphalytics:
+  public benchmark spine for algorithms, datasets, output validation,
+  repetitions, reporting, and reproducibility ritual
+
+GraphBLAS/LAGraph:
+  reference implementation lane for matrix-shaped algorithm behavior
+```
+
+This gives us a less muddled verification plan. We should not say "we rewrote
+Neo4j" because Graphalytics passes. We should say:
+
+```text
+For algorithm A on dataset D:
+  Neo4j/GDS run proves API and user-surface comparison
+  Graphalytics validates output semantics and benchmark discipline
+  GraphBLAS/LAGraph provides a public algorithm reference lane
+  Knight Bus profile proves RAM cap, latency, and physical-stage receipts
+```
+
+The Pareto algorithm family is also clearer now. LDBC's public benchmark set is:
+
+```text
+BFS
+PageRank
+WCC
+CDLP
+LCC
+SSSP
+```
+
+That is not the entire graph-algorithm universe. It is, however, a very strong
+first slice because it covers traversal, iterative rank propagation, component
+label propagation, community-style label propagation, local triangle/coefficient
+style neighborhood computation, and weighted shortest paths.
+
+The validation modes are a product-design clue:
+
+```text
+BFS / CDLP
+  -> exact long output validation
+
+PageRank / LCC / SSSP
+  -> epsilon double output validation
+
+WCC
+  -> equivalence-class validation
+```
+
+Knight Bus should copy the shape of this, not necessarily the exact Java code:
+
+```text
+KnightBusBenchmarkSpine:
+  graphalytics_fixture
+  neo4j_gds_run
+  knightbus_ram_first_run
+  knightbus_budget_profile_run
+  graphblas_lagraph_reference_run
+  validation_rule
+  ram_cap
+  wall_time
+  processing_time
+  output_hash_or_tolerance
+  failure/reproducibility status
+```
+
+The run lifecycle becomes a checklist:
+
+```text
+load
+prepare
+run
+validate
+retrieve
+terminate
+archive
+report
+```
+
+For our first real implementation loop, that suggests a painfully concrete
+target:
+
+```text
+PageRankReceiptV1:
+  input dataset: Graphalytics tiny/test plus one larger public dataset
+  baseline: Neo4j/GDS PageRank
+  reference: GraphBLAS/LAGraph PageRank
+  profile 1: RAM-first Knight Bus
+  profile 2: budget-bounded Knight Bus
+  validation: epsilon double
+  RAM fields: peak RSS, mapped bytes, page cache estimate, heap bytes,
+              active rank-vector bytes, frontier/block bytes, spill bytes
+  time fields: load, convert, run, validate, retrieve, total wall time,
+               processing time if emitted by runner
+  output fields: row count, vertex-id coverage, tolerance failures,
+                 top-k diff, full-output hash where meaningful
+```
+
+Rubber duck check:
+
+```text
+Does Graphalytics prove we can replace Neo4j?
+  No. It proves algorithm-output and benchmark discipline, not Cypher,
+  Bolt, transactions, GDS catalog behavior, or Neo4j memory-estimator parity.
+
+Does Neo4j/GDS alone give us enough verification?
+  Also no. It gives the product surface, but we still need a public,
+  repeatable benchmark ritual with independent reference outputs.
+
+Why is this useful for the PMF thesis?
+  Because the user does not need a religious argument about Rust, Java,
+  GraphBLAS, or Neo4j. They need a proof packet saying: same graph,
+  same algorithm family, same validation rule, declared RAM cap, measured
+  latency, and reproducible output.
+```
+
+The product rule after Graphalytics:
+
+```text
+Benchmark product claims should compare algorithm/dataset/profile receipts,
+not vague system names.
+
+Bad:
+  Knight Bus is faster than Neo4j.
+
+Good:
+  On Graphalytics PageRank dataset X, budget profile Y used <=10GB peak RSS,
+  matched epsilon validation against reference output, and traded Z minutes
+  of runtime for N percent lower resident memory than Neo4j/GDS on the same
+  machine and projection.
+```
+
+#### ArcadeDB GAV Is The Database Version Of Our Storage-Shape Thesis
+
+ArcadeDB's Graph Analytical View is the cleanest database-native example so far
+of the shape we keep circling:
+
+```text
+OLTP graph surface
+  -> transactional records, Cypher/SQL, normal user writes
+
+OLAP sidecar view
+  -> CSR offsets/neighbors
+  -> dense vertex IDs
+  -> forward/backward adjacency
+  -> typed property columns
+  -> algorithm/query optimizer routes hot work to the view
+```
+
+This is close to the Knight Bus thesis, but not identical.
+
+```text
+ArcadeDB GAV:
+  one database adds a memory-optimized analytical view beside OLTP storage
+
+Knight Bus:
+  many algorithm-specific profiles, each with explicit RAM cap, proof,
+  latency/RAM receipt, fallback policy, and oracle comparison
+```
+
+The important product lesson is not "copy ArcadeDB." It is that the OLTP/OLAP
+split can be productized without making the user leave the graph surface:
+
+```text
+same logical graph
+same query/procedure surface
+different physical shape for hot analytical work
+visible build/readiness/fallback/validation receipts
+```
+
+The ArcadeDB platform driver gives us a concrete lifecycle:
+
+```text
+load EVLP graph
+  -> build embedded database with VID/RID mapping
+  -> optionally build Graph Analytical View
+  -> wait for traversal provider readiness
+  -> choose CSR path or OLTP fallback
+  -> run algorithm
+  -> write result properties back to vertices
+  -> serialize one output row per vertex
+  -> let Graphalytics validate
+```
+
+For Knight Bus, this should become a stricter receipt:
+
+```text
+KnightBusAnalyticalViewReceipt:
+  profile_id
+  source_graph_id
+  surface_adapter: neo4j_gds | graphalytics | internal
+  physical_view_kind: csr | csc | blocked_csr | mmap_csr | matrix | custom
+  build_mode: sync | async | manual | restored
+  update_mode: immutable | synchronous | async_delta | rebuilt_per_run
+  ready_wait_ms
+  ready_status
+  fallback_policy: fail_closed | baseline_oltp | graphblas_reference
+  chosen_path
+  topology_bytes
+  dense_id_map_bytes
+  property_column_bytes
+  algorithm_state_bytes
+  temp_state_bytes
+  writeback_rows
+  output_rows
+  compute_time_ms
+  writeback_time_ms
+  serialize_time_ms
+  validation_status
+```
+
+The "algorithm path" details matter. In the ArcadeDB source:
+
+```text
+BFS / SSSP:
+  check for Graph Analytical View
+  use dense CSR IDs and GraphAlgorithms if ready
+  otherwise fall back to OLTP/object traversal
+
+PageRank / WCC / LCC:
+  use built-in algorithms and report/write results
+
+CDLP:
+  custom CSR label propagation because LDBC requires VID-based labels
+  and smallest-VID tie breaking
+```
+
+That last CDLP point is the exact kind of specificity Knight Bus needs. If the
+benchmark oracle says labels must be vertex IDs, an otherwise faster internal
+index-label implementation is wrong unless it maps back correctly.
+
+The native comparison harness also teaches caution. It runs some algorithm calls
+as `RETURN count(*)` to avoid streaming large outputs over HTTP. That may be a
+reasonable engineering choice for a quick comparison, but it is not the same as
+full Graphalytics output validation. For Knight Bus:
+
+```text
+count-only benchmark:
+  useful for quick hot-loop smoke tests
+  not enough for correctness claims
+
+full-output benchmark:
+  required for public RAM/latency/correctness claims
+  must include output materialization and validator time
+```
+
+Rubber duck check:
+
+```text
+Does ArcadeDB prove our approach will be lower RAM?
+  No. GAV is an in-memory/read-optimized analytical view; it may spend more
+  memory to buy speed. It proves the OLTP/OLAP split is real, not that it is
+  automatically budget-bounded.
+
+Does ArcadeDB prove Neo4j rewrite is the right product?
+  No. It suggests a better framing: preserve the useful graph surface, then
+  compete on analytical physical plans, receipts, and verifiable tradeoffs.
+
+What should we steal?
+  The lifecycle and vocabulary: analytical view, dense mapping, ready wait,
+  CSR path, fallback path, writeback, serializer, validation.
+
+What should we improve?
+  Make fallback non-silent, make RAM fields explicit, support bounded profiles,
+  and separate quick count-only comparison from full correctness comparison.
+```
+
+The product rule after this pass:
+
+```text
+Never benchmark only the hot loop.
+
+For every storage-shaped OLAP profile, show:
+  projection/build cost
+  profile readiness
+  chosen physical path
+  fallback or refusal behavior
+  active algorithm state
+  temporary state
+  writeback/materialization
+  output validation
+  RAM cap adherence
+```
+
+#### Samyama Is The Nearest Public Shape To The Ambition, And A Warning Label
+
+Samyama is the closest public artifact in this pass to the grand version of
+Knight Bus:
+
+```text
+Rust graph database
+  + OpenCypher-like query surface
+  + graph algorithms
+  + vector search / GraphRAG
+  + LDBC-flavored benchmark claims
+  + commodity-machine / low-RAM narrative
+```
+
+That makes it valuable, but not because we should simply copy it. It is valuable
+because it shows both sides of the problem:
+
+```text
+The attractive side:
+  CSR GraphView
+  dense ID remapping
+  LDBC Graphalytics runner
+  late materialization
+  sparse column store
+  algorithm procedures exposed through the query surface
+  Rust workspace with explicit algorithm/GPU/SDK crates
+
+The caution side:
+  performance numbers are paper/repo claims until reproduced
+  latest visible CI runs were cancelled GPU CI runs, not green proof
+  Graphalytics runner measures pure algorithm time on GraphView
+  procedure path still pays projection, record materialization, clone, sort
+  first-execution Cypher can be parse/plan dominated
+  complex SNB reads still grow hard at scale
+```
+
+The local implementation reinforces a core Knight Bus rule:
+
+```text
+Rust alone is not the product advantage.
+
+The advantage is:
+  choose a physical graph shape
+  explain why that shape fits this algorithm/query
+  bound the memory
+  split every phase
+  compare against an oracle
+  emit a receipt
+```
+
+Samyama's Graphalytics path is intentionally direct:
+
+```text
+Graphalytics .v/.e files
+  -> parse vertices/edges
+  -> infer/mount sparse original IDs
+  -> dense-map IDs
+  -> build outgoing/incoming adjacency lists
+  -> flatten to GraphView:
+       index_to_node
+       node_to_index
+       out_offsets / out_targets
+       in_offsets / in_sources
+       optional flat weights
+  -> run BFS / PageRank / WCC / CDLP / LCC / SSSP
+  -> validate against expected outputs
+```
+
+For our implementation roadmap, this says the first serious Knight Bus profile
+should have two modes:
+
+```text
+Mode A: pure algorithm benchmark
+  input Graphalytics-style files
+  build profile directly
+  run hot loop
+  validate output
+  useful for algorithm correctness and storage-shape experiments
+
+Mode B: Neo4j/GDS-compatible procedure benchmark
+  ingest/query through user-facing graph surface
+  build projection/sidecar
+  run procedure
+  materialize/write/return output
+  validate output
+  useful for product truth
+```
+
+The phrase "same API, lower RAM" is only credible in Mode B. Mode A is still
+useful, but it must be named as a hot-loop or profile experiment.
+
+The late-materialization and column-store ADRs are the strongest technical
+signal. They show a more general version of the budget-bounded instinct:
+
+```text
+Bad:
+  clone node -> carry full property map -> filter -> return one field
+
+Better:
+  carry NodeRef -> filter by cheap refs -> resolve only needed property
+
+Better still for Knight Bus:
+  carry AlgorithmNodeRef / DenseNodeId / RowRef
+  choose exact property/topology sidecar
+  materialize only proof-required fields
+  spill or mmap what is not in the current active frontier/state
+```
+
+The CDLP detail is especially useful. LDBC's minimum-label tie-break exists for
+determinism, not because it is the best community-detection heuristic. That is
+the shape of a product-grade verification rule:
+
+```text
+AlgorithmProfile:
+  human algorithm name: CDLP
+  oracle algorithm name: LDBC CDLP
+  deterministic tie-break: minimum original vertex ID
+  internal representation allowed: dense integer
+  external proof required: labels map back to original IDs
+```
+
+Rubber duck check:
+
+```text
+Does Samyama prove a Rust rewrite wins?
+  No. It shows Rust can host the integrated surface, but it also shows parser,
+  planner, materialization, and complex traversal costs can dominate.
+
+Does Samyama prove CSR analytics is enough?
+  No. CSR is a strong baseline profile, but not automatically budget-bounded.
+  A CSR view can still be too large; Knight Bus must add chunking, mmap/spill,
+  block frontiers, and profile-specific state plans.
+
+Does Samyama help our verification loop?
+  Yes. It gives a nearby design: LDBC algorithms plus validators plus an
+  integrated graph surface. We should improve the receipt discipline and phase
+  accounting, not merely imitate the feature list.
+```
+
+The new product rule:
+
+```text
+When evaluating a near-neighbor graph DB, classify every claim as:
+  paper claim
+  README claim
+  benchmark-doc claim
+  code-shape evidence
+  local run evidence
+  independent reproduced evidence
+
+Only the last two should be allowed in external performance marketing.
+The earlier tiers are still valuable for architecture search.
+```
+
+#### Samyama Issue 296 Turns Complex Reads Into The Sharp Edge
+
+Pass 084 sharpened the Samyama lesson from "near-neighbor Rust graph DB" into a
+specific workload target: LDBC SNB Interactive complex reads, especially the
+queries that expand `KNOWS*1..2` or `KNOWS*1..3` from a high-degree anchor and
+then join, deduplicate, filter, aggregate, sort, or limit the expanded frontier.
+
+The official LDBC SNB framing matters here. SNB is not a random social-network
+demo; it is a benchmark suite for graph database management systems. Its
+Interactive workload captures neighbourhood reads and updates, while its BI
+workload emphasizes aggregation- and join-heavy graph queries over the common
+dataset. That is exactly the bridge between the OLTP surface area and the OLAP
+surface area we have been circling.
+
+Samyama issue #296 is unusually useful because it is honest. It says:
+
+```text
+Point and short reads:
+  extremely strong
+
+Complex reads at SF10:
+  IC1, IC3, IC5, IC6, IC9 are the pain
+
+Common shape:
+  high-degree anchor
+  -> variable-length KNOWS frontier
+  -> DISTINCT/dedup
+  -> post/comment/tag/forum/date join
+  -> aggregation or sort/limit
+
+Suspected bottlenecks:
+  frontier deduplication
+  KNOWS* cardinality estimation
+  hash aggregation vs repeated scans
+```
+
+This is the work shape Knight Bus should probably attack before trying to
+"rewrite Neo4j" broadly. The world already has engines that can parse Cypher,
+store nodes and relationships, and run simple reads quickly. The differentiated
+opportunity is to make these expensive frontier-to-aggregation reads predictable
+under a declared RAM budget.
+
+The Samyama code makes the gap concrete:
+
+```text
+LDBC benchmark harness
+  loads dataset
+  builds anchor id indexes
+  substitutes params from JSON
+  warms up
+  measures min/median/max query latency
+  prints rows and AST cache hits/misses
+
+Variable-length operator
+  owned edge target lists
+  visited HashSet
+  parent HashMap
+  BFS frontier Vec
+  cloned base Record per emitted endpoint
+  pending VecDeque<Record>
+  optional path reconstruction
+
+Aggregation/barrier path
+  batches upstream rows
+  evaluates Value keys
+  stores HashMap/FxHashMap group states
+  materializes output records
+  applies DISTINCT, ORDER BY, SKIP, LIMIT
+
+Special-case optimization detectors
+  useful for narrow single-hop patterns
+  reject variable-length edges
+  reject many multi-stage/general query shapes
+```
+
+The important inference is not "Samyama is bad." It is the opposite: a capable,
+ambitious, Rust-based, integrated graph-vector engine still exposes the hard
+part. That tells us where the product truth lives.
+
+Knight Bus should define this as a first-class profile family:
+
+```text
+ComplexReadFrontierProfile
+
+Inputs:
+  graph snapshot or projection
+  logical query text
+  query family: IC1/IC3/IC5/IC6/IC9-like
+  params file
+  RAM cap
+  latency target or patience target
+
+Build:
+  anchor index receipt
+  relationship-type adjacency profile
+  high-degree anchor estimate
+  per-depth frontier budget
+  property-column side indexes needed after expansion
+
+Run:
+  depth-1 frontier
+  depth-2 frontier
+  depth-3 frontier when needed
+  dedup set or sorted-frontier merge
+  join against posts/comments/tags/forums
+  aggregate/sort/limit
+  output materialization
+
+Receipts:
+  per-phase elapsed time
+  per-phase peak resident bytes
+  mapped bytes
+  spill bytes
+  frontier cardinality by depth
+  duplicate count removed
+  groups created
+  rows emitted
+  exact logical output hash
+  comparator result vs Neo4j/GDS or official fixture
+```
+
+The creative storage angle:
+
+```text
+Instead of one graph layout, keep algorithm/query-family capsules:
+
+KNOWS frontier capsule
+  adjacency lists ordered by anchor-neighborhood locality
+  optional two-hop block summaries
+  compressed sorted frontiers for merge dedup
+  degree-skew side table for budget planning
+
+Post/tag/date capsule
+  per-person post lists ordered by creationDate
+  tag postings lists with local dictionary IDs
+  date-window skip structures
+  top-k aggregate scratch layout
+
+Forum/member capsule
+  forum member inverted lists
+  friend-frontier-to-forum count mode
+  bounded group counter with spill partitioning
+
+Result capsule
+  only materialize requested fields
+  keep NodeRef-style IDs until final projection
+  record when full property objects are forced
+```
+
+This makes the PRD sharper:
+
+```text
+Do not promise:
+  "We are rewriting all of Neo4j in Rust."
+
+Promise:
+  "For the hardest repeatable graph read families, we build proof-carrying
+  physical profiles that bound RAM, show every phase, and compare output and
+  latency against Neo4j/GDS-compatible baselines."
+```
+
+Rubber duck check:
+
+```text
+Is this OLTP or OLAP?
+  It is the bridge. The query starts from an OLTP-like Cypher surface, but the
+  expensive part is analytical frontier construction and aggregation.
+
+Does this replace PageRank/WCC/BFS as first targets?
+  Not necessarily. PageRank/WCC/BFS remain clean algorithm kernels. But complex
+  reads may be more product-famous because they map to why users buy graph DBs:
+  ask neighbourhood questions over real connected data without surprise costs.
+
+Can a low-RAM profile beat a general engine on latency?
+  Sometimes, if the query family is known and the profile stores data in the
+  shape of the read. But if the profile must build from scratch every time,
+  build latency can dominate. Receipts must separate build, reuse, and run.
+
+What must we avoid?
+  Claiming a faster hot loop while hiding frontier build, dedup, hash groups,
+  sort, or result materialization. Issue #296 is basically a warning against
+  shallow benchmarking.
+```
+
+The pass-084 product decision:
+
+```text
+Promote "complex-read frontier profiles" to the same importance as PageRank.
+They are likely the PMF bridge between Neo4j-compatible surface area and
+budget-bounded custom OLAP storage.
+```
+
+#### Neo4j Shows Complex Reads Need Rewrite Eligibility Receipts
+
+Pass 085 changed the comparator from a near-neighbor warning to a direct Neo4j
+design lesson. Neo4j's Cypher runtime does not treat variable-length expansion
+as one simple thing. It has multiple physical shapes for the same broad logical
+family:
+
+```text
+Regular var-length expand
+  stack of nodes
+  stack of relationship containers
+  relationship uniqueness through rel containers
+  node and relationship predicate checks
+  path/relationship list projection
+  close tracked stacks and containers
+
+BFS pruning var-length expand
+  endpoint-oriented traversal
+  optional depth emission
+  no full relationship list unless required by semantics
+  directed and undirected cursor variants
+  heap-tracked seen/frontier/queue structures
+  close tracked frontier state
+
+Planner rewrite layer
+  checks DISTINCT or aggregation horizon
+  checks min/max length
+  checks relationship/path variable dependencies
+  checks ExpandAll vs ExpandInto policy
+  rejects unsafe rewrites
+  keeps DFS default for ExpandInto because BFS can be worse in the worst case
+```
+
+That is the architecture lesson we need to carry into Knight Bus. Lower-RAM
+execution is not just a storage-format choice. It is a legal-plan question:
+
+```text
+Can the query forget paths?
+Can the query forget relationship identity?
+Can the query emit only unique endpoints?
+Can depth replace `length(path)` for the downstream aggregation?
+Can an undirected frontier handle loops and start-node emission correctly?
+Can ExpandInto remain DFS when BFS is not worth the worst-case risk?
+```
+
+If the answer is yes, a compact frontier profile may be valid. If the answer is
+no, the engine must keep richer state, fall back, or report that the budget
+cannot be honored without semantic loss.
+
+The strongest product implication:
+
+```text
+Do not build a hidden "fast path."
+
+Build an eligibility receipt:
+  logical query shape
+  required output variables
+  variables used downstream
+  horizon that made pruning legal
+  rejected optimizations and why
+  selected physical strategy
+  exact fallback strategy
+  frontier/path/container bytes
+  oracle row set
+```
+
+This reframes our Neo4j rewrite problem. The most credible first product is not
+"same Cypher, magically less RAM." It is:
+
+```text
+Neo4j-compatible complex-read profiles with proof-carrying eligibility,
+resource caps, and semantic fallback.
+```
+
+Rubber duck check:
+
+```text
+Does Neo4j already solve this?
+  Partly. It has guarded BFS/pruning execution, heap-tracked collections, and a
+  rich runtime spec suite. That raises the bar.
+
+Where is Knight Bus allowed to be different?
+  In physical storage profiles, explicit budget admission, spill/stream modes,
+  per-query-family sidecars, and receipts that make the physical plan inspectable
+  before and after execution.
+
+What should we not claim?
+  "BFS is faster" or "Rust is faster." Neo4j's own policy warns BFS can be worse
+  for some ExpandInto shapes. Our product should expose strategy choice, not
+  pretend there is one universally dominant plan.
+
+What should we port first?
+  A tiny Neo4j-compatible fixture matrix: directed/undirected, min/max depth,
+  length zero, start-node inclusion, self-loop, shortcut, predicate, context
+  predicate, RHS apply, ExpandInto, and endpoint/depth output.
+```
+
+The pass-085 product decision:
+
+```text
+Make "rewrite eligibility receipt" a first-class sibling of "RAM receipt."
+Without it, a lower-memory profile is not trustworthy because the user cannot
+tell whether it saved memory by changing semantics.
+```
+
+#### GDS Shows Estimates Are Necessary But Not Sufficient
+
+Pass 086 changed the GDS question from "does Neo4j/GDS estimate memory?" to
+"what does GDS already make first-class, and therefore what must Knight Bus do
+beyond it?"
+
+The answer is sobering in a good way. GDS already treats memory estimation as a
+public user surface:
+
+```text
+Projection estimates:
+  gds.graph.project.estimate
+  gds.graph.project.cypher.estimate
+  native projection config -> project application -> graph-project estimate
+  cypher projection config -> project application -> graph-project estimate
+  loading estimate -> dimensions + read concurrency
+  loading validation -> memory usage validator
+
+Algorithm estimates:
+  gds.pageRank.*.estimate
+  gds.bfs.*.estimate
+  gds.wcc.*.estimate
+```
+
+That means "we can estimate required memory" is not enough. It is already a
+baseline expectation in the Neo4j/GDS world. The sharper Knight Bus claim has
+to be:
+
+```text
+We turn estimates into a proof-carrying resource contract:
+  admission under a declared RAM cap
+  profile alternatives when the cap is tight
+  measured high-water mark during execution
+  separate projection-build, algorithm-run, and result/writeback receipts
+  comparator checksum against Neo4j/GDS or a reference oracle
+  fail-closed explanation when the cap cannot be honored exactly
+```
+
+The algorithm-specific GDS reads sharpen what those receipts must contain:
+
+| Algorithm | GDS State Lesson | Knight Bus Receipt Lesson |
+|---|---|---|
+| PageRank | Pregel state can look like one double vector, but runtime also includes degree precompute, message/delta flow, convergence, score scaling, and result extraction. | Receipt state vector, degree bytes, message/combine bytes, iterations, convergence, output bytes, and checksum separately. |
+| BFS | The memory estimate names visited, traversed nodes, weights, minimum chunk, local nodes, chunks, and result nodes; runtime uses atomics, chunk ordering, target early-exit, depth stop, dedup, and result slicing. | Receipt frontier high-water, duplicate suppression, chunk/local-node range, target/max-depth stop reason, and copied-result bytes. |
+| WCC | Memory centers on a disjoint-set structure, but runtime chooses seeded vs unseeded initialization and sampled vs unsampled strategy based on graph characteristics. | Receipt DSS bytes, seed property, strategy decision, partition count, union count, inverse-link correctness, and component checksum. |
+
+This also clarifies the storage-format product:
+
+```text
+For each algorithm, Knight Bus should expose multiple valid physical profiles:
+
+speed profile:
+  higher resident state, fewer indexed reads, lower latency
+
+balanced profile:
+  active-frontier or active-partition state resident, cold state mapped/spilled
+
+budget profile:
+  strict cap, more passes/recompute/indexed reads, slower but predictable
+```
+
+Rubber duck check:
+
+```text
+Does GDS already invalidate the Knight Bus idea?
+  No. It raises the bar. GDS estimates and validates memory, but our wedge is
+  cap-respecting profile choice plus after-the-fact proof.
+
+Can Rust alone beat GDS?
+  Not as a serious thesis. The evidence points to representation, phase
+  separation, admission, and receipts. Runtime language helps only after those
+  choices are correct.
+
+What should the first proof slice compare?
+  Projection estimate + algorithm estimate + measured runtime receipt, not just
+  PageRank score parity. The user should see build bytes, run bytes, output
+  bytes, time, and exactness in one linked bundle.
+
+Which algorithm should start?
+  WCC is clean for exact low-RAM union-find proof. BFS is sharp for frontier
+  memory and latency tradeoffs. PageRank is market-familiar and good for
+  convergence receipts. The first release should probably implement one exact
+  WCC or BFS slice and one PageRank comparator harness, not all algorithms.
+```
+
+The pass-086 product decision:
+
+```text
+Treat Neo4j/GDS estimates as the baseline, not the differentiator.
+Knight Bus differentiates when it can say:
+
+  "Under this 5GB/10GB cap, this exact algorithm profile is admitted,
+   here is the chosen storage shape, here is the measured high-water mark,
+   here is the comparator output, and here is the latency tradeoff."
+```
+
+#### GDS Estimate Pipeline Is Already A Product Contract
+
+Pass 087 sharpened a second lesson: GDS estimation is not just a set of
+per-algorithm formulas. It is a public procedure pipeline with a result schema
+that tests depend on.
+
+The simplified GDS chain looks like this:
+
+```text
+public procedure
+  gds.pageRank.stream.estimate
+  gds.bfs.stream.estimate
+  gds.wcc.stream.estimate
+
+-> algorithm facade
+  centrality / pathFinding / community
+  parse algorithm config into mode-specific config
+
+-> estimation-mode business facade
+  choose PageRank / BFS / WCC memory definition
+
+-> AlgorithmEstimationTemplate
+  if graphNameOrConfiguration is String:
+    load named graph from catalog
+    compute dimensions from actual GraphStore
+    estimate algorithm memory
+
+  if graphNameOrConfiguration is Map:
+    parse implicit graph projection or Cypher projection
+    estimate graph-after-loading memory
+    add "graph" component
+    add "algorithm" component
+    estimate composite memory tree
+
+-> MemoryEstimateResult
+  requiredMemory
+  treeView
+  mapView
+  bytesMin / bytesMax
+  nodeCount / relationshipCount
+  heapPercentageMin / heapPercentageMax
+```
+
+This says the first Knight Bus `.estimate` design should not be a loose helper.
+It should be a formal API contract:
+
+```text
+estimate(input_graph_or_config, algorithm_config, cap)
+  -> parse config
+  -> compute graph dimensions
+  -> compute graph/projection memory
+  -> compute algorithm memory
+  -> choose possible physical profiles
+  -> admit or reject under cap
+  -> return schema-compatible result
+  -> link to a richer receipt bundle
+```
+
+The compatibility point matters. If we keep a Neo4j/GDS-like surface, users and
+LLMs can reuse mental models:
+
+| GDS Field | Keep? | Knight Bus Extension |
+|---|---:|---|
+| `requiredMemory` | yes | include cap, admission, and profile alternatives |
+| `treeView` | yes | include graph/projection/algorithm/output phases |
+| `mapView` | yes | make it machine-stable and receipt-addressable |
+| `bytesMin` / `bytesMax` | yes | add measured peak/resident/mapped/spill bytes after run |
+| `nodeCount` / `relationshipCount` | yes | add property/projection/filter counts and checksum |
+| `heapPercentageMin/Max` | maybe | replace or augment with process heap, resident RAM, mapped bytes, page cache, and configured cap |
+
+The fixture lesson is equally important. GDS tests do not merely check that an
+estimate returns "something." They assert one result row, schema fields,
+positive ranges, graph counts, and sometimes exact byte values, including for
+large virtual dimensions.
+
+That gives Knight Bus a TDD path:
+
+```text
+Phase 1:
+  reproduce estimate-result schema for WCC/BFS/PageRank fixtures
+
+Phase 2:
+  add explicit cap admission fixtures:
+    cap above estimate -> admitted
+    cap below exact profile -> rejected or slower profile proposed
+    cap below every exact profile -> fail closed with reason
+
+Phase 3:
+  add runtime receipts:
+    estimate bytes
+    admitted profile
+    measured high-water
+    output checksum
+    comparator delta
+```
+
+Rubber duck check:
+
+```text
+What is new here?
+  Not memory estimation by itself. The new thing is making `.estimate` a planner
+  and admission contract that predicts which storage profile can run under a
+  budget, then proving after the run whether that contract held.
+
+Why care about fictitious graph estimates?
+  They let users ask "could this enormous graph fit?" before loading it. That is
+  exactly the PMF shape for budget-bounded batch compute.
+
+What must Knight Bus avoid?
+  Returning a smaller byte number without schema parity, graph+algorithm
+  separation, large-dimension tests, or runtime proof. That would be less
+  trustworthy than GDS, not more.
+```
+
+The pass-087 product decision:
+
+```text
+Build the first estimate API before the first heroic hot loop.
+Make it schema-compatible enough to feel familiar, but stronger by adding:
+  cap
+  admitted profile
+  profile alternatives
+  large-graph fixture coverage
+  measured high-water receipt link
+```
+
+#### DAHA And SANCUS Turn Planning Into A Runtime Contract
+
+DAHA and SANCUS add the next layer above "storage format." They say the physical
+profile is not finished when the data layout is chosen. It also needs a runtime
+contract: what work moves, what work computes, what work is skipped, what work
+is reordered, and how those choices are verified.
+
+DAHA is the planner side:
+
+```text
+Input graph + model + hardware
+  -> measure operation costs
+  -> measure transfer costs
+  -> measure CPU/GPU sampling costs
+  -> derive cost vectors per batch
+  -> estimate intra-batch rewrite benefit
+  -> estimate inter-batch schedule benefit
+  -> compare against DGL baseline
+  -> save raw breakdown artifacts
+```
+
+Knight Bus should copy that shape for graph OLAP:
+
+```text
+Input projection + algorithm + RAM cap + hardware
+  -> measure or estimate topology read cost
+  -> measure state-vector update cost
+  -> measure spill/recompute/writeback cost
+  -> derive per-partition/per-frontier cost vectors
+  -> choose exact-decode storage profile
+  -> choose intra-partition ordering
+  -> choose inter-partition schedule
+  -> compare against Neo4j/GDS baseline
+  -> save raw breakdown artifacts
+```
+
+SANCUS is the skip-work side. It is approximate GNN training evidence, so the
+exact-OLAP transfer must be careful:
+
+```text
+SANCUS:
+  Skip some broadcasts by using historical embeddings.
+  Prove/argue bounded staleness and quality.
+
+Exact Knight Bus:
+  Skip work only when equality is preserved:
+    settled frontier
+    zero delta block
+    unchanged partition
+    checksum-identical sidecar
+    converged residual below exact algorithm's declared stopping rule
+
+Approximate Knight Bus:
+  Skip work when bounded error is declared:
+    top-k influence pruning
+    stale local memory summary
+    fixed-point rank vector
+    lossy compressed state
+```
+
+The strongest product rule from this pass is:
+
+```text
+No hidden optimizer.
+
+Every planner decision should be visible as:
+  observed cost
+  predicted cost
+  selected plan
+  rejected alternatives
+  actual cost
+  correctness or quality guard
+```
+
+New executable-spec candidates from DAHA and SANCUS:
+
+| Spec Candidate | Contract Shape |
+|---|---|
+| `profile_daha_source_reference_v1` | WHEN DAHA informs a Knight Bus profile, THEN paper URL, DOI, repo URL, commit, file count, index size, planning levels, and copied-vs-inspired ideas SHALL be recorded. |
+| `profile_data_hardware_cost_model_v1` | WHEN a planner estimates work, THEN hardware profile, operation sample inputs, observed timings, fitted model identity, validity scope, and measured-vs-predicted delta SHALL be recorded. |
+| `profile_batch_operation_cost_vector_v1` | WHEN batch/partition costs are measured, THEN movement, compute, pre-transform, spill/read, writeback, proof, and baseline components SHALL be recorded. |
+| `profile_intra_inter_batch_plan_receipt_v1` | WHEN a profile reorders or pipelines work, THEN intra-unit plan, inter-unit schedule, dependency constraints, predicted benefit, actual benefit, and rejected plan SHALL be recorded. |
+| `profile_shuffle_policy_receipt_v1` | WHEN work ordering changes, THEN shuffle mode, switch boundary, seed, locality hypothesis, accuracy/correctness impact, and latency/RAM delta SHALL be recorded. |
+| `profile_sampling_device_comparator_v1` | WHEN CPU/GPU or resident/spill execution alternatives exist, THEN both alternatives' phase times and data-movement bytes SHALL be measured under the same workload. |
+| `profile_sancus_source_reference_v1` | WHEN SANCUS informs a Knight Bus profile, THEN paper URLs, DOI, repo URL, commit, file count, index size, source-claimed communication/time/quality numbers, and exactness caveat SHALL be recorded. |
+| `profile_staleness_broadcast_cache_v1` | WHEN a profile reuses stale or cached state, THEN tag, source, epoch, staleness metric, cache eligibility, stored bytes, and guard threshold SHALL be recorded. |
+| `profile_skip_broadcast_counter_v1` | WHEN communication or work is skipped, THEN baseline count, optimized count, skipped count, per-source/per-partition decision, and same-input proof SHALL be recorded. |
+| `profile_cached_vs_uncached_comm_ablation_v1` | WHEN cache-based communication avoidance is claimed, THEN cached and uncached paths SHALL run or be replayed with comparable input and output/quality diff. |
+| `profile_distributed_spmm_mm_allreduce_v1` | WHEN distributed graph compute runs, THEN rank count, partition bytes, broadcast/cache decision, SpMM time, dense-compute time, all-reduce bytes/time, and output/gradient guard SHALL be recorded. |
+| `profile_partitioned_graph_cache_artifact_v1` | WHEN a partitioned graph artifact is created, THEN split size, padding bytes, adjacency block bytes, feature/state block bytes, cache path, sparse format, and coalesce/checksum status SHALL be recorded. |
+| `profile_distributed_run_manifest_v1` | WHEN a distributed or multi-process run starts, THEN rank/world size, backend, device map, process groups, environment variables, precision flags, and storage-profile identity SHALL be recorded. |
+| `profile_periodic_global_metric_receipt_v1` | WHEN local partitions produce global metrics periodically, THEN gather cadence, gathered bytes, metric formula, mask/filter, and final global value SHALL be recorded. |
+
+Rubber duck check:
+
+```text
+Does DAHA prove Knight Bus will be faster than Neo4j/GDS?
+  No. DAHA proves a planner should decompose movement and compute costs before
+  picking a schedule. It is GNN-training evidence, not PageRank evidence.
+
+Does SANCUS prove exact graph algorithms can skip communication?
+  No. SANCUS is staleness-aware approximate training. Exact OLAP can only skip
+  work when equality or the declared convergence rule is preserved.
+
+What should v1 copy?
+  Copy the runtime contract: cost-vector probes, baseline-vs-plan estimates,
+  selected/rejected plan receipts, skip counters, and cached-vs-uncached
+  ablations.
+
+What should v1 avoid?
+  Avoid hidden "smart scheduling." If the planner is smart, its decisions should
+  be legible enough that a user can see why 5GB mode is slower or faster than
+  20GB mode.
+```
+
+#### HEP Makes Hybrid Partitioning Concrete
+
+The HEP implementation pass matters because it converts the memory-budget ladder
+from a research idea into a concrete file/state pipeline.
+
+```text
+Input edge stream
+  -> count degrees
+  -> threshold = average_degree * hdf
+  -> keep low-degree adjacency in memory
+  -> write high-degree/high-degree edges to .h2h_edgelist
+  -> optionally write low-degree incident edges to .low_edgelist
+  -> in-memory NE++ style expansion on the low-degree majority
+  -> HDRF/random streaming pass over the high-degree sidecar
+  -> stats: balance, mirrors, invalidation, replication-by-degree
+```
+
+That is a useful architecture because it refuses a false binary:
+
+```text
+Bad binary:
+  Either everything fits in RAM, or everything is streaming.
+
+HEP-shaped option:
+  The graph is split by degree class.
+  The low-degree majority gets RAM locality.
+  The high-degree residue gets stream treatment.
+  The threshold is a user/planner knob.
+```
+
+Implementation facts from codebase-memory:
+
+| Surface | Evidence | Product Translation |
+|---|---|---|
+| Index shape | 345 nodes, 1,509 edges, 8 C++ files; entry point `src/main.cpp`; main packages `dense_bitset`, `graph`, `hep_partitioner`, `ne_partitioner` | HEP is small enough to fully read later as a focused implementation reference |
+| Degree split | `mem_graph_t::stream_build` computes average degree and `high_degree_threshold = average_degree * high_degree_factor` | `layout_probe_v1` should emit skew plus candidate degree thresholds |
+| Sidecar files | high-high edges are written to `.h2h_edgelist`; low-degree incident edges can be written to `.low_edgelist` | Knight Bus layouts should have explicit sidecar manifests and byte counts |
+| Streaming second phase | `hdrf_streaming` chunk-reads h2h edges, scores partitions, assigns edges, and updates boundary bitsets | Streaming subprofiles need chunk size, scoring terms, and occupancy receipts |
+| Manifest knobs | CLI exposes `p`, `method`, `hdf`, `lambda`, `random_streaming`, `write_low_degree_edgelist`, `extended_metrics` | Profile knobs must be typed, defaulted, and receipt-visible |
+| Metrics | `compute_stats` emits normalized core/boundary degree, invalidation fraction, replication by degree, mirror counts | Partition metrics should expose what changed physically, not only final runtime |
+
+New executable-spec candidates:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_hep_source_reference_v1` | WHEN a Knight Bus profile cites HEP, THEN source URL, commit, indexed nodes/edges, functions cited, copied ideas, and rejected ideas SHALL be recorded. |
+| `profile_hep_degree_split_receipt_v1` | WHEN a degree-split profile runs, THEN average degree, `hdf`, threshold, high-degree vertex count, h2h edge count, low-edge count, sidecar bytes, and chunk size SHALL be recorded. |
+| `profile_hep_sidecar_files_v1` | WHEN a profile writes sidecars, THEN each sidecar SHALL have format, byte size, row count, semantic class, and cleanup/reuse policy. |
+| `profile_hep_high_degree_stream_v1` | WHEN high-degree residue is streamed, THEN chunk size, scoring terms, lambda, occupancy min/max, boundary-bitset bytes, full-partition refusals, and chosen buckets SHALL be recorded. |
+| `profile_partition_manifest_knobs_v1` | WHEN a physical profile starts, THEN each knob SHALL include default value, chosen value, effective derived value, and source: user, planner, or benchmark fixture. |
+| `profile_partition_stats_receipt_v1` | WHEN partitioning completes, THEN normalized core/boundary degree, invalidation fraction, total mirrors, replication-factor histogram, and degree-bucket vertex share SHALL be recorded. |
+
+Rubber-duck check:
+
+```text
+Does HEP prove our OLAP engine will be faster?
+  No. It proves a useful physical split exists for power-law graph partitioning
+  under memory constraints. Knight Bus still has to prove downstream PageRank,
+  CC, SSSP, triangle, or query latency.
+
+Should HEP be first implementation?
+  No. `layout_probe_v1` and PageRank receipts still come first. HEP becomes the
+  first serious partitioned-layout option after the base oracle loop exists.
+
+What should we copy from HEP?
+  Copy the discipline: degree threshold, sidecar edge classes, explicit knobs,
+  chunked streaming, boundary bitsets, and replication metrics. Do not copy the
+  exact C++ structure blindly.
+```
+
 #### Passes 053-057 Executable Spec Spine
 
 This section converts the strongest public-source research spine into a coding
@@ -6827,6 +10330,7 @@ Acceptance criteria:
 | `PARTITION-LATENCY-006` | WHEN a workload-pattern partition is selected, THEN dominant pattern, rejected patterns, and partition-build overhead SHALL be recorded. |
 | `PARTITION-LATENCY-007` | WHEN partition-build overhead exceeds downstream savings for the declared reuse count, THEN the profile SHALL be marked `not_promoted_for_this_workload`. |
 | `PARTITION-LATENCY-008` | WHEN graph updates can invalidate the layout, THEN the receipt SHALL name the repartition policy: `none`, `incremental`, `background`, `periodic`, or `manual`. |
+| `PARTITION-LATENCY-009` | WHEN graph DB or KG query latency is claimed, THEN the receipt SHALL include a workload fingerprint with query/motif IDs, relative frequencies, filters, traversal depth, source distribution, and update-stream identity when applicable. |
 
 Promotion gate:
 
@@ -7975,6 +11479,403 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 | 543 | https://dblp.uni-trier.de/rec/journals/pvldb/BhootKAJS25.html | Queued in pass 057 as bibliographic cross-check for Triparts metadata. |
 | 544 | https://www.vldb.org/pvldb/vol18/p4777-theodorakis.pdf | Read in pass 057; next keep TuskFlow as graph DB pattern-aware partitioning analogue, not direct OLAP proof. |
 | 545 | https://arxiv.org/abs/1301.5121 | Queued in pass 057; next inspect only if we need older graph database partitioning background. |
+| 546 | https://arxiv.org/abs/1301.5121 | Read in pass 059; next use synthetic/non-uniform access patterns, network traffic, load balance, and intermittent maintenance in `profile_traffic_metric_receipt_v1`. |
+| 547 | https://arxiv.org/abs/1711.06608 | Read in pass 059; next use query pattern expressions, relative frequencies, online graph updates, and motif collocation in `profile_workload_fingerprint_v1`. |
+| 548 | https://arxiv.org/abs/2203.14888 | Read in pass 059; next use query clustering and query rewriting for `profile_query_rewrite_receipt_v1`. |
+| 549 | https://arxiv.org/abs/2203.14884 | Read in pass 059; next use adaptive workload snapshots and repartition policy in `profile_adaptive_workload_repartition_v1`. |
+| 550 | https://ceur-ws.org/Vol-1558/paper26.pdf | Queued in pass 059; optionally inspect if workload-aware streaming graph partitioning needs another implementation-adjacent source. |
+| 551 | https://ceur-ws.org/Vol-1558/paper26.pdf | Read in pass 060; next convert LOOM's motif window, stream-order sensitivity, and LDG placement details into `profile_streaming_motif_window_v1`. |
+| 552 | https://research.google.com/pubs/archive/41525.pdf | Read in pass 060; next use one-pass constraints and stream-order lower bounds for `profile_stream_order_receipt_v1`. |
+| 553 | https://jugander.github.io/papers/kdd13-restream.pdf | Read in pass 060; next convert restreaming pass count, retained assignment state, and balance objectives into `profile_restreaming_budget_v1`. |
+| 554 | https://arxiv.org/abs/2102.09384 | Read in pass 060; next use small-buffer model-graph design for `profile_buffered_stream_partition_v1`. |
+| 555 | https://arxiv.org/abs/2001.07086 | Read in pass 060; next use two-phase clustering and edge partitioning for `profile_two_phase_streaming_v1`. |
+| 556 | https://arxiv.org/abs/2103.12594 | Read in pass 060; next inspect HEP code at `https://github.com/mayerrn/hybrid_edge_partitioner` if implementation evidence is needed. |
+| 557 | https://arxiv.org/abs/1511.02586 | Read in pass 060; next use vertex-cut and power-law skew evidence for `profile_vertex_cut_powerlaw_v1`. |
+| 558 | https://arxiv.org/abs/2202.00394 | Read in pass 060; next use on-the-fly recursive multi-section and process mapping in `profile_topology_mapping_receipt_v1`. |
+| 559 | https://github.com/mayerrn/hybrid_edge_partitioner | Queued in pass 060; clone/index only if we decide HEP is implementation-critical for the first partitioned profile. |
+| 560 | https://github.com/mayerrn/hybrid_edge_partitioner | Cloned/indexed in pass 061 with codebase-memory; next fully read if hybrid partitioning becomes the second implementation milestone after PageRank. |
+| 561 | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/graph.cpp | Read via codebase-memory in pass 061; next map `mem_graph_t::stream_build` to `profile_hep_degree_split_receipt_v1`. |
+| 562 | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/hep_partitioner.cpp | Read via codebase-memory in pass 061; next map `partition_in_memory`, `hdrf_streaming`, `compute_partition_score`, and `compute_stats` to HEP-style profile receipts. |
+| 563 | https://github.com/mayerrn/hybrid_edge_partitioner/blob/master/src/main.cpp | Read via codebase-memory in pass 061; next map CLI flags to typed profile-manifest knobs. |
+| 564 | local:/tmp/kb-hep-hybrid-edge-partitioner-1786103188 | Temporary shallow clone indexed as `hep-hybrid-edge-partitioner-pass061`; do not treat as durable repo storage. |
+| 565 | https://arxiv.org/abs/2308.15602 | Read in pass 062; next use GNN partitioning variables and amortization logic for `profile_gnn_partition_training_v1`. |
+| 566 | https://openproceedings.org/2025/conf/edbt/paper-22.pdf | Read in pass 062; next revisit experimental tables before hard numeric memory/speed claims. |
+| 567 | https://www.usenix.org/conference/osdi21/presentation/mohoney | Read in pass 062; next use Marius as the graph-embedding storage-hierarchy exemplar. |
+| 568 | https://www.usenix.org/system/files/osdi21-mohoney.pdf | Read in pass 062; next convert partition caching, buffer-aware ordering, and out-of-core scaling into profile fields. |
+| 569 | https://arxiv.org/abs/2202.02365 | Read in pass 062; next use MariusGNN for graph-learning storage hierarchy and out-of-core pipelining fields. |
+| 570 | https://github.com/marius-team/marius | README read in pass 062; next index or inspect only if graph-learning expansion becomes active work. |
+| 571 | https://www.vldb.org/pvldb/vol17/p1473-huang.pdf | Read in pass 062; next use FreshGNN historical embedding cache for staleness/gradient/accuracy receipts. |
+| 572 | https://github.com/xxcclong/history-cache | Queued from FreshGNN artifact link; not opened or indexed yet. |
+| 573 | https://arxiv.org/html/2408.00232v1 | Read in pass 062; next use CDFGNN for adaptive cache, quantization, and hierarchical communication specs. |
+| 574 | https://arxiv.org/abs/2112.08541 | Read in pass 062; next use BGL for sampling IO, feature retrieval, dynamic cache, and multi-hop partition locality. |
+| 575 | https://www.usenix.org/conference/nsdi23/presentation/liu-tianfeng | Queued for BGL primary venue page; open if deeper source verification is needed. |
+| 576 | https://github.com/leodestiny/BGL_NSDI2023 | Queued from BGL artifact trail; not opened or indexed yet. |
+| 577 | https://arxiv.org/abs/2306.13814 | Read in pass 062; next use BatchGNN for macrobatching and static feature-fetch reuse. |
+| 578 | https://arxiv.org/abs/2409.14939 | Read in pass 062; next use FastGL for Match-Reorder and memory-aware sampling. |
+| 579 | https://github.com/a1bc2def6g/fastgl-ae | Queued from FastGL arXiv code link; not opened or indexed yet. |
+| 580 | https://github.com/xxcclong/history-cache | Cloned/indexed in pass 063 as `history-cache-pass063`; 29 tracked files, commit `bfef654050f65ed9e5052992b0f2d963be44d1a4`, 203 nodes, 687 edges. |
+| 581 | https://github.com/xxcclong/history-cache/blob/master/hiscache/history_cache.py | Read via codebase-memory in pass 063; next map `lookup_and_load` and `update_history` to `profile_gnn_cache_state_diff_v1`. |
+| 582 | https://github.com/xxcclong/history-cache/blob/master/hiscache/history_table.py | Read via codebase-memory in pass 063; next map `evict_by_staleness` to staleness/expiry receipt fields. |
+| 583 | https://github.com/xxcclong/history-cache/blob/master/src/cpp/src/history_aggr.cu | Read via codebase-memory in pass 063; next use CUDA history aggregation state when graph-learning profile specs become active. |
+| 584 | https://github.com/leodestiny/BGL_NSDI2023 | Sparse cloned/indexed in pass 063 as `bgl-nsdi2023-pass063`; sparse surface commit `4317c8144edfa0b4311e5981fde3b365228ba581`, 1,083 nodes, 3,403 edges. |
+| 585 | https://github.com/leodestiny/BGL_NSDI2023/blob/main/src/rpc/multi_gpu_tensor_cache_engine.cc | Read via codebase-memory in pass 063; next map cache process, working thread, and training receive thread to `profile_async_feature_pipeline_v1`. |
+| 586 | https://github.com/leodestiny/BGL_NSDI2023/blob/main/src/graph/graph_traversal.cc | Read via codebase-memory in pass 063; next use masked BFS ordering as BGL's proximity-aware ordering surface. |
+| 587 | https://github.com/a1bc2def6g/fastgl-ae | Cloned/indexed in pass 063 as `fastgl-ae-pass063`; 30 tracked files, commit `3ab37018c808030e17f9b3229165d4b6a61c6a4e`, 304 nodes, 865 edges. |
+| 588 | https://github.com/a1bc2def6g/fastgl-ae/blob/main/MatchReorderServer.py | Read via codebase-memory in pass 063; next map GPU-memory-derived cache capacity and cache refresh to `profile_gpu_memory_cache_budget_v1`. |
+| 589 | https://github.com/a1bc2def6g/fastgl-ae/blob/main/FusedMapSampler.py | Read via codebase-memory in pass 063; next map `sample_blocks` to sampling/fused-map receipt fields. |
+| 590 | https://github.com/a1bc2def6g/fastgl-ae/blob/main/utilis.py | Read via codebase-memory in pass 063; next map `match_reorder.reorder` to overlap-matrix and reorder-window fields. |
+| 591 | https://github.com/a1bc2def6g/fastgl-ae/blob/main/train_fastgl.py | Read via codebase-memory in pass 063; next map `load_subtensors` and run-loop phase timing to `profile_sampling_phase_timing_v1`. |
+| 592 | https://github.com/marius-team/marius | Cloned/indexed in pass 064 as `marius-pass064`; commit `2f27ffedfbffd405995e8d16d821849db1fe0535`, sparse checkout 476 tracked files, 1,992 indexed nodes, 6,512 edges. |
+| 593 | https://github.com/marius-team/marius/blob/main/README.md | Read in pass 064; next use BETA, DENSE, COMET, and storage-hierarchy wording in product thesis. |
+| 594 | https://github.com/marius-team/marius/blob/main/src/cpp/src/storage/buffer.cpp | Read via codebase-memory in pass 064; next map `PartitionBuffer`, `LookaheadBlock`, and `AsyncWriteBlock` to partition-buffer receipts. |
+| 595 | https://github.com/marius-team/marius/blob/main/src/cpp/include/storage/buffer.h | Indexed in pass 064; next use buffer fields if implementing storage-profile manifests. |
+| 596 | https://github.com/marius-team/marius/blob/main/src/cpp/src/data/dataloader.cpp | Read via codebase-memory in pass 064; next map `setBufferOrdering`, `getNextBatch`, load/update paths, and batch waits to subgraph-swap receipts. |
+| 597 | https://github.com/marius-team/marius/blob/main/src/cpp/src/storage/graph_storage.cpp | Read via codebase-memory in pass 064; next map in-memory subgraph state, edge-bucket swaps, and global-local remapping. |
+| 598 | https://github.com/marius-team/marius/blob/main/src/cpp/src/configuration/config.cpp | Read via codebase-memory in pass 064; next map `PartitionBufferOptions` into typed storage-profile manifest fields. |
+| 599 | https://github.com/marius-team/marius/tree/main/src/cpp/include/pipeline | Indexed in pass 064; next use queue/worker fields for pipeline receipts. |
+| 600 | https://arxiv.org/abs/2408.00232 | Read in pass 065; next keep CDFGNN as source-catalog evidence unless a public implementation artifact is found. |
+| 601 | https://arxiv.org/html/2408.00232v1 | Read in pass 065; next map adaptive cache, quantization, and hierarchical partition sections into graph-learning receipt specs. |
+| 602 | https://github.com/ch-wan/awesome-gnn-systems | Read in pass 065; next use as route map for future GNN systems, not as implementation evidence by itself. |
+| 603 | https://www.usenix.org/system/files/fast25-chen-weijian-leap.pdf | Queued from Awesome GNN Systems in pass 065; inspect if feature-centric model migration becomes relevant. |
+| 604 | https://github.com/ISCS-ZJU/LeapGNN-AE | Queued from Awesome GNN Systems in pass 065; clone/index if feature-centric model migration becomes a target profile. |
+| 605 | https://arxiv.org/abs/2412.20379 | Queued from Awesome GNN Systems in pass 065; inspect if tensor-parallel full-graph training becomes relevant. |
+| 606 | https://github.com/iDC-NEU/NeutronTP | Queued from Awesome GNN Systems in pass 065; clone/index only after exact OLAP proof or if full-graph GNN expansion is selected. |
+| 607 | https://wangzeke.github.io/doc/Hyperion-ICDE25.pdf | Queued from Awesome GNN Systems in pass 065; high relevance to SSD/out-of-core cost-efficient GNN training. |
+| 608 | https://github.com/RC4ML/Hyperion | Queued from Awesome GNN Systems in pass 065; likely next storage-tier artifact after Marius/Ginex. |
+| 609 | https://dl.acm.org/doi/10.14778/3551793.3551819 | Queued from Awesome GNN Systems in pass 065; Ginex source for SSD-enabled billion-scale GNN caching. |
+| 610 | https://github.com/SNU-ARC/Ginex | Queued from Awesome GNN Systems in pass 065; clone/index if in-memory caching on SSD-backed GNN becomes relevant. |
+| 611 | https://arxiv.org/abs/2306.16384v2 | Queued from Awesome GNN Systems in pass 065; GIDS source for GPU-initiated direct storage access. |
+| 612 | https://github.com/jeongminpark417/GIDS | Queued from Awesome GNN Systems in pass 065; clone/index if direct-storage sampling/aggregation becomes a storage-format option. |
+| 613 | https://github.com/SJTU-DMTai/Data-Management-for-GNN-Training | Read in pass 065; next use as data-management route map for temporal, cache, execution planning, and personalized PageRank graph-learning sources. |
+| 614 | https://www.vldb.org/pvldb/vol16/p1332-li.pdf | Queued from Data-Management-for-GNN-Training in pass 065; Zebra links temporal graph learning to temporal personalized PageRank. |
+| 615 | https://github.com/LuckyLYM/Zebra | Queued from Data-Management-for-GNN-Training in pass 065; clone/index if temporal personalized PageRank becomes a local-graph wedge. |
+| 616 | https://github.com/initzhang/DUCATI_SIGMOD | Queued from Data-Management-for-GNN-Training in pass 065; clone/index if dual-cache GNN training becomes relevant. |
+| 617 | https://github.com/RC4ML/Hyperion | Cloned/indexed in pass 066 as `hyperion-pass066`; commit `676daac6ea002bc22eb874c71a2c43ae09b3d88a`, 94 tracked files, 1,453 indexed nodes, 4,384 edges. |
+| 618 | https://wangzeke.github.io/doc/Hyperion-ICDE25.pdf | Read in pass 066; next revisit experiment tables before hard numeric TPC claims. |
+| 619 | https://github.com/RC4ML/Hyperion/blob/main/README.md | Read in pass 066; next use hardware/driver/IOStack interface details if designing disk-backed profile specs. |
+| 620 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/iostack.cuh | Read via codebase-memory in pass 066; next map IOStack queue/counter/PRP fields into `profile_gpu_direct_ssd_iostack_v1`. |
+| 621 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/userqueue.cuh | Read via codebase-memory in pass 066; next map `UserQueue.dequeue_kernel` to `profile_feature_miss_to_ioreq_v1`. |
+| 622 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/feature_storage.cu | Read via codebase-memory in pass 066; next map `IOSubmit` and `IOComplete` to storage phase receipts. |
+| 623 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/cache/cache.cu | Read via codebase-memory in pass 066; next map unified cache routing and profiling fields. |
+| 624 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/cache/cache_impl.cuh | Read via codebase-memory in pass 066; next map CPU/GPU cache hits and feature lookup kernel fields. |
+| 625 | https://github.com/RC4ML/Hyperion/blob/main/sampling_server/src/storage/graph_storage.cu | Read via codebase-memory in pass 066; next map topology cache split and pinned CSR fields. |
+| 626 | https://github.com/RC4ML/Hyperion/blob/main/training_backend/ipc_service.cpp | Read via codebase-memory in pass 066; next map IPC `get_next` and `get_block_size` counters to training receipts. |
+| 627 | https://github.com/SNU-ARC/Ginex | Cloned/indexed in pass 067 as `ginex-pass067`; commit `fc2c085ad3406508dcf1dc3d750c8d24fb3b17cb`, 18 tracked files, 220 indexed nodes, 827 edges. |
+| 628 | http://arc.snu.ac.kr/pubs/vldb22_ginex.pdf | Linked from Ginex README; revisit before making hard paper-level performance claims. |
+| 629 | https://github.com/SNU-ARC/Ginex/blob/main/README.md | Read in pass 067; next use cgroup/memory-cap toy setup and reported local speedup as qualitative evidence only. |
+| 630 | https://github.com/SNU-ARC/Ginex/blob/main/lib/cache.py | Read via codebase-memory in pass 067; next map `FeatureCache` passes and `NeighborCache` planning into future-access cache plan specs. |
+| 631 | https://github.com/SNU-ARC/Ginex/blob/main/run_ginex.py | Read via codebase-memory in pass 067; next map `inspect/execute` overlap and drop-cache measurement. |
+| 632 | https://github.com/SNU-ARC/Ginex/blob/main/lib/neighbor_sampler.py | Read via codebase-memory in pass 067; next map trace IDs/adjs and sampler fanouts. |
+| 633 | https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/sample.cpp | Read via codebase-memory in pass 067; next map neighbor-cache O_DIRECT hit/miss fields. |
+| 634 | https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/gather.cpp | Read via codebase-memory in pass 067; next map O_DIRECT feature-gather read fields. |
+| 635 | https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/update.cpp | Read via codebase-memory in pass 067; next map cache-update bytes and address-table updates. |
+| 636 | https://github.com/SNU-ARC/Ginex/blob/main/lib/cpp_extension/mt_load.cpp | Read via codebase-memory in pass 067; next map aligned O_DIRECT bulk-load fields. |
+| 637 | https://github.com/SNU-ARC/Ginex/blob/main/lib/data.py | Read via codebase-memory in pass 067; next map mmap dataset shape/dtype manifest fields. |
+| 638 | https://arxiv.org/abs/2306.16384v2 | Read in pass 068; next revisit PDF/tables before hard numeric claims beyond arXiv abstract and metadata. |
+| 639 | https://github.com/jeongminpark417/GIDS | Cloned/indexed in pass 068 as `gids-pass068`; commit `523836c6eb8a23cbf86da9212789e011b393036f`, 45 tracked files, 538 indexed nodes, 1,926 edges. |
+| 640 | https://github.com/jeongminpark417/GIDS/blob/main/README.md | Read in pass 068; next map CSC-only format gate, PageRank pin-list workflow, SSD striping, heterograph offsets, and setup assumptions. |
+| 641 | https://github.com/jeongminpark417/GIDS/blob/main/GIDS_Setup/GIDS/GIDS.py | Read via codebase-memory in pass 068; next map loader manifest, accumulator, window buffer, and merged read behavior. |
+| 642 | https://github.com/jeongminpark417/GIDS/blob/main/gids_module/gids_nvme.cu | Read via codebase-memory in pass 068; next map controller, queue, page-cache, stripe, read-kernel timing, and CPU-access counters. |
+| 643 | https://github.com/jeongminpark417/GIDS/blob/main/gids_module/gids_kernel.cu | Read via codebase-memory in pass 068; next map feature-read kernels, CPU-backing branch, window-buffer kernel, and CPU-buffer copy kernels. |
+| 644 | https://github.com/jeongminpark417/GIDS/blob/main/gids_module/include/page_cache_backup.h | Sampled via codebase-memory in pass 068; next map page-cache coalescing and pin-memory mechanics if GPU-direct storage becomes implementation-critical. |
+| 645 | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/page_rank_node_list_gen.py | Read via codebase-memory in pass 068; next map PageRank/top-k pin-list fields to centrality-cache hints. |
+| 646 | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/dataloader.py | Read via codebase-memory in pass 068; next map IGBH memmap, heterograph node counts, reverse-edge materialization, and CSC format gate. |
+| 647 | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/run_GIDS_IGBH.sh | Read in pass 068; next preserve benchmark knobs when comparing against BaM and baseline scripts. |
+| 648 | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/run_BaM_IGBH.sh | Read in pass 068; next use as BaM comparator configuration. |
+| 649 | https://github.com/jeongminpark417/GIDS/blob/main/evaluation/run_base_IGBH.sh | Read in pass 068; next use as baseline mmap comparator configuration. |
+| 650 | https://www.vldb.org/pvldb/vol16/p1332-li.pdf | Read in pass 069; next revisit theorem/algorithm sections before hard approximation-guarantee implementation claims. |
+| 651 | https://github.com/LuckyLYM/Zebra | Cloned/indexed in pass 069 as `zebra-pass069`; commit `8e72d65e1a85c05ba335d5dd1edb4202a7598c8e`, 16 tracked files, 257 indexed nodes, 945 edges. |
+| 652 | https://github.com/LuckyLYM/Zebra/blob/main/README.md | Read in pass 069; next preserve dataset and T-PPR knob surface. |
+| 653 | https://github.com/LuckyLYM/Zebra/blob/main/train.py | Read in pass 069; next map train/reset/fill/backup/restore gates into dynamic phase receipts. |
+| 654 | https://github.com/LuckyLYM/Zebra/blob/main/modules/embedding_module.py | Read via codebase-memory in pass 069; next map `GraphDiffusionEmbedding` selected-array and transfer fields. |
+| 655 | https://github.com/LuckyLYM/Zebra/blob/main/utils/util.py | Read via codebase-memory in pass 069; next map `tppr_finder` streaming/pruning state and `NeighborFinder.get_pruned_topk`. |
+| 656 | https://github.com/LuckyLYM/Zebra/blob/main/model/tgn_model.py | Read via codebase-memory in pass 069; next map temporal embedding and memory-update phase boundaries. |
+| 657 | https://github.com/LuckyLYM/Zebra/blob/main/modules/memory.py | Read via codebase-memory in pass 069; next map memory bytes, message bytes, timestamp bytes, and backup/restore state. |
+| 658 | https://github.com/LuckyLYM/Zebra/blob/main/modules/memory_updater.py | Read via codebase-memory in pass 069; next map changed-node indexing and update timings. |
+| 659 | https://github.com/initzhang/DUCATI_SIGMOD | Cloned/indexed in pass 070 as `ducati-pass070`; commit `9cc017f8453a26db72cf5c1c2fa1f4a3c9cee969`, 20 tracked files, 149 indexed nodes, 661 edges. |
+| 660 | https://researchportal.hkust.edu.hk/en/publications/ducati-a-dual-cache-training-system-for-graph-neural-networks-on-/ | Read in pass 070; public paper metadata/abstract/source for DUCATI, but revisit ACM/PDF before making hard implementation-level numeric claims. |
+| 661 | https://dl.acm.org/doi/10.1145/3589311 | DOI captured in pass 070 as formal DUCATI paper source. |
+| 662 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/README.md | Read in pass 070; next map allocation-plan, iteration-time, SOTA baseline commands, datasets, and total-budget knob. |
+| 663 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/DualCacheAllocator.py | Read via codebase-memory in pass 070; next map allocator density scoring and slope-probe receipts. |
+| 664 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/CacheConstructor.py | Read via codebase-memory in pass 070; next map Adj-Cache, Nfeat-Cache, fake feature/label setup, and count outputs. |
+| 665 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/NeighborSamplerWithCache.py | Read via codebase-memory in pass 070; next map customized cache-aware DGL sampler boundary. |
+| 666 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/NfeatLoader.py | Read via codebase-memory in pass 070; next map GPU/CPU row routing and output-buffer receipts. |
+| 667 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/load_graph.py | Read via codebase-memory in pass 070; next map access-count profiling and workload-derived graph reorder. |
+| 668 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_allocate.py | Read via codebase-memory in pass 070; next preserve allocation-plan args and slope measurement command. |
+| 669 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_ducati.py | Read via codebase-memory in pass 070; next preserve DUCATI iteration verification args and latency fields. |
+| 670 | https://github.com/initzhang/DUCATI_SIGMOD/blob/main/run_sota.py | Read via codebase-memory in pass 070; next preserve single-cache SOTA baseline args and latency fields. |
+| 671 | https://github.com/zhiqi-0/PaGraph | Cloned/indexed in pass 071 as `pagraph-pass071`; commit `263fb13b84f27a8bd215bcde05b78cc3c4c17e7b`, 46 tracked files, 264 indexed nodes, 1,385 edges. |
+| 672 | https://dl.acm.org/doi/10.1145/3419111.3421281 | Captured in pass 071 as the SoCC 2020 PaGraph DOI; revisit ACM/PDF body before hard numeric claims. |
+| 673 | https://github.com/zhiqi-0/PaGraph/blob/master/README.md | Read in pass 071; next preserve branch distinctions, dataset format, partition/training consistency rule, and commands. |
+| 674 | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/storage/storage.py | Read via codebase-memory in pass 071; next map cache admission, cache fix, route phases, and miss-rate fields. |
+| 675 | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/dg.py | Read via codebase-memory in pass 071; next map layer-aware partition score and redundant-vertex budget. |
+| 676 | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/refine.py | Read via codebase-memory in pass 071; next map train-subgraph construction and full-id mapping. |
+| 677 | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/partition/ordering.py | Read via codebase-memory in pass 071; next validate/reimplement carefully before copying any reorder semantics. |
+| 678 | https://github.com/zhiqi-0/PaGraph/blob/master/PaGraph/parallel/dataloader.py | Read via codebase-memory in pass 071; next map one-to-all/one-to-one sampler delivery and barrier receipts. |
+| 679 | https://github.com/zhiqi-0/PaGraph/blob/master/server/cache_server.py | Read via codebase-memory in pass 071; next map shared-memory graph server and remote sampler setup. |
+| 680 | https://github.com/zhiqi-0/PaGraph/blob/master/examples/profile/pa_gcn.py | Read via codebase-memory in pass 071; next map first-step cache commit, gpu-load/gpu-compute phases, and profiler output. |
+| 681 | https://github.com/zhiqi-0/PaGraph/blob/master/examples/opt_cache_hit.py | Read via codebase-memory in pass 071; next map ideal top-frequency cache-hit bound as baseline comparator. |
+| 682 | https://github.com/SJTU-IPADS/gnnlab | Cloned/indexed in pass 072 as `gnnlab-pass072`; commit `2d0dd92ce4e2efec3d47212ce73358cd03f8d3d8`, 330 tracked files, 2,598 indexed nodes, 9,293 edges. |
+| 683 | https://dl.acm.org/doi/10.1145/3492321.3519557 | Captured in pass 072 as the EuroSys 2022 GNNLab DOI; revisit full paper tables before hard numeric claims. |
+| 684 | https://sysartifacts.github.io/eurosys2022/summaries/gnnlab | Captured in pass 072 as the artifact-evaluation summary pointer. |
+| 685 | https://ipads.se.sjtu.edu.cn/zh/publications/YangEuroSys22.pdf | Captured in pass 072 as a public paper PDF pointer; future pass should extract method/results tables. |
+| 686 | https://github.com/SJTU-IPADS/gnnlab/blob/main/README.md | Read in pass 072; next preserve factored GPU architecture, hardware baseline, install vintage, and quickstart knobs. |
+| 687 | https://github.com/SJTU-IPADS/gnnlab/blob/main/datagen/README.md | Read in pass 072; next map binary dataset manifest, CSR files, id width, feature/label files, and cache-rank files. |
+| 688 | https://github.com/SJTU-IPADS/gnnlab/blob/main/exp/README.md | Read in pass 072; next map experiment matrix, expected runtime, and Sample/Extract/Train/Total output. |
+| 689 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/pre_sampler.cc | Read via codebase-memory in pass 072; next map pre-sample frequency and rank extraction receipts. |
+| 690 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/profiler.cc | Read via codebase-memory in pass 072; next map node access distribution and pre-sample similarity outputs. |
+| 691 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_frequency_hashmap.cu | Read via codebase-memory in pass 072; next map GPU top-k subphase timings and workspace bytes. |
+| 692 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_loops.cc | Read via codebase-memory in pass 072; next map dynamic-cache sampling, remap, and prefetch callback receipts. |
+| 693 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_cache_manager_device.cu | Read via codebase-memory in pass 072; next map tile hit/miss counters and cache index routing. |
+| 694 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_engine.cc | Read via codebase-memory in pass 072; next map architecture dispatch and after-batch memory logs. |
+| 695 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/cuda/cuda_shuffler.cc | Read via codebase-memory in pass 072; next map epoch/step batch source and sanity-check state. |
+| 696 | https://github.com/SJTU-IPADS/gnnlab/blob/main/utility/data-process/toolkit/cache/cache_by_fake_optimal.cc | Read via codebase-memory in pass 072; next map offline/fake-optimal cache oracle baseline. |
+| 697 | https://github.com/SJTU-IPADS/gnnlab/blob/main/utility/data-process/toolkit/cache/cache_by_degree_hop.cc | Read via codebase-memory in pass 072; next map hop-frontier degree cache baseline. |
+| 698 | https://github.com/SJTU-IPADS/gnnlab/blob/main/samgraph/common/workspace_pool.cc | Read via codebase-memory in pass 072; next map temporary workspace allocator receipts. |
+| 699 | https://github.com/zirui-ray-liu/Exact | Cloned/indexed in pass 073 as `exact-pass073`; commit `7e9e0f3b5e665b6e447835e5083e556f02029e17`, 60 tracked files, 652 indexed nodes, 2,623 edges. |
+| 700 | https://experts.umn.edu/en/publications/exact-scalable-graph-neural-networks-training-via-extreme-activat/ | Read in pass 073; source for EXACT authors, ICLR 2022 metadata, and source-claimed compression/time/quality figures. |
+| 701 | https://openreview.net/forum?id=vkaMaq95_rX | Canonical paper URL from EXACT README; direct page body hit browser verification in pass 073, so use as pointer only until reopened manually. |
+| 702 | https://github.com/zirui-ray-liu/Exact/blob/main/README.md | Read locally/GitHub in pass 073; next preserve dependency vintage and command surface if reproducing EXACT. |
+| 703 | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/ops.py | Read via codebase-memory in pass 073; next map quantize/dequantize, qlinear, and qspmm reconstruction receipts. |
+| 704 | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/qsheme.py | Read via codebase-memory in pass 073; next map per-row min/max and bit selection into compression manifests. |
+| 705 | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/conf.py | Read via codebase-memory in pass 073; next map config knobs for exact/approx compression profiles. |
+| 706 | https://github.com/zirui-ray-liu/Exact/blob/main/exact/exact/utils.py | Read via codebase-memory in pass 073; next map allocated/reserved CUDA memory reporting into phase receipts. |
+| 707 | https://github.com/zirui-ray-liu/Exact/blob/main/test/test_op.py | Read via codebase-memory in pass 073; next preserve output/gradient oracle style for compression correctness tests. |
+| 708 | https://github.com/zirui-ray-liu/Exact/blob/main/test/test_conv.py | Read via codebase-memory in pass 073; next map GCNConv repeated-run variance fields if approximation profiles are built. |
+| 709 | https://github.com/zirui-ray-liu/Exact/blob/main/mem_speed_bench/arxiv/train_full_batch.py | Read via codebase-memory in pass 073; next map model/data/activation/total/max memory output fields. |
+| 710 | https://github.com/zirui-ray-liu/Exact/blob/main/mem_speed_bench/products/exp_mem_speed.py | Read via codebase-memory in pass 073; next map binary-search max-batch frontier under RAM cap. |
+| 711 | https://github.com/YukeWang96/QGTC_PPoPP22 | Canonical repo metadata captured in pass 073; clone URL redirects from `PPoPP22_QGTC`. |
+| 712 | https://github.com/YukeWang96/PPoPP22_QGTC | Clone URL and redirect source captured in pass 073; keep both spellings for reproducibility. |
+| 713 | https://arxiv.org/abs/2111.09547 | Read in pass 073; source for QGTC title, authors, any-bitwidth/tensor-core/zerojump claims, and source-claimed 2.7x speedup vs DGL. |
+| 714 | https://dl.acm.org/doi/10.1145/3503221.3508408 | Captured in pass 073 as formal PPoPP 2022 QGTC DOI. |
+| 715 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/README.md | Read locally/GitHub in pass 073; next preserve install and benchmark command surface if reproducing QGTC. |
+| 716 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/QGTC_host.cpp | Read via codebase-memory in pass 073; next map host API bitpack/decode boundaries. |
+| 717 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/QGTC_device.cu | Read via codebase-memory in pass 073; next map CUDA layout allocation, base/zerojump counters, and profile wrappers. |
+| 718 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/kernel.h | Read via codebase-memory in pass 073; next map BMMA tile, padding, bit loop, and zerojump receipt fields. |
+| 719 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_conv.py | Read via codebase-memory in pass 073; next map role-specific input/hidden/output compressed layer contracts. |
+| 720 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/main_qgtc.py | Read via codebase-memory in pass 073; next map benchmark knobs, bitwidth sweep, and zerojump gate. |
+| 721 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/sampler.py | Read via codebase-memory in pass 073; next map cluster partition cache, dense staging, and packed CPU state bytes. |
+| 722 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/QGTC_module/unitest.py | Read via codebase-memory in pass 073; next convert smoke/profile surfaces into stronger equality assertions before reuse. |
+| 723 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/0_7a_eval_QGTC_cluster_GCN.py | Read via codebase-memory in pass 073; next preserve GCN bitwidth sweep and log parser fields. |
+| 724 | https://github.com/YukeWang96/QGTC_PPoPP22/blob/master/0_7b_eval_QGTC_batched_GIN.py | Read via codebase-memory in pass 073; next preserve GIN bitwidth sweep and log parser fields. |
+| 725 | https://researchportal.hkust.edu.hk/en/publications/daha-accelerating-gnn-training-with-data-and-hardware-aware-execu/ | Read in pass 074; source for DAHA authors, PVLDB metadata, abstract, cost-model/pipeline optimization claims, and DOI. |
+| 726 | https://www.vldb.org/pvldb/vol17/p1364-li.pdf | Captured in pass 074 as public DAHA PVLDB PDF; future pass should extract exact experiment tables before hard numeric claims. |
+| 727 | https://dl.acm.org/doi/abs/10.14778/3648160.3648176 | Captured in pass 074 as formal DAHA DOI page. |
+| 728 | https://github.com/fr8nkL/DAHA | Cloned/indexed in pass 074; commit `9541f375ce39d972ecfe04dd88bb6f0ef2e69cf5`, 3 tracked files, 62 indexed nodes, 173 edges. |
+| 729 | https://github.com/fr8nkL/DAHA/blob/main/README.md | Read via GitHub in pass 074; next preserve command surface for cost-model retrieval and shuffle runs. |
+| 730 | https://github.com/fr8nkL/DAHA/blob/main/src/HybridCPUGPU.py | Read via codebase-memory in pass 074; next map cost-vector, sampling-device, intra/inter-batch planning receipts. |
+| 731 | https://github.com/fr8nkL/DAHA/blob/main/src/shuffle.py | Read via codebase-memory in pass 074; next map shuffle modes, switch epoch, reproducibility seed, and accuracy guard. |
+| 732 | https://www.ijcai.org/proceedings/2023/724 | Read in pass 074; source for SANCUS IJCAI extended abstract, authors, DOI, and communication/skipping claims. |
+| 733 | https://researchportal.hkust.edu.hk/en/publications/sancus-staleness-aware-communication-avoiding-full-graph-decentra-2/ | Read in pass 074; source for SANCUS authors, abstract, source-claimed 74 percent communication avoidance and 1.86x throughput. |
+| 734 | https://vldb.org/pvldb/vol15/p1937-peng.pdf | Captured in pass 074 as public SANCUS PVLDB PDF; future pass should extract the bounded-staleness metric formulas. |
+| 735 | https://dl.acm.org/doi/10.14778/3538598.3538614 | Captured in pass 074 as formal SANCUS PVLDB DOI page. |
+| 736 | https://link.springer.com/article/10.1007/s00778-024-00897-2 | Opened in pass 074 as Sancus-to-Sancusq extension source; next inspect if quantized staleness becomes relevant. |
+| 737 | https://github.com/chenzhao/light-dist-gnn | Cloned/indexed in pass 074 as SANCUS artifact; commit `65495aa8d2e851c875986b344b61b77b12953e29`, 21 tracked files, 180 indexed nodes, 689 edges. |
+| 738 | https://github.com/chenzhao/light-dist-gnn/blob/main/readme.md | Read via GitHub in pass 074; next preserve setup and SANCUS experiment instructions. |
+| 739 | https://github.com/chenzhao/light-dist-gnn/blob/main/models/cached_gcn.py | Read via codebase-memory in pass 074; next map cache flags, counters, cached broadcasts, and forward/backward cached layer receipts. |
+| 740 | https://github.com/chenzhao/light-dist-gnn/blob/main/models/gcn.py | Read via codebase-memory in pass 074; next use baseline broadcast path for cached-vs-uncached ablation. |
+| 741 | https://github.com/chenzhao/light-dist-gnn/blob/main/coo_graph/parted_coo_graph.py | Read via codebase-memory in pass 074; next map partition cache artifact, padding, sparse format, and coalesce status. |
+| 742 | https://github.com/chenzhao/light-dist-gnn/blob/main/dist_utils/env.py | Read via codebase-memory in pass 074; next map rank/world/backend/process-group manifest fields. |
+| 743 | https://github.com/chenzhao/light-dist-gnn/blob/main/dist_train.py | Read via codebase-memory in pass 074; next map training loop, global metric gather cadence, half/CSR flags, and timer summary. |
+| 744 | https://github.com/chenzhao/light-dist-gnn/blob/main/main.py | Read via codebase-memory in pass 074; next map launch environment variables and process-spawn defaults. |
+| 745 | https://github.com/dmlc/dgl | Cloned sparsely in pass 075; DGL metadata captured with GH CLI; pinned commit `3d16000b4170fa741ed9e9667f22ba84d3493026`. |
+| 746 | https://www.dgl.ai/dgl_docs/en/0.8.x/api/python/dgl.graphbolt.html | Opened in pass 075; official GraphBolt docs list stage APIs for dataset, graph, feature store, dataloader, item sampler, minibatch, subgraph sampler, feature fetcher, copy, and utilities. |
+| 747 | https://www.dgl.ai/dgl_docs/generated/dgl.graphbolt.DiskBasedFeature.html | Opened in pass 075; official DiskBasedFeature docs mention disk feature wrapper, NumPy feature file, `numpy_save_aligned`, and io_uring queue threads. |
+| 748 | https://github.com/dmlc/dgl/releases | Opened in pass 075; v2.4.0 release notes mention GraphBolt out-of-core `DiskBasedFeature`, io_uring, CPUCachedFeature, memory allocation to avoid OOM, and parallelized feature fetch. |
+| 749 | https://github.com/dmlc/dgl/tree/master/python/dgl/graphbolt | Indexed in pass 075 as focused source project with 647 nodes, 3,212 edges, and 41 Python files. |
+| 750 | https://github.com/dmlc/dgl/tree/master/tests/python/pytorch/graphbolt | Indexed in pass 075 as focused test project with 394 nodes and 2,078 edges. |
+| 751 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/feature_fetcher.py | Read via codebase-memory in pass 075; next map stage-count negotiation and buffer/finalize receipts into Knight Bus profile schema. |
+| 752 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/feature_store.py | Queued after pass 075; read abstract Feature/FeatureStore contracts next if we formalize state-sidecar traits. |
+| 753 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/basic_feature_store.py | Read via codebase-memory in pass 075; simple `(domain,type,name)` feature-key store maps to logical sidecar keys. |
+| 754 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/torch_based_feature_store.py | Read via codebase-memory in pass 075; includes TorchBasedFeature, DiskBasedFeature, and TorchBasedFeatureStore. |
+| 755 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/gpu_cached_feature.py | Read via codebase-memory in pass 075; cache bytes, miss rate, async fallback, and replacement path are receipt candidates. |
+| 756 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/ondisk_dataset.py | Read via codebase-memory in pass 075; manifest load, graph topology load, feature store construction, task selection. |
+| 757 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/dataloader.py | Read via codebase-memory in pass 075; pipeline cutting, multiprocessing sharding, UVA thread cap, prefetch/copy wrapper. |
+| 758 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/item_sampler.py | Read via codebase-memory in pass 075; item/frontier batching, worker range calculation, seed/shuffle/epoch handling. |
+| 759 | https://github.com/dmlc/dgl/blob/master/python/dgl/graphbolt/impl/fused_csc_sampling_graph.py | Read selected methods via codebase-memory in pass 075; next map full topology persistence, shared memory, and GPU graph cache paths. |
+| 760 | https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/test_feature_fetcher.py | Read selected tests via codebase-memory in pass 075; feature fetcher pipeline guards node/edge feature presence. |
+| 761 | https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_gpu_cached_feature.py | Read selected tests via codebase-memory in pass 075; cache hit/miss and async read behavior are directly useful for our cache receipt tests. |
+| 762 | https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_ondisk_dataset.py | Read selected tests via codebase-memory in pass 075; storage-tier equivalence and manifest path validation are useful. |
+| 763 | https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/impl/test_fused_csc_sampling_graph.py | Read selected tests via codebase-memory in pass 075; sampled CSC sizes, original edge IDs, pinned/GPU behavior are useful. |
+| 764 | https://github.com/dmlc/dgl/blob/master/tests/python/pytorch/graphbolt/test_dataloader.py | Read selected tests via codebase-memory in pass 075; full pipeline path from ItemSampler through DataLoader is useful. |
+| 765 | https://graphstorm.readthedocs.io/en/latest/advanced/using-graphbolt.html | Search surfaced in pass 075; next inspect as downstream usage evidence for GraphBolt preparation and training/inference integration. |
+| 766 | https://github.com/dmlc/dgl/tree/master/graphbolt | Read native C++/CUDA subtree via codebase-memory in pass 076; keep as the root for GraphBolt native evidence. |
+| 767 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/io_uring.cc | Read in pass 076; direct evidence for io_uring availability probing and thread configuration. |
+| 768 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cnumpy.cc | Read in pass 076; direct evidence for O_DIRECT on-disk NumPy reads, queue accounting, partial-read recovery, and aligned copies. |
+| 769 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cnumpy.h | Read in pass 076; direct evidence for `OnDiskNpyArray` fields, group size, aligned length, thread count, and read buffer sizing. |
+| 770 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/feature_cache.cc | Read in pass 076; direct evidence for row-copy feature cache query/replace and async query wrapper. |
+| 771 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cache_policy.cc | Read in pass 076; direct evidence for found/missing cache query layout and query-and-replace admission checks. |
+| 772 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/partitioned_cache_policy.cc | Read in pass 076; direct evidence for partitioned cache key offsets, per-partition found/missing offsets, and merged result layout. |
+| 773 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/extension/gpu_cache.cu | Read in pass 076; direct evidence for GPU feature cache query/replace, missing-count handling, dtype packing, and stream use. |
+| 774 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/extension/gpu_graph_cache.cu | Read in pass 076; direct evidence for GPU graph cache map growth, hit/new/threshold counts, and output partitioning. |
+| 775 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/max_uva_threads.cc | Read in pass 076; direct evidence for global UVA thread cap surface. |
+| 776 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/index_select_impl.cu | Read in pass 076; direct evidence for sorted UVA index-select, permutation, feature-width kernel choices, and block cap. |
+| 777 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/index_select_csc_impl.cu | Read in pass 076; direct evidence for aligned CSC copy, actual/aligned edge counts, and COO-row dtype selection. |
+| 778 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/fused_csc_sampling_graph.cc | Read in pass 076; direct evidence for CPU native sampling count/scan/allocate/pick/remap/validate phases. |
+| 779 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/cuda/neighbor_sampler.cu | Read in pass 076; direct evidence for GPU native sampling residency assumptions, random/sort paths, edge-id dtype choice, and hetero validation. |
+| 780 | https://github.com/dmlc/dgl/blob/master/graphbolt/src/python_binding.cc | Read in pass 076; direct evidence for native operator/binding surface including futures, caches, io_uring, UVA cap, and index-select variants. |
+| 781 | https://github.com/awslabs/graphstorm | Read in pass 077; downstream GraphBolt integration repo, Apache-2.0, Python, 712-file shallow clone at commit `42482dab3d17d2045a314794cf9344430423f213`, indexed with codebase-memory. |
+| 782 | https://graphstorm.readthedocs.io/en/latest/advanced/using-graphbolt.html | Read in pass 077; GraphStorm's public GraphBolt workflow doc for graph construction, partitioning, conversion, training, inference, and SageMaker caveats. |
+| 783 | https://github.com/awslabs/graphstorm/blob/main/docs/source/advanced/using-graphbolt.rst | Read in pass 077; source version of the workflow doc, useful as a direct repo-local artifact. |
+| 784 | https://github.com/awslabs/graphstorm/blob/main/docs/source/advanced/sagemaker-pipelines.rst | Read in pass 077; public SageMaker pipeline instructions showing `gb_convert` as a named workflow step. |
+| 785 | https://aws.amazon.com/blogs/machine-learning/faster-distributed-graph-neural-network-training-with-graphstorm-v0-4/ | Read in pass 077; AWS-reported GraphStorm v0.4/GraphBolt benchmark and workflow narrative by Theodore Vasiloudis, Florian Saupe, and Xiang Song. |
+| 786 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gpartition/convert_to_graphbolt.py | Read via codebase-memory in pass 077; conversion entrypoint, DGL version gate, `--metadata-filepath`, `--njobs`, `store_eids=True`, and `graph_formats="coo"`. |
+| 787 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/sagemaker/sagemaker_gb_convert.py | Read via codebase-memory in pass 077; SageMaker conversion wrapper, partition-memory warning, S3 upload filtering, and fused artifact existence guard. |
+| 788 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gconstruct/utils.py | Read via codebase-memory in pass 077; graph construction partitions structure through DGL while keeping features in external memory and passing `use_graphbolt` when supported. |
+| 789 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gpartition/dist_partition_graph.py | Read via codebase-memory in pass 077; distributed partition flow converts partitions to GraphBolt format on the leader and assumes shared filesystem visibility. |
+| 790 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/gsf.py | Read via codebase-memory in pass 077; runtime initialization passes `use_graphbolt` into DGL distributed initialization with DGL version guard. |
+| 791 | https://github.com/awslabs/graphstorm/blob/main/python/graphstorm/config/argument.py | Read via codebase-memory in pass 077; `GSConfig.use_graphbolt` exposes the storage mode as a validated runtime flag. |
+| 792 | https://github.com/awslabs/graphstorm/blob/main/sagemaker/pipeline/pipeline_parameters.py | Read via codebase-memory in pass 077; pipeline args require `gb_convert` when distributed partitioning and GraphBolt training are both requested. |
+| 793 | https://github.com/awslabs/graphstorm/blob/main/sagemaker/pipeline/create_sm_pipeline.py | Read via codebase-memory in pass 077; creates a SageMaker `GraphBoltConversion` processing step wired to partition outputs. |
+| 794 | https://github.com/awslabs/graphstorm/blob/main/tests/end2end-tests/graphbolt-gs-integration/graphbolt-graph-construction.sh | Read in pass 077; e2e construction test checks GraphBolt artifacts after GConstruct, standalone conversion, and GSPartition. |
+| 795 | https://github.com/awslabs/graphstorm/blob/main/tests/end2end-tests/graphbolt-gs-integration/graphbolt-training-inference.sh | Read in pass 077; e2e training/inference test verifies GraphBolt-enabled LP/NC outputs and artifact creation. |
+| 796 | https://github.com/awslabs/graphstorm/tree/main/examples/sagemaker-pipelines-graphbolt | Read in pass 078; concrete SageMaker baseline-vs-GraphBolt example folder. |
+| 797 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/README.md | Read in pass 078; baseline and GraphBolt pipeline workflow, Arxiv and Papers100M resource envelopes, output inspection, timing examples, and benchmark caveats. |
+| 798 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/deploy_arxiv_pipeline.sh | Read in pass 078; small CPU Arxiv pipeline, required params, two-instance resource envelope, train-on-CPU flag, output artifact saving, and `--use-graphbolt` switch. |
+| 799 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/deploy_papers100M_pipeline.sh | Read in pass 078; large Papers100M GPU pipeline, four-instance resource envelope, 400GB volume, eight trainers, save outputs, and `--use-graphbolt` switch. |
+| 800 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/sagemaker_convert_papers100m.py | Read via codebase-memory in pass 078; SageMaker processing launcher with image URI, instance type, 400GB volume, 8-hour cap, and async submission. |
+| 801 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/process_papers100M.sh | Read in pass 078; parallel download/unzip/preprocess wrapper using `axel`, `ripunzip`, and the converter script. |
+| 802 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/convert_ogb_papers100m_to_gconstruct.py | Read via codebase-memory in pass 078; memory-mapped input, row-byte chunk sizing, worker cap from available RAM, Snappy Parquet chunk output, and GConstruct config generation. |
+| 803 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/analyze_training_time.py | Read via codebase-memory in pass 078; local/CloudWatch timing analyzer for epoch and evaluation summaries. |
+| 804 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/build_and_push_papers100M_image.sh | Read in pass 078; processing image build/push script with ECR repository creation and `ripunzip` artifact. |
+| 805 | https://github.com/awslabs/graphstorm/blob/main/examples/sagemaker-pipelines-graphbolt/Dockerfile.processing | Read in pass 078; reproducible Papers100M processing image dependencies: axel, ripunzip, NumPy, psutil, PyArrow, tqdm, AWS CLI. |
+| 806 | https://www.dgl.ai/release/2024/03/06/release.html | Read in pass 078; DGL 2.1 GraphBolt release context for staged GPU data movement, pinned memory, GPU feature cache, pipeline overlap, mixed-width CSC storage, and source-reported speedups. |
+| 807 | https://github.com/dmlc/dgl/tree/master/examples/graphbolt | Read/indexed in pass 079; DGL GraphBolt examples root, 18 files indexed as `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-examples-graphbolt`. |
+| 808 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/node_classification.py | Read via codebase-memory in pass 079; canonical staged datapipe and `cpu/pinned/cuda` storage-device modes. |
+| 809 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/link_prediction.py | Read via codebase-memory in pass 079; staged link-prediction datapipe with negative sampling, seed-edge exclusion, async/overlap flags. |
+| 810 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/temporal_link_prediction.py | Read via codebase-memory in pass 079; temporal sampling guard with node/edge timestamp attributes. |
+| 811 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/disk_based_feature/README.md | Read in pass 079; DiskBasedFeature, cache policies, io_uring, Papers100M graph/feature sizes, EC2 context, cache miss/epoch examples. |
+| 812 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/disk_based_feature/node_classification.py | Read via codebase-memory in pass 079; disk-backed feature main flow, CPU/GPU cache wrapping, mode triple, miss-rate observers, cache capacity warning. |
+| 813 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/node_classification_advanced.py | Read via codebase-memory in pass 079; graph/feature/train mode triple, GPU feature cache, GPU graph-cache edge count and threshold. |
+| 814 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/hetero/node_classification.py | Read via codebase-memory in pass 079; heterogeneous disk-feature detection, per-feature CPU/GPU cache wrapping, cache miss observers. |
+| 815 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/labor/README.md | Read in pass 079; layer/batch dependency explanation and source-reported sampled-node/cache-miss examples. |
+| 816 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/labor/node_classification.py | Read via codebase-memory in pass 079; feature row-byte cache sizing and locality knobs. |
+| 817 | https://github.com/dmlc/dgl/blob/master/examples/graphbolt/pyg/multigpu/node_classification.py | Read via codebase-memory in pass 079; DistributedItemSampler, cooperative flags, GPU graph/feature cache knobs, DDP run, CooperativeConvFunction. |
+| 818 | https://github.com/dmlc/dgl/tree/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt | Read/indexed in pass 080; GraphBolt test root, 32 Python files indexed as `private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-tests-python-pytorch-graphbolt`. |
+| 819 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_feature_cache.py | Read via codebase-memory in pass 080; cache query/replace equivalence, found/missing layout, partition offsets, miss-rate parity, pinned output. |
+| 820 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_cpu_cached_feature.py | Read via codebase-memory in pass 080; CPU cached feature full/indexed reads, no-new-miss warm cache guard, async reads, disk-backed async reads. |
+| 821 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_gpu_cached_feature.py | Read via codebase-memory in pass 080; GPU cached feature row-byte sizing, miss-rate guard, async reads, nested disk/CPU/GPU cache tiers. |
+| 822 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_gpu_graph_cache.py | Read via codebase-memory in pass 080; GPU graph cache query/replace compared against direct CSC reference selection. |
+| 823 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_disk_based_feature_store.py | Read via codebase-memory in pass 080; disk feature full/indexed reads, pinned reads, metadata, `read_into_memory`, out-of-range and contiguity failures. |
+| 824 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_torch_based_feature_store.py | Read via codebase-memory in pass 080; feature-store device transitions, copied vs in-place pinning, result residency based on id tensor placement. |
+| 825 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_fused_csc_sampling_graph.py | Read via codebase-memory in pass 080; FusedCSC graph `.to(device)`, pinned memory, original graph preservation, and graph residency checks. |
+| 826 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/impl/test_ondisk_dataset.py | Read via codebase-memory in pass 080; manifest load, `in_memory`/`format`/`path` mutation, illegal mode failures, path normalization, 1-D feature shape guard. |
+| 827 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_feature_fetcher.py | Read via codebase-memory in pass 080; FeatureFetcher constructor/functional invocation, homo/hetero edge-feature selection, original ids through sampled subgraphs. |
+| 828 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_dataloader.py | Read via codebase-memory in pass 080; GPU sampling DataLoader stage graph, Bufferer count, async/cooperative/cache knobs, paired dataloader reference comparison. |
+| 829 | https://github.com/dmlc/dgl/blob/3d16000b4170fa741ed9e9667f22ba84d3493026/tests/python/pytorch/graphbolt/test_utils.py | Read via codebase-memory in pass 080; GPU seed-edge exclusion through datapipe/transform paths, async wait behavior, compacted CSC/original-id assertions. |
+| 830 | https://ldbcouncil.org/benchmarks/graphalytics/ | Read in pass 081; keep as official public benchmark overview and repository/spec link hub. |
+| 831 | https://ldbcouncil.org/benchmarks/graphalytics/algorithms/ | Read in pass 081; use BFS, PageRank, WCC, CDLP, LCC, and SSSP as the first public algorithm-family spine. |
+| 832 | https://ldbcouncil.org/benchmarks/graphalytics/datasets/ | Read in pass 081; use dataset scale ladder, corrected reference-output note, and Parquet availability note for fixture planning. |
+| 833 | https://ldbcouncil.org/benchmarks/graphalytics/rules/ | Read in pass 081; adapt three-run arithmetic-mean, reproducibility/code-review, performance, and price-performance rules to Knight Bus comparison receipts. |
+| 834 | https://ldbcouncil.org/ldbc_graphalytics_docs/graphalytics_spec.pdf | Read in pass 081; extract benchmark lifecycle, EVLP data model, reference-output, validation, and reporting requirements into executable specs. |
+| 835 | https://github.com/ldbc/ldbc_graphalytics | Indexed locally in pass 081; generic driver and validator source for benchmark lifecycle. |
+| 836 | https://github.com/ldbc/ldbc_graphalytics/blob/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/domain/algorithms/Algorithm.java | Read via codebase-memory in pass 081; algorithm to validation-rule mapping. |
+| 837 | https://github.com/ldbc/ldbc_graphalytics/tree/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/validation/rule | Read representative rule classes via codebase-memory in pass 081; exact long, epsilon double, and equivalence-class validators. |
+| 838 | https://github.com/ldbc/ldbc_graphalytics/blob/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/graphalytics-core/src/main/java/science/atlarge/graphalytics/execution/BenchmarkExecutor.java | Read via codebase-memory in pass 081; lifecycle, validation, retrieval, timeout, and metrics handling. |
+| 839 | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas | Indexed locally in pass 081; GraphBLAS/LAGraph reference-driver lane. |
+| 840 | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/java/science/atlarge/graphalytics/graphblas/GraphblasLoader.java | Read via codebase-memory in pass 081; source graph paths, direction, weight, and output artifact parameters. |
+| 841 | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/java/science/atlarge/graphalytics/graphblas/GraphblasJob.java | Read via codebase-memory in pass 081; algorithm executable invocation and thread-count forwarding. |
+| 842 | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/c/src/graphio.cpp | Read via codebase-memory in pass 081; Matrix Market, binary LAGraph, and dense/sparse ID mapping reads. |
+| 843 | https://github.com/ldbc/ldbc_graphalytics_platforms_graphblas/blob/4671056cb118c7db210571540fbeb374d735efa2/src/main/c/src/algorithms/pr.cpp | Read via codebase-memory in pass 081; PageRank path, thread init, matrix read, processing-time markers, output serialization, and cleanup. |
+| 844 | https://github.com/ldbc/ldbc_graphalytics/tree/7b8bde76cf7aab5e90b25ecd4b38829e2f98b292/config-template/benchmarks | Read locally in pass 081; test, S, M, L, XL, and 2XL algorithm/dataset timeout/repetition profiles. |
+| 845 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb | Indexed locally in pass 082; ArcadeDB Graphalytics platform driver plus native multi-vendor and LSQB harnesses. |
+| 846 | https://arcadedb.com/blog/graph-olap-engine-the-fastest-graph-analytics-with-zero-compromises/ | Read in pass 082; Graph Analytical View as CSR/columnar OLAP sidecar beside OLTP storage, with synchronous/asynchronous/manual update modes. |
+| 847 | https://arcadedb.com/benchmarks.html | Read in pass 082; vendor benchmark page for LDBC Graphalytics and LSQB framing, with vendor-reported results and reproducibility claims. |
+| 848 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/README.md | Read locally in pass 082; three benchmark modes, supported algorithm implementations, dataset/hardware disclosures, official and native result tables, LSQB query-shape table. |
+| 849 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/config-template/platform.properties | Read locally in pass 082; `platform.olap` flag and GAV/CSR acceleration comments. |
+| 850 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBPlatform.java | Read via codebase-memory in pass 082; Graphalytics algorithm dispatch to ArcadeDB jobs. |
+| 851 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBJob.java | Read via codebase-memory in pass 082; build-GAV, compute, serialize, close lifecycle and OLTP fallback logging. |
+| 852 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/ArcadeDBLoader.java | Read via codebase-memory in pass 082; embedded loader, GraphBatch, WAL-off bulk import, and VID/RID mapping. |
+| 853 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/bfs/BreadthFirstSearchComputation.java | Read via codebase-memory in pass 082; CSR BFS vs OLTP BFS path and dense-id lookup. |
+| 854 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/sssp/SingleSourceShortestPathsComputation.java | Read via codebase-memory in pass 082; CSR weighted Dijkstra vs OLTP path. |
+| 855 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/cdlp/CommunityDetectionLPComputation.java | Read via codebase-memory in pass 082; custom VID-label CDLP, CSR neighbor view, reusable label buffer, per-iteration arrays, and writeback. |
+| 856 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/pr/PageRankComputation.java | Read via codebase-memory in pass 082; built-in PageRank, tolerance disabled for LDBC parity, CSR-accelerated context variable, result writeback. |
+| 857 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/src/main/java/science/atlarge/graphalytics/arcadedb/metrics/OutputSerializer.java | Read via codebase-memory in pass 082; full vertex scan output serialization. |
+| 858 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/shared/bench_common.py | Read via codebase-memory in pass 082; timeout, sequential system loop, cleanup, and summary harness. |
+| 859 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/ldbc-native/systems/arcadedb.py | Read via codebase-memory in pass 082; embedded load, Docker execution, GAV wait/create, count-only algorithm calls. |
+| 860 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/ldbc-native/systems/neo4j.py | Read via codebase-memory in pass 082; Neo4j Docker/GDS projection comparator path. |
+| 861 | https://github.com/ArcadeData/ldbc_graphalytics_platforms_arcadedb/blob/70986fc9aad9f9cd4582ac2f6707f5825c54178c/SURREALDB.md | Read locally in pass 082; capability-failure and crash/timeout notes for graph-syntax-without-graph-engine caveat. |
+| 862 | https://github.com/samyama-ai/samyama-graph | Cloned/indexed in pass 083; Rust graph-vector database near-neighbor. |
+| 863 | https://arxiv.org/html/2603.08036v2 | Read in pass 083; Samyama paper v2 with architecture, performance claims, Graphalytics validation table, and limitations. |
+| 864 | https://arxiv.org/abs/2603.08036 | Read in pass 083; abstract/metadata for Samyama paper and author/date verification. |
+| 865 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/README.md | Read locally and via raw content in pass 083; product claims, benchmark menu, LDBC compliance table, billion-edge story, and test-badge caveat. |
+| 866 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/BENCHMARKS.md | Read in pass 083; self-published LDBC SNB Interactive notes, SF1/SF10 numbers, commit provenance, and complex-read caveat. |
+| 867 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/Cargo.toml | Read in pass 083; Rust workspace crates, bench targets, RocksDB/Rayon/HNSW/wgpu feature surface. |
+| 868 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/graphalytics_benchmark.rs | Read via codebase-memory in pass 083; Graphalytics runner, algorithm dispatch, validation exit behavior, and hot-loop scope. |
+| 869 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/graphalytics_common/mod.rs | Read via codebase-memory in pass 083; `.v/.e` loader, validation loader, dense mapping, weighted/unweighted edge import. |
+| 870 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/common.rs | Read via codebase-memory in pass 083; `GraphView` dense-id and CSR/CSC-style physical shape. |
+| 871 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/pagerank.rs | Read via codebase-memory in pass 083; CPU PageRank buffers, incoming-neighbor scan, dangling redistribution, parallel threshold, and GPU fallback gate. |
+| 872 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-graph-algorithms/src/cdlp.rs | Read via codebase-memory in pass 083; CDLP original-node-ID labels, minimum-label tie-break, parallel path, and GPU fallback gate. |
+| 873 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/algo/mod.rs | Identified/read in pass 083; query-surface algorithm view builder from `GraphStore` into `GraphView`. |
+| 874 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/operator.rs | Read via codebase-memory in pass 083; `AlgorithmOperator.execute_pagerank` projection, materialization, clone, score binding, and sort. |
+| 875 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/ADR/ADR-012-late-materialization.md | Read locally in pass 083; NodeRef/EdgeRef late-materialization design and memory-allocation motivation. |
+| 876 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/ADR/ADR-021-columnar-property-store.md | Read locally in pass 083; sparse per-key column store, property fallback, memory-reduction claims, and follow-up caveats. |
+| 877 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/graph/storage/columnar.rs | Read via codebase-memory in pass 083; typed sparse primitive columns and complex-value skip/fallback behavior. |
+| 878 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/late_materialization_bench.rs | Read via codebase-memory in pass 083; raw clone vs edge-target traversal, Cypher traversal, full-node return, and property-only return microbench. |
+| 879 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/crates/samyama-gpu/src/buffer.rs | Read via codebase-memory in pass 083; CSR GPU upload buffer shape and u32 conversion. |
+| 880 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/ADR/ADR-025-gpu-compute-wgsl.md | Read in pass 083 via search output; GPU benchmark caveats, retracted unsourced PageRank claim, and CPU-as-source-of-truth language. |
+| 881 | https://github.com/samyama-ai/samyama-graph/issues/296 | Queued in pass 083 from `docs/BENCHMARKS.md`; complex SNB read optimization issue, useful for product-caveat tracking. |
+| 882 | https://github.com/samyama-ai/samyama-graph/actions | Checked with GHCLI in pass 083; latest visible ten workflow runs were cancelled GPU CI runs, so no green CI claim recorded. |
+| 883 | https://ldbcouncil.org/post/2025-graph-data-council-member-survey-report/ | Read in pass 083; survey notes demand for schema/query benchmark frameworks with runtime and memory-footprint reporting plus LLM/GraphRAG benchmark gaps. |
+| 884 | https://arxiv.org/abs/2601.06705 | Read in pass 083; GraphAlg paper argues graph query languages struggle to express algorithms like PageRank and compiles graph-algorithm DSL to relational algebra. |
+| 885 | https://igraph.discourse.group/t/implementing-the-ldbc-graphalytics-benchmark/417 | Read in pass 083; deterministic Graphalytics CDLP tie-break and BFS/SSSP semantics discussion. |
+| 886 | https://github.com/samyama-ai/samyama-graph/issues/296 | Read deeply in pass 084 through GH CLI and public GitHub page; open complex-read planner issue, SF10 IC1/IC3/IC5/IC6/IC9 gaps, frontier-dedup/cardinality/hash-agg suspicion, and exact repro command. |
+| 887 | https://github.com/samyama-ai/samyama-graph/pull/295 | Read in pass 084 through GH CLI and public GitHub page; PR externalized LDBC SNB substitution params into `--params-file`, merged Jul 24 2026 by Sandeep Kunkunuru, benchmark-harness only, no engine changes. |
+| 888 | https://ldbcouncil.org/benchmarks/snb/ | Opened in pass 084; official GDC/LDBC SNB page defines Interactive as neighbourhood reads plus updates and BI as aggregation/join-heavy complex graph queries. |
+| 889 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/docs/BENCHMARKS.md | Re-read in pass 084; embedded timing, one warm-up plus timed median, SF1/SF10 dataset sizes/load times, short-read strength, complex-read caveat, issue #296 link. |
+| 890 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/ldbc_benchmark.rs | Read via codebase-memory and local source in pass 084; LDBC query definitions, params file, anchor id indexes, run loop, AST cache stats, min/median/max output, and error exit. |
+| 891 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/benches/ldbc_common/mod.rs | Referenced in pass 084; dataset loader and LDBC import support behind the benchmark harness. |
+| 892 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/operator.rs | Read via codebase-memory in pass 084; `VarLengthExpandOperator`, `AggregateOperator.execute_all`, and `WithBarrierOperator.execute_all` frontier, hash-agg, and barrier materialization paths. |
+| 893 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/planner.rs | Read via local source and codebase-memory in pass 084; planner comments on predicate pushdown, cardinality, join order, early LIMIT, plus variable-length fallback/reachability tests. |
+| 894 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/adjacency_agg_detector.rs | Read via codebase-memory in pass 084; detector scopes single-hop adjacency aggregation and aggregate-then-expand but rejects variable-length/general multi-stage shapes. |
+| 895 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/semi_join_detector.rs | Read via codebase-memory in pass 084; semi-join detector rejects variable-length edges and accepts only narrow two-MATCH aggregate shapes. |
+| 896 | https://github.com/samyama-ai/samyama-graph/blob/a0e153de933e9810b5aba7751a4853ae95d331ab/src/query/executor/logical_optimizer.rs | Read via codebase-memory in pass 084; cyclic expand/expand-into can become trie joins, but that does not solve variable-length frontier plus aggregation. |
+| 897 | https://github.com/neo4j/neo4j | Used in pass 085 as the public repository root for local Neo4j family source evidence; local clone was `neo4j-src`. |
+| 898 | https://github.com/neo4j/neo4j/tree/c68156edf24164435ab1ac257ec633134c2887f7 | Used in pass 085 as the pinned Neo4j community source commit from local branch `release/5.26.0`. |
+| 899 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/slotted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/slotted/pipes/VarLengthExpandSlottedPipe.scala | Read via codebase-memory in pass 085; regular slotted var-length expansion uses tracked node stack, relationship-container stack, traversal uniqueness checks, predicates, projected relationship lists, and close semantics. |
+| 900 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/interpreted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/interpreted/pipes/BFSPruningVarLengthExpandPipe.scala | Read via codebase-memory in pass 085; interpreted BFS-pruning pipe obtains operator memory tracker, calls shared `bfsIterator`, emits end nodes and optional depth, and handles `ExpandAll`/`ExpandInto`. |
+| 901 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/slotted-runtime/src/main/scala/org/neo4j/cypher/internal/runtime/slotted/pipes/BFSPruningVarLengthExpandSlottedPipe.scala | Read via codebase-memory in pass 085; slotted BFS-pruning pipe mirrors endpoint/depth emission with slotted rows and primitive node slots. |
+| 902 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/runtime-util/src/main/java/org/neo4j/internal/kernel/api/helpers/BFSPruningVarExpandCursor.java | Read via codebase-memory in pass 085; directed cursor uses heap-tracked seen set and queue, undirected cursor uses two heap-tracked frontiers plus ancestor map and loop/start-node state. |
+| 903 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/cypher-planner/src/main/scala/org/neo4j/cypher/internal/compiler/planner/logical/plans/rewriter/pruningVarExpander.scala | Read via codebase-memory in pass 085; pruning rewrite eligibility depends on horizon, length, dependency, and policy checks; default is `PreferDFS`, with `PreferBFS` not enabled by default due worst-case performance risk. |
+| 904 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/cypher-planner/src/main/scala/org/neo4j/cypher/internal/compiler/planner/logical/plans/rewriter/LogicalPlanRewriter.scala | Read via codebase-memory in pass 085; trail-with-two-filters rewrite is accepted only if the resulting `VarExpand` is also rewritable by `pruningVarExpander`. |
+| 905 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/collections/src/main/java/org/neo4j/collection/trackable/HeapTrackingLongHashSet.java | Read via codebase-memory in pass 085; heap-tracked set accounts for array/table allocation, resize release, and close release through `MemoryTracker`. |
+| 906 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/common/src/main/java/org/neo4j/memory/MemoryTracker.java | Read via codebase-memory in pass 085; memory tracker exposes heap/native allocation and release, high-water mark, and scoped trackers. |
+| 907 | https://github.com/neo4j/neo4j/blob/c68156edf24164435ab1ac257ec633134c2887f7/community/cypher/runtime-spec-suite/src/test/scala/org/neo4j/cypher/internal/runtime/spec/tests/BFSPruningVarLengthExpandTestBase.scala | Read via codebase-memory in pass 085; runtime tests cover directed/undirected max/min depth, length zero, start-node inclusion, self-loops, shortcut paths, predicates, context predicates, RHS apply, `ExpandInto`, and traversal endpoint predicate semantics. |
+| 908 | https://github.com/neo4j/graph-data-science | Used in pass 086 as the public repository root for local Neo4j GDS source evidence; local clone was `neo4j-gds-src`. |
+| 909 | https://github.com/neo4j/graph-data-science/tree/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9 | Used in pass 086 as the pinned GDS source commit from local branch `2.13`. |
+| 910 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/main/java/org/neo4j/gds/catalog/GraphProjectProc.java | Read via codebase-memory/search-code in pass 086; public projection estimate procedures include native and Cypher projection estimate surfaces. |
+| 911 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/DefaultGraphCatalogApplications.java | Read via codebase-memory in pass 086; native and Cypher graph-project estimate configs are parsed and delegated to project applications. |
+| 912 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/NativeProjectApplication.java | Read via codebase-memory in pass 086; native project estimate returns a `MemoryEstimateResult` from `GraphProjectMemoryUsageService.getEstimate` or fictitious estimate path. |
+| 913 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/CypherProjectApplication.java | Read via codebase-memory in pass 086; Cypher project estimate mirrors native project estimate with parsed Cypher projection config. |
+| 914 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphProjectMemoryUsageService.java | Read via codebase-memory in pass 086; projection memory validation, graph-loader context, graph dimensions, and during-loading estimate path. |
+| 915 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/graph-store-catalog/src/main/java/org/neo4j/gds/applications/graphstorecatalog/GraphStoreFromDatabaseLoader.java | Read via codebase-memory in pass 086; exposes memory estimates during and after graph loading through the graph-store factory. |
+| 916 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/centrality/src/main/java/org/neo4j/gds/pagerank/PageRankStreamProc.java | Search-code evidence in pass 086; public `gds.pageRank.stream.estimate` procedure, with stats/mutate/write estimate siblings also present. |
+| 917 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankMemoryEstimateDefinition.java | Read via codebase-memory in pass 086; PageRank estimate delegates to Pregel with one PageRank double node value. |
+| 918 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankAlgorithm.java | Read via codebase-memory in pass 086; PageRank runs Pregel, extracts double scores, scales them, and returns iteration/convergence metadata. |
+| 919 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/PageRankComputation.java | Read via codebase-memory in pass 086; PageRank compute accumulates messages, applies damping/tolerance, sends deltas to neighbors, or votes to halt. |
+| 920 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/pagerank/DegreeFunctions.java | Read via codebase-memory in pass 086; PageRank degree function is produced through `DegreeCentrality` over natural orientation. |
+| 921 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/path-finding/src/main/java/org/neo4j/gds/paths/traverse/BfsStreamProc.java | Search-code evidence in pass 086; public `gds.bfs.stream.estimate` procedure, with stats/mutate estimate siblings also present. |
+| 922 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BfsMemoryEstimateDefinition.java | Read via codebase-memory in pass 086; BFS estimate names visited/traversed/weights/minimumChunk/localNodes/chunks/resultNodes and range-bounds local nodes. |
+| 923 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BFS.java | Read via codebase-memory in pass 086; BFS allocates node-count-sized arrays/bitset, uses atomics and ordered chunk synchronization, and copies the result slice. |
+| 924 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/paths/traverse/BFSTask.java | Read via codebase-memory in pass 086; BFS task relax/sync paths use minimum-chunk atomics, local-node chunks, visited dedup, and target-found early exit. |
+| 925 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/main/java/org/neo4j/gds/wcc/WccStreamProc.java | Search-code evidence in pass 086; public `gds.wcc.stream.estimate` procedure, with stats/mutate/write estimate siblings also present. |
+| 926 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/WccMemoryEstimateDefinition.java | Read via codebase-memory in pass 086; WCC memory estimate centers on `HugeAtomicDisjointSetStruct` as `dss`, parameterized by incremental mode. |
+| 927 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/Wcc.java | Read via codebase-memory in pass 086; WCC initializes seed/unseeded DSS and chooses sampled vs unsampled strategy from graph characteristics. |
+| 928 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/SampledStrategy.java | Read via codebase-memory in pass 086; sampled strategy partitions, samples sparse subgraph, finds largest component, and links remaining/inverse relationships. |
+| 929 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/algo/src/main/java/org/neo4j/gds/wcc/UnsampledStrategy.java | Read via codebase-memory in pass 086; unsampled strategy creates partitioned union tasks, scans node ranges, unions relationships, and logs progress by degree. |
+| 930 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/machinery/src/main/java/org/neo4j/gds/applications/algorithms/machinery/AlgorithmEstimationTemplate.java | Read via codebase-memory in pass 087; central algorithm estimate template handles named graph vs map graph config, graph+algorithm memory components, dimensions, concurrency, and result creation. |
+| 931 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/MemoryEstimationGraphConfigParser.java | Read via codebase-memory in pass 087; parses implicit graph configs into store projection vs Cypher projection using mutually exclusive projection/query key pairs. |
+| 932 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/DatabaseGraphStoreEstimationService.java | Read via codebase-memory in pass 087; estimates graph dimensions and after-loading memory through `GraphStoreFactorySupplier` and database graph-loader context. |
+| 933 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-estimation/src/main/java/org/neo4j/gds/memest/FictitiousGraphStoreEstimationService.java | Read via codebase-memory in pass 087; builds graph dimensions from node/relationship counts and estimates after-loading memory against null context and supplied dimensions. |
+| 934 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/memory-usage/src/main/java/org/neo4j/gds/applications/algorithms/machinery/MemoryEstimateResult.java | Read via codebase-memory in pass 087; result schema includes required memory, tree/map views, byte range, graph counts, and heap percentages. |
+| 935 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/centrality/LocalCentralityProcedureFacade.java | Read via codebase-memory in pass 087; `pageRankStreamEstimate` parses `PageRankStreamConfig` and returns the centrality estimation facade result as a single stream row. |
+| 936 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/pathfinding/LocalPathFindingProcedureFacade.java | Read via codebase-memory in pass 087; `breadthFirstSearchStreamEstimate` parses `BfsStreamConfig` and returns the pathfinding estimation facade result as a single stream row. |
+| 937 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java | Read via codebase-memory in pass 087; `wccStreamEstimate` parses `WccStreamConfig` and returns the community estimation facade result as a single stream row. |
+| 938 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/centrality/src/main/java/org/neo4j/gds/applications/algorithms/centrality/CentralityAlgorithmsEstimationModeBusinessFacade.java | Read via codebase-memory/search-code in pass 087; PageRank estimate selects `PageRankMemoryEstimateDefinition` and delegates to `AlgorithmEstimationTemplate`. |
+| 939 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/path-finding/src/main/java/org/neo4j/gds/applications/algorithms/pathfinding/PathFindingAlgorithmsEstimationModeBusinessFacade.java | Read via codebase-memory in pass 087; BFS estimate selects `BfsMemoryEstimateDefinition` and delegates through `runEstimation` to `AlgorithmEstimationTemplate`. |
+| 940 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/applications/algorithms/community/src/main/java/org/neo4j/gds/applications/algorithms/community/CommunityAlgorithmsEstimationModeBusinessFacade.java | Read via codebase-memory/search-code in pass 087; WCC estimate selects `WccMemoryEstimateDefinition` with incremental flag and delegates to `AlgorithmEstimationTemplate`. |
+| 941 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/community/src/integrationTest/java/org/neo4j/gds/wcc/WccStreamProcTest.java | Read via codebase-memory in pass 087; WCC estimate tests cover fictitious graph config, native projection config, one-row guarantee, result schema, counts, and heap percentages. |
+| 942 | https://github.com/neo4j/graph-data-science/blob/dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9/proc/catalog/src/test/java/org/neo4j/gds/catalog/GraphProjectProcEstimateTest.java | Read via codebase-memory in pass 087; graph-project estimate tests pin exact byte expectations for Cypher projection, virtual graph, and large 5B-node/20B-edge dimensions. |
 
 ## Product Implications So Far
 
@@ -8573,6 +12474,398 @@ Baseline: simple Python/NetworkX or existing repo behavior where possible
 593. `pagerank_full_edge_map_v1` and `pagerank_residual_delta_v1` should be separate profiles over the same logical algorithm so RAM/latency tradeoffs are comparable instead of hidden.
 594. Partitioned layouts should not be promoted by quality metrics alone; promotion requires correctness, peak RAM, total/amortized latency, tail-latency slack, and metadata budget gates.
 595. The next coding prompt should explicitly forbid implementing full PageRank until `layout_probe_v1` and its receipt contracts are green.
+596. Graph DB/query latency claims require workload fingerprints; topology-only partition quality is not enough evidence.
+597. Non-uniform access patterns are separate from graph topology; record source distribution, motif/query frequency, traversal depth, and filter shape.
+598. Add `profile_workload_fingerprint_v1` before promoting any query-aware partition layout.
+599. Add `profile_query_motif_partition_v1` for Loom-style collocation of frequent traversal motifs.
+600. Add `profile_traffic_metric_receipt_v1` so partition quality proxies are tied to traffic/load-balance evidence or explicitly marked unavailable.
+601. Add `profile_query_rewrite_receipt_v1` when a partitioned KG/graph query plan rewrites the logical query.
+602. Add `profile_adaptive_workload_repartition_v1` because layout quality can decay when query patterns change.
+603. PageRank first demo does not need query-aware partitioning; it needs algorithm-family layout receipts and oracle checks first.
+604. Product principle: graph DB latency layouts are selected by workload fingerprints, while graph algorithm layouts are selected by algorithm invariants plus graph shape.
+605. Low-RAM partitioning should be exposed as a dial, not a single algorithm: pure streaming, buffered, restreaming, two-phase, hybrid, and vertex-cut profiles each trade RAM, passes, metadata, and quality differently.
+606. `layout_probe_v1` should report whether the graph is power-law/skewed enough to consider vertex-cut or hybrid edge partitioning.
+607. The product should let users choose "spend more passes to obey RAM budget" as a first-class batch-compute mode.
+608. Add `profile_stream_order_receipt_v1`; stream order can make or break one-pass quality and must be recorded.
+609. Add `profile_buffered_stream_partition_v1`; a small buffer/model graph is a concrete mechanism for better quality under bounded RAM.
+610. Add `profile_restreaming_budget_v1`; repeated passes with compact retained state are a viable local/batch strategy when time is cheaper than RAM.
+611. Add `profile_hybrid_edge_partition_v1`; split low-degree and high-degree edge classes instead of treating the graph as one homogeneous object.
+612. Add `profile_partition_budget_dial_v1`; before running, show legal physical profiles with RAM cap, pass count, predicted quality risk, and downstream algorithm compatibility.
+613. HEP implementation makes `hdf = average_degree * factor` a concrete `layout_probe_v1` output candidate: average degree, skew, threshold, and high-degree edge fraction.
+614. Sidecar files are a central storage pattern for Knight Bus: do not materialize all edges the same way; split by semantic/algorithmic class and count sidecar bytes.
+615. Add `profile_hep_sidecar_files_v1`; every sidecar needs a manifest, format, byte size, row count, semantic class, and reuse policy.
+616. Add `profile_partition_manifest_knobs_v1`; every physical profile must record defaults, chosen values, effective derived values, and whether the user or planner chose them.
+617. Add `profile_partition_stats_receipt_v1`; partitioning is not complete until mirrors, replication by degree, invalidation, and balance are visible.
+618. HEP's `random_streaming` alternative is a useful baseline: for any fancy high-degree streaming scorer, include a cheap random-streaming comparison where feasible.
+619. Treat HEP as a post-PageRank partitioned-layout reference, not the first coding target.
+620. The first planner should output "HEP-like candidate possible" when graph skew and RAM budget justify low-degree in-memory plus high-degree sidecar streaming.
+621. GNN evidence widens the PMF to budget-bounded graph learning and batch ML without changing the verification spine.
+622. For GNN workloads, replication factor is a memory-bill multiplier because replicated vertices can carry feature, embedding, gradient, and communication state.
+623. Add `profile_gnn_feature_state_budget_v1`; feature bytes, embedding bytes, gradient bytes, sampled-subgraph bytes, cache bytes, and communication-buffer bytes must be separate.
+624. Add `profile_partition_amortization_epochs_v1`; preprocessing should show how many epochs, jobs, or repeated runs are needed to pay back layout/build time.
+625. Add `profile_graph_embedding_out_of_core_v1`; graph embeddings need GPU/CPU/SSD tier budgets, cache hit rate, ordering policy, disk-read volume, accuracy delta, and cost estimate.
+626. Add `profile_staleness_cache_receipt_v1`; cached historical embeddings/features/gradients require staleness, gradient, refresh, memory-access, speed, and accuracy fields.
+627. Add `profile_multihop_partition_locality_v1`; sampling-based GNN profiles need one-hop and multi-hop locality, cross-partition sample traffic, and training-node balance.
+628. Add `profile_gnn_sampling_io_v1`; sampled nodes/edges, feature-fetch bytes, sampler time, feature retrieval time, compute time, cache hit rate, and stall time should be visible.
+629. Batch-compute UX can offer: spend preprocessing passes or storage ordering now to save epochs, hours, or cloud cost later.
+630. GNN expansion must include accuracy/convergence deltas, not only latency and RAM deltas.
+631. Product principle: the same planner core can support PageRank first and graph learning later by swapping proof type from exact oracle/invariant to accuracy/convergence receipt.
+632. Implementation artifacts make "budget-bounded graph learning" concrete: state placement and movement are the product, not hidden implementation detail.
+633. Add `profile_gnn_cache_state_diff_v1`; cache profiles must report historical hits, feature hits, source loads, recorded rows, invalidated rows, staleness, gradient threshold, and header movement.
+634. Add `profile_async_feature_pipeline_v1`; feature pipelines need worker count, cache size per GPU, feature dimension, input length, IPC/FIFO channels, queue depth, and hit/miss/copy bytes.
+635. Add `profile_gnn_graph_feature_pipeline_v1`; graph-structure movement and feature movement should be separated in receipts.
+636. Add `profile_gpu_memory_cache_budget_v1`; GPU cache claims need total/allocated/reserved/cushion/derived-capacity fields.
+637. Add `profile_batch_overlap_reorder_v1`; reordering must disclose window size, overlap matrix summary, selected order, ordering overhead, and feature-reuse delta.
+638. Add `profile_sampling_phase_timing_v1`; GNN workloads should break time into sample, graph copy, feature copy, forward/train, backward, and total epoch.
+639. For exact OLAP PageRank, copy the phase-accounting habit even if we do not copy the GNN workload: projection, layout build, state allocation, execution, verification, and output should be separate.
+640. FastGL's 2GB GPU-memory cushion is a useful product idea: every memory-bound profile should expose a reserve/safety margin, not merely a max cap.
+641. BGL's explicit pending-sample and CSR preallocation pattern is a warning: lower latency often uses more predictable preallocated memory, so the planner must show the chosen peak-memory tradeoff.
+642. History-cache proves cache correctness for graph learning is not exact equality; it needs accuracy/convergence plus state-diff receipts.
+643. Marius is the clearest implementation reference so far for "storage hierarchy as product surface."
+644. Add `profile_partition_buffer_receipt_v1`; partition-buffer receipts need capacity, partition size, embedding/vector width, dtype bytes, aligned bytes, loaded partition IDs, and num records/nodes in memory.
+645. Add `profile_partition_prefetch_writeback_v1`; prefetch/writeback receipts need current admit/evict IDs, next admit IDs, lookahead wait, copied bytes, async write state, sync flush count, and partition-file bytes.
+646. Add `profile_subgraph_swap_training_v1`; subgraph-swap receipts need active nodes/edges or partitions/edge buckets, global-local map bytes, `batches_left` wait, swap boundary, and batch reinit count.
+647. Add `profile_buffer_ordering_manifest_v1`; buffer ordering must record edge/node ordering strategy, fine-to-coarse ratio, cache partitions, random-assignment flag, and generated `buffer_states` hash.
+648. Add `profile_pipeline_queue_receipt_v1`; pipelines need queue sizes, batches in flight, host/device transfer stages, worker roles, and stall/wait time.
+649. Marius warns that "low RAM" still needs predictable memory accounting: aligned buffers, pinned transfers, prefetch memory, async write buffers, and batch queues all count.
+650. For PageRank, copy the Marius accounting habit before copying any Marius algorithm: make current/next partition state, prefetch/writeback, and swap boundaries receipt-visible.
+651. Product principle: a bounded storage profile is not just a file format; it is a choreography of admission, eviction, ordering, prefetch, writeback, batch scheduling, and proof.
+652. CDFGNN adds a distinct proof family: accuracy/convergence guards for approximate cache, quantization, and communication-reduction profiles.
+653. Add `profile_remote_vertex_access_budget_v1`; graph-learning expansion should separate local access, remote access, feature bytes, gradient bytes, avoided remote accesses, and per-layer communication share.
+654. Add `profile_adaptive_threshold_cache_v1`; adaptive caches need threshold schedule, error norm, active vertices, messages sent/skipped, cache bytes, and refresh events.
+655. Add `profile_quantized_comm_receipt_v1`; quantized communication needs bit width, side metadata, compression ratio, error bound, dequantization cost, and accuracy/convergence delta.
+656. Add `profile_hierarchical_partition_comm_v1`; hierarchy-aware partitioning must expose GPU-level replicas, host-level replicas, cross-GPU messages, cross-host messages, edge imbalance, vertex imbalance, and evaluation weights.
+657. Add `profile_accuracy_convergence_guard_v1`; approximation profiles should fail closed when accuracy or convergence exceeds the declared tolerance.
+658. Add `profile_gnn_research_route_map_v1`; future graph-learning reads should classify systems by movement target, memory target, compression method, proof type, and public-code availability.
+659. Add `profile_graph_learning_data_management_map_v1`; temporal state, dynamic placement, cache/staleness policy, personalized PageRank linkage, execution planning, and dual-cache state should be tracked for expansion.
+660. Do not let graph-learning catalogs distract the first wedge; use them to design extensible receipts while building the exact PageRank/Neo4j-GDS comparison first.
+661. The broader PMF claim is sharpening: Knight Bus is not only "a Neo4j rewrite"; it is a proof-carrying planner for structure-heavy compute under declared budgets.
+662. Hyperion adds a concrete "RAM cap plus SSD budget" architecture option for later graph-learning or disk-backed graph profiles.
+663. Add `profile_gpu_direct_ssd_artifact_v1`; disk-backed profiles need repo/commit, hardware assumptions, SSD count, queue count, cache policy, throughput/cost metric, and copied-vs-inspired ideas.
+664. Add `profile_gpu_direct_ssd_iostack_v1`; GPU-direct SSD profiles need SSD count, queue count, queue depth, logical block size, submission/completion blocks, per-SSD request counts, PRP bytes, IO buffer bytes, doorbell counts, and completion latency.
+665. Add `profile_feature_miss_to_ioreq_v1`; cache misses should record sampled ID, cache-index status, feature block size, SSD stripe function, logical block start, destination address span, and IO request count.
+666. Add `profile_unified_cache_tier_receipt_v1`; CPU-cache hits, GPU-cache hits, topology hits, feature hits, and SSD misses must be separated.
+667. Add `profile_topology_cache_ipc_receipt_v1`; topology cache tiering and training IPC counters should be visible when graph data crosses process/GPU boundaries.
+668. Add `profile_throughput_per_cost_v1`; cost-efficiency claims need throughput, elapsed time, hardware cost basis, amortization window, and baseline cost.
+669. Disk spill is too vague as a product concept; use "explicit storage requests with source tier, destination buffer, queue, wait, and completion phase."
+670. Hyperion reinforces that lower RAM can be famous if the story includes bounded RAM plus predictable storage movement, not merely slower spilling.
+671. Keep Hyperion as expansion evidence; do not introduce GPU-direct SSD complexity into the first exact PageRank/GDS proof unless a benchmark demands it.
+672. Ginex adds a "future-access cache plan" option: spend preprocessing/superbatch trace work to reduce SSD reads under a RAM cap.
+673. Add `profile_ginex_source_reference_v1`; record repo, commit, file count, index size, cgroup setup, cited functions, and copied-vs-inspired ideas.
+674. Add `profile_cgroup_memory_cap_receipt_v1`; bounded-memory experiments should disclose cgroup cap, swap size, read-ahead, storage device, and OS/cache reset behavior.
+675. Add `profile_future_access_cache_plan_v1`; feature cache plans need table bytes, derived entry count, trace window, frequency vector bytes, iterptr/iters bytes, threshold trajectory, and initial cache fill.
+676. Add `profile_cache_changeset_runtime_v1`; runtime cache updates need insert IDs, evict IDs, in positions, bytes copied, address-table updates, thread count, and overlap boundary.
+677. Add `profile_neighbor_cache_sampling_v1`; neighbor sampling receipts need fanout, cache hit/miss by node, O_DIRECT reads, aligned buffer size, replacement policy, output node count, and output edge count.
+678. Add `profile_odirect_feature_gather_v1`; feature-gather receipts need cache hit/miss, aligned offset, residual, read size, read bytes, OMP thread count, and returned tensor shape.
+679. Difference versus Hyperion: Hyperion makes SSD runtime explicit; Ginex uses future access and changesets to avoid SSD reads. Both are valid budget profiles.
+680. For exact PageRank, the Ginex transfer is "trace/probe future access -> plan cache/layout -> emit changeset receipt", not GNN-specific training logic.
+681. GIDS adds a "centrality as cache admission" option: PageRank can produce a top-k node list for pinned storage/cache profiles.
+682. Add `profile_gids_source_reference_v1`; record repo, paper URL, commit, file count, index size, queue/storage assumptions, and copied-vs-inspired ideas.
+683. Add `profile_gpu_initiated_feature_fetch_v1`; GPU-initiated profiles need SSD list, queue depth/count, page size, cache pages, stripe policy, row count, feature dim, stream count, kernel time, total accesses, and CPU-buffer hits.
+684. Add `profile_page_rank_pin_buffer_v1`; pinned CPU/GPU/cache rows selected by PageRank or other centrality must record algorithm, damping/iterations, pin-file hash, top-k count, pinned bytes, hit count, and downstream runtime delta.
+685. Add `profile_window_buffer_access_counter_v1`; windowed storage prediction needs window size, page marks, merged-iteration count, previous CPU hits, required access estimate, residual storage reads, and stall time.
+686. Add `profile_csc_format_memory_gate_v1`; fail before work if an implicit COO/CSR/CSC conversion would exceed the RAM budget.
+687. Add `profile_storage_accumulator_v1`; if read batching uses bandwidth and latency estimates, record SSD bandwidth, SSD latency, system latency, peak-percent target, current access, required access, and chosen window.
+688. Add `profile_centrality_cache_hint_v1`; graph metrics used as cache hints need score-vector bytes, selected IDs, target tier, hit-rate delta, runtime delta, and correctness/quality impact.
+689. GIDS reinforces that graph projection/loading can be the RAM killer, not only the algorithm kernel. Projection phase receipts are non-negotiable.
+690. Keep GIDS as expansion evidence; do not introduce BaM/GPU direct storage into v1 unless the exact PageRank proof already has layout probes, format gates, and phase accounting green.
+691. Zebra adds a "top-k influence budget" option: use PageRank/PPR-family influence to avoid touching low-value temporal neighbors.
+692. Add `profile_temporal_ppr_source_reference_v1`; record paper, repo, commit, file count, index size, cited guarantee, datasets, and copied-vs-inspired ideas.
+693. Add `profile_tppr_manifest_knobs_v1`; T-PPR profiles must expose strategy, top-k, alpha/beta lists, width, depth, batch size, layers, epochs, dataset, seed, and timing fields.
+694. Add `profile_topk_influence_budget_v1`; selected node IDs, edge IDs, delta times, weights, transfer bytes, normalization rule, and average selected influence must be visible.
+695. Add `profile_tppr_streaming_state_v1`; streaming dynamic-graph profiles need node count, T-PPR config count, norm-array bytes, dictionary entry count, top-k cap, update count, trim count, and backup/restore bytes.
+696. Add `profile_tppr_pruning_query_v1`; pruning profiles need width, depth, candidate count, timestamp boundary, selected count, skipped-empty count, and per-query time.
+697. Add `profile_dynamic_graph_phase_receipt_v1`; dynamic graph runs must separate train, reset, fill, validate, restore, test, memory backup/restore, T-PPR backup/restore, changed-node count, and phase timings.
+698. Add `profile_neighbor_explosion_escape_v1`; if a profile claims to avoid neighbor explosion, compare full recursive frontier estimate against selected top-k work, avoided work, memory delta, runtime delta, and accuracy delta.
+699. Add `profile_approximation_quality_guard_v1`; approximate profiles need baseline, metric, tolerance, repeated-run/confidence rule, and fail-closed behavior.
+700. Keep Zebra as the PageRank-family expansion route: exact PageRank remains the oracle lane, while T-PPR becomes a later budgeted approximation lane for dynamic/local graphs.
+701. DUCATI adds the clearest multi-state budget allocator pattern: split scarce memory across competing graph-state classes by measured marginal benefit per byte.
+702. Add `profile_ducati_source_reference_v1`; DUCATI-inspired profiles must record paper, DOI, repo, commit, file count, index size, customized dependency, and copied-vs-inspired ideas.
+703. Add `profile_dual_cache_workflow_v1`; every planner/executor profile should separate allocation-plan verification, planned execution verification, and baseline verification.
+704. Add `profile_gpu_memory_budget_knob_v1`; total accelerator memory, model/setup bytes, user-declared budget, planner-derived free bytes, and safety cushion should be visible before execution.
+705. Add `profile_multi_state_budget_allocator_v1`; PageRank should allocate among topology, rank, next/delta, dangling, frontier/residual, checkpoint, proof, and output states instead of treating RAM as one blob.
+706. Add `profile_cache_slope_probe_v1`; planners should record ratio sweeps, warmup, hit counts, durations, transfer subtraction, fitted slopes, and measured-vs-predicted deltas.
+707. Add `profile_oom_early_stop_probe_v1`; probe-time OOM should create a useful budget boundary and fallback receipt rather than a vague failure.
+708. Add `profile_workload_count_reorder_v1`; access-count-derived reordering must record counts, degree denominator, mapping, rebuild bytes, and reversibility.
+709. Runtime receipts should show routing, not just plans: resident hit, CPU fallback, storage/spill fallback, recompute, and output-buffer bytes need per-request or per-batch counters.
+710. For exact PageRank, translate DUCATI's Adj/Nfeat split into topology/rank/frontier/checkpoint/proof state classes, not GNN-specific tensors.
+711. PaGraph adds the cheap-cache baseline every fancy planner must beat: highest-degree or highest-frequency cache under the same byte cap.
+712. Add `profile_pagraph_source_reference_v1`; old implementation artifacts should record dependency vintage and branch mode so they are not mistaken for modern production-ready source.
+713. Add `profile_degree_cache_admission_v1`; degree direction, cached IDs, cached fraction, capacity rows, and expected hit metric should be visible.
+714. Add `profile_gpu_feature_cache_manifest_v1`; cache manifests need total/allocated/cached/reserve bytes, row width, field dimensions, flag bytes, map bytes, and cached tensor bytes.
+715. Add `profile_cache_route_phase_ledger_v1`; feature/state fetch should split index load, index split, allocation, resident copy, fallback fetch, assignment, and compute.
+716. Add `profile_first_batch_cache_commit_v1`; if the first observed batch decides cache policy, record the trigger and compare before/after behavior.
+717. Add `profile_cache_oracle_hit_bound_v1`; compare actual cache hit rate against an ideal top-frequency upper bound before celebrating a cache policy.
+718. Add `profile_layer_aware_partition_receipt_v1`; profile manifests should declare algorithm/model hop count and require consistency between partition build and execution.
+719. Add `profile_redundant_vertex_budget_v1`; replicated/redundant vertices are not free, because they multiply feature, state, and cache bytes.
+720. Add `profile_sampler_delivery_mode_v1`; latency receipts should include sampler placement, trainer count, one-to-all/one-to-one mode, barrier interval, unbalanced pieces, and epoch signals.
+721. Product principle: a clever budget planner earns trust by comparing against dumb baselines, idealized oracles, and phase-level routing counters under the same cap.
+722. GNNLab adds the factored-planes discipline: separate layout/probe, cache planning, sampling/read, execution/training, and reporting so no physical contention hides inside one latency number.
+723. Add `profile_gnnlab_source_reference_v1`; GNN evidence must carry repo, DOI, artifact, commit, hardware, dataset, index size, and copied-vs-inspired caveats.
+724. Add `profile_binary_dataset_manifest_v1`; algorithm-shaped storage begins with concrete files, id width, feature/state files, cache-rank files, mmap assumptions, and total bytes.
+725. Add `profile_experiment_matrix_receipt_v1`; benchmark claims should preserve hardware profile, testcase count, expected runtime, output logs, parsed results, and phase columns.
+726. Add `profile_presample_cache_plan_v1`; preflight probes should record epochs, steps, policy, sampled nodes, copy/count/sort/reset times, and chosen top-k.
+727. Add `profile_planner_actual_similarity_v1`; every planner should compare predicted hot state against actual access after execution.
+728. Add `profile_gpu_topk_subphase_receipt_v1`; top-k planning is not one opaque cost and should expose unique-count, prefix, sort, compact, reset, and workspace phases.
+729. Add `profile_prefetch_aware_sampling_v1`; lookahead and prefetch need trigger, bytes, callback identity, wait time, and whether the prefetch actually paid off.
+730. Add `profile_run_arch_gate_v1`; when the runtime disables or enables a cache/storage mode, the receipt should show the gate and reason.
+731. Add `profile_fake_optimal_cache_oracle_v1`; offline oracle ranking should become a standard comparator for any custom storage profile.
+732. Add `profile_hop_frontier_degree_cache_v1`; degree baselines become more useful when scoped to the reachable query frontier, not only global degree.
+733. Add `profile_workspace_allocator_receipt_v1`; temporary workspace, page rounding, free-list reuse, and peak scratch bytes belong in RAM receipts.
+734. Product principle: low-RAM graph compute should be sold as bounded physical planes plus planner-vs-actual receipts, not as a magic storage format.
+735. EXACT/QGTC add a compression proof obligation: compressed graph compute must declare exact vs approximate mode before comparing against Neo4j/GDS.
+736. Add `profile_activation_compression_manifest_v1`; compressed state receipts need original state, compressed state, bit width, metadata bytes, decode path, and exact/approx flag.
+737. Add `profile_decode_parameter_receipt_v1`; lossy profiles need scale/min/max, stochastic flag, error metric, and decode time, while exact codecs need checksum and equality proof.
+738. Add `profile_random_projection_receipt_v1`; dimension-reduction modes require kept fraction, projection bytes, quality guard, and reconstruction cost.
+739. Add `profile_reconstruct_on_backward_v1`; memory saved by omitted/compressed state must be priced against later reconstruct/decode/recompute latency.
+740. Add `profile_compressed_spmm_receipt_v1`; sparse compute on compressed state should show topology bytes, value bytes, reduction type, skip/dummy path, and output diff.
+741. Add `profile_compression_correctness_guard_v1`; no compression mode should be promoted without reference output, tolerance, repeated-run variance, seed/config, and fail-closed behavior.
+742. Add `profile_activation_memory_breakdown_v1`; memory reports should separate model, data, topology, resident algorithm state, output, activation/scratch, reserved, allocated, and max allocated bytes.
+743. Add `profile_ram_cap_frontier_search_v1`; RAM-cap claims should include binary-search bounds, max passing workload, OOM boundary, fallback mode, and confidence caveat.
+744. Add `profile_qgtc_source_reference_v1`; QGTC-inspired profiles must disclose GPU/tensor-core assumptions and avoid implying direct CPU exact-OLAP speedups.
+745. Add `profile_bitpacked_tensor_layout_v1`; bitpacked formats should name logical tensor, algorithm phase, role, bitwidth, padding, packed bytes, decode target, and kernel identity.
+746. Add `profile_quantized_layer_role_v1`; multiple physical views for the same logical graph are valid when each view is tied to a specific read/kernel role.
+747. Add `profile_tensor_core_tile_receipt_v1`; tiled kernels need visible tile shape, padding, shared-memory use, bit loops, K chunks, and output packing bytes.
+748. Add `profile_zero_tile_ablation_receipt_v1`; zero/frontier/cold-partition skipping needs paired base-vs-optimized counters on the same input.
+749. Add `profile_bit_kernel_profile_v1`; bit-kernel claims should record dimensions, bit widths, repetitions, elapsed time, throughput metric, and hardware.
+750. Add `profile_bitpacked_subgraph_cache_v1`; preprocessing and staging bytes count against the budget even when the hot-loop representation is compact.
+751. Product principle: compressed graph compute is not "lower RAM" by assertion; it is a contract about representation, reconstruction, error or equality, and saved bytes per extra second.
+752. DAHA adds `profile_data_hardware_cost_model_v1`; every serious profile should expose operation samples, fitted estimates, validity scope, and measured-vs-predicted deltas.
+753. Add `profile_batch_operation_cost_vector_v1`; graph algorithm timing should split movement, compute, pre-transform, spill/read, writeback, proof, and baseline components.
+754. Add `profile_intra_inter_batch_plan_receipt_v1`; scheduling claims need selected plan, rejected alternatives, dependency constraints, predicted benefit, and actual benefit.
+755. Add `profile_shuffle_policy_receipt_v1`; reordering work is a product-visible knob with seed, switch boundary, correctness/accuracy effect, and locality hypothesis.
+756. Add `profile_sampling_device_comparator_v1`; if a job can sample/read/compute on multiple devices or tiers, compare them under the same workload before selecting.
+757. SANCUS adds `profile_staleness_broadcast_cache_v1`; stale or cached state reuse requires tag/source/epoch, stored bytes, staleness metric, and guard threshold.
+758. Add `profile_skip_broadcast_counter_v1`; skipped communication or skipped graph work needs baseline count, optimized count, per-partition decision, and same-input proof.
+759. Add `profile_cached_vs_uncached_comm_ablation_v1`; every cache/skipping claim should be paired with a baseline path on comparable input.
+760. Add `profile_distributed_spmm_mm_allreduce_v1`; distributed graph compute receipts should name broadcast/cache, SpMM, dense compute, and all-reduce phases separately.
+761. Add `profile_partitioned_graph_cache_artifact_v1`; partition cache files need split size, padding bytes, adjacency block bytes, feature/state bytes, sparse format, and checksum/coalesce status.
+762. Add `profile_distributed_run_manifest_v1`; rank/world size, backend, device map, process groups, env vars, precision flags, and storage-profile identity belong in the run manifest.
+763. Add `profile_periodic_global_metric_receipt_v1`; partitioned runs need explicit global-metric gather cadence and gathered-byte accounting.
+764. For exact PageRank, copy SANCUS-style skip counters only for equality-safe skips such as zero-delta blocks, unchanged partitions, converged residual blocks, or checksum-identical sidecars.
+765. For approximate/local-memory profiles, copy SANCUS-style bounded-staleness gates but surface quality loss and convergence impact.
+766. Product principle: the planner is part of the product surface; hidden scheduling is just another opaque graph system.
+767. Product principle: budget-bounded graph compute should publish observed cost, predicted cost, selected plan, actual cost, and proof in one receipt.
+768. DAHA/SANCUS together sharpen the v1 implementation rule: build a simple cost-vector planner and skip-counter receipt before adding exotic storage tricks.
+769. GraphBolt adds the missing pipeline lesson: make graph data movement a named artifact, not a hidden implementation detail.
+770. Add `profile_graphbolt_source_reference_v1`; GraphBolt should be tracked as a design reference for pipeline APIs, not as a Neo4j/GDS performance baseline.
+771. Add `profile_graphbolt_index_map_v1`; focused source/test code-graph maps should be saved for any external implementation artifact we mine deeply.
+772. Add `profile_feature_storage_backend_v1`; every logical state/feature sidecar needs a declared physical backend such as memory, pinned memory, mmap, disk/io_uring, cache, or spill.
+773. Add `profile_disk_feature_async_read_v1`; disk-backed state reads need row shape, file format, contiguity, io_uring availability, stage count, and fallback path.
+774. Add `profile_feature_stage_count_v1`; no async/overlap claim should be accepted without a stage count and wait/finalize accounting.
+775. Add `profile_pipeline_stage_boundary_v1`; profile runs should expose named phases for item/frontier generation, topology read, state fetch, compute, spill/writeback, and finalization.
+776. Add `profile_feature_fetch_phase_receipt_v1`; for algorithm sidecars, record requested state keys, layer/window/frontier identity, ids read, bytes read, and returned state shape.
+777. Add `profile_async_stage_buffer_receipt_v1`; overlap needs buffer depth, per-stage bytes, and wait/finalize timing.
+778. Add `profile_uva_thread_cap_receipt_v1`; device-transfer modes need explicit thread/copy concurrency caps when applicable.
+779. Add `profile_cached_feature_receipt_v1`; cache claims need cache bytes, row bytes, capacity rows, hits, misses, replacements, fallback backend, and miss rate.
+780. Add `profile_cache_miss_rate_guard_v1`; tests should assert expected no-new-miss behavior after warm cache when the cache is large enough.
+781. Add `profile_async_cache_fallback_receipt_v1`; cached reads should account for query stage, fallback read stage, cache replacement, and final wait separately.
+782. Add `profile_ondisk_dataset_manifest_v1`; every optimized profile should load from a declarative manifest rather than ad hoc path convention.
+783. Add `profile_storage_tier_equivalence_guard_v1`; exact modes must prove memory, mmap, and disk profiles represent the same logical graph/state.
+784. Add `profile_manifest_path_validation_v1`; relative/absolute path normalization and illegal format/memory combinations should fail before expensive compute begins.
+785. Add `profile_fused_csc_sampling_graph_v1` and `profile_item_frontier_sampler_v1`; topology format and frontier batching should become first-class profile objects.
+786. Add `profile_sampled_subgraph_receipt_v1` and `profile_pipeline_regression_guard_v1`; even in exact OLAP, temporary sampled/partitioned views must count remap bytes and retain original IDs for verification.
+787. Product principle: low-RAM modes should expose an escape hatch to ram-first mode, but receipts must clearly state which physical path actually ran.
+788. Add `profile_graphbolt_native_index_map_v1`; native source-mining passes should preserve project name, commit, file count, node/edge count, language split, top packages, hotspots, and source paths read.
+789. Add `profile_direct_io_uring_backend_v1`; direct-I/O paths should declare liburing availability, syscall/probe result, required opcodes, O_DIRECT flag, queue count, worker count, and fallback/error behavior.
+790. Add `profile_aligned_disk_row_read_v1`; disk row reads should record header offset, block size, logical row bytes, aligned row bytes, aligned offset, aligned read size, useful copied bytes, and result shape.
+791. Add `profile_io_uring_queue_receipt_v1`; async disk reads should expose SQ/CQ capacity, submitted reads, completed reads, in-flight bound, wait count, queue acquisition, and worker distribution.
+792. Add `profile_partial_read_recovery_v1`; partial reads should not disappear into logs and must record partial count, remaining bytes, resubmission count, final status, and error policy.
+793. Add `profile_row_copy_feature_cache_v1`; row-copy caches should expose row bytes, requested row count, output pinnedness, positions, output indices, replacement rows, and copied bytes.
+794. Add `profile_cache_query_result_shape_v1`; cache query receipts should split found positions, missing keys, original indices, found pointers, missing count, and output ordering.
+795. Add `profile_partitioned_cache_offsets_v1`; partitioned caches should record partition count, key offset, per-partition found/missing counts, found offsets, missing offsets, merged position offsets, and missing-key de-offseting.
+796. Add `profile_cache_capacity_admission_guard_v1`; cache admission must fail loudly when a requested insert set cannot fit and should report capacity rows, required rows, inserted rows, and rejected rows.
+797. Add `profile_gpu_feature_cache_kernel_receipt_v1`; GPU cache reads should record device id, stream id, key count, value shape/dtype, packed bytes, missing count, missing indices, and fallback bytes.
+798. Add `profile_gpu_graph_cache_admission_receipt_v1`; GPU graph caches should expose map capacity, map size, load factor, rehash count, inserted seeds, output positions, and partitioned valid output count.
+799. Add `profile_cache_threshold_counter_v1`; threshold/new/hit counts are product-visible cache state when the cache is used to gate graph expansion or graph-resident rows.
+800. Add `profile_uva_global_cap_v1`; UVA/device-transfer paths need explicit global and per-run caps, not hidden runtime defaults.
+801. Add `profile_uva_sorted_index_select_v1`; UVA index-select should disclose sorted-index use, permutation bytes, scalar/multi-feature path, aligned/unaligned kernel, feature width, block cap, and output shape.
+802. Add `profile_csc_aligned_copy_receipt_v1`; CSC copy paths should record actual edge count, aligned edge count, modified indegree, aligned indptr bytes, output indices bytes, and padding overhead.
+803. Add `profile_dtype_width_choice_receipt_v1`; any reduced-width ID or COO-row representation must record node/edge bound, chosen dtype, saved bytes, overflow guard, and fallback dtype.
+804. Add `profile_native_sampling_subphase_receipt_v1`; temporary graph-view creation should split count, scan, allocate, pick/select, copy, remap, and validate phases with bytes and timings.
+805. Add `profile_gpu_sampling_residency_assumption_v1`; GPU paths must declare which tensors are already device-resident and which movement was excluded from the measured kernel time.
+806. Add `profile_edge_id_dtype_selection_v1`; sampled or temporary edge-id buffers should record max-degree/edge bound, selected dtype, allocation bytes, and validation against overflow.
+807. Add `profile_hetero_remap_validation_v1`; heterogeneous graph profiles need source/destination type offsets, edge-type offsets, remap bytes, and validation status.
+808. Product principle: the unit of differentiation is not "Rust" or "io_uring"; it is proof-carrying physical execution where every aligned read, cache decision, temporary view, and validation check becomes part of the run receipt.
+809. Add `profile_graphstorm_source_reference_v1`; GraphStorm should be tracked as downstream evidence that GraphBolt becomes an operational workflow mode, not only a library API.
+810. Add `profile_graphbolt_workflow_step_receipt_v1`; custom storage profiles need explicit build, convert, verify, run, and compare steps.
+811. Add `profile_conversion_parallelism_memory_gate_v1`; conversion parallelism must declare worker/partition count, scratch bytes, and whether all concurrent partitions fit the RAM cap.
+812. Add `profile_partition_artifact_existence_guard_v1`; every partitioned profile should fail before algorithm execution if any required physical artifact is missing.
+813. Add `profile_graph_construction_memory_contract_v1`; construction should separate topology memory, feature/state memory, external-memory paths, and partition output bytes.
+814. Add `profile_runtime_storage_mode_flag_v1`; the selected storage profile should be explicit in the run manifest and not inferred from hidden file presence.
+815. Add `profile_shared_filesystem_conversion_v1`; distributed conversion needs a visible shared-filesystem or object-store contract, including leader-only assumptions.
+816. Add `profile_pipeline_ordering_guard_v1`; job graphs should reject invalid orders such as algorithm execution before profile conversion/verification.
+817. Add `profile_cloud_processing_step_receipt_v1`; cloud pipeline runs need instance type, image, volume size, input/output paths, and conversion command in the receipt.
+818. Add `profile_graphbolt_e2e_artifact_guard_v1`; storage-profile tests should check construction, standalone conversion, distributed conversion, and downstream run outputs.
+819. Add `profile_storage_mode_training_inference_guard_v1`; any storage mode used for training/inference/analytics needs both producer and consumer tests, not only artifact creation tests.
+820. Product principle: custom storage mode should be promoted by pipeline gates and artifact existence checks, not by a boolean hidden in runtime.
+821. Product principle: public performance claims should preserve benchmark source, dataset, hardware or instance, exact version, and whether the claim was independently reproduced.
+822. Add `profile_baseline_vs_storage_mode_comparison_v1`; every optimized storage-mode claim should include a paired baseline run over the same logical graph, same algorithm, same exactness mode, and declared resource envelope.
+823. Add `profile_dataset_scale_receipt_v1`; benchmark receipts should record node count, edge count, feature/state width, file/input size, reverse-edge expansion, graph type, and task/algorithm.
+824. Add `profile_resource_envelope_receipt_v1`; runs should record instance/host type, instance count, CPU/GPU count, trainer/worker count, volume size, runtime cap, quota assumptions, and local-vs-cloud mode.
+825. Add `profile_preprocess_chunk_memory_gate_v1`; storage builders should compute row bytes, target chunk bytes, chosen chunk rows, available RAM, worker memory assumption, max workers, and output chunk count before writing artifacts.
+826. Add `profile_pipeline_deploy_script_receipt_v1`; deploy scripts are product evidence and should emit required parameters, resolved names, job list, images, flags, output prefix, and selected storage mode.
+827. Add `profile_log_timing_analyzer_v1`; performance claims should be generated by a parser over durable logs, not manually copied from console output.
+828. Add `profile_output_artifact_inspection_v1`; every benchmark should list expected output prefixes/files and verify them before comparing timing.
+829. Add `profile_source_reported_benchmark_caveat_v1`; source-reported speedups should be tagged as unreproduced until our own fixture or cloud run recreates them.
+830. Add `profile_stage_placement_receipt_v1`; record whether graph, features, state, frontier, and output buffers live on disk, page cache, pinned CPU memory, GPU memory, or remote/object storage for each phase.
+831. Add `profile_pipeline_overlap_receipt_v1`; overlap claims need named stages, buffer depth, stream/thread identity, waited time, overlapped time, and fallback behavior.
+832. Product principle: compare physical plans, not programming languages. "Rust vs Neo4j" is too vague; "profile A vs profile B on dataset D with receipt R" is actionable.
+833. Product principle: the first delightful PMF demo should let a user run baseline and optimized modes side by side, then open one receipt that explains why RAM/latency changed.
+834. Add `profile_dgl_graphbolt_examples_index_map_v1`; focused example-mining passes should preserve root path, commit, file count, indexed node/edge count, top entrypoints, and exact snippets read.
+835. Add `profile_storage_mode_triple_v1`; every storage profile should name topology tier, state/feature tier, and compute tier separately.
+836. Add `profile_datapipe_stage_placement_v1`; record ordered stages for item/frontier sampling, topology access, edge exclusion/filtering, state fetch, copy/decode, compute, and output.
+837. Add `profile_copy_to_stage_receipt_v1`; copy/move stages need source tier, destination tier, position in the pipeline, byte count, async flag, overlap flag, and fallback path.
+838. Add `profile_temporal_sampling_guard_v1`; temporal graph profiles need node timestamp field, edge timestamp field, directionality rule, and exactness/ordering guard.
+839. Add `profile_disk_feature_cache_policy_matrix_v1`; disk-backed state sidecars should compare cache policies under the same workload with cache size, miss rate, warmup time, and steady-state time.
+840. Add `profile_cache_warmup_epoch_receipt_v1`; cache-heavy profiles should separate first-run/warmup cost from steady-state cost before claiming speed.
+841. Add `profile_cache_capacity_deadlock_guard_v1`; preflight should fail when cache capacity is below a mode's minimum safe working set.
+842. Add `profile_graph_feature_residency_receipt_v1`; graph/topology and feature/state placement can differ, so receipts should report each independently.
+843. Add `profile_gpu_graph_cache_knob_receipt_v1`; graph-cache profiles need cached-edge budget, cache threshold, hit/new/threshold counters, and output impact.
+844. Add `profile_cache_miss_rate_observer_v1`; training/analytics loops should expose CPU/GPU miss-rate observers as structured receipt fields, not tqdm-only text.
+845. Add `profile_locality_knob_receipt_v1`; locality knobs such as layer dependency, batch dependency, frontier ordering, or partition grouping need before/after cache-miss and visited-count evidence.
+846. Add `profile_sampled_node_count_receipt_v1`; sampled/visited/expanded node counts are core budget signals and should be recorded per phase.
+847. Add `profile_feature_row_bytes_cache_sizing_v1`; cache sizing should be derived from measured row/state bytes rather than guessed item counts.
+848. Add `profile_distributed_item_sampler_receipt_v1`; distributed profiles need item split policy, rank/world size, drop uneven inputs flag, and output merge guard.
+849. Add `profile_cooperative_minibatch_receipt_v1`; cooperative grouping needs compaction fields, cooperative flag, per-rank cache behavior, and correctness/accuracy guard.
+850. Product principle: a storage profile is not a file format; it is placement, stage order, cache policy, locality policy, resource envelope, preflight, correctness guard, and receipt.
+851. Product principle: low-RAM mode UX should expose knobs as manifest fields first and expert CLI flags second; the receipt should explain what each knob actually changed.
+852. Add `profile_graphbolt_test_index_map_v1`; implementation-test mining passes should preserve project name, commit, indexed file count, node/edge count, test package list, and exact test functions read.
+853. Add `profile_sync_async_equivalence_guard_v1`; every async storage path must expose stage count and prove final output equals a sync/reference path.
+854. Add `profile_cache_query_shape_test_v1`; cache tests should assert found positions, missing keys, original output ordering, replacement offsets, and query-and-replace equivalence.
+855. Add `profile_cache_miss_observer_test_v1`; miss-rate observers must match underlying cache counters and show no-new-miss behavior after warm cache when capacity is sufficient.
+856. Add `profile_nested_cache_tier_guard_v1`; disk -> CPU cache -> GPU cache and pinned variants should prove identical logical rows and expose fallback backend at each miss.
+857. Add `profile_gpu_graph_cache_reference_guard_v1`; graph-cache outputs should compare returned topology slices against direct reference selection under the same seed/frontier.
+858. Add `profile_disk_feature_roundtrip_test_v1`; disk-backed sidecars need whole/indexed read, metadata, read-into-memory, pinned-read, out-of-range, and contiguity guards.
+859. Add `profile_device_residency_transition_test_v1`; `.to(memory/pinned/gpu)` style transitions must prove target residency and whether the original object is untouched.
+860. Add `profile_pinned_memory_residency_test_v1`; in-place pinning must prove pointer stability, while copy pinning must prove result placement under CPU and device indexes.
+861. Add `profile_manifest_mode_mutation_guard_v1`; manifest changes to in-memory flag, format, and path must either preserve equality or fail before expensive compute.
+862. Add `profile_on_disk_manifest_feature_test_v1`; manifest tests should include node/edge feature specs, graph topology path, task itemsets, relative/absolute path behavior, and load status.
+863. Add `profile_one_dimensional_state_shape_guard_v1`; 1-D algorithm state vectors loaded from disk should normalize shape deterministically and prove downstream item/task identity is unchanged.
+864. Add `profile_feature_fetcher_minibatch_test_v1`; feature/state fetch should prove requested key selection, layer edge-feature count, hetero type filtering, and original-id retention.
+865. Add `profile_dataloader_stage_order_test_v1`; pipeline tests should assert stage graph shape, bufferer count, async/cooperative/overlap flags, and selected cache knobs.
+866. Add `profile_bufferer_count_guard_v1`; overlap should produce an expected number of buffers/stages instead of silently changing memory pressure.
+867. Add `profile_seed_edge_exclusion_guard_v1`; exclusion/filter profiles should prove compacted topology, original row/column ids, and async wait behavior.
+868. Add `profile_temp_graph_view_identity_guard_v1`; temporary blocks/frontiers/partitions must retain original node and edge ids for oracle comparison.
+869. Add `profile_reference_pipeline_equivalence_guard_v1`; optimized physical pipelines should compare against a second reference pipeline under the same seed/input before publishing speed numbers.
+870. Product principle: no custom storage profile gets marketed as a RAM/latency win until manifest, oracle, physical-stage receipt, fail-closed errors, and same-input baseline comparison are green.
+871. Add `profile_graphalytics_source_reference_v1`; public benchmark claims should preserve official overview, algorithm, dataset, rules, spec, and source-repo URLs.
+872. Add `profile_graphalytics_algorithm_family_v1`; initial serious PMF algorithms should include BFS, PageRank, WCC, CDLP, LCC, and SSSP before wandering into novelty.
+873. Add `profile_algorithm_validation_rule_v1`; every algorithm profile should declare exact-long, epsilon-double, equivalence-class, or another explicit validation mode before execution.
+874. Add `profile_exact_long_output_guard_v1`; integer output algorithms should prove exact row coverage, vertex-id coverage, and mismatch examples.
+875. Add `profile_epsilon_double_output_guard_v1`; floating-output algorithms should record tolerance, infinity behavior, failed rows, and output-delta summaries.
+876. Add `profile_equivalence_class_output_guard_v1`; component/community profiles should compare equivalence structure, not brittle arbitrary label IDs.
+877. Add `profile_result_validator_duckdb_v1`; large-output validation can use a local analytical database as a bounded verifier over expected and actual result tables.
+878. Add `profile_benchmark_lifecycle_receipt_v1`; receipts should separate load, prepare, run, validate, retrieve, terminate, archive, and report timings/status.
+879. Add `profile_graphalytics_dataset_scale_receipt_v1`; benchmark docs should record graph scale, dataset version, compressed/decompressed bytes, source format, and reference-output correction notes.
+880. Add `profile_benchmark_repetition_receipt_v1`; serious comparisons should record per-run values and arithmetic mean, not only best run.
+881. Add `profile_timeout_failure_receipt_v1`; timeouts, failed validation, missing output, and retrieval failures should be product-visible outcome states.
+882. Add `profile_price_performance_receipt_v1`; if cloud resources are used, cost and price-performance should sit beside latency and RAM.
+883. Add `profile_sparse_id_relabel_receipt_v1`; dense internal IDs are allowed only when the sparse original-id mapping is bijective, durable, and audited.
+884. Add `profile_matrix_artifact_conversion_v1`; matrix-shaped oracle/profile paths should record source edge files, matrix format, binary/text mode, direction/weight flags, and conversion time/bytes.
+885. Add `profile_graphblas_reference_driver_v1`; GraphBLAS/LAGraph should become a named reference lane for algorithm behavior and performance sanity checks.
+886. Add `profile_processing_time_log_contract_v1`; algorithms should emit machine-parseable start/end markers for processing time, separate from setup and validation.
+887. Product principle: public benchmark spine should compare algorithm/dataset/profile receipts, not vague system names.
+888. Product principle: Graphalytics is a verification spine, not full product surface; pair it with Neo4j/GDS oracle runs for API compatibility and user expectations.
+889. Add `profile_arcadedb_source_reference_v1`; track ArcadeDB's Graphalytics platform as evidence for OLTP surface plus OLAP sidecar architecture, with vendor-claim caveats.
+890. Add `profile_gav_csr_projection_receipt_v1`; analytical views should report CSR/CSC offsets, neighbor arrays, dense-id mappings, property columns, forward/backward directionality, and build/update mode.
+891. Add `profile_oltp_olap_dual_path_receipt_v1`; every optimized algorithm run should say whether it used OLTP storage, an OLAP sidecar, a matrix reference, or another physical path.
+892. Add `profile_gav_ready_wait_receipt_v1`; sidecar/profile builds need ready-wait deadline, status, build time, restored-vs-new flag, and stats.
+893. Add `profile_olap_fallback_policy_receipt_v1`; fallback to slower/baseline paths must be explicit, with reason, chosen path, and whether the claim remains valid.
+894. Add `profile_bulk_load_graphbatch_receipt_v1`; ingestion receipts should capture batch size, WAL mode, light-edge mode, schema/index creation, VID/RID map size, and load time.
+895. Add `profile_algorithm_path_selection_receipt_v1`; algorithm jobs should record dispatch target, implementation variant, acceleration context variable, and unsupported-path behavior.
+896. Add `profile_algorithm_state_writeback_receipt_v1`; output property writeback must be timed and counted separately from the algorithm hot loop.
+897. Add `profile_dense_id_lookup_receipt_v1`; sparse external IDs and dense physical IDs need bidirectional coverage checks and memory accounting.
+898. Add `profile_label_propagation_temp_state_v1`; CDLP-style profiles need current-label bytes, next-label bytes, neighbor-buffer bytes, max degree, iteration count, and changed flag.
+899. Add `profile_result_property_materialization_v1`; systems that write algorithm results back into graph properties should report rows, transaction boundaries, property names, and bytes.
+900. Add `profile_full_vertex_output_scan_v1`; serializers that scan all vertices should record scan count, output rows, skipped rows, output bytes, and serialization time.
+901. Add `profile_native_comparison_harness_v1`; quick comparison harnesses should preserve systems tested, versions, modes, load policy, timeout, cleanup, and result table source.
+902. Add `profile_same_heap_vendor_receipt_v1`; Java/database comparisons should disclose heap, container memory, Docker vs embedded mode, CPU count, and hardware.
+903. Add `profile_count_only_benchmark_caveat_v1`; count-returning smoke benchmarks should be marked as incomplete for correctness unless full output validation also ran.
+904. Add `profile_query_shape_capability_matrix_v1`; query benchmark notes should preserve which systems support algorithms, pattern matching, aliases, recursion, anti-joins, and self-joins.
+905. Add `profile_failure_mode_competitor_receipt_v1`; unsupported, wrong count, timeout, crash, OOM, and hang should be first-class comparison outcomes.
+906. Product principle: an OLAP sidecar is not automatically budget-bounded; it becomes differentiated only when build/update bytes, resident bytes, fallback behavior, and validation are visible.
+907. Product principle: never benchmark only the hot loop; projection/build, readiness, compute, writeback, serialization, validation, and RAM-cap adherence all count.
+908. Add `profile_samyama_source_reference_v1`; Samyama should be tracked as a near-neighbor reference for Rust graph-vector-analytics integration, not as reproduced performance truth.
+909. Add `profile_claim_provenance_tier_v1`; classify every performance claim as paper, README, benchmark-doc, code-shape, local-run, or independently reproduced evidence.
+910. Add `profile_graph_vector_unified_surface_v1`; record graph query, graph algorithm, vector/RAG, optimization, Redis-compatible, HTTP, SDK, and MCP surfaces separately.
+911. Add `profile_public_ci_status_receipt_v1`; source repos should record latest visible workflow names, statuses, conclusions, head SHAs, and whether they cover the benchmarked claim.
+912. Add `profile_samyama_graphalytics_runner_v1`; simple Graphalytics runners should record selected datasets, selected algorithms, validation flag, result table, and non-zero failure policy.
+913. Add `profile_graphview_dense_csr_receipt_v1`; dense map, reverse map, out/in offsets, out/in targets, weights, node count, and edge count should be explicit byte-accounted fields.
+914. Add `profile_algorithm_hotloop_scope_caveat_v1`; hot-loop benchmarks that bypass the product graph store should be useful but visibly separated from API-compatible procedure benchmarks.
+915. Add `profile_exact_ldbc_parameter_receipt_v1`; PageRank iteration count, damping, tolerance, dangling redistribution, BFS source, SSSP source, direction, and CDLP max iterations should be captured.
+916. Add `profile_cpu_gpu_fallback_guard_v1`; GPU acceleration claims need eligibility criteria, feature flag, hardware availability, unsupported semantic cases, fallback reason, and CPU oracle status.
+917. Add `profile_late_materialization_receipt_v1`; query execution should count NodeRef/EdgeRef rows, full materializations, lazy property resolutions, and clone avoidance.
+918. Add `profile_columnar_property_store_receipt_v1`; property storage claims should record column key, type, density, sparse/dense mode, fallback map count, and read/write clone behavior.
+919. Add `profile_complex_property_fallback_v1`; Map, Array, Vector, embedding, or irregular properties should report legacy/fallback storage and whether OLAP profiles include or ignore them.
+920. Add `profile_materialization_phase_split_v1`; procedure benchmarks must split projection build, compute, result record creation, node/edge clone, sort, output serialization, and validation.
+921. Add `profile_algorithm_result_sort_receipt_v1`; algorithm result ordering should record sort key, row count, memory used, stability requirement, and elapsed time.
+922. Add `profile_parse_plan_overhead_receipt_v1`; Cypher-like surface claims should include parser, planner, plan-cache, executor, and materialization timings, not only storage timings.
+923. Add `profile_schema_to_benchmark_framework_v1`; the product should accept schema plus query/algorithm descriptions and emit runtime plus memory-footprint benchmark reports.
+924. Add `profile_algorithm_dsl_compilation_reference_v1`; GraphAlg-style DSL-to-relational/matrix compilation should remain a research lane for expressing algorithms inside graph DBs.
+925. Add `profile_deterministic_semantics_guard_v1`; benchmark-compatible algorithms must record deterministic tie-breaks and original-ID mapping obligations.
+926. Product principle: Rust is an enabler, not a receipt. It only becomes a product advantage when paired with lower phase-specific bytes, predictable latency, and oracle validation.
+927. Product principle: a near-neighbor's honest limitations are as valuable as its wins; copy the caveat discipline into Knight Bus before copying the feature list.
+928. Add `profile_complex_read_frontier_receipt_v1`; complex reads should record high-degree anchor, expansion edge type, depth range, frontier cardinalities per depth, duplicate removals, and peak frontier bytes.
+929. Add `profile_cross_engine_query_receipt_v1`; same logical query across engines should record engine version, query text, parameter file hash, network/in-process mode, index/projection setup, run count, min/median/max, output row count, and correctness comparator.
+930. Add `profile_scale_factor_substitution_receipt_v1`; cross-scale benchmark claims should externalize substitution params and record dataset scale factor, parameter values, parameter source file, and query family.
+931. Add `profile_ldbc_interactive_harness_v1`; LDBC-SNB-inspired harnesses should separate short reads, complex reads, updates, deletes, warm-up, measured runs, errors, and cache stats.
+932. Add `profile_anchor_index_build_receipt_v1`; before measuring anchored graph reads, record which labels/properties were indexed, index build time, build errors, and whether the query actually used the index.
+933. Add `profile_ast_cache_receipt_v1`; Cypher-like benchmark receipts should expose parse/plan cache hits and misses because first-run latency and steady-state latency are different products.
+934. Add `profile_query_result_latency_receipt_v1`; wall-clock query results should include rows, min, median, max, warm-up count, timed-run count, error text, and whether full output validation was performed.
+935. Add `profile_varlength_frontier_operator_v1`; variable-length graph reads need per-depth state accounting for frontier vectors, visited sets, parent/path maps, pending output buffers, and owned adjacency lists.
+936. Add `profile_frontier_dedup_strategy_v1`; dedup should declare HashSet, sorted merge, bitmap, Roaring, per-partition, spill, or approximate mode, with exactness and memory bytes.
+937. Add `profile_hash_aggregate_state_receipt_v1`; aggregation after frontier expansion should record group count, key bytes, state bytes, distinct-set bytes, batch size, spill policy, and output materialization.
+938. Add `profile_barrier_materialization_receipt_v1`; WITH/DISTINCT/ORDER BY/LIMIT barriers should record rows entering, rows retained, sort bytes, distinct bytes, early-limit eligibility, and truncation behavior.
+939. Add `profile_special_case_detector_scope_v1`; planner optimizations should publish accept/reject reasons so unsupported shapes do not silently fall back into expensive general plans.
+940. Add `profile_planner_fallback_receipt_v1`; every fallback from graph-native/profile-native path to generic execution should record the reason, chosen plan, excluded optimization, and expected cost delta.
+941. Product principle: complex-read frontier profiles may be more PMF-relevant than pure PageRank because they sit exactly where users feel graph database value and pain: neighbourhood questions over connected operational data.
+942. Product principle: a low-RAM graph system should sell "bounded frontier-to-aggregation receipts," not only "algorithms run with less memory."
+943. Add `profile_path_materializing_varlength_v1`; path-producing variable-length reads should record relationship-container count, relationship-list bytes, stack bytes, traversal-match mode, path length distribution, downstream path/rel variable use, and close/release status.
+944. Add `profile_bfs_pruning_endpoint_v1`; endpoint-only variable-length reads should record seen bytes, queue/frontier bytes, emitted endpoint count, emitted depth count, target end-node mode, and predicate acceptance/rejection counts.
+945. Add `profile_depth_emission_receipt_v1`; any depth substitution for `length(path)` should record the source path expression, depth variable name, min/max depth, emitted depth range, and downstream aggregate/sort dependency.
+946. Add `profile_varlength_rewrite_eligibility_v1`; planner profiles should expose horizon type, relationship/path variable liveness, min/max length, direction, expand mode, accepted optimization, rejected optimization, and typed rejection reason.
+947. Add `profile_aggregation_horizon_rewrite_v1`; DISTINCT/min-length/aggregation horizons should state exactly which downstream semantics made pruning legal and which aggregate expression was rewritten or relaxed.
+948. Add `profile_expand_into_policy_receipt_v1`; `ExpandInto` profiles should record whether DFS or BFS was chosen, why, worst-case warning status, sought end node, and comparator output.
+949. Add `profile_trail_rewrite_guard_v1`; trail rewrites should be two-phase and reversible, recording intermediate rewrite, pruning eligibility, accepted/reverted status, and semantic guard that made the rewrite legal.
+950. Add `profile_frontier_close_release_receipt_v1`; every frontier/seen/queue/path container should record allocation bytes, high-water mark, release bytes, scoped close status, and leak/failure result.
+951. Add `profile_heap_tracked_collection_receipt_v1`; heap-tracked sets/maps/deques should expose capacity, resize count, backing-array bytes, release-on-resize bytes, and release-on-close bytes.
+952. Add `profile_undirected_loop_frontier_receipt_v1`; undirected BFS profiles should record previous/current frontier sizes, ancestor-map bytes, loop detection state, start-node emission depth, and self-loop handling.
+953. Add `profile_varlength_fixture_matrix_v1`; the first Neo4j-compatible fixture matrix should include directed/undirected, length zero, min/max depth, start-node inclusion, self-loop, shortcut, predicate, context predicate, RHS apply, `ExpandInto`, and traversal endpoint predicate cases.
+954. Add `profile_predicate_context_receipt_v1`; variable-length predicates should declare whether they read current row, start node, end node, traversal endpoint, relationship cursor, or external context variable.
+955. Product principle: rewrite eligibility receipts must be a sibling of RAM receipts; saving memory without proving semantic eligibility is not a trustworthy graph database product.
+956. Product principle: Neo4j is not a strawman. It already has guarded plan rewrites and operator memory tracking, so Knight Bus must differentiate through budget admission, profile-specific storage, spill/stream choices, and inspectable receipts.
+957. Add `profile_gds_source_reference_v1`; every GDS comparator run should record repo URL, commit, branch, local clone path, codebase-memory project, index node/edge counts, and copied-vs-inspired ideas.
+958. Add `profile_gds_procedure_surface_matrix_v1`; projection and algorithm procedures should be mapped by name, mode, estimate availability, stream/stats/mutate/write surface, and expected result schema.
+959. Add `profile_gds_projection_estimate_receipt_v1`; projection estimates should record native vs Cypher projection, parsed config hash, graph dimensions, read concurrency, loading estimate, and validation status.
+960. Add `profile_projection_build_phase_receipt_v1`; graph materialization should separate before-loading, during-loading, after-loading, resident/mapped/heap bytes, page faults, build time, and reusable artifact ID.
+961. Add `profile_algorithm_estimate_surface_v1`; algorithm estimate procedures should record graph name/config, fictitious-vs-projected graph mode, node/relationship dimensions, estimated bytes, cap, and admission decision.
+962. Add `profile_pregel_state_vector_receipt_v1`; Pregel-style algorithms should record named node values, type widths, vector bytes, message buffer bytes, superstep count, convergence flag, and halt criteria.
+963. Add `profile_pagerank_degree_precompute_receipt_v1`; PageRank should record degree orientation, weight-property flag, degree-vector bytes, precompute time, concurrency, and reuse/fresh-build status.
+964. Add `profile_pagerank_result_extraction_receipt_v1`; PageRank output should record score-vector bytes, scaling step, write/stream/mutate mode, emitted row count, top-k checksum, and comparator delta.
+965. Add `profile_bfs_state_inventory_receipt_v1`; BFS should record visited, traversedNodes, weights, minimumChunk, localNodes, chunks, resultNodes, and result-copy bytes.
+966. Add `profile_chunked_frontier_order_receipt_v1`; chunked BFS should record chunk ids, synchronization order, duplicate suppression count, minimum predecessor chunk, target-found index, and depth stop reason.
+967. Add `profile_local_nodes_range_receipt_v1`; per-thread local-node memory should report lower bound, upper bound, relationship upper-bound contribution, concurrency multiplier, actual high-water, and spill/recompute fallback.
+968. Add `profile_disjoint_set_state_receipt_v1`; WCC should record DSS bytes, incremental flag, node count, parent/rank or equivalent arrays, union count, compression/path-shortening stats, and component checksum.
+969. Add `profile_wcc_strategy_selection_receipt_v1`; WCC should record graph characteristic flags, sampled-vs-unsampled decision, partition count, threshold status, largest-component skip count, and inverse-link correctness path.
+970. Add `profile_seeded_component_init_receipt_v1`; seeded WCC should record seed property, extracted initial-component bytes, missing/invalid seed count, initialization time, and comparator output delta.
+971. Product principle: GDS proves estimates are table stakes; Knight Bus must convert estimates into cap admission, measured high-water receipts, profile alternatives, and fail-closed explanations.
+972. Product principle: the first OLAP proof slice should compare projection estimate plus algorithm estimate plus runtime receipt, not only one `gds.<algo>.estimate` result.
+973. Product principle: PageRank, BFS, and WCC each need custom state receipts before custom storage claims; otherwise lower RAM claims hide degree/message/frontier/component/output costs.
+974. Add `profile_estimate_input_mode_receipt_v1`; estimate requests should record whether the graph input was a named catalog graph, store-projection map, Cypher-projection map, virtual/fictitious dimension config, or unsupported input.
+975. Add `profile_graph_algorithm_composite_estimate_v1`; estimates should separate graph/projection component bytes from algorithm component bytes and then render a composite memory tree.
+976. Add `profile_named_graph_catalog_estimate_v1`; named-graph estimates should record graph name, catalog lookup result, graph-store dimensions, config-derived dimensions, concurrency, and catalog artifact hash.
+977. Add `profile_fictitious_graph_estimate_v1`; virtual graph estimates should record node count, relationship count, label/projection counts, highest possible node count, relationship upper bound, and overflow/large-value guard.
+978. Add `profile_estimate_result_schema_parity_v1`; Neo4j/GDS-compatible estimate output should preserve `requiredMemory`, `treeView`, `mapView`, `bytesMin`, `bytesMax`, `nodeCount`, `relationshipCount`, `heapPercentageMin`, and `heapPercentageMax` or document deviations.
+979. Add `profile_public_estimate_call_chain_v1`; every public estimate should map procedure annotation, parameter names, facade method, parsed config type, estimation facade, memory definition, template, and output row count.
+980. Add `profile_algorithm_config_parse_receipt_v1`; parse receipts should record raw config keys, parsed config type, defaulted fields, rejected fields, concurrency, write/mutate/stream/stats mode, and typed parse errors.
+981. Add `profile_uniform_estimate_envelope_v1`; PageRank/BFS/WCC and future algorithms should share an estimate-to-admission-to-run-to-receipt envelope even when their physical storage is custom.
+982. Add `profile_estimate_fixture_schema_v1`; estimate tests should assert single-row guarantee, required fields, graph counts, positive or exact byte ranges, map/tree presence, and heap/cap fields.
+983. Add `profile_large_virtual_graph_estimate_v1`; large synthetic dimension tests should include billion-node/billion-edge cases, byte-range exactness or bounded tolerance, integer overflow guards, and cap rejection behavior.
+984. Add `profile_cap_admission_fixture_v1`; cap tests should prove admitted, rejected, slower-profile-proposed, and unsupported-exact-profile cases with typed reasons.
+985. Product principle: build the first estimate API before the first heroic hot loop; the estimate API is where users learn whether the system is honest.
+986. Product principle: a lower-RAM Neo4j/GDS rewrite should feel familiar at the `.estimate` surface but stricter in cap admission and richer in receipt artifacts.
+987. Product principle: fictitious graph estimates are a PMF feature, not a toy. They let users ask whether a huge graph job can fit before paying projection/build cost.
 
 ## Next Capture Steps
 

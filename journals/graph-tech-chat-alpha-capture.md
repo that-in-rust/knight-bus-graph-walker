@@ -2,7 +2,7 @@
 
 - Task: Capture one year of graph technology developers chat URLs and budget-bounded compute insights
 - Created: 2026-08-07 04:36:05Z
-- Updated: 2026-08-07 10:18:08Z
+- Updated: 2026-08-07 14:58:48Z
 - Current Phase: Green
 - Status: active
 
@@ -1422,3 +1422,714 @@ Turn accumulated public-source evidence into a directly usable first implementat
 
 #### Performance/Metrics:
 - Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 058 added executable-spec preparation but no older private-chat coverage
+
+### Session: 2026-08-07 11:40:31Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_46: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_workload_aware_partitioning: passing - Read arXiv 1301.5121, Loom 1711.06608, WawPart 2203.14888, and AWAPart 2203.14884; extracted workload fingerprints, query motifs/frequencies, traffic/load-balance metrics, query rewriting, and adaptive repartitioning deltas
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 058/059 ledger rows, workload-aware graph DB/KG partitioning evidence rows, Query Shape Is A Partition Input synthesis, PARTITION-LATENCY-009, URL queue entries 546-550, and product implications 596-604
+
+#### Current Focus:
+Use older graph DB/KG partitioning prior art to tighten graph DB/query latency profile specs while preserving PageRank-first implementation focus
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing source-to-code preparation, implement layout_probe_v1 TDD slice before full PageRank
+- If continuing public-source deepening, optionally inspect CEUR workload-aware streaming graph partitioning or stop and commit if user asks
+
+#### Context Notes:
+- Pass 059 tightens graph DB latency claims: workload/access fingerprints are distinct from graph topology, and query-aware partitioning belongs after the PageRank proof slice.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 059 added public-source evidence only
+
+### Session: 2026-08-07 11:45:36Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_47: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_streaming_partition_budget_ladder: passing - Read CEUR LOOM workload-aware streaming graph partitioning, Stanton/Kliot streaming constraints, Restreaming LDG/FENNEL, Buffered Streaming/HeiStream, 2PS, HEP, S-PowerGraph, and Recursive Multi-Section arXiv pages/PDF excerpts; extracted low-RAM partition profile ladder and budget-dial specs
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 060 ledger row, eight streaming partition budget evidence rows, Partitioning Becomes A Memory Budget Dial synthesis, URL queue entries 551-559, and product implications 605-612
+
+#### Current Focus:
+Turn streaming/partitioning prior art into a user-visible RAM/time/pass-count profile menu for budget-bounded batch graph compute
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing implementation prep, make layout_probe_v1 emit power-law/skew, stream-order, and pass-count feasibility fields before PageRank
+- If continuing public-source deepening, inspect HEP implementation repo or continue with local/GNN/data-engineering adjacent graph partition sources
+
+#### Context Notes:
+- Pass 060 says low-RAM partitioning is not one technique; it is a profile ladder: pure streaming, buffered streaming, restreaming, two-phase, hybrid edge partitioning, vertex-cut, and topology mapping.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 060 added public-source evidence only
+
+### Session: 2026-08-07 11:48:55Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_48: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- hep_implementation_codebase_memory_index: passing - Shallow cloned HEP to /tmp/kb-hep-hybrid-edge-partitioner-1786103188, indexed with codebase-memory as hep-hybrid-edge-partitioner-pass061, and confirmed 345 nodes, 1509 edges, 8 C++ files, entry point src/main.cpp, and HEP source functions stream_build/load_in_memory/hdrf_streaming/compute_partition_score/compute_stats/partition_in_memory
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 061 ledger row, HEP implementation evidence rows, HEP Makes Hybrid Partitioning Concrete synthesis, URL queue entries 560-564, and product implications 613-620
+
+#### Current Focus:
+Ground the hybrid edge partitioning idea in actual HEP implementation structure and convert source details into profile receipt fields
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing implementation prep, turn layout_probe_v1 into executable specs that emit average degree, skew, hdf-threshold candidates, high-degree edge fraction, sidecar budget estimates, and profile menu
+- If continuing public-source deepening, inspect GNN/data-engineering partition evidence or commit current docs if user requests closure
+
+#### Context Notes:
+- Pass 061 makes the HEP-like option concrete: low-degree adjacency in memory, high-high edges in sidecar stream, HDRF/random second phase, explicit hdf/lambda/profile knobs, and replication/invalidation stats.
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; HEP temp clone is not durable repo storage
+
+### Session: 2026-08-07 11:55:45Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_49: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gnn_budget_bound_compute: passing - Read EDBT partition strategies, Marius and MariusGNN, FreshGNN, CDFGNN, BGL, BatchGNN, and FastGL; extracted GNN feature/embedding/gradient state budgets, partition amortization, storage hierarchy, staleness cache, sampling IO, multi-hop locality, macrobatch, and reorder specs
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 062 ledger row, GNN evidence rows, Graph Learning Widens The PMF synthesis, URL queue entries 565-579, and product implications 621-631
+
+#### Current Focus:
+Convert public graph-learning evidence into budget-bounded compute profile specs while keeping the private X chat date boundary honest
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing public-source deepening, inspect queued graph-learning artifacts such as history-cache, BGL_NSDI2023, and fastgl-ae
+- If switching to implementation, start layout_probe_v1 before any full PageRank kernel
+
+#### Context Notes:
+- Pass 062 widens the PMF from exact OLAP graph jobs to budget-bounded graph learning, but keeps the first coding wedge as PageRank and layout_probe_v1
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; pass 062 added 15 URL queue entries and 11 product implications
+
+### Session: 2026-08-07 12:01:41Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_50: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gnn_artifact_codebase_memory: passing - Cloned and indexed history-cache-pass063, bgl-nsdi2023-pass063, and fastgl-ae-pass063 with codebase-memory; extracted cache state diff, async feature pipeline, GPU memory cache budget, batch-overlap reorder, fused-map sampling, and sampling phase timing receipt fields
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 063 ledger row, implementation-artifact evidence rows, Implementation Artifacts Make GNN Receipts Concrete synthesis, URL queue entries 580-591, and product implications 632-642
+
+#### Current Focus:
+Convert GNN implementation artifacts into concrete receipt fields while keeping the private X chat date boundary honest
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, inspect Marius or CDFGNN implementation paths next and keep using codebase-memory first
+- If switching to implementation, start layout_probe_v1 and phase-accounted PageRank receipts before any graph-learning implementation
+
+#### Context Notes:
+- Pass 063 shows graph-learning systems expose the same core economics as Knight Bus: state placement, movement, phase timing, and bounded cache/reorder decisions
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed artifacts: history-cache 203 nodes/687 edges, BGL sparse surface 1083 nodes/3403 edges, FastGL 304 nodes/865 edges
+
+### Session: 2026-08-07 12:09:10Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_51: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_marius_artifact_codebase_memory: passing - Cloned/indexed marius-pass064 and read Marius storage, ordering, dataloader, graph-storage, and config functions with codebase-memory; extracted partition-buffer, prefetch/writeback, subgraph-swap, ordering-manifest, and pipeline-queue receipt fields
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 064 ledger row, Marius implementation evidence rows, Marius Turns Storage Hierarchy Into A Receipt synthesis, URL queue entries 592-599, and product implications 643-651
+
+#### Current Focus:
+Convert Marius out-of-core graph learning implementation into concrete bounded-storage receipt fields while keeping the private X chat date boundary honest
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, inspect CDFGNN implementation paths next with codebase-memory first, or convert Marius receipt fields into executable specs
+- If switching to implementation, start layout_probe_v1 and phase-accounted PageRank receipts before any graph-learning implementation
+
+#### Context Notes:
+- Pass 064 shows bounded storage is an operating choreography: admission, eviction, ordering, prefetch, writeback, batch scheduling, and proof must all be receipt-visible
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed Marius artifact: 1,992 nodes/6,512 edges over sparse source, clone commit 2f27ffedfbffd405995e8d16d821849db1fe0535
+
+### Session: 2026-08-07 12:12:08Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_52: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_catalog_cdfgnn_gnn_systems: passing - Read CDFGNN arXiv/HTML plus Awesome GNN Systems and Data-Management-for-GNN-Training catalogs; extracted graph-learning proof types, remote-access/quantization/hierarchical partition receipt fields, and future URL queue entries
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 065 ledger row, CDFGNN/GNN catalog evidence rows, CDFGNN Shows The Expansion Proof Type synthesis, URL queue entries 600-616, and product implications 652-661
+
+#### Current Focus:
+Convert graph-learning source catalogs into route-map and proof-type guidance without shifting the first wedge away from exact PageRank/Neo4j-GDS verification
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing source deepening, choose one queued high-relevance artifact such as Hyperion, Ginex, GIDS, Zebra, or DUCATI and use codebase-memory first if code is cloned
+- If switching to implementation, start layout_probe_v1 and phase-accounted PageRank receipts before any graph-learning implementation
+
+#### Context Notes:
+- Pass 065 preserves focus: graph-learning sources expand receipt taxonomy, while exact OLAP PageRank remains the first proof-carrying wedge
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; CDFGNN source fields added; GNN route-map queue now extends through URL 616
+
+### Session: 2026-08-07 12:16:33Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_53: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_hyperion_artifact_codebase_memory: passing - Cloned/indexed RC4ML/Hyperion as hyperion-pass066 and read IOStack, UserQueue, FeatureStorage, UnifiedCache, GraphStorage, and training IPC symbols with codebase-memory; extracted GPU-direct SSD, feature-miss-to-IOReq, unified cache tier, topology cache, IPC, and throughput-per-cost receipt fields
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 066 ledger row, Hyperion evidence rows, Hyperion Makes SSD A Budget Dial synthesis, URL queue entries 617-626, and product implications 662-671
+
+#### Current Focus:
+Convert Hyperion out-of-core GNN implementation into disk-backed storage-profile receipt fields while preserving exact PageRank/Neo4j-GDS as the first wedge
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose Ginex, GIDS, Zebra, or DUCATI from the queued URLs and use codebase-memory first after cloning
+- If switching to implementation, start layout_probe_v1 and phase-accounted PageRank receipts before adding GPU-direct SSD or graph-learning complexity
+
+#### Context Notes:
+- Pass 066 shows cache misses can be made receipt-visible as explicit SSD IO requests with source tier, destination buffer, queue, wait, and completion phase
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed Hyperion artifact: 1,453 nodes/4,384 edges, 94 tracked files, commit 676daac6ea002bc22eb874c71a2c43ae09b3d88a
+
+### Session: 2026-08-07 12:24:03Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_54: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_ginex_artifact_codebase_memory: passing - Cloned/indexed SNU-ARC/Ginex as ginex-pass067 and read FeatureCache, NeighborCache, run_ginex inspect/execute, neighbor sampler, O_DIRECT sampling/gather/update/load paths with codebase-memory
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 067 ledger row, Ginex evidence rows, Ginex Turns Future Knowledge Into Cache Changesets synthesis, URL queue entries 627-637, and product implications 672-680
+
+#### Current Focus:
+Convert Ginex future-access cache planning into budget-bounded storage-profile receipt fields while preserving exact PageRank/Neo4j-GDS as the first wedge
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose GIDS, Zebra, DUCATI, PaGraph, or EXACT from the queued URLs and use codebase-memory first after cloning
+- If switching to implementation, start layout_probe_v1 and phase-accounted PageRank receipts before adding GNN or SSD complexity
+
+#### Context Notes:
+- Pass 067 shows a RAM cap can be made auditable by tracing future access, deriving cache table bytes and entry count, saving cache changesets, and recording O_DIRECT cache-hit/miss read paths
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed Ginex artifact: 220 nodes/827 edges, 18 tracked files, commit fc2c085ad3406508dcf1dc3d750c8d24fb3b17cb
+
+### Session: 2026-08-07 12:29:03Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_55: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gids_artifact_codebase_memory: passing - Cloned/indexed jeongminpark417/GIDS as gids-pass068 and read GIDS loader, fetch_feature, window buffering, GPU NVMe read path, CPU backing buffer, access counters, PageRank pin-list generator, IGBH CSC/memmap loader, and benchmark scripts
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 068 ledger row, GIDS evidence rows, GIDS Makes PageRank A Cache-Admission Hint synthesis, URL queue entries 638-649, and product implications 681-690
+
+#### Current Focus:
+Convert GIDS GPU-initiated storage and PageRank pin-buffer implementation into bounded-storage receipt fields while preserving exact PageRank/Neo4j-GDS as the first wedge
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose Zebra, DUCATI, PaGraph, EXACT, or GNNLab from the queued URLs and use codebase-memory first after cloning
+- If switching to implementation, start layout_probe_v1 with graph format gates, phase accounting, and PageRank receipts before adding GPU-direct SSD complexity
+
+#### Context Notes:
+- Pass 068 shows PageRank can be a cache-admission signal, CSC/COO/CSR conversion can be a hidden RAM cliff, and GPU-initiated feature fetch profiles need SSD/controller/page/window/CPU-hit counters
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed GIDS artifact: 538 nodes/1,926 edges, 45 tracked files, commit 523836c6eb8a23cbf86da9212789e011b393036f
+
+### Session: 2026-08-07 12:32:52Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_56: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_zebra_artifact_codebase_memory: passing - Cloned/indexed LuckyLYM/Zebra as zebra-pass069 and read GraphDiffusionEmbedding, T-PPR streaming/pruning state, validation fill, backup/restore, TGN temporal embedding, memory/update state, train-loop gates, README, and PVLDB paper metadata
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 069 ledger row, Zebra evidence rows, Zebra Makes Top-K Influence A Computation Budget synthesis, URL queue entries 650-658, and product implications 691-700
+
+#### Current Focus:
+Convert Zebra temporal Personalized PageRank into budgeted top-k influence and dynamic-graph phase receipt fields while preserving exact PageRank/Neo4j-GDS as the first wedge
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose DUCATI, PaGraph, EXACT, GNNLab, or GraphBolt/DGL data-loading sources and use codebase-memory first after cloning
+- If switching to implementation, start layout_probe_v1 with graph format gates, exact PageRank oracle, phase accounting, and explicit no-approximation default
+
+#### Context Notes:
+- Pass 069 shows PageRank/PPR-family metrics can shape compute budgets by selecting top-k influential temporal neighbors, but require auxiliary-state accounting and approximation quality guards
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed Zebra artifact: 257 nodes/945 edges, 16 tracked files, commit 8e72d65e1a85c05ba335d5dd1edb4202a7598c8e
+
+### Session: 2026-08-07 12:41:22Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_57: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_ducati_artifact_codebase_memory: passing - Cloned/indexed initzhang/DUCATI_SIGMOD as ducati-pass070 and read dual-cache allocator, slope profiler, Adj/Nfeat cache constructors, cache-aware sampler, NfeatLoader GPU/CPU routing, graph count/reorder path, README, and run_allocate/run_ducati/run_sota entrypoints
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 070 ledger row, DUCATI evidence rows, DUCATI Splits GPU Memory Into Topology And Feature Budgets synthesis, URL queue entries 659-670, and product implications 701-710
+
+#### Current Focus:
+Convert DUCATI dual-cache allocation into Knight Bus multi-state budget allocator and planner/probe/execution receipt fields while preserving exact PageRank/Neo4j-GDS as the first wedge
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose PaGraph, EXACT, GNNLab, GraphBolt/DGL data-loading sources, or revisit DUCATI ACM/PDF tables and use codebase-memory first after cloning
+- If switching to implementation, start layout_probe_v1 and pagerank_lowram_v1 with multi-state byte estimates, graph format gates, exact oracle, phase accounting, and measured-vs-predicted planner receipts
+
+#### Context Notes:
+- Pass 070 shows scarce memory can be allocated across competing graph-state classes by measured marginal benefit per byte, but DUCATI is GNN training evidence and should not be overclaimed as exact PageRank proof
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed DUCATI artifact: 149 nodes/661 edges, 20 tracked files, commit 9cc017f8453a26db72cf5c1c2fa1f4a3c9cee969
+
+### Session: 2026-08-07 12:46:47Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_58: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_pagraph_artifact_codebase_memory: passing - Cloned/indexed zhiqi-0/PaGraph as pagraph-pass071 and read GraphCacheServer cache admission/routing/miss-rate code, degree/layer-aware partitioning, subgraph/refine mapping, sampler delivery, shared-memory server, trainer flow, README, and oracle cache-hit helpers
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 071 ledger row, PaGraph evidence rows, PaGraph Makes Cache Policy And Partition Replication Observable synthesis, URL queue entries 671-681, and product implications 711-721
+
+#### Current Focus:
+Convert PaGraph computation-aware caching and partitioning into cheap-cache baseline, route-phase ledger, redundant-vertex budget, and oracle cache-hit receipt fields
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose EXACT/QGTC for compression/quantization proof fields, GNNLab for factored sampling/training GPU contention, or DAHA/SANCUS for planning/communication evidence
+- If switching to implementation, start layout_probe_v1 with cache-policy baselines: degree-top-k, frequency-oracle bound, DUCATI-style multi-state allocator, and exact PageRank oracle gates
+
+#### Context Notes:
+- Pass 071 adds a cheap baseline discipline: fancy low-RAM planners must compare against degree/frequency cache policies and ideal top-frequency hit bounds under the same byte cap
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed PaGraph artifact: 264 nodes/1,385 edges, 46 tracked files, commit 263fb13b84f27a8bd215bcde05b78cc3c4c17e7b
+
+### Session: 2026-08-07 12:55:31Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_59: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gnnlab_artifact_codebase_memory: passing - Cloned/indexed SJTU-IPADS/gnnlab as gnnlab-pass072 and read factored GPU README, binary dataset manifest, experiment matrix, pre-sampler/cache ranking, GPU top-k, dynamic-cache sampling, cache-routing kernels, architecture/batch gates, node-access reports, fake-optimal and hop-degree cache utilities, and workspace allocator receipts
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 072 ledger row, GNNLab evidence rows, GNNLab Factors Sampling Cache Planning And Training Into Measurable Planes synthesis, URL queue entries 682-698, and product implications 722-734
+
+#### Current Focus:
+Convert GNNLab factored sampling/training and pre-sample cache planning into Knight Bus physical-plane receipts, planner-vs-actual similarity checks, binary dataset manifests, and cheap oracle/degree-frontier cache baselines
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose EXACT/QGTC for compression and quantization proof fields or DAHA/SANCUS for planning and communication evidence
+- If switching to implementation, start layout_probe_v1 with planner-vs-actual receipts, fake-optimal cache oracle, hop-frontier degree baseline, and workspace peak accounting
+
+#### Context Notes:
+- Pass 072 adds a factored-planes lens: bounded graph compute should separate layout/probe, cache planning, sampling/read, execution, and reporting so RAM and latency are auditable by phase
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed GNNLab artifact: 2,598 nodes/9,293 edges, 330 tracked files, commit 2d0dd92ce4e2efec3d47212ce73358cd03f8d3d8
+
+### Session: 2026-08-07 13:06:21Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_60: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_exact_qgtc_artifact_codebase_memory: passing - Cloned/indexed EXACT as exact-pass073 and QGTC as qgtc-pass073; read quantize/dequantize, QScheme, qlinear/qspmm, memory and correctness harnesses, val2bit/bit2val, Quantize_val, bitMM2Bit/bitMM2Int, tensor-core tile kernels, zerojump/base counters, ClusterIter, and benchmark scripts
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 073 ledger row, EXACT/QGTC evidence rows, EXACT And QGTC Make Compression A Proof Obligation synthesis, URL queue entries 699-724, and product implications 735-751
+
+#### Current Focus:
+Convert EXACT/QGTC compression and quantization artifacts into Knight Bus proof-carrying compression receipts without overclaiming approximate GNN evidence as exact Neo4j/GDS OLAP proof
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose DAHA/SANCUS for execution planning and staleness-aware communication or GraphBolt/DGL for modern data-loading/storage surfaces
+- If switching to implementation, start layout_probe_v1 with exact-decode compression candidates, bitpacked layout receipts, zero-skip ablation counters, RAM-cap frontier search, and Neo4j/GDS equality oracle
+
+#### Context Notes:
+- Pass 073 adds the compression warning label: lower RAM only becomes trustworthy when the profile declares exact vs approximate mode, decode/reconstruct cost, quality/equality guard, and saved bytes per extra second
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed EXACT artifact: 652 nodes/2,623 edges, 60 tracked files, commit 7e9e0f3b5e665b6e447835e5083e556f02029e17; indexed QGTC artifact: 260 nodes/929 edges, 54 tracked files, commit bb7fc04aa5687b4e85437663702554158aeda809
+
+### Session: 2026-08-07 13:13:46Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_61: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_daha_sancus_artifact_codebase_memory: passing - Cloned/indexed DAHA as daha-pass074 and SANCUS/light-dist-gnn as sancus-pass074; read DAHA cost/vector/sampling/shuffle paths and SANCUS cached-vs-baseline broadcast, partition cache, distributed env, launch, train, and cached GCN layer paths
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 074 ledger row, DAHA/SANCUS evidence rows, DAHA And SANCUS Turn Planning Into A Runtime Contract synthesis, URL queue entries 725-744, and product implications 752-768
+
+#### Current Focus:
+Convert DAHA/SANCUS execution planning and communication-skipping artifacts into Knight Bus runtime-contract receipts while preserving exact-vs-approximate boundaries
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, choose GraphBolt/DGL modern data-loading/storage surfaces or Sancusq bounded-staleness-plus-quantization details
+- If switching to implementation, start layout_probe_v1 with cost-vector planner, selected/rejected plan receipts, equality-safe skip counters, and Neo4j/GDS oracle checks
+
+#### Context Notes:
+- Pass 074 adds the runtime-contract layer: storage profiles need observed cost, predicted cost, selected plan, rejected alternatives, actual cost, and equality/quality guard
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed DAHA artifact: 62 nodes/173 edges, 3 tracked files, commit 9541f375ce39d972ecfe04dd88bb6f0ef2e69cf5; indexed SANCUS artifact: 180 nodes/689 edges, 21 tracked files, commit 65495aa8d2e851c875986b344b61b77b12953e29
+
+### Session: 2026-08-07 13:26:08Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_62: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_graphbolt_artifact_codebase_memory: passing - Shallow/sparse cloned DGL at commit 3d16000b4170fa741ed9e9667f22ba84d3493026; indexed GraphBolt source as 647 nodes/3212 edges/41 files and tests as 394 nodes/2078 edges; read FeatureFetcher, BasicFeatureStore, TorchBasedFeature, DiskBasedFeature, TorchBasedFeatureStore, GPUCachedFeature, OnDiskDataset, DataLoader, ItemSampler, FusedCSCSamplingGraph, and key tests
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 075 ledger row, GraphBolt evidence rows, GraphBolt Makes The Data Pipeline A First-Class Graph Artifact synthesis, URL queue entries 745-765, and product implications 769-787
+
+#### Current Focus:
+Convert DGL GraphBolt source/test evidence into Knight Bus pipeline/storage/cache receipt requirements while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, inspect GraphStorm GraphBolt usage or DGL GraphBolt C++/CUDA cache/io_uring internals
+- If switching to implementation, start a profile-manifest skeleton with storage backend, async stage, cache receipt, and storage-tier equivalence guards
+
+#### Context Notes:
+- Pass 075 conclusion: GraphBolt does not prove Neo4j/GDS OLAP performance, but it strongly supports making graph data movement, storage tier, async stages, cache, frontier batching, and manifest validation first-class product artifacts
+
+#### Performance/Metrics:
+- Current date reached remains: newest visible Today/Aug 6 2026; oldest stable chat date reached: Jun 1 2026; indexed GraphBolt source: 647 nodes/3212 edges, 41 Python files; indexed GraphBolt tests: 394 nodes/2078 edges; DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026
+
+### Session: 2026-08-07 13:35:54Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_63: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_graphbolt_native_codebase_memory: passing - Indexed GraphBolt native subtree as private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-graphbolt with 739 nodes, 2009 edges, 51 files at DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026; read io_uring, cnumpy OnDiskNpyArray, ReadRequest, FeatureCache, cache policies, partitioned cache, GPU cache, GPU graph cache, UVA index-select, CSC copy, CPU/GPU sampling, and python_binding TORCH_LIBRARY
+- doc_update_graphbolt_native_receipts: passing - PMF003 updated with pass 076 ledger row, native GraphBolt evidence rows, GraphBolt Native Code Turns Pipeline Claims Into Byte Receipts synthesis, URL queue entries 766-780, and product implications 788-808
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added pass 076 native GraphBolt receipt evidence and implications
+
+#### Current Focus:
+Document GraphBolt native C++/CUDA/io_uring evidence as byte-level receipt requirements while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May
+- If continuing artifact deepening, inspect GraphStorm downstream GraphBolt usage or start a profile-manifest skeleton using the native receipt fields
+- If switching to implementation, create executable specs for DiskStateReadReceipt, CacheAdmissionReceipt, and TemporaryGraphViewReceipt
+
+#### Context Notes:
+- Pass 076 conclusion: GraphBolt native code does not prove PageRank/GDS superiority, but it gives a precise byte-level receipt vocabulary for direct I/O, cache admission, GPU cache, UVA movement, aligned CSC copying, and temporary graph-view construction
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; native GraphBolt index 739 nodes/2009 edges/51 files; DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026
+
+### Session: 2026-08-07 13:45:29Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_64: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_graphstorm_graphbolt_downstream: passing - Indexed awslabs/graphstorm as private-tmp-kb-graphstorm-pass077-Cftsid-graphstorm with 6686 nodes and 34133 edges over 712 files at commit 42482dab3d17d2045a314794cf9344430423f213; read public docs, AWS blog, conversion code, config/runtime flags, SageMaker pipeline code, and GraphBolt e2e scripts
+- doc_update_graphstorm_graphbolt_workflow: passing - PMF003 updated with pass 077 ledger row, GraphStorm evidence rows, workflow-contract synthesis, URL queue entries 781-796, and product implications 809-821
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GraphStorm Turns GraphBolt Into A Workflow Contract synthesis and downstream workflow/profile implications
+
+#### Current Focus:
+Document GraphStorm downstream GraphBolt workflow evidence as storage-profile contract guidance while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening first, inspect awslabs/graphstorm examples/sagemaker-pipelines-graphbolt and preserve concrete pipeline command receipts
+- If switching to implementation, create executable specs for BuildStorageProfile, VerifyProfile, StorageProfileE2E, and profile conversion RAM gates
+
+#### Context Notes:
+- Pass 077 conclusion: GraphStorm does not prove Neo4j/GDS OLAP superiority, but it strongly supports treating custom storage as a visible build/verify/run workflow with version gates, memory-gated conversion parallelism, artifact existence guards, runtime mode flags, and e2e output checks
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GraphStorm index 6686 nodes/34133 edges/712 files; repo commit 42482dab3d17d2045a314794cf9344430423f213; AWS blog published 2025-02-11; public repo metadata checked Aug 7 2026
+
+### Session: 2026-08-07 13:50:30Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_65: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_graphstorm_sagemaker_examples: passing - Read examples/sagemaker-pipelines-graphbolt README, deploy_arxiv_pipeline.sh, deploy_papers100M_pipeline.sh, build/process Docker scripts, sagemaker_convert_papers100m parse/main, convert_ogb_papers100m_to_gconstruct process_data/process_and_upload_chunk/create_config/main, analyze_training_time analyze_logs/print_training_summary, and DGL 2.1 release context
+- doc_update_graphstorm_comparison_artifact: passing - PMF003 updated with pass 078 ledger row, two evidence rows, GraphStorm Examples Make Comparison A Product Artifact synthesis, URL queue entries 797-806, and product implications 822-833
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added baseline-vs-storage-mode comparison and RAM-gated preprocessing lessons from GraphStorm SageMaker GraphBolt examples
+
+#### Current Focus:
+Document GraphStorm SageMaker GraphBolt examples as baseline-vs-storage-mode comparison evidence while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening first, inspect DGL GraphBolt benchmark/example links from the DGL 2.1 release for concrete staged data movement and GPU cache profiles
+- If switching to implementation, create executable specs for BaselineVsStorageModeComparison, PreprocessChunkMemoryGate, ResourceEnvelopeReceipt, and LogTimingAnalyzer
+
+#### Context Notes:
+- Pass 078 conclusion: GraphStorm examples make comparison itself a product artifact: paired baseline/optimized pipeline names, same dataset, resource envelope, output prefixes, durable logs, timing analyzer, and source-reported benchmark caveats
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GraphStorm project remains private-tmp-kb-graphstorm-pass077-Cftsid-graphstorm at commit 42482dab3d17d2045a314794cf9344430423f213; DGL 2.1 release page checked for GraphBolt upstream context
+
+### Session: 2026-08-07 13:56:06Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_66: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_dgl_graphbolt_examples: passing - Indexed /private/tmp/kb-dgl-graphbolt-pass075-dkXhL7/dgl/examples/graphbolt as private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-examples-graphbolt with 305 nodes and 1063 edges over 18 files at commit 3d16000b4170fa741ed9e9667f22ba84d3493026; read DGL 2.1 release, examples root, node/link/disk/advanced/multigpu/hetero/labor/temporal dataloader and setup surfaces, plus disk and Labor READMEs
+- doc_update_dgl_staged_dataflow: passing - PMF003 updated with pass 079 ledger row, three evidence rows, DGL GraphBolt Examples Turn Storage Modes Into Staged Dataflow synthesis, URL queue entries 807-817, and product implications 834-851
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added storage mode triple, datapipe stage placement, cache policy, locality knob, and distributed sampler lessons from DGL GraphBolt examples
+
+#### Current Focus:
+Document DGL GraphBolt examples as staged storage-mode dataflow evidence while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening first, inspect DGL GraphBolt tests around storage-mode triples, GPU cache, and datapipe stage behavior to turn examples into testable profile specs
+- If switching to implementation, create executable specs for StorageModeTriple, DatapipeStagePlacement, CacheCapacityDeadlockGuard, LocalityKnobReceipt, and DistributedItemSamplerReceipt
+
+#### Context Notes:
+- Pass 079 conclusion: DGL GraphBolt examples show that a storage profile is not a file format; it is physical placement, stage ordering, cache policy, locality policy, resource envelope, safety preflight, correctness guard, and run receipt
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; DGL examples index 305 nodes/1063 edges/18 files; DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026; DGL 2.1 release page opened on Aug 7 2026
+
+### Session: 2026-08-07 14:02:55Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_67: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_dgl_graphbolt_tests: passing - Used codebase-memory project private-tmp-kb-dgl-graphbolt-pass075-dkXhL7-dgl-tests-python-pytorch-graphbolt to inspect GraphBolt cache, async, disk, GPU graph cache, manifest, device/pinned, feature fetcher, dataloader, and seed-edge exclusion tests at DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026
+- doc_update_dgl_graphbolt_test_acceptance: passing - PMF003 updated with pass 080 ledger row, GraphBolt tests evidence rows, promotion-test synthesis, URL queue entries 818-829, and product implications 852-870
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GraphBolt Tests Turn The Profile Vocabulary Into Acceptance Criteria synthesis and test-derived storage-profile promotion requirements
+
+#### Current Focus:
+Document DGL GraphBolt tests as executable acceptance criteria for Knight Bus storage-profile promotion while preserving private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening first, convert pass 080 profile guards into an executable-spec table for the first PageRank disk/mmap/cache profiles
+- If switching to implementation, create tests for ManifestLoadTest, SyncAsyncEquivalenceTest, CacheQueryShapeTest, TemporaryGraphViewIdentityTest, and ReferencePipelineEquivalenceTest
+
+#### Context Notes:
+- Pass 080 conclusion: GraphBolt tests do not prove Neo4j/GDS OLAP speed, but they show how custom storage-mode vocabulary becomes promotion criteria: manifest, placement, async equivalence, cache shape, fail-closed errors, temporary-view identity, and reference pipeline equality
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; DGL GraphBolt tests index 394 nodes/2078 edges/32 Python files; DGL commit 3d16000b4170fa741ed9e9667f22ba84d3493026
+
+### Session: 2026-08-07 14:12:08Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_68: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_ldbc_graphalytics_spine: passing - Indexed ldbc_graphalytics as kb-ldbc-graphalytics-pass081 with 2815 nodes and 7379 edges plus ldbc_graphalytics_platforms_graphblas as kb-ldbc-graphalytics-graphblas-pass081 with 496 nodes and 853 edges; read official LDBC benchmark pages, spec PDF, generic driver validators, and GraphBLAS/LAGraph reference-driver paths
+- doc_update_graphalytics_benchmark_spine: passing - PMF003 updated with pass 081 ledger row, Graphalytics evidence rows, benchmark-spine synthesis, URL queue entries 830-844, and product implications 871-888
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added LDBC Graphalytics benchmark/validation spine and GraphBLAS oracle-lane evidence
+
+#### Current Focus:
+Document LDBC Graphalytics as the public benchmark spine for Knight Bus algorithm-profile verification while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect ldbc_graphalytics_platforms_arcadedb-src or Samyama Graphalytics report as competitor/e2e harness evidence
+- If switching to implementation, create GraphalyticsComparisonReceipt specs for PageRank, BFS, and WCC
+
+#### Context Notes:
+- Graphalytics does not prove Neo4j/GDS compatibility; it gives public algorithms, datasets, reference outputs, validation modes, lifecycle, repetition, reproducibility, and price-performance structure that should be paired with Neo4j/GDS oracle runs
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; ldbc_graphalytics commit 7b8bde76cf7aab5e90b25ecd4b38829e2f98b292; GraphBLAS platform commit 4671056cb118c7db210571540fbeb374d735efa2
+
+### Session: 2026-08-07 14:21:20Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_69: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_arcadedb_gav_spine: passing - Indexed ArcadeData/ldbc_graphalytics_platforms_arcadedb as kb-ldbc-graphalytics-arcadedb-pass082 with 719 nodes and 2302 edges at commit 70986fc9aad9f9cd4582ac2f6707f5825c54178c; read public ArcadeDB Graph OLAP and benchmark pages, GH metadata, official driver lifecycle, algorithm paths, native comparison harness, and failure-mode notes
+- doc_update_arcadedb_olap_sidecar_spine: passing - PMF003 updated with pass 082 ledger row, ArcadeDB evidence rows, GAV synthesis, URL queue entries 845-861, and product implications 889-907
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added ArcadeDB GAV/CSR sidecar evidence and receipt implications
+
+#### Current Focus:
+Document ArcadeDB Graph Analytical View as database-native OLTP surface plus OLAP sidecar evidence while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect Samyama Graphalytics report or another public Graphalytics platform artifact for benchmark-report shape
+- If switching to implementation, create KnightBusAnalyticalViewReceipt and GraphalyticsComparisonReceipt specs for PageRank/BFS/WCC
+
+#### Context Notes:
+- ArcadeDB GAV supports the OLTP/OLAP sidecar pattern, but vendor-reported speedups were not reproduced locally and GAV is not automatically budget-bounded; Knight Bus should improve by making RAM fields, fallback, writeback, serialization, and validation explicit
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; ArcadeDB driver repo commit 70986fc9aad9f9cd4582ac2f6707f5825c54178c; codebase-memory index 719 nodes/2302 edges
+
+### Session: 2026-08-07 14:31:15Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_70: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_samyama_near_neighbor_spine: passing - Researched Samyama Graph through arXiv v2, GHCLI metadata, README/BENCHMARKS/ADR docs, local shallow clone at commit a0e153de933e9810b5aba7751a4853ae95d331ab, and codebase-memory index with 10179 nodes and 64304 edges
+- doc_update_samyama_claim_discipline_spine: passing - PMF003 updated with pass 083 ledger row, Samyama evidence rows, nearest-public-shape synthesis, URL queue entries 862-885, and product implications 908-927
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added Samyama Rust/CSR/Graphalytics/late-materialization evidence and claim-provenance receipt implications
+
+#### Current Focus:
+Document Samyama as a near-neighbor to Knight Bus while preserving distinction between paper/repo claims, code-shape evidence, and reproduced benchmark truth
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect Samyama issue #296 and benchmark book artifacts, or compare Samyama Graphalytics runner against official LDBC driver receipt fields
+- If switching to implementation, draft profile_claim_provenance_tier_v1, profile_graphview_dense_csr_receipt_v1, and profile_materialization_phase_split_v1 executable specs
+
+#### Context Notes:
+- Samyama supports the Rust plus CSR plus Graphalytics adjacency thesis, but it also warns that Rust alone is not a receipt: projection, parse/plan, materialization, sort, validation, CI status, and independent reproduction must be separated
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; Samyama clone commit a0e153de933e9810b5aba7751a4853ae95d331ab; 533 tracked files; codebase-memory index 10179 nodes/64304 edges; latest 10 visible GH Actions runs were cancelled GPU CI runs; README badge claims 2238 tests but not locally verified
+
+### Session: 2026-08-07 14:39:02Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_71: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_samyama_issue296_complex_reads: passing - Used GH CLI, public GitHub issue/PR pages, official LDBC SNB page, local Samyama docs, and codebase-memory snippets over pinned clone a0e153de933e9810b5aba7751a4853ae95d331ab to inspect issue #296, PR #295, LDBC harness, variable-length frontier operator, aggregation/barrier paths, and planner detector scopes
+- doc_update_complex_read_frontier_profile: passing - PMF003 updated with pass 084 ledger row, Samyama issue #296 evidence rows, complex-read frontier synthesis, URL queue entries 886-896, and product implications 928-942
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added complex-read frontier profile evidence and spec handles from Samyama issue #296 and query/planner/operator code
+
+#### Current Focus:
+Document Samyama issue #296 as proof that complex frontier-to-aggregation reads are the sharp PMF edge between Neo4j-compatible surface area and budget-bounded OLAP storage
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect Neo4j/GDS or LDBC SNB complex-read execution/projection paths for IC1/IC3/IC5/IC6/IC9 comparator receipts
+- If switching to implementation, draft profile_complex_read_frontier_receipt_v1 and profile_cross_engine_query_receipt_v1 executable specs
+
+#### Context Notes:
+- Pass 084 conclusion: complex reads are a bridge workload, not just OLTP Cypher or pure OLAP algorithms; Samyama strong short-read and weak SF10 complex-read evidence says bounded frontier expansion, dedup, join/agg lowering, and phase-specific RAM receipts may be the highest-leverage product target.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; Samyama clone commit a0e153de933e9810b5aba7751a4853ae95d331ab; issue #296 opened Jul 25 2026 and open during pass; PR #295 merged Jul 24 2026; public issue reports SF10 IC1/IC3/IC5/IC6/IC9 as 3-170x slower than Neo4j/TigerGraph but not locally reproduced
+
+### Session: 2026-08-07 14:47:43Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_72: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_neo4j_varlength_pruning_spine: passing - Used codebase-memory over neo4j-community-local to inspect regular var-length expansion, BFS pruning pipes, directed/undirected cursors, planner rewrite eligibility, trail guard, heap-tracked collections, MemoryTracker, and runtime spec fixtures
+- doc_update_neo4j_rewrite_eligibility_spine: passing - PMF003 updated with pass 085 ledger row, Neo4j evidence rows, rewrite eligibility synthesis, URL queue entries 897-907, and product implications 943-956
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added Neo4j variable-length execution comparator, planner eligibility, frontier memory, and fixture-matrix implications
+
+#### Current Focus:
+Document Neo4j Cypher variable-length expansion as a direct comparator for bounded complex-read frontier profiles while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect Neo4j/GDS PageRank/BFS/WCC procedure/projection paths and compare their memory accounting to Cypher variable-length receipts
+- If switching to implementation, draft profile_varlength_rewrite_eligibility_v1, profile_bfs_pruning_endpoint_v1, and profile_varlength_fixture_matrix_v1 executable specs
+
+#### Context Notes:
+- Pass 085 conclusion: Neo4j is a sophisticated comparator with guarded rewrites and operator memory tracking; Knight Bus differentiation must be budget admission, profile-specific storage, spill/stream choices, and inspectable eligibility/RAM receipts.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; Neo4j community local clone commit c68156edf24164435ab1ac257ec633134c2887f7; codebase-memory project neo4j-community-local has 218480 nodes and 1186989 edges; local source size recorded as 677511168 bytes
+
+### Session: 2026-08-07 14:58:48Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_73: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_olap_estimation_spine: passing - Used codebase-memory over neo4j-gds-local to inspect graph-project estimate paths, memory validation/loading estimates, public estimate procedures, PageRank Pregel state, BFS state inventory/chunk ordering, and WCC disjoint-set strategy selection
+- doc_update_gds_estimate_to_receipt_spine: passing - PMF003 updated with pass 086 ledger row, GDS evidence rows, estimate-vs-receipt synthesis, URL queue entries 908-929, and product implications 957-973
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS projection/algorithm estimate comparator, PageRank/BFS/WCC state receipts, and GDS baseline synthesis
+
+#### Current Focus:
+Document Neo4j GDS projection and PageRank/BFS/WCC estimate-state comparator while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect GDS algorithm estimate template/procedure facades or run a tiny GDS PageRank/BFS/WCC estimate fixture if local build/runtime allows
+- If switching to implementation, draft profile_gds_projection_estimate_receipt_v1, profile_bfs_state_inventory_receipt_v1, and profile_disjoint_set_state_receipt_v1 executable specs
+
+#### Context Notes:
+- Pass 086 conclusion: Neo4j/GDS estimates are baseline table stakes; Knight Bus differentiation is cap admission, profile-specific storage alternatives, measured high-water receipts, and comparator proof across projection-build, algorithm-run, and output phases.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges

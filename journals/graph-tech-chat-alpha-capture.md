@@ -2,7 +2,7 @@
 
 - Task: Capture one year of graph technology developers chat URLs and budget-bounded compute insights
 - Created: 2026-08-07 04:36:05Z
-- Updated: 2026-08-07 14:58:48Z
+- Updated: 2026-08-07 15:08:40Z
 - Current Phase: Green
 - Status: active
 
@@ -2130,6 +2130,32 @@ Document Neo4j GDS projection and PageRank/BFS/WCC estimate-state comparator whi
 
 #### Context Notes:
 - Pass 086 conclusion: Neo4j/GDS estimates are baseline table stakes; Knight Bus differentiation is cap admission, profile-specific storage alternatives, measured high-water receipts, and comparator proof across projection-build, algorithm-run, and output phases.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:08:40Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_74: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_estimate_pipeline_spine: passing - Used codebase-memory over neo4j-gds-local to inspect public PageRank/BFS/WCC estimate procedures, local procedure facades, estimation-mode business facades, AlgorithmEstimationTemplate, named-vs-map/fictitious graph handling, MemoryEstimateResult schema, and estimate fixtures
+- doc_update_gds_estimate_contract_spine: passing - PMF003 updated with pass 087 ledger row, GDS estimate pipeline evidence rows, estimate-pipeline synthesis, URL queue entries 930-942, and product implications 974-987
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS estimate pipeline, procedure-to-template chain, estimate fixture evidence, and schema/admission receipt implications
+
+#### Current Focus:
+Document Neo4j GDS estimate pipeline and schema contract while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect GDS memory tree/map render internals or run a tiny estimate fixture to capture actual returned schema and bytes
+- If switching to implementation, draft profile_estimate_input_mode_receipt_v1, profile_graph_algorithm_composite_estimate_v1, and profile_cap_admission_fixture_v1 executable specs
+
+#### Context Notes:
+- Pass 087 conclusion: GDS estimation is a public API contract with named graph and implicit/fictitious graph modes; Knight Bus should build estimate/admission/schema parity before hot-loop optimization.
 
 #### Performance/Metrics:
 - Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges

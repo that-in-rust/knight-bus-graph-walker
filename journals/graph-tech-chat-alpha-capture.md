@@ -2,7 +2,7 @@
 
 - Task: Capture one year of graph technology developers chat URLs and budget-bounded compute insights
 - Created: 2026-08-07 04:36:05Z
-- Updated: 2026-08-07 15:26:59Z
+- Updated: 2026-08-07 15:41:53Z
 - Current Phase: Green
 - Status: active
 
@@ -2234,6 +2234,58 @@ Document Neo4j GDS validation policy and memory observability surfaces while pre
 
 #### Context Notes:
 - Pass 090 conclusion: GDS separates estimate-only rows, admission/reservation paths, and memory observability procedures; Knight Bus should make those states explicit with per-job cap policy and live reservation/high-water ledger rows.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:36:50Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_78: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_graph_size_detail_spine: passing - Used codebase-memory over neo4j-gds-local to inspect GraphMemoryUsage.internalSizeOfGraph, GraphMemoryUsageProc.list, GraphMemoryUsageProcTest, GraphMemoryUsageTest variable-compression checks, MemoryUsage.sizeOf/sizeOfObject, MemoryInfo.bytesTotal, MemoryInfoUtil.builder, compressed/uncompressed/packed adjacency-list memoryInfo methods, and MixedCompressor.Factory.mergeMemoryInfo
+- doc_update_gds_graph_size_detail_spine: passing - PMF003 updated with pass 091 ledger row, graph-size detail evidence rows, graph-size/cap-ledger synthesis, URL queue entries 968-978, and product implications 1019-1027
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS graph-size detail-map evidence and Knight Bus component-level cap-ledger implications
+
+#### Current Focus:
+Document Neo4j GDS graph-size detail internals while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect actual GDS estimate fixture execution or start drafting executable specs for graph-size/admission receipts
+- If switching to implementation, draft profile_graph_size_detail_map_receipt_v1, profile_node_mapping_memory_receipt_v1, and profile_adjacency_compression_histogram_receipt_v1 executable specs
+
+#### Context Notes:
+- Pass 091 conclusion: GDS graph-size detail maps expose node mapping, relationship adjacency arrays, heap/off-heap split, and compression histograms; Knight Bus should attach component-level graph-size maps to cap/admission and high-water receipts.
+
+#### Performance/Metrics:
+- Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges
+
+### Session: 2026-08-07 15:41:53Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- private_chat_access_policy_79: blocked-soft - Did not use browser-control skill per user instruction; private X chat content remains unavailable from allowed tools, so oldest stable chat date remains Jun 1 2026
+- source_deepening_gds_estimate_fixture_execution_spine: passing - Used codebase-memory over neo4j-gds-local to inspect WccStreamProcTest projected/fictitious/native estimate fixtures, GraphProjectProcEstimateTest Cypher/virtual/large-virtual estimate byte fixtures, MemoryEstimateResult, MemoryEstimationExecutor.computeEstimate, GraphProjectMemoryUsageService.getEstimate/computeEstimate, FictitiousGraphStoreLoader, GraphStoreFromDatabaseLoader, and MemoryTreeWithDimensions
+- doc_update_gds_estimate_fixture_execution_spine: passing - PMF003 updated with pass 092 ledger row, estimate-fixture evidence rows, estimate-fixtures-before-hot-loops synthesis, URL queue entries 979-986, and product implications 1028-1037
+
+#### Implementation Progress:
+- docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md: added GDS estimate fixture execution evidence and Knight Bus executable estimate contract implications
+
+#### Current Focus:
+Document Neo4j GDS estimate fixture execution paths while preserving the Jun 1 2026 private-chat boundary
+
+#### Next Steps:
+- When X chat access is available, resume upward from Jun 1 2026 into May and continue extracting chat-linked URLs/authors
+- If continuing source deepening, inspect GDS memory-estimation arithmetic definitions for WCC/PageRank/BFS and how exact fixture bytes are derived
+- If switching to implementation, draft profile_single_estimate_row_guard_v1, profile_estimate_byte_golden_fixture_v1, and profile_estimate_evidence_tier_v1 executable specs
+
+#### Context Notes:
+- Pass 092 conclusion: GDS makes estimate rows executable through schema assertions and exact byte fixtures before algorithm hot loops; Knight Bus should code estimate fixtures, evidence tiers, and unsupported-surface receipts first.
 
 #### Performance/Metrics:
 - Current private-chat date boundary unchanged: newest visible Today/Aug 6 2026; oldest stable chat date reached Jun 1 2026; GDS local clone branch 2.13 commit dc4417b3c1feffbdf9eb6293fbbd1ffb1b7233b9; codebase-memory project neo4j-gds-local has 54265 nodes and 284022 edges

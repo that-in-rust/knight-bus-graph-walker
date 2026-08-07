@@ -17,6 +17,52 @@ Privacy posture: private chat messages are treated as directional evidence. This
 | 003 | Upward scroll through Aug 4 -> Jul 31 2026 | Jul 31 2026 | AtomGraph first-principles web book, soulblocks semantic hypergraph/language visualization post, compression-principles post, Stanford generalized quantifiers source | Scroll upward from Jul 31 2026 |
 | 004 | Upward scroll through Jul 31 -> Jul 28 2026 | Jul 28 2026 | Applied Ontology Education GitHub, Yohei graph-based GraphCon slide deck and repo, social-graph closeness comments, developer usage-reset/worktree sprawl pain | Scroll upward from Jul 28 2026 |
 | 005 | Upward scroll through Jul 28 -> Jul 27 2026 | Jul 27 2026 | Direct Neo4j/Aura workload discovery, TigerGraph/Palantir/custom-code comparison, small-model/knowledge-engine tradeoff, RAM/mmap/AVX512 local model infra notes | Scroll upward from Jul 27 2026 |
+| 006 | Targeted scroll through Jul 27 -> Jul 20 2026 | Jul 20 2026 | Strong Neo4j/Aura cost/latency anecdote, Neptune comparator, Beads/PageRank planning workflow, Codez graph-agent engineering article, Openrunt verification principle, Arto market-timing post, graph-conjecture/LLM evidence story | Scroll upward from Jul 20 2026 |
+| 007 | Lazy-load and targeted scroll through Jul 20 -> Jul 18 2026 | Jul 18 2026 | Carlos Perez loop-to-graph engineering article, Openrunt prototype hardening/integrity posts, DAG-with-loop critique, Anais Nin social graph/creative-connection diagrams, graphtheory knowledge-as-topology post | Scroll upward from Jul 18 2026 |
+| 008 | Scroll/lazy-load through Jul 18 -> Jul 12 2026 | Jul 12 2026 | Neo4j Liquibase schema-versioning lead, Probability on Trees and Networks book, Openrunt BF16/phase-ledger compute post, graphtheory network/IXP cost-latency post, semantic-logic-graph programming hints | Scroll upward from Jul 12 2026 |
+| 009 | Scroll/lazy-load through Jul 12 -> Jun 29 2026 | Jun 29 2026 | Knight Bus public thesis marker, CocoIndex Code, colbymchenry/codegraph, text-to-knowledge-graph repo, OWL-Time / Allen interval algebra, Hermes multi-agent graph orchestration profiles, training-data pipeline benchmarking idea | Scroll upward from Jun 29 2026 |
+| 010 | Scroll/lazy-load through Jun 29 -> Jun 23 2026 | Jun 23 2026 | Decentralized compute routing, Structured Graph Harness arXiv, Hermes agent-profile bounty and authoring workflow, context-forge/chainforge profile repos, memory-bandwidth/space-complexity chat signal | Scroll upward from Jun 23 2026 |
+| 011 | Scroll/lazy-load through Jun 23 -> Jun 17 2026 | Jun 17 2026 | Google Open Knowledge Format, verifiable/auditable stochastic-systems post, Apache Iggy-inspired storage-in-the-shape-of-read idea, CliffordNet math-shaped representation lead, agent-maxxing workflow signal | Scroll upward from Jun 17 2026 |
+| 012 | Scroll/lazy-load through Jun 17 -> Jun 9 2026 | Jun 9 2026 | Bellman-Ford and named-graph fixture leads, dense-text-bitmap compaction debate, Goodfire predictive data debugging, ArbiterSec/concolic security lead, Codegraph predictive-intents knowledge graph, Supermodel dead-code benchmark 404 lead | Scroll upward from Jun 9 2026 |
+| 013 | Scroll/lazy-load through Jun 9 -> Jun 1 2026 | Jun 1 2026 | HydraDB graph-native agent context infrastructure, Qter Rubik's Cube computer, Solana trust/safety graph tooling, Rubik's Cube graph theory, self-evolving AI scientist/source-space-shift lead, semantic logic-space posts | Scroll upward from Jun 1 2026 |
+| 014 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | HydraDB Neo4j-alternatives/current-architecture details, Arbiter/Aletheia verification workflow, graph-native bitemporal memory paper, InKH financial temporal-graph memory paper, HyphaeDB agent-memory topology paper | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 015 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | OKF v0.2 attested computation spec, CodeGraph benchmark/occupancy/sufficiency/allocation docs, CocoIndex architecture and embedding docs, Hermes bounty payout proof, Solana Rug validation/forensics/skill docs, SGH source clarification | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 016 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Google OKF launch/positioning blog, Apache Iggy architecture and source implementation details, HydraDB SDK docs/context-graph docs/BYOG docs/benchmark PDF | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 017 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | The Graph subgraph manifest/mapping/pruning docs and Graph Node repo metadata/source tree; DeFiLlama API/adapters/docs/adapter-author skill; W3C OWL-Time temporal ontology | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 018 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node timeseries/aggregation docs, rollup source, proof-of-indexing source and failed-subgraph fixture; The Graph advanced features; DeFiLlama dimension-adapters repo/guidelines/skills/types/factories | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 019 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node aggregation/current-bucket tests and runner fixture; AMP stream aggregator bounded-buffer/grouping source | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 020 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node AMP latest-block runner, Arrow codec test fixtures, manifest validation code, API/spec-version constants, codegen manifest fixtures, and repository subgraph-manifest spec | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 021 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node AMP runner orchestration, bounded data-stream block ranges, entity-cache/block transaction processing, reorg handler, manifest feature detection, persisted deployment/error status model | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 022 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node AMP manager/monitor/metrics, Flight client metadata/reorg detection, AMP client/manifest/data-source contracts, SQL query builder/validator/resolvers, schema generator, codec decoders | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 023 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node AMP common column aliases, stream aggregator entrypoint/errors, record-batch aggregator/buffer/decoder/group-data internals, completed-frontier and blocked-buffer behavior | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 024 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node store component interfaces, EntityCache, write Batch/RowGroup, StoreError determinism, Postgres relational Layout/block_range/index/prune/value internals | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 025 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node writable store queue/overlay/sync semantics and relational query physicalization for range replay, changes/deletions, multi-lookup, insert chunking, filtering, clamp, and revert | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 026 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node deployment transaction path, subgraph-store shard orchestration, typed relational DSL, transaction-receipt conversion, and postgres store tests for pending writes, range replay, poisoning/restart, graft reverts, and pruning fixtures | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 027 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node persisted deployment/head/error schema helpers, deterministic error range handling, large Postgres notifications, store-event subscriptions, stale subscription cleanup, and chain-head watcher timeout semantics | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 028 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node Postgres migration history, large-notification schema, split head/deployment registry, pruning command/state tables, firehose/head cursors, raw manifests, synced-at metadata, postponed indexes, and dynamic data-source private/shared persistence | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 029 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node dynamic data-source runner fixtures, data-source revert/graft fixtures, and Postgres store test proving entity writes plus dynamic-source creation revert atomically | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 030 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node relational visibility/copy/revert/change-filter tests and subgraph deterministic/non-deterministic error recovery tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 031 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node writable pending-overlay/poison/restart/sourceable-range tests plus graft/copy/on-sync/pruning boundary tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 032 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph Node chain-head/missing-parent/ancestor/hash-confirmation tests plus timeseries aggregation/current-bucket/nested-window tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 033 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Apache Iggy cache-index config, sparse index reader/writer, poll-plan sealed-index cap, fail-closed disk reads, journal dirty-read ceiling, committed-prefix eviction, and bounded repair ring | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 034 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | CodeGraph benchmark docs for residual context occupancy, sufficiency, allocation efficiency, contamination, call-sequence/adoption, A/B matrix, and direct-vs-delegated exploration | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 035 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | CocoIndex Code local/remote embedding modes, skill/MCP/hook integration, daemon/project/indexer architecture, language-aware chunking, GPU/MPS memory controls, pacing/retry/batching, settings/path-mapping ergonomics, and structural grep | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 036 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Structured Graph Harness, Harness-G, StructAgent, Living-Harness, AtomicRAG, Agent Systems with Harness Engineering, and Harness enterprise KG article; extracted explicit graph/state/verification interfaces, finite action menus, verifier-backed state, atom-level graph granularity, and deterministic modeled-data routing | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 037 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph-based Agent Memory survey, Awesome-GraphMemory, Zep/Graphiti, SGMem, Kumiho/Kumiho Memory/Revka; extracted memory lifecycle taxonomy, temporal validity windows, incremental graph updates, community updates, sentence graph retrieval, evidence levels, belief revision, immutable revisions, and memory-native runtime surfaces | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 038 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graphiti implementation source: add_episode pipeline, temporal node/edge fields, temporal search filters, edge invalidation, hybrid search recipes, BFS query-shape regression, previous-episode windowing, label-propagation community build/update, scoped community cleanup, and recent commit authors | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 039 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Kumiho Memory and Revka implementation source: evidence-level schema, evidence-weighted ranking, valid-time interval demotion, event-date corroboration, deterministic graph-augmentation caps, keyless graph maintenance, Decision Memory project isolation, Revka workflow schema, validation, checkpointed execution, workflow revisions, and append-only RunLogs | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 040 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | AtomicRAG implementation source: Atom-Entity Graph workspace/cache layout, fragment/entity embedding stores, query decomposition gates, dense fragment retrieval, entity seed scoring, PPR via python-igraph PRPACK under graph lock, fragment sieve fail-open behavior, KNN batching, run scripts, statistics outputs, and concurrency limits | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 041 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Harness-G implementation source: clean tri-graph storage, Parquet/NPZ artifacts, graph manifest validation, finite `INIT`/`SELECT`/`LOOKUP`/`ANSWER_WITH`/`ANSWER` action protocol, rejection of natural-language/`||` queries, environment-built mixqueries, bridge candidate ranking, SNC frontier side channel, API session state, nav-event JSONL, metrics, and regression tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 042 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | StructAgent implementation source: planner/actor/verifier loop, unified ledger, event timeline, evidence records, boundary verifier, validated read-only probes, DONE acceptance gate, bounded DoneAuditor, recovery transition receipts, phase board, reproducibility runner, trajectory artifacts, and optional multi-layer memory | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 043 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Living-Harness arXiv source: rollout/evaluate/update loop, fixed tools/base context, evolving episodic memory and state graph, Evolution-SOP bounded commit gates, state scaling data, ablation evidence, retrieval-only cross-model transfer, and limitations around simulators, rollback, stale entries, manual SOPs, privacy, and cost | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 044 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Harness enterprise Knowledge Graph article source: modeled graph/HQL path over raw MCP/API calls, vendor token comparison, typed field metadata, explicit relationship schema, semantic routing annotations, HQL safety table, and four-tier data ownership model | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 045 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Harness context-graph and agent-loop source cluster: context graphs as structural plus executional process graphs, context-window-as-RAM framing, small generic verbs with registry dispatch, demand-paged schema discovery, KG+RAG hybrid boundary, repo/code graph as source context engine, and evaluation metrics for coverage, path agreement, task completion, freshness, and context cost | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 046 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Graph-based Agent Memory survey source: memory taxonomy, extraction-storage-retrieval-evolution lifecycle, knowledge-vs-experience graph shapes, semantic/structured/policy retrieval operators, hybrid-source conflict rules, consolidation/pruning/reorganization loops, benchmark caveats, quality metrics, scalability/privacy/trust limitations, and open-source library dimensions | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 047 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Awesome-GraphMemory ecosystem map source: taxonomy paper list, benchmark matrix, open-source project shortlist, recent local-first additions, Omnigraph lakehouse/Rust/versioned graph engine, taOSmd 8 GB offline append-only memory with LongMemEval/LoCoMo methodology caveats, and Memvid single-file append-only memory capsule pattern | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 048 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | taOSmd benchmark and implementation source: benchmark metric separation, corrected judge-parser bug, full-dataset versus subset discipline, hardware-tier recipes, zero-loss archive, per-entry hashes, archive span provenance, fail-closed claim verification, strict/lenient claim gates, temporal KG invalidation, vector soft-supersede, store-mode signatures, hybrid retrieval, and regression tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 049 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Memvid source: single-file `.mv2` capsule format, embedded WAL, header/footer validation, commit footer scanning, time index track, manifest WAL, graph-aware query planner, graph-filtered hybrid search, bounded deserialization, vector dimension/model identity checks, encryption capsule tests, crash recovery doctor, replay integrity, and single-file integration tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 050 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Omnigraph source/docs: declared cluster model, Lance dataset storage, object-store graph roots, `__manifest` coordination, graph commit/head rows, strict internal-schema strand, branch and merge model, derived index lifecycle, CSR/CSC runtime graph index, LRU cache keyed by physical edge-table identity, partial-index correctness tests, traversal equivalence tests, branch tests, and merge truth-table tests | Reclaim/open X chat and continue upward from Jun 1 2026 |
+| 051 | Source-deepening pass after Jun 1 capture; no older chat date claimed | Jun 1 2026 | Omnigraph operational/cost evidence: execution docs, traversal cost model, constants, maintenance/repair/error docs, RFC-013 write-latency analysis, cost harness, write/read cost gates, S3 opener split, phased benchmark contracts, merge cost gates, proptest equivalence, recovery sidecars, failpoint surfaces, and research-blocked RFCs for durable heads, checkpoint retention, lineage merge deltas, and MemWAL ingest | Reclaim/open X chat and continue upward from Jun 1 2026 |
 
 ## Current Working Thesis
 
@@ -65,6 +111,462 @@ The group chat is valuable less as "graph database market research" and more as 
 | Jul 28 2026 | private chat signal, no URL | N/A | 1casie / group discussion | Local model infra: many large model instances on 128GB RAM by mmap/piggybacking, AVX512 acceleration, chunked BF16 streaming from Hugging Face, expert merging/distillation experiments | Strong systems analogy. The local AI crowd already reasons in resident RAM vs mapped/shared state, chunk streaming, active parameters, and throughput. Knight Bus should speak that same language for graph jobs. | Product claims should separate logical footprint, mapped footprint, resident RAM, and active state. | Medium-high. Private chat only; not externally verified. |
 | Jul 27 / Jul 28 2026 | direct PMF discussion in chat | N/A | graphtheory / amul.exe / Christopher Wolf | Neo4j/Aura workload discovery: Cypher/docs/explorer praised, performance criticized; Gremlin/RDF better for some cases; 4x lower RAM alone not enough without CPU profiling; custom CPU traversal code is an alternative now that LLMs can generate it | Very strong PMF signal. The product cannot win only by saying "same API, 4x less RAM." It must also prove latency, CPU, correctness, and developer-time savings against custom code. | Best wedge: proof-carrying bounded graph jobs for workloads where custom code is risky, repeated, expensive, or audit-sensitive. | High. Direct chat evidence. |
 | Jul 27 / Jul 28 2026 | direct PMF discussion in chat | N/A | Christopher Wolf / group discussion | Real workload shape: discrete uploaded graph-processing jobs; output expected within one/few transaction windows; rough 30-second cap; Neo4j Aura remained too slow after indexing/profiling/no-label-scan optimization; semiconductor process/parts mapping at OLAP+ scale; eventually used Palantir plus custom code; TigerGraph not a clear win | Extremely strong problem-shape evidence. This is a better first-customer scenario than generic PageRank: deadline-bound graph processing over industrial process/parts mappings. | Build benchmark fixture around "uploaded graph -> bounded processing job -> output under explicit time/RAM cap" rather than only persistent database workloads. | High. Direct chat evidence. |
+| Jul 26 2026 | direct PMF discussion in chat | N/A | graphtheory / Christopher Wolf / amul.exe | Stronger Neo4j/Aura anecdote: early features used Neo4j, deployment resilience pushed toward Enterprise/Aura, Aura was described as dramatically more expensive than in-memory compute plus stateless request pattern; memory and CPU both constrained; indexing tied to available free memory; chunked processing pipeline suggested | Very strong. This strengthens "bounded batch job runtime" and weakens "database replacement" framing. | First benchmark should compare against Aura-like managed Neo4j, custom CPU code, and possibly Neptune, not only local GDS. | High. Direct chat evidence. |
+| Jul 26 2026 | direct PMF discussion in chat | N/A | Christopher Wolf | Amazon Neptune suggested as better hyperscale performance comparator than Neo4j | Important comparator correction. If we claim hyperscale graph performance, Neo4j may be the wrong foil. | Verification loop should include Neo4j/GDS for surface familiarity and Neptune or Neptune-style graph workloads for hyperscale comparison. | Medium-high. Direct chat evidence; no benchmark yet. |
+| Jul 25 / Jul 26 2026 | graphtheory shared workflow | https://github.com/Dicklesworthstone/beads_viewer | Dicklesworthstone / Jeff Emmanuel workflow cited in chat | Graph-aware TUI for Beads issue tracker: PageRank, critical path, cycles, dependency DAG visualization, robot-mode JSON API | Extremely practical proof that graph algorithms help agentic planning today. PageRank is already being used for execution prioritization in a developer workflow. | A near-term Knight Bus demo could run bounded PageRank/critical-path over task graphs and emit robot-readable receipts. | High. GitHub repo opened. |
+| Jul 23 / Jul 24 2026 | Arto Bendiken introduction | https://x.com/Internode_ai | Internode AI | Graph neural networks and graph transformers mentioned in chat; AI Summit memory messaging mentioned by cofounder in private chat | Strong adjacency but unresolved. Graph transformers/memory may define algorithm/storage needs beyond classic GDS. | Track as possible graph-memory / graph-transformer research lead. | Low-medium. Profile/context visible; no artifact opened yet. |
+| Jul 22 / Jul 23 2026 | group discussion | https://x.com/DmitryRybin1/status/2079904005652893709 | Dmitry Rybin | LLM-assisted counterexample to Dinitz-Garg-Goemans graph-flow conjecture; source chat linked; large public engagement | Strong verification-culture signal. Graph/math claims attract scrutiny and need source chats, independent checks, and reproducible counterexamples. | Knight Bus should ship reproducibility packets for graph algorithm claims. | High. Public X post opened. |
+| Jul 21 / Jul 22 2026 | Arto Bendiken | https://x.com/bendiken/status/2079838631074938929 | Arto Bendiken | Market-timing post around X trend: "AI Builders Shift from Loops to Graphs for Smarter Agents" with 2.6k posts | Strong PMF timing evidence. The market has moved from isolated graph databases to graph-shaped agent workflows. | Position against the agent-graph wave: bounded graph compute for agent plans, memory, workflows, and receipts. | High. Public X post opened. |
+| Jul 21 2026 | X trend linked by Arto | https://x.com/i/trending/2079614680088350803 | X trend surface | "AI Builders Shift from Loops to Graphs for Smarter Agents" | Strong trend label, though X trends are ephemeral. | Good external phrasing for pitch: loops -> graphs, agents -> bounded graph workflows. | Medium-high. Trend visible through Arto post. |
+| Jul 21 2026 | group discussion | https://x.com/openrunt/status/2079419328932253700 | Openrunt | Implementation independence vs epistemic independence | Very strong verification principle. For graph rewrites, independent implementation is not enough; need independent derivation of expected answer. | Verification spine should include Neo4j parity plus mathematical/reference/oracle checks. | High. Public X post opened. |
+| Jul 20 / Jul 21 2026 | group discussion | https://x.com/0xcodez/status/2079165300625330317 | Codez | "Graph Engineering with Claude": agent workflows as graphs, nodes/edges/contracts, fan-out/fan-in, barriers, verification | Very strong agent-graph source. Massive visible engagement: millions of views in browser snapshot. | Confirms a broader PMF wave around graph-shaped agent orchestration. Knight Bus can supply algorithms and receipts for these graphs. | High. Public X article opened. |
+| Jul 20 2026 | group discussion | https://x.com/openrunt/status/2078994854013514020 | Openrunt | Rebuilding prototype from scratch with lessons baked in and future-proof hardening not treated as runtime afterthoughts | Useful engineering-process signal. For Knight Bus, resource contracts and verification cannot be bolted on after the runtime exists. | Build the receipt/resource-contract architecture into v0, not as observability later. | Medium. Visible preview only. |
+| Jul 20 2026 | group discussion | https://x.com/openrunt/status/2079238221662240950?s=20 | Openrunt / OpenAI mention | Codex local custom-language/rate-limit friction | Low direct relevance, but suggests local agent tooling can run into opaque platform constraints. | Budget-bounded local compute has a sovereignty angle: fewer hosted-tool surprises. | Low-medium. Visible preview only. |
+| Jul 20 2026 | group discussion | N/A | private chat / Openrunt context | DeFi Llama and The Graph Protocol mentioned as possible graph protocol area | Potential graph-data indexing/distributed-query lead, but not yet inspected. | Could be an adjacent corpus for graph ETL/indexing workloads, not primary OLAP target. | Low. Private mention only. |
+| Jul 19 / Jul 20 2026 | group discussion | https://x.com/openrunt/status/2078890430448517498?s=20 | Openrunt | Cryptographic/spatial parity mapping, CRC/SHA failure, integrity structures, zero-trust framing | Conceptual relevance: correctness/integrity can be structural, not only probabilistic. Treat carefully; not verified as a practical system. | Product implication is modest: graph job receipts should fail closed when integrity checks break. | Low-medium. Visible preview plus private explanation only. |
+| Jul 18 / Jul 19 2026 | group discussion | https://x.com/IntuitMachine/status/2078419526354378975 | Carlos E. Perez | "From Loop Engineering to Graph Engineering?" article about self-improvement loops becoming graphs of loops | Very strong trend source. It frames the shift from single loops to graph structures across agent design, MLOps, management, and engineering. | Reinforces that graph value is now workflow/agent/control architecture, not only database storage. | High. Public X article opened. |
+| Jul 18 / Jul 19 2026 | group discussion | https://x.com/IntuitMachine/status/2078829523370410255 | Carlos E. Perez | Cheatsheet follow-up for loop-to-graph engineering | Potential summary artifact for the graph-engineering trend. | Open later if we need compact visual terminology. | Medium. Visible preview only. |
+| Jul 18 / Jul 19 2026 | group discussion | https://x.com/graphtheory/status/2078698691934797879 | graphtheory / dexhorthy discussion | Critique that a guide called something a DAG while showing a loop | Strong graph-literacy signal. If graph concepts become product UX, correctness of graph terminology matters. | Knight Bus explanations must distinguish DAGs, cyclic workflows, dependency graphs, hypergraphs, and property graphs clearly. | Medium. Visible preview only. |
+| Jul 18 2026 | group discussion | https://x.com/majamediaco/status/2078233877534171435 | maja | Anais Nin diagrams of friendship and creative connections | Creative graph UX signal: people naturally map relationships, places, and influence as constellations. | Useful for local/personal graph demos and visual receipt metaphors. | Medium. Visible preview only. |
+| Jul 18 2026 chat quoting Oct 29 2025 post | https://x.com/graphtheory/status/1983310811952292213?s=20 | graphtheory | Knowledge as topology / graph codex post | Strong narrative source. Not systems evidence, but excellent positioning for local context graphs: knowledge is carried by relationships/topology, not isolated entries. | Useful language for PMF narrative, not benchmark design. | High. Public X post opened. |
+| Jul 17 2026 | group discussion | https://x.com/openrunt/status/2078070978039460244?s=20 | Openrunt | "macro/micro" post linking `pyqos.com/pyqos.html` | Weak source but useful vocabulary. "Macro/micro" maps to our need to separate global graph shape from local active state and frontier windows. | The linked domain did not resolve during capture; keep only as a weak chat-origin clue unless recovered later. | Low-medium. X post opened; destination failed DNS. |
+| Jul 17 2026 | group discussion | https://x.com/antoniolupetti/status/2078067658503729365 | Antonio Lupetti sharing Russell Lyons / Yuval Peres | "Probability on Trees and Networks" book; linked PDF at https://rdlyons.pages.iu.edu/prbtree/book_online.pdf | Strong algorithm canon source. Random walks, electrical networks, spanning trees, branching processes, and percolation map directly to graph algorithm families that need memory/latency receipts. | Use as a math-grounded reading spine for algorithms beyond PageRank: walks, flows, tree structures, percolation, and network reliability. | High. X post opened; PDF returned 200 OK during capture. |
+| Jul 17 2026 | codegraph / group discussion | https://neo4j.com/labs/liquibase/ | Neo4j Labs / Liquibase; author listed as Florent Biville on page | Neo4j plugin for Liquibase; tracks, versions, deploys, and rolls back database schema changes against Neo4j | Very useful for the verification spine. If Neo4j users already need schema/version migration tooling, Knight Bus needs equivalent versioned graph projections, storage plans, and rollbacks. | Product opportunity: "migration for OLAP projections" and "versioned algorithm artifacts" may be as important as raw speed. | High. Neo4j page opened; GitHub repo `liquibase/liquibase-neo4j` confirmed with GH CLI. |
+| Jul 17 2026 | group discussion | https://github.com/liquibase/liquibase-neo4j | Liquibase / Neo4j extension | Open-source Neo4j extension for Liquibase; GH CLI capture showed 55 stars / 12 forks on 2026-08-07 | Concrete repo for how the ecosystem treats graph database change management. | Inspect later for migration fixture ideas and how Cypher/schema changes are represented. | High. GH CLI verified. |
+| Jul 16 2026 | graphtheory | https://x.com/graphtheory/status/2077815234127905266 | graphtheory | Data centers, autonomous systems, BGP, IXPs, and why proximity lowers latency/cost | Strong analogy source. Efficient graph compute may also need "peering" between storage shape and algorithm access path: colocate the active edges, avoid upstream round trips, reduce latency and transfer cost. | Good product metaphor: not all graph layouts are equal because moving across boundaries dominates. | High. Public X post opened. |
+| Jul 13 / Jul 14 2026 | group discussion | https://x.com/openrunt/status/2076731348811764061 | Openrunt | BF16 on Haswell, CPU instruction mismatch, phase-aware worker, job ledger, artifact verification; follow-up says a FLUX run dropped from 3h11m42s to 2m04s with phase timing | Very strong systems-design analogy. Representation only helps when hardware supports it; otherwise conversion overhead dominates. The phase ledger is exactly what Knight Bus needs for graph jobs. | Build benchmark receipts with phases: projection, storage build, algorithm iteration, spill/readback, verification, serialization. | High for principle; low-medium for exact performance generalization. Public X thread opened. |
+| Jul 12 2026 | soulblocks | https://x.com/i/status/2076007456229179849 | soulblocks | "Semantic Logic Graph Programming" visible in chat preview | Weak but aligned with prior soulblocks semantic-graph posts: graph structures for symbolic/logic language work. | Keep as a creative benchmark lead only after a public artifact/repo appears. | Low-medium. Visible preview only. |
+| Jul 10 / Jul 11 2026 | group discussion | https://x.com/i/status/2075643450196971805 | Ethan Knight | Public claim: GPT-5.6 Sol Ultra produced a Cycle Double Cover Conjecture proof with 64 subagents in under one hour | Treat as verification-culture signal, not math fact. It reinforces that graph-theory claims can be made by agent swarms and must be independently checked. | Knight Bus should not market "AI found graph result" without independent oracle/brute-force/peer-verifiable receipts. | Low-medium. Visible preview only; not verified. |
+| Jul 9 2026 | Arto/Fellenz event shared in chat | https://x.com/FellenzMusic/status/2075243222507700388 | Fellenz / ASIMOV Protocol / Frontier Tower | ASIMOV DevLabs #10 about locally, privately, securely stored Context Graphs and Personal Intelligence | Strong repeated local-context-graph signal. The same theme appears again in the Aug 5 ASIMOV source, suggesting persistence rather than a one-off post. | Local/private graph compute remains a serious PMF branch: personal intelligence, local memory, private context, bounded device resources. | Medium-high. Public X post opened through chat preview; event link visible. |
+| Jul 9 2026 | Fellenz event post | https://t.co/TVf5jhHoe9 | Luma / ASIMOV DevLabs #10 | Luma event link for Context Graphs & Personal Intelligence | Follow-up target for speakers and exact claims. | Add to unresolved if we want the full event copy; likely duplicates ASIMOV DevLabs #12 but may show earlier narrative evolution. | Medium. Link visible; destination not opened yet. |
+| Jul 8 2026 | group discussion | https://x.com/mohitdotdev/status/2074834340622799043 | Mohit | RAM reading issue: macOS physical footprint / swapped dirty memory vs current resident RAM; CoreMedia-backed allocations | Very strong measurement caution. Our RAM claims must specify resident set, mapped bytes, swap, page cache, allocator stats, and peak active algorithm state. | This directly supports the "do not say lower RAM without defining RAM" rule. | Medium-high. Public preview visible; open later for exact logs. |
+| Jul 8 2026 | group discussion | https://x.com/mohitdotdev/status/2074836926390223360?s=20 | Mohit | Repository upload/logging concern around Grok | Low graph relevance, but high local/privacy signal. | If Knight Bus processes private graph data locally, the privacy story must be crisp and verifiable. | Medium. Public preview visible. |
+| Jul 7 2026 | private chat signal, no URL | N/A | group discussion | Truth-seeking algorithms, ontology, recursive descent, symbolic forms, and mapping language to meaning | Conceptual adjacency. The useful product lesson is not "solve truth"; it is that semantic/ontology graph workloads need explicit uncertainty, provenance, and evidence boundaries. | Useful for designing local knowledge-graph receipts and not overclaiming semantic correctness. | Medium. Private chat only. |
+| Jul 7 2026 | private chat signal, no URL | N/A | group discussion | "Graph system for human/AI co-creation" where conversations control visual scene state and visually store conversation topics | Strong creative/local graph signal. Graph state is used as an evolving memory/interface, not only analytics. | Possible demo class: bounded incremental graph updates over conversation-derived scene/state graphs. | Medium. Private chat only. |
+| Jul 4 2026 | amul.exe public post shared in chat | https://x.com/amuldotexe/status/2073247774674710970?s=20 | amul.exe / Knight Bus | Public thesis marker: Neo4j rewrite in Rust via Devin; storage shaped to graph algorithm access patterns; POC claim of 4.5x lower RAM than Neo4j for a 2GB dataset | High internal context. This is a public timestamp for the exact storage-shaped OLAP thesis that the current PMF work is refining. | Important caveat: future claims must add dataset, workload, Neo4j/GDS version/config, resident vs mapped memory, build time, and correctness receipt. | High for context; quantitative claim still needs full benchmark packet. |
+| Jul 4 2026 | amul.exe follow-up | https://github.com/that-in-rust/knight-bus-graph-walker | that-in-rust / Knight Bus | Public repository linked from thesis post | Anchors this research stream to a concrete build artifact. | Keep using this repo as the receipt home for claims, fixtures, and benchmark scripts. | High. Link visible in opened X thread. |
+| Jul 4 2026 | codegraph / group discussion | https://cocoindex.io/cocoindex-code/ | CocoIndex Code | AST-aware semantic code search context for coding agents; incremental tree-sitter chunks; CLI/MCP/skill; repo link to `cocoindex-io/cocoindex-code` | Strong adjacent systems proof. Agent context tools win by building exactly the index shape the agent needs, then serving small relevant chunks. That mirrors algorithm-shaped graph storage. | The PMF pattern generalizes: build the representation in the shape of the next computation. | High. Site opened; GH CLI verified repo. |
+| Jul 4 2026 | codegraph / group discussion | https://github.com/cocoindex-io/cocoindex-code | CocoIndex | Lightweight embedded AST-based code search engine CLI; GH CLI capture showed 2,616 stars / 211 forks on 2026-08-07 | Strong agent-native reference product. | Study as a go-to-market analogy for "local index + MCP + agent workflow" around graph workloads. | High. GH CLI verified. |
+| Jul 4 2026 | codegraph / group discussion | https://github.com/colbymchenry/codegraph | Colby McHenry / CodeGraph | Pre-indexed local code knowledge graph for many coding agents; auto-sync on code changes; README claims fewer tokens/tool calls; GH CLI capture showed 65,104 stars / 4,091 forks on 2026-08-07 | Extremely strong proof that graph-indexed context is developer-relevant right now. It also has explicit benchmark/receipt language around tokens, cost, tool calls, residual context, and indexed graph freshness. | Knight Bus should imitate the receipt style: precise benchmarks, contamination controls, residual footprint caveats, and local-first posture. | High. GitHub repo opened and GH CLI verified. |
+| Jul 4 2026 | group discussion | https://augmentcode.com/ | Augment Code | Mentioned as a similar product that pivoted toward agent/IDE context | Useful market-adjacent lead, but direct page capture failed in this pass. | Keep as unresolved competitor/context-tooling lead. | Low-medium. Chat mention only; source not successfully captured. |
+| Jun 30 / Jul 1 2026 | group discussion | https://www.w3.org/TR/owl-time/#properties | W3C | OWL-Time: temporal concepts, instants, intervals, duration, temporal reference systems, interval relations, Allen interval algebra references | Strong standard source for "timeline graph" workloads. If users need fuzzy/uncertain object timelines, there is existing semantic-web machinery and interval topology to borrow. | Product implication: temporal graph storage may deserve specialized interval indexes and relation-composition kernels, not generic adjacency only. | High. W3C spec fetched directly. |
+| Jun 30 2026 | graphtheory | https://x.com/graphtheory/status/2071818322492920241 | graphtheory | Heavy Coder: local Hermes profile for adaptive multi-agent coding teams, GitHub issue-to-PR automation, critique/synthesis/CI policy | Strong agent-workflow graph signal. Local swarms and orchestrators need coordination graphs, dependency graphs, and verification gates. | Near-term demo: run bounded PageRank/critical path/community detection over issue/agent/task graphs. | High. Public X post opened; GH CLI verified repo. |
+| Jun 30 2026 | graphtheory linked repo | https://github.com/codegraphtheory/heavy-coder | codegraphtheory / Heavy Coder | Hermes Agent profile for adaptive multi-agent coding teams; GH CLI capture showed 21 stars / 1 fork on 2026-08-07 | Small repo, but the design vocabulary is relevant: blind critique, synthesis, CI schemas, fail-closed unattended merge policy. | Verification-first graph compute can borrow these orchestration concepts. | High for existence; medium for market weight. |
+| Jun 30 2026 | graphtheory | https://x.com/graphtheory/status/2071753964643582114 | graphtheory | Tetramegistus Hermes profile post | Agent architecture lead: C4 architecture, mixture-of-agents routing, four-layer agent trees, recursive inference pruning. | Reinforces the "agent systems are becoming graph-shaped" thesis. | High. Public X post opened. |
+| Jun 30 2026 | linked repo | https://github.com/codegraphtheory/tetramegistus | codegraphtheory / Tetramegistus | Installable Hermes Agent profile for C4 architecture, mixture-of-agents routing, four-layer agent trees, recursive inference pruning; GH CLI capture showed 4 stars / 1 fork on 2026-08-07 | Small but directly relevant to graph-shaped control planes. | Good conceptual source for recursive graph pruning and execution planning, not a market-size proof. | High for existence; medium-low for adoption. |
+| Jun 29 2026 | Tom Doerr post shared in chat | https://x.com/tom_doerr/status/2071384980484214963 | Tom Doerr | Interactive knowledge graphs generated from unstructured text | Strong local/agent graph use case. It turns long text into graph structure for exploration. | A cheap demo corpus for Knight Bus: text -> KG -> bounded centrality/community/traversal/summarization receipts. | High. Public X post opened. |
+| Jun 29 2026 | Tom Doerr linked repo | https://github.com/robert-mcdermott/ai-knowledge-graph | Robert McDermott | AI Powered Knowledge Graph Generator; topics include knowledge graph, NetworkX, PyVis, visualization; GH CLI capture showed 2,794 stars / 384 forks on 2026-08-07 | Strong practical workload generator. It may produce messy small/medium knowledge graphs that are better PMF demos than synthetic social networks. | Use as benchmark data generator and UX inspiration after licensing/readme review. | High. GH CLI verified. |
+| Jun 29 2026 | Micah older post referenced in chat | https://x.com/datmicahfr/status/2070291037801849174 | Micah | Training-data pipeline benchmarking: link pipeline repo, write SDKs for training loops, track success/failure/error-rate metrics, connect actual training data | Strong adjacent verification loop. For graph jobs, the equivalent is "link input graph, projection code, storage plan, algorithm version, metrics, output". | This is a nice abstraction for Knight Bus receipts: every algorithm run becomes a benchmarkable improvement loop. | High. Public X post opened. |
+| Jun 28 2026 | Micah post shared in chat | https://x.com/datmicahfr/status/2071039839571693684 | Micah | Decentralized compute/routing argument: let people sell compute, route work to appropriate hardware, reduce latency, and avoid assuming centralization is the only option | Strong systems analogy. Knight Bus should not be a single "run graph algorithm" path; it should route graph jobs by RAM cap, storage format, hardware locality, exactness, and deadline. | Good product language: "compute router for bounded graph jobs" rather than only "lower-RAM graph database". | High. Public X post opened. |
+| Jun 28 2026 / older arXiv source surfaced in chat | https://arxiv.org/abs/2604.11378 | Hu Wei | "From Agent Loops to Structured Graphs: A Scheduler-Theoretic Framework for LLM Agent Execution"; proposes Structured Graph Harness with explicit DAG, immutable plan version, separated planning/execution/recovery, and recovery escalation | Very strong adjacent architecture source. Agent workflows are being formalized as explicit execution graphs, which means graph algorithms and verification receipts can apply to agent systems directly. | Supports an agent-workflow graph PMF track: bounded critical path, dependency expansion, failure propagation, retry-loop detection, provenance, and execution receipts. | High. arXiv page opened; empirical claims should be treated as framework/design claims unless full paper is studied. |
+| Jun 27 2026 | graphtheory post shared in chat | https://x.com/graphtheory/status/2070592009316741161?s=20 | graphtheory / codegraphtheory | Paid bounty/contributor post around Hermes profile distributions | Medium signal for profile-distribution markets. If agent profiles become portable artifacts, graph algorithm/storage profiles can be packaged the same way. | Suggests "algorithm profile as distributable product": manifest, validation, examples, smoke tests, and receipts. | Medium-high. Public X post opened. |
+| Jun 25 2026 | graphtheory / GitHub issue shared in chat | https://github.com/NousResearch/hermes-agent/issues/52598 | codegraphtheory in NousResearch/hermes-agent | Feature request: add developer authoring workflow for profile distributions, including scaffold, validation, smoke install checks, safe gitignore, CI, docs, and release notes | Strong process source. Knight Bus should package graph algorithms and storage modes as lintable profiles with deterministic validation, not only as library code. | This makes the product easier for LLMs and contributors: create `pagerank-low-ram-profile`, validate it, run smoke fixtures, publish receipts. | High. GH CLI issue read. |
+| Jun 25 2026 | linked repo in Hermes issue/post | https://github.com/codegraphtheory/hermes-profile-template | codegraphtheory | Prompt-to-repo authoring system for installable Hermes Agent profile distributions; GH CLI capture showed 40 stars / 27 forks on 2026-08-07 | Strong packaging analogy. The repo shows a repeatable shape for distributing complex agent behavior with metadata and validation. | Use as a template idea for Knight Bus algorithm packs: storage manifest, algorithm parameters, datasets, verification scripts, benchmark receipt schema. | High for existence; medium for market weight. |
+| Jun 25 2026 | linked repo in profile ecosystem | https://github.com/codegraphtheory/context-forge-rag | codegraphtheory | Installable Hermes profile for production RAG architecture, retrieval evaluation, LLMOps, observability, and release readiness | Medium adjacent signal: profiles can encode domain-specific evaluation and release-readiness expectations. | Knight Bus profiles should encode domain-specific graph correctness expectations, not only algorithm names. | Medium. GH CLI verified. |
+| Jun 25 2026 | linked repo in profile ecosystem | https://github.com/codegraphtheory/chainforge | codegraphtheory | Installable Hermes profile for security-first blockchain architecture, smart contracts, DeFi, audits, governance, and tokenomics | Medium-low direct graph signal, but relevant to audit-heavy graph-like domains such as transaction flows and contract dependency graphs. | Useful if DeFi/indexing becomes a PMF branch; otherwise mainly a profile-packaging reference. | Medium. GH CLI verified. |
+| Jun 23 2026 | Valeriy post shared in chat | https://x.com/predict_addict/status/2069458140848857128 | Valeriy / predict_addict | Mathematical-first-principles post around CliffordNet / geometric algebra, arguing for right representation over ad hoc engineering tricks | Strong design-principle analogy. For graph storage, the key question is not "Rust vs JVM" or "compress harder"; it is "what algebra/access representation makes the algorithm natural?" | Supports custom OLAP storage per algorithm family: CSR for frontier traversals, interval structures for temporal graphs, sketches for approximate similarity, etc. | High for principle; medium for direct graph relevance. Public X post opened. |
+| Jun 23 2026 / source linked from Valeriy thread | https://arxiv.org/abs/2601.06793 | Zhongping Ji | "CliffordNet: All You Need is Geometric Algebra"; proposes a geometric-algebra neural architecture with sparse rolling and parameter-efficiency claims | Indirect but useful. It is a reminder that representation can dominate raw implementation language. | Knight Bus should search for graph representations that reduce state dimensionality or iteration work, not only memory allocators. | Medium. arXiv page fetched; full paper not deeply reviewed. |
+| Jun 23 2026 / source linked from Valeriy thread | https://github.com/ParaMind2025/CAN | ParaMind2025 | CliffordNet/CAN code repository; GH CLI capture showed 185 stars / 24 forks on 2026-08-07 | Low direct graph-OLAP relevance, but useful if the team wants a concrete example of math-shaped implementation. | Keep as inspiration, not core evidence. | Medium-low. GH CLI verified. |
+| Jun 23 2026 | private chat signal, no URL | N/A | group discussion | Big-O discussion: people often discuss time but not space; bandwidth, memory bandwidth, network latency, and changing ground truth can dominate theoretical algorithm framing | Very strong thesis reinforcement. Knight Bus should make space complexity and hardware locality first-class product fields, not appendix metrics. | The product can win by selling predictable RAM/time envelopes and verified output under changing operational constraints. | Medium-high. Private chat only; aligns with public systems sources. |
+| Jun 22 2026 | private chat signal, no URL | N/A | group discussion | Agent-maxxing vs token-maxxing; many small verifier agents checking individual files/workflows instead of one huge prompt | Strong operational signal for graph-of-work. Verification-first LLM development creates task/file/dependency graphs that need routing, summarization, and critical-path analysis. | Supports a developer-facing graph compute wedge: analyze agent task graphs and codebase verification graphs under bounded local resources. | Medium. Private chat only. |
+| Jun 17 2026 | Google Cloud Tech post shared in chat | https://x.com/GoogleCloudTech/status/2067012903337664886 | Google Cloud Tech | Open Knowledge Format announcement: portable knowledge format for agents, linked to GitHub repo and Google Cloud blog | Very strong receipt/artifact source. OKF's markdown-plus-frontmatter shape suggests how Knight Bus can store run receipts, graph artifacts, provenance, freshness, and inspectable links. | Product implication: use boring, versionable, human/agent-readable artifacts for verification packets, then layer indexes/viewers over them. | High. Public X post opened and OKF repo resolved. |
+| Jun 17 2026 | Google OKF repository directory | https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf | GoogleCloudPlatform / knowledge-catalog | OKF directory with README, SPEC, bundles, samples, source, and tests; GH CLI capture showed parent repo 8,364 stars / 707 forks on 2026-08-07 | Strong format and ecosystem clue. OKF is designed for humans, agents, search indexes, graph viewers, provenance/freshness, and progressive disclosure. | Knight Bus receipts can be OKF-like: a folder of versioned markdown/YAML artifacts plus machine-checkable metrics and graph links. | High. GH CLI and README read. |
+| Jun 17 2026 | Google OKF blog link resolved from chat | https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing | Google Cloud Blog | Blog source for OKF and data-sharing/knowledge-bundle framing | Useful external narrative support for portable, vendor-neutral knowledge artifacts. | Read later for exact product language if we standardize a Knight Bus receipt bundle format. | Medium-high. URL resolved; full article not deeply extracted yet. |
+| Jun 17 2026 | graphtheory post shared in chat | https://x.com/graphtheory/status/2067290759821443566 | graphtheory | Stochastic systems need engineering discipline and customers need verifiable/auditable evidence, not just claims that software "works" | Very strong verification spine source. Graph compute over agent outputs and evolving data will be partly stochastic upstream, so outputs need auditable receipts and bounded invariants. | Reinforces that "proof-carrying execution" is a buyer-facing feature, not internal hygiene. | High. Public X post opened. |
+| Jun 17 2026 | private chat signal, with public architecture source added | https://iggy.apache.org/docs/introduction/architecture/ | Apache Iggy | Chat noted Apache Iggy as inspiration for storage in the shape of the read; official docs describe append-only log segments, partition/topic hierarchy, offsets, indexes, io_uring/vectored I/O, cache strategy, and page-aligned memory pool | Extremely strong systems analogy. Iggy wins by shaping storage around message read/write paths; Knight Bus can shape graph OLAP artifacts around algorithm access paths. | This is the best concrete mental model for "exact graph-shaped OLAP datasets": segment/index/frontier/logical-offset layouts by algorithm family. | High for architecture analogy; Iggy itself is a streaming platform, not a graph database. |
+| Jun 17 2026 | public architecture source for Iggy | https://github.com/apache/iggy | Apache Iggy | Rust persistent streaming platform README emphasizing low latency, low resource usage, io_uring, thread-per-core, zero-copy, and benchmarking | Strong implementation-style source for the storage/read-shape thesis. | Use as a benchmark-receipt and storage-architecture reference when designing Knight Bus artifacts. | High. Official repo opened. |
+| Jun 17 2026 | Shoggoth link shared in chat | https://shoggoth.ai/ | Shoggoth | Site was under maintenance during capture | Currently weak. Preserve only as a lead until public content returns. | No PMF conclusion yet. | Low. Site opened but content unavailable. |
+| Jun 16 2026 | orb_net / private chat around graph universality | https://github.com/gitschwifty/orboros | gitschwifty / orboros | Rust repo linked in chat; GH CLI capture showed 0 stars / 0 forks and no description on 2026-08-07 | Weak source for now. The surrounding chat claim that graphs feel like a universal core language is useful as narrative, but this repo needs code reading before it becomes evidence. | Keep as a possible local graph/agent repo lead, not a product conclusion. | Low-medium. Repo verified but not inspected. |
+| Jun 16 2026 | group link surfaced in chat | https://x.com/notch/status/2066795499475112205 | notch | Comment about the difficulty of simulating Conway's Game of Life inside other cellular automata | Low direct graph relevance, but it reinforces a systems truth: substrate choice matters, and simulating one computational shape inside another can be costly. | Use only as an analogy for why generic storage may be inefficient for graph algorithms. | Low-medium. Link visible in chat preview; not deeply opened. |
+| Jun 13 2026 | graphtheory post shared in chat | https://x.com/graphtheory/status/2065843840180007112 | graphtheory | Bellman-Ford hand-written Python post | Medium graph-algorithm literacy signal. Bellman-Ford is a canonical shortest-path/dynamic-programming fixture and a good small correctness test for negative-weight edge handling. | Add shortest paths/Bellman-Ford to the fixture map, even if it is not the first commercial OLAP wedge. | High for existence of post; low-medium for PMF weight. |
+| Jun 13 2026 | Mathematica post shared in chat | https://x.com/mathemetica/status/2065744824884756498 | Mathematica | Named graph gallery with 35 classic graph examples such as cages, Chvatal graph, Moser spindle, Meredith graph, and Tutte graph | Strong benchmark-fixture clue. Named graphs are small but structurally rich, making them excellent regression tests for centrality, traversal, coloring, girth, symmetry, and path algorithms. | Build a "named graph fixture pack" for correctness and demo inspectability before relying only on giant synthetic graphs. | High. Public X title captured. |
+| Jun 12 2026 | private chat signal around Can Boluk article | https://x.com/_can1357/status/2064802476742574459?s=20 | Can Boluk | "Snapcompact: SoTA Compaction. Instant, Local, Free: Pick 3"; chat discussed dense-text bitmaps as cheaper context carriers and the danger that compression relocates loss/decode burden | Very strong storage-format analogy. A format can reduce token/RAM cost, but if decode quality or conflict resolution is not measured, the system only moved risk elsewhere. | For graph storage, every custom layout must measure lost semantics, reconstruction error, and degraded downstream algorithm output if it is approximate. | High for source/title and chat relevance; full article still needs deeper extraction. |
+| Jun 12 2026 | private chat signal, no URL | N/A | graphtheory / group discussion | Externalized memory at scale needs hybrid retrieval, agentic search, context pinning, specialized chunking, and conflict handling; conflicting connections can poison an agent memory bank | Very strong adjacent PMF signal. This is the local-context-graph problem in plain language: graph memory needs provenance, supersession, conflict resolution, and bounded retrieval. | Knight Bus can differentiate by making "memory graph retrieval under budget with conflict-aware receipts" a demo track. | Medium-high. Private chat only; aligned with public context-tooling sources. |
+| Jun 11 2026 | Goodfire post shared in chat | https://x.com/GoodfireAI/thread/2065118189986717902 | GoodfireAI | Predictive data debugging: inspect what a model may learn from training data before training; DPO data examples included broken guardrails and hallucination-oriented artifacts | Strong verification analogy. Before running an expensive graph algorithm, users should be able to debug the input graph/projection and predict likely failure modes. | Add a "debug graph before compute" step to the planner: schema holes, giant components, suspicious hubs, disconnected regions, label/property drift, and provenance gaps. | High. Public X title opened. |
+| Jun 11 2026 | soulblocks post shared in chat | https://x.com/soulblocks/status/2064965247673516332 | soulblocks | "logic spaces" post | Conceptual semantic-graph signal. Useful mainly as continuation of Soulblocks language/logic graph work. | Keep as creative/local graph inspiration unless a repo or executable artifact appears. | Medium-low. Public X title opened. |
+| Jun 10 2026 | Laurence / ArbiterSec link shared in chat | https://arbitersec.com/ | Arbiter Security / Laurence Avent | AI-powered security tools site; chat discussed concolic falsification and agent-led vulnerability hunting | Medium-high verification adjacent signal. Security analysis is graph-shaped: paths, states, symbolic constraints, reachability, evidence trails, and exploitability proofs. | Possible future vertical: bounded graph algorithms over code/property/execution graphs for local security verification. | Medium. Site opened; deeper product pages not read yet. |
+| Jun 10 2026 | codegraph post/link shared in chat | https://supermodeltools.com/blog/dead-code-benchmark | Supermodel Tools / codegraph context | Dead-code benchmark URL mentioned in chat; during capture the page returned Railway 404 | Useful but unresolved. The chat claim was that codegraph built a data plane/evals and beat Opus at dead-code detection, but the public source is currently unavailable. | Keep as unresolved benchmark-culture lead; do not rely on the result until recovered. | Low-medium. URL opened but 404. |
+| Jun 10 2026 | codegraph private/product discussion | https://x.com/codegraph/status/2064394441691975985 | codegraph | Predictive intents for Hermes: "Architecture should be benchmarked not debated"; surrounding chat described extracting user intents from a knowledge graph, splitting human-required vs agent-achievable actions, and returning artifacts plus "hours returned" | Very strong local agent-graph PMF signal. This is a concrete graph workload: intent graph, task graph, human/agent action partition, calendar/action routing, artifact receipt, weekly value summary. | This may be a better demo than raw PageRank: "turn personal/work memories into a bounded intent graph and compute what the agent should do next." | High for public title and private context; article body needs deeper extraction. |
+| Jun 9 2026 | private chat signal around context windows | N/A | group discussion | Long-context workflows were described as many specialized sessions/subagents where later sessions verify or target earlier specialized context | Strong workflow-graph signal. Even when context windows are huge, users create graphs of sessions, summaries, verifier checks, and handoffs. | Knight Bus can serve as the memory/verification substrate for cross-session task graphs, not just database analytics. | Medium-high. Private chat only. |
+| Jun 9 2026 | public post surfaced in chat | https://x.com/banteg/status/2064414430943744334 | banteg | Security-work frustration with safety behavior of a model | Indirect local-agent signal. If hosted models/tools are blocked or unpredictable for security work, local/private verifiable workflows become more attractive. | Relevant only if Knight Bus targets local security/code graphs. | Medium-low. Public X post opened. |
+| Jun 8 2026 | soulblocks post shared in chat | https://x.com/soulblocks/status/2063840283859820754?s=20 | soulblocks | "The logical space behind interpretation" | Conceptual semantic-graph signal that continues the Soulblocks thread around logic/language spaces. | Useful as creative benchmark inspiration, but still needs executable artifact before becoming core evidence. | Medium-low. Public X title opened. |
+| Jun 8 2026 | projectionheart post surfaced in chat | https://x.com/projectionheart/status/2063998259375255848 | projectionheart | Preview unavailable; surrounding chat said a graph thing was coming | Weak lead. Keep only because the group framed it as graph-technology work. | No product conclusion until resolved. | Low. Public URL opened but title unavailable. |
+| Jun 5 2026 | Sriram Kiron / qter paper shared in chat | https://qter.dev/paper.pdf | Arhan Chaudhary, Henry Rovnyak, Asher Gray | "Qter: the Human Friendly Rubik's Cube Computer"; a computer architecture over Rubik's Cube/permutation puzzles with machine code, high-level language, and an architecture solver | Strong representation/substrate analogy. Computation can be recast around a physical/permutation structure; the chosen substrate changes what is natural or expensive. | Useful for first-principles architecture thinking: graph algorithm storage should be designed from the operation group/access path, not retrofitted after generic storage. | High for source extraction; medium-low for direct PMF. PDF extracted locally with `pypdf`. |
+| Jun 5 2026 | qter linked repo from PDF | https://github.com/qter-project/qter | qter-project / qter | Rust repo for the human-friendly Rubik's Cube computer; GH CLI capture showed 76 stars / 2 forks on 2026-08-07; topics include group theory and esoteric programming language | Good code-reading lead only if we want unusual computational-substrate inspiration. | Not a graph database reference, but it reinforces the math-shaped representation principle. | Medium. GH CLI verified. |
+| Jun 5 2026 | Massimo post shared in chat | https://x.com/rainmaker1973/status/2062912329319096622 | Massimo / Rainmaker1973 | Rubik's Cube and graph theory | Low-to-medium algorithm education signal. Rubik's Cube is a state graph / group theory playground. | Could join named graphs as a small visual fixture class for state-space search demos. | Medium-low. Public X post opened. |
+| Jun 5 2026 | Markus Buehler post shared in chat | https://x.com/ProfBuehlerMIT/status/2062865983459475830 | Markus J. Buehler | Self-evolving AI scientist / principled discovery post; scientific discovery requires perceiving when the search space changes | Medium adjacent signal. Dynamic search spaces and state changes are graph-shaped, but this needs deeper source reading before becoming architecture evidence. | Potentially relevant to adaptive graph-workflow systems; not core to v0. | Medium-low. Public X post opened. |
+| Jun 4 2026 | graphtheory token timeline post shared in chat | https://x.com/graphtheory/status/2062392144787083454 | graphtheory / codegraphtheory | Open-source Solana trust/safety analysis tool link | Medium graph/security lead. Token timelines, wallet/token relationships, risk scores, and provenance are graph-shaped. | DeFi/security graph analysis can be an applied benchmark family, especially for local/private/auditable computation. | Medium-high. Public X post opened. |
+| Jun 4 2026 | linked repo from token timeline post | https://github.com/codegraphtheory/solana-rug | codegraphtheory / solana-rug | Open-source Solana trust and safety analysis tool for token risk scoring, rug-pull detection, on-chain analysis, SPL Token checks, Pump.fun reviews, and Hermes workflows; GH CLI capture showed 11 stars / 10 forks on 2026-08-07 | Concrete repo for graph-like security/trust workloads. | Good future fixture for transaction/entity/risk graph analysis if licensing and code quality check out. | High for existence; medium for PMF weight. |
+| Jun 3 2026 | codegraph article shared in chat | https://x.com/codegraph/status/2062252358239678868?s=20 | codegraph | ARC-AGI/coding-skills article was mentioned nearby; public title captured as "We all know coding Is Dead. Here are The Top 5 Skills You Need to Stay Relevant" | Weak-to-medium content/benchmark culture lead. It may matter if it includes ARC-AGI and evaluation framing, but title alone is not enough. | Add to unresolved only if we map agent benchmark culture. | Low-medium. Public X title opened. |
+| Jun 2 2026 | soulblocks post shared in chat | https://x.com/soulblocks/status/2061732468382990775?s=20 | soulblocks | Consistency/possibility statement in symbolic graph-like notation | Low direct systems relevance, but continues the semantic-logic graph theme. | Keep as creative/local graph source only. | Low-medium. Public preview visible in chat. |
+| Jun 1 2026 | Nishkarsh / HydraDB post shared in chat | https://x.com/contextkingceo/status/2061452631298752790 | Nishkarsh / HydraDB | "Graph native context infrastructure for agents"; precise context and observability into why agents act; graphs as AI context management | Extremely strong market evidence. HydraDB is directly occupying the graph-native agent context infrastructure category. | Knight Bus should either integrate with or differentiate sharply from this category by focusing on budget-bounded graph algorithms/storage profiles and proof-carrying compute receipts. | High. Public X post opened. |
+| Jun 1 2026 | HydraDB public site from internet confirmation | https://hydradb.com/ | HydraDB | Public site describes graph-native context infrastructure, tiered storage with hot in-memory cache, warm NVMe SSD, cold object storage, Cypher reads/writes, WAL/value log, GraphBLAS indexing, observability, and storage-based pricing | Critical comparator/reference. It validates the "graphs for agent memory/context" market and shows tiered storage is already part of the competitive narrative. | Knight Bus differentiation should be algorithm-shaped OLAP profiles, bounded RAM/time receipts, local/embedded execution, and verifiable graph preflight rather than generic graph memory alone. | High. Public site opened through internet search. |
+| Jun 1 2026 | HydraDB use-cases page from internet confirmation | https://hydradb.com/use-cases | HydraDB | Use cases include AI coding assistant memory, research intelligence, financial services, healthcare, insurance, support, and IT operations; page criticizes flat vector search and lost temporal/evolving context | Strong PMF map for agent-memory graph buyers. | Use these verticals to choose demo datasets, but avoid competing head-on unless Knight Bus has a sharper bounded-compute receipt. | High. Public page opened through internet search. |
+| Jun 1 2026 | theory link near HydraDB chat cluster | https://www.techrxiv.org/doi/full/10.36227/techrxiv.175606841.18630027/v1 | TechRxiv / Josef Kurk Edwards | "Cryptographic Complexity and P vs. NP"; discrete logarithms, error matrix verification, and cryptographic systems | Theory-adjacent. It connects to zero-knowledge/cryptography discussion but not directly to graph PMF. | Preserve as a low-priority theory lead only if we explore cryptographic receipts or privacy-preserving graph compute. | Low-medium. Public page opened. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://hydradb.com/blog/neo4j-alternatives | HydraDB / Nishkarsh Srivastava | Neo4j alternatives guide: names Neo4j heap/page-cache/transaction-memory concerns, cost, multi-system sprawl, explicit temporal-history modeling, and HydraDB's object-storage/versioned-history/hybrid-retrieval positioning; also says HydraDB is not a Cypher drop-in | Critical comparator detail. It validates our RAM-language caution: Neo4j is disk-backed and does not require the whole graph in RAM, so comparisons must specify active working set, heap, transaction state, page cache, and query shape. | Knight Bus must be precise: "bounded OLAP execution with explicit storage profiles and receipts" is more defensible than "Neo4j but lower RAM." | High. Current public page opened and read. |
+| Jun 10 Arbiter lead / Aug 7 source deepening | https://arbitersec.com/aletheia/ | Arbiter Security / Aletheia | Binary analysis for agents: pure Rust, structured MCP tools, SSA decompilation, taint, concolic analysis, hybrid fuzzing, 14 CWE classes, concrete witnesses, CVSS, SARIF, four architectures, PE/ELF/Mach-O | Strong verification-workload comparator. Aletheia's pitch is not "AI thinks harder"; it gives agents structured state, tools, witnesses, and reproducible output. | Knight Bus should mimic this posture for graph compute: structured tools, explicit state, reproducible witnesses/receipts, and benchmark fixtures. | High. Current public page opened and read. |
+| Jun 10 Arbiter lead / Aug 7 source deepening | https://arbitersec.com/ | Arbiter Security | Arbiter builds a state graph from web traffic, infers authorization/ordering constraints, searches vulnerability classes, verifies findings in a real browser, and exports evidence | Excellent adjacent architecture pattern: build a graph of system state, infer constraints, search for violations, verify with executable evidence. | A graph-compute product can be framed similarly: build graph projection, infer resource/correctness constraints, search/compute, verify, export receipt. | High. Current public page opened and read. |
+| Jun 1 HydraDB lead / Aug 7 internet expansion | https://arxiv.org/abs/2607.26520 | Alp Niksarli, Gopesh Baheti | "A Graph-Native Bitemporal Memory Store for Conversational AI Agents"; agent-local Neo4j property graph with HNSW vector indexes and bitemporal valid/transaction time; LongMemEval evaluation with explicit failure-mode discussion | Strong temporal-memory architecture source. It shows a local graph memory path using Neo4j itself, and the benchmark result exposes where retrieval paths fail. | Useful to avoid overclaiming: bitemporal graph memory helps knowledge-update questions but can hurt temporal reasoning if filtering/ranking dilutes results. Receipts need failure-mode sections. | High. arXiv page opened. |
+| Jun 1 HydraDB lead / Aug 7 internet expansion | https://arxiv.org/abs/2606.01886 | Ailiya Borjigin, Igor Stadnyk, Ben Bilski, Maksym Chikita, Dmytro Kyrylenko, Sofiia Pidturkina, Julia Stadnyk | "Absorbing Complexity"; financial agent knowledge harness with bounded working context buffer, temporal graph memory, wiki audit surface, background extraction, maturity/decay, and write-time invalidation; reports latency/token/staleness improvements on a synthetic benchmark | Very strong PMF/product design source. It uses temporal graph memory and audit surfaces to absorb complexity from users rather than pushing memory management onto them. | Knight Bus should treat "bounded context/compute plus audit surface" as a product primitive, especially for finance/compliance-style graph workloads. | High. arXiv page opened. |
+| Jun 1 HydraDB lead / Aug 7 internet expansion | https://arxiv.org/abs/2606.28781 | Krishna Halaharvi | "HyphaeDB"; reinterprets HNSW topology as a communication fabric for multi-agent memory, with knowledge nodes, topology edges, memory diffs, gossip propagation, contradiction detection, and consensus formation | Medium-high creative architecture lead. It suggests graph topology can do more than search: it can carry propagation and consensus dynamics across agents. | Relevant for agent-memory graphs, but likely too speculative for first OLAP wedge unless converted into small fixtures and failure-mode tests. | Medium-high. arXiv page opened. |
+| Jun 17 OKF lead / Aug 7 source deepening | https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md | GoogleCloudPlatform / OKF | OKF v0.2 spec: markdown/YAML bundle, provenance/trust/lifecycle fields, actor convention, Attested Computation concepts, executor receipt fields, deterministic attester, and distinction between verified definitions and per-run attestation | Critical receipt-design source. OKF gives a vocabulary for Knight Bus run artifacts: `sources`, `generated`, `verified`, `stale_after`, `executor.receipt`, `attester`, and per-run receipts. | Knight Bus receipts should separate policy-reviewed algorithm definitions from per-run attestation. A fresh definition still needs each run attested; a stale definition may still run but should warn/refuse. | High. GitHub spec read through GH API. |
+| Jul 4 CodeGraph lead / Aug 7 source deepening | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/codegraph-ab-matrix.md | Colby McHenry / CodeGraph | A/B benchmark matrix: 37 language/size cells; codegraph reduced file reads from 159 to 38, greps from 72 to 22, and tool calls from 321 to 189, while noting cost and run variance caveats | Strong benchmark-receipt style. The doc discloses date, branch, version, model, prompt style, variables, size proxy, noise caveats, totals, and reproduce scripts. | Knight Bus benchmark docs should disclose the same shape: dataset, hardware, version, workload, metric definitions, caveats, and reproduce harness. | High. GitHub benchmark doc read. |
+| Jul 4 CodeGraph lead / Aug 7 source deepening | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/residual-context-occupancy.md | Colby McHenry / CodeGraph | Residual context occupancy metric: measures how many tokens of tool output remain resident after a task; distinguishes throughput from stock/occupancy; includes contamination detection for hidden CLI access | Very strong analogy for RAM. A single graph job's runtime is a flow metric, but its resident working set is a stock that affects later work. | Knight Bus should report residual memory/artifact occupancy, not only runtime and peak RAM: what state remains resident, mapped, cached, or spilled after the run? | High. GitHub benchmark doc read. |
+| Jul 4 CodeGraph lead / Aug 7 source deepening | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/agent-eval-feedback-metrics.md | Colby McHenry / CodeGraph | Three metric framework: residual context occupancy, explore sufficiency, and allocation efficiency; explicitly says the metrics answer different questions and must be read together | Excellent product-metrics pattern. A retrieval/storage change can improve one metric while worsening another. | Knight Bus should not collapse correctness, RAM, latency, and output usefulness into one score. Each storage profile needs multiple orthogonal metrics. | High. GitHub benchmark doc read. |
+| Jul 4 CodeGraph lead / Aug 7 source deepening | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/call-sequence-analysis.md | Colby McHenry / CodeGraph | Call-sequence analysis: read savings did not fully convert to wall-clock; trace adoption was the bottleneck; payload size and tool-call sequence explained remaining latency | Strong systems-product lesson. Having the efficient path is not enough if the planner/agent does not choose it. | Knight Bus needs planner adoption metrics: did the system actually choose the low-RAM storage profile, or fall back to a broad scan/materialization path? | High. GitHub benchmark doc read. |
+| Jul 4 CocoIndex lead / Aug 7 source deepening | https://github.com/cocoindex-io/cocoindex-code/blob/main/CLAUDE.md | CocoIndex Code | Architecture doc: long-lived daemon, per-request client connections, msgspec protocol, Project registry, CocoIndex app, SQLite via sqlite-vec, structural grep, settings, and daemon lifecycle | Strong local-index architecture reference. It separates daemon/indexing/search concerns cleanly and gives agents operational docs. | Knight Bus should likely separate planner/daemon/artifact registry/run executor/receipt index similarly, with clear agent-facing operational docs. | High. GitHub repo doc read. |
+| Jul 4 CocoIndex lead / Aug 7 source deepening | https://github.com/cocoindex-io/cocoindex-code/blob/main/EMBEDDINGS.md | CocoIndex Code | Embedding guide: local vs cloud vs local server tradeoffs, language-aware chunking, 512-token local model constraints, encoder/decoder speed differences, MPS memory limits, OOM retry, and hardware-aware settings | Strong compute-router analogy. It exposes hardware/privacy/cost/speed tradeoffs directly to users instead of hiding them. | Knight Bus should expose storage/algorithm modes like CocoIndex exposes embedding modes: local/offline, cloud/high-quality, GPU/CPU, RAM cap, speed, and quality tradeoff. | High. GitHub repo doc read. |
+| Jun 27 Hermes profile lead / Aug 7 source deepening | https://github.com/codegraphtheory/hermes-profile-template/blob/main/BOUNTIES.md | codegraphtheory / Hermes profile template | Bounty/payout proof file: PRs, contributors, wallets, Solscan transaction links, merged integration commits, and future bounty rules | Strong contributor-market/process signal. It shows public proof and traceability for distributed agent-profile work. | Knight Bus algorithm/storage profiles could use public issue/PR/fixture/receipt proofs for bounties, especially if community contributes algorithm packs. | High. GitHub file read. |
+| Jun 4 Solana Rug lead / Aug 7 source deepening | https://github.com/codegraphtheory/solana-rug/blob/main/VALIDATION_REPORT.md | codegraphtheory / Solana Rug Guard | Multi-token validation report: BONK, WIF, RUG, MUTT; score comparison, risk rationale, bug fixes, raw JSON, and explicit expected-vs-actual verification table | Excellent applied receipt pattern. It includes test cases, expected/actual outputs, reasons for score changes, and raw machine-readable evidence. | Knight Bus graph algorithm profiles should ship validation reports with fixtures, expected results, raw JSON/receipt output, and change reconciliation when scoring changes. | High. GitHub validation report read. |
+| Jun 4 Solana Rug lead / Aug 7 source deepening | https://github.com/codegraphtheory/solana-rug/blob/main/RUG_FORENSICS.md | codegraphtheory / Solana Rug Guard | Forensics report: token fundamentals, market data, safety score breakdown, score-version reconciliation, deployer wallet analysis, transaction timeline, sniper status, and final assessment | Strong example of graph-like audit storytelling. It turns raw on-chain entities/events into a human-readable explanation with verified sources and versioned scoring. | A Knight Bus receipt should similarly explain graph output in terms of entities, edges/events, scoring factors, timeline, and version changes. | High. GitHub forensics report read. |
+| Jun 4 Solana Rug lead / Aug 7 source deepening | https://github.com/codegraphtheory/solana-rug/blob/main/SKILL.md | codegraphtheory / Solana Rug Guard | Hermes skill metadata and instructions: 13 deterministic risk checks across RPC, DexScreener, transaction patterns, and heuristics; JSON and markdown outputs; no API keys; graceful fallback | Strong algorithm-profile packaging example. A deterministic graph/security workload is exposed as an agent skill with exact inputs, commands, outputs, and score interpretation. | Knight Bus algorithm profiles should be skill-like: when to use, how to run, input schema, output schema, deterministic checks, thresholds, and human-readable report sections. | High. GitHub skill file read. |
+| Jun 28 SGH lead / Aug 7 source deepening | https://arxiv.org/abs/2604.11378 | Hu Wei | Structured Graph Harness source clarification: position/design paper with scheduler-theoretic framing, static DAG, immutable plan version, separated planning/execution/recovery, node state machine, and future experimental framework; not empirical results | Useful but should be weighted correctly. It is architecture theory, not production proof. | Use SGH for vocabulary and benchmark design, not as evidence that a particular agent graph runtime works. | High for source classification; empirical confidence intentionally limited. |
+| Jun 17 OKF lead / Aug 7 source deepening | https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing | Google Cloud / Sam McVeety / Amir Hormati | OKF launch article: positions OKF as a portable, vendor-neutral, agent- and human-friendly directory of markdown files with YAML frontmatter; concepts link through markdown into a graph; no SDK/platform required; includes producer/consumer independence and reference visualizer/agent examples | Strong artifact-design evidence. The most durable run receipt may be boring files with structured frontmatter, not a proprietary database-first format. | Knight Bus run profiles and receipts should be "just files" first, with SQLite/DuckDB indexes as acceleration. This helps LLMs, humans, git, CI, and external reviewers consume the same artifact. | High. Official Google Cloud blog read. |
+| Jun 17 Iggy lead / Aug 7 source deepening | https://iggy.apache.org/docs/introduction/architecture/ | Apache Iggy | Official architecture doc: append-only log, topic/partition/shard ownership, io_uring/vectored I/O, thread-per-core shared-nothing shards, NUMA-aware memory locality, `.log` plus `.index` segment files, index cache modes `all` / `open_segment` / `none`, page-aligned memory pool, and threshold-triggered flush pipeline | Very strong storage-design reference. It converts "low RAM" into explicit knobs: cache all indexes, cache active segment only, or read indexes on demand. | Knight Bus should offer storage-profile knobs this explicit: materialize all, materialize active frontier/window, or disk-seek on demand, with receipts showing which mode ran. | High. Official docs read. |
+| Jun 17 Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/configs/src/server_config/cache_indexes.rs | Apache Iggy | Source implementation of `CacheIndexesConfig`: `All`, default `OpenSegment`, and `None`, with backwards-compatible bool parsing | Concrete proof that the memory/cache strategy is a user-facing config, not just an internal optimization. | Knight Bus algorithm profiles should expose memory strategy as declarative config, not hardcoded heuristics. | High. GHCLI source read. |
+| Jun 17 Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index.rs | Apache Iggy | Source implementation of sparse 24-byte index entries: offset, timestamp, position; in-memory cache supports lower-bound lookup by offset/timestamp | Useful implementation pattern for graph artifacts. Sparse indexes let the runtime jump to the right physical region without keeping every logical item resident. | Graph analogues: node-id -> neighbor-block position, time -> edge-window position, frontier checkpoint -> component/page position, score-range -> posting block. | High. GHCLI source read. |
+| Jun 17 Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_reader.rs | Apache Iggy | Source reader can load all sparse index entries into memory or binary-search the file with single-entry reads when indexes are too large to materialize; partial/torn entries are ignored | This is almost exactly the RAM-bounded pattern we need: same semantic lookup, two physical modes, with explicit fallback when full materialization is too costly. | Knight Bus should implement "load index" vs "binary-search-on-file" vs "scan window" as documented strategy choices per algorithm profile. | High. GHCLI source read. |
+| Jun 17 Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/journal.rs | Apache Iggy | Partition journal code includes in-memory dev storage warnings, op/message/timestamp maps, commit-frontier ceiling to avoid dirty reads, bounded evicted-ring retention by entry count and bytes, and honest `RangeEvicted` behavior | Strong correctness+RAM design lesson. Bounded memory is not enough; when data falls out of the resident window, the system must say so honestly and recover via another path. | Knight Bus bounded runs should have explicit retention windows and honest "not resident/spilled/evicted" receipt fields instead of silently degrading output. | High. GHCLI source read. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://docs.hydradb.com/get-started/v2/introduction | HydraDB docs | SDK intro: positions HydraDB as unified context substrate for AI; claims 90%+ LongMemEval accuracy and sub-200ms retrieval latency; separates user memories, semantic knowledge, and episodic experiences; says vector search finds similarity but agents need usefulness | Direct PMF comparator. HydraDB is claiming graph-native context delivery, personalization, temporal/evolving memory, and measurable retrieval performance. | Knight Bus should not pitch generic agent memory. The differentiated wedge is algorithmic compute over context/task/evidence graphs with explicit budget and receipt. | Medium-high. Vendor docs; claims need independent benchmark scrutiny. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://docs.hydradb.com/essentials/v2/architecture | HydraDB docs | Architecture doc: control, ingestion, and retrieval planes; asynchronous ingestion; `graph_creation` status is queryable before full completion; retrieval combines metadata filters, semantic vector, BM25, optional graph traversal, thinking/fast modes, and response shaping | Strong product-surface comparator. It exposes ingestion/query phases and user-visible knobs rather than hiding all retrieval complexity. | Knight Bus should expose phase status similarly: projection ready, index ready, graph-profile ready, receipt verified, spill complete, baseline parity pending. | High for product-surface evidence. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://docs.hydradb.com/essentials/v2/context-graphs | HydraDB docs | Context graph docs: relationships are triplets, graph context augments retrieval but does not replace it; use graph context for synthesis, ownership, sequence, dependency, and multi-hop questions; skip it for direct lookups because traversal adds response size and latency | Extremely relevant product lesson. Graph is not always the right path. Budget-bounded graph compute needs a planner that can say "do not use graph mode here." | Knight Bus should make graph algorithms opt-in/profile-driven and explain when lower-RAM/graph-shaped mode is useful vs unnecessary overhead. | High. Official docs read. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://docs.hydradb.com/essentials/v2/bring-your-own-graph | HydraDB docs | Bring Your Own Graph docs let sources provide explicit entities and relations through `graph_payload`, including relation context and temporal details, mixed with documents/app knowledge | Good benchmark-fixture clue. Users can bring explicit graphs instead of relying only on extraction. | Knight Bus demo fixtures should support BYOG input: user-supplied entities/edges/properties/temporal fields, not only imported Neo4j data. | High. Official docs read. |
+| Jun 1 HydraDB lead / Aug 7 source deepening | https://benchmarks.hydradb.com/hydradb.pdf | HydraDB benchmark report | Benchmark PDF: describes Composite Context protocol, sliding-window inference, Git-style temporal graph, versioned context graph, hybrid semantic/BM25 retrieval, graph path traversal, LongMemEval-s setup of 500 question-conversation stacks averaging over 115k tokens, and reported 90.79% overall accuracy under Gemini 3.0 Pro judging | Important but vendor-reported comparator. It gives a concrete receipt shape: dataset, task categories, scoring prompts, judge protocol, category tables, and model-scale checks. | Knight Bus needs the same disclosure style plus stronger systems metrics: RAM, active working set, latency phases, spill, hardware, and independent correctness oracle where possible. | Medium-high. Public PDF read; vendor claims should be independently replicated before being used as facts. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://thegraph.com/docs/en/subgraphs/developing/creating/subgraph-manifest/ | The Graph docs | Subgraph manifests define networks, contracts, events, entity mappings, data source templates, start/end blocks, declared entities, and `indexerHints.prune`; spec releases include pruning, timeseries/aggregations, indexed argument filtering, and proof-of-indexing changes | Very strong product-shape evidence. The Graph turns event-stream indexing into a manifest plus schema plus handlers plus retention policy. | Knight Bus algorithm/storage profiles should use a similar manifest shape: graph source, projection, storage plan, algorithm handlers, retention/time-travel semantics, receipt/proof requirements, and benchmark fixtures. | High. Official docs read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://thegraph.com/docs/en/subgraphs/developing/creating/assemblyscript-mappings/ | The Graph docs | Mappings transform source data into schema entities using AssemblyScript compiled to WASM; handlers accept typed events, calls, or blocks; entity IDs and duplicate-save semantics are documented | Strong implementation-boundary reference. It shows where domain-specific graph/entity construction logic lives outside the core indexer. | Knight Bus can separate core execution from profile-owned projection code: each profile defines how raw events/tables/files become algorithm-ready graph artifacts. | High. Official docs read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://github.com/graphprotocol/graph-node | graphprotocol / graph-node | Rust Graph Node repository; GitHub metadata captured 3,147 stars, 1,059 forks, Rust primary language, and 2026-08-03 push date; README describes Ethereum/blockchain indexing served over GraphQL with PostgreSQL and IPFS dependencies, plus large-instance DB splitting | Strong repo-scale comparator for graph-shaped indexing infrastructure. It is not Neo4j/GDS, but it is a large Rust graph/indexing system with production-shaped ingestion/query concerns. | Useful reference for manifest-driven ingestion, proof-of-indexing, pruning, Postgres-backed materialization, and operational separation of indexing/querying. | High for repo identity and surface area; code-level conclusions require targeted source reading. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://thegraph.com/docs/en/subgraphs/best-practices/pruning/ | The Graph pruning docs | Pruning removes archival entity versions to reduce storage and improve query speed; `prune: auto` is recommended for many subgraphs, while `prune: never` preserves time-travel and broader grafting capability | Critical low-RAM tradeoff precedent. Resource savings are not free; they change historical-query capability. | Knight Bus low-RAM modes must explicitly state what is no longer resident, what can be replayed, what historical state is unavailable, and whether correctness parity still applies. | High. Official docs read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://github.com/graphprotocol/graph-node/blob/master/docs/implementation/pruning.md | graphprotocol / graph-node implementation docs | Implementation note: Graph Node normally keeps full entity history for time-travel queries; pruning deletes old versions, records earliest block, respects reorg threshold constraints, and chooses rebuild/delete strategies with batched work | Excellent retention/receipt source. It shows a mature system exposing earliest-available history and pruning constraints instead of pretending optimization is invisible. | Knight Bus should add `earliest_replayable_state`, `history_retention`, `spill_retention`, and `time_travel_supported` fields to run receipts and profile manifests. | High. Public implementation doc read. |
+| Jun 23 DeFiLlama lead / Aug 7 source deepening | https://api-docs.defillama.com/ | DeFiLlama API docs | Public API separates free and pro endpoints; free endpoints expose protocols, protocol TVL, historical chain TVL, prices, historical prices, blocks by chain/timestamp, and stablecoin data | Strong public-data benchmark source. It gives reproducible market/chain metrics that can be compared against our graph-derived outputs. | Knight Bus can use DeFiLlama as oracle-like external comparison for some DeFi graph metrics, while clearly separating raw graph computation from API-derived validation. | Medium-high. Official API docs read; individual endpoint behavior still needs fixture tests. |
+| Jun 23 DeFiLlama lead / Aug 7 source deepening | https://github.com/DefiLlama/DefiLlama-Adapters | DefiLlama / DefiLlama-Adapters | JavaScript TVL adapter repo; GH metadata captured 1,232 stars, 7,544 forks, 35,598 commits, and 2026-08-06 push date; README/PR template require on-chain TVL computation and reject project-specific npm dependencies | Extremely strong contribution-ecology signal. A large public adapter ecosystem exists because metrics need many small source-specific implementations under common methodology. | Knight Bus algorithm profiles should copy this model: one profile folder per algorithm/data family, strict methodology, no hidden deps, test command, metadata, and review gates. | High. GitHub repo and PR template read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/skills/adapter-author/SKILL.md | DefiLlama adapter-author skill | Agent skill validates repo fit before editing, rejects unsupported metric types, requires on-chain source-of-truth for TVL amounts, uses examples/helpers, checkpoints before coding, tests with `node test.js`, and forbids invented metadata or extra dependencies | Exceptional agent-native process reference. It is a real example of encoding contribution policy as a skill. | Knight Bus should ship an `algorithm-profile-author` skill with repo-fit gates, fixture requirements, methodology fields, test commands, benchmark receipt requirements, and forbidden shortcuts. | High. GHCLI source read. |
+| Jun 23 DeFiLlama lead / Aug 7 source deepening | https://docs.llama.fi/list-your-project/how-to-write-an-sdk-adapter.md | DeFiLlama SDK adapter guide | Adapter guide says a TVL adapter takes a timestamp and chain block heights, returns raw balances locked in protocol contracts, and lets the SDK price/sum values; ChainApi provides calls, multicalls, logs, and balance helpers | Strong abstraction reference. It separates source-specific extraction from shared valuation/summing logic. | Knight Bus profiles should separate graph extraction, storage layout, algorithm execution, output normalization, and receipt verification so profile authors do not reimplement the runtime. | High. Official docs read. |
+| Jun 23 DeFiLlama lead / Aug 7 source deepening | https://docs.llama.fi/list-your-project/readme.md | DeFiLlama methodology docs | Methodology page defines many dashboards and open-source adapter repos, including TVL, fees/revenue, volumes, yields, stablecoins, oracles, bridges, token rights, and metadata; TVL is token value locked in protocol contracts with double-counting rules | Strong workload taxonomy. DeFi metrics are a family of repeated, mostly batch, graph/data jobs with source-specific adapters and public review. | Knight Bus can build a DeFi benchmark pack around wallet/token/protocol/event graphs, with methodologically strict receipt outputs rather than generic graph demos. | High. Official docs read. |
+| Jun 23 DeFiLlama lead / Aug 7 source deepening | https://docs.llama.fi/list-your-project/other-dashboards.md | DeFiLlama dimensions adapter docs | Dimension adapters compute time-range metrics using endpoints, blockchain calls, logs, blocks, balances, and versioned adapter conventions; v2 is recommended for arbitrary time ranges, while daily-only adapters remain simpler | Useful temporal batch-compute reference. It shows many useful analytics are scheduled, time-windowed, and methodologically constrained rather than interactive OLTP queries. | This strengthens the thesis that budget-bounded batch compute can extend beyond graphs into broader data engineering workloads once the graph wedge works. | High. Official docs read. |
+| Jun 29 OWL-Time lead / Aug 7 source deepening | https://www.w3.org/TR/owl-time/ | W3C OWL-Time | Candidate Recommendation Draft edited by Simon Cox and Chris Little; OWL-Time models instants, intervals, beginnings/endings, durations, temporal positions, temporal reference systems, and Allen interval relations | Strong temporal-graph correctness source. It gives canonical vocabulary and fixtures for temporal graph algorithms. | Knight Bus should build temporal graph fixture packs around interval overlap, contains, meets, before/after, temporal path, provenance, and reference-system semantics. | High. Official W3C spec read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://github.com/graphprotocol/graph-node/blob/master/docs/aggregations.md | graphprotocol / graph-node docs | Timeseries/aggregation docs: raw datapoints are immutable timeseries entities; aggregations are declared separately with hour/day intervals, dimensions, aggregate functions, cumulative flags, SQL-like expressions, and `current: include` for partial buckets | Very strong architecture precedent. It separates raw append-only facts, completed rollups, cumulative state, and on-the-fly current windows. | Knight Bus should model many workloads as immutable event/fact logs plus algorithm-specific rollups/checkpoints plus a current frontier/window, instead of one all-purpose graph image. | High. Raw GitHub doc read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/rollup.rs | graphprotocol / graph-node source | Rollup implementation generates bucket queries, cumulative queries with previous aggregate lookup via lateral joins, current-bucket queries over unrolled timeseries, and SQL expression rewriting from schema fields to columns | Important systems source. It shows the operational complexity behind "just an aggregation": grouping dimensions, cumulative previous state, current partial bucket, indexes, and query-shape-specific SQL. | Knight Bus algorithm profiles need explicit "state carry" sections: what previous state is needed, how it is found under a budget, and how current/uncommitted frontier data is combined with rolled-up state. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/graph/src/components/subgraph/proof_of_indexing | graphprotocol / graph-node source | Proof-of-indexing module contains `event.rs`, `online.rs`, `reference.rs`, and tests; PoI events include set/remove entity and deterministic errors; online streaming hash is checked against reference hashing | Critical proof-design source. It proves the index/projection by hashing the sequence of semantic entity effects rather than trusting logs. | Knight Bus needs a projection proof that covers graph artifact construction: entity/edge set/remove, deterministic projection errors, causality regions, and reference-vs-streaming proof tests. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/subgraph/proof_of_indexing/event.rs | graphprotocol / graph-node source | PoI deterministic-error event includes `redacted_events` to distinguish databases that would otherwise share the same hash after a handler error; debug output sorts entity fields deterministically | Excellent failure-mode evidence. Proof systems must encode rollback/redaction semantics, not only successful writes. | Knight Bus receipts should record discarded frontier updates, rolled-back projection effects, failed batches, and deterministic error boundaries so two different graph states cannot share a proof. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/subgraph/proof_of_indexing/online.rs | graphprotocol / graph-node source | Online PoI streams per-causality-region block event hashes, can pause and resume with previous region state, mixes in subgraph id, block hash, indexer, causality region name, and block count in the finisher | Direct design pattern for bounded compute. Streaming proof state can be maintained without keeping all prior events resident. | Knight Bus proof-of-run should be streaming and resumable: per-partition/per-frontier proof state, checkpoint pause/resume, final mix-in of dataset/profile/runtime identity and output hash. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI fixture check | https://github.com/graphprotocol/graph-node/tree/master/tests/integration-tests/poi-for-failed-subgraph | graphprotocol / graph-node integration fixture | Failed-subgraph fixture has a mapping handler that saves two entities and then asserts false, exercising deterministic failure behavior and proof-of-indexing for failed indexing | Useful verification-fixture precedent. Serious proof systems include unhappy-path fixtures, not only happy-path examples. | Knight Bus profile fixture packs should include failed projection, partial batch, spill failure, budget exceed, and deterministic rollback cases. | High. GHCLI fixture files read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 source deepening | https://thegraph.com/docs/en/subgraphs/developing/creating/advanced/ | The Graph advanced docs | Advanced docs cover file data sources, isolation/immutability constraints, indexed argument filters/topic filters, and declared `eth_call` for parallel execution | Strong planner/precompute reference. Filtering irrelevant events and declaring parallel remote calls are latency levers at the manifest level. | Knight Bus profiles should declare source filters and parallel prefetch/precompute needs up front so the runtime can avoid broad scans and collapse sequential I/O into bounded concurrent phases. | High. Official docs read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/dimension-adapters | DefiLlama / dimension-adapters | TypeScript repo for time-windowed dashboards; GH metadata captured 199 stars, 2,038 forks, 14,046 commits, and 2026-08-06 push date; root folders include fees, DEXs, bridge aggregators, active users, open interest, liquidations, factories, helpers, and skills | Stronger than the TVL repo for batch-compute PMF. It is a large ecosystem of recurring time-windowed analytics adapters with explicit tests and domain folders. | Knight Bus can use this as the bridge from graph algorithms to broader budget-bounded batch compute: the same profile/receipt idea applies to daily/hourly metrics, not only PageRank. | High. GitHub repo metadata and tree read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/dimension-adapters/blob/master/GUIDELINES.md | DefiLlama dimension adapter guidelines | Global guidelines prefer on-chain logs, forbid silent error swallowing and dependency bloat, require TypeScript, prefer `multiCall`, require methodology/breakdown fields, enforce v2 hourly pull rules, and list common review failures like double-counting and bad time windows | Exceptional profile-review checklist. It names exactly the kinds of mistakes repeated analytics jobs make. | Knight Bus should have analogous profile linting: source-of-truth choice, no silent fallbacks, no broad scans, no hidden dependencies, no double-counting, no wrong time windows, and clear methodology labels. | High. GHCLI source read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/dimension-adapters/blob/master/adapters/types.ts | DefiLlama dimension adapter types | Types define `FetchOptions`, chain/block/time-window helpers, adapter metadata, v2 fetch shape, allowed adapter types, and whitelisted output dimensions such as daily volume, fees, revenue, active users, liquidations, and open interest | Strong API-contract precedent. The shared runtime gives adapters exact time/block/source helpers and constrains allowed outputs. | Knight Bus profiles should receive typed runtime handles: graph partitions, block/time windows, budget, spill handles, baseline/oracle handles, and allowed output dimensions/invariants. | High. GHCLI source read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/dimension-adapters/blob/master/skills/adapter-author/SKILL.md | DefiLlama dimension adapter-author skill | Repo-native skill gates TVL/listing-only/unsupported metric requests, forces category classification, requires representative adapter/helper inspection, asks for a checkpoint, validates output, and forbids invented methodology or broad core edits | Strongest agent-workflow precedent in this pass. It shows how to make LLM contributions safe in a large analytics adapter ecosystem. | Knight Bus should use this exact pattern for algorithm-profile authoring: fit gate, category classification, example read, helper reuse, checkpoint, validation, and "no invented methodology" guardrail. | High. GHCLI source read. |
+| Jun 23 DeFiLlama lead / Aug 7 GHCLI source check | https://github.com/DefiLlama/dimension-adapters/blob/master/fees/GUIDELINES.md | DefiLlama fees guidelines | Fees guide uses a GAAP-like income statement model, required dimensions, identities such as dailyFees = dailyRevenue + dailySupplySideRevenue, breakdown labels, migration-by-date rules, and explicit common mistakes | Great example of domain invariants as executable review criteria. The valuable part is not DeFi alone; it is turning messy domain semantics into balance checks and labels. | Knight Bus algorithm families need domain-specific invariants: PageRank mass conservation, connected-component partition coverage, shortest-path triangle/baseline checks, temporal no-time-leak checks, and flow balance. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs | graphprotocol / graph-node test source | Aggregation tests cover rolled-up vs current buckets, include/exclude modes, filters, cumulative totals, nested aggregation queries, empty parent buckets, entity diffs, and block-number-specific expected rows | Excellent fixture-design source. It shows how to test freshness, filters, cumulative state, and nested/windowed query semantics as explicit cases. | Knight Bus profile fixtures should not stop at final output parity; they should test sealed-only vs current-frontier, filtered subgraphs, cumulative checkpoints, nested groupings, empty partitions, and human-readable diffs. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI fixture check | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/aggregation-current-bucket | graphprotocol / graph-node runner fixture | Runner fixture defines `specVersion: 1.1.0`, a timeseries `Data` entity, an hourly aggregation, and a mapping that turns simple event command strings into token/data rows | Useful small-fixture pattern. It keeps the current-bucket behavior reproducible with a tiny manifest/schema/mapping bundle. | Knight Bus should create similarly tiny profile fixtures where events encode graph changes and expected sealed/current outputs are easy to inspect. | High. GHCLI fixture files read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/stream_aggregator | graphprotocol / graph-node AMP stream aggregator | Stream aggregator reads record batches from multiple named streams, groups rows by block number/hash, uses a bounded per-stream buffer, waits for slower streams, treats reorgs/hash conflicts as errors, and exposes deterministic error classification | Strong bounded-streaming architecture evidence. It is a concrete example of synchronizing multiple source streams without unbounded buffering or inconsistent output. | Knight Bus multi-source graph projection should use similar bounded synchronizers: group by logical epoch/checkpoint, output only completed groups, stop on deterministic corruption, and make slow-stream/backpressure behavior explicit. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/buffer.rs | graphprotocol / graph-node buffer source | Buffer owns one aggregator per stream, enforces `buffer_size`, marks streams blocked when no capacity and no completed groups exist, computes the highest completed block common to all streams, and detects same-block hash disagreement | Very relevant to RAM budgeting. Memory boundedness is enforced by design, and correctness is tied to common progress across streams. | Knight Bus should expose `stream_buffer_size`, blocked-stream errors, common checkpoint watermarks, and hash/disagreement failures in projection receipts. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/aggregator.rs | graphprotocol / graph-node aggregator source | Per-stream aggregator stores groups in a `BTreeMap`, requires monotonically increasing block numbers, rejects same block number with different hash, emits groups only when a later block makes the current block complete or the stream finalizes | Excellent ordering/watermark pattern. Correct output requires a definition of when a group/frontier is complete. | Knight Bus should define completion watermarks per algorithm: frontier complete, partition complete, time window complete, stream epoch complete, or checkpoint sealed. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/latest_blocks.rs | graphprotocol / graph-node AMP runner source | Latest-block runner loads `MAX(_block_num)` per unique dataset/table, filters completed data sources by `end_block`, waits for new blocks only on the minimum latest-block frontier, and classifies empty tables/streams as nondeterministic while decoder/query problems are deterministic | Strong watermark/runtime-pacing evidence. It shows how a runner avoids outrunning the least advanced source table. | Knight Bus projection runners should track per-source latest epoch, use the minimum frontier as the safe sealed watermark, and expose empty-source vs deterministic-decode failures differently. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/codec/test_fixtures.rs | graphprotocol / graph-node AMP codec fixture source | Arrow record-batch fixtures cover booleans, signed/unsigned ints, decimal128/256, float16/32/64, utf8/string views, binary/fixed-size binary, and timestamps at second/millisecond/microsecond/nanosecond units | Excellent typed-fixture precedent. The runtime tests its physical interchange types, not just domain examples. | Knight Bus should build graph-slice fixture batches that cover node IDs, edge IDs, labels, weights, timestamps, decimals, binary hashes, nulls, lists, and precision-sensitive values. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/manifest_validation.rs | graphprotocol / graph-node manifest validation source | Pure validation functions reject no data sources, missing Ethereum network, multiple networks, and mixed mapping API versions once any version is 0.0.5 or newer; tests cover empty/single/mixed cases | Strong profile-lint precedent. Validation is pure and reusable by graph-node and external tools. | Knight Bus `algorithm-profile.yaml` validation should be pure and CLI-callable: reject missing sources, mixed incompatible graph versions, missing budget, undeclared output semantics, and incompatible runtime/profile versions before execution. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/mod.rs | graphprotocol / graph-node manifest validation integration | Manifest validation also checks each datasource, unified mapping API version, single network, graft base, feature declarations, subgraph datasource support only at spec >=1.3.0, max five subgraph datasources, no mixed subgraph/onchain datasources, no duplicate source subgraphs, and AMP-specific restrictions | Very strong rejective-design evidence. A mature manifest system is allowed to say "this combination is not supported." | Knight Bus profiles should explicitly reject unsupported compositions: too many source kinds, duplicate source graphs, mixed freshness semantics, feature declarations not supported by runtime, and storage modes incompatible with algorithm invariants. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/api_version.rs | graphprotocol / graph-node API/spec version source | Version constants document feature gates: feature management, fast PoI, offchain data sources, polling/initialization handlers, endBlock, indexerHints, aggregations, declared calls/topic filters, subgraph datasource, struct-field declarative calls, and AMP data sources | Strong roadmap discipline source. Capabilities are tied to spec versions instead of being vague runtime behavior. | Knight Bus should version profile capabilities: storage mode, proof mode, temporal semantics, current-frontier support, approximation, and source-stream kinds should be gated by explicit profile spec versions. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI fixture check | https://github.com/graphprotocol/graph-node/tree/master/gnd/tests/fixtures/codegen_verification | graphprotocol / graph-node codegen fixtures | Codegen fixtures include block-handler filters, topic0 event filters, source-without-address, and example-values-found manifests; they verify code generation against edge-case manifest shapes | Useful edge-case fixture precedent. Manifest features need small generated-code fixtures, not only runtime integration tests. | Knight Bus profile generation should have fixture directories for filters, missing/optional sources, custom topic/key filters, and expected generated runtime bindings. | High. GHCLI fixture manifests read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/docs/subgraph-manifest.md | graphprotocol / graph-node repository manifest docs | Repository manifest spec says the manifest and linked files are deployed to IPFS and hashed to produce a subgraph ID; fields include specVersion, schema, dataSources, templates, graft, features, handler types, declared calls, paths, and feature declarations | Critical artifact-design source. A manifest is an addressable, content-derived contract, not just config. | Knight Bus profile bundles should be content-addressed: manifest plus projection code, storage layout, fixtures, and receipt schema hash into a profile ID used in every run receipt. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/mod.rs | graphprotocol / graph-node AMP runner orchestration | Runner loop records indexing duration, loads latest blocks, checks reorgs, filters completed sources, sets deployment target, streams bounded batches, processes grouped records, handles nondeterministic unfail/retry, waits for changed latest blocks, and exits when endBlock is covered | This is a compact projection-runtime template. It shows the control loop around bounded source reads, correctness checks, progress metrics, and deterministic failure. | Knight Bus should make the algorithm-profile runner an explicit state machine: load frontiers, validate/invalidate, choose bounded windows, process groups, commit checkpoint, publish receipt, wait or retry. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/data_stream.rs | graphprotocol / graph-node AMP data stream | Data stream builds per-source block ranges, caps each by `block_range`, data-source end block, and latest safe block, filters to the earliest overlapping range, starts query streams per data-source table, and feeds a bounded `StreamAggregator` | Direct RAM-control pattern. The runtime controls memory by constraining input windows before decode and state mutation, not by cleaning up after an oversized scan. | Knight Bus storage profiles should expose a planner-chosen `slice_range` or `frontier_window` and prove that only that bounded interval was materialized. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/data_processing.rs | graphprotocol / graph-node AMP record-batch processing | Processing is grouped by block, uses an `EntityCache` seeded with an LFU cache, decodes batches through schema-aware codecs, optionally decodes block timestamp for aggregations, extracts modifications, and writes a block transaction with close-to-head sync status | Useful low-RAM mutation pattern. Hot entity state is cached across bounded groups while durable state advances by block transaction. | Knight Bus should separate hot algorithm state from durable checkpoint state: cache only the active frontier/community/path state, then emit block/epoch-level modifications and receipt metadata. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/reorg_handler.rs | graphprotocol / graph-node AMP reorg handler | Reorg detection checks only sources whose latest block can cover the synced block, queries with resume metadata containing block number/hash, picks the deepest latest block before reorg, rejects invalid rewinds, and reverts store block operations | Strong invalidation evidence. A verified projection is conditional on upstream ordering/hash identity and must be rewindable. | Knight Bus receipts need `projection_invalidated_by`, `rewound_to_epoch`, and `source_hash_mismatch` fields for temporal/source-stream workloads. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/features.rs | graphprotocol / graph-node feature detection | Feature validation compares declared manifest features against detected used features; undeclared used features fail validation. The feature enum covers nonfatal errors, grafting, full-text search, aggregations, bytes-as-ids, declared calls, immutable entities, and IPFS-on-contract behavior | Good product truthfulness pattern. A profile should not get capability credit merely because a flag exists, and it should not use hidden capabilities. | Knight Bus should compute `declared_features`, `detected_features`, `undeclared_used_features`, and `unused_declared_features` during profile validation. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/schema.rs | graphprotocol / graph-node deployment status/error model | Persisted deployment state includes health, fatal/nonfatal errors, earliest/latest blocks, graft/debug fields, reorg counts/depths, raw manifest metadata, causality-region entities, and deterministic error markers | Strong UX/ops precedent. Long-running graph jobs need durable state users can inspect after failure or restart. | Knight Bus should persist profile-run health, fatal/nonfatal failures, earliest/latest processed epochs, invalidation depth, causality/partition domains, and deterministic error classification. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/compat.rs | graphprotocol / graph-node AMP compatibility bridge | Compatibility module converts between new Alloy block types and legacy graph-node store types while the migration is incomplete | Useful migration warning. Big rewrites need explicit boundary adapters rather than pretending every subsystem moves at once. | Knight Bus should isolate Neo4j/GDS parity adapters, internal Rust physical types, and profile receipt schemas behind named compatibility modules so storage innovation does not leak into surface compatibility. | Medium-high. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/manager.rs | graphprotocol / graph-node AMP manager | Manager resolves the content-addressed manifest through a link resolver, parses YAML, resolves the AMP manifest against the client and max spec version, optionally applies stop block to all data sources, starts writable deployment state, builds metrics/context, launches the runner, then stops the writer | Strong boundary/launch evidence. Runtime startup is explicit: resolve artifact, validate environment/version, start durable state, run, then cleanly stop writer. | Knight Bus should launch profile runs through a manager that resolves profile bundles, checks runtime compatibility, applies optional stop/freeze bounds, starts durable run state, and tears down writers deterministically. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/monitor.rs | graphprotocol / graph-node AMP monitor | Monitor tracks active subgraph instances, enforces at most one running instance per deployment, supports start/stop/clear commands, stores pending restarts, uses cancellation tokens, graceful shutdown windows, abort-on-unresponsive behavior, and supervisor tasks that clear active state | Essential ops precedent. Bounded compute must bound lifecycle too: concurrent duplicate runs and zombie workers can invalidate RAM and correctness claims. | Knight Bus should run one active `profile_id + source_hash + run_mode` instance unless explicitly forked, support graceful cancellation, record forced aborts, and prevent duplicate writers for the same output artifact. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/metrics.rs | graphprotocol / graph-node AMP metrics | Metrics expose deployment status, deployment head, target block, synced flag, total indexing duration, blocks processed, and per-process stopwatch sections with deployment/shard labels | Direct receipt/observability model. It separates current head from target and synced state, which maps well to sealed/current frontier claims. | Knight Bus should expose profile status, processed frontier, target frontier, synced/sealed flag, phase durations, items processed, peak memory, spill bytes, retries, and invalidations as both metrics and receipt fields. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/client/mod.rs | graphprotocol / graph-node AMP client contract | Client trait separates schema queries from streaming batch queries. Request metadata can resume streaming from a network/block/hash, and responses can be data batches or reorg messages with latest valid parent block information | Clean runtime boundary. The source client does not hide invalidation; it makes data and reorgs part of the same stream contract. | Knight Bus source adapters should expose `schema()`, `stream(slice, resume_token)`, and `SourceEvent::{Batch, Invalidation}` rather than pushing invalidation into logs. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/client/flight_client.rs | graphprotocol / graph-node Flight client | Flight client uses Arrow Flight SQL, records query hashes for log correlation, sets resume metadata headers, streams record batches, parses per-batch block-range/hash metadata, emits explicit reorg events on non-incremental ranges, and classifies connection/stream/query errors by determinism | Critical physical-evidence pattern. The batch itself carries metadata needed to verify source progress and detect invalidation. | Knight Bus physical batches should carry source ranges, source hashes, partition ids, previous hashes, and memory-size metadata so the runner can create proof-carrying receipts as it streams. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/manifest/mod.rs | graphprotocol / graph-node AMP manifest resolver | AMP manifest resolution parses unresolved subgraph manifests, resolves links and schemas, filters data sources to AMP, rejects no AMP data sources, and rejects mixed AMP/non-AMP manifests | Strong profile-family boundary. Mature systems reject mixed semantics instead of trying to support every composition. | Knight Bus should split profile families clearly: graph-batch profile, temporal-event profile, local-memory profile, and adapter-style analytics profile should not be silently mixed unless a versioned composition rule exists. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/manifest/data_source/raw.rs | graphprotocol / graph-node raw AMP datasource resolver | Raw datasource resolution validates identifiers, kind, dataset, nonempty/max-100 source tables, block bounds, transformer API version, ABI count/files, query/file presence, query output columns, server schema, required block number/hash/timestamp context, and deterministic/nondeterministic error classes | Excellent profile-lint source. It validates author inputs, external file resolution, server schema, physical columns, and runtime-required context before indexing. | Knight Bus `kb profile validate` should combine static checks, referenced-file checks, source-schema probes, budget/range checks, and required-context-column checks before any expensive graph run starts. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/sql/query_builder | graphprotocol / graph-node SQL query builder | ValidQuery parses SQL AST, validates only allowed dataset/tables, forbids custom settings, resolves source-address and event-signature functions, wraps every referenced table in block-range CTEs, orders output by block number, and can add context columns through CTE joins | Very strong read-shaped-compute evidence. The system rewrites user-authored transformations into bounded, ordered, context-complete queries. | Knight Bus should use AST-level transformation for profile source expressions: inject budget windows, enforce allowed sources, require ordering keys, add provenance/context columns, and reject broad scans. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/schema/generator/mod.rs | graphprotocol / graph-node AMP schema generator | Schema generator merges related Arrow schemas by name and creates immutable subgraph entities, with an explicit limitation that generated entities have no intra-schema relationships | Useful generator-contract warning. Generated schema can bootstrap from physical data, but relationship semantics remain a higher-level profile responsibility. | Knight Bus can auto-generate graph-slice schemas from columnar inputs, but algorithm profiles must explicitly declare edges, direction, weights, timestamps, labels, and relationship semantics. | Medium-high. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/codec | graphprotocol / graph-node AMP codec | Codec maps Arrow record batches to schema entities, handles nullable fields, derived fields, generated IDs, type compatibility, list arrays, name normalization, and deterministic decode failures across booleans, ints, decimals, strings, binary, timestamps, and lists | Physical interchange is not optional. Real low-RAM compute still needs exact data typing at the boundary. | Knight Bus should define a graph-slice codec with deterministic decode errors, normalized column names, optional/generated fields, Arrow/Parquet-style typed batches, and fixtures for every supported physical representation. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/common/mod.rs | graphprotocol / graph-node AMP common aliases | Common aliases list acceptable physical names for block number, block hash, and block timestamp columns, including `_block_num`, `block_num`, `blockNumber`, `block_hash`, `blockHash`, `timestamp`, and `block_timestamp` variants | Good messy-input precedent. The system tolerates common source naming variation, but only for a small set of required context columns. | Knight Bus should support alias groups for required graph-slice columns such as source id, target id, edge id, weight, timestamp, partition, source hash, and deletion flag, while still reporting which alias was matched. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/codec/utils.rs | graphprotocol / graph-node AMP codec utilities | Utility decoders find required block-number/hash/timestamp columns by alias, require non-nullability when requested, validate column existence, and return precise errors listing expected aliases and invalid columns | Strong profile-codec validation evidence. Required metadata columns are discovered flexibly but decoded strictly. | Knight Bus graph-slice codec should have `required_column_aliases`, `matched_column`, `nullable_allowed`, and deterministic failure details in validation receipts. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/mod.rs | graphprotocol / graph-node stream aggregator entrypoint | StreamAggregator wraps multiple named streams, filters batches versus reorg responses, turns reorg into nondeterministic stream failure, polls streams only when each has capacity, fails when a stream is blocked, emits completed groups, and stops polling after failure/finalization | Excellent source-event contract clue. Data, invalidation, blocked buffers, and completion are all first-class stream outcomes. | Knight Bus should model source streams as `Batch`, `Invalidation`, `Blocked`, `Completed`, and `Error` events, and receipts should identify the stream name that paced or failed the run. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/error.rs | graphprotocol / graph-node stream aggregator errors | Aggregation and buffer errors are deterministic, while stream errors preserve the wrapped source determinism; stream name is included in errors | Useful receipt/error-taxonomy precedent. The failing source stream is preserved with determinism classification. | Knight Bus should carry `source_stream_name`, `error_layer`, and `deterministic` in failure receipts so retry policy is explainable. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/aggregator.rs | graphprotocol / graph-node per-stream record-batch aggregator | Per-stream aggregator decodes block number/hash per row, groups rows by `(block_number, block_hash)`, requires incremental block ordering, rejects same block with a different hash, considers a group complete only when a higher block exists or stream finalizes, and keeps weak references to buffered batches for memory accounting | Critical completed-frontier pattern. Safe progress depends on a specific definition of completed group, not merely seeing rows for a block. | Knight Bus should define per-algorithm completion rules, track `completed_frontier_reason`, and avoid emitting output for a frontier until a proof of completeness exists. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/buffer.rs | graphprotocol / graph-node multi-stream buffer | Buffer creates one aggregator per stream, enforces per-stream `buffer_size`, marks a stream blocked when full and no completed groups exist, computes the common completed block as the minimum completed frontier across streams, and rejects same block number with different hashes across streams | Direct RAM-vs-latency tradeoff source. The slowest or least-complete stream paces output, and insufficient buffer becomes a visible error. | Knight Bus should expose `common_completed_frontier`, `pacing_streams`, `blocked_streams`, `buffer_size`, and `hash_disagreement` in receipts. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/decoder.rs | graphprotocol / graph-node record-batch aggregation decoder | Decoder requires block number and block hash columns, uses auto alias detection, and treats missing/null/invalid grouping metadata as deterministic failures | Clear metadata requirement. Grouping keys are not optional decoration; without them the bounded synchronizer cannot be correct. | Knight Bus source batches must carry non-null grouping/progress keys such as partition, frontier, source version, and source hash before entering the synchronizer. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/group_data.rs | graphprotocol / graph-node group-data implementation | GroupData stores `Arc<RecordBatch>` references plus row indices for each completed group, then materializes a merged record batch using Arrow `take_record_batch` and `concat_batches` only when emitting the completed group | Strong low-RAM implementation pattern. It delays copying/materialization until the group is safe to emit. | Knight Bus should prefer reference-plus-row-index grouping for bounded windows, materializing graph slices only when a frontier/partition is complete and ready for algorithm mutation. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/traits.rs | graphprotocol / graph-node store traits | Store traits split deployment lifecycle, read/sourceable access, writable block transactions, cursor tracking, dynamic data-source loading, causality-region values, and postponed indexes. `SourceableStore::get_range` returns entity source operations across a block interval. | Strong contract evidence. Bounded batch graph compute needs a narrow durable-store interface that can replay ranges, transact a bounded epoch, revert, and report cursor/frontier state. | Knight Bus should split sourceable replay, writable checkpoint, run-state health, and read/query store contracts instead of one giant graph database abstraction. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/entity_cache.rs | graphprotocol / graph-node EntityCache | EntityCache is created per block, layers store baseline plus updates plus handler updates, supports handler commit/discard, uses an LFU cache, generates block-encoded VIDs, and emits minimal modifications after loading missing mutable state. | Very strong hot-state pattern. The runtime does not need all durable history in RAM; it needs the current block/epoch working set and a controlled conversion to durable modifications. | Knight Bus should maintain small active algorithm state per frontier/window/partition, then emit minimal checkpoint and proof events while retaining LFU/eviction metrics. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/write.rs | graphprotocol / graph-node write batch model | `EntityModification` separates insert, overwrite, and remove. `RowGroup` groups changes by entity type, folds/clamps validity ranges, exposes writes/chunks/effective ops, and `Batch` appends only forward block pointers while carrying block times, cursor, errors, and dynamic data sources. | Critical receipt/runtime evidence. Bounded execution should commit by ordered units and refuse indeterminate append state rather than silently continuing. | Knight Bus should define `RunBatch`, `StateGroup`, `CheckpointChunk`, and forward-only append semantics with failure poisoning and explicit chunk sizing. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/err.rs | graphprotocol / graph-node store errors | StoreError classifies schema/input/constraint failures as deterministic while database availability, poisoning, writer errors, and most infrastructure failures are nondeterministic. | Useful retry-policy evidence. A budget-bounded runtime must tell the user whether retrying can help or whether the profile/source/data is invalid. | Knight Bus receipts should carry `deterministic`, `error_layer`, `retry_policy`, and `repair_hint` for projection, storage, algorithm, and output failures. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational.rs | graphprotocol / graph-node Postgres relational Layout | `Layout` maps input schemas to SQL tables, validates SQL names, finds entities at a block, performs multi-entity lookup, emits source operations over block ranges, inserts/update-clamps/deletes in chunks, reverts blocks, and models table metadata such as immutable/causality-region columns. | Strong durable-store architecture precedent. The physical layout is a queryable projection contract, not an incidental implementation detail. | Knight Bus profile manifests should declare physical layout, visibility semantics, causality/partition domains, chunk sizing, revert behavior, and query/source range capabilities. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/block_range.rs | graphprotocol / graph-node block range storage | Mutable entities use `block_range`; immutable entities use `block$`; current rows use a range-containment check; unversioned metadata uses a special always-visible range; SQL fragments support current, contains, changed-since, clamp, lower/upper interval bounds. | Direct storage-format inspiration. Validity ranges give time travel, reversion, change extraction, and current-state reads without retaining all versions as live RAM. | Knight Bus should consider validity-range state storage for mutable graph projections and point-visibility storage for immutable edge/event batches. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/index.rs | graphprotocol / graph-node relational index descriptors | Index parsing distinguishes BRIN, BTree, Gin, and Gist methods; expressions include plain columns, prefixes, vid, block$, block_range, lower/upper bounds; conditions include partial/current/closed/unknown; string and byte prefixes are explicit. | Important profile-manifest evidence. Physical indexes should be declared and inspected, because RAM and latency depend on which range/column/jump-table paths exist. | Knight Bus storage profiles should include index descriptors: method, expression, prefix bytes, current/history condition, supported algorithm phases, and expected memory/latency tradeoff. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/prune.rs | graphprotocol / graph-node pruning implementation | Pruning rebuilds tables by copying final rows in VID batches while nonfinal writes may continue, then copies nonfinal rows while writes are blocked, switches tables, and chooses rebuild over massive delete plus vacuum because it avoids read blocking and scattered pages. | Strong compaction lesson. Retention and RAM/storage reduction are product contracts with operational phases, not background cleanup. | Knight Bus should expose pruning/compaction plans as receipts: final/nonfinal phase, earliest replayable state, blocked-writer window, copied rows, reclaimed bytes, and replay/time-travel loss. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/value.rs | graphprotocol / graph-node relational value decoding | Relational value decoding maps Postgres OID-typed values into Graph Node store/query values across strings, bytes, booleans, integers, big decimals, timestamps, arrays, and ranges, filtering nulls where appropriate. | Boundary correctness evidence. Even with custom low-RAM layouts, typed decoding is where many silent correctness bugs appear. | Knight Bus should define deterministic graph-slice decoders and fixtures for physical types, nullability, ranges, precision, arrays, and signed weights before claiming profile correctness. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/writable.rs | graphprotocol / graph-node writable store implementation | Writable store supports sync or async writer modes, batches writes by weight/age, closes queued batches before execution, poisons the queue on write errors, lets reads overlay queued writes on top of committed store state, disables batching when synced or when revert/stop requires ordering, and flushes before causality-region reads. | Critical run-state evidence. Bounded batch compute needs pending-overlay semantics: sealed durable state and queued/current state are different freshness modes, and write queue capacity/age are RAM-latency knobs. | Knight Bus should expose `sealed`, `queued_overlay`, `current_conditional`, `flush_required`, `queue_poisoned`, `max_batch_weight`, and `max_batch_age` as runtime/receipt fields. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational_queries.rs | graphprotocol / graph-node relational query physicalization | Relational queries construct dynamic SQL with low allocation discipline, explicit Postgres parameter limits, `UNION ALL` over dynamic entity tables, ordered range replay, lower-bound change queries, upper-bound possible deletion queries, ID-list multi-lookup, insert chunk sizing, filtered/windowed query variants, clamp, revert-remove, and revert-unclamp queries. | Strong planner evidence. If Knight Bus wants predictable RAM and latency, source/query physicalization must be part of the profile, not hidden implementation detail. | Knight Bus should model source queries as physical plans with bind-count limits, chunk sizes, ordering keys, replay ranges, deletion inference rules, and index/scan expectations. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/deployment_store.rs | graphprotocol / graph-node deployment store | DeploymentStore applies entity modifications under deployment locks, clamps before inserts to avoid overlapping validity ranges, checks shared-interface ID conflicts, rolls up aggregations, writes dynamic data sources, records deterministic/nonfatal errors, advances head/cursor/entity counts, spawns prune after history slack, and rewinds/truncates data plus metadata while refusing forward reverts and graft-crossing rewinds. | Excellent epoch-commit model. A budget-bounded graph runtime should commit under a named frontier lock, update all derived state atomically, and make reverts a first-class contract. | Knight Bus should define `EpochCommit` as: apply modifications, update derived summaries, persist dynamic/source metadata, record deterministic errors, advance frontier/cursor/counts, optionally trigger compaction, and emit receipt. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/subgraph_store.rs | graphprotocol / graph-node subgraph store orchestration | SubgraphStore multiplexes primary metadata and sharded deployment data. The primary stores deployment schemas, named subgraph mappings, assignments, and notifications; shards store generated deployment namespaces and metadata. It caches one writable per deployment, discards poisoned writables, sends StoreEvents for assignment/state changes, and exposes writable/sourceable stores. | Strong run-manager precedent. The system separates placement/orchestration from per-deployment physical data, and treats one-writer-per-deployment as correctness infrastructure. | Knight Bus should separate run registry, artifact placement, writer lease, sourceable replay, writable checkpointing, and event notification rather than embedding all of it inside algorithm implementations. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/dsl.rs | graphprotocol / graph-node relational DSL | DSL wraps generated tables/columns with typed query fragments: selected columns, `id_eq`, `at_block`, `changed_since`, causality-region filters, immutable-vs-mutable block visibility, fulltext exclusion from entity selection, parent/internal keys, and BRIN/GiST-aware range heuristics. | Useful profile-planner pattern. Visibility and causality predicates should be typed primitives, not ad hoc string filters in each algorithm. | Knight Bus should define typed graph-slice predicates: `visible_at`, `changed_since`, `partition_eq`, `source_eq`, `edge_type_in`, `property_selected`, and `system_columns_required`. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/transaction_receipt.rs | graphprotocol / graph-node transaction receipt conversion | Raw transaction receipt rows decode byte arrays into a lightweight receipt with transaction hash, index, optional block hash/number, gas used, and status; the helper pads shorter big-endian byte arrays and tests that conversion. | Small but revealing receipt-normalization pattern. External provenance often arrives in awkward physical types; the receipt layer should normalize it deterministically before algorithm proof uses it. | Knight Bus should separate raw source receipt decoding from normalized run receipts and test byte width, missing fields, status flags, and physical-to-logical conversion. | Medium-high. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs | graphprotocol / graph-node writable-store tests | Tests cover pending write visibility across get/get_many/get_derived, pending reverts, writer flush failure on invalid non-null data, restart after poisoned writable, sourceable `get_range` emitting create/modify/delete operations, and immutable-only range replay. | Direct executable-spec source. These are almost exactly the acceptance tests Knight Bus needs for sealed/current reads, queue poisoning, replay, and restart. | Knight Bus should create fixtures for pending overlay reads, pending revert, poison/restart, source range replay, immutable event replay, and deterministic failure receipts before optimizing algorithms. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs | graphprotocol / graph-node graft/copy/prune tests | Tests verify grafted data visibility, successful revert of newly created blocks, refusal to revert past graft point, copy behavior, history-block validation, and pruning while checking block-level visibility after earliest-block movement. | Excellent rollback/retention fixture source. It demonstrates that historical visibility and replay boundaries need tests, not prose. | Knight Bus should test `cannot_rewind_past_import_boundary`, `earliest_replayable_frontier_moves_after_prune`, and `visible_state_at_frontier` for every profile with retention/compaction. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/deployment.rs | graphprotocol / graph-node persisted deployment schema/helpers | Deployment tables persist head block/hash/entity count/firehose cursor, earliest block, health/failed/fatal/nonfatal errors, graft/debug fork, reorg counts/depths, synced-at metadata, postponed index state, manifest schema/features/raw YAML/causality-region entity list/history blocks. Helpers enforce forward block processing, revert to earliest-block/reorg threshold, initialize start block, set synced, store deterministic errors over block ranges, and revert future errors. | Very strong run-registry source. This is a concrete schema for making long graph runs observable, rewindable, and failure-aware without keeping runtime state in RAM. | Knight Bus should create a SQLite run registry with head/frontier/cursor, earliest replayable frontier, health, deterministic errors, nonfatal errors, reorg/invalidation counts, synced state, profile manifest metadata, and index/compaction flags. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/notification_listener.rs | graphprotocol / graph-node notification listener/sender | Notification listener uses safe channel names, reconnects with exponential backoff, starts through a barrier, batches LISTEN/NOTIFY reads up to 128 notifications or 500ms, sends through bounded channels with timeout, supports large notifications by storing payloads in a table and sending only the row ID, and periodically cleans old large payload rows. | Strong bounded eventing pattern. Runtime events can be too large for a fast notification path, and event delivery itself needs memory/time caps and degraded behavior. | Knight Bus should split small event notifications from large receipt payloads, cap event batches, time out slow subscribers, and keep large event bodies as addressable artifacts. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/store_events.rs | graphprotocol / graph-node store event subscription manager | StoreEventListener decodes notifications from the `store_events` channel, skips startup-invalid messages until enough valid messages are seen, counts received messages, broadcasts each event to active subscribers, removes dropped subscribers, and periodically cleans stale subscriptions. | Useful operator-facing event model. A long-running compute system should broadcast structured events and garbage-collect dead subscribers. | Knight Bus should expose a run-event stream with bounded subscriber buffers, stale subscription cleanup, invalid-message policy, and metrics for sent/received/dropped events. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/chain_head_listener.rs | graphprotocol / graph-node chain-head listener | Chain head listener receives JSON head updates by network, updates metrics, notifies per-network watchers, creates watchers lazily, and guarantees periodic subscriber wakeups through a timeout even when notifications are absent; sender writes network/hash/number messages through NotificationSender. | Good frontier-notification precedent. A source frontier may advance, stall, or be silent; subscribers need periodic wakeups to poll rather than hanging forever. | Knight Bus source-frontier listeners should emit or poll `target_frontier`, `processed_frontier`, `stalled_reason`, and `last_update_at`, with timeout wakeups for robust planners. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/store/postgres/migrations | graphprotocol / graph-node Postgres migration history | Migration names and targeted SQL show schema evolution around history/reverts, large notifications, dynamic data-source context, deterministic errors, last healthy block, manifests/features/raw YAML, firehose cursors, earliest/start blocks, causality-region metadata, pruning/history retention, sync timestamps, graphman command execution state, prune state/errors, split head/deployment tables, and postponed index creation. | Very strong product evidence. These fields are not theoretical architecture decorations; they are the metadata a real long-running graph runtime accumulated to survive replays, failures, reorgs, compaction, and operators. | Knight Bus should design the SQLite run registry as a first-class product surface from day one, then migrate it as carefully as algorithm storage layouts. | High. GHCLI tree and SQL reads. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2025-05-13-173523_split_subgraph_deployment/up.sql | graphprotocol / graph-node split deployment migration | The migration splits `subgraph_deployment` into `head` and `deployment`: head holds entity count, block number/hash, and firehose cursor; deployment holds subgraph id, earliest block, health, failed/fatal/nonfatal errors, graft state, reorg counters/depth, last healthy block, debug fork, synced-at timestamp, and synced-at block. | Excellent schema shape for a budget-bounded run registry. It separates moving frontier state from mostly operational/declarative deployment state while keeping foreign keys for cleanup. | Knight Bus should separate `run_head` from `profile_run`: `run_head` changes every epoch, while `profile_run` carries profile/source/health/retention/invalidation metadata. | High. GHCLI SQL read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/mod.rs | graphprotocol / graph-node dynamic data-source dispatcher | Dynamic data sources are loaded/inserted/reverted through either private per-deployment tables or a legacy shared table, with explicit offchain status support only in the private schema and a helper for current causality-region values. | Strong runtime-discovered-input evidence. The set of sources a graph job needs may be discovered during execution, so source metadata must be transactional and replayable, not just in the static manifest. | Knight Bus should model static profile manifests plus runtime source addenda: discovered source id, creation frontier, manifest/template id, params, context, causality/partition domain, completion status, and revert semantics. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/private.rs | graphprotocol / graph-node private dynamic data-source table | Private `data_sources$` has `block_range`, `causality_region`, `manifest_idx`, parent/id/param/context, and `done_at`; it indexes validity ranges and causality regions, loads live sources at a block in creation/insertion order, rejects mismatched onchain creation blocks, deletes future sources on revert, copies up to a target block, remaps manifest indexes by template name, and restores rows in bounded chunks. | Very strong storage-format evidence. This is "storage in the shape of replay": small metadata lets the runtime reconstruct which inputs existed at a frontier without keeping every source object in RAM. | Knight Bus runtime-discovered source metadata should be validity-ranged, causality-partitioned, remappable across profile versions, copyable at import/graft boundaries, and chunk-restorable under bind/memory limits. | High. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/shared.rs | graphprotocol / graph-node shared dynamic data-source table | Legacy shared dynamic data sources are stored in `subgraphs.dynamic_ethereum_contract_data_source` by deployment/name/address/context/block hash/number. Load maps names back to manifest indexes, enforces address width, orders by creation block and VID, copies data sources up to a target block, and deletes future sources on revert. | Good compatibility warning. Old and new storage layouts can coexist if conversion boundaries are explicit, but legacy constraints limit newer semantics such as offchain causality. | Knight Bus should isolate profile-layout versions and make old-layout compatibility an adapter, not a hidden branch inside algorithms. | Medium-high. GHCLI source read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2024-10-01-100427_create_graphman_command_executions_table/up.sql | graphprotocol / graph-node graphman command execution ledger | Migration creates a command-execution table with kind, status, error message, created/updated/completed timestamps, and status values `initializing`, `running`, `failed`, and `succeeded`. | Direct operator-job evidence. Administrative graph operations deserve the same durable status model as data-processing runs. | Knight Bus should treat `kb run`, `kb resume`, `kb prune`, `kb rebuild-index`, and `kb verify` as ledgered commands with status, timestamps, error messages, and receipt links. | High. GHCLI SQL read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2025-04-08-224710_add_prune_state/up.sql | graphprotocol / graph-node prune state migration | Migration creates `prune_state` and `prune_table_state` with run number, first/final/latest block, history blocks, per-table strategy, phase, VID ranges, row counts, next VID, batch size, started/finished times, and phase checks for queued/started/copy_final/copy_nonfinal/delete/done. | Excellent low-RAM operational pattern. Compaction is not a background mystery; it is a resumable, phase-tracked job with batch sizing and table-level progress. | Knight Bus compaction should emit phase receipts for every artifact: retained range, batch size, rows copied/deleted, next cursor, writer-blocking phase, reclaimed bytes, and failure state. | High. GHCLI SQL read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2026-05-27-171745_postponed_indexes_created/up.sql | graphprotocol / graph-node postponed index state | Migration adds `postponed_indexes_created` and marks synced deployments true so expensive deferred index work is not repeated after restart. | Strong "deferred optimization must be durable" clue. Low-RAM systems often postpone index/build work, but restarts must remember what has already been done. | Knight Bus should persist index-build state per storage profile and output artifact so speed modes, balanced modes, and budget modes can defer/retry expensive index creation predictably. | High. GHCLI SQL read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/dynamic-data-source | graphprotocol / graph-node dynamic-data-source runner fixture | Fixture declares one static Ethereum contract datasource plus a `Dynamic` template. Mapping handles a `Trigger(uint16)` event and writes a `Foo` entity id built from block hash plus event address. | Small fixture but good acceptance-test seed. It proves static manifest templates and dynamic runtime instances need deterministic identity and observable output. | Knight Bus should include a tiny fixture where a profile discovers a new graph source/partition and emits a deterministic output row whose id proves source/frontier identity. | Medium-high. GHCLI fixture read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/data-source-revert | graphprotocol / graph-node data-source-revert fixture | Fixture uses a block handler to create a template with `DataSourceContext` containing block number and hash. The template handler reads its context, asserts the invocation count equals the originating block number, increments `DataSourceCount`, and saves it. | Very strong runtime-context fixture. Dynamic-source metadata is correctness state: if context is lost, reordered, or incorrectly replayed, the handler assertion fails. | Knight Bus `runtime_source_addendum` tests should assert creation frontier, source hash, context payload, and handler/run count survive replay and fail deterministically when mismatched. | High. GHCLI fixture read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/tests/runner-tests/data-source-revert/grafted.yaml | graphprotocol / graph-node data-source graft fixture | Grafted fixture enables `grafting`, specifies base deployment and block, keeps the original datasource/template, and adds `Contract2` with a call handler to test adding a datasource in a grafted deployment. | Good version/fork fixture. It tests that runtime sources can be added after an import/graft boundary without corrupting copied prior state. | Knight Bus should test profile fork/import boundaries where a new runtime-discovered source appears after the baseline frontier, and rewind must refuse to cross the import boundary. | High. GHCLI fixture read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/data-source-revert2 | graphprotocol / graph-node second data-source revert fixture | Second fixture has the same dynamic template/context behavior but changes the base datasource output entity type to `Gravatar2`, leaving template output as `Gravatar`. | Useful schema-evolution fixture. It separates static datasource schema evolution from dynamic-template output semantics. | Knight Bus should include a profile-version fixture where base output schema changes but runtime addendum semantics remain stable through template/source identity. | Medium-high. GHCLI fixture read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/store.rs | graphprotocol / graph-node Postgres store dynamic-source revert test | `revert_block_with_dynamic_data_source_operations` creates an entity update and dynamic data source at block 3, verifies both are visible, then reverts to block 2 and verifies the entity returns to its prior value and loaded dynamic data sources becomes empty. | Critical executable-spec source. Entity state and runtime-discovered source metadata must commit and revert atomically. | Knight Bus `EpochCommit` tests should transact algorithm-state mutations plus runtime-source addenda together, then prove revert removes both while restoring previous visible state. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs | graphprotocol / graph-node relational store tests | Targeted reads covered `find`, null fulltext fields, `copy_populates_fulltext`, `revert_block`, `check_fulltext_search_syntax_error`, `check_block_finds`, and `check_filters`. The tests verify current visibility, missing entity behavior, copy of hidden fulltext `tsvector` columns, reverting mutable and immutable rows, changed-since filtering, and deterministic invalid query syntax. | Excellent verification-spine source. It turns storage semantics into small executable fixtures instead of trusting a backend layout. | Knight Bus should port these as graph-slice tests: `visible_at_frontier`, `missing_returns_none`, `copy_preserves_hidden_index_state`, `revert_restores_previous_state`, `changed_since_frontier`, and `invalid_query_is_deterministic_failure`. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs#L635-L710 | graphprotocol / graph-node fulltext copy fixture | `copy_populates_fulltext` exists because copying normal columns alone would silently drop fulltext search vectors; it copies the `User` table into a fresh schema and proves a fulltext query still returns the expected entity. | Very strong hidden-physical-state warning. Low-RAM storage copies and compactions can preserve visible rows while breaking hidden indexes/sketches/summaries. | Knight Bus compaction/copy tests must verify derived physical state such as adjacency indexes, supernode indexes, frontier summaries, sketches, Bloom filters, and top-k caches, not only rows/edges. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs#L1126-L1235 | graphprotocol / graph-node block revert fixture | `revert_block` updates one mutable entity through blocks 0-3, reverts to prior states, then creates immutable `marty-*` entities and verifies reverts remove later immutable rows while preserving earlier rows. | Direct time-travel visibility fixture. Mutable and immutable graph artifacts need different physical encodings but one user-visible rollback contract. | Knight Bus should test mutable algorithm state rollback separately from immutable event/edge-batch rollback, then prove the same `visible_at_frontier` API works for both. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs#L1360-L1410 | graphprotocol / graph-node changed-since fixture | `check_block_finds` updates a user at block 1 and verifies `ChangeBlockGte(MAX)` returns none, `ChangeBlockGte(0)` returns all initial data, and `ChangeBlockGte(1)` returns only the changed entity. | Essential incremental-compute fixture. Bounded graph jobs should often process deltas, not full snapshots. | Knight Bus source adapters should expose `changed_since_frontier` and test empty, initial, and update-only deltas before any algorithm claims incremental behavior. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/subgraph.rs | graphprotocol / graph-node subgraph error/recovery tests | Targeted reads covered duplicate error de-dupe, nonfatal deterministic error health, fatal vs nonfatal deterministic state, deterministic fail/unfail with block rewind, no-op recovery on wrong determinism or block hash mismatch, non-deterministic fail/unfail without rewind, and behind-error-block behavior. | Critical receipt taxonomy evidence. The retry/recovery behavior depends on determinism, error block, current head, and expected previous block. | Knight Bus failure receipts should classify deterministic vs nondeterministic failures and make recovery semantics explicit: rewind-and-clear, clear-without-rewind, no-op, or behind-error-frontier. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/subgraph.rs#L773-L875 | graphprotocol / graph-node deterministic fail/unfail fixture | The deterministic fixture processes blocks 0 and 1, fails at block 1, verifies failed state and deterministic errors, then `unfail_deterministic_error(BLOCKS[1], BLOCKS[0])` clears fatal errors and reverts latest block number back to 0. | This is exactly a proof-carrying rollback fixture. Deterministic failures are repairable only by returning to a known-good predecessor frontier. | Knight Bus should implement deterministic failure recovery as `rewind_to_verified_frontier`, with receipt fields for failed frontier, expected predecessor, output invalidated, and state-after-rewind hash. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/subgraph.rs#L1010-L1104 | graphprotocol / graph-node non-deterministic fail/unfail fixture | The non-deterministic fixture fails at block 1 while head is at block 0, processes block 1 despite failed state, then `unfail_non_deterministic_error(BLOCKS[1])` clears the error without rewinding latest block number. | Useful contrast. Infrastructure/runtime failures may not require invalidating deterministic output if subsequent durable state advanced correctly. | Knight Bus recovery should allow `clear_transient_failure_without_rewind` only when receipt evidence proves durable state/frontier/output are still valid. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs | graphprotocol / graph-node writable-store test harness | Targeted reads covered pending read overlay, flush pause, writer poison/restart, sourceable `get_range`, immutable-only range replay, event-like `PoolCreated` replay, and duplicate immutable key constraint failure. | Excellent current-state fixture set. It proves reads must account for queued writes/reverts before flush, and source replay must emit operation semantics rather than only current rows. | Knight Bus should port these into `GraphSliceWritable` tests for `overlay_visible`, `pending_revert_visible`, `queue_poisoned`, `restart_from_durable_state`, `source_range_replay`, and duplicate immutable artifact failure. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs#L207-L316 | graphprotocol / graph-node pending overlay reads | `get_with_pending` pauses the writer, queues updates to the same entity, verifies `get`, `get_many`, and `get_derived` return the pending count before flush, flushes and rechecks, then queues writes plus a pending revert and verifies reads return the reverted count before and after flush. | Critical freshness-mode fixture. A bounded graph runtime may have durable state plus queued overlay state; both can be correct under different declared freshness modes. | Knight Bus receipts should distinguish `sealed_only`, `overlay_visible`, and `pending_revert_visible`, and tests should prove all read paths obey the declared mode. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs#L320-L370 | graphprotocol / graph-node poisoned writer restart | `restart` intentionally writes an entity missing a non-nullable field, `flush` fails, the writable is poisoned, `restart()` returns a new writable, and a corrected write succeeds through the cached store path. | Strong recovery fixture. After an indeterminate write failure, continuing with the same writer is unsafe; durable restart is a correctness boundary. | Knight Bus should poison failed epoch writers, refuse further mutation on them, create a new writer from durable state, and record `writer_restarted_from_checkpoint` in the receipt. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs#L371-L530 | graphprotocol / graph-node sourceable range replay | Range tests insert mutable and immutable counters, flush, then `get_range` returns block-keyed `EntitySourceOperation::{Create, Modify, Delete}` sequences. The pool-created test verifies typed immutable event replay and duplicate VID produces a constraint violation. | Essential replay evidence. Incremental graph compute needs operation logs, not only snapshots, and immutable event batches need duplicate detection. | Knight Bus source adapters should expose `SourceOperation::{Create, Modify, Delete}` over frontier ranges, with typed event fixtures and duplicate immutable output failures. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs | graphprotocol / graph-node graft/copy/prune tests | Targeted reads covered graft setup data, `check_graft`, graft failure for immutable schema at wrong block, copy deployment behavior, on-sync activation/replace behavior, and pruning with history-block validation. | Strong boundary fixture set. Imports/forks/copies/prunes change what history can be replayed and which deployment is active; those changes need receipts. | Knight Bus should test import boundary, fork copy, active-artifact switch, retention policy validation, and visible-state-after-prune before exposing storage-mode switching. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs#L309-L415 | graphprotocol / graph-node graft boundary fixture | `check_graft` verifies copied base visibility, allows reverting a block created after the graft, then refuses reverting past the graft point. The test also shows immutable grafting fails at a block where previous entity versions would be invalid, but succeeds at an earlier clean block. | Direct import-boundary contract. A fork/import baseline is not just a starting point; it is a hard rewind and immutability boundary. | Knight Bus should reject rewinds past `import_base_frontier`, validate immutable storage-mode conversion at the baseline, and include baseline hash/frontier in receipts. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs#L439-L545 | graphprotocol / graph-node copy/on-sync fixture | Copy tests duplicate a deployment to another shard and then start/activate it. `OnSync::{None, Activate, Replace}` controls whether the destination stays inactive, becomes active while source remains assigned, or replaces/unassigns the source after sync. | Strong operational switch fixture. Copying a graph artifact is not the same as making it active; activation policy changes routing/ownership. | Knight Bus artifact copy should separate `copied`, `started`, `verified`, `active`, and `replaced_source` states, with receipts for each transition. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs#L552-L690 | graphprotocol / graph-node pruning retention fixture | Prune tests reject negative `history_blocks`, reject history below reorg threshold, add another entity version, move head to block 6, prune to 3 history blocks with reorg threshold 1 using rebuild or delete strategy, and check visible users at every block. | Excellent retention contract. Pruning changes history availability and must be validated against safety thresholds and visibility. | Knight Bus should make retention policy executable: reject invalid retention, record strategy, prune frontier, reorg/safety threshold, and verify visible state before and after pruning. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs | graphprotocol / graph-node chain-head test harness | `check_chain_head_update_cache` writes fake blocks, attempts bounded chain-head update, reports missing parents, verifies head pointer, and checks a bounded recent-block cache. Tests cover genesis, normal chains, siblings at the same height, missing parents within and beyond ancestor count, uncles, hash confirmation, and ancestor queries. | Direct source-frontier fixture source. A graph compute runtime should not treat "latest observed source id" as safe. It needs lineage evidence, bounded ancestor checks, missing predecessor reporting, and canonical hash confirmation. | Knight Bus source frontier receipts should include `candidate_frontier`, `accepted_frontier`, `ancestor_depth_checked`, `missing_predecessors`, `canonicalization_events`, and `recent_frontier_cache_len`. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs#L87-L221 | graphprotocol / graph-node missing-parent fixtures | Missing-parent tests accept no head when the missing parent is within the configured ancestor count, but accept the longer chain when the missing gap is beyond that bounded window. Sibling/uncles tests show multiple plausible same-height blocks can exist until lineage evidence resolves them. | Important bounded-correctness pattern. Budget-bounded systems need declared verification windows; outside the window they can proceed, but the receipt must disclose what was not proven. | Knight Bus should let profiles declare `source_lineage_window`, and outputs should say whether a frontier is `lineage_verified`, `accepted_beyond_window`, or `stalled_missing_predecessor`. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs#L263-L430 | graphprotocol / graph-node hash confirmation and ancestor fixtures | `block_hashes_by_number` records multiple hashes at one height, then `confirm_block_hash` prunes noncanonical alternatives. Ancestor tests support offset lookups, skipped block numbers, same-height sibling ancestry, and optional root constraints that change which ancestor is valid. | Excellent versioned-source warning. Source versions, forks, roots, and skipped epochs are correctness inputs, not metadata fluff. | Knight Bus should expose canonical source version hash, alternative hashes pruned, root constraint, skipped epochs, and ancestor lookup evidence in projection/run receipts. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs | graphprotocol / graph-node aggregation test harness | Tests define timeseries `Data`, hourly/daily `Stats`, cumulative totals, filters, and nested Token-to-Stats windows. Inserts occur through block transactions, and rollup rows are marked at the first block after an interval finishes. | Very strong recurring-analytics precedent. It shows a real graph runtime treats time-bucketed analytics as sealed derived state plus optional live computation, not as a monolithic query over all raw data. | Knight Bus should model recurring graph and non-graph analytics as sealed buckets/checkpoints plus optional current-frontier overlays, with interval completion rules in receipts. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs#L453-L664 | graphprotocol / graph-node current-bucket fixtures | `AggregationCurrent::Include` returns sealed rows plus an on-the-fly current bucket; `Exclude` returns only sealed rows. Filtered current queries preserve token-specific rows, and cumulative current values are previous sealed totals plus current deltas. | Direct product-mode evidence. Users need to know whether they are seeing sealed proof-carrying state or sealed-plus-current overlay state. | Knight Bus should use explicit output freshness modes: `sealed_only`, `sealed_plus_current`, `current_only`, `approximate_current`, or `refused_under_budget`, and receipts should disclose how cumulative state was combined. | High. GHCLI test read. |
+| Jun 23 The Graph/DeFi lead / Aug 7 GHCLI source check | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs#L569-L850 | graphprotocol / graph-node nested aggregation fixtures | Nested queries use a parent Token window linked to child Stats by scalar token id. Current include returns three rows per token, current exclude returns two sealed rows per token, empty TOKEN3 produces no synthetic bucket, and count queries preserve the same current/sealed semantics. | Good graph-window fixture. Many graph OLAP outputs are parent-child windows: node/community/path plus derived metric rows. Empty windows must have explicit semantics. | Knight Bus should create nested graph-output fixtures for node to rank-history, component to member-delta, source to bucket, and path to evidence rows, with empty-window policy declared. | High. GHCLI test read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/configs/src/server_config/cache_indexes.rs | apache / iggy cache-index enum | `CacheIndexesConfig` exposes three modes: `All`, default `OpenSegment`, and `None`, with bool-compatible parsing for true/all and false/none. | Strong UX precedent. RAM/latency strategy is an explicit user-facing mode, not an invisible implementation choice. | Knight Bus storage profiles should declare `index_cache_mode`: `all`, `active_artifact`, or `none`, with receipts proving which mode was actually used. | High. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/server/config.toml#L499-L514 | apache / iggy server config | The default config documents segment size, expiry/archive policy, and cache-index tradeoffs: all indexes in memory for speed, open segment only, or disk reads to conserve memory. | Direct product-language source. It models how to explain the RAM/speed tradeoff honestly to operators. | Knight Bus config and profile docs should present speed/materialized, balanced/active-artifact, and budget/on-file index modes in similarly plain language. | High. GHCLI config read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index.rs | apache / iggy sparse index format | `IggyIndex` is exactly three `u64` fields: offset, timestamp, and file position. The cache stores entries in order and lower-bound lookup returns the predecessor entry, with below-range returning none. | Excellent physical-format clue. A small sparse jump table can replace full materialization when the algorithm only needs to seek to a logical frontier. | Knight Bus graph artifacts should use sparse jump tables from logical graph coordinates to physical positions: node id, edge id, timestamp, frontier, partition, component, or bucket. | High. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_reader.rs | apache / iggy sparse index reader | Reader counts only whole 24-byte entries, ignoring torn trailing partial entries. It can load all entries into an in-memory cache, or binary-search the on-disk index with single-entry preads for lower-bound offset/timestamp lookup. | Critical RAM-bounded implementation source. It shows a clean split between fast resident index and bounded on-file lookup. | Knight Bus should support `load_index_all` only below a declared byte cap; above the cap it should perform on-file lower-bound lookup and record the chosen path. | High. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_writer.rs | apache / iggy sparse index writer | Writer appends encoded index bytes at the tracked file size, updates size with an atomic counter, and optionally syncs data using `sync_data` rather than full metadata sync. | Useful append-only index precedent. Low-RAM artifacts need incremental index writes that do not require rewriting the whole artifact. | Knight Bus should make graph jump-table/index artifacts appendable and separately fsync-configurable, with receipt fields for bytes appended and sync policy. | Medium-high. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/poll_plan.rs | apache / iggy borrow-free poll plan and sealed-index cap | Poll plans snapshot what they need under a partition borrow, then run file IO from owned data. Sealed index materialization is capped at `SEALED_INDEX_RESIDENT_MAX_BYTES = 512 KiB`; under the cap the index loads and is cached, above it every poll binary-searches the file. Faults fail closed rather than skipping unreadable segments. | Very strong bounded-latency/bounded-RAM pattern. The runtime chooses resident or on-file lookup per artifact size and avoids hidden gap reads. | Knight Bus should use per-artifact index resident caps, LRU-tracked sealed artifact handles, borrow-free IO plans, and `fail_closed_io_gap` receipts when a storage read cannot be proven contiguous. | High. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/partitions/src/journal.rs | apache / iggy partition journal | Journal lookups include a commit-frontier ceiling to avoid dirty reads. Only a gapless committed prefix can flush; eviction occurs only after bytes are durable. Recently evicted entries are retained in a bounded repair ring with both entry and byte caps. | Excellent correctness/resource hybrid. A low-RAM system can evict aggressively only if it names the retained repair window and refuses older unavailable ranges honestly. | Knight Bus should expose `commit_frontier_ceiling`, `gapless_flush_prefix`, `repair_retained_from`, `evicted_ring_bytes`, and `range_evicted` in run/storage receipts. | High. GHCLI source read. |
+| Jun 17 Apache Iggy lead / Aug 7 GHCLI source check | https://github.com/apache/iggy/blob/master/core/server/src/shard/system/segments.rs | apache / iggy segment cleaner | Segment cleanup applies time-based expiry and size-based trimming only to sealed segments, protects the active segment, and refuses deletion when consumer offsets still need the data. | Good retention-policy contrast to Graph Node pruning. Retention is safe only when active/current state and readers are protected. | Knight Bus compaction should never delete active artifacts, should respect consumer/oracle/replay barriers, and should record why a segment/artifact was retained or deleted. | High. GHCLI source read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/agent-eval-feedback-metrics.md | Colby McHenry / CodeGraph feedback metrics | The benchmark harness reports three metrics together: residual context occupancy, explore sufficiency, and allocation efficiency. The docs emphasize these answer different questions and can move independently. | Strong benchmark-design precedent. A single headline such as "lower RAM" or "faster" is not enough because a change can improve resource footprint while hurting sufficiency, adoption, or allocation. | Knight Bus profile runs should report correctness/parity, latency, peak and residual memory, allocation-to-used-state efficiency, planner adoption, and contamination gates together. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/residual-context-occupancy.md | Colby McHenry / CodeGraph residual occupancy | The doc distinguishes throughput from stock: total tokens/cost/time cannot reveal how much context remains occupied after the answer. It measures prompt deltas, handles compaction/eviction, compares codegraph residual against file-access residual, and documents contamination from hidden CLI access. | Excellent RAM analogy. Peak runtime memory is a flow measurement, while resident/cached/spilled state after a run is a stock that affects future jobs. | Knight Bus receipts should report `peak_rss`, `resident_after_run`, `mapped_after_run`, `cache_after_run`, `spill_after_run`, and whether hidden fallback paths contaminated the run. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/explore-sufficiency.md | Colby McHenry / CodeGraph sufficiency metric | Sufficiency is inferred from the agent's next action: explore again, read returned file, read unreturned file, grep/glob, or move on. Each bucket points at a different fix: allocation, recall, or sufficient response. | Very strong next-action evidence pattern. The user's next step is often better signal than a self-congratulatory output metric. | Knight Bus should classify post-run behavior: rerun same profile, broaden graph slice, read extra source, switch storage mode, accept output, or refuse; each maps to a product fix. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/explore-allocation-efficiency.md | Colby McHenry / CodeGraph allocation efficiency | Allocation efficiency measures the share of returned bytes whose files the final answer cited, while warning that uncited is not necessarily unused. It reports per-call and run-level efficiency and keeps path-cited vs symbol-cited attribution separate. | Strong state-allocation benchmark idea. For graph compute, the question is how much resident state was actually used by the output and proof. | Knight Bus should report `state_allocation_efficiency`: bytes/pages/blocks touched by output evidence divided by bytes/pages/blocks materialized or kept resident, with caveats for uncited-but-useful state. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/call-sequence-analysis.md | Colby McHenry / CodeGraph call-sequence analysis | Call-sequence analysis explains why read savings did not fully convert to wall-clock: trace adoption was low, explore payloads were much larger than trace, and steering alone increased trace calls without displacing explore until body-inlining made trace self-sufficient. | Critical planner-adoption precedent. An efficient path existing in the runtime does not matter if the planner still chooses the broad payload path. | Knight Bus benchmarks should record the chosen storage path sequence and prove low-RAM profiles actually displaced broad scans/materialized projections instead of adding overhead. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/codegraph-ab-matrix.md | Colby McHenry / CodeGraph A/B matrix | A/B matrix discloses date, branch, version, model, prompt shape, one variable, fresh indexing, file-count size proxy, run variance, totals, reproduce commands, and language/size cells. It reduced file reads materially but openly notes cost/overhead and small-repo tie zones. | Good disclosure template. Credible benchmarks need enough context for readers to know where the win applies and where it does not. | Knight Bus benchmark tables should disclose hardware, dataset shape, graph size, density/skew, workload, source freshness, config, run count, variance, and tie/failure zones. | High. GHCLI doc read. |
+| Jul 4 CodeGraph lead / Aug 7 GHCLI source check | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/answer-directly-vs-explore-agent.md | Colby McHenry / CodeGraph direct-vs-delegated exploration | Interactive A/B asks whether delegating exploration to disposable subagents keeps main context leaner. The conclusion favors direct targeted retrieval in observed runs, but the doc flags token figures as unverified because raw logs are gone. | Important humility pattern. A good research doc marks which metrics are sound and which are only indicative when raw evidence cannot be re-derived. | Knight Bus should distinguish verified metrics from indicative estimates and require raw logs/receipts for any public RAM or latency claim. | Medium-high. GHCLI doc read; some numbers explicitly flagged by source as unverified. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code | CocoIndex maintainers / cocoindex-code | Repo describes itself as a lightweight embedded AST-based semantic code search CLI for coding agents; GH metadata showed 2,616 stars, 211 forks, default branch `main`, and update time `2026-08-07T03:09:20Z` during this pass. | This is not graph OLAP, but it is directly relevant to making heavy local compute usable by agents: install modes, daemon lifecycle, CLI, MCP, skill, hooks, and local artifacts. | Treat this as a product/packaging reference for Knight Bus rather than an algorithm reference: `kb init`, `kb run`, `kb mcp`, `kb status`, `kb doctor`, receipt bundles, and mode selection should be first-class. | High. GHCLI repo metadata read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/README.md | CocoIndex maintainers / README | README says the tool is AST-based semantic code search built on CocoIndex, a Rust-based data transformation engine, and can be used from CLI or with Claude/Codex/Cursor via Skill or MCP. It claims 70% token saving, recommends skill integration, lists hook/MCP packaging, and documents `ccc init`, `index`, `search`, `grep`, `status`, `doctor`, `mcp`, and daemon commands. | Strong UX precedent: a sophisticated local compute system becomes agent-usable because the agent can operate it through a small set of commands and health checks. | Knight Bus should have an agent skill that owns projection selection, indexing, run execution, status/doctor, and receipt reading instead of asking agents to memorize internal storage details. | High. GHCLI doc read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/CLAUDE.md | CocoIndex maintainers / architecture notes | Architecture notes define a long-lived daemon over socket/pipe, short-lived per-request clients, auto-start, settings-mtime restart through `HandshakeResponse.global_settings_mtime_us`, idle exit after `daemon.idle_timeout_minutes`, MCP heartbeats, graceful `last_exit` marker, and crash handling. Key layers include `protocol.py`, `daemon.py`, `project.py`, `indexer.py`, `shared.py`, `settings.py`, `server.py`, `cli.py`, `grep.py`, and `chunking.py`. | Excellent architecture analogy for local graph compute. Heavy resident resources can live behind a daemon while agents and CLIs interact through small stable requests. | Knight Bus should use a run daemon with profile/project registries, cached artifacts, per-request clients, heartbeat/idle policy, settings/profile hash reload, and visible crash-vs-graceful-exit semantics. | High. GHCLI doc read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/EMBEDDINGS.md | CocoIndex maintainers / embedding guide | The guide presents explicit mode tradeoffs: local Sentence-Transformers are fast/private/offline but larger install; cloud LiteLLM works for large codebases or weak local hardware but costs money and sends data out; local LiteLLM offers flexibility but requires a server. It also explains 512-token local-model windows, language-aware chunking, encoder-vs-decoder speed, GPU/MPS settings, MPS subprocess isolation, allocator watermarks, OOM retry with smaller batches, cloud model choices, rate pacing, retries, and batching up to 64 chunks. | This is a direct model for RAM/latency/privacy disclosure. Users need a plain table of tradeoffs before they trust a compute router. | Knight Bus should present profile modes the same way: exact/local/private, high-RAM/fast, bounded-RAM/slower, approximate/sketch, cloud/offload, GPU/accelerated, and spill-heavy. Each mode needs expected RAM, latency, correctness, cost, and privacy labels. | High. GHCLI doc read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/daemon.py | CocoIndex maintainers / daemon source | `ProjectRegistry` lazily creates and caches `Project` instances by root, holds one embedder and query/index params, lists projects and indexing state, and closes all resources on shutdown. `handle_connection` uses handshake-first per-request messaging. Dispatch paths cover index, search, project status, daemon status, project removal, stop, heartbeat, and doctor. Idle reaper exits when no handler is live and no project is indexing. | Good runtime boundary pattern. Knight Bus will need expensive graph artifacts and profile runners to stay warm while still being inspectable and releasable. | Build `RunRegistry` / `GraphProjectRegistry` around loaded graph artifacts, profile manifests, active indexes, memory caps, and artifact handles; make every request handshake include version/profile/settings hash. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/project.py | CocoIndex maintainers / project source | `Project` wraps a CocoIndex `Environment` and `App`; it uses an `asyncio.Lock` to allow only one indexing run at a time, an event to mark initial indexing done, background initial indexing so search can wait, progress streaming, project status from SQLite, and optional MPS cache release after indexing. Settings and file matching are re-read on each index run so some changes take effect without daemon restart. | The index/search lifecycle maps to graph projection/run lifecycle: a run may be queued, waiting, streaming progress, queryable only after sufficient artifact construction, and visible through status. | Knight Bus should expose `run_indexing`, `ensure_projection_started`, `wait_for_projection_done`, `stream_profile_run`, `project_status`, and `memory_status`, and distinguish hot daemon restart from per-run setting reload. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/indexer.py | CocoIndex maintainers / indexer source | The indexer processes local files with a memoized CocoIndex function, detects language, applies extension overrides and custom chunkers, falls back to a `RecursiveSplitter`, targets chunks around 1,000 characters with overlap, embeds chunks, and stores them in a SQLite `code_chunks_vec` table partitioned by language with file path, content, and line-span columns. | The key idea is not embeddings; it is boundary-preserving transformation into query-shaped artifacts. Knight Bus should transform raw graph stores into algorithm-shaped artifacts that preserve natural graph boundaries. | Use graph-native splitters: component-aware chunks, high-degree hub blocks, frontier windows, community slabs, label/type partitions, temporal shards, and sparse jump tables. Store line-span-like provenance as source-node/edge/property ranges. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/settings.py | CocoIndex maintainers / settings source | Settings separate global embedding/daemon config from project include/exclude/language/chunker config. Defaults exclude build/vendor/index folders. `COCOINDEX_CODE_DB_PATH_MAPPING` and host-path mapping support Docker and bind mounts. User settings expose MPS watermarks and daemon idle/keepalive. Project settings expose max file size and chunkers. | Good configuration architecture for a local compute product: global resource policy and per-project artifact policy are separate. Path mapping is important when artifacts are larger than source and may need a different disk. | Knight Bus should separate global runtime resource policy from per-dataset/per-profile storage policy, and support artifact path mapping so graph projections can live on a fast local volume while sources stay elsewhere. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/litellm_embedder.py | CocoIndex maintainers / LiteLLM embedder | `PacedLiteLLMEmbedder` serializes requests, optionally enforces minimum request interval, retries rate-limit failures up to six times, adds provider-specific request params, caches dimension discovery, and batches up to 64 texts through a memoized async embed function. | Remote calls are treated as constrained resources with pacing, batching, and retries. The same pattern applies to external source systems, GPU workers, oracle checks, and baseline comparison calls. | Knight Bus should expose pacing/retry/batch knobs for source reads, baseline adapters, cloud offload, and verification oracles; receipts should record retries and throttling because they affect latency. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/grep.py | CocoIndex maintainers / structural grep source | `ccc grep` is structural search without daemon, index, or embeddings. It uses code_match, compiles patterns per language, honors the same include/exclude rules, streams results while walking, and uses a thread pool where Rust-backed matching releases the GIL for parallel file scans. | Useful contrast: not every operation needs the heavy semantic index. A product can provide a lightweight local path for simple structural queries and reserve expensive artifacts for hard tasks. | Knight Bus should offer both light paths and heavy paths: direct adjacency/property scans for simple questions, and profile-shaped OLAP artifacts only when planner gates show the graph algorithm path is justified. | High. GHCLI source read. |
+| Jun 1 CocoIndex lead / Aug 7 GHCLI source check | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/server.py | CocoIndex maintainers / MCP server source | MCP exposes a single semantic `search` tool with `query`, `limit`, `offset`, `refresh_index`, `languages`, and `paths`. The server can refresh before search, delegates work to daemon client calls, and keeps the daemon warm with heartbeat when configured. | Agent-facing surface area should be small and decisive. The MCP tool is not the whole product; it is a thin doorway to an indexed compute runtime. | Knight Bus MCP should expose a few high-intent tools: `profile_search`, `profile_run`, `artifact_status`, `receipt_read`, and `doctor`, each backed by daemon/state rather than dumping all internals into tool definitions. | High. GHCLI source read. |
+| Jun 17 SGH lead / Aug 7 internet source deepening | https://arxiv.org/abs/2604.11378 | Hu Wei / Structured Graph Harness | "From Agent Loops to Structured Graphs" frames agent loops as single-ready-unit schedulers and proposes SGH: immutable plan-version DAGs, separate planning/execution/recovery layers, contract validation, and a bounded escalation protocol. The source explicitly says it is a position/design paper, not production implementation or empirical results. | Very strong conceptual source for our verification-first LLM workflow. It says the graph is not decorative: it is the control surface that makes scheduling, recovery, and audit possible. | Knight Bus should model graph runs as explicit DAGs: projection, artifact build, algorithm phase, verification, baseline comparison, receipt emission, and bounded recovery. But claims must be treated as theoretical unless backed by our own runs. | High for design logic; medium for empirical claims because the paper itself says no empirical validation. Web/arXiv read. |
+| Aug 7 internet expansion from SGH lead | https://github.com/RUCAIBox/awesome-agent-harness | Xinyu Tang, Han Peng, Guoxin Chen, Yuze Shi, Zitao Su, Peiyu Liu, Wayne Xin Zhao, Yawen Li, and collaborators / Agent Systems with Harness Engineering | Repo is a maintained reading list for harness engineering with sections for agent workflow, environment perception, reasoning/planning, memory, skill libraries, multi-agent collaboration, adaptation, benchmarks, safety, continual learning, and state/environment modeling; GH metadata showed 167 stars and 23 forks. | Useful market taxonomy. It shows "harness engineering" is emerging as an independent layer, which supports our plan to make Knight Bus an execution/verification harness over graph compute, not only a storage library. | Use this as the meta-map for future source passes: memory, skill routing, state graphs, safety/runtime policy, benchmarks, and orchestration each become possible graph workloads and product surfaces. | Medium-high. GHCLI README and metadata read. |
+| Aug 7 internet expansion from SGH lead | https://arxiv.org/abs/2607.27652 | Yanning Hou, Haoyuan Chen, Sihang Zhou, Xiaoshu Chen, Xirui Liu, Duanyang Yuan, Lingyuan Meng, Siwei Wang, Quan Liu, Jian Huang / Harness-G | Harness-G identifies retrieval-equivalence collapse in RL search agents, replaces free-form query strings with finite typed/verifiable actions over a paragraph-sentence-entity graph, lets the environment construct menus and validate choices, and reports F1 gains over Graph-R1 on six QA benchmarks. | Direct graph-as-interface evidence. The win is not "use a graph somewhere"; the win is converting open-ended language actions into finite graph actions with comparable same-state alternatives. | Knight Bus should expose bounded graph algorithm choices as finite typed actions: choose profile, choose budget, choose exact/approx, choose artifact, choose frontier/window, refuse if invalid. This is agent-friendly and benchmarkable. | High for the abstract and repo-backed implementation existence; metrics still need independent replication before using as product claims. Web/arXiv and GHCLI read. |
+| Aug 7 internet expansion from SGH lead | https://github.com/7HHHHH/Harness-G | 7HHHHH / Harness-G implementation | Official repo describes graph construction without a generative LLM, bounded state-dependent action menus, graph navigation, validation, deduplication, Structured Non-Myopic Credit, dataset runners, graph caches, evaluation utilities, and reported Qwen2.5 1.5B/3B gains. GH metadata showed 10 stars and 1 fork during this pass. | Implementation clue: graph artifacts are prebuilt/cached once, then reused across runs; the agent sees a bounded menu, not raw graph internals. | Knight Bus should separate artifact construction from run-time policy choice and should cache graph artifacts across benchmark/replay runs, with receipts proving cache freshness. | Medium-high. Young repo but official implementation and README read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/protocol.py | 7HHHHH / Harness-G maintainers; paper authors listed as Yanning Hou, Haoyuan Chen, Sihang Zhou, Xiaoshu Chen, Xirui Liu, Duanyang Yuan, Lingyuan Meng, Siwei Wang, Quan Liu, Jian Huang | Protocol parsing accepts only `INIT` before initialization and available action IDs such as `A0` after initialization. It rejects unknown IDs, natural-language queries, and every `A_k || short query` form because the environment constructs retrieval queries itself. | This is a strong anti-hallucination interface rule. The model chooses a valid action, but the runtime owns graph query construction and validation. | Knight Bus agents should choose from profile-generated action IDs, not invent Cypher/fragments/knobs. Any appended mini-query or undeclared parameter should be rejected and counted. | High. GHCLI source and tests read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/env.py | 7HHHHH / Harness-G maintainers | `HarnessGEpisode` maintains stateful sessions with selected evidence, visible sentence IDs, frontier entities, action maps, display IDs, lookup history, and metrics. Menus expose `SELECT`, `LOOKUP`, `ANSWER_WITH`, and `ANSWER`; lookup targets are capped (`SELECT_LOOKUP_K = 8`, `NAV_LOOKUP_K = 4`), bad lookup targets are filtered, repeated entity lookups are not reoffered, and LOOKUP uses a runtime-built `mixquery` from the question plus selected evidence within a word budget. | Very relevant runtime pattern. The graph state determines legal next actions and caps; the model does not decide fan-out or construct arbitrary graph expansion. | Knight Bus profile sessions should expose legal next actions like `build_projection`, `run_bounded`, `inspect_receipt`, `compare_baseline`, `increase_budget`, or `refuse`, with caps and disallowed repeats enforced by runtime. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/graph_builder.py | 7HHHHH / Harness-G maintainers | Graph builder creates a clean paragraph/sentence/entity graph without relation extraction or LLM graph construction. It writes passages, sentences, entities, mentions, sparse passage-entity and sentence-entity matrices, sentence adjacency, entity synonym edges, optional embeddings, id maps, lexical index, graph manifest, and build report. The manifest records counts, storage format, extractor, embedding backend, edge counts, and build warnings. | Excellent profile-artifact precedent. It makes graph construction reproducible and inspectable through a manifest rather than hiding it in a database. | Knight Bus profile artifact builds should emit table/slab files, sparse matrices, sidecars, id maps, manifest counts, warnings, and a human build report before any algorithm run is allowed. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/graph_index.py | 7HHHHH / Harness-G maintainers | `HarnessGGraphIndex` loads clean Parquet tables or legacy JSON, builds in-memory maps and lexical vectors, optionally loads dense embeddings, caches retrieval calls, fuses paragraph-local, global sentence, and entity-mention retrieval with RRF, proposes bridge entities from selected/frontier structures, ranks bridge evidence, and uses local sentence context plus synonym/adjacency edges. | Strong algorithm-shape clue, but not low-RAM by itself: the graph index is mostly in-memory. It shows which query-shaped artifacts matter: paragraph, sentence, entity, mention, adjacency, synonym, and id-map lanes. | Knight Bus should preserve these lanes as separate mapped artifacts and receipts should report which lanes were used: paragraph rank, global sentence, entity mention, bridge candidate, local context, synonym edge, and adjacency edge. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/snc.py | 7HHHHH / Harness-G maintainers | Structured Non-Myopic Credit models each step with taken action ID, taken information gain, same-state frontier information gains, produced/consumed sentence IDs, produced/used entity IDs, and dependency rules. It computes frontier-relative credit, direct-provenance dependency edges, downstream enabling credit, exact Shapley for small step counts with a required value function, deadzones, and a `fixc_safe` option that prevents positive enabling credit from being cancelled by negative immediate credit. | This is a benchmark design pattern. Do not only score final output; compare the chosen action against valid alternatives and give credit to earlier steps that enabled later gains. | Knight Bus receipts should compare chosen storage/profile actions against feasible alternatives under the same state: RAM-first, bounded exact, bounded approximate, light path, or refusal. Earlier artifact-building steps should get enabling credit when they make a later low-RAM run possible. | High. GHCLI source and tests read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/snc_api.py | 7HHHHH / Harness-G maintainers | The API side channel builds a bounded pre-step SNC payload. It captures selected and seen sentence IDs before mutation, builds a baseline answer prompt, previews the taken action separately, excludes the taken action from the frontier, caps frontier candidates at four, deduplicates equivalent contexts, and treats `LOOKUP` as the information action while commit actions receive structural/outcome credit instead. | This is a concrete "same-state alternative" receipt. It prevents self-comparison bugs and keeps payloads bounded. | Knight Bus benchmark mode should log the selected profile action plus feasible alternatives at decision time, exclude the selected action from the alternative set, cap alternatives, deduplicate equivalent physical paths, and record why the selected mode won. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/scripts/validate_harness_g_graph.py | 7HHHHH / Harness-G maintainers | The validator requires all graph artifact files, checks unique IDs, lowercase canonical entity identity, mention PID/SID/EID references, id-map lengths, sparse matrix shape/index bounds, manifest counts, undirected edge semantics, embedding row/dimension consistency, and runtime loader compatibility. | This is exactly how a low-RAM graph artifact should be validated before execution. Validation covers files, IDs, matrix shapes, counts, semantics, and loader behavior. | `kb profile validate` should check artifact presence, id-map bijections, source references, sparse-matrix bounds, manifest-vs-actual counts, embedding dimensions, edge direction semantics, and loader compatibility before any RAM-heavy run. | Very high. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G | https://github.com/7HHHHH/Harness-G/blob/main/scripts/run_harness_g_api.py | 7HHHHH / Harness-G maintainers | The FastAPI server loads one graph index, keeps per-session `HarnessGEpisode` state, batches pending `INIT` calls through `hybrid_initial_retrieve_batch`, returns observation plus optional SNC side-channel payloads, exposes `/health` with graph counts and session count, writes navigation events as JSONL with run ID, action type, query text, result IDs, new result IDs, and turn, and exposes aggregate metrics. | Strong local-runtime precedent. Heavy artifacts sit behind a small stateful API, while events and metrics remain externally inspectable. | Knight Bus should expose a small stateful profile API/daemon with health, per-run sessions, batchable init/build phases, JSONL navigation/run events, and metric aggregation. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Harness-G tests | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_harness_g_action_v3.py | 7HHHHH / Harness-G maintainers | Tests verify the v3 action menu contains only valid action types, rejects legacy action types, emits LOOKUP markers and metrics, counts duplicate lookup attempts, prevents reoffering used lookup entities, filters bad targets such as dates/nationality adjectives/split names, terminates on `ANSWER_WITH`, and makes SNC previews align with action semantics. | Excellent verification-loop material. The tests encode interface misuse, loop prevention, bad expansion targets, and terminal semantics. | Knight Bus profile tests should reject invalid action IDs, hidden/legacy modes, repeated no-op expansions, bad supernode/frontier targets, and terminal-state misuse. | Very high. GHCLI tests read. |
+| Aug 7 GHCLI implementation pass on Harness-G tests | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_harness_g_graph_build.py | 7HHHHH / Harness-G maintainers | Graph-build tests create a tiny Ada/Babbage corpus, require all clean graph artifact files, validate graph storage and positive counts, verify undirected sentence edges and synonym edge counts, run the graph validator script, and assert case-insensitive entity identity collapse. | Tiny fixture, big value. This is the right shape for first Knight Bus graph fixtures: small enough to inspect, complete enough to validate storage contracts. | Start every profile with a tiny human-readable fixture that proves artifact files, counts, identity normalization, sparse matrices, and validation behavior before moving to large benchmarks. | Very high. GHCLI tests read. |
+| Aug 7 GHCLI implementation pass on Harness-G tests | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_snc.py | 7HHHHH / Harness-G maintainers | SNC tests prove equal frontier candidates yield zero relative credit, uniquely high taken actions get positive credit, zero-IG enabling steps can receive downstream credit, exact Shapley refuses to run without a value function, dependency edges use latest direct producer, recursive propagation reaches earliest enabler, deadzones remove tiny deltas, and `fixc_safe` protects useful enablers from negative myopic terms. | This is directly transferable to planner evaluation. Some steps look bad locally but enable later wins; the receipt must preserve that causal chain. | Knight Bus should distinguish immediate run metrics from enabling value. Building a projection or sidecar may cost time/RAM now but enable cheaper future runs; receipts should make that tradeoff explicit. | High. GHCLI tests read. |
+| Aug 7 internet expansion from SGH lead | https://arxiv.org/abs/2607.11388 | Wenyi Wu, Sibo Zhu, Kun Zhou, Aayush Salvi, Zixuan Song, Biwei Huang / StructAgent | StructAgent argues raw interaction histories make long-horizon tasks hard to interpret, verify, and recover. It introduces unified state, compact/verifiable progress, verifier-backed state transitions, explicit checkpointing, evidence-driven completion, and targeted recovery; reports major OSWorld-Verified gains. | Excellent evidence for our own progress-retainer/receipt discipline. State only advances when verified evidence is attached. | Knight Bus run state should advance only through verifier events: source frontier verified, projection validated, artifact hash sealed, algorithm phase complete, output parity checked, receipt emitted. | High for concept; reported results should be treated as paper/repo claims until independently replicated. Web/arXiv read. |
+| Aug 7 internet expansion from SGH lead | https://github.com/WenyiWU0111/StructAgent | Wenyi Wu / StructAgent implementation | Official repo frames StructAgent as planner-actor-verifier; planner reads compact typed state but cannot mark completion, actor executes bursts, verifier emits the only events that advance state, DONE auditor gates completion, failure attribution routes recovery, and output includes per-step trajectory evidence. GH metadata showed 4 stars and 0 forks during this pass. | Concrete product pattern. Completion must be evidence-gated, not model-asserted. The run ledger is a first-class interface. | Knight Bus should make `RunState` immutable except through verified events, and should preserve a trajectory/receipt view for humans and LLMs to audit. | Medium-high. Young repo but official README read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/README.md | Wenyi Wu, Sibo Zhu, Kun Zhou, Aayush Salvi, Zixuan Song, Biwei Huang / StructAgent maintainers | README states the planner reads compact typed state and chooses subgoals, the actor executes short action bursts, the verifier checks evidence and emits the only state-advancing events, the DONE auditor gates completion, and failure attribution routes recovery. It also points to OSWorld, Mind2Web, project page, and a separate Minecraft implementation. GH metadata during this pass: Apache-2.0, main branch, 4 stars, 0 forks, pushed Jul 14 2026, updated Jul 28 2026. | Confirms the source package is built around the exact verification-first state principle we want. It is not only a paper claim; the repo layout makes ledger/verifier/recovery/final-audit first-class modules. | Treat `RunState` as a compact typed artifact shared by planner, executor, verifier, and auditor. Do not let a graph algorithm runner mark itself complete without a verifier event. | High for architecture/source existence; benchmark claims still need independent replay. GHCLI README and metadata read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/loop.py | StructAgent maintainers | `StructAgent` composes `Planner`, `LedgerOrchestrator`, `Actor`, `ActorBurstController`, `ActionCompile`, and `Recovery`. `_pa_predict` runs per-step setup, builds a candidate `StepRecord`, runs actor-burst precheck, then planner, DONE gate, and actor. Actor `DONE` is treated as a claim and emits `WAIT` for fresh observation. Planner `DONE` calls `_check_done_acceptance`, then optional `audit_done` under a per-task budget; explicit auditor `FAIL` forces replan, while auditor unavailable or `PARTIAL` does not refute the ledger gate. | This is the core transfer: the executor cannot commit progress just by saying it is done. Fresh observation, ledger gate, and auditor budget are all explicit. | Knight Bus should make `AlgorithmPhaseCompleted` only a claim until a verifier checks output files, sampled parity, source artifact hashes, budget fields, and oracle/baseline evidence. Auditor failures should route to typed recovery, not silent reruns. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/ledger.py | StructAgent maintainers | The ledger defines `VerifySpec`, `Outcome`, strategy tracking, and verifier-controlled outcome state. `Outcome.apply_keynode()` is the state mutator for pending/verified/reverted outcomes. Verify specs cover `file_grep`, `url_match`, `a11y_match`, `shell_command`, and office-specific structured checks; invalid specs are rejected rather than used. Outcomes carry evidence hints, dependencies, app scope, verifier traces, evidence bundles, failure records, facts, and done-rejection counters. | Good schema evidence. It separates target state, verification method, evidence, failure, and working memory instead of keeping one flat log. | Build Knight Bus run receipts around typed outcome rows: phase id, target artifact, verifier kind, trace hash, evidence bundle, dependency ids, failure reason, and state. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/records.py | StructAgent maintainers | Evidence records include verifier kind, full verifier trace, artifacts, bound slots, planner strategy text, step span, valid-at step, status (`live`, `stale`, `invalidated`), and verdict. Facts track typed captured values with source outcome and last verification step. | Strong receipt data-model clue. It gives each proof a validity horizon and status instead of treating evidence as timeless. | Knight Bus receipts should preserve artifact hashes, sampled rows, output slices, block ranges, validity horizon, and invalidation status; evidence produced by an earlier profile must be demotable when its source artifact is replaced. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/timeline.py | StructAgent maintainers | The event timeline stores `StepRecord`, `KeyNode`, and `TimelineEvent`. Outcome cache folds state from key nodes incrementally, rejects low-confidence nodes from authoritative derivation, protects deterministic confirmations from LLM-only invalidation, tracks done rejections and verifier traces, and gates DONE on all outcomes verified. Rendering groups similar events for compact review without mutating persistence. | This is a compact-state pattern for long jobs. It keeps an append-only timeline for audit while rendering a summarized state for planning. | For graph compute, keep append-only phase events but render a compact `RunState`: pending/verified/reverted phases, latest verifier trace, budget state, current frontier/block, and recovery reason. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/verifier/boundary_verify.py | StructAgent maintainers | Boundary verifier runs once at planner-declared subgoal boundaries, not every step. It uses a per-domain trust map, caps a11y text, asks one judge/probe LLM call for JSON per milestone, allows exactly validated probe kinds, rejects invalid probe schemas, rejects non-read-only shell probes, and treats anything not positively confirmed as `verified=False`. Deterministic probe verdicts override observation judgment; inconclusive probes fall back to observation. | This is the right shape for low-RAM graph verification. Do not over-probe every edge; probe at phase boundaries with the most context and a bounded check menu. | `kb verify phase` should allow only declared oracle probes: manifest count check, id-map bijection, sparse shape check, output sample parity, checksum, baseline sample, RAM cap evidence, and spill evidence. Any undeclared probe should fail validation. | Very high. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/verifier/verifiers.py | StructAgent maintainers | Deterministic verifiers return `True`, `False`, or `None`: satisfied, observable-not-satisfied, or uncertain. File path resolution is VM-side, not host-expanded. Slot substitution supports runtime-bound values, placeholder strings are detected, file-path fallbacks are traced, and verifier traces include enough detail for debugging. | Useful semantics: `False` and `None` are different. A failed check, an inconclusive check, and an unavailable oracle must not collapse into one generic failure. | Knight Bus should split verifier outcomes into `confirmed`, `refuted`, `inconclusive`, and `unavailable`; recovery should differ for each. A RAM bound refuted by RSS is different from an oracle timing out. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/dispatcher.py | StructAgent maintainers | Recovery dispatcher maps evidence into planner modes. It has explicit categories for actor failure, DONE rejected, DONE audit failed, subgoal budget exhausted, queue empty but not verified, and repeated replans within the same strategy. It tracks action-stuck events and strategy changes instead of repeatedly emitting the same failed subgoal. | This gives the recovery vocabulary Knight Bus needs. "Retry" is too coarse; recovery must know whether the issue is executor failure, verifier rejection, budget exhaustion, empty plan, or repeated no-progress replanning. | Use typed graph-run recovery: `source_unavailable`, `profile_invalid`, `budget_refuted`, `oracle_unavailable`, `output_mismatch`, `frontier_exhausted`, `spill_exceeded`, `same_strategy_no_progress`, and `refuse_under_budget`. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/state.py | StructAgent maintainers | `RecoveryState` is a frozen per-turn mirror of counters plus `last_transition`, making the selected recovery path testable without parsing prose. | Receipts need machine-readable transition labels, not just logs. | Add `RecoveryState` to every Knight Bus run receipt with last transition, phase, turn, replan count, budget breach count, and selected fallback. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/transitions.py | StructAgent maintainers | Transition labels are a small literal set: `actor_failure`, `done_rejected`, `done_audit_failed`, `budget_exhausted`, `queue_empty_no_done`, `replan_cadence`, plus normal-flow labels `initial` and `progress_check`. | The important part is small vocabulary. It makes dashboards, tests, and agent handoffs stable. | Define a small stable transition enum for profile runs before adding clever recovery branches. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/phase_board.py | StructAgent maintainers | PhaseBoard models multi-app tasks as ordered phases, each with app, semantic goal, status, outcome ids, planned handoff in/out, and actual handoff out. The active phase advances only when outcomes are verified; handoff summaries must cite concrete trajectory evidence or tag unverified claims. | Very relevant to graph runs with multiple physical artifacts. A graph profile is not one operation; it is a chain of phases with handoffs. | Model `Projection`, `ArtifactBuild`, `AlgorithmRun`, `Verification`, `BaselineCompare`, and `ReceiptWrite` as phases with declared handoff artifacts and actual handoff evidence. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/docs/CONFIG.md | StructAgent maintainers | Config separates model/runtime switches, environment parallelism, step budgets, capabilities that are on by default, optional experience memory, and ablation knobs. Memory requires prebuilt FAISS banks and degrades to no-op when banks are missing. | Good product/config discipline. Capabilities and ablations are explicit, and optional memory is not required for correctness. | Knight Bus should separate correctness-critical gates from optional planner hints. If an optimization sidecar is absent, the run should either degrade with receipt-visible mode change or refuse under a strict profile. | High. GHCLI docs read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/docs/REPRODUCE.md | StructAgent maintainers | Reproduction docs specify serving planner/actor and verifier models, OSWorld command, Mind2Web command, max-step budgets, sharding, and aggregation. Each task directory contains `result.txt`, `traj.jsonl`, and `trajectory.html` with screenshots, verifier events, and state ledger. | The artifact bundle is a good benchmark-output shape: raw result, append-only trajectory, and human-readable replay. | Knight Bus benchmark runs should write result metrics, event JSONL, receipt markdown/HTML, profile config, verifier traces, and enough artifact references to replay claims. | High. GHCLI docs read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/scripts/run.sh | StructAgent maintainers | `scripts/run.sh` is the single entry point and turns on the full paper agent by default: perception, feasibility verdict, failure attribution, stuck-diagnosis injection, DONE auditor, DOM injection, optional memory, ledger ablation, a11y ablation, and model/environment settings. It forwards those settings to `scripts/run_structagent.py`. | Good runnable contract. One command should represent the full intended system, with ablations as explicit switches. | `kb bench run` should default to full verification mode. RAM-first, bounded, no-verifier, no-baseline, approximate, and no-receipt should be named ablations, not hidden defaults. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/lib_run_single.py | StructAgent maintainers | The runner persists agent config, writes `traj.jsonl`, captures final DONE state into trajectory artifacts, appends ledger/timeline/outcome views, stores `ledger_done_reject`, copies evaluator-compared VM files into `eval_files/`, avoids recording evaluator errors as false zeros, and writes `trajectory.html` even for partial runs. It also avoids holding screenshot histories for non-Mind2Web tasks to reduce memory. | Excellent verification-loop artifact policy. Even failed or partial runs remain inspectable, and evaluator artifacts are preserved. | Knight Bus should preserve failed-run receipts, copied baseline/oracle artifacts, raw metric files, and partial phase state; do not overwrite failure evidence with a clean rerun. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on StructAgent | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/memory/README.md | StructAgent maintainers | Memory is split into runtime retrieval/injection and offline trajectory mining/building. Runtime can inject planner, actor, verifier, and replan memories; offline builds multi-layer FAISS indexes from solved trajectories. The README lists 5100+ retrievable items across about 4725 unique trajectories and says memory is optional, affecting hint quality rather than correctness. | This is a useful separation for our own PMF loop. Learned profile hints should not become unverified hidden behavior. | Put learned budget heuristics, failed-profile lessons, and recovery recipes into optional memory/profile-hint layers; keep correctness and RAM claims enforced by verifier receipts. | Medium-high. GHCLI docs read; numbers are repo README claims. |
+| Aug 7 internet expansion from SGH lead | https://arxiv.org/abs/2607.26598 | Yuetian Du, Yucheng Wang, He Xu, Jiexu Xu, Shanwen Tan, Bing Zhao, Boyu Yang, Zhijie Xu, Ming Kong, Hu Wei, Jie Liu, Qiang Zhu / Living-Harness | Living-Harness converts completed trajectories and evaluator signals into bounded harness updates. It writes episodic memory plus a state graph recording state nodes, repair edges, and transition rules while tools/base context remain frozen, and reports Pass@1 gains on interactive environments. | Strong cumulative-learning clue. The product can improve by updating harness/profile rules, not by changing model weights or opaque prompts. | Knight Bus should evolve algorithm profiles from failed runs: add profile lint rules, budget heuristics, fallback edges, and repair notes when receipts show recurring failures. | Medium-high. Web/arXiv abstract read. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1 | Yuetian Du, Yucheng Wang, He Xu, Jiexu Xu, Shanwen Tan, Bing Zhao, Boyu Yang, Zhijie Xu, Ming Kong, Hu Wei, Jie Liu, Qiang Zhu / Living-Harness | The abstract and introduction identify the failure mode: agents can recover within an episode, but the same execution failure recurs because post-episode feedback rarely revises persistent harness procedure. Living-Harness updates only the stateful harness layer after evaluation: episodic memory plus state graph. Tools and base context stay frozen. | This is exactly the "failed receipt becomes future profile repair" loop. It says the product should learn from evidence without letting the executor rewrite its own guardrails. | Knight Bus should make profile evolution post-run only: completed run receipt plus evaluator/oracle signal feeds a bounded `profile_patch` process, while core runtime, allowed probes, and safety context remain frozen. | High for architecture concept; empirical claims remain paper claims. arXiv HTML read. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1#S3 | Living-Harness authors | The method formalizes harness state as fixed actor resources plus a fixed domain Evolution-SOP plus evolving state. The evolving state contains episodic memory records for trigger conditions, failure patterns, and recovery actions, plus a state graph containing state nodes, transition rules, and repair edges. The state is fixed during an episode and revised only after the interaction is evaluated. | Strong two-timescale pattern. Execution time and evolution time must be separated. | During a Knight Bus run, the profile version should be immutable. After completion, evaluator evidence can propose a new profile version, fallback edge, lint rule, or fixture. | High. arXiv HTML read. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1#S3.SS1 | Living-Harness authors | The Evolution-SOP is a domain-level posterior-extract-commit protocol. It governs how evaluated interactions revise the harness state, interprets failures, assigns update scope, and respects domain/tool constraints. The paper highlights evaluator-grounded evidence rather than unverified self-critique. | This gives a missing governance layer for profile learning. The run does not directly self-modify the profile; a domain SOP filters what can be committed. | Knight Bus should define an `EvolutionSOP` per profile family: what failures can produce rules, what evidence is required, which repair scopes are legal, and which updates need human review. | High. arXiv HTML read. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1#S4 | Living-Harness authors | The paper reports average Pass@1 improvements of 10.07 points on `tau^2`-Bench and 9.91 points on MultiWOZ-2.4 over the strongest interactive baselines. It attributes gains to bounded harness-state updates, and reports that removing the Evolution-SOP causes the largest ablation drop; memory and state graph ablations both degrade performance and appear complementary. | Useful PMF evidence: structured evolution beats vague reflection in their setting. But use it as directional evidence because it is simulator/benchmark based. | Measure Knight Bus profile evolution by replay: does a failed run create a scoped repair that improves future equivalent workloads without increasing hidden broad scans or breaking prior fixtures? | Medium-high. arXiv HTML read; not independently replicated. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1#A11.T5 | Living-Harness authors | Harness state grows across cycles. In MultiWOZ-2.4 examples, episodic memory, state-graph vertices, and state-graph edges all increase from empty Cycle 0 into hundreds or thousands of entries by Cycle 3. For example, Restaurant grows to 951 memory entries, 704 graph vertices, and 1363 graph edges by Cycle 3; Hotel grows to 729, 799, and 1454 respectively. | Crucial warning for Knight Bus. Evolving state can itself become a RAM/context/latency liability unless it is bounded, scoped, summarized, compacted, and validated. | Profile evolution must include retention and compaction receipts: entries added, entries merged, entries invalidated, state graph nodes/edges, retrieval latency, memory footprint, and regression status. | High for scaling-warning extraction. arXiv HTML read. |
+| Aug 7 web source-deepening pass on Living-Harness | https://arxiv.org/html/2607.26598v1#A11.T6 | Living-Harness authors | The comparison table differentiates methods by update object, persistent state, procedure revision, and bounded gates. Living-Harness is characterized as updating episodic memories and a state graph, retaining persistent state, revising procedure, and using bounded Evolution-SOP gates. | Excellent taxonomy. It tells us how to position Knight Bus profile evolution: not logs, not verbal reflection, not model fine-tuning, but bounded gated updates to executable graph-compute procedure. | Product language: "receipts become gated profile repairs." | High. arXiv HTML read. |
+| Aug 7 web source-deepening pass on Living-Harness limitations | https://arxiv.org/html/2607.26598v1#S11 | Living-Harness authors | Limitations are directly relevant: evaluation is simulator-bound with finite tools and evaluator-defined success; score-before-update does not prove robustness to arbitrary stream order, reduced recurrence, unseen policy change, or real-world deployment; schema/scope/evidence/constraint/merge gates reduce but do not eliminate bad updates; no full rollback, systematic stale-entry removal, or regression testing over solved tasks; domain SOPs are manually specified; post-episode computation and privacy-sensitive histories need controls. | These are exactly the risks for Knight Bus profile evolution. A profile can learn the wrong repair, grow stale state, leak private workload traces, or regress prior graphs. | `profile_evolution_v1` must require rollback, stale-entry policy, regression replay, privacy/redaction, and human-review gates before profile updates can affect benchmark claims. | Very high. arXiv limitations read. |
+| Aug 7 internet expansion from graph-retrieval lead | https://arxiv.org/abs/2604.20844 | Yanning Hou, Duanyang Yuan, Sihang Zhou, Xiaoshu Chen, Ke Liang, Siwei Wang, Xinwang Liu, Jian Huang / AtomicRAG | AtomicRAG stores knowledge as fine-grained self-contained atoms rather than coarse chunks or brittle predicate triples; builds an Atom-Entity Graph; combines dense retrieval, entity seeds, Personalized PageRank, and filtering; theoretical appendix frames coverage and purity tradeoffs for retrieval units. | Very relevant storage-shape clue. Granularity is a performance/correctness knob: too coarse adds noise; too fine loses coverage under top-k/budget. | Knight Bus should treat graph artifact granularity as a profile parameter with receipt metrics for coverage, purity, spill, and latency, especially for PageRank/PPR-like local ranking workloads. | High for conceptual fit; metrics need replication. Web/arXiv and GHCLI read. |
+| Aug 7 internet expansion from graph-retrieval lead | https://github.com/7HHHHH/AtomicRAG | 7HHHHH / AtomicRAG implementation | Official repo lists Atom-Entity Graph construction, atomic question decomposition, Entity-Resonance Graph Retrieval with PPR, Atomic Sieve, generated workspaces/caches, benchmark data format, run scripts, result statistics, and defaults including `ppr`, damping `0.3`, top-k values, chunk size/overlap, and concurrency settings. GH metadata showed 6 stars and 1 fork. | Concrete low-level clue for graph-shaped retrieval storage. Generated workspaces/caches and run statistics belong outside source control but inside reproducible run folders. | Knight Bus should store generated graph artifacts and statistics under explicit workspaces, not as hidden state, and should make PPR/local ranking a first early profile. | Medium-high. Young repo but official README read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/atomicrag.py | 7HHHHH / AtomicRAG maintainers; paper authors listed as Yanning Hou, Duanyang Yuan, Sihang Zhou, Xiaoshu Chen, Ke Liang, Siwei Wang, Xinwang Liu, Jian Huang | `AtomicRAG` builds an AEG from OpenIE triples, entity nodes, fragment nodes, fragment-entity edges, and synonymy edges. Retrieval loads entity and fragment keys, creates node-to-igraph-index maps, loads all entity and fragment embeddings into numpy arrays, runs dense fragment retrieval, adds query-entity seed scores, builds a reset vector, and runs `personalized_pagerank` with PRPACK under a `threading.RLock` because python-igraph is not thread safe. | Very strong implementation clue and also a warning. The logical profile is excellent, but the physical path is not yet low-RAM: embeddings and graph are resident, PPR serializes on a graph lock, and reset vectors are full graph-length arrays. | Define `ppr_local_ranking_v1` as dense fragment top-k plus entity seed top-k plus sparse/mmap graph propagation. Receipt fields should include fragment count, entity count, seed counts, reset-vector density, PPR implementation, graph lock/serial fallback, blocks/slabs touched, and peak resident state. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/embedding_store.py | 7HHHHH / AtomicRAG maintainers | `EmbeddingStore` stores `hash_id`, `content`, and `embedding` rows in namespace-specific Parquet files, loads records into in-memory lists and maps, rewrites the Parquet file on save, and returns requested embeddings by building a float32 numpy array over all stored embeddings before slicing indices. | Good cache layout clue, weak low-RAM physical design. Namespaced Parquet is useful for generated artifacts, but whole-store array construction is exactly what a bounded-RAM graph runtime should avoid at large scale. | Knight Bus embedding/vector sidecars should use blockwise reads, mmap or Arrow/Parquet row-group access, top-k merge, and receipts that prove no whole-vector-store materialization happened under bounded mode. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/utils/embed_utils.py | 7HHHHH / AtomicRAG maintainers | `retrieve_knn` batches query and key vectors, computes per-key-batch top-k similarity, concatenates batch top-k candidates, then computes final global top-k for each query. It moves batches to CUDA when available and explicitly clears CUDA cache after key and query batches. | This is the most transferable low-RAM pattern in the source: local top-k per block, merge top-k globally, and keep device memory bounded by query/key batch sizes. | Generalize this into a `BlockwiseTopKReceipt`: query batches, key batches, per-block candidate count, final top-k, device memory cap, spill bytes, and whether the implementation ever touched all vectors at once. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/query_decomposition.py | 7HHHHH / AtomicRAG maintainers | Query decomposition is a bounded planning gate: one LLM call scores complexity, decomposes only above a threshold, caps sub-questions, records metadata, and falls back to no decomposition on parse or execution failure. Merging is deterministic deduplication by default, with weighted merging left as future work. | This maps to profile selection. Expensive graph expansion should be gated by explicit complexity, budget, and expected-value checks rather than triggered for every query. | Add a planner gate before graph profiles: no graph run, light direct retrieval, bounded PPR, or full baseline. Receipts should show threshold, decomposition decision, sub-query count, and why graph mode was used or refused. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/fragment_filter.py | 7HHHHH / AtomicRAG maintainers | `FragmentFilter` asks an LLM to return JSON `keep_indices`, validates integer in-range IDs, deduplicates indices, and batches calls under the global concurrency semaphore with 60-second per-task timeout. On parse error, missing section, timeout, or filtering exception, it returns all original fragments. | Important correctness-vs-budget lesson. Fail-open protects answer sufficiency but can silently destroy low-RAM or low-token guarantees. | Knight Bus should support strict benchmark mode where sieve/filter failure is receipt-visible and either fails closed, degrades with an explicit budget breach, or refuses the run; relaxed answer mode can fail open but must not be used for RAM claims. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/scripts/run_atomicrag.py | 7HHHHH / AtomicRAG maintainers | The runner creates `workspaces/atomicrag`, `results/atomicrag`, and logs, clears workspace when `--use_cache false`, rebuilds on cache inconsistency in cache mode, processes corpora with a semaphore fixed to one corpus at a time, writes `predictions_<corpus>.json`, and writes timestamped `statistics_<corpus>_<timestamp>.json`. | Excellent run-folder and artifact-freshness precedent. It separates source data, generated workspace, predictions, statistics, and logs; it also shows cache inconsistency recovery as a normal path. | Knight Bus should make workspaces, results, logs, source manifest hash, profile hash, cache mode, rebuild reason, and statistics path explicit in every profile run. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/utils/config_utils.py | 7HHHHH / AtomicRAG maintainers | `BaseConfig` exposes the knobs that define the physical profile: `retrieval_max_workers`, `force_openie_from_scratch`, `force_index_from_scratch`, `passage_node_weight`, `skip_graph`, `synonymy_edge_topk`, KNN batch sizes, similarity threshold, directed flag, `entity_node_weight`, `entity_top_k`, `entity_sim_threshold`, `retrieval_top_k`, `damping`, and `qa_top_k`. | Good evidence that graph retrieval systems already have many hidden physical knobs. If these are not surfaced as profile modes, users cannot reason about RAM, latency, or correctness. | Convert these to typed profile manifest fields with allowed ranges and validation: seed weights, top-k, damping, KNN block sizes, synonym edge fan-out, graph skip/rebuild flags, exactness, and memory cap. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on AtomicRAG | https://github.com/7HHHHH/AtomicRAG/blob/main/configs/atomicrag/config.json | 7HHHHH / AtomicRAG maintainers | Application config sets high OpenAI and evaluation concurrency defaults at 200, while retrieval workers default to serial mode unless configured because PPR uses a graph lock. | Useful reminder that API concurrency and graph-kernel concurrency are different constraints. A product can look parallel outside and still serialize in the algorithm core. | Receipts should split concurrency fields: extraction/API concurrency, vector search concurrency, graph propagation concurrency, corpus concurrency, and lock/critical-section time. | High. GHCLI source and config read. |
+| Aug 7 internet expansion from enterprise KG search | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | Harness argues modeled data should be queried through a schema-driven Knowledge Graph rather than raw MCP APIs. It gives a concrete token comparison: raw API path roughly 250k-350k input tokens versus KG/HQL path around 12k for a cross-module analytics question, and frames typed fields, explicit joins, semantic annotations, HQL safety, and a four-tier data ownership model. | Strong commercial/pragmatic evidence: graph modeling reduces context/token/latency by moving joins, field semantics, and aggregation rules out of the LLM. | Knight Bus should position custom OLAP storage similarly: if graph data and algorithms are modeled, execution should be deterministic, bounded, and cheap; raw API/Cypher/MCP fallback is for unmanaged data, not the optimized path. | Medium-high. Vendor blog; exact token numbers should be cited as Harness's example, not independent measurement. |
+| Apr 7 2026 Harness KG source-deepening | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | The article's central rule is that modeled platform data should follow a deterministic Knowledge Graph path, while raw MCP/API access remains flexible but expensive for analytic questions. It uses a cross-module CI/CD/security question to contrast API discovery/correlation/synthesis with schema-driven HQL query generation and aggregated graph results. | This is a direct analogy for Knight Bus. The physical graph profile is not merely an optimization; it is the modeled path that removes planner guessing about joins, field types, fan-out, and aggregation legality. | Treat `graph_profile` as the equivalent of Harness KG/HQL: a constrained, modeled surface. Treat raw Cypher/import/API fallback as extension tier, not the product's optimized path. | High for article content; medium for external validity because it is a vendor architecture post. |
+| Apr 7 2026 Harness KG token example | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | Harness estimates the raw API/MCP route at 5+ LLM calls and about 250k-350k input tokens, compared with 2-3 LLM calls and about 12k input tokens through the Knowledge Graph/HQL path, described as a 15-25x token reduction. | Strong framing for budget-bounded compute: pre-modeled structure reduces context load before it reduces machine RAM. The same product claim shape can become "bounded artifact path touches N slabs instead of loading M bytes." | Knight Bus receipts should include an analogous "modeled path saved work" section: avoided full scans, avoided materialization, slabs touched, bytes read, peak RSS, and baseline contrast. | Medium. Numbers are Harness-provided examples, not independent benchmark data. |
+| Apr 7 2026 Harness field metadata pattern | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | Field metadata includes type, display semantics, unit, legal aggregations, search/sort/filter/group constraints, and descriptions. The article uses duration as the example: numeric, time-unit-bearing, aggregatable, filterable/sortable, but not groupable. | This is exactly the profile-manifest idea for graph algorithms. A profile field should carry type, unit, allowed aggregations, allowed exact/approx modes, RAM-mode constraints, and invalid operation rules. | Add a typed `ProfileSchema` layer before code generation: illegal filters, illegal groupings, invalid exactness modes, and unsupported storage lanes should fail early and clearly. | High. Article read. |
+| Apr 7 2026 Harness relationship schema pattern | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | The article says relationships should be declared with connected entity types, join fields, cardinality, and human traversal names, rather than inferred from API field-name similarity. | Useful for graph workload manifests. Edge lanes and artifact joins should be explicit, including direction, cardinality, source range, key mapping, and traversal name. | Knight Bus should never let an agent infer that two graph sidecars join because names look similar. Artifact manifests should own join semantics and receipts should cite the exact join lane used. | High. Article read. |
+| Apr 7 2026 Harness semantic routing pattern | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | Semantic annotations route questions to a few relevant entity types rather than scanning the entire module/API surface. The post describes selecting 1-3 types from 80+ with low-temperature strict JSON. | Direct profile-selection clue. A graph algorithm router should classify workload shape into a small set of profile families before any heavy build/run begins. | Add a `profile route` phase: workload tags, candidate profile IDs, rejected candidates, confidence, strict JSON schema, and verifier-readable reason. | High. Article read. |
+| Apr 7 2026 Harness HQL safety pattern | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | The HQL-versus-API table contrasts formal grammar, enumerated field names, declared valid operations, explicit joins, simple limits, clear errors, and preconfigured authorization against raw APIs with varied pagination and implicit semantics. | This maps to graph compute APIs. Generated physical plans should be constrained by a grammar and schema, not by arbitrary agent text or handwritten ad hoc Cypher. | Define a small profile plan language before a general query language: profile, artifact, filter, budget, exactness, spill policy, output contract, and verifier gates. | High. Article read. |
+| Apr 7 2026 Harness data ownership tiers | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Harness / Sunil Gattupalle and Prateek Mittal | The four-tier model distinguishes owned/modeled data, partially modeled data, understood external data, and unmanaged external MCP data. It recommends defaulting to modeled KG for read/query/analyze, using schema-guided bridges for partial data, curating managed integrations, leaving external MCP as an extension point, and moving data upward over time. | This is the clearest product architecture for Knight Bus adoption. Do not require all graph data to be perfect upfront; tier it and make determinism/cost visible. | Product modes: Tier 1 optimized graph profile, Tier 2 schema-guided source bridge, Tier 3 managed connector profile, Tier 4 raw fallback with warning. The UI/API should price determinism explicitly. | High for architecture extraction; vendor framing caveat remains. |
+| May 18 2026 Harness context graph source | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Harness / Dewan Ahmed and Sunil Gattupalle | The article distinguishes knowledge graphs, which model what exists, from context graphs, which model how work flows over time. It describes three layers: knowledge graph, per-user temporal activity stream, and aggregate/anonymized process graph; another framing is structural graph plus executional graph over shared entities. | This is a strong product-language bridge. Knight Bus should not only store graph state; it should store and compute over executional graph traces: which algorithm path ran, which artifacts were touched, and what sequence worked under a budget. | Add `profile_trace_graph_v1`: run phases, artifacts, budgets, verifier events, fallback transitions, human decisions, and repeated successful/failed paths as first-class graph data. | High. Article read. |
+| May 18 2026 context graph event schema | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Harness / Dewan Ahmed and Sunil Gattupalle | The article's trace-step shape records trace ID, step index, relative timestamp, action type, tool family, entity IDs, process tags, outcome, and duration; it explicitly keeps raw text out and ties steps to knowledge-graph entity IDs. | This is almost a graph-compute receipt schema. A run event should be abstract enough to aggregate safely, but anchored enough to be actionable and replayable. | Receipts should emit both private raw logs and safe abstracted trace steps: phase index, action type, profile/artifact IDs, entity/slab IDs, outcome, duration, and resource counters. | High. Article read. |
+| May 18 2026 context graph aggregation warning | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Harness / Dewan Ahmed and Sunil Gattupalle | The article says aggregate traces into probabilistic paths, carry uncertainty forward, decay stale traces, preserve competing paths, flag sparse situations, and require k distinct users plus n independent traces before treating a pattern as viable. | Very relevant to profile evolution. Do not let one failed run or one success hard-code a new execution rule. | Profile learning should require recurrence thresholds, confidence, recency weighting, alternative path retention, sparse-data warnings, and privacy thresholds before a repair becomes default behavior. | High. Article read. |
+| May 18 2026 context graph storage pattern | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Harness / Dewan Ahmed and Sunil Gattupalle | The storage recommendation is hybrid: graph entities/edges for relationships, text chunks tagged by entity IDs for semantic search, and a semantic layer that ties both together. The query layer should retrieve small relevant slices rather than dump the graph. | This reinforces the low-RAM idea from a different angle: the product must serve slices, not materialize the universe. | Profile storage should expose query-shaped lanes: graph traversal, vector/text sidecars, trace windows, and entity IDs as joins; every query should prove slice size and avoid whole-graph dumps. | High. Article read. |
+| May 18 2026 context graph evaluation metrics | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Harness / Dewan Ahmed and Sunil Gattupalle | The article proposes evaluation signals: coverage, path agreement with experts, agent task completion, time-to-fresh after process changes, and context cost. It warns that growing context cost means the query API is leaking abstraction. | This maps directly to Knight Bus verification. Good profiles should improve completion and reduce resource cost while staying fresh and expert-aligned. | Add product metrics beyond algorithm speed: workload coverage, path agreement with expected physical plan, task completion, artifact freshness lag, and context/RAM cost per decision. | High. Article read. |
+| Apr 23 2026 Harness agent-loop OS source | https://www.harness.io/blog/agent-loop-new-os | Harness / Sunil Gattupalle | The article frames agent systems as OS-like: LLM as reasoning engine, context window as finite RAM, tool calls as syscalls, MCP/harness as kernel, and KG/data layer as filesystem. It argues small stable interfaces, uniform contracts, runtime discovery, dispatch layers, and extension through data are the durable pattern. | This is a product architecture spine for Knight Bus. Keep agent/user-facing verbs small; push graph complexity into manifests, registries, and storage engines. | Expose a small `kb` surface: describe/profile/list/run/verify/inspect/compare/evolve, with profile registry and typed manifests carrying the variety. | High. Article read. |
+| Apr 23 2026 Harness agent-loop memory-pressure source | https://www.harness.io/blog/agent-loop-new-os | Harness / Sunil Gattupalle | The article maps memory thrashing to raw JSON in context, page faults to missing evicted information, memory leaks to unbounded tool outputs, OOM to context overflow, and cache misses to lost retrieved data. It says platform design should protect context budget for reasoning. | The analogy sharpens our own language: graph RAM pressure and agent context pressure are the same class of product problem. | Every profile command should protect both machine RAM and agent context: paginated outputs, summary boards, artifact pointers, bounded trace slices, and explicit "too big to inline" behavior. | High. Article read. |
+| Apr 23 2026 Harness virtual-memory schema source | https://www.harness.io/blog/agent-loop-new-os | Harness / Sunil Gattupalle | The article describes demand-paged schema discovery: the agent's address space covers many resource types, but only relevant metadata enters context when needed. Harness reports 10 generic tools dispatching to 30 toolsets, 140+ resource types, and 57 KG views. | This is the same as profile/schema paging. A Knight Bus agent should load profile schema, artifact manifest, or verifier details on demand, not carry all algorithms in prompt memory. | Add `profile_describe` and `profile_schema` as cheap local metadata calls; keep algorithm docs and artifact manifests pageable by profile and dataset. | Medium-high. Vendor architecture numbers; article read. |
+| Apr 2026 Harness MCP redesign source | https://www.harness.io/blog/harness-mcp-server-redesign | Harness / Sunil Gattupalle, Rohan Gupta, and Shubham Jindal | The redesign article says v2 reduced Harness MCP from 130+ tools to 11, cut estimated tool-definition context cost from about 26% to 1.6% of a 200K-token context, used registry dispatch for 125+ resource types, and added write confirmations, fail-closed deletes, and read-only mode. | Strong operational evidence for small action surfaces. More algorithms should not mean more agent tools. | Knight Bus should keep an 8-12 verb surface and grow by profile registry; destructive artifact rebuilds need confirmations, read-only mode, and fail-closed deletion semantics. | Medium-high. Vendor numbers; article read. |
+| 2026 Harness KG+RAG source | https://www.harness.io/blog/knowledge-graph-rag | Harness / Sunil Gattupalle | The article contrasts KG and RAG: KG handles explicit relationships, multi-hop reasoning, lineage, ownership, policy and dependency constraints; RAG handles broad unstructured text. It describes Harness's hybrid Software Delivery KG plus semantic model plus RAG, and gives vendor outcomes including 85% faster pipeline onboarding, 7x faster issue resolution, and 50% less debugging time. | Useful product boundary: graph compute should not pretend to replace all retrieval; it should own the structured, relational, policy-constrained path and bridge to text only when needed. | Position Knight Bus profiles as the structured-reasoning/runtime lane, with vector/text sidecars as breadth lanes. Keep vendor outcome numbers separate from our claims. | Medium-high for architecture; vendor outcome numbers need independent validation. |
+| 2026 Harness repo-as-KG source | https://www.harness.io/blog/your-repo-is-a-knowledge-graph-you-just-dont-query-it-yet | Harness / Ompragash Viswanathan | The article frames source repositories as context engines: AST/LST plus semantic indices projected into a code graph with functions, classes, modules, interfaces, comments, and edges such as calls, imports, inherits, implements, modifies, and tests. Agents query subgraphs and semantic chunks instead of raw files. | Very relevant to our own work process. Codebases, graph datasets, and benchmark artifacts all need queryable context engines so LLMs can avoid raw-file/RAM dumping. | Add code/dataset context as first-class inputs to Knight Bus specs: graph profiles should be authored from context-engine summaries, not blind source dumps. | Medium-high. Article read. |
+| Aug 7 internet expansion from graph-memory lead | https://arxiv.org/abs/2602.05665 | Chang Yang, Chuang Zhou, Yilin Xiao, Su Dong, Luyao Zhuang, Yujing Zhang, Zhu Wang, Zijin Hong, Zheng Yuan, Zhishang Xiang, Shengyuan Chen, Huachi Zhou, Qinggang Zhang, Ninghao Liu, Jinsong Su, Xinrun Wang, Yi Chang, Xiao Huang / Graph-based Agent Memory survey | The survey frames memory as a core module for long-horizon agents and argues graph memory is useful because it represents relational dependencies, hierarchical information, and efficient retrieval. It organizes the area by memory forms, short/long term memory, knowledge/experience memory, structural/non-structural memory, and a lifecycle of extraction, storage, retrieval, and evolution. Its challenge section names scalability and efficiency problems: graph operations can be quadratic or worse, and future work should explore graph-structure compression, incremental updates, and approximate retrieval. | This is a direct bridge between our graph-algorithm thesis and local agent memory. Memory graphs grow over time, so a system that cannot bound RAM and latency will be hard to trust locally. | Treat agent memory as a first local workload: bounded conflict-aware recall, temporal lookup, h-hop expansion, graph compaction, incremental update, stale fact audit, and evidence-ranked traversal. | High. Web/arXiv read. |
+| Feb 5 2026 graph-memory source-deepening | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The paper identifies four memory motivations for agents: personalization/specification, long-term reasoning beyond the finite context window, self-improvement without model updates, and hallucination mitigation through structured/verifiable memory. It also argues graph memory is a flexible generalization of linear or unstructured memory because even plain memory can be viewed as a degenerate graph. | This gives the local-use-case story. Users may not buy "graph database", but they will buy "my agent remembers, verifies, and improves locally without stuffing every note into context." | First vertical should be a local memory/context graph workload where bounded recall is emotionally obvious: decisions, evidence, source anchors, stale facts, and prior failed attempts. | High. arXiv abstract/html read. |
+| Feb 5 2026 memory lifecycle source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The survey organizes graph memory by lifecycle: extraction transforms raw text, trajectories, or multimodal data into memory contents; storage organizes the memory efficiently; retrieval recalls relevant contents; evolution updates and reorganizes memory over time. | This maps directly to Knight Bus profile phases. A memory product is not one algorithm; it is a recurring pipeline of ingest, artifact build, bounded retrieval, and repair/compaction. | Define profile families by lifecycle phase: `memory_extract_profile`, `memory_store_profile`, `memory_retrieve_profile`, and `memory_evolve_profile`, each with separate RAM and correctness receipts. | High. arXiv HTML read. |
+| Feb 5 2026 memory storage source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | Storage forms include knowledge-graph structures, hierarchical structures, temporal graphs, hypergraphs, and hybrid graph architectures. The paper calls out bi-temporal modeling, mention/event-time disentanglement, hypergraph integrity for n-ary relations, and knowledge-experience decoupling. | Direct storage-format instruction. We should stop searching for one universal graph layout. Agent memory will need multiple physical profiles because fact edges, temporal histories, n-ary episodes, and working memory have different access paths. | Candidate storage profiles: temporal edge slabs, hierarchy/community sidecars, hyperedge/n-ary event tables, and hot working-memory overlays over sealed historical graph artifacts. | High. arXiv HTML read. |
+| Feb 5 2026 retrieval operator source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | Retrieval is categorized into similarity-based, rule-based, temporal-based, graph-based, reinforcement-learning-based, and agent-based operators, with intra-layer and inter-layer traversal plus multi-round, post-retrieval, and hybrid-source strategies. | This is the operator vocabulary for finite action menus. A profile planner should choose a small operator path, not a vague "search memory" command. | `profile_action_menu_v1` should include typed retrieval operators: semantic seed, rule filter, temporal window, intra-layer hop, inter-layer hop, RL/policy selector, post-retrieval reformulation, and external-source bridge. | High. arXiv HTML read. |
+| Feb 5 2026 hybrid-source memory source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The survey says hybrid-source retrieval must choose between internal memory and external resources, then merge evidence or resolve conflicts. For facts, it should prioritize independently verifiable authoritative sources; for personal experience, it should prioritize internal records matching user and time period. | This is a clean conflict policy for local agents. External web truth and private user history should not be ranked by one undifferentiated relevance score. | Receipts should record `source_class`, `authority_policy`, `user_scope`, `time_scope`, conflict rule, and whether internal or external evidence won. | High. arXiv HTML read. |
+| Feb 5 2026 memory evolution source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The survey splits memory evolution into internal self-evolving and external self-exploration. Internal evolution includes consolidation, graph reasoning, and graph reorganization: merge repeated subgraphs into schemas, detect contradictions, infer missing edges, reorganize topology, and forget or abstract trivial details. | This gives profile-evolution work that is concrete and testable. Evolution is not a freeform reflection note; it is graph mutation under evidence and budget constraints. | Add `memory_compaction_v1`, `conflict_resolution_v1`, `missing_edge_candidate_v1`, and `topology_reorganize_v1` as offline/batch profile candidates with dry-run and rollback receipts. | High. arXiv HTML read. |
+| Feb 5 2026 benchmark selection source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | Benchmark choice depends on the memory capability under study: interaction/personalization for conversational persistence, web/environment tasks for long action sequences and experiential data, LongContext for fact retrieval, continual tasks for adaptation, and tool/workflow tasks for execution memory. | This protects us from easy demos. A profile should be evaluated against the capability it claims, not a friendly benchmark that fits in context. | Map every Knight Bus profile to a benchmark class before implementation: temporal recall, cross-session personalization, long-context retrieval, tool/workflow execution, continual update, or environment trajectory memory. | High. arXiv HTML read. |
+| Feb 5 2026 graph-memory limitations source | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The limitations section names graph quality, scalability/efficiency, privacy/security, dynamic schema learning, interpretability/trust, theoretical foundations, and multi-agent memory coordination. It says graph operations can be quadratic or worse, and suggests graph-structure compression, incremental updates, approximate retrieval, hardware acceleration, and distributed architectures. | This is one of the strongest public validations of our RAM thesis. The survey says graph memory needs exactly the kind of bounded, approximate, incremental, auditable graph processing we are designing. | Low-RAM differentiation should focus on compression, incremental updates, approximate retrieval with receipts, privacy-preserving local execution, and formal complexity/RAM contracts. | Very high. arXiv limitations read. |
+| Feb 5 2026 graph-memory quality metrics | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The appendix says graph-memory quality should be evaluated along retrieval effectiveness, graph structural quality, and task-level utility. Metrics include Precision@K, Recall@K, MRR, coherence, completeness, redundancy, temporal consistency, task success rate, interaction efficiency, and generalization. | This is a ready-made evaluation frame for Knight Bus local-memory profiles. RAM/latency alone is not enough; a memory graph can be cheap and wrong. | Every profile benchmark should report quality, resource, and task utility together: relevance/ranking, structural faithfulness, temporal consistency, peak RSS, wall time, context cost, and task outcome. | High. arXiv appendix read. |
+| Feb 5 2026 open-source memory library comparison | https://arxiv.org/html/2602.05665v1 | Graph-based Agent Memory survey authors | The appendix compares eleven open-source memory libraries across license, external/interaction construction, graph memory, retrieval, lifecycle management, temporality, reasoning, conditioning, personalization, hierarchy, and agent integration. Listed examples include Cognee, LangMem, Mem0, LightMem, O-Mem, OpenMemory, Memori, MemMachine, Memary, Graphiti, and Memvid. | Useful PMF map. Memory is already a crowded product layer, but the comparison dimensions show where a compute/runtime layer can sit underneath or beside them. | Knight Bus should integrate with memory systems rather than compete head-on: import graph/memory artifacts, run bounded profiles, emit receipts, and export compact context or repair suggestions. | High. arXiv appendix read. |
+| Aug 7 internet expansion from graph-memory lead | https://github.com/DEEP-PolyU/Awesome-GraphMemory | DEEP-PolyU / Awesome-GraphMemory maintainers | Curated resource list for graph-based agent memory. GH metadata showed 329 stars, 23 forks, default branch `main`, and update time `2026-08-03T13:40:21Z` during this pass. README sections track memory extraction, storage, retrieval, evolution, benchmarks such as LoCoMo, LongMemEval, MemoryAgentBench, MEMTRACK, and projects including Graphiti. | Useful source map. It confirms graph memory is becoming a category with papers, benchmarks, and open-source systems rather than a one-off technique. | Use it as the reading spine for memory-specific profiles and benchmark selection: LongMemEval-style temporal memory, LoCoMo-style multi-session recall, and MEMTRACK-style evolving memory should become fixtures. | High. GHCLI metadata and README read. |
+| Aug 7 GHCLI ecosystem pass on Awesome-GraphMemory | https://github.com/DEEP-PolyU/Awesome-GraphMemory | DEEP-PolyU / Chang Yang, Qinggang Zhang, and collaborators | GHCLI metadata: repo description says it is a curated list of graph-based agent-memory resources; 329 stars, 23 forks, default branch `main`, not archived, pushed Jun 6 2026, updated Aug 3 2026. Recent commits added `taOSmd`, `Omnigraph`, and README updates. | This is a useful living map rather than just an academic appendix. The additions point toward local-first memory, typed graph DBs, and benchmarked memory systems. | Treat this repo as a watchlist for integration targets and benchmark candidates, not as direct proof of performance. | High for metadata and repo state; not a benchmark. GHCLI read. |
+| Aug 7 GHCLI ecosystem pass on taxonomy sections | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | DEEP-PolyU / Awesome-GraphMemory maintainers | README taxonomy lists memory extraction from textual, sequential, and multimodal data; storage via knowledge graph, hierarchical graph, temporal graph, hypergraph, and hybrid graph architectures; retrieval via similarity, rule, graph, temporal, RL, and agent-based techniques; and strategies including multi-round, post-retrieval, and multi-source retrieval. | This gives a practical menu of graph shapes and operators. It also confirms that "memory graph" is too broad to implement as one storage engine. | Map each taxonomy branch to a profile and storage artifact: temporal slabs, hierarchy/community sidecars, hyperedge tables, vector/text lanes, working-memory overlays, and profile routers. | High. README read via raw GitHub. |
+| Aug 7 GHCLI ecosystem pass on benchmark matrix | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | DEEP-PolyU / Awesome-GraphMemory maintainers | Benchmark table includes Interaction, Personalization, Web, LongContext, Continual, Environments, and Tool/Gen scenarios. Named entries include LoCoMo, LongMemEval, MemoryAgentBench, MEMTRACK, RealMem, PersonaMem, WebChoreArena, LongBench/RULER/BABILong, MemoryBench, LifelongAgentBench, StreamBench, SWE-Bench, GAIA, and ToolBench. | This is an excellent PMF benchmark map. It prevents us from overfitting one demo and then claiming broad memory intelligence. | Build the first benchmark matrix with five tracks: cross-session recall, temporal fact lookup, workflow/tool memory, continual update/compaction, and code/project memory. | High. README read. |
+| Aug 7 GHCLI ecosystem pass on projects | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | DEEP-PolyU / Awesome-GraphMemory maintainers | Open-source project list includes LangMem, LightMem, O-Mem, OpenMemory, Memori, MemMachine, Memary, Graphiti, Memvid, Anda Hippocampus, Omnigraph, and taOSmd. Descriptions distinguish SDK memory, lightweight memory-augmented generation, cognitive memory engines, temporal KGs, single-file memory, native graph memory, typed graph database, and local-first benchmarked memory. | This is a category map with too many products for a generic memory app wedge. Differentiation should be underneath or beside them: bounded graph compute, receipts, low-RAM profiles, and benchmark harnesses. | Prioritize integration adapters: Graphiti, taOSmd, Omnigraph, Memvid, and Mem0-style memory exports. | High. README read. |
+| Aug 7 GHCLI ecosystem pass on Omnigraph | https://github.com/ModernRelay/omnigraph | ModernRelay / Omnigraph maintainers | GHCLI metadata: Rust primary language, 1050 stars, 244 forks, pushed Aug 7 2026, updated Aug 6 2026. README positions Omnigraph as a lakehouse graph database for context assembly and multi-agent coordination, with object-storage-native Lance columnar storage, Git-style branching, multimodal retrieval, Cedar policy, declared-as-code clusters, branch/review/merge, and graph/vector/full-text/RRF in one query runtime. | Very close adjacent architecture. It validates branchable graph state, object-storage-native graph artifacts, multimodal context assembly, and agent-facing graph operations. | Knight Bus should complement rather than duplicate: run bounded algorithm profiles over Omnigraph/Lance-style graph artifacts and emit resource/correctness receipts. | High. GHCLI metadata and README read. |
+| Aug 7 Omnigraph source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/README.md | ModernRelay / Omnigraph maintainers | README says Omnigraph is a lakehouse graph database for context assembly and multi-agent coordination. It uses declared cluster config, graph schemas, stored queries, policies, S3-compatible object stores, Lance columnar storage, Git-style branches, graph traversal, vector ANN, full-text, and RRF in one query runtime. | This is the server/lakehouse counterpart to Memvid's single-file capsule. It validates that graph state can be branchable, object-store-native, and agent-operated. | Add `lakehouse_graph_profile_v1`: run bounded graph algorithms over branchable object-store graph artifacts and emit receipts that can attach to branch review/merge. | High for product architecture and repo metadata. |
+| Aug 7 Omnigraph storage docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/concepts/storage.md | ModernRelay / Omnigraph maintainers | Storage docs split L1 Lance datasets from L2 Omnigraph coordination. Each node/edge type is its own Lance dataset with Arrow columns, fragments, manifest versions, stable row IDs, append/delete/merge-insert, per-dataset branches, and object-store support. Omnigraph adds an append-only `__manifest` catalog over all sub-table versions plus graph commit/head rows. | This is an excellent physical/logical split for Knight Bus. Algorithm-specific layouts can be derived physical state, while one manifest defines which artifacts are logically visible. | Add `profile_manifest_v1`: content-addressed graph-profile catalog over raw chunks, layouts, indexes, receipts, and verifier outputs. | High. Docs read. |
+| Aug 7 Omnigraph storage docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/concepts/storage.md | ModernRelay / Omnigraph maintainers | Docs say snapshot reconstruction chooses latest visible table versions, tombstones scoped to stable table and incarnation, and graph-level branches are Lance branches over datasets coordinated by `__manifest`. They also enforce strict internal-schema versioning: old/new storage formats are refused and rebuilt via export/import rather than migrated in place. | This is a store-mode-signature lesson at graph scale. Refuse incompatible artifacts rather than guessing how to read them. | Use strict strand compatibility for Knight Bus profile capsules: exact supported spec or export/import rebuild, not silent in-place migration. | High. Docs read. |
+| Aug 7 Omnigraph branch docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/branching/index.md | ModernRelay / Omnigraph maintainers | Branch docs describe graph-level branches over Lance per-dataset branches, lazy sub-table forking only on first mutation, path-prefix-disjoint branch names, branch lifecycle create/write/merge/delete, graph commit DAG, snapshots, time travel, schema-apply lock branch, and recovery audit trail. | This is directly useful for agent workflows. Profile results should be reviewable on isolated branches before merging into a canonical graph or benchmark ledger. | Add `profile_branch_review_v1`: profile runs can write to review branches, compare deltas, merge after verification, and delete stale branches to avoid retention cost. | High. Docs read. |
+| Aug 7 Omnigraph merge docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/branching/merge.md | ModernRelay / Omnigraph maintainers | Merge docs define three-way row-level graph merges, all-or-nothing graph commit, already-up-to-date, fast-forward, merged outcomes, structured conflicts, and the fact that fast-forward merges may defer index rebuild while reads remain correct by scanning rows not yet covered by indexes. | Very strong match to our RAM/latency tradeoff. Derived acceleration may lag, but logical answers must remain correct and observable. | Knight Bus should separate logical correctness from physical acceleration: indexes/layouts can be incomplete, but receipts must show degraded coverage and scan fallback. | High. Docs read. |
+| Aug 7 Omnigraph architecture docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/architecture.md | ModernRelay / Omnigraph maintainers | Architecture docs define an eight-layer stack: compiler, engine, graph index CSR/CSC, runtime cache LRU, coordinator, manifest, Lance I/O, object store, server/CLI, Cedar policy, and write queues. It states the write-side storage seam is staged and that capability/stat surfaces for planner decisions remain roadmap. | This is a caution for us: exposing cost/capability metadata to the planner is not optional if budget-bounded execution is the product. | Add planner-facing `profile_capabilities_v1`: estimated rows, fragments, index coverage, pushdown support, RAM cost, and fallback behavior. | High. Docs read. |
+| Aug 7 Omnigraph write-path docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/writes.md | ModernRelay / Omnigraph maintainers | Write-path docs describe branch authority tokens, graph-head checks, schema identity, per-table snapshots, bounded transaction inputs, exact publish, recovery sidecars, typed resource limits, insertion-absence certificates, and measured merge cost gates at 10K and 100K rows under 5x time and 64 MiB RSS overhead. | This is benchmark and verification process gold. It shows how to turn a complex storage path into explicit bounded acceptance gates. | Use explicit cost gates for every Knight Bus write/build/merge path: row cap, byte cap, version scan cap, time multiple, and RSS overhead. | High. Docs read; exact numbers are project-reported. |
+| Aug 7 Omnigraph invariants docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/invariants.md | ModernRelay / Omnigraph maintainers | Invariants doc states the core principle: accepted schema and manifest define the logical contract; physical state such as fragment layout, index coverage, compaction, and caches may lag, retry, or be rebuilt but must not silently change logical correctness. It requires bounded, typed, observable failures. | This is the clearest public phrasing of the architecture we need. Budget-bounded graph compute should treat layout as derived acceleration, not truth. | Add `logical_contract_physical_layout_v1`: logical output is defined by accepted graph snapshot and profile manifest; acceleration artifacts are rebuildable and may lag with explicit degradation. | Very high. Docs read. |
+| Aug 7 Omnigraph graph-index source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/graph_index/mod.rs | ModernRelay / Omnigraph maintainers | Graph index source builds topology-only dense type indexes plus CSR and CSC adjacency by scanning only edge source/destination columns from the snapshot. It explicitly says topology is a pure function of edge tables and warns cache keys must include any extra state read. | This maps straight to per-algorithm layout. A graph profile should build the smallest topology projection needed for the algorithm, not ingest all node properties. | Add `topology_only_profile_index_v1`: per-profile CSR/CSC built from required edge columns only, with source table identity in cache key. | High. Source and tests read. |
+| Aug 7 Omnigraph runtime-cache source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/runtime_cache.rs | ModernRelay / Omnigraph maintainers | Runtime cache keys graph indexes by scoped edge-table physical identity: table identity, key, version, branch, e_tag, and endpoints. It scopes graph index build to the edge types a query traverses and uses LRU capacity 8; table handle cache has capacity 64 and is keyed by path, branch, version, and e_tag. | This is exactly how to keep RAM bounded while preserving correctness. Cache only query-shaped topology and invalidate on the physical facts that matter. | Add `profile_cache_key_v1`: include every source artifact identity the derived layout depends on, plus algorithm/profile options. | High. Source read. |
+| Aug 7 Omnigraph manifest source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/manifest.rs | ModernRelay / Omnigraph maintainers | Manifest source defines graph commits and graph heads as object types inside `__manifest`, exposes internal schema refusal, read-only snapshot table wrappers that hide mutable Lance handles, and scan wrappers for project/filter/batch/limit/blob options without exposing raw physical plan. | This is a useful safety boundary. Snapshot readers should not be able to mutate the underlying physical store outside the publication protocol. | Knight Bus should expose read-only artifact snapshots and keep mutation/build/publish through one coordinated profile manager. | High. Source read. |
+| Aug 7 Omnigraph commit-graph source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/commit_graph.rs | ModernRelay / Omnigraph maintainers | Commit graph source is a pure projection of graph lineage rows in `__manifest`. It keeps commit id, manifest branch/version, parent/merged parent, actor, created time, total ordering, head selection, and merge-base computation without opening a separate lineage dataset. | This is a clean lineage strategy. A profile run DAG can be projected from manifest rows rather than maintained as a second divergent table. | Add `profile_commit_graph_v1`: run lineage, parent/merged-parent, actor, generation, and merge-base projection from manifest rows. | High. Source read. |
+| Aug 7 Omnigraph traversal tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/traversal_indexed.rs | ModernRelay / Omnigraph maintainers | Indexed traversal tests force CSR, indexed, and auto traversal modes and require identical results. They also verify BTREE coverage detection, degraded coverage after appended unindexed fragments, and correctness despite partial index coverage. | This is a perfect acceptance shape for our profile router. Multiple physical paths must agree, and degraded acceleration must not drop rows. | Add tests comparing exact CSR, indexed lookup, and bounded/auto modes for identical semantics plus degraded coverage reporting. | High. Tests read. |
+| Aug 7 Omnigraph traversal tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/traversal.rs | ModernRelay / Omnigraph maintainers | Traversal tests cover undirected traversal as union of outgoing and incoming neighbors, dedup, variable hops, anti-join fast and slow path agreement, nested anti-join correlation, cycle termination, multi-hop bounds, and cross-type ID collision protection. | These are exactly the graph-semantics traps a Neo4j-compatible or memory-graph runtime must pin before optimization. | First Knight Bus graph fixtures should include cycle, undirected, anti-join, multi-hop, cross-type ID collision, and fast/slow path equivalence cases. | High. Tests read. |
+| Aug 7 Omnigraph branch tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/branching.rs | ModernRelay / Omnigraph maintainers | Branch tests cover create/open/list, reclaiming shallow-clone residue, lazy branch forking, branch-isolated reads/writes, pinned snapshots after branch advances, explicit target loads, and branch merge updating main traversal. | This is a review workflow pattern for agent-written graph changes and profile outputs. | A Knight Bus branch fixture should prove profile results can be isolated, compared, merged, and replayed without polluting main state. | High. Tests read. |
+| Aug 7 Omnigraph merge truth-table tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/merge_truth_table.rs | ModernRelay / Omnigraph maintainers | Merge truth table enumerates nine graph operation variants across left/right branches and asserts merge outcome, conflict kind, and affected main graph state. Unsupported operation variants are still represented so adding them later forces a compile-time coverage update. | This is Shreyas-worthy product rigor. The verification loop is not "some merge tests"; it is an explicit decision matrix. | Add `profile_merge_truth_table_v1`: every profile artifact merge/update operation has an outcome matrix and unsupported cells are named. | High. Tests read. |
+| Aug 7 Omnigraph execution docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/execution.md | ModernRelay / Omnigraph maintainers | Execution docs describe parse/typecheck/lower/execute; scoped GraphIndex builds for Expand/AntiJoin; RuntimeCache keys based on physical edge-table identity; filter hoisting onto NodeScan/Expand where legal; edge-binding scans that preserve edge properties; snapshot isolation; and mutation/load resource caps of 8,192 rows or 32 MiB per table before recovery arm. | This is a direct profile-run blueprint. A Knight Bus algorithm run should declare which edge/property lanes are required, push filters before materialization, and reject over-budget batches before durable effects. | Add `profile_execution_pipeline_v1`: parse plan, gather cheap counts, choose profile path, push filters, enforce batch caps, run, and emit receipt. | High. Docs read. |
+| Aug 7 Omnigraph query/traversal docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/queries/index.md | ModernRelay / Omnigraph maintainers | Query docs state traversal chooses between per-hop BTREE-indexed scans and in-memory CSR by a cost model over cheap manifest counts: frontier size, edge count, source vertex count, hops, and index coverage. Both modes must produce identical results. Edge bindings take a third path: a single-hop edge-table scan because CSR is topology-only. | This is the exact language for algorithm-specific storage. The same logical traversal can have multiple physical paths, and the planner must choose by cost and required output columns. | Add `profile_traversal_dispatch_v1`: profile plans expose available physical modes, mode chooser inputs, forced-mode test seam, and result-equivalence requirements. | High. Docs read. |
+| Aug 7 Omnigraph constants docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/reference/constants.md | ModernRelay / Omnigraph maintainers | Constants docs expose concrete ceilings: keyed-write Arrow-memory ceiling 32 MiB; BranchMerge exact recovery history-scan ceiling 1,026 versions; served export queue/byte/deadline limits; maintenance concurrency 8; traversal indexed frontier ceiling 1,024; indexed hop ceiling 6; CSR build factor 1.5; traversal mode override. | This is how a product earns trust. Limits must be visible, named, and test-linked instead of implied by implementation accident. | Add `profile_budget_constants_v1`: every budget mode has named row, byte, frontier, hop, version-scan, queue, and concurrency constants with receipt exposure. | High. Docs read. |
+| Aug 7 Omnigraph maintenance docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/maintenance.md | ModernRelay / Omnigraph maintainers | Maintenance docs split `optimize`, `repair`, and `cleanup`: optimize is non-destructive compaction/reindex/manifest compaction with one publication; repair previews uncovered drift and publishes only verified maintenance drift unless forced; cleanup is destructive, requires confirmation, refuses pending recovery, and protects branches/checkpoints. | This is the operator side of bounded graph compute. Low-RAM profiles need maintenance cadences, index-coverage repair, previewable drift repair, and destructive cleanup gates. | Add `profile_maintenance_cadence_v1`: optimize, repair, cleanup, and rebuild become explicit commands with dry-run, confirmation, and receipt output. | High. Docs read. |
+| Aug 7 Omnigraph error docs deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/errors.md | ModernRelay / Omnigraph maintainers | Error docs distinguish manifest conflicts, D2 mixed destructive/constructive parse rejection, stale substrate conflicts, resource-limit errors, bounded export transport limits, and `RecoveryRequired` sidecar states. HTTP maps resource limits to 413 and recovery to 503. | This is a clean product surface for budget-bounded jobs. A RAM cap miss is not a vague failure; it should be typed, retryable or not, and explain whether durable effects exist. | Add `profile_error_taxonomy_v1`: `BudgetExceeded`, `CoverageDegraded`, `RecoveryRequired`, `Conflict`, `Unverified`, and `UnsupportedPhysicalMode` with caller actions. | High. Docs read. |
+| Aug 7 Omnigraph write-latency roadmap deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/write-latency-roadmap.md | ModernRelay / Omnigraph maintainers | Roadmap records a validated cost model for single-row write latency: project-measured warm insert around 7.2s on a production graph, read/list amplification dominated by repeated object-store latest-version resolution and full `__manifest` scans. It separates compaction from cleanup, op count from serial-hop latency, and concurrency-cap effects from unlimited-harness effects. | This is the measurement discipline Knight Bus needs. Do not claim "faster" from theory; decompose wall time into serial hops, op count, object-store terms, concurrency caps, and history depth. | Add `profile_latency_decomposition_v1`: receipt separates serial stages, parallel ops, object-store reads/listings, bytes, concurrency cap, history depth, and compaction state. | High. Docs read; numbers are project-reported. |
+| Aug 7 Omnigraph RFC-013 write-path deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-013-write-path-latency.md | ModernRelay / Omnigraph maintainers | RFC-013 frames the target as manifest-authoritative capture-once writes with cost flat in history. It records measured object-store slopes, the correction that latency is serial hops plus ops divided by effective concurrency, and the need for cost gates that assert both serial-hop and op-count flatness. | This is portable to every graph-profile build path. A profile builder must capture its source cut once, avoid cold re-deriving authority, and benchmark on the backend where the cost appears. | Add `capture_once_profile_builder_v1`: source cut captured once, CAS is correctness authority, cold refresh only on conflict, cost gate per backend. | High. Docs read; implementation status evolves, so use as pattern not claim. |
+| Aug 7 Omnigraph cost-harness source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/helpers/cost.rs | ModernRelay / Omnigraph maintainers | Cost harness wraps object stores and splits reads into data-table opener reads, data scan reads, manifest reads, version probes, writes, and attempt outcomes. It records NotFound and stream-start attempts too, because those can be part of a recovery or cost proof. | This is maybe the most reusable testing pattern. Knight Bus receipts and tests need a path-classifying counter, not just RSS and wall-clock. | Add `profile_io_probe_harness_v1`: instrument opener, scan, manifest, index, cache, spill, NotFound, and stream-attempt terms separately. | Very high. Source read. |
+| Aug 7 Omnigraph write-cost tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/write_cost.rs | ModernRelay / Omnigraph maintainers | Write-cost tests assert compacted `__manifest` scans stay flat in history, ensure_indices/optimize manifest reads stay flat, single-insert writes are bounded, and uncompacted served-regime scans are intentionally pinned as a growing tripwire until the fix lands. | This is excellent "negative green" design: a known-bad growth test stays green to prove the bug still exists and flips red when fixed, prompting inversion to a flat gate. | Add `profile_cost_slope_gate_v1` and `profile_negative_tripwire_v1`: measure shallow/deep curves, assert flat where promised, assert growth where an acknowledged open problem remains. | Very high. Tests read. |
+| Aug 7 Omnigraph S3 write-cost tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/write_cost_s3.rs | ModernRelay / Omnigraph maintainers | S3 write-cost test isolates the object-store opener term: latest-version resolution is an object-store RPC phenomenon invisible on local FS, and after direct-by-URI open it should be flat across depth. The test is bucket-gated and skips when no object store is configured. | This is a direct warning for our benchmarks. A local filesystem benchmark cannot prove an S3/R2 performance claim. | Add `profile_backend_specific_gate_v1`: local, S3/R2, NVMe, and mmap modes each get separate cost assertions and skip/fail semantics. | High. Tests read. |
+| Aug 7 Omnigraph warm-read tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/warm_read_cost.rs | ModernRelay / Omnigraph maintainers | Warm-read tests assert zero `__manifest` reads for warm same-branch and multi-table reads, exactly one version probe for freshness, external commit visibility, CSR cache reuse across lazy branches, and single-edge query building only the referenced edge topology. | This is exactly our low-latency profile reuse story. Cache reuse must not sacrifice freshness, and topology should be scoped to the query. | Add `profile_warm_cache_gate_v1`: warm profile runs must prove zero authority rescans where expected, one freshness probe, and scoped topology reuse. | Very high. Tests read. |
+| Aug 7 Omnigraph benchmark-contract tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/benchmark_scenario_contract.rs | ModernRelay / Omnigraph maintainers | Benchmark contract tests pin that benchmark caps match production constants, setup/operation/verify phases are separate child processes, operation peak RSS comes from the operation child wait4 HWM, measured operation does not scan final state, and verification proves exact content with canonical row-contract hashes. | This is a benchmark-honesty template for Knight Bus. Measure the thing being claimed, then verify correctness in a separate phase that is not included in the operation claim. | Add `profile_benchmark_phase_contract_v1`: setup, measured operation, and verification are separate phases with exact output hashing and per-phase RSS. | Very high. Tests read. |
+| Aug 7 Omnigraph merge-cost tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/merge_cost.rs | ModernRelay / Omnigraph maintainers | Merge-cost tests assert validation of a one-table delta is delta-scoped rather than whole-catalog, while also pinning that merge `__manifest` cost still grows with uncompacted history. They assert fixed ceilings for manifest opens/scans and flat data-table opens across history. | This gives a precise rule for graph-profile merges: delta-scope the semantic validation, but do not hide remaining history-growth terms. | Add `profile_delta_merge_gate_v1`: changed-artifact validation is delta-scoped; remaining history-sensitive authority terms are separately measured and disclosed. | High. Tests read. |
+| Aug 7 Omnigraph proptest equivalence deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/proptest_equivalence.rs | ModernRelay / Omnigraph maintainers | Property tests generate graphs with shared key alphabets, cross-type collisions, cycles, and self-loops, then assert CSR, indexed, and auto Expand modes return identical multisets. The test exists because a hand-built cross-type collision once caught a silent divergence. | This is the algorithm-verification loop we want. Random graph families should attack physical-mode divergence before performance optimization is trusted. | Add `profile_physical_mode_proptest_v1`: generate adversarial graph families and compare physical modes, not just fixed happy fixtures. | Very high. Tests read. |
+| Aug 7 Omnigraph recovery source/tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/recovery.rs | ModernRelay / Omnigraph maintainers | Recovery tests cover clean no-op open, future/corrupt sidecar refusal, read-only open skipping recovery, rollback/roll-forward convergence, orphaned sidecars, branch-specific sidecar scope, and audit row recording. | This is the durability contract for profile builds. A crash mid-build should not leave a hidden half-valid layout; it should be recoverable, rejected, or explicitly audited. | Add `profile_recovery_sidecar_v1`: every multi-artifact profile build gets an operation id, sidecar, read-only behavior, recovery classification, and audit record. | High. Tests read. |
+| Aug 7 Omnigraph recovery source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/manifest/recovery.rs | ModernRelay / Omnigraph maintainers | Recovery source documents the sidecar protocol and constants: sidecars under `__recovery/{ulid}.json`, schema version 9, exact mutation/load and branch-merge recovery generations, maximum branch-merge data transactions 1,024, and exact recovery history-scan ceiling 1,026. Longer histories fail closed rather than trigger unbounded scans. | This gives a concrete bounded-recovery shape. Recovery itself must have a budget; otherwise the thing that fixes bounded compute can become unbounded. | Add `profile_recovery_budget_v1`: recovery scan windows, sidecar schema versions, and fail-closed limits are part of the product contract. | High. Source read. |
+| Aug 7 Omnigraph failpoint source/tests deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/failpoints.rs | ModernRelay / Omnigraph maintainers | Failpoint catalog names crash/concurrency windows across branch create/delete, branch merge, cleanup, ensure_indices, fork, graph publish, init, mutation, optimize, schema apply, and table commit. The tests use these to prove recovery behavior at exact stage boundaries. | This is how to make "crash safe" executable. For Knight Bus profile builders, every stage boundary that can persist physical state needs a failpoint and receipt story. | Add `profile_failpoint_matrix_v1`: before/after each durable stage, inject failure and assert recovery, rollback, or explicit refusal. | High. Source/tests read. |
+| Aug 7 Omnigraph blocked-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0024-durable-table-heads.md | ModernRelay / Omnigraph maintainers | Durable-heads RFC remains research-blocked because the logical table-head idea did not pass the full physical-I/O gate: indexed rows/ranges could be flat while latest-manifest discovery and compacted cold scan bytes still grew. No heads format ships. | This is a crucial warning for our storage innovation. A logical O(tables) design is not enough if the substrate read path is still O(history). | Add `profile_blocked_design_ledger_v1`: promising storage formats stay blocked until every physical I/O cell passes. | Very high. RFC read. |
+| Aug 7 Omnigraph blocked-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0025-checkpoint-retention.md | ModernRelay / Omnigraph maintainers | Checkpoint-retention RFC keeps checkpoint rows as logical authority and Lance tags as physical pins, but activation is blocked because the proposed in-manifest BTREE access shape failed a history-flat physical-I/O gate. Crash ordering intentionally over-retains, never under-retains. | This teaches a precise retention model for graph-profile artifacts: logical receipt roots and physical storage pins are separate, and cleanup must not destroy reconstructability. | Add `profile_retention_pin_v1`: create physical pins before publishing logical authority; tombstone logical authority before releasing physical pins. | High. RFC read. |
+| Aug 7 Omnigraph blocked-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0027-lineage-merge-deltas.md | ModernRelay / Omnigraph maintainers | Lineage-merge-deltas RFC recommends discovering changed row IDs from storage lineage and fetching wide values only for candidates, but blocks production because live-row version filters remain physical O(rows) without an index/change-feed and deleted rows lack live version columns. | This is exactly how to avoid false O(delta) claims. PageRank/community/profile-update deltas need deletion-delta and candidate-discovery proofs, not just nice metadata. | Add `profile_delta_discovery_gate_v1`: O(delta) claims require insert/update/delete candidate discovery bounded by changed set, with fallback reasons recorded. | Very high. RFC read. |
+| Aug 7 Omnigraph rejected-RFC source deepening | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0026-memwal-streaming-ingest.md | ModernRelay / Omnigraph maintainers | MemWAL streaming ingest was implemented experimentally and then rejected/removed. The RFC says Lance MemWAL could durably accept per-dataset rows, but graph-level validation, token authority, fold, correction, lifecycle, and cross-dataset publication dominated and created a durability-before-visibility contract the product did not need. | This is an architecture warning: a lower-level storage speedup can lose once product-level graph consistency is counted. | Add `profile_storage_feature_kill_gate_v1`: reject clever substrate features when coordination/validation/visibility cost dominates the promised win. | Very high. RFC read. |
+| Aug 7 GHCLI ecosystem pass on taOSmd | https://github.com/jaylfc/taosmd | jaylfc / taOSmd maintainers | GHCLI metadata: Python primary language, 72 stars, 3 forks, pushed Aug 2 2026, updated Aug 4 2026. README describes local-first AI memory that runs offline on 8 GB+ RAM, keeps a zero-loss append-only archive, derives searchable memory from that archive, verifies extracted facts against source text, and reports LongMemEval-S Recall@5 and stricter end-to-end judge numbers separately with methodology caveats. | Extremely relevant to our PMF. It makes local/offline/8 GB memory a real product posture and explicitly separates retrieval metrics from generation/judge metrics. | Use taOSmd as a benchmark-honesty and local-hardware model: receipts must keep retrieval, generation, judge, hardware tier, model profile, and unsupported-fact rate separate. | High for repo/README claims; performance still repo-claimed. |
+| Aug 7 taOSmd benchmark source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | jaylfc / taOSmd maintainers | Benchmark notes separate LongMemEval-S retrieval-only Recall@5 from stricter end-to-end Judge metrics. They also record a previous mislabeling of retrieval as Judge and a judge-parser correction where `INCORRECT` had been vulnerable to substring scoring as `CORRECT`. | This is a direct warning for Knight Bus. A graph profile cannot conflate retrieval, algorithm output, answer generation, judge behavior, and product utility. | Add `local_memory_receipt_v1` with separate sections for retrieval score, generated answer score, judge family, parser version, hardware tier, model/quant, RAM cap, and unsupported fact rate. | High. Raw benchmark doc read. Metrics are repo-claimed until replicated. |
+| Aug 7 taOSmd benchmark source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | jaylfc / taOSmd maintainers | LoCoMo notes emphasize full 1540 QA validation, tri-judge reporting, MaxSim plus rerank recipes, and local/small-model tiers including 4 GB, 8 GB, 12 GB GPU, and Orange Pi NPU posture. The doc explicitly marks some hardware numbers as measured and some as extrapolated or queued. | This is the closest public pattern to our bounded local compute thesis: different profiles produce different quality, RAM, latency, and hardware tradeoffs, and the document keeps those tradeoffs visible. | Knight Bus receipts should label every row as measured, extrapolated, queued, failed, or invalid. RAM-bound modes should never hide quality loss. | High for methodology. Exact performance requires independent rerun. |
+| Aug 7 taOSmd benchmark source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | jaylfc / taOSmd maintainers | The benchmark notes include a negative full-context result: feeding all 30K to 60K tokens to a 9B 128K model performed worse than retrieval in one reported test. The repo frames this as evidence that larger context alone is not memory. | Strong conceptual validation for budget-bounded graph compute. The answer is not always "load more into context or RAM"; the shape of retrieval and expansion matters. | Use local-memory fixtures to compare full-context, naive full-graph, bounded traversal, PPR/local ranking, and evidence-gated recall under the same question set. | Medium-high. Repo-claimed benchmark; direction matches our thesis. |
+| Aug 7 taOSmd research-report source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/research-report.md | jaylfc / taOSmd maintainers | Research report records pre-registered experiments, finding IDs, negative results, kill criteria, same-model judge inflation, invalid independent harness cases, and corrections to prior benchmark mistakes. | This is product-process alpha. Serious low-RAM claims need a public lab notebook, not just a final benchmark table. | Add a Knight Bus benchmark ledger with pre-registration, config hash, parser version, judge family, empty-output guard, failure reason, and promotion status. | High. Raw research report read. |
+| Aug 7 taOSmd archive source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/archive.py | jaylfc / taOSmd maintainers | Archive source implements a zero-loss append-only daily JSONL archive, SQLite index, FTS table, per-entry SHA-256 hash, source file/line provenance, event types, and secret redaction. Raw events remain the source of truth; vector/KG artifacts are derived. | This is exactly the source-of-truth split Knight Bus needs for graph compute. Raw graph inputs, transforms, profile manifests, and run events should be immutable enough that every derived artifact can be rebuilt. | Add `profile_archive_v1`: append-only input/run event log, per-record hash, source span IDs, redaction boundary, and rebuildable projections. | High. Source read. |
+| Aug 7 taOSmd claim-verifier source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/verifier.py | jaylfc / taOSmd maintainers | Verifier source only gives the model the claim and cited source spans, parses verdicts into supported, partial, unsupported, contradicted, or unverified, and fails closed to unverified on unparseable output or model/network error. | This is a clean pattern for proof-carrying graph outputs. A result claim should be supported only by cited artifacts and verifier events, never by model confidence alone. | Add `profile_claim_verifier_v1`: every reported result or performance claim has cited spans, verdict, verifier model, parser version, and fail-closed handling. | High. Source read. |
+| Aug 7 taOSmd claims-gate source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/gate.py | jaylfc / taOSmd maintainers | Claims gate has `off`, `prefer_verified`, and `strict` modes. Lenient mode drops unsupported/contradicted claim-backed hits and boosts supported hits while keeping raw non-claim memories and unverified claims. Strict mode drops unverified and partial claim-backed hits too. | This maps directly to product UX. Users should be able to choose speed or assurance: show me useful context fast, or show me only proof-backed context. | Add `verification_gate_mode`: off, prefer_verified, strict. Surface the quality/RAM/latency tradeoff in receipts. | High. Source and tests read. |
+| Aug 7 taOSmd claim-store source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/store.py | jaylfc / taOSmd maintainers | Claim store persists claim text, backing archive span IDs, verification status, verifier model, last check time, extractor, and created time. It computes hallucination rate over checked claims and uses worst-status logic for spans referenced by multiple claims. | This gives a concrete unsupported-fact accounting mechanism. Knight Bus should not only say "verified"; it should track the population of unverified, partial, unsupported, and contradicted derived claims. | Add per-profile `unsupported_rate`, `contradiction_rate`, `unverified_backlog`, and worst-status aggregation for any source span or graph partition. | High. Source read. |
+| Aug 7 taOSmd verify-pass source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/verify_pass.py | jaylfc / taOSmd maintainers | Verification pass pulls unverified claims in batches, fetches cited spans through an injected function, writes only non-unverified statuses, leaves fail-closed claims unpromoted, and uses a seen set so a pass terminates even when every claim fails. | This is a bounded background-job shape. It turns verification into an idempotent batch profile, not a blocking all-or-nothing action. | Add `bounded_verify_pass_v1`: batch size, attempted claim IDs, written statuses, retry backlog, fail-closed count, and wall-time/RAM budget. | High. Source and tests read. |
+| Aug 7 taOSmd temporal-KG source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/knowledge_graph.py | jaylfc / taOSmd maintainers | Temporal KG stores entities and triples with valid_from/valid_to, confidence, source, superseded_by, appeared_count, accessed_count, contradiction detection over singular predicates, optional deferred resolution, and auto-resolution by invalidating old triples. | This is a useful graph-shape model for local memory and for profile artifacts. The active graph is a view over a historical graph, not a destructive current-state store. | Add temporal graph profile fixtures: point-in-time query, stale fact audit, singular-predicate contradiction scan, and rollbackable invalidation receipt. | High. Source read. |
+| Aug 7 taOSmd vector-memory source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/vector_memory.py | jaylfc / taOSmd maintainers | Vector memory supports dense vectors, binary quantized sign-bit vectors, late-interaction token matrices, BM25/RRF/additive hybrid retrieval, store-mode signatures that refuse incompatible reopen, active-row filters, and soft supersede via valid_to while retaining raw rows. | This is storage-format discipline in miniature. Different query shapes need mutually incompatible physical formats, so the system must pin mode signatures and rebuild from the archive rather than silently mix artifacts. | Add `profile_store_mode_signature_v1`: format, dimension, embedder identity, quantization, token mode, build input hash, and explicit rebuild requirement on mismatch. | High. Source and tests read. |
+| Aug 7 taOSmd retrieval source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/retrieval.py | jaylfc / taOSmd maintainers | Retrieval normalizes vector, KG, catalog, archive, and crystal sources, merges ranked lists by RRF, deduplicates, optionally verifies top hits, applies LLM reranking only as opt-in, attaches adjacent neighbors under scope guards, and can append a derived KG expansion block under a token budget. | This is a route-planning model for context assembly. Multiple storage lanes can be queried, fused, verified, and expanded under a budget while preserving source labels. | Implement a profile router that records which lanes fired, per-lane candidate count, fusion mode, expansion budget, dropped duplicates, verifier adjustments, and final evidence set. | High. Source read. |
+| Aug 7 taOSmd regression-test source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_zero_loss_integrity.py | jaylfc / taOSmd maintainers | Zero-loss tests prove degraded embedding still archives input, reports vector failures, exposes missing rows for repair, links batch vector rows to archive spans, and extracts claims with archive provenance. | This is the exact degraded-mode behavior Knight Bus should have: failure of one derived index must not lose raw truth, and the gap must be repairable. | Add degraded-run receipts: archived count, derived-index failures, missing artifacts, repair plan, and whether user-facing result was served under degraded mode. | High. Test read. |
+| Aug 7 taOSmd regression-test source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_vector_supersede.py | jaylfc / taOSmd maintainers | Vector supersede tests prove rows can leave active recall while remaining in storage, supersede is idempotent, blank matching is a no-op, binary-quant search respects active filters, legacy schemas migrate without data loss, and KG contradiction resolution can soft-hide stale vector chunks. | This is the correction model we want: current views are cheap and clean, historical evidence remains available, and stale derived artifacts do not keep resurfacing. | Add active-view versus archive-view distinction to every memory and graph profile. Correction should mean invalidate/supersede, not delete. | High. Test read. |
+| Aug 7 taOSmd regression-test source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/claims/test_verify_pass.py | jaylfc / taOSmd maintainers | Verify-pass tests show statuses are written, repeated passes are idempotent, and a verifier that returns unverified terminates without promotion. | This provides a simple acceptance pattern for Knight Bus verifiers: bounded, retryable, fail-closed, and idempotent. | Add tests that no verifier timeout, parser ambiguity, or missing evidence can promote a result to supported. | High. Test read. |
+| Aug 7 taOSmd regression-test source deepening | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_judge_verdict_parser.py | jaylfc / taOSmd maintainers | Judge parser regression tests explicitly pin that `INCORRECT` is not scored as `CORRECT`, verdicts are case-insensitive, embedded verdicts are handled, and empty/unrecognized replies fail closed. | This is a memorable benchmark-honesty lesson. Parser bugs can create false progress, especially in LLM-judged systems. | Every Knight Bus benchmark parser must have adversarial tests for ambiguous verdicts, empty output, substring traps, and invalid judge replies. | High. Test read. |
+| Aug 7 GHCLI ecosystem pass on Memvid | https://github.com/memvid/memvid | Memvid maintainers | GHCLI metadata: Rust primary language, 16,189 stars, 1,398 forks, pushed Jul 14 2026, updated Aug 7 2026. README positions Memvid as a serverless single-file memory layer with append-only "Smart Frames", immutable units with timestamps/checksums/metadata, portable `.mv2` capsules, time-travel debugging, compression, local search, and feature flags for BM25, vector search, CLIP, Whisper, date parsing, parallel ingestion, and encryption. | Strong storage-format inspiration. Single-file append-only capsules and immutable frames are an alternative to graph DB deployment complexity for local users. | Consider `memory_capsule_profile_v1`: append-only frame log plus graph/vector sidecars plus receipt metadata; useful for offline/local agents and shareable benchmark fixtures. | Medium-high. GHCLI metadata and README read; benchmark claims not independently verified. |
+| Aug 7 Memvid source deepening | https://raw.githubusercontent.com/memvid/memvid/main/README.md | Memvid maintainers | README file-format section says a `.mv2` file contains a 4KB header, embedded WAL, compressed data segments, lexical index, vector index, time index, and TOC footer, with no sidecar WAL/lock/shared-memory files. Benchmark highlight claims are large but remain project-claimed until reproduced. | The file-format idea is the real alpha. A graph-profile fixture could be portable: raw graph chunks, compact indexes, profile manifest, run receipt, and verifier traces in one file. | Add `graph_profile_capsule_v1`: self-contained portable benchmark artifact with embedded log, graph segments, indexes, time/order index, TOC, and receipt footer. | High for file-format statement; medium for benchmark claims. README read. |
+| Aug 7 Memvid header source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/io/header.rs | Memvid maintainers | Header codec validates magic/version/spec bytes, WAL offset/size, footer offset, WAL checkpoint position, WAL sequence, TOC checksum, and clears a legacy lock metadata region in reserved padding. Tests cover roundtrip, cursor read/write, legacy metadata clearing, bad magic, zero WAL size, and bad version. | This is a compact artifact-contract pattern. The physical profile file should fail fast when the capsule does not match the expected spec or contains incompatible legacy state. | Add `profile_capsule_header_v1`: magic, spec version, footer pointer, embedded-log position, checkpoint sequence, TOC hash, and compatibility sanitizer. | High. Source and tests read. |
+| Aug 7 Memvid embedded-WAL source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/io/wal.rs | Memvid maintainers | Embedded WAL records use sequence, length, reserved bytes, BLAKE3 checksum, payload, sentinel, checkpoint head, pending bytes, occupancy threshold, append count threshold, read-only mode, optional deferred fsync, checksum validation, wrap detection, and corruption errors with offsets. | This is a directly reusable bounded log for profile execution. A single graph artifact can carry pending run events and recover after interruption without external sidecars. | Add `embedded_profile_wal_v1`: bounded log region, sequence numbers, payload checksums, checkpoint rules, pending-byte cap, and corruption offset reporting. | High. Source and tests read. |
+| Aug 7 Memvid footer source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/footer.rs | Memvid maintainers | Commit footer stores magic, TOC length, TOC hash, and generation. Reader scans backward to locate the most recent valid footer and skips corrupt footer candidates whose hash does not match. | This is a strong replayability pattern. If a profile-run commit is interrupted, the capsule can find the last valid manifest rather than trusting the tail blindly. | Add `profile_commit_footer_v1`: generationed TOC footer, backward scan, hash validation, and last-valid-run recovery. | High. Source and tests read. |
+| Aug 7 Memvid time-index source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/io/time_index.rs | Memvid maintainers | Time index appends timestamp/frame-id entries sorted by timestamp and frame ID, writes magic/count/entries, returns offset/length/checksum, verifies track length, rejects unsorted entries, and computes deterministic checksum. | Useful for temporal graph/memory workloads. A local graph profile often needs time-bounded or as-of replay without scanning the whole artifact. | Add `profile_time_index_v1`: sorted event/frame/run ordering, checksum, range query support, and deterministic rebuild. | High. Source and tests read. |
+| Aug 7 Memvid manifest-WAL source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/io/manifest_wal.rs | Memvid maintainers | Manifest WAL for parallel segment building stores length-prefixed, checksummed segment references; validates header magic/version; truncates trailing partial records after crash; rejects oversized or corrupt records; flushes and truncates after materialization. | This is a pattern for parallel graph-index construction. Segment metadata should survive builder crashes and become materialized only after a complete flush. | Add `profile_segment_manifest_wal_v1`: append segment refs during parallel build, replay intact refs, drop partial crash tails, and only promote after flush. | High. Source and tests read. |
+| Aug 7 Memvid frame/type source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/types/frame.rs | Memvid maintainers | Frame type carries id, timestamp, anchor timestamp/source, payload offset/length/checksum, URI, title, encoding, metadata, search text, tags, labels, content dates, chunk manifest, role, parent/chunk info, status, supersedes/superseded_by, source SHA/path, and enrichment state. Deserialization bounds child frames, tags, labels, content dates, and extra metadata entries. | This is the portable "graph node as frame" shape. It can carry both raw payload and derived metadata while preventing unbounded metadata explosion during read. | Add `profile_frame_v1`: graph partition/frame metadata with bounded vectors/maps, source hash/path, parent/chunk relations, status, and supersession links. | High. Source read. |
+| Aug 7 Memvid graph-search source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/graph_search.rs | Memvid maintainers | Graph search detects simple relational query patterns, creates triple-pattern query plans, matches against MemoryCards, deduplicates by entity, extracts candidate frame IDs, falls back to lexical search when graph filters miss, and returns graph-only or hybrid graph-filtered hits. | The graph layer here is intentionally small, but that is the point: a portable capsule can include just enough graph structure to prune candidates before vector/full-text ranking. | For Knight Bus, a capsule can carry small auxiliary graph indexes for local PPR/traversal/filtering without becoming a general graph DB. | Medium-high. Source read. |
+| Aug 7 Memvid search API source deepening | https://raw.githubusercontent.com/memvid/memvid/main/src/memvid/search/api.rs | Memvid maintainers | Search API enables lex, vec, and CLIP indexes, persists empty manifests, validates vector dimension before search, binds vector model identity, reports dimension/model mismatch, applies ACL contexts, and records elapsed search time in responses. | This echoes taOSmd store-mode signatures: vector or graph artifacts must know the model/dimension/layout that produced them, or the system can return silently wrong results. | Extend `profile_store_mode_signature_v1` with model identity, dimension checks, ACL/scope context, and elapsed-time fields. | High. Source read. |
+| Aug 7 Memvid single-file test deepening | https://raw.githubusercontent.com/memvid/memvid/main/tests/single_file.rs | Memvid maintainers | Tests assert create/put/multiple commits/update/delete/doctor/large files keep exactly one visible file, forbid `.wal`, `.shm`, `.lock`, and journal sidecars, and prove a copied `.mv2` opens independently with frames intact. | This is excellent PMF packaging. Users should be able to send one graph-profile artifact to an LLM, CI job, teammate, or benchmark runner. | Add acceptance test: exported Knight Bus profile capsule SHALL be copyable and runnable without external sidecars. | High. Test read. |
+| Aug 7 Memvid recovery/test deepening | https://raw.githubusercontent.com/memvid/memvid/main/tests/crash_recovery.rs | Memvid maintainers | Crash recovery test corrupts the final commit footer, expects strict read-only open to fail, allows exclusive open recovery, runs doctor, and then verifies read-only open succeeds. | This gives the right durability posture: snapshots should be strict, repair should be explicit, and healing should produce a clean artifact. | Add `capsule_doctor_v1`: strict snapshot open, exclusive recovery, repair report, and post-repair read-only verification. | High. Test read. |
+| Aug 7 Memvid replay/test deepening | https://raw.githubusercontent.com/memvid/memvid/main/tests/replay_integrity.rs | Memvid maintainers | Replay integrity test ensures saving replay sessions does not corrupt the lexical index or move the TOC footer incorrectly, then verifies search and replay load after reopen. | This maps to profile receipts: adding audit/replay data must not corrupt the primary search or graph index tracks. | Add regression test that appending profile-run replay/audit data preserves index query correctness and TOC footer validity. | High. Test read. |
+| Aug 7 Memvid mutation/test deepening | https://raw.githubusercontent.com/memvid/memvid/main/tests/mutation.rs | Memvid maintainers | Mutation tests cover put/update/delete, metadata, frame by URI, vector dimension mismatch, embedding identity summary unknown/single/mixed, and commit behavior. | This is another artifact identity lesson. Mixed embedding spaces are not just metadata; they change retrieval semantics. | Profile artifacts should surface mixed model/layout state as a warning or refusal depending on selected assurance mode. | High. Test read. |
+| Aug 7 Memvid encryption test deepening | https://raw.githubusercontent.com/memvid/memvid/main/tests/encryption_capsule.rs | Memvid maintainers | Encryption tests cover `.mv2e` header roundtrip, lock/unlock preserving bytes, wrong-password failure, streaming encryption for large files, restored file validity, and dispatcher behavior for new versus legacy encryption formats. | Useful if local memory or graph-profile capsules include private user/company data. Portability must not mean plaintext sharing by default. | Add optional `encrypted_profile_capsule_v1`: streaming encryption, password failure tests, original byte preservation, and post-unlock artifact verification. | Medium-high. Test read. |
+| Aug 7 internet expansion from graph-memory lead | https://arxiv.org/abs/2501.13956 | Preston Rasmussen, Pavlo Paliychuk, Travis Beauvais, Jack Ryan, Daniel Chalef / Zep: A Temporal Knowledge Graph Architecture for Agent Memory | The paper presents Zep/Graphiti as a temporally aware knowledge graph engine for dynamically synthesizing unstructured conversations and structured business data while preserving historical relationships. It cautions that DMR is a weak benchmark because conversations are only about 60 messages and fit in context. On LongMemEval-s, the paper reports gpt-4o-mini full-context at 55.4 percent accuracy, 31.3s, 115k tokens versus Zep at 63.8 percent, 3.20s, 1.6k tokens; and gpt-4o full-context at 60.2 percent, 28.9s, 115k tokens versus Zep at 71.2 percent, 2.58s, 1.6k tokens. It uses label propagation for dynamic community maintenance rather than waiting for full Leiden-style community refresh. | Strong benchmark-honesty precedent and strong temporal graph-memory product evidence. It shows retrieval can beat giant-context prompting in latency/token load, but only when the benchmark requires actual long-context temporal reasoning. | Knight Bus should copy the honesty pattern: reject easy in-context benchmarks, publish category-level results, and report context/RAM/latency together. Dynamic community update is an early candidate profile. | High for paper-reported results; still needs independent replication before using as Knight Bus claims. Web/arXiv read. |
+| Aug 7 internet expansion from graph-memory lead | https://github.com/getzep/graphiti | Zep / Graphiti maintainers | Repo describes Graphiti as a framework for building and querying temporal context graphs for AI agents. GH metadata showed 29,643 stars, 2,998 forks, default branch `main`, and update time `2026-08-07T07:33:17Z`. README concepts include entities, facts/relationships with temporal validity windows, source episodes/provenance, custom ontology, incremental data updates, hybrid semantic/keyword/graph traversal retrieval, explicit bitemporal tracking, automatic fact invalidation, and database backends including Neo4j, FalkorDB, Amazon Neptune, OpenSearch, and deprecated Kuzu support. | Graphiti validates the market for temporal context graphs. It is adjacent, not identical: Graphiti builds and serves memory graphs; Knight Bus can run proof-carrying bounded graph algorithms over memory graphs. | Position Knight Bus as the bounded algorithm/profile layer that can consume Graphiti-like graphs: PPR, local ranking, community refresh, stale-fact audit, provenance traversal, and memory compaction receipts. | High. GHCLI metadata and README read. |
+| Aug 7 internet expansion from graph-memory lead | https://arxiv.org/abs/2509.21212 | Yaxiong Wu, Yongyue Zhang, Sheng Liang, Yong Liu / SGMem | SGMem addresses long-term conversational memory by constructing sentence-level graphs within chunked units and linking information across turn, round, and session contexts. It uses seven indexes for sessions, rounds, turns, sentences, summaries, facts, and insights; graph nodes for chunks/sentences; membership edges; sentence-sentence KNN edges; vector DB retrieval followed by h-hop graph traversal and parent-chunk ranking. It explicitly avoids additional LLM-based extraction by using standard sentence segmentation. | Very concrete retrieval/storage shape. It decomposes memory into multiple query-shaped indexes and uses graph traversal as a controlled expansion step, not a vague "graph database" claim. | Build a `sentence_graph_recall` or `context_graph_expand` profile with fixed indexes, h-hop cap, top-k parent chunk ranking, and explicit RAM cap behavior. | High for design extraction; paper metrics still require independent replication. Web/arXiv read. |
+| Aug 7 internet expansion from graph-memory lead | https://arxiv.org/abs/2603.17244 | Young Bin Park / Kumiho Inc. | The Kumiho paper proposes graph-native cognitive memory with formal belief revision semantics and a unified memory/asset graph. Core primitives include immutable revisions, mutable tag pointers, typed dependency edges, URI-based addressing, and graph traversal as query-time retrieval rather than logical inference. It frames asset management validation as future work while cognitive memory is empirically evaluated. | Excellent receipt architecture clue. Immutable revisions plus mutable tags are the same primitive shape we want for profile-run receipts and evolving graph artifacts. | Use immutable run/artifact/profile revisions, mutable tags like `current`, `verified`, `baseline-passing`, and typed dependency edges from result to source ranges, artifacts, budgets, and verifier events. | Medium-high. Web/arXiv read; some parts are architectural/future-work by the source's own framing. |
+| Aug 7 internet expansion from graph-memory lead | https://kumiho.io/en | Kumiho Inc. / product site | Product site positions Kumiho as a local-first, shared, versioned memory graph where facts are traced, corrected, and trusted. It advertises typed provenance, AGM-style belief revision, a core memory engine, desktop/browser/runtime surfaces, and vendor claims such as 93.3 percent LoCoMo-Plus and 49/49 AGM scenarios. | Strong PMF signal, but vendor claims must be kept separate from independently verified metrics. It shows "local-first versioned memory graph" is already a commercial narrative. | Knight Bus should not compete as a generic memory graph. It should attach bounded compute, receipts, algorithm profiles, and baseline comparisons to memory graphs. | Medium. Vendor site read; metrics are vendor claims. |
+| Aug 7 internet expansion from graph-memory lead | https://github.com/KumihoIO/kumiho-memory | KumihoIO / kumiho-memory maintainers | Repo describes a client-side memory provider with a Redis working-memory buffer, consolidation into a Kumiho graph, belief revision policy, PII/credential boundary, write-time ontology for facts/entities/decisions/events/actions/questions, Decision Memory that mines git commits into decision nodes with repo/commit/file/line anchors, graph-augmented recall, sibling revision filtering, evidence levels, space profiles, skill ingest, and MCP tools. GH metadata showed 0 stars and 0 forks during this pass. | The evidence-level and decision-memory details map directly to proof-carrying compute. The system records not only a memory answer, but the evidentiary status and source anchors. | Knight Bus receipts should include evidence grade, source anchors, sibling/artifact revision filters, and promotion/demotion state for claims as benchmarks become stronger or weaker. | Medium-high. GHCLI metadata and README read. |
+| Aug 7 internet expansion from graph-memory lead | https://github.com/KumihoIO/Revka | KumihoIO / Revka maintainers | Repo describes Revka as a memory-native agent runtime: Rust gateway, daemon, React dashboard, Tauri desktop, CLI, Python MCP operator, and Kumiho graph memory. GH metadata showed 43 stars, 7 forks, and update time `2026-07-29T12:31:38Z`. README says agent sessions, plans, skills, trust scores, workflows, RunLogs, audit chain, DAG workflow views, and YAML workflow artifacts live in the memory graph. It lists workflow step types including agent, shell, python, conditional, parallel, human approval, map_reduce, supervisor, group_chat, handoff, tag, deprecate, and more. | This is a runtime-surface clue. Graph memory can become the operational substrate for agents and workflows, not only a recall database. | Knight Bus should expose run DAGs, profile revisions, receipts, verifier events, and map-reduce style graph jobs as graph-native artifacts that agents and humans can inspect. | Medium-high. GHCLI metadata and README read. |
+| Aug 7 internet expansion from universal memory market signal | https://github.com/mem0ai/mem0 | Mem0 maintainers | GH metadata showed 62,741 stars, 7,315 forks, default branch `main`, and update time `2026-08-07T07:33:40Z` during this pass. I did not deep-read the README in this pass, so this row is only a market-signal placeholder. | Strong market signal that agent memory is a large developer interest area, but not yet source evidence for our storage architecture. | Revisit only if we need a non-graph memory baseline for product positioning or benchmark contrast. | Low-medium. Metadata only; no source content read yet. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/graphiti.py | Zep maintainers; recent commits by Preston Rasmussen, Daniel Chalef, and others | `Graphiti.add_episode` is the core ingestion pipeline: validate group, retrieve previous episodes, create an episodic node with `valid_at = reference_time`, extract/resolve nodes, extract/resolve edges, return both resolved and invalidated edges, hydrate node attributes, persist episode/edges, optionally update communities, and attach span attributes including node count, edge count, invalidated edge count, previous episode count, duration, source, group, and update-community flag. The docstring says episodes should be added sequentially and awaited before adding the next one. | This is a profile-run pipeline hiding inside a memory product. It already separates source episode, local history window, extraction, resolution, invalidation, persistence, optional community update, and metrics. | Knight Bus should model memory-graph jobs as staged profiles with explicit prior-window size, group partition, invalidation count, updated community count, and duration/RAM receipt fields. | High. GHCLI source read; repo metadata showed 29,644 stars, 2,998 forks, update time `2026-08-07T08:00:23Z`. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/nodes.py | Zep maintainers; recent temporal/saga work by Preston Rasmussen | Node models define `EpisodeType` values including message, json, text, and fact_triple. `EpisodicNode` stores source type, source description, raw content, `valid_at`, referenced entity edges, and optional metadata. `EntityNode` and `CommunityNode` carry summaries and embeddings; `SagaNode` has a wall-clock summary watermark plus `last_summarized_episode_valid_at`, whose source comments distinguish wall-clock filter time from episode-time semantics. | This is the source-schema side of budget-bounded memory compute. It shows why event time and wall-clock time must not be collapsed. | Knight Bus should carry both run wall-clock time and source event time in every artifact and receipt, especially for backfilled data and stale-fact audits. | High. GHCLI source and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/edges.py | Zep maintainers | `EntityEdge` stores `fact`, `fact_embedding`, originating `episodes`, `expired_at`, `valid_at`, `invalid_at`, and arbitrary attributes; save paths persist these fields. Episodic, community, saga, and next-episode edge classes separate provenance, membership, and sequence relationships. | This is a concrete temporal edge schema for agent memory. The algorithm layer can optimize around exactly these columns instead of loading every relationship as opaque JSON. | Build interval-indexed edge slabs for `valid_at`/`invalid_at`, provenance sidecars for `episodes`, and separate traversal lanes for fact edges, mention edges, community membership, saga sequence, and invalidated edges. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_filters.py | Zep maintainers; security hardening commit by Daniel Chalef | `SearchFilters` supports node labels, edge types, edge UUIDs, property filters, and date filters over `valid_at`, `invalid_at`, `created_at`, and `expired_at`. The constructors build provider-specific query fragments and validate node labels as defense in depth. | This is an agent-facing profile boundary. A bounded run must expose finite, validated filter types rather than arbitrary graph query strings. | Knight Bus profile manifests should compile filters to typed storage predicates and reject invalid combinations before execution; receipts should record the normalized filter predicate. | High. GHCLI source and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/edge_operations.py | Zep maintainers; recent forward-port work by Preston Rasmussen with Claude Opus 4.7 co-authorship disclosed in commits | Edge maintenance extracts facts from one or more episodes, maps extracted facts back to episode indices, parses `valid_at` and `invalid_at`, deduplicates exact matches, searches related/contradictory candidate edges, resolves duplicates and contradictions, sets `expired_at`, and returns `(resolved_edges, invalidated_edges, new_edges)`. Commit `673902c` describes decoupling timestamp extraction from structural fact extraction; commit `7514b44` documents prompt/attribute guards and saga episode-time watermarks. | This is stale-fact audit logic in embryo. The graph memory product needs contradiction search, duplicate resolution, and temporal invalidation; Knight Bus can make those bounded and receipt-bearing. | Create `temporal_edge_resolution` and `stale_fact_audit` profiles with candidate limits, contradiction-source evidence, invalidation edges, and exact before/after edge hashes. | High. GHCLI source and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_config_recipes.py | Zep maintainers | Search recipes define finite combinations such as combined hybrid search over edges/nodes/episodes/communities with RRF, MMR, or cross-encoder reranking. Edge and node recipes combine BM25, cosine similarity, and sometimes BFS; community recipes combine BM25 and cosine similarity. | This is the finite action-menu pattern again, but for retrieval. "Hybrid search" is a set of typed profiles, not a free-form instruction. | Knight Bus should expose graph algorithm modes as recipes with known operators, budgets, candidate expansion, reranker, and verification gates. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search.py | Zep maintainers | The main search function conditionally creates a query embedding only when cosine/MMR paths require it, runs edge/node/episode/community searches in parallel, asks each method for `2 * limit` candidates, supports BFS origin nodes and center-node reranking, records trace attributes, deduplicates by UUID maps, and returns top `limit` results. | Good bounded-compute shape. The runtime avoids unnecessary embeddings, overfetches candidates by a known factor, then reranks and truncates. | Knight Bus should make overfetch factor, candidate count, reranked count, returned count, BFS origin count, and actual search methods part of the run receipt. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_utils.py | Zep maintainers; BFS fix by kramerica-inc-dev with Preston Rasmussen co-author | Generic `edge_bfs_search` returns empty on no origins, builds typed filters, honors group IDs, supports provider-specific paths, and for non-Neptune/non-Kuzu consumes relationships from the path directly with `WITH rel AS e, startNode(rel) AS n, endNode(rel) AS m` plus an explicit `type(e) = 'RELATES_TO'` guard before returning distinct edges with `LIMIT`. | Extremely relevant query-shape lesson. The same logical traversal can be cheap or expensive depending on whether it uses path relationships directly or re-matches by UUID. | Add query-shape regression tests to Knight Bus for every graph traversal profile; receipts should identify the physical path, not just the algorithm name. | High. GHCLI source and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/tests/utils/search/test_edge_bfs_query_shape.py | Graphiti contributors; recent commits by kramerica-inc-dev, Cloud, Preston Rasmussen | The regression test states the old BFS query re-matched every hit by UUID against the whole graph, causing an `O(matches x graph)` scan per row. It asserts the new query consumes path relationships directly, preserves `RELATES_TO` filtering, avoids `uuid: rel.uuid`, preserves source/target direction, and returns `reference_time` for Neptune paths. | This is a perfect verification-loop artifact: a performance bug is captured as a query-shape test, not only a benchmark. | Knight Bus should write tests that fail on broad re-scan, hidden full materialization, swapped edge direction, missing event-time fields, and unbounded path expansion. | Very high. GHCLI test and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/community_operations.py | Zep maintainers; scoped cleanup fix by Saltasm with Claude Fable 5 and Preston Rasmussen co-authorship disclosed in commit | Community maintenance builds projections by group, runs label propagation, summarizes clusters, builds community membership edges, removes communities optionally scoped by `group_ids`, determines an entity's community from neighboring community memberships, and updates a community summary/name/embedding when a new entity joins. Commit `784782c` fixed an unsafe scoped rebuild that deleted every community before recreating only selected groups. | This gives both algorithm and safety lesson: dynamic community update is useful, but deletion/rebuild scope must be explicit and testable. | Knight Bus community profiles must declare rebuild scope, affected groups, changed edges, protected groups, deleted artifacts, and whether the run was incremental or full rebuild. | High. GHCLI source and commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/graph_data_operations.py | Zep maintainers | Episode retrieval uses `EPISODE_WINDOW_LEN = 3` and selects episodes with `valid_at <= reference_time`, optionally filtered by group, source, or saga, returning the most recent episodes in chronological order. Saga retrieval uses `HAS_EPISODE` and also filters by event time. | This is a tiny but important bounded-memory pattern: use a small relevant history window around reference time instead of dragging all previous memory into extraction. | Knight Bus should have explicit windowed-history profiles: `last_n`, event-time cutoff, source filter, group filter, saga/session filter, and fallback when the requested context window is insufficient. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/commit/245320997d0d225d9972a111ac1301c8f83cb031 | kramerica-inc-dev; co-authored by Preston Rasmussen | Commit message for `fix(search): consume bfs relationship hits directly in edge_bfs_search (#1653)` says the change replaced per-row re-MATCH by UUID with direct use of the relationship already produced by `UNWIND relationships(path)`, noted the generic path was the runtime path for FalkorDB and Neo4j, preserved the explicit relationship type guard, and removed duplicated/swapped source-target rows. | This is an unusually clear public note on how a graph query implementation detail turns into scale pain and correctness bugs. | Use as exemplar for Knight Bus commit/test culture: every low-RAM claim needs a physical-query explanation and a regression test that proves the bad path cannot return. | High. GHCLI commit metadata read. |
+| Aug 7 GHCLI implementation pass on Graphiti | https://github.com/getzep/graphiti/commit/784782c0854b49ae1c16ec80aac0f78eeac63acf | Saltasm; co-authored by Claude Fable 5 and Preston Rasmussen | Commit `fix(communities): scope remove_communities to the group_ids being rebuilt (#1658)` says a scoped community rebuild was deleting every Community node before recreating only selected groups, then threads `group_ids` through remove paths for Neo4j, FalkorDB, Kuzu, Neptune, and the GraphOperationsInterface. | Critical boundary lesson: rebuilding a graph artifact without a protected scope can silently corrupt unrelated tenants/groups. | Knight Bus artifact rebuilds must have protected-scope tests and receipts listing exactly which partitions were deleted, rebuilt, skipped, and preserved. | High. GHCLI commit metadata read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/evidence.py | KumihoIO maintainers | Evidence level is a provenance grade stored canonically in revision metadata key `evidence_level` and mirrored as graph tags such as `evidence:official`. Levels are ordered as official, corroborated, single_source, and unverified. Metadata wins over divergent tags, unknown stored values are ignored so recall does not fail, and `official` is explicitly operator or ingest supplied rather than LLM-inferred. | This turns trust into a typed graph/storage primitive rather than a prose note. | Knight Bus receipts should separate provenance grade from model confidence and attach it to every benchmark claim, source artifact, algorithm output, and stale-fact verdict. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/evidence_rank.py | KumihoIO maintainers | Evidence-weighted recall adjusts numeric scores deterministically with default deltas official plus 0.15, corroborated plus 0.08, single_source unchanged, and unverified minus 0.10. It is O(k), uses zero extra LLM calls, preserves `base_score` for idempotency, stable-sorts ties, leaves score-less memories score-less, and is a strict no-op when no evidence grades exist. | This is a direct blueprint for budget survival under tight context or RAM caps: higher-evidence state should survive before lower-evidence state when relevance is close. | Add evidence-aware candidate trimming to memory-graph profiles and receipt fields showing base score, evidence delta, adjusted score, and whether a candidate was saved or evicted by evidence policy. | High. GHCLI source and tests read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/valid_time.py | KumihoIO maintainers | Valid-time intervals are stored as additive `valid_from` and `valid_to` metadata distinct from point `event_date`. As-of recall is gated by `KUMIHO_MEMORY_AS_OF_RECALL`, defaults off, demotes rather than deletes excluded facts, pads partial precision to whole periods, treats absent bounds as open, and stamps `as_of_excluded` only when demotion actually fires. | This is a clean temporal-memory contract: stale or not-yet-valid data stays auditable without occupying the high-priority candidate frontier. | Knight Bus temporal profiles should soft-demote invalid intervals, never silently discard them, and receipts should list included, lapsed, pending, and interval-less candidates. | High. GHCLI source and tests read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/temporal_guard.py | KumihoIO maintainers | Event-date corroboration classifies LLM-extracted dates as verified, derived, or unverified by deterministic string and date arithmetic. Literal source dates verify; relative references can derive from session timestamps or in-content anchors; malformed, absent, or inconsistent dates stay unverified. No LLM calls are made. | This prevents a well-formed but hallucinated date from poisoning event-time ranking. It is exactly the kind of guardrail a proof-carrying graph runtime needs. | Store `event_date_confidence` separately from `valid_from` or `valid_to`; receipts should show whether temporal ranking used verified, derived, legacy-trusted, or unverified dates. | High. GHCLI source and tests read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/graph_augmentation.py | KumihoIO maintainers | Graph-augmented recall is optional and falls back to vector or fulltext recall when disabled. Its config exposes caps for hops, traversal seeds, entity anchors, sibling memories, anchor fetches, relation edges, neighbor anchors, bridge results, hub degree, fact recall scan windows, total results, reformulation draws, query-angle caps, and traversal or edge-creation timeouts. It sorts belief-change edges such as dispute-scoped `CONTRADICTS` and `SUPERSEDES` before budget caps so budget survival is deterministic rather than server-order dependent. | This is the strongest low-RAM algorithm lesson in the pass: bounded traversal must make candidate survival reproducible and semantically prioritized. | Knight Bus profile manifests should declare semantic priority classes, all fan-out caps, hub thresholds, timeouts, reserve slots, and fallback behavior; receipts should prove the cap was applied after stable priority ordering. | Very high. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/graph_maintenance.py | KumihoIO maintainers | Graph maintenance extends consolidation to typed ontology and Decision Memory graphs. The keyless pass handles entity merge, fact dedup, orphan prune, evidence re-grade, decision dedup, and cross-graph bridge creation without model keys. Safety uses dry-run counts, destructive deprecation budgets, idempotent edge prechecks, no rewrites of official evidence grades, high duplicate thresholds, `_MAX_DEDUP_NODES = 400`, and embedding-assisted nominations that still require deterministic confirmation. | This is a model for low-risk background graph jobs: embeddings can nominate candidates, but deterministic checks authorize mutations. | Knight Bus maintenance profiles should expose dry-run mode, mutation budget, candidate nomination count, confirmed mutation count, protected evidence classes, and truncation warnings. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory | https://github.com/KumihoIO/kumiho-memory/blob/main/docs/DECISION_MEMORY_DESIGN.md | KumihoIO maintainers | Decision Memory isolates code decisions into a separate project after a typed-node vector-crowding incident. It defines `code_decision`, `code_anchor`, `code_commit`, and `code_evidence`, uses file anchors for reverse lookup instead of fuzzy metadata search, limits decision anchors to eight files, validates LLM-selected anchors against git changed-file ground truth, uses `IMPLEMENTED_IN`, `MOTIVATED_BY`, `DERIVED_FROM`, and `SUPERSEDES` edges, and keeps SHA out of decision identity so history rewrites can converge. | This is a rich receipt-graph design precedent: evidence atoms, file anchors, commit markers, idempotency, and rewrite-tolerant identity are all product-grade primitives. | Knight Bus should model algorithm decisions and benchmark conclusions as anchored evidence graphs: stable identities, source-file or dataset anchors, bounded anchor fan-out, and rewrite/version survival tables. | High. GHCLI design doc read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory tests | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_evidence_rank.py | KumihoIO maintainers | Tests prove official memories can outrank higher-relevance rumors, no-evidence paths are strict no-ops, weighting is idempotent, score-less memories never receive fabricated scores, non-numeric scores are untouched, and graph traversal placeholder scores do not outrank measured base hits. | This is the verification spine hidden inside the source: every trust/ranking rule is guarded by a concrete regression. | Knight Bus should write profile tests that protect measured candidates from unmeasured traversal noise, prevent repeated evidence boosts, and prove high-evidence candidates survive tight caps. | Very high. GHCLI test read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory tests | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_valid_time.py | KumihoIO maintainers | Tests cover ISO interval grammar, partial-precision padding, open bounds, inclusive interval boundaries, byte-identical flag-off behavior, no-op when no as-of date exists, and stable demotion with `as_of_excluded` markers. | The tests show that temporal filters need safety semantics as much as performance semantics. | Knight Bus should make every temporal profile prove no-op defaults, stable demotion, boundary inclusion, and explicit markers for excluded state. | Very high. GHCLI test read. |
+| Aug 7 GHCLI implementation pass on Kumiho Memory tests | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_temporal_guard.py | KumihoIO maintainers | Tests pin absolute date formats, Korean date forms, relative English and Korean derivations, in-content anchor derivation for backfilled data, rejection of hallucinated well-formed dates, wrong-year conflict guards, and malformed event-date rejection. | This is unusually practical evidence that date correctness is not a small detail in memory graphs. | Knight Bus temporal receipts should distinguish parse success, source corroboration, derivation anchor, and ranking eligibility. | High. GHCLI test read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/schema.py | KumihoIO Revka maintainers | Revka's workflow DSL is typed around steps such as agent, shell, python, compute, conditional, parallel, goto, human approval, map_reduce, supervisor, group_chat, handoff, Kumiho context, bundle update, patch apply, for_each, tag, and deprecate. It includes join strategies, loop guards, timeouts, checkpointing, compression, Kumiho context modes, and runtime `StepResult` or `WorkflowState` objects. | This is the runtime surface Knight Bus needs for profile runs: not a vague job, but typed steps with dependency edges and persisted state. | Model each graph-compute profile as a workflow DAG with typed phases, dependencies, timeouts, human gates, structured outputs, and checkpointed state. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/validator.py | KumihoIO Revka maintainers | The validator checks duplicate step IDs, dependency cycles, unknown dependencies, variable references, parallel sub-step membership, goto targets, max-iteration sanity, conditional branch targets, required inputs, output consistency, trigger definitions, and more. It rejects ambiguous ordering inside parallel groups. | This validates graph-shaped execution before runtime. Knight Bus should similarly lint algorithm plans before they burn RAM or corrupt artifacts. | Build `kb profile lint` around hidden broad scans, missing source anchors, invalid budget/freshness combinations, unsafe rebuild scope, cycles in phase DAGs, and missing verifier output references. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/tests/test_workflow_validator_unused_depends.py | KumihoIO Revka maintainers | Regression tests reject agent steps whose `depends_on` list names upstream work but whose prompt does not actually reference the upstream output or artifact path. The concrete failure case is a synthesis step that depends on two research steps but does not pull in their artifacts. | This is a perfect LLM-workflow failure mode: the graph says dependency, but the prompt payload drops the edge. | Knight Bus must reject verification steps that depend on artifacts without reading their hashes, paths, outputs, or receipts. Edges in the DAG must correspond to real dataflow. | Very high. GHCLI test read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/executor.py | KumihoIO Revka maintainers | The executor persists checkpoints, reloads failed or paused runs, sweeps terminal checkpoints after retention, enforces max total time and cost guards, observes cancellation, handles human approval pauses, persists workflow state after waves, supports retries, records result status, and supports parallel join strategies. | This supplies the operational shape for long graph jobs: they must be resumable, cancellable, bounded, and externally inspectable. | Knight Bus graph jobs should checkpoint phase state, persist terminal state outside disposable caches, expose cancel and resume, enforce cost/RAM/time guards, and record wave-level progress. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/run_log.py | KumihoIO Revka maintainers | RunLog writes append-only JSONL per agent with timestamps, tool calls, args/results, shell commands, exit codes, stdout/stderr tails, files touched, reasoning, assistant messages, errors, lifecycle failures, prompts, status, token usage, and cost. It is persistent and queryable after completion, unlike capped in-memory event buffers. | This is the audit format analogue for graph compute receipts. | Knight Bus should create append-only run-event logs containing source frontiers, artifact hashes, slabs loaded, spill events, verifier outcomes, fallback/switch decisions, RAM counters, and terminal status. | High. GHCLI source read. |
+| Aug 7 GHCLI implementation pass on Revka | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/tool_handlers/workflow_revisions.py | KumihoIO Revka maintainers | Workflow revision operations are applied as structured ops such as add, edit, delete, reorder, wire, unwire, parallel insert/extract, and rename. Every change produces a new Kumiho revision rather than editing in place, and failed ops return typed skipped reasons like step_not_found, duplicate_id, cycle_detected, reference_broken, or validation_failed. | This is exactly how profile evolution should work: structured mutations, new immutable versions, and typed repair feedback. | Knight Bus profile updates should be revision-native and op-based; failed profile edits should return typed reasons agents can fix, not raw parser errors. | High. GHCLI source read. |
 
 ## Insight Notes
 
@@ -260,6 +762,8 @@ The important details from the discussion:
 | The graph was semiconductor process/parts mapping at OLAP+ scale | Industrial process graphs may be a serious wedge: not social graph toys. |
 | The team tried Neo4j Aura, TigerGraph, Palantir, and custom code | The competition is not only graph databases; it is custom LLM-written CPU code and enterprise platforms. |
 | LLMs make custom graph traversal code easier | Knight Bus must make the verified path easier than bespoke code, not merely faster than Neo4j. |
+| Latency and pricing were described as related through memory/indexing | Memory reduction matters because it changes both technical feasibility and cloud bill, but must be tied to end-to-end performance. |
+| Neptune was suggested as a better hyperscale comparator | Do not cherry-pick Neo4j if the claim is hyperscale graph performance. |
 
 This suggests a first external benchmark:
 
@@ -276,6 +780,16 @@ Contracts:
   correctness checked against reference implementation
   receipt explains projection, storage shape, frontier/state, and output diff
 ```
+
+This also suggests a sharper proof matrix:
+
+| Comparator | Why It Belongs |
+|---|---|
+| Neo4j/Aura | The user-facing pain and surface-area familiarity. |
+| Neo4j/GDS | The OLAP algorithm baseline and known memory projection model. |
+| Amazon Neptune-style workloads | Hyperscale graph comparator mentioned in discovery. |
+| Custom CPU traversal code | The actual escape hatch users may choose now that LLMs generate traversal code quickly. |
+| Palantir-style enterprise workflow | The procurement/workflow alternative for high-stakes industrial mapping. |
 
 ### Small Models And Knowledge Engines Point Back To Graphs
 
@@ -312,6 +826,142 @@ For graph jobs, our receipts should separate:
 
 Without this separation, "runs in 10GB" will sound fake whenever the logical graph or embeddings are much larger.
 
+### PageRank Is Already In Agent Workflow Land
+
+The `beads_viewer` repo is a concrete precedent for applying graph algorithms to agent work management. Its public repo describes PageRank, critical path, cycle detection, dependency DAG visualization, and robot-mode output for AI coding agents.
+
+That gives Knight Bus an immediate small demo:
+
+```text
+Input:
+  issue/task graph from Beads or similar
+
+Algorithms:
+  PageRank, critical path, cycle detection, dependency expansion
+
+Output:
+  robot-readable next-task recommendation
+  graph-native explanation
+  bounded-memory receipt
+```
+
+This is much easier to demo than industrial graph analytics, and it ties directly into AI-native developer workflows. It should not replace the industrial benchmark, but it can be the famous/useful developer wedge.
+
+### Agent Workflows Are Becoming Graphs
+
+The Codez article and Arto trend post together are market-timing evidence. They show "graph" escaping the database category and becoming the default mental model for agent orchestration:
+
+| Agent Graph Concept | Knight Bus Translation |
+|---|---|
+| Nodes are jobs | Algorithm stages and verification stages are jobs. |
+| Edges are data contracts | Projection, state, and output transitions should be typed contracts. |
+| Fan-out / fan-in | Parallel graph processing and independent verification lanes. |
+| Barriers | Places where all partial results must converge before correctness can be claimed. |
+| Contracts | Memory, latency, correctness, and output-shape contracts. |
+| Verification | Receipts and independent checks, not only logs. |
+
+This suggests a dual-market story:
+
+```text
+For graph engineers:
+  bounded graph algorithms over large data
+
+For AI-native developers:
+  bounded graph algorithms over agent workflow, code, task, and memory graphs
+```
+
+The Carlos Perez loop-to-graph article makes this more general. It frames single improvement loops as insufficient because loops optimize locally and can Goodhart, conflict, or miss higher-order constraints. The emerging answer is a graph of loops: feedback cycles that watch, constrain, and correct one another.
+
+For Knight Bus, this means "graph algorithms" can be sold as control architecture:
+
+| Old Framing | Better Framing |
+|---|---|
+| Run PageRank over a graph | Rank next actions in an agent workflow graph. |
+| Detect cycles | Prevent invalid DAG claims and workflow deadlocks. |
+| Find connected components | Identify disconnected memory/context islands. |
+| Compute centrality | Find control points in a feedback system. |
+| Traverse dependencies | Explain why a result depends on upstream state. |
+
+The storage thesis still matters, but the PMF language should attach to the new agent/control vocabulary.
+
+### Epistemic Independence Belongs In The Verification Spine
+
+Openrunt's "implementation independence vs epistemic independence" post gives language for a mistake we should avoid.
+
+Bad verification:
+
+```text
+Rust output matches our Rust expectation.
+```
+
+Better verification:
+
+```text
+Rust output matches Neo4j/GDS for compatibility.
+Rust output matches a small independent mathematical/reference implementation.
+Rust output satisfies invariant/property checks.
+Rust output carries enough trace to debug divergence.
+```
+
+That is how we avoid building a fast system that only proves it agrees with itself.
+
+### Graph-Literacy Is A Product Requirement
+
+The DAG-with-loop critique is not just snark. If the market is moving from loops to graphs, many builders will misuse graph language. That creates product risk and product opportunity.
+
+Knight Bus should be precise:
+
+| Term | Product Meaning |
+|---|---|
+| DAG | Directed acyclic dependency plan. No feedback loops. |
+| Cyclic workflow | Repeated improvement or feedback process. |
+| Property graph | Nodes/relationships with labels/properties, Neo4j-like surface. |
+| RDF graph | Triple-based semantic graph, web/ontology-oriented surface. |
+| Hypergraph | Edge can connect more than two entities; useful for logic/semantic groups. |
+| Projection | Algorithm-specific view of a graph, not necessarily the whole database. |
+
+Precision itself can be part of trust.
+
+### Graph Theory Virality Has A Verification Lesson
+
+The Dmitry Rybin graph-flow conjecture post had millions of visible views and a source ChatGPT share. The thread also shows people asking whether brute force could have found the example and whether the result was independently grounded.
+
+For Knight Bus, the lesson is:
+
+1. Graph/math claims can go viral when they are concrete.
+2. Viral graph claims get challenged immediately.
+3. Receipts matter: source chat, reproducible example, independent reasoning, brute-force analysis, and caveats.
+
+That reinforces our product posture: every performance and correctness claim should be packaged for skeptical review.
+
+### Integrity Should Fail Closed
+
+The Openrunt integrity/cryptographic-geometry thread is not yet evidence for a practical design, but it does reinforce a principle: serious systems should not silently continue when their internal structure is corrupt.
+
+For Knight Bus this is simple and actionable:
+
+```text
+If input checksum changes, invalidate projection.
+If projection schema changes, invalidate storage artifact.
+If storage artifact changes, invalidate run receipt.
+If output cardinality or invariant breaks, fail the verification run.
+If approximate mode is enabled, declare the error budget explicitly.
+```
+
+The product should feel boringly strict here. Low RAM is only valuable if users trust the result.
+
+### Knowledge As Topology Is The Narrative
+
+The graphtheory "Graph Codex" post is a good narrative north star: knowledge is not isolated entries; it is the topology of relationships that resists disconnection.
+
+This is not a benchmark. It is a story that makes the product legible:
+
+```text
+Graphs are not just where data lives.
+Graphs are where meaning survives disconnection.
+Knight Bus makes those graph-shaped meanings computable under a budget.
+```
+
 ### Cost/Latency Routing Is A Product Metaphor
 
 The OpenRouter/DeepSeek visible discussion is not a graph-compute source, but it is a strong analogy. Developers already understand routing work across providers based on latency, price, and quality. Knight Bus can borrow that mental model:
@@ -337,7 +987,5020 @@ The Arto Bendiken / Neuro-Symbolic AI Summer School link is not yet verified bey
 | Knowledge graph reasoning | Paths, communities, constraints, equivalence classes | Users may trade latency for bounded local execution. |
 | Scientific symbolic models | Causal or logical relation graphs | Predictable resource use is often more important than peak speed. |
 
-## Unresolved URLs To Open
+### Versioned Graph Artifacts Are A Missing Product Primitive
+
+The Neo4j Liquibase link is more important than it first looks. It says graph users already need normal database hygiene: track changes, order changes, deploy changes, and roll back changes. For Knight Bus, that hygiene has to extend beyond schema:
+
+| Neo4j / Liquibase Concept | Knight Bus Equivalent |
+|---|---|
+| Database schema change | Projection definition change |
+| Migration ordering | Storage-plan build ordering |
+| Preconditions | Dataset, schema, RAM cap, algorithm parameters |
+| Rollback script | Previous projection/storage artifact restored |
+| Change log | Run receipt chain |
+| CI/CD integration | Benchmark/verification gate |
+
+This pushes the product away from "fast algorithm runner" and toward "versioned graph compute system." If an OLAP projection changes and PageRank changes, the product should answer:
+
+```text
+What changed in the input?
+What changed in the projection?
+What changed in the storage layout?
+What changed in the algorithm parameters?
+What changed in output?
+Which downstream receipt is now invalid?
+```
+
+That is the storage/verification equivalent of schema migration.
+
+### Probability On Trees And Networks Is A Reading Spine
+
+The Antonio Lupetti / Lyons-Peres book link is not market evidence, but it is a strong algorithm-reading spine. It helps us avoid overfitting to the few Neo4j/GDS algorithms everyone names first.
+
+The book topics point at a broader algorithm family:
+
+| Topic Family | Knight Bus Algorithm/Storage Question |
+|---|---|
+| Random walks | Can walks run from mmap-backed adjacency with bounded active state? |
+| Electrical networks | Can Laplacian/resistance-style workloads use streaming sparse matrix layouts? |
+| Spanning trees | Can tree sampling/forest algorithms use compact parent arrays plus edge windows? |
+| Branching processes | Can frontier evolution be bounded by spillable generation queues? |
+| Percolation | Can repeated edge/node deletion simulations reuse compressed structure? |
+| Network reliability | Can we provide exact/approx modes with confidence receipts? |
+
+This is useful because "graph algorithms" should not become just "PageRank and community detection." The famous product can start with Pareto algorithms, but the research spine should preserve a path into deeper network-science workloads.
+
+### Phase Ledgers Beat Aggregate Timings
+
+Openrunt's BF16/Haswell thread is a gift for our benchmark language. The lesson is not "use BF16." The lesson is that representation, hardware, conversion cost, and artifact verification must be visible separately.
+
+For Knight Bus, a single timing number is too weak:
+
+```text
+Bad:
+  PageRank ran in 12.4s using 8GB RAM.
+
+Better:
+  Ingest:              1.2s
+  Projection build:    2.8s
+  Storage build:       4.6s
+  Iteration compute:   9.1s
+  Spill/readback:      0.7s
+  Verification:        1.6s
+  Output materialize:  0.5s
+  Peak RSS:            8.0GB
+  Mapped bytes:        42GB
+  Active state:        3.2GB
+```
+
+The phase ledger is what makes tradeoffs legible. If low-RAM mode is slower, the receipt should show exactly where: projection build, random I/O, frontier spill, compression decode, or verification. If RAM-first mode is faster, the receipt should show whether speed came from fewer cache misses, less conversion, fewer random reads, or skipped spilling.
+
+### Context Graph Tooling Is Market Proof For Representation-Shaped Compute
+
+CocoIndex Code and Colby McHenry's CodeGraph are not graph algorithm systems. They are still extremely relevant because they prove the same meta-pattern in a hotter market:
+
+```text
+Build the representation in the shape of the next computation.
+Keep it local.
+Keep it fresh.
+Answer with surgical context.
+Show token/cost/tool-call receipts.
+```
+
+CodeGraph is especially important because its README does not only say "better context." It uses benchmark language: tokens, tool calls, file reads, cost, contamination controls, residual context footprint, local SQLite, auto-sync, and native Rust parsing. That is the style Knight Bus needs.
+
+For our product, the analogous benchmark table should include:
+
+| CodeGraph Metric Style | Knight Bus Equivalent |
+|---|---|
+| Tool calls saved | Algorithm phases skipped or fused |
+| Tokens saved | RAM/page-cache/active-state reduction |
+| File reads avoided | Edge/property reads avoided |
+| Residual context footprint | Residual resident memory / mapped artifact footprint |
+| Index freshness | Projection freshness after graph changes |
+| Local SQLite | Local graph artifact store |
+| Contamination control | Baseline isolation / no hidden index reuse |
+
+This is a go-to-market clue too. Developers seem willing to adopt a local index when it makes agents less blind. They may adopt a local graph compute artifact store if it makes graph jobs less opaque.
+
+### Temporal Graphs Need Standards, Not Vibes
+
+The chat question about fuzzy object timelines and the OWL-Time / Allen interval algebra lead are a reminder that temporal graphs are their own domain.
+
+Neo4j can store time properties. That is not the same as being optimized for temporal reasoning. A temporal graph workload may ask:
+
+```text
+Which event intervals overlap this interval?
+Which object states were true before/after a fuzzy observation?
+Which provenance activities conflict?
+Which candidate change window best explains the evidence?
+```
+
+That suggests a possible algorithm/storage specialization:
+
+| Temporal Need | Storage Shape |
+|---|---|
+| Exact instants | sorted timestamp columns, binary-search windows |
+| Intervals | interval tree / segment index over node or edge IDs |
+| Fuzzy ranges | lower/upper bound columns plus confidence buckets |
+| Allen relations | relation-coded interval-pair tables |
+| Provenance chains | append-only event graph plus receipt hashes |
+| Repeated window queries | pre-bucketed time partitions with compact adjacency |
+
+This may be outside v0, but it is a high-value "custom OLAP storage per algorithm/workload" example. It also bridges graph compute with data engineering: time-windowed joins, aggregations, and provenance are not only graph database problems.
+
+### Agent Orchestration Graphs Are A Real Adjacent Workload
+
+Heavy Coder, Tetramegistus, Beads, Codez, Carlos Perez, Yohei's GraphCon deck, and the chat's own "coordinate agents with graphs" talk all point in the same direction: agent systems are turning into graphs.
+
+The graph may be:
+
+| Agent Graph | Useful Algorithms |
+|---|---|
+| Issue dependency graph | topological layers, cycle detection, critical path |
+| Multi-agent task graph | centrality, bottleneck detection, fan-in/fan-out barriers |
+| Debate/critique graph | claim/evidence paths, contradiction clusters |
+| Context graph | neighborhood expansion, entity resolution, memory ranking |
+| PR/change graph | blast radius, semantic diff, impacted tests |
+| Runtime trace graph | anomaly path, retry-loop detection, provenance |
+
+This suggests a famous-and-useful demo path:
+
+```text
+Take a real agent task graph.
+Run bounded PageRank / critical path / cycle detection.
+Emit a receipt that says what work matters next, why, and under what RAM cap.
+Compare against a naive all-in-memory graph toolkit.
+```
+
+This is less intimidating than competing with all of Neo4j at once, and more emotionally legible to AI-native developers.
+
+### Text-To-Knowledge-Graph Repos Can Become Cheap Fixtures
+
+The Tom Doerr / Robert McDermott `ai-knowledge-graph` lead matters because it can turn messy unstructured text into small/medium knowledge graphs. That gives Knight Bus easy demo data:
+
+1. Feed long text, docs, chats, or PRDs into a KG generator.
+2. Run bounded graph algorithms over the generated graph.
+3. Show top concepts, disconnected islands, dense themes, cycles, provenance gaps.
+4. Emit receipts that prove what was read, what graph was built, and what algorithms ran.
+
+This is not the same as a billion-edge industrial graph, but it is excellent for PMF demos because people can inspect it. A user can look at the graph and say, "yes, that concept should be central" or "no, that edge is wrong." Inspectability makes verification visceral.
+
+### Existing Knight Bus Claims Need A Stronger Receipt
+
+The Jul 4 public post is useful because it states the raw thesis: reshape graph OLAP storage to mirror graph algorithm access patterns, with a POC claim of 4.5x lower RAM on a 2GB dataset.
+
+The claim should now be upgraded before it is repeated:
+
+| Claim Piece | What The Receipt Must Include |
+|---|---|
+| Dataset | source, size on disk, node count, edge count, labels/properties |
+| Baseline | Neo4j version, GDS version, config, heap/page cache, projection command |
+| Workload | exact algorithm, parameters, iteration count, convergence tolerance |
+| Memory | peak RSS, heap, mapped bytes, page cache if measurable, active state |
+| Time | build time, compute time, verification time, output time |
+| Correctness | Neo4j parity plus independent oracle or property checks |
+| Repro | script, commit SHA, machine profile, OS, run log |
+
+This is not bureaucracy. It is how the product becomes believable.
+
+### Compute Routing Is A Product Shape
+
+The Jun 28 Micah compute-routing post is not about graphs directly, but it gives a useful product abstraction: jobs should be routed to the right compute environment, not forced through one centralized path.
+
+For Knight Bus, that translates into a concrete interface:
+
+| User Constraint | Runtime Decision |
+|---|---|
+| "Use no more than 8GB RAM" | choose disk-backed frontier windows, compressed adjacency, and slower spill-friendly passes |
+| "Finish under 90 seconds" | choose in-memory CSR/CSC projection and parallel frontier execution if enough RAM exists |
+| "Give exact output" | disable sketches/sampling and emit full parity/oracle checks |
+| "Give approximate answer under 5GB" | use bounded sketches, top-k summaries, or blocked algorithms with error receipts |
+| "Run on laptop" | choose mmap/page-cache layouts and avoid wide temporary materialization |
+| "Run on beefy server" | choose thread-per-core partitioning, NUMA-aware shards, and larger active frontiers |
+
+This is more powerful than "Neo4j but lower RAM." The product becomes a graph compute router that can explain its plan before it spends the user's money or memory.
+
+### Structured Graph Harness Confirms The Agent-Graph Thesis
+
+Hu Wei's "From Agent Loops to Structured Graphs" paper matters because it independently frames agent execution as a scheduler problem over explicit graph structure. The paper's ideas of immutable plan versions, separated planning/execution/recovery, and recovery escalation map cleanly to the verification-first workflows in this repo.
+
+This means one serious PMF branch is not only:
+
+```text
+big property graph -> PageRank -> score table
+```
+
+It is also:
+
+```text
+agent plan graph -> schedule/check/recover -> receipt-backed execution trace
+```
+
+Useful algorithms for that branch are not exotic:
+
+| Agent Workflow Need | Graph Algorithm / Storage Shape |
+|---|---|
+| Find blocked work | dependency traversal over task/file graph |
+| Find risky merge point | betweenness/bridge detection over PR/change graph |
+| Find repeated failure loop | cycle detection over execution/recovery graph |
+| Pick next verifier | PageRank or priority propagation over claim/evidence graph |
+| Bound context | neighborhood expansion with token/RAM budget |
+| Explain why a decision happened | provenance path search with immutable plan version |
+
+This is a better near-term developer demo than trying to clone all of Neo4j. It is graph-native, local-first, verification-heavy, and emotionally obvious to people who code with LLMs.
+
+### Profile Distribution Is A Lesson For Algorithm Distribution
+
+The Hermes profile-template and authoring-workflow issue show a pattern we should steal cleanly: complex agent behavior becomes adoptable when it is packaged as a distribution with manifests, docs, validation, smoke tests, safe defaults, CI, release notes, and example fixtures.
+
+Knight Bus can do the same for graph algorithms:
+
+```text
+knightbus-profile/
+  profile.yaml              # algorithm, storage mode, exactness, RAM bound
+  datasets/                 # tiny fixtures and optional large manifest
+  storage-plan.md           # why this layout fits the algorithm
+  verification.md           # parity/oracle/property checks
+  benchmarks/               # scripts and expected receipt fields
+  receipts/                 # sample output receipts
+  README.md                 # what problem this profile solves
+```
+
+The important mental shift: an algorithm is not just a function. For this product, an algorithm should be a distributable, validated operating mode. A user should be able to say:
+
+```text
+Use pagerank-low-ram-v1 under 10GB.
+Use connected-components-streaming-v1 under 4GB.
+Use temporal-interval-paths-v1 with exact interval semantics.
+```
+
+That makes LLM-assisted development easier too. Agents can read the profile, run the fixture, inspect the receipt, and know whether the implementation preserved the contract.
+
+### OKF Is A Receipt Bundle Clue
+
+Google's Open Knowledge Format is not a graph algorithm system, but it is a strong clue for how to package knowledge artifacts in an agent-native world. The relevant pieces are plain markdown, YAML frontmatter, provenance/freshness fields, version control, progressive disclosure, and graph-shaped links.
+
+Knight Bus receipts should be similarly boring and durable:
+
+```text
+run-2026-08-07/
+  run.md                    # human-readable summary
+  input.okf.md              # dataset and projection metadata
+  storage.okf.md            # chosen storage shape and memory contract
+  algorithm.okf.md          # parameters, version, convergence criteria
+  metrics.okf.md            # RSS/mapped/page-cache/active-state/spill/time
+  correctness.okf.md        # parity and independent checks
+  output-links.okf.md       # top results and graph/diff links
+```
+
+This can make the product feel like "GitHub Actions for graph compute receipts": every run is reviewable, linkable, diffable, and agent-readable. The SQLite database we discussed earlier can be the fast index over these artifacts, but the artifact itself should remain easy to inspect and commit.
+
+The Google Cloud launch article adds a market-facing phrase that should influence our artifact design: the winning artifact is a format, not another service. That maps perfectly to Knight Bus:
+
+```text
+Not:
+  "Upload your graph into our opaque service and trust the dashboard."
+
+Better:
+  "Run this graph job and get a portable receipt bundle any human,
+   LLM, CI job, git repo, or downstream database can inspect."
+```
+
+The practical decision: every important Knight Bus output should have a file-native representation first. Databases accelerate browsing; they should not be the only source of truth.
+
+### Space Complexity And Hardware Locality Need First-Class Product Language
+
+The Jun 23 private chat signal about Big-O focusing too much on time, plus the Apache Iggy architecture source, pushes the same lesson from two directions: real systems are shaped by memory, bandwidth, latency, page cache, offsets, and read patterns.
+
+Apache Iggy is useful as an analogy because it is explicit about storage in the shape of message flow:
+
+```text
+stream -> topic -> partition -> segment
+segment -> .log + .index
+read path -> offsets and cached indexes
+write path -> append-only vectored I/O
+runtime -> thread-per-core / io_uring
+```
+
+The graph equivalent should be explicit about algorithm flow:
+
+```text
+graph -> projection -> algorithm profile -> partitioned artifact
+artifact -> adjacency/index/frontier/checkpoint
+read path -> frontier windows and neighbor blocks
+write path -> append-only run/checkpoint log
+runtime -> RAM cap / page-cache policy / parallel partitioning
+```
+
+That gives us a stronger phrase than "use less RAM":
+
+```text
+The system chooses a storage layout whose resident working set is bounded by the algorithm's next reads.
+```
+
+This should become core architecture language.
+
+### Iggy Implementation Makes RAM Modes Legible
+
+The deeper Iggy source pass turns the architecture analogy into something more operational. Iggy does not merely say "we are efficient." It exposes the memory strategy as a real configuration:
+
+| Iggy Pattern | Knight Bus Translation |
+|---|---|
+| `cache_indexes = all` | Load full algorithm index or projection into memory for maximum speed. |
+| `cache_indexes = open_segment` default | Keep only the active frontier/window/checkpoint resident. |
+| `cache_indexes = none` | Seek/read indexes from disk or mapped files on demand for minimum RAM. |
+| sparse index entries | Store jump tables into graph blocks instead of storing every edge/node state live. |
+| lower-bound lookup on offset/timestamp | Seek to node-id, score bucket, frontier checkpoint, or time interval predecessor. |
+| load-all or binary-search file path | Same logical query under different RAM budgets. |
+| bounded evicted ring by count and bytes | Keep a repair/replay window without pretending old state is resident. |
+| commit-frontier ceiling | Never serve uncommitted/rollbackable graph state as if it were final. |
+
+This gives us a very concrete design rule:
+
+```text
+Every algorithm profile should declare at least three memory modes:
+
+speed mode:
+  materialize full supporting index/state when RAM allows
+
+balanced mode:
+  keep only active frontier/window/checkpoints resident
+
+budget mode:
+  use sparse indexes and on-file/mmap binary search with explicit slower latency
+```
+
+The user-facing product claim then becomes bounded and honest:
+
+```text
+You can run PageRank under 10GB, but this profile will choose budget mode,
+perform more indexed reads, and extend runtime by X. The receipt proves which
+mode ran and what extra I/O it paid.
+```
+
+This is much stronger than saying "lower RAM" as a magic property.
+
+### Mathematical Structure Beats Clever Hacks
+
+The CliffordNet / geometric-algebra lead is not direct graph OLAP evidence, so it should not be over-weighted. Its value is conceptual: choosing the right representation can make a hard computation simpler, smaller, or more stable than treating the same data as generic arrays.
+
+For Knight Bus, the equivalent design question per algorithm is:
+
+| Algorithm Family | Representation Question |
+|---|---|
+| PageRank / random walks | Can we store incoming/outgoing probability mass in cache-friendly blocks and avoid duplicating the full graph? |
+| BFS / shortest paths | Can we optimize around frontier windows and distance labels rather than generic edge scans? |
+| Connected components | Can we stream union operations and compact component labels without holding all temporary state? |
+| Community detection | Can we store community-local edge weights and modularity deltas instead of repeatedly scanning global adjacency? |
+| Temporal paths | Can interval indexes and relation algebra replace repeated property filtering? |
+| Similarity / recommendations | Can sketches or top-k candidate stores bound memory with explicit error receipts? |
+
+The research question is not "can Rust make Java faster?" The research question is "which representation makes this graph algorithm stop needing so much live state?"
+
+### Context Compression Is A Warning Label For Graph Compression
+
+The Snapcompact / dense-text-bitmap discussion is especially useful because it has the same shape as our storage-format argument. A format can make something cheaper by changing the carrier, but that does not mean information loss, decoding cost, conflict resolution, or downstream degradation disappeared.
+
+For graph compute, this becomes a discipline:
+
+| Storage Move | Benefit | Receipt Must Measure |
+|---|---|---|
+| compressed adjacency blocks | lower resident memory | neighbor decode cost, random-access penalty |
+| sampled/sketched similarity | lower RAM and faster top-k | error bound, missed edges/candidates |
+| mmap/page-cache graph | lower process heap | page faults, mapped bytes, active resident set |
+| temporal interval index | faster time-window paths | interval semantics, edge-case correctness |
+| frontier checkpointing | bounded active state | checkpoint/replay cost, convergence effects |
+| property projection pruning | smaller graph artifact | lost labels/properties, algorithm-output delta |
+
+The PMF phrasing should therefore avoid naive "we compress graphs." A better phrase is:
+
+```text
+We choose a graph representation with a declared error/cost envelope, then emit a receipt showing whether the envelope held.
+```
+
+That is the trust layer missing from many compression and memory claims.
+
+### Predictive Intents Is A Strong Local Graph Wedge
+
+The Codegraph/Hermes predictive-intents cluster is one of the highest-signal local graph use cases so far. It takes user memories, notes, and audio-derived events; extracts intents; classifies work into human-required vs agent-achievable actions; then returns artifacts and an "hours returned" summary.
+
+That is a graph product shape:
+
+```text
+memory/events -> intent graph -> task partition -> agent/human routing -> artifact receipts
+```
+
+Useful algorithms:
+
+| Need | Possible Algorithm |
+|---|---|
+| Which intent matters now? | personalized PageRank / priority propagation |
+| Which tasks can an agent do? | classification plus dependency traversal |
+| What blocks a task? | prerequisite path search |
+| Which memories support this action? | provenance path expansion |
+| What changed since last week? | semantic diff over intent graph |
+| What did the agent return? | artifact graph with value/receipt metrics |
+
+This branch is more legible for AI-native developers than "enterprise graph OLAP." It also ties to the local/private future the chat keeps circling: personal data, agent autonomy, memory, privacy, and predictable bounded compute.
+
+### Named Graphs And Bellman-Ford Are Fixture Culture
+
+The Jun 13 Bellman-Ford and named-graph-gallery links are small, but they help design a verification loop. Giant industrial graphs are necessary for performance claims, but small named graphs are better for first correctness fixtures because humans can inspect them.
+
+Fixture tiers should look like:
+
+| Fixture Tier | Purpose |
+|---|---|
+| toy named graphs | visual correctness, simple invariants, docs |
+| canonical algorithm graphs | Bellman-Ford, BFS, SCC, PageRank, triangle, community examples |
+| generated messy KGs | local/user/document graph demos |
+| industrial graph slices | RAM/latency/throughput claims |
+| adversarial graphs | skew, supernodes, disconnected regions, negative weights where applicable |
+
+This makes the verification spine teachable. An LLM or human can first see a tiny graph, then scale the same algorithm/storage profile upward.
+
+### Debug The Graph Before Running The Job
+
+Goodfire's predictive data debugging points to a product step we should add explicitly: graph preflight.
+
+Before running a long PageRank/community/shortest-path job, the system should inspect the graph and say:
+
+| Preflight Check | Why It Matters |
+|---|---|
+| node/edge/property counts | validates projection shape |
+| connected components | predicts algorithm behavior and useless work |
+| degree distribution and supernodes | predicts memory spikes and load imbalance |
+| label/property sparsity | finds schema holes |
+| dangling nodes | matters for PageRank/random-walk behavior |
+| negative or invalid weights | matters for shortest paths |
+| temporal gaps/overlaps | matters for interval queries |
+| duplicate/missing provenance | matters for auditable receipts |
+
+This is exactly Shreyas-style product taste: do not make the user discover a bad graph after the expensive job fails. Show the likely failure modes before execution, then let them choose whether to proceed under a RAM/time cap.
+
+### Security And Falsification Are Graph-Shaped Verification Workloads
+
+The ArbiterSec/concolic-falsification lead is not a core graph-database source, but it is relevant to the larger "graph compute for verification" PMF. Security analysis often becomes reachability over code paths, symbolic states, dataflow, call graphs, dependency graphs, and proof/counterexample traces.
+
+If we pursue this branch, the product is not:
+
+```text
+Run Neo4j faster.
+```
+
+It is:
+
+```text
+Run bounded graph algorithms over code/security/evidence graphs and emit falsification receipts.
+```
+
+That connects with prior CodeGraph/CocoIndex/semantic-diff evidence. The fastest famous wedge might be "local proof-carrying graph compute for AI-generated software," with graph OLAP storage innovation underneath.
+
+### HydraDB Validates The Category And Raises The Bar
+
+HydraDB is the strongest direct comparator found in this pass. It is not merely someone saying "graphs are cool for agents." Its public site positions it as graph-native context infrastructure for agents, with tiered storage, Cypher, WAL/value logs, GraphBLAS indexing, observability, and storage-based pricing.
+
+That is excellent news and uncomfortable news.
+
+Excellent news:
+
+| Signal | Meaning |
+|---|---|
+| graph-native context infrastructure | the market already understands "agents need graphs" |
+| tiered in-memory/NVMe/object storage | storage shape and memory hierarchy are buyer-facing, not hidden internals |
+| observability into why agents act | receipts/traces are part of the category |
+| AI coding assistant memory use case | developer workflows are a legitimate graph-memory vertical |
+| temporal/evolving context language | bitemporal/interval/provenance ideas are commercially legible |
+
+Uncomfortable news:
+
+| Risk | Implication |
+|---|---|
+| generic graph memory is already claimed | Knight Bus should not pitch only "graph context for agents" |
+| tiered storage is already part of the story | lower RAM alone is not enough |
+| Cypher/GraphBLAS are already familiar primitives | novelty must be in profiles, receipts, bounded execution, and algorithm-shaped artifacts |
+| vertical use cases are broad | a narrow famous wedge matters more than a huge vague platform |
+
+The sharper differentiation is:
+
+```text
+HydraDB: graph-native context infrastructure for agents.
+Knight Bus: proof-carrying, budget-bounded graph compute over algorithm-shaped storage artifacts.
+```
+
+If we enter agent memory, the angle should be not "store memory graph" but "run bounded, verified graph algorithms over memory/task/evidence graphs under a declared RAM/time budget."
+
+### HydraDB Docs Show Graph Mode Needs A Planner Gate
+
+The HydraDB docs are sharper than the marketing page. They explicitly say graph context augments retrieval but should be skipped for direct factual lookups because traversal adds response size and latency. That is an important corrective for our own graph enthusiasm.
+
+For Knight Bus:
+
+```text
+Graph algorithm mode should not be the default answer to every data question.
+It should be selected when graph structure materially changes the answer.
+```
+
+A planner should first classify the job:
+
+| Job Shape | Planner Decision |
+|---|---|
+| direct lookup / simple filter | Do not invoke graph OLAP; use index/table path. |
+| ownership/dependency/provenance path | Use bounded traversal profile. |
+| ranking/influence/importance | Use PageRank or centrality profile. |
+| connectedness/component question | Use component/union profile. |
+| time-valid relation question | Use temporal interval profile. |
+| similarity/recommendation with acceptable error | Use sketch/top-k candidate profile with error receipt. |
+
+This changes the PMF promise:
+
+```text
+Knight Bus is not "graphs everywhere."
+Knight Bus is "the planner tells you when graph compute is worth the RAM/time,
+then gives you a bounded profile when it is."
+```
+
+### HydraDB Deepening Changes The Comparator Checklist
+
+HydraDB's own Neo4j-alternatives page is useful because it says several quiet parts out loud:
+
+| Comparator Axis | Why It Matters For Knight Bus |
+|---|---|
+| Neo4j is disk-backed | Never imply Neo4j stores the whole graph in RAM by default; compare active working set, heap, transaction memory, and page cache. |
+| Index-free adjacency is an implementation choice | The property graph model does not force one storage layout; algorithm-shaped OLAP artifacts are fair game. |
+| Temporal history needs explicit modeling | A graph database is not automatically a bitemporal/audit system; receipts and versioned projections can be a differentiator. |
+| Multi-system sprawl is painful | Users do not want graph DB + vector DB + parser + temporal store + custom memory logic glued together. |
+| HydraDB is not a Cypher drop-in | Knight Bus can choose not to be a full Neo4j clone if it owns a clearer job: bounded verified OLAP runs. |
+| Vendor benchmarks need disclosure | Date, product version, hardware, dataset, workload, and config should be mandatory in our own claims. |
+
+This makes the strategic line crisper:
+
+```text
+Do not compete as "a cheaper graph database."
+Compete as "the system that tells you whether this graph job can run under your budget, then proves what happened."
+```
+
+### HydraDB Benchmark Is A Category Signal, Not A Systems Baseline
+
+The HydraDB PDF is useful, but it should be handled carefully. It reports strong LongMemEval-s accuracy, category tables, model-scale checks, and judge prompts. That is valuable as a benchmark-disclosure pattern and as evidence that temporal graph memory is a serious category.
+
+It is not enough as a systems baseline for Knight Bus because it does not answer our core questions:
+
+| Missing For Our Purposes | Why It Matters |
+|---|---|
+| hardware profile | cannot compare memory or latency cost honestly |
+| peak RSS / mapped bytes / page cache | cannot verify RAM boundedness |
+| graph size and edge count | cannot relate accuracy gains to graph workload scale |
+| ingestion cost by phase | cannot see how expensive the precompute is |
+| graph traversal latency breakdown | cannot tell whether graph mode is fast or just accurate |
+| independent oracle beyond LLM-as-judge | weaker correctness evidence than graph-algorithm parity/invariants |
+
+Use it this way:
+
+```text
+HydraDB proves the market cares about graph-native context and temporal memory.
+It does not prove the low-RAM graph OLAP architecture we want to build.
+```
+
+So the Knight Bus benchmark packet should be stricter: accuracy/correctness plus systems receipts.
+
+### The Graph Shows Manifested Indexing Is A Product Primitive
+
+The Graph is not a low-RAM graph algorithm system, but it is very relevant to product architecture because it makes indexing behavior explicit. A subgraph is not a vague "connect to blockchain" instruction. It is a bundle:
+
+```text
+subgraph.yaml
+  network
+  contract/data source
+  start/end block
+  entities
+  event/call/block handlers
+  dynamic data source templates
+  pruning and indexing hints
+
+schema.graphql
+  entities and relationships
+
+mapping.ts
+  event/call/block data -> persisted entity updates
+```
+
+Knight Bus should steal the shape, not the blockchain domain:
+
+```text
+algorithm-profile.yaml
+  input source
+  graph projection
+  storage layout
+  RAM mode
+  retention/time-travel policy
+  algorithm parameters
+  correctness oracle
+  receipt requirements
+
+projection handler
+  source records/events/tables -> algorithm-shaped graph artifact
+
+verification handler
+  output/invariants/baseline -> proof-carrying receipt
+```
+
+That matters for LLM-coded development. A profile manifest gives both the human and the agent a crisp boundary: what is data-specific, what is algorithm-specific, what is runtime-owned, and what must be verified before a claim is trusted.
+
+### Pruning Is The Same Tradeoff As Low RAM
+
+The Graph pruning docs are a quiet but important warning. Pruning reduces storage and can improve query speed, but it changes what historical state remains available. If a subgraph prunes old entity versions, time-travel queries and grafting are constrained.
+
+That is the exact logic of Knight Bus RAM-bounded graph compute:
+
+| Optimization | What It Saves | What It May Cost | Receipt Field Needed |
+|---|---|---|---|
+| full materialization | latency during hot algorithm loop | high peak RAM | `resident_graph_bytes` |
+| active-window materialization | peak RAM | replay or reread cost | `window_policy` |
+| sparse on-file indexes | heap/RSS | random I/O and latency | `index_lookup_mode` |
+| frontier checkpoint spill | live state | restart/recovery time | `checkpoint_retention` |
+| pruned history | disk and cache | time-travel/provenance | `earliest_replayable_state` |
+| approximate/sketched state | RAM and bandwidth | exact parity | `lossy_representation` |
+
+The product implication is sharp: never sell "lower RAM" as if it is free. Sell a declared tradeoff:
+
+```text
+This run used 8 GB peak RSS by keeping only a two-frontier window resident.
+It spilled 41 GB of edge blocks.
+It can replay from checkpoint 17.
+It cannot answer full historical path provenance before block/window X without rebuilding.
+Correctness was verified against these invariants and this baseline sample.
+```
+
+### DeFiLlama Adapter Ecology Is A Contribution Model For Algorithm Profiles
+
+DeFiLlama is not a graph database, but its adapter ecosystem is PMF gold because it shows how a large public analytics system gets extended. The important part is not the language. It is the governance shape:
+
+1. Many source-specific adapters.
+2. Shared methodology.
+3. Strict repo-fit rules.
+4. Public test command.
+5. No hidden project dependencies.
+6. Reviewable metadata.
+7. A clear rule that TVL must come from on-chain/source-of-truth data, not copied aggregates.
+8. An agent skill that encodes the contribution workflow.
+
+Knight Bus can turn custom OLAP storage per algorithm from an impossible monolith into a profile marketplace:
+
+```text
+profiles/
+  pagerank/
+    profile.yaml
+    projection.md
+    storage-layout.md
+    fixtures/
+    tests/
+    receipts/
+
+  temporal-paths/
+    profile.yaml
+    projection.md
+    interval-index-layout.md
+    fixtures/
+    tests/
+    receipts/
+
+  token-risk-propagation/
+    profile.yaml
+    source-methodology.md
+    wallet-token-event-layout.md
+    fixtures/
+    tests/
+    receipts/
+```
+
+The north-star contribution rule should be DeFiLlama-like:
+
+```text
+Do not contribute a benchmark number.
+Contribute a profile that can reproduce the number from source data,
+with fixtures, methodology, validation command, and receipt output.
+```
+
+This is also how the project becomes LLM-scalable. Agent sessions can focus on one algorithm profile at a time, with a bounded acceptance contract, instead of trying to rewrite an entire database in one sweep.
+
+### OWL-Time Gives Temporal Graph Fixtures
+
+OWL-Time is useful because temporal graph correctness can otherwise become hand-wavy. It gives a standard vocabulary for:
+
+1. instants,
+2. intervals,
+3. beginnings and endings,
+4. durations,
+5. temporal positions,
+6. temporal reference systems,
+7. Allen interval relations.
+
+That translates into a concrete fixture pack:
+
+| Fixture Family | Query/Algorithm Class | Why It Matters |
+|---|---|---|
+| `before_after_meets` | interval relation joins | catches off-by-one and boundary errors |
+| `contains_overlaps_during` | temporal neighborhood expansion | validates valid-time path logic |
+| `multi_reference_system` | timestamp normalization | prevents UTC/block-height/domain-time confusion |
+| `provenance_windows` | time-travel receipts | proves what historical state was visible |
+| `temporal_shortest_path` | path under edge validity windows | forces storage to align time and adjacency |
+
+Temporal workloads are a strong differentiation candidate because they naturally punish generic all-in-memory graphs. The useful storage is not "edges in a bag." It is adjacency plus validity intervals plus replay/provenance indexes.
+
+### Decentralized Analytics Is A Good Public Benchmark Family
+
+The Graph plus DeFiLlama point to a strong public benchmark family:
+
+```text
+append-only event stream
+  -> entity/relationship projection
+  -> time-windowed metric or graph algorithm
+  -> public methodology
+  -> reproducible receipt
+```
+
+This fits Knight Bus unusually well:
+
+| Benchmark Candidate | Graph Shape | Algorithm/Profile | Verification Loop |
+|---|---|---|---|
+| protocol TVL dependencies | protocol/contracts/tokens/chains | connected attribution and dedupe | compare methodologically against adapter/API output |
+| token trust/risk | wallets/tokens/transfers/authorities | risk propagation and suspicious path extraction | deterministic checks plus public transaction links |
+| bridge flows | chains/bridges/assets/events | flow aggregation and anomaly components | external APIs plus event replay |
+| temporal ownership | wallets/contracts/admin events | temporal path and authority lineage | block-window receipts |
+| protocol similarity | pools/tokens/strategies | nearest-neighbor or community detection | stable fixture plus expert labels |
+
+The key caution: external APIs are not a substitute for source-of-truth computation. Use them as comparison oracles where appropriate, but the Knight Bus artifact should show how it got from source graph to output.
+
+### Rollups Plus Current Buckets Give A Batch/Live Template
+
+Graph Node's timeseries and aggregation docs are a practical architecture clue. They split the world into:
+
+1. immutable raw datapoints,
+2. completed rollup buckets,
+3. cumulative state carried from prior buckets,
+4. current partial buckets computed on the fly,
+5. query-time filters over dimensions and timestamps.
+
+That is almost the exact shape of budget-bounded graph compute:
+
+```text
+raw graph facts/events
+  -> immutable append/source table
+  -> algorithm-shaped rollups/checkpoints
+  -> current frontier/window computed on demand
+  -> query/run receipt with exact state boundary
+```
+
+For Knight Bus, this means the storage question should not be framed as "one graph layout." It should be:
+
+| Graph Node Concept | Knight Bus Analogue |
+|---|---|
+| immutable timeseries entity | immutable edge/event/fact record |
+| aggregation schema | algorithm profile output schema |
+| dimensions | partition keys: label, time, tenant, component, chain, shard |
+| aggregate functions | algorithm state transitions: relax, union, accumulate, propagate, rank |
+| cumulative aggregate | carried algorithm state or checkpoint |
+| completed bucket | verified checkpoint / sealed frontier window |
+| current bucket | active frontier / partial run window |
+| `current: include` | "include unsealed frontier/current ingest" mode |
+
+This points to a powerful product mode:
+
+```text
+fast verified answer:
+  read sealed checkpoints and rollups only
+
+fresh answer:
+  read sealed checkpoints
+  plus compute current unsealed window
+  with receipt saying exactly which state was sealed vs live
+```
+
+That gives users a clear latency/freshness/RAM tradeoff rather than a magic claim.
+
+### Proof Of Indexing Shows How To Make Projection Honest
+
+Graph Node's proof-of-indexing code is more important than it looks. It does not just hash a final database table. It streams semantic events:
+
+```text
+SetEntity(entity_type, id, data)
+RemoveEntity(entity_type, id)
+DeterministicError(redacted_events)
+```
+
+Then it keeps per-causality-region state, pauses/resumes that state across blocks, and finalizes with subgraph identity, block hash, indexer identity, causality-region names, and block count. The tests compare an online implementation against a reference implementation.
+
+That gives Knight Bus a very concrete proof split:
+
+| Proof Layer | What It Proves | Required Events |
+|---|---|---|
+| proof of projection | the input source became this graph artifact honestly | node/edge/property set/remove, filter decisions, deterministic projection errors |
+| proof of storage | the graph artifact was encoded into this physical layout honestly | partition writes, sparse-index entries, sorted block ranges, checksum/mapping |
+| proof of run | the declared algorithm profile executed over the declared storage | frontier/checkpoint transitions, accumulator updates, convergence, spill/replay |
+| proof of output | the emitted result corresponds to the run state | output rows, hashes, invariants, baseline/sample parity |
+
+The deterministic-error lesson is especially important. If a handler saves two entities and then fails, a proof must distinguish:
+
+```text
+state where both writes committed
+state where one write committed
+state where neither write committed
+state where writes were redacted by deterministic failure
+```
+
+So Knight Bus receipts should not only record successful algorithm steps. They need failure events:
+
+1. projected batch redacted,
+2. frontier update rolled back,
+3. spill file discarded,
+4. budget exceeded before commit,
+5. partial result refused,
+6. retry resumed from checkpoint.
+
+This is how low-RAM execution avoids becoming low-trust execution.
+
+### Declarative Filters And Parallel Calls Are Latency Levers
+
+The Graph advanced docs add two more design clues:
+
+1. indexed argument filters let a subgraph ignore irrelevant events before they become stored data,
+2. declared `eth_call` allows calls to be known ahead of time and executed in parallel.
+
+The Knight Bus translation:
+
+```text
+Do not discover expensive reads during the hot loop if the profile can declare them.
+Do not ingest irrelevant source records if the profile can filter them before projection.
+```
+
+Every algorithm profile should have a "preflight source-shaping" section:
+
+| Declaration | Why It Helps |
+|---|---|
+| event/table/label filters | avoids broad scans and irrelevant edge materialization |
+| required properties | avoids late failure after expensive projection |
+| remote calls/lookups | lets runtime parallelize or cache before algorithm phase |
+| supernode thresholds | lets planner choose blocked/windowed traversal |
+| time windows | bounds temporal indexes and replay state |
+| exactness and freshness mode | decides sealed-only vs sealed-plus-current computation |
+
+This reinforces the compute-router thesis: a lot of latency is decided before the algorithm starts.
+
+### Dimension Adapter Guidelines Become A Profile Lint Contract
+
+DeFiLlama's dimension-adapters repo is the strongest practical evidence for "profile ecosystems need discipline." It is full of small adapters, but the shared guidelines are strict because recurring analytics fail in recurring ways:
+
+| DeFiLlama Review Failure | Knight Bus Equivalent |
+|---|---|
+| silent `try/catch` swallowing errors | fallback path hides failed graph partition or spill |
+| no-target log scan | broad graph scan when a label/property/time filter exists |
+| double-counting maker+taker or buy+sell legs | duplicate edges, reciprocal edges, or parent/child aggregate double-count |
+| wrong time window | temporal graph leak across validity interval |
+| missing methodology | output has no declared graph projection/algorithm semantics |
+| hardcoded rate/address without source | hardcoded partition/filter/threshold without provenance |
+| dependency bloat | profile pulls custom heavy dependencies instead of shared runtime helper |
+| protocol API totals when source logs are practical | copied aggregate instead of reproducible graph computation |
+
+This should become a real Knight Bus linter:
+
+```text
+kb profile lint profiles/pagerank-low-ram
+
+checks:
+  source_of_truth declared
+  graph projection deterministic
+  no hidden broad scan
+  no silent fallback
+  memory mode declared
+  retention/time-travel behavior declared
+  methodology present
+  fixtures present
+  oracle/invariants present
+  receipt sample present
+```
+
+The big Shreyas/Jeff-Dean product point: lower RAM is not enough. A profile must be reviewable, reproducible, and hard to misuse.
+
+### Domain Invariants Are Better Than Generic Benchmarks
+
+The DeFiLlama fees guidelines are useful because they encode financial identities and label semantics, not just code style. For fees, the system can ask whether daily fees, revenue, and supply-side revenue are categorized coherently.
+
+Knight Bus should do the same per algorithm family:
+
+| Algorithm Family | Invariant Examples |
+|---|---|
+| PageRank | rank mass conservation, dangling-node accounting, convergence tolerance, top-k stability sample |
+| Connected components | every node assigned once, component ids form partition, sampled edges stay within component or prove bridge |
+| Shortest path | triangle inequality sample, baseline parity on named fixtures, no negative-weight misuse unless profile supports it |
+| BFS/frontier | frontier monotonicity, visited-set no duplicates, level boundaries correct |
+| Temporal path | no edge outside valid interval, no query-time leakage, reference-system normalization |
+| Flow/bridge analytics | conservation across source/sink windows, no double-counting routed/underlying flow |
+| Risk propagation | source factors labeled, thresholds versioned, explanation path emitted |
+
+This changes our verification loop:
+
+```text
+baseline parity is useful,
+but domain invariants are the durable truth.
+```
+
+Neo4j/GDS parity can tell us whether we match a known implementation. Invariants tell us whether both systems are doing something meaningful for the declared workload.
+
+### Current-Bucket Tests Show What Freshness Must Prove
+
+Graph Node's aggregation tests make the sealed/current split concrete. The tests do not only check that "aggregation works." They separately verify:
+
+1. exclude current bucket returns only rolled-up rows,
+2. include current bucket adds on-the-fly rows,
+3. filters apply correctly when current data is included,
+4. cumulative totals combine prior rolled-up state with current values,
+5. nested aggregation through parent entities behaves correctly,
+6. parent entities with no timeseries data produce no phantom rows,
+7. entity diffs explain mismatches.
+
+This is a strong template for Knight Bus profile fixtures:
+
+| Fixture Class | Example Assertion |
+|---|---|
+| sealed-only | output uses only verified checkpoints |
+| sealed-plus-current | output includes active frontier or unsealed ingest |
+| filtered subgraph | low-RAM path respects label/property/time filters |
+| cumulative state | checkpoint plus current delta equals expected total |
+| nested/windowed query | parent/partition scoped output has correct row counts |
+| empty partition | no synthetic result appears when no source data exists |
+| diff failure | mismatch shows entity/state-level difference, not just "test failed" |
+
+The practical product implication is that "freshness" must become a receipt field:
+
+```text
+freshness_mode: sealed_plus_current
+sealed_checkpoint: hour/window/frontier 17
+current_window: events 1042..1099
+current_state_verified_by: invariant suite + output hash
+```
+
+Without that, low-RAM modes can become ambiguous. Users need to know whether an answer was cheap because it was old, because it used a bounded current window, or because it skipped expensive state.
+
+### Bounded Multi-Stream Aggregation Is A Projection Architecture
+
+Graph Node's AMP stream aggregator is an unexpectedly useful model for Knight Bus ingestion/projection. It reads record batches from multiple streams, groups by `(block_number, block_hash)`, and emits only completed groups. Each stream has a bounded buffer. Faster streams wait for slower streams. If a stream fills its buffer and cannot emit completed groups, the system fails rather than buffering forever. If two streams disagree on block hash for the same block number, that is deterministic corruption.
+
+The Knight Bus translation:
+
+```text
+source streams:
+  nodes
+  edges
+  properties
+  deletions
+  temporal updates
+  external oracle labels
+
+group key:
+  logical epoch / graph version / block / time window / import batch
+
+bounded synchronizer:
+  buffer each stream up to N batches
+  emit only common completed epochs
+  fail on order/hash/version disagreement
+  record slow-stream and blocked-buffer events
+```
+
+This is a concrete architecture for predictable RAM:
+
+| Mechanism | Why RAM Stays Bounded | What Receipt Should Say |
+|---|---|---|
+| per-stream `buffer_size` | each source has a fixed in-memory cap | `stream_buffer_size` |
+| completed-group emission | finished epochs are drained instead of retained | `completed_epoch_watermark` |
+| slowest-stream pacing | fast stream cannot force unbounded backlog | `blocked_streams` / `slowest_stream` |
+| monotonic ordering check | no need to hold arbitrary reorder buffers | `ordering_policy` |
+| hash/version agreement check | corrupted cross-stream joins fail early | `epoch_hashes` / `corruption_event` |
+| deterministic error classification | retry and proof behavior is principled | `deterministic_failure` |
+
+This is probably one of the cleanest implementation patterns found so far:
+
+```text
+Do not build one giant graph projection in memory.
+Build epoch-complete graph slices from bounded synchronized streams,
+then hand sealed slices to algorithm-specific storage builders.
+```
+
+That gives us a possible v0 architecture:
+
+```text
+raw source streams
+  -> bounded epoch synchronizer
+  -> sealed graph slice
+  -> profile-specific storage builder
+  -> algorithm run over sealed slices + current window
+  -> projection proof + run proof + output receipt
+```
+
+The tradeoff is latency under skew. If one stream is slow, the whole completed-output stream is paced by it. But that is exactly the honest tradeoff users can choose: wait for consistent multi-stream epochs, or run a profile that tolerates partial/missing sources and says so.
+
+### Completion Watermarks Are A Core Abstraction
+
+The stream aggregator code has a quiet but deep concept: a group is complete only when there is evidence of a later group or when the stream is finalized. That is a watermark.
+
+Knight Bus should define watermarks everywhere:
+
+| Layer | Watermark |
+|---|---|
+| source ingest | source epoch/block/time-window complete |
+| graph projection | all required source streams complete for graph version |
+| storage build | all partitions/indexes for slice written and checksummed |
+| algorithm iteration | frontier/rank/component state complete through iteration N |
+| spill/replay | checkpoint durable and replayable |
+| output | result rows hashed and invariant-checked |
+
+This helps with the biggest UX problem in bounded compute: users can accept slower answers or bounded RAM if the system explains what is complete, what is current, and what is still in-flight.
+
+### Profile Manifests Should Be Content-Addressed Contracts
+
+The Graph's repository manifest docs say the manifest and all linked files are deployed together and hashed to produce a subgraph ID. That is a simple but important architecture move: the configuration, schema, mapping code, and linked artifacts become one addressable contract.
+
+Knight Bus should copy this aggressively:
+
+```text
+profile bundle:
+  algorithm-profile.yaml
+  projection schema
+  storage layout declaration
+  algorithm parameter schema
+  proof event schema
+  fixtures
+  expected outputs
+  validation scripts
+  sample receipts
+
+profile_id:
+  content hash of the bundle
+
+run receipt:
+  profile_id + dataset_id + storage_artifact_id + output_hash + proof hashes
+```
+
+This gives LLM agents a huge advantage. Instead of saying "use the PageRank low-RAM profile from that folder," the run can say:
+
+```text
+profile_id: kb-profile-bafy...
+profile_spec_version: 0.3.0
+source_bundle_hash: ...
+storage_layout_hash: ...
+receipt_schema_hash: ...
+```
+
+Then a future agent can reproduce or audit the exact thing, not a moving folder name.
+
+### Pure Manifest Validation Is The First Verification Loop
+
+Graph Node has pure validation helpers for simple manifest invariants and a broader validation pass for datasource, feature, graft, spec-version, and AMP restrictions. The most useful pattern is that validation happens before runtime and is reusable by external tooling.
+
+Knight Bus should have the same first gate:
+
+```text
+kb profile validate profiles/pagerank-low-ram
+```
+
+It should reject profiles before execution when:
+
+| Validation Class | Example Rejection |
+|---|---|
+| missing required pieces | no source, no algorithm, no output schema, no budget |
+| incompatible source graph | mixed graph versions without merge policy |
+| incompatible runtime | profile uses feature not supported by installed runtime |
+| unsupported composition | too many source kinds, duplicate source graph, mixed sealed/current semantics |
+| missing declaration | approximation used but not declared, lossy storage without output delta checks |
+| unsafe fallback | profile can silently scan all edges or copy aggregate API outputs |
+| invalid feature gate | current-frontier mode used before profile spec supports it |
+| missing proof schema | no proof events for projection/storage/run/output |
+
+This is the cheapest verification loop because it prevents expensive bad runs.
+
+### Version Gates Keep The Surface Area Honest
+
+Graph Node's API/spec constants are useful because capabilities are tied to explicit versions: aggregations, declared calls, topic filters, subgraph data sources, AMP data sources, indexer hints, end blocks, and fast PoI all have version boundaries.
+
+Knight Bus needs this discipline. Otherwise the profile ecosystem will turn mushy.
+
+```text
+profile_spec_version: 0.1
+  static graph input
+  sealed-only runs
+  exact output receipts
+
+profile_spec_version: 0.2
+  streaming projection
+  proof-of-projection events
+  storage artifact hashes
+
+profile_spec_version: 0.3
+  current-frontier mode
+  bounded spill/replay
+  freshness receipts
+
+profile_spec_version: 0.4
+  approximate/sketched storage
+  output-delta receipts
+  lossy representation declarations
+
+profile_spec_version: 0.5
+  multi-source epoch synchronizers
+  per-source watermarks
+  deterministic corruption errors
+```
+
+This lets the runtime say:
+
+```text
+refused:
+  profile requires current-frontier support from spec 0.3,
+  but this runtime only supports sealed-only spec 0.2.
+```
+
+That sounds bureaucratic, but it is what makes large profile catalogs safe for LLM coding.
+
+### Latest-Frontier Tracking Is How Bounded Streams Stay Honest
+
+Graph Node's AMP latest-block runner loads the latest block for each unique dataset/table, filters completed data sources, and waits only for the tables sitting at the minimum latest-block frontier. That is a practical way to pace multiple streams.
+
+Knight Bus can generalize:
+
+```text
+for each source stream:
+  latest_epoch = max available epoch
+  end_epoch = declared end, if any
+  completed = latest_epoch >= end_epoch
+
+safe_projection_frontier:
+  min(latest_epoch for unfinished required streams)
+```
+
+The receipt should expose:
+
+| Field | Meaning |
+|---|---|
+| `source_latest_epochs` | newest observed epoch per source |
+| `safe_projection_frontier` | newest epoch all required streams can support |
+| `completed_sources` | sources that reached declared end |
+| `waiting_sources` | sources pacing the next sealed slice |
+| `empty_source_policy` | whether empty source is nondeterministic wait, allowed empty, or hard failure |
+| `decode_error_policy` | deterministic failure when physical data cannot be decoded |
+
+This makes "bounded" legible. We are not merely using less RAM. We are choosing a safe frontier and refusing to cross it without evidence.
+
+### Typed Physical Fixtures Prevent Edge-Case Lies
+
+The Graph AMP codec fixtures cover a surprisingly broad range of Arrow physical types: booleans, integers, unsigned integers, decimals, floats including `float16`, strings, string views, binary arrays, fixed-size binary, and timestamps at multiple units.
+
+Knight Bus needs a graph-slice equivalent:
+
+| Physical Fixture | Why It Matters |
+|---|---|
+| dense `u32` node ids | common low-RAM remap format |
+| sparse `u64` external ids | real imported graphs rarely arrive dense |
+| fixed binary hashes | content addressing, blockchain, provenance |
+| decimals | financial graph weights and DeFi metrics |
+| float32/float64 | PageRank/embedding/similarity precision |
+| nullable properties | property graphs have missing data |
+| timestamp micros/nanos | temporal graph precision bugs |
+| list columns | labels, multi-edges, neighbor groups, provenance arrays |
+| signed/negative weights | shortest path and invalid-profile rejection |
+
+This is an unglamorous but important part of credibility. If the product claims to run graph algorithms on real enterprise/property/temporal data, the fixture suite must include the physical data types that break naive implementations.
+
+### AMP Runner Is A Projection Runtime Template
+
+The AMP runner is valuable because it is not just "some code that reads data." It is a compact runtime loop:
+
+1. Observe latest source frontiers.
+2. Check whether prior state has been invalidated.
+3. Filter sources already completed by end-block rules.
+4. Pick the safe target frontier.
+5. Stream bounded grouped records.
+6. Decode and mutate entity state.
+7. Commit durable block-level operations.
+8. Update metrics and health.
+9. Wait for the next source change or retry after nondeterministic failure.
+
+That is close to the runner Knight Bus needs for budget-bounded graph algorithms. Replace `block` with `epoch`, `partition`, `frontier`, or `slice`, and the same control loop becomes:
+
+```text
+manifest/profile
+      |
+      v
+validate features + source compatibility
+      |
+      v
+observe source frontiers -----> detect invalidation/reorg
+      |                                  |
+      v                                  v
+choose bounded slice             rewind/refuse receipt
+      |
+      v
+stream/decode only that slice
+      |
+      v
+mutate hot algorithm state
+      |
+      v
+commit checkpoint + proof/receipt
+      |
+      v
+wait, continue, or finish
+```
+
+This matters because it makes the product easier to reason about. The promise is not "we have a clever storage file." The promise is "every run follows a visible runtime protocol that prevents broad scans, exposes the safe frontier, commits checkpoints, and reports exactly what happened."
+
+### Block-Window Planning Is The Real RAM Lever
+
+The `data_stream.rs` pattern is especially relevant to our PMF thesis. RAM is controlled before data enters the hot loop:
+
+| Runtime Choice | Effect |
+|---|---|
+| per-source next block range | avoids asking completed or not-yet-safe sources for data |
+| `block_range` cap | bounds how much physical data can enter one processing wave |
+| source `end_block` cap | prevents finished sources from pacing or bloating future work |
+| latest safe block cap | avoids reading beyond the common source frontier |
+| earliest-overlap filtering | keeps source windows aligned rather than letting one source run far ahead |
+| bounded stream aggregator | constrains in-flight multi-source buffers |
+
+For Knight Bus, this says the low-RAM story should start with planner-enforced windows, not post-hoc eviction:
+
+```text
+wrong shape:
+  read huge graph -> decode huge graph -> run algorithm -> spill under pressure
+
+better shape:
+  declare profile -> choose slice/frontier -> decode only required physical range
+  -> update active algorithm state -> commit/checkpoint -> advance
+```
+
+This also gives us a clean product knob: `max_live_slice_bytes`, `max_frontier_edges`, `max_partition_state`, or `max_window_epochs`. Users can trade wall-clock time for bounded resident state in a way the receipt can verify.
+
+### Reorgs Mean Projection State Is Conditional
+
+The reorg handler is a blockchain-specific mechanism, but the abstraction is broader. Any derived graph projection can be invalidated if the upstream source changes its ordering, hash, timestamp, partition membership, schema, or version.
+
+Knight Bus should treat projections as conditional artifacts:
+
+| Graph Node Reorg Concept | Knight Bus Generalization |
+|---|---|
+| synced block number/hash | processed epoch/source version/hash |
+| latest block before reorg | latest still-valid projection checkpoint |
+| revert block operations | rewind algorithm/projection state |
+| multi-chain unsupported error | unsupported mixed-source profile composition |
+| nondeterministic empty stream | source temporarily unavailable or incomplete |
+
+The receipt vocabulary should include:
+
+- `source_version_hash`
+- `projection_checkpoint_hash`
+- `invalidated_by`
+- `rewound_to_epoch`
+- `state_after_rewind_hash`
+- `partial_outputs_refused`
+- `replay_required`
+
+This is part of predictability. A low-RAM runtime that silently keeps old projection state after a source reorder is worse than an expensive runtime that fails visibly.
+
+### Feature Detection Beats Feature Claims
+
+Graph Node does something productively strict: the manifest declares features, and validation also detects what is actually used. If a feature is used but undeclared, deployment fails.
+
+Knight Bus profiles need the same posture:
+
+| Profile Feature | Detectable Evidence |
+|---|---|
+| approximate mode | profile uses lossy sketch, sampling, quantization, pruning, or approximate convergence |
+| temporal mode | source has time windows, retention rules, replay boundaries, or time-varying edges |
+| proof mode | run emits proof events/checkpoint hashes and validates them |
+| current-frontier mode | output includes unsealed/current source data |
+| spill mode | algorithm state is written/read outside RAM |
+| parallel prefetch | profile declares remote/source calls or precomputed slices |
+| custom storage layout | physical layout file exists and matches algorithm family |
+
+The profile validator should report four sets:
+
+1. `declared_features`
+2. `detected_features`
+3. `undeclared_used_features`
+4. `unused_declared_features`
+
+Used-but-undeclared should fail. Declared-but-unused should probably warn. This prevents a profile from marketing itself as proof-carrying, approximate, temporal, or RAM-bounded without emitting the physical evidence.
+
+### Health State Belongs In The Data Model
+
+The deployment status model is also a useful reminder. Long-running graph compute needs persistent operational truth:
+
+| Persistent Field Family | Why Knight Bus Needs It |
+|---|---|
+| health / failed | user needs to know whether the run is usable |
+| fatal/nonfatal errors | some errors can be retried; others invalidate the profile/run |
+| earliest/latest block | translate to earliest/latest processed graph epoch |
+| graft/debug/fork fields | translate to baseline/parity/forked-profile runs |
+| reorg count/depth | translate to invalidation/rewind count and depth |
+| raw manifest | profile must remain inspectable after execution |
+| causality regions | partition domains for proof and invalidation |
+| deterministic error flag | retry policy and trust depend on classification |
+
+This should become a small SQLite table or manifest-sidecar for every run, not a log line buried in stdout.
+
+```text
+profile_runs
+  run_id
+  profile_id
+  source_hash
+  health
+  deterministic_failure
+  nonfatal_failure_count
+  earliest_epoch
+  latest_epoch
+  safe_frontier
+  invalidation_count
+  max_invalidation_depth
+  peak_rss_bytes
+  peak_active_state_bytes
+  spill_bytes
+  output_hash
+  receipt_path
+```
+
+This is how the product becomes trustworthy for agents: an LLM can query the state table, inspect the receipt, and decide whether it can build on the output.
+
+### Runtime Lifecycle Is Part Of The Resource Contract
+
+The AMP manager and monitor are easy to underestimate because they look like "service glue." For Knight Bus, this glue is part of the RAM and correctness story.
+
+If a user asks for a budget-bounded graph job, the system must also bound:
+
+| Lifecycle Risk | Product Contract Needed |
+|---|---|
+| duplicate active workers | at most one writer per `profile_id + source_hash + output_artifact`, unless explicitly forked |
+| zombie process after cancellation | grace-period shutdown plus forced-abort receipt |
+| restart while old run is draining | pending-restart queue and single active owner |
+| manifest changed mid-run | profile hash locked at run start |
+| source bound changed mid-run | explicit stop/freeze frontier in run config |
+| writer not closed | teardown/flush result in receipt |
+
+This means the first serious Knight Bus implementation should not be a naked algorithm binary. It should have a small run manager:
+
+```text
+kb run-manager
+  resolve profile bundle
+  check source/runtime compatibility
+  create durable run row
+  acquire output-writer lease
+  start one runner task
+  supervise cancel/restart/abort
+  flush checkpoint and receipt
+  release writer lease
+```
+
+This gives us a powerful claim: bounded compute is not only about peak RSS. It is about bounding the whole execution envelope so users and agents can trust that a run was single-owner, cancellable, resumable, and auditable.
+
+### Query Rewriting Is Storage-Shaped-For-Read In Disguise
+
+The AMP SQL builder is a direct inspiration for Knight Bus. It takes a user-authored query and rewrites it into a bounded, ordered, context-complete execution plan:
+
+```text
+user query
+  |
+  v
+parse SQL AST
+  |
+  v
+validate allowed datasets/tables
+  |
+  v
+resolve special manifest functions
+  |
+  v
+inject block-range CTEs around every physical table
+  |
+  v
+add context columns when required
+  |
+  v
+order output by block/frontier key
+```
+
+The analogous Knight Bus move is to compile profile source expressions into graph-slice plans:
+
+| AMP SQL Rewrite | Knight Bus Rewrite |
+|---|---|
+| allowed dataset/table validator | allowed source graph/partition/property validator |
+| custom `SETTINGS` forbidden | no hidden broad-scan or runtime override |
+| `sg_source_address()` resolver | profile constants/source handles resolved before run |
+| `sg_event_signature()` resolver | schema/label/relationship aliases resolved before run |
+| block-range CTEs | frontier/partition/window-bounded graph-slice reads |
+| context CTE join | provenance, timestamp, source hash, partition id injection |
+| `ORDER BY block_number` | deterministic frontier/edge/node ordering |
+
+This is one of the cleanest ways to explain the custom-storage thesis. The product does not have to start by inventing a fully new database. It can start by making the computation compiler rewrite source access into bounded physical slices. Storage follows after the profile compiler proves which access shapes repeat.
+
+### Physical Batch Metadata Should Become Proof Material
+
+The Flight client shows that data batches are not just arrays. They come with metadata:
+
+- block ranges
+- network/source identity
+- last block hash
+- previous hash
+- per-batch memory size
+- query hash for correlation
+- resume metadata
+- reorg events
+
+Knight Bus should generalize this into `BatchEvidence`:
+
+```text
+batch_evidence
+  source_id
+  partition_id
+  slice_start
+  slice_end
+  source_version_hash
+  prev_source_hash
+  row_count
+  edge_count
+  array_memory_bytes
+  decoded_memory_bytes
+  spill_bytes_written
+  query_or_plan_hash
+  resume_token
+```
+
+This is where "verification first" becomes easy for agents. A later LLM does not need to infer whether a run was bounded; it can inspect the batch evidence and see exactly which source ranges entered memory.
+
+### Profile Validation Should Mix Static Checks And Live Schema Probes
+
+The AMP datasource resolver performs more than static YAML linting. It also asks the server for query schemas and validates physical output shape before the runner starts.
+
+Knight Bus should have a two-layer validator:
+
+| Validator Layer | Examples |
+|---|---|
+| Static manifest checks | identifiers, profile kind, spec version, algorithm family, declared features, budget fields, source count limits |
+| Referenced artifact checks | SQL/query files, projection code, ABI/schema files, fixture files, oracle/baseline paths |
+| Source-schema probes | node id column type, edge source/target type, weight type, timestamp column, partition key, source hash support |
+| Runtime-required context | ordering key, provenance key, deletion semantics, checkpoint key, invalidation/replay support |
+| Budget feasibility checks | estimated row width, max rows per slice, expected active state, spill mode availability |
+
+This is important because many graph workloads fail before algorithm complexity matters. They fail because the projection is underspecified: missing ID types, bad timestamp semantics, hidden broad scans, incompatible nullable columns, wrong partitioning, or no replay boundary.
+
+### Generated Schemas Are Helpful But Not Sufficient
+
+Graph Node can generate subgraph schema from Arrow schemas, but its source says generated entities are immutable and contain no relationships. That limitation is exactly the lesson for us.
+
+For Knight Bus:
+
+```text
+physical columns can suggest:
+  entity names
+  scalar types
+  nullable fields
+  candidate id fields
+  candidate timestamp fields
+
+profile author must still declare:
+  edge direction
+  edge multiplicity
+  weight semantics
+  label semantics
+  temporal validity
+  deletion/invalidation behavior
+  algorithm-specific invariants
+```
+
+So auto-generation can reduce profile-authoring friction, but it cannot define graph meaning by itself. The profile must make graph semantics explicit.
+
+### The Codec Is Where "Same Surface Area" Becomes Real
+
+The AMP codec is a sober reminder: it is not enough to say "we ingest Arrow" or "we store graph slices." The boundary must say exactly how physical values become logical graph values.
+
+Knight Bus needs a codec contract like:
+
+| Codec Concern | Why It Matters |
+|---|---|
+| normalized names | source columns rarely match profile names exactly |
+| nullable fields | property graphs have missing values |
+| generated IDs | imported data may not have dense internal IDs |
+| derived fields | some values are computed, not stored |
+| list handling | labels, neighbors, provenance, and multi-values need arrays |
+| decimal/float precision | financial and PageRank outputs are precision-sensitive |
+| binary hashes | content addressing and blockchain/source proofs |
+| deterministic decode errors | bad physical data should fail repeatably |
+
+The happy path is less interesting than the failure path. If a graph-slice codec refuses a column because `Decimal256(scale=3)` cannot be decoded into an integer weight, the receipt should show that exact failure. That kind of boring precision is what lets a lower-RAM system be trusted.
+
+### Alias Tolerance Must Be Narrow And Auditable
+
+AMP tolerates multiple physical names for required context columns such as block number, block hash, and block timestamp. That is pragmatic: real data sources are messy. But the tolerance is narrow. The decoder still requires the field to exist, have a compatible type, and be non-null when non-null is required.
+
+Knight Bus needs the same balance:
+
+| Logical Field | Possible Physical Aliases |
+|---|---|
+| `source_node_id` | `src`, `source`, `from`, `source_id`, `sourceNodeId` |
+| `target_node_id` | `dst`, `target`, `to`, `target_id`, `targetNodeId` |
+| `edge_id` | `id`, `edge_id`, `edgeId`, `relationship_id` |
+| `weight` | `weight`, `score`, `cost`, `capacity`, `value` |
+| `timestamp` | `timestamp`, `ts`, `event_time`, `valid_from` |
+| `partition_id` | `partition`, `shard`, `component`, `bucket` |
+| `source_hash` | `hash`, `source_hash`, `version_hash`, `block_hash` |
+| `delete_flag` | `deleted`, `is_deleted`, `op`, `operation` |
+
+The important part is not just accepting aliases. The receipt should say:
+
+```text
+required_column_match
+  logical_field: source_node_id
+  matched_column: src
+  data_type: UInt64
+  nullable: false
+  alias_rule_version: graph-slice-aliases@0.1.0
+```
+
+This lets profile authors move fast without letting hidden column interpretation become another source of unverifiable behavior.
+
+### Completed Groups Are The Unit Of Safe Progress
+
+The stream aggregator's most valuable idea is the definition of "complete." A block group is not complete merely because the system has seen rows for that block. It becomes complete when:
+
+1. A later block appears in the same stream, proving the current block has closed.
+2. Or the stream finalizes.
+3. And every required stream can provide a compatible completed frontier.
+
+That maps to Knight Bus directly:
+
+| Algorithm/Profile Family | Safe Completion Unit |
+|---|---|
+| streaming graph projection | epoch/frontier complete across node, edge, property, delete streams |
+| PageRank batch slice | partition edge block complete plus dangling-node summary complete |
+| connected components | component frontier wave complete for all touched partitions |
+| shortest path | current distance bucket complete or frontier queue sealed |
+| temporal traversal | time window complete across event/deletion/provenance streams |
+| recurring analytics | time bucket complete across all declared dimensions |
+
+So the receipt should not only say `processed_until`. It should say why that frontier is safe:
+
+```text
+completed_frontier
+  frontier_key: epoch:18400000
+  reason: later_frontier_observed
+  required_streams: [nodes, edges, deletes, properties]
+  completed_streams: [nodes, edges, deletes, properties]
+  pacing_streams: []
+  source_hash: 0x...
+```
+
+This gives us a stronger language than "streaming." We are emitting only safe completed groups under a declared completeness rule.
+
+### Backpressure Is A Product Event
+
+The Graph buffer marks a stream blocked when its per-stream buffer is full and it still cannot emit completed groups. That is exactly what bounded compute needs: when the RAM cap creates pressure, the system should not hide it.
+
+Knight Bus should expose backpressure as a user-visible event:
+
+```text
+source_event
+  type: blocked
+  stream: edges.ethereum
+  reason: buffer_full_without_completed_frontier
+  buffer_size_batches: 8
+  buffered_physical_bytes: 536870912
+  common_completed_frontier: epoch:18399990
+  waiting_for: [deletes.ethereum]
+  policy: fail-fast
+```
+
+There are several product modes:
+
+| Mode | Behavior |
+|---|---|
+| fail-fast bounded | stop when buffer cap is reached without safe progress |
+| spill bounded | spill buffered groups to disk and continue |
+| wait bounded | wait for pacing stream if source may catch up |
+| degrade bounded | switch to approximate/profile-specific fallback if allowed |
+
+The key is that each mode must be declared and receipt-backed. A lower-RAM system can be slower, but it cannot be mysterious.
+
+### Reference-Plus-Row-Index Grouping Is A Low-RAM Primitive
+
+`GroupData` does something quietly important: it stores references to original `RecordBatch` values and row indices, then materializes a merged batch only when the group is complete.
+
+That suggests a Knight Bus primitive:
+
+```text
+group_ref
+  source_batch_ref
+  row_indices
+  logical_group_key
+  physical_schema_hash
+
+completed_group_materialize(group_ref[])
+  -> graph_slice_batch
+```
+
+Why this matters:
+
+1. It avoids copying rows as soon as they arrive.
+2. It lets incomplete groups remain cheap references.
+3. It materializes only when the completeness rule says the group is safe.
+4. It gives the receipt a clear mapping from output group back to physical batch and row indices.
+
+For graph algorithms, this can become:
+
+| Use Case | Reference Grouping Shape |
+|---|---|
+| edge stream projection | record batch ref + edge-row indices by frontier |
+| partitioned PageRank | edge batch ref + partition-row indices |
+| temporal traversal | event batch ref + time-window row indices |
+| local memory graph | event log ref + entity/provenance row indices |
+| adapter analytics | raw metric batch ref + time-bucket row indices |
+
+This is a concrete low-RAM design pattern: keep the physical batch immutable, group by references, materialize late.
+
+### SourceEvent And BatchEvidence Spec Seed
+
+The Graph AMP stream suggests a minimal Knight Bus source event protocol:
+
+```text
+enum SourceEvent {
+  Batch {
+    stream_name,
+    batch_id,
+    evidence,
+    record_batch_ref
+  }
+
+  Invalidation {
+    stream_name,
+    invalidated_after_frontier,
+    latest_valid_frontier,
+    source_hash,
+    reason
+  }
+
+  Blocked {
+    stream_name,
+    buffer_state,
+    waiting_for,
+    policy
+  }
+
+  Completed {
+    stream_name,
+    final_frontier,
+    source_hash
+  }
+
+  Error {
+    stream_name,
+    layer,
+    deterministic,
+    message
+  }
+}
+```
+
+And the corresponding `BatchEvidence`:
+
+```text
+BatchEvidence
+  profile_id
+  run_id
+  stream_name
+  source_id
+  partition_id
+  slice_start
+  slice_end
+  previous_source_hash
+  source_hash
+  row_count
+  edge_count
+  array_memory_bytes
+  decoded_memory_bytes
+  physical_schema_hash
+  plan_hash
+  matched_required_columns
+  resume_token
+```
+
+This is probably one of the most actionable architecture outputs from the Graph Node pass. It gives LLM coding agents a small, typed protocol to implement before the algorithm zoo grows.
+
+### Durable Store Contracts Should Mirror Runner Receipts
+
+Graph Node's component-store traits suggest a clean way to avoid "rewrite the whole database" confusion. The valuable boundary is not the language or SQL engine by itself. The valuable boundary is a small contract:
+
+```text
+sourceable store:
+  get_range(entity_types, causality_region, block_range)
+  -> ordered source operations
+
+writable store:
+  start deployment/run state
+  transact block/epoch operations
+  revert block/epoch operations
+  mark synced/sealed
+  load dynamic runtime inputs
+
+cursor tracker:
+  latest durable frontier
+  source resume cursor
+  earliest replayable state
+```
+
+For Knight Bus, this becomes a product-friendly storage architecture:
+
+| Boundary | What It Should Know | What It Should Not Know |
+|---|---|---|
+| source adapter | source schema, range query, resume/invalidation metadata | PageRank internals |
+| graph projection store | node/edge/property validity, source hashes, causality/partition domain | product-specific UI |
+| algorithm state store | active frontier, rank/component/path/sketch state, checkpoint chunks | arbitrary Cypher surface |
+| receipt store | hashes, RAM, spill, timing, frontier, errors, proof events | mutable algorithm heap |
+
+This makes a huge LLM coding project easier. Agents can implement and test one contract at a time instead of trying to keep an entire graph database architecture in context.
+
+### Per-Block EntityCache Is The Hot-State Pattern
+
+`EntityCache` is important because it shows a production graph indexer refusing to keep everything live. It creates a bounded hot state for a block, layers baseline store reads with in-block updates, lets handler-local changes commit or discard, then emits minimal durable modifications.
+
+Knight Bus can adapt this to graph algorithms:
+
+```text
+algorithm_epoch_cache
+  baseline checkpoint reads
+  active frontier/window state
+  handler/subtask-local mutations
+  LFU cache for recently read graph artifacts
+  write-capacity budget
+
+as_checkpoint_modifications(epoch)
+  -> minimal durable state changes
+  -> updated LFU cache
+  -> eviction stats
+  -> proof events
+```
+
+This is especially useful for RAM-bounded modes:
+
+| Algorithm Family | Hot State To Keep | Durable State To Emit |
+|---|---|---|
+| PageRank / centrality | active rank vector chunk, changed partitions, convergence stats | partition checkpoint, residual deltas, iteration receipt |
+| connected components | active component labels and frontier changes | component-label chunks, union evidence |
+| shortest paths | distance bucket/frontier and predecessor candidates | distance checkpoint, path witness chunks |
+| community detection | local community memberships and moved-node deltas | community assignment chunks, modularity deltas |
+| similarity / recommendations | candidate heap, sketch/window state | top-k chunks, candidate-pruning evidence |
+
+The point is not "never use RAM." The point is: make the live set explicit, budgeted, measured, and convertible into durable proof-carrying state.
+
+### Versioned Rows Are A Storage Format, Not Just History
+
+Graph Node's relational store uses validity storage:
+
+```text
+mutable entity:
+  block_range = [visible_from, visible_until)
+
+immutable entity:
+  block$ = visible_from
+
+unversioned metadata:
+  [-1, infinity)
+```
+
+This is a storage-format clue for Knight Bus. A graph slice can represent state as validity intervals rather than always materializing the latest graph plus separate logs. That gives:
+
+1. current reads by "contains frontier";
+2. change extraction by lower/upper validity bounds;
+3. rollback by deleting future versions and unclamping previous versions;
+4. pruning by rebuilding only the retained validity window;
+5. proof receipts that point to exactly which validity boundary changed.
+
+For algorithm-shaped storage, this suggests several physical shapes:
+
+| State Type | Low-RAM Visibility Shape |
+|---|---|
+| immutable edge/event batch | `visible_epoch` plus sorted source offsets |
+| mutable projected property | `[epoch_start, epoch_end)` validity interval |
+| dynamic derived edge | validity interval plus derivation/proof hash |
+| active checkpoint | sealed epoch plus open current interval |
+| pruned history | earliest replayable epoch plus retained interval set |
+
+This is one route to "less RAM, predictable processing": keep old versions on disk in ordered validity form and load only the interval or frontier required by the current algorithm phase.
+
+### Pruning Is Compaction With A Retention Contract
+
+The pruning implementation is a surprisingly practical PMF lesson. It does not merely "delete old rows." It rebuilds tables by copying retained final rows, then retained nonfinal rows, and switches the table. That design exists because large deletes leave scattered physical pages and full vacuum can block reads/writes.
+
+Knight Bus should treat pruning/compaction as user-visible compute:
+
+```text
+compaction receipt
+  profile_id
+  storage_artifact_id
+  retention_policy
+  earliest_replayable_state_before
+  earliest_replayable_state_after
+  final_phase_rows_copied
+  nonfinal_phase_rows_copied
+  writer_blocked_duration
+  bytes_before
+  bytes_after
+  time_travel_lost
+```
+
+This matters for budget-bounded PMF because some users will gladly spend more time to stay under 5 GB or 10 GB RAM. But they need to know what is being sacrificed: replay depth, time travel, exact dynamic provenance, or rebuild latency.
+
+### Index Descriptors Should Be Part Of Profile Manifests
+
+The relational index parser makes physical indexing inspectable: method, expression, prefix, condition. That should inspire Knight Bus profile manifests. A storage profile should not just say "CSR" or "spill-first." It should say what jump paths exist.
+
+```yaml
+indexes:
+  - name: edge_by_source_partition
+    method: mmap_btree
+    expression: [source_id, partition_id]
+    supports_phase: pagerank_pull
+    resident_bytes_budget: 512MiB
+
+  - name: edge_validity_by_epoch
+    method: range_brin
+    expression: [valid_from, valid_until]
+    supports_phase: temporal_window_projection
+    resident_bytes_budget: 128MiB
+
+  - name: candidate_prefix
+    method: prefix_fst
+    expression: [normalized_label]
+    prefix_bytes: 64
+    supports_phase: local_similarity_candidates
+```
+
+This gives LLMs and humans a way to reason about RAM before running code. It also lets verification say whether the planned low-RAM path was truly used or whether runtime fell back to broad scans.
+
+### Store Errors Need Retry Policy In Receipts
+
+Graph Node separates deterministic and nondeterministic store errors. That is exactly the kind of honesty Knight Bus needs.
+
+| Error Kind | User Meaning | Runtime Behavior |
+|---|---|---|
+| deterministic decode/schema/input error | profile or source data is invalid | fail and emit repair hint |
+| deterministic constraint violation | output would violate declared semantics | fail and preserve witness |
+| nondeterministic database unavailable | infrastructure may recover | retry according to policy |
+| nondeterministic writer failure | durability uncertain | refuse output or rewind |
+| poisoned/indeterminate batch | internal state cannot be trusted | fail closed |
+
+A budget-bounded compute product will be judged by failure behavior. If it hits a RAM cap, source mismatch, schema error, or durability uncertainty, it should produce an understandable receipt instead of a giant stack trace.
+
+### Queued Writes Are A Freshness Overlay
+
+The writable store adds another sharp distinction for Knight Bus: committed durable state and queued pending state are not the same thing. Graph Node's async writer lets writes batch until a weight or age threshold is reached. While the batch waits, reads must still account for queued operations; otherwise they can return stale answers.
+
+That gives Knight Bus a concrete freshness model:
+
+```text
+sealed durable state:
+  checkpoint persisted
+  receipt flushed
+  output safe for exact replay
+
+queued overlay state:
+  batch accepted by runtime
+  not yet committed
+  visible to current run reads
+  can be flushed, poisoned, or refused
+
+current conditional state:
+  sealed durable state + queued overlay
+  useful for low-lag answers
+  must disclose pending write frontier
+```
+
+This matters because low RAM will often mean we intentionally delay work:
+
+| Product Knob | Meaning | Tradeoff |
+|---|---|---|
+| `max_batch_weight` | close and write once a batch is large enough | larger batches improve write efficiency but increase pending overlay |
+| `max_batch_age_ms` | close and write once a batch is old enough | lower age reduces lag but may fragment writes |
+| `write_queue_capacity` | maximum queued write requests | lower capacity bounds RAM but can throttle sources |
+| `flush_before_read` | force durable state before a sensitive query | stronger correctness, higher latency |
+| `batching_enabled` | allow pending writes to combine | faster bulk mode, less immediate durability |
+
+For our thesis, this is a useful answer to "can RAM be bounded if I accept more time?" Yes, but the runtime has to make the queue and freshness contract visible. Otherwise bounded RAM just turns into mysterious lag.
+
+### Query Physicalization Is Part Of The Product
+
+The relational query code is not just a backend detail. It constructs different SQL shapes depending on entity count, windows, filters, ordering, ranges, current buckets, and insert parameter limits. It also tags queries for observability and keeps dynamic SQL allocation-conscious.
+
+Knight Bus should steal the principle, not the SQL:
+
+```text
+profile source expression
+  parse
+  validate allowed sources
+  inject range/frontier filters
+  inject provenance columns
+  choose query shape
+  calculate bind/chunk limits
+  estimate resident bytes
+  hash plan
+  stream into graph-slice codec
+```
+
+The source plan should become a receipt object:
+
+| Field | Why It Matters |
+|---|---|
+| `plan_hash` | ties source query to every emitted batch |
+| `bind_count_limit` | prevents accidental parameter explosions |
+| `chunk_size` | bounds input and write memory |
+| `ordering_keys` | proves deterministic replay |
+| `range_filter` | proves the run did not scan unbounded history |
+| `deletion_inference_rule` | explains how removals are detected |
+| `expected_index_paths` | makes low-latency claims inspectable |
+| `fallback_scan_detected` | catches when the planned low-RAM path was not used |
+
+This is especially important for LLM coding. A model can implement a `SourcePlan` fixture and receipt test much more reliably than it can rewrite a whole query engine from a narrative prompt.
+
+### Pending Overlay Reads Should Be Tested Explicitly
+
+The writable queue reads from both queued batches and the store. That is a small but important correctness pattern. If a PageRank partition or connected-components frontier writes updates into a pending batch, a subsequent read in the same run may need those updates before the durable checkpoint exists.
+
+Knight Bus needs tests like:
+
+```text
+GIVEN sealed checkpoint has node A rank 0.1
+AND queued overlay updates node A rank to 0.2
+WHEN current_conditional read asks for node A
+THEN it returns 0.2
+AND the receipt marks the answer as overlay-visible, not sealed
+
+WHEN sealed_only read asks for node A
+THEN it returns 0.1
+AND the receipt marks pending overlay excluded
+```
+
+This would make the RAM/latency/correctness tradeoff legible. "Fast current view" and "sealed reproducible view" are different products; both can be valuable if labeled.
+
+### Epoch Commit Should Be A Named Contract
+
+The `DeploymentStore::transact_block_operations` path is the clearest durable-write recipe in the Graph Node source pass. Under a deployment lock, it:
+
+1. loads the physical layout;
+2. applies grouped entity modifications;
+3. clamps old validity ranges before inserting new versions;
+4. checks interface-shared ID conflicts;
+5. performs rollups;
+6. writes dynamic data-source metadata;
+7. records deterministic and nonfatal errors;
+8. advances the deployment head, cursor, and entity count;
+9. spawns pruning when history slack is exceeded.
+
+Knight Bus should name the equivalent concept `EpochCommit`, because it will become the spine of the verification loop:
+
+```text
+EpochCommit
+  acquire_writer_lease(profile_run_id, output_artifact_id)
+  apply_state_modifications(epoch_batch)
+  update_derived_summaries()
+  persist_source_runtime_metadata()
+  persist_deterministic_errors()
+  advance_frontier_and_cursor()
+  update_state_counts()
+  maybe_spawn_compaction()
+  emit_commit_receipt()
+  release_or_keep_writer_lease()
+```
+
+This is the opposite of "just run an algorithm." It gives every algorithm a common durability and proof envelope.
+
+### Run Manager Before Algorithm Zoo
+
+`SubgraphStore` is mostly orchestration: primary metadata, sharded physical deployments, assignment events, cached writable stores, poisoned-writable restart, sourceable store creation, and stop/evict behavior. That is a useful warning for Knight Bus.
+
+If we build ten algorithms before the run manager exists, each algorithm will accidentally invent its own:
+
+| Concern | Bad If Per Algorithm | Better Shared Runtime |
+|---|---|---|
+| writer ownership | duplicate mutation of output artifacts | one writer lease per `profile_run_id + artifact_id` |
+| placement | hidden local path / random disk usage | run registry and artifact placement policy |
+| source replay | inconsistent replay semantics | sourceable store contract |
+| poisoned state | algorithm-specific recovery | standard poison/restart/refuse behavior |
+| events | logs nobody can query | structured run/store events |
+| stop/cancel | partial state ambiguity | flush, stop, abort, and receipt semantics |
+
+The next tangible architecture should therefore be a small runtime shell around one algorithm, not a broad algorithm zoo.
+
+### Typed Visibility Predicates Are Part Of Profile Planning
+
+The relational DSL makes `at_block`, `changed_since`, `belongs_to_causality_region`, selected columns, and system columns typed query fragments. That suggests Knight Bus should not let every algorithm profile write arbitrary source filters.
+
+The profile planner should expose a small vocabulary:
+
+```text
+visible_at(frontier)
+changed_since(frontier)
+partition_eq(partition_id)
+source_eq(source_id)
+edge_type_in(types)
+property_selected(columns)
+system_columns_required([source_hash, frontier, delete_flag])
+```
+
+This is how a low-RAM system avoids accidental broad scans. The planner can reason about a typed predicate. It cannot reason reliably about arbitrary source-code fragments.
+
+### First Fixture Pack From Graph Node Tests
+
+The postgres store tests point to a very practical Knight Bus fixture pack:
+
+| Fixture | What It Proves |
+|---|---|
+| pending overlay read | current-conditional reads include queued writes |
+| sealed-only read | durable reads exclude queued writes until flush |
+| pending revert | current view reflects a queued rewind before flush |
+| writer poison | invalid state write poisons queue and refuses silent continuation |
+| restart after poison | runtime can reinitialize from durable state and retry |
+| source range replay | replay emits create/modify/delete in stable frontier order |
+| immutable-only replay | immutable event batches replay without upper-bound changes |
+| cannot rewind past import/graft boundary | imported baseline cannot be invalidated past its declared boundary |
+| prune moves earliest frontier | retention/compaction changes replay/time-travel capability |
+
+These are better next tests than "PageRank is faster" because they prove the runtime contract that makes every later algorithm trustworthy.
+
+### Receipt Normalization Is A Boundary
+
+The transaction-receipt conversion file is small, but it has a product lesson: raw physical source values are not the receipt. They must be normalized deterministically first.
+
+For Knight Bus:
+
+```text
+raw_source_receipt
+  bytes, nullable fields, vendor-specific encodings
+
+normalized_source_receipt
+  source_hash
+  source_index
+  frontier
+  status
+  cost_or_gas
+  physical_decode_warnings
+
+run_receipt
+  normalized_source_receipt[]
+  profile_hash
+  storage_plan_hash
+  algorithm_hash
+  output_hash
+  correctness_evidence
+  resource_evidence
+```
+
+This separation keeps the proof layer clean. It also gives LLMs a narrow place to implement and test messy physical conversions.
+
+### SQLite Run Registry Should Be Explicit, Not Emergent
+
+Graph Node's `deployment.rs` is a near-direct outline for a Knight Bus run registry. The important thing is not Postgres specifically; it is the shape of durable run state.
+
+```text
+profile_runs
+  run_id
+  profile_id
+  profile_hash
+  source_hash
+  storage_plan_hash
+  health
+  failed
+  fatal_error_id
+  nonfatal_error_ids
+  earliest_replayable_frontier
+  latest_processed_frontier
+  latest_source_hash
+  source_cursor
+  entity_or_state_count
+  invalidation_count
+  current_invalidation_depth
+  max_invalidation_depth
+  synced_at
+  synced_at_frontier
+  postponed_indexes_created
+  history_retention
+  raw_profile_manifest
+```
+
+And errors should be queryable:
+
+```text
+profile_run_errors
+  error_id = stable_hash(error_body)
+  run_id
+  message
+  handler_or_phase
+  deterministic
+  valid_from_frontier
+  valid_until_frontier
+  witness_path
+```
+
+This gives the low-RAM runtime durable memory without keeping everything resident. A process can restart, inspect run health, resume from cursor, know earliest replayable state, and explain why a run is unhealthy.
+
+### Event Streams Need Small Notifications And Large Artifacts
+
+The notification code shows a mature pattern: Postgres NOTIFY has an 8 KB-ish payload limit, so large messages are stored in a table and only their ID is notified. The listener also batches notifications, retries connections, times out slow broadcasts, and cleans old payload rows.
+
+Knight Bus should do the same in file-native form:
+
+```text
+small event:
+  run_id
+  event_type
+  frontier
+  severity
+  receipt_artifact_id
+
+large artifact:
+  receipt body
+  source diff
+  output diff
+  proof witness
+  memory profile
+```
+
+Do not push huge proof blobs through the live event channel. Notify a small pointer, store the large evidence durably, and let agents/humans fetch only what they need.
+
+### Source Frontier Watchers Should Wake Even When Silent
+
+The chain-head listener has a subtle robustness pattern: subscribers are woken periodically even if no notification arrives. That prevents downstream components from waiting forever on a broken listener or quiet network.
+
+Knight Bus source-frontier watchers should have the same behavior:
+
+```text
+watch_source_frontier(source_id)
+  on notification:
+    update target_frontier
+    wake planner
+
+  on timeout:
+    wake planner anyway
+    planner polls source status
+    receipt records silence/stall if needed
+```
+
+This matters for budget-bounded compute because a stalled source changes the plan. The system may wait, spill, run a sealed-only answer, emit partial-current refusal, or degrade according to policy. Silence is not nothing; it is an event shape.
+
+### Deterministic Errors Are Time-Ranged Facts
+
+Graph Node stores deterministic errors with block ranges and reverts future errors when rewinding. That is a strong pattern for Knight Bus:
+
+| Error | Validity |
+|---|---|
+| bad source schema at epoch 50 | valid from 50 until source/profile changes |
+| deterministic decode failure in batch 12 | valid for that source batch/frontier |
+| constraint violation in algorithm state | valid from the failed epoch until reverted |
+| nondeterministic store timeout | event only; retry may clear it |
+
+The key product move is to avoid treating failures as strings in logs. Deterministic failures become facts in the run registry, with validity ranges and witnesses. Rewind or profile repair should update their validity.
+
+### Schema Evolution Is Product Evidence
+
+The Graph Node migration history is a surprisingly good product advisor because migrations record the operational facts that became impossible to keep as code-only assumptions.
+
+The evolution points toward a Knight Bus metadata plane with these durable nouns:
+
+| Graph Node Schema Fact | Knight Bus Design Translation |
+|---|---|
+| `head` stores block/hash/entity count/firehose cursor | `run_head` stores processed frontier, source version hash, output count, resume token, and active cursor. |
+| `deployment` stores health, fatal/nonfatal errors, reorg counts, sync timestamps, earliest block, and last healthy block | `profile_run` stores health, first error frontier, invalidation counts, target/processed frontier, earliest replayable frontier, last known good checkpoint, and run mode. |
+| `subgraph_manifest` gained features, raw YAML, start block, history blocks, and causality-region metadata | `profile_manifest` should keep raw profile text, detected features, declared features, start frontier, retention policy, and causality/partition domains. |
+| `large_notifications` stores big payloads while notifications carry tiny references | `run_events` should carry small live messages that point to larger receipt/proof artifacts. |
+| `graphman_command_executions` stores operator command status | `kb_commands` should ledger run, resume, prune, rebuild-index, verify, and cancel operations. |
+| `prune_state` and `prune_table_state` store compaction phases, batches, ranges, and errors | `artifact_compactions` should be resumable and phase-tracked, not invisible background cleanup. |
+| `postponed_indexes_created` persists deferred index state | `artifact_indexes` should remember build/defer/fail/retry state across restarts. |
+
+This is important because "lower RAM" is not only an algorithm trick. Lower RAM usually means more streaming, more deferred materialization, more spill, more pruning, more replay, more partial indexes, and more operator-visible state transitions. If that metadata plane is sloppy, the system may use less memory but become impossible to trust.
+
+The Shreyas-style takeaway:
+
+```text
+Do not sell "we use less RAM."
+Sell "we can bound RAM because every source, frontier, spill, compaction,
+index, error, and output has a durable state record."
+```
+
+### Dynamic Sources Are Runtime-Discovered Profile Inputs
+
+The dynamic data-source code adds a missing category to the Knight Bus architecture: not every input can be fully known before a run starts.
+
+Graph Node's private `data_sources$` table is the clearest pattern:
+
+```text
+data_sources$:
+  block_range          -> when this input is visible
+  causality_region    -> which proof/partition domain it belongs to
+  manifest_idx        -> which declared template/profile source it instantiates
+  param/context       -> how it was instantiated
+  done_at             -> when an offchain source finished
+```
+
+For Knight Bus, this maps to runtime profile expansion:
+
+```text
+static profile:
+  "Run temporal risk propagation over token transfer graph sources."
+
+runtime addendum:
+  "At frontier 250, source adapter discovered token contract X,
+   generated source partition P, attached context C, and it is valid
+   from frontier 250 until reverted or completed."
+```
+
+That runtime addendum must be persisted inside the same epoch/commit envelope as the algorithm state. Otherwise a restart or verification replay cannot reconstruct why the graph had a new partition/source.
+
+The low-RAM angle is direct: dynamic sources let the runtime avoid materializing every possible source up front. It can discover and activate only the sources that matter for the current frontier, then retain compact metadata for replay instead of retaining all expanded graph state in memory.
+
+### Profile Manifests Need Runtime Addenda
+
+The static profile manifest should not try to predict every discovered source, index, frontier, and operator command. A cleaner architecture is:
+
+```text
+ProfileBundle
+  profile.yaml
+  algorithm.wasm|rust-plugin|built-in-id
+  storage-layout.yaml
+  fixtures/
+  verifier.yaml
+
+RunAddendum
+  discovered_sources[]
+  source_frontiers[]
+  source_hashes[]
+  dynamic_partition_domains[]
+  deferred_indexes[]
+  compaction_jobs[]
+  deterministic_error_facts[]
+  operator_commands[]
+```
+
+This gives LLM coding agents a much easier mental model. The bundle is the recipe. The addendum is the living proof state produced while following the recipe.
+
+This also helps with versioning. Graph Node's private dynamic-source copy path remaps manifest indexes by template name during copy/graft. Knight Bus should do the equivalent: when a profile evolves, dynamic addenda should remap through stable source/template names and content hashes rather than depending only on numeric indexes.
+
+### Dynamic Source Fixtures Should Be First-Class
+
+Graph Node's dynamic data-source fixtures convert the architecture above into tests. The valuable pattern is that dynamic source creation is not tested only by querying internal tables. It is tested through observable handler behavior:
+
+```text
+block handler creates template with context:
+  number = block.number
+  hash   = block.hash
+
+template handler reads context:
+  assert(count_for_this_block == number)
+  count += 1
+  save()
+```
+
+That gives Knight Bus a clean executable-spec shape:
+
+| Fixture | Knight Bus Equivalent |
+|---|---|
+| static datasource plus dynamic template | static profile source plus runtime-discovered graph partition/source |
+| `DataSourceContext` with block number/hash | `RuntimeSourceContext` with creation frontier/source hash/partition id |
+| template handler assertion | algorithm/verifier assertion that runtime context survived replay |
+| revert removes dynamic data source | rollback removes runtime addendum and derived state together |
+| grafted fixture adds datasource after graft base | imported/forked run can add sources after baseline but cannot rewrite pre-baseline facts |
+| revert2 changes base entity type but keeps template behavior | profile version can change base output while preserving stable runtime-source template semantics |
+
+The acceptance tests practically write themselves:
+
+```text
+WHEN a profile discovers source S at frontier F
+THEN the system SHALL persist a runtime_source_addendum for S
+AND SHALL include creation_frontier, source_hash, template_id, params, context_hash
+AND SHALL make S visible to the algorithm only at frontiers >= F
+
+WHEN the run replays from a checkpoint after F
+THEN the system SHALL reconstruct S from the addendum
+AND SHALL produce the same derived output hash
+
+WHEN the run reverts to a frontier before F
+THEN the system SHALL remove S from visible runtime sources
+AND SHALL remove derived state created only by S
+AND SHALL leave pre-F state visible and unchanged
+```
+
+This is a tangible bridge from "interesting Graph Node evidence" to Knight Bus implementation work. Before optimizing PageRank or connected components, we can build the runtime addendum fixture and know whether the engine can safely discover, replay, and forget sources under a RAM cap.
+
+### Compaction And Indexing Are Jobs, Not Footnotes
+
+The pruning and postponed-index migrations are a reminder that storage optimization becomes user-visible in serious systems.
+
+Knight Bus should treat compaction/indexing like graph algorithms:
+
+| Job | Why It Needs A Receipt |
+|---|---|
+| prune old validity ranges | It changes earliest replayable frontier and can destroy time-travel evidence. |
+| rebuild compact artifact | It may block writers or change page locality/latency. |
+| create postponed index | It changes future latency and memory profile. |
+| retry failed prune | It needs the previous cursor, phase, and error. |
+| switch storage mode | It changes exactness, resident RAM, mapped bytes, and spill behavior. |
+
+That suggests a small product rule:
+
+```text
+Anything that changes future RAM, latency, correctness, replayability,
+or verification cost gets a command row and a receipt.
+```
+
+This makes the system easier for both humans and LLMs. A future coding session can ask the run registry, "why is PageRank slower today?" and discover that a postponed index was not created, pruning failed halfway through `copy_nonfinal`, or the profile is running in sealed-only mode after a source stall.
+
+### Relational Tests Become Graph-Slice Verification
+
+The Graph Node relational tests are not about Postgres for our purposes. They are a compact catalogue of storage semantics a graph runtime must prove regardless of backend.
+
+The most important translation:
+
+| Graph Node Test | Knight Bus Fixture |
+|---|---|
+| `find` | `visible_entity_or_none_at_frontier` |
+| null fulltext fields | `optional_property_decode_does_not_corrupt_index` |
+| `copy_populates_fulltext` | `copy_preserves_hidden_physical_state` |
+| `revert_block` | `revert_restores_mutable_and_immutable_visibility` |
+| fulltext syntax error | `invalid_profile_query_is_deterministic_failure` |
+| `check_block_finds` | `changed_since_frontier_returns_only_delta` |
+| filter matrix | `profile_predicate_semantics_are_backend_independent` |
+
+The hidden-state copy test matters more than it first appears. In Graph Node, a naive copy could preserve visible rows but lose fulltext `tsvector` columns. In Knight Bus, the equivalent hidden state may be:
+
+1. adjacency jump tables,
+2. compressed neighbor offsets,
+3. frontier summaries,
+4. component-id side indexes,
+5. min/max or top-k sketches,
+6. supernode spill maps,
+7. bitmap/Bloom filters,
+8. approximate-mode proof metadata.
+
+So every copy, compaction, storage-mode switch, or fork/import operation must prove both visible state and hidden physical accelerators are preserved or intentionally rebuilt.
+
+The practical v0 test spine:
+
+```text
+WHEN a graph slice is copied into a new artifact
+THEN visible nodes/edges SHALL match
+AND hidden index/sketch/jump-table state SHALL either match or be rebuilt
+AND the receipt SHALL disclose which path happened
+
+WHEN a graph slice is queried with changed_since_frontier(F)
+THEN only state changed at or after F SHALL be returned
+AND empty/max-frontier and initial-frontier cases SHALL be tested
+
+WHEN a profile query is invalid
+THEN the failure SHALL be deterministic
+AND SHALL include the profile expression and parser/planner error
+```
+
+This is how the doc should guide implementation: before PageRank performance, prove that the graph-slice substrate has these semantics.
+
+### Failure Recovery Needs Four Outcomes
+
+The subgraph error tests are unusually valuable because they separate failure recovery by determinism and frontier evidence.
+
+Knight Bus should make recovery outcomes explicit:
+
+| Outcome | Meaning | Graph Node Analogue |
+|---|---|---|
+| `rewound_and_cleared` | deterministic output/state was invalid, so state rewound to predecessor frontier and failure cleared | deterministic fail/unfail reverts from block 1 to block 0 |
+| `cleared_without_rewind` | transient/non-deterministic failure cleared while durable frontier remains valid | non-deterministic fail/unfail keeps latest block |
+| `noop_mismatch` | requested recovery does not match determinism, error hash, or failure frontier | deterministic recovery on non-deterministic error; wrong block/hash |
+| `behind_error_frontier` | requested recovery frontier is behind the failure block/head relationship required for safe clearing | non-deterministic no-op returns `BehindErrorBlock` |
+
+This avoids a dangerous product simplification: "retry failed run" is not one operation. It can mean replay source, rewind state, clear transient error, refuse because the frontier is wrong, or preserve failure as a deterministic fact.
+
+The receipt should therefore carry:
+
+```text
+failure_id
+deterministic: true|false
+failure_frontier
+current_frontier
+expected_predecessor_frontier
+recovery_action
+recovery_outcome
+state_hash_before
+state_hash_after
+output_invalidated: true|false
+error_count_before_after
+```
+
+This is a useful wedge for PMF too. Teams do not only pay for fast graph algorithms; they pay for systems that can tell them whether a bad run should be retried, rewound, ignored, or treated as a data/profile bug. That is the difference between a clever local binary and an operational product.
+
+### Pending Overlay Is A Freshness Mode
+
+Graph Node's writable tests make a subtle point concrete: "current" can mean different things.
+
+There is durable state already flushed to the store, and there is pending overlay state queued in the writer. Reads can be correct in either mode, but only if the mode is explicit.
+
+The Knight Bus translation:
+
+| Freshness Mode | Meaning |
+|---|---|
+| `sealed_only` | only durable checkpoint/artifact state is visible |
+| `overlay_visible` | queued writes are layered over durable state |
+| `pending_revert_visible` | queued revert is applied logically before durable flush |
+| `flush_required` | query/output cannot be certified until queue is flushed |
+| `queue_poisoned` | writer failed and must be restarted from durable state |
+
+This matters for low-RAM graph algorithms because batching and delayed flush are exactly how we will reduce write amplification and resident state. But if pending overlay semantics are hidden, two users can see different answers while both think they asked for "current."
+
+Acceptance-shape:
+
+```text
+WHEN an algorithm writes state into a queued epoch batch
+AND a read is executed in overlay_visible mode
+THEN the read SHALL include queued writes
+
+WHEN a revert is queued but not flushed
+AND a read is executed in pending_revert_visible mode
+THEN the read SHALL reflect the reverted state
+
+WHEN a write flush fails with a deterministic constraint violation
+THEN the writer SHALL become queue_poisoned
+AND future mutation SHALL require restart_from_checkpoint
+```
+
+### Sourceable Range Replay Beats Snapshot Thinking
+
+The sourceable `get_range` tests are a direct map to incremental graph compute. They return operations by block/frontier:
+
+```text
+frontier 1: Create Counter, Create Counter2
+frontier 2: Modify Counter, Create Counter2
+frontier 3: Delete Counter, Create Counter2
+...
+```
+
+This is a better primitive than "load the graph snapshot" for bounded recurring jobs. A PageRank or connected-components update can often consume operation deltas if the profile declares how to handle them.
+
+Knight Bus should expose:
+
+```text
+SourceOperation:
+  Create(entity_type, id, properties, frontier, vid)
+  Modify(entity_type, id, properties, frontier, vid)
+  Delete(entity_type, id, previous_properties, frontier, vid)
+```
+
+and the receipt should include:
+
+```text
+range_start
+range_end
+operation_counts_by_type
+entity_types
+causality_region
+duplicate_immutable_failures
+decode_failures
+hidden_index_updates
+```
+
+This also strengthens the "use less RAM" story. If the algorithm can consume a range of operations, it does not need to materialize the entire graph every run. It can hold the active frontier state plus the delta stream.
+
+### Artifact Boundary Receipts Are Non-Negotiable
+
+The graft/copy/prune tests show that storage artifacts have life-cycle boundaries:
+
+| Boundary | Contract |
+|---|---|
+| graft/import base | visible starting state and hard rewind floor |
+| immutable conversion | allowed only if history at baseline can be made immutable safely |
+| copy to another shard/artifact | copied state must pass the same visibility checks |
+| on-sync activation | copy may stay inactive, become active, or replace source |
+| prune retention | history policy must satisfy safety threshold and preserve declared visibility |
+
+For Knight Bus, "switch to lower-RAM storage mode" is the same kind of boundary. It should not be a flag flip. It should be a copied/rebuilt artifact that has:
+
+1. source artifact id,
+2. destination artifact id,
+3. baseline frontier,
+4. source/destination profile-layout hashes,
+5. hidden physical state validation,
+6. activation policy,
+7. retention floor,
+8. rollback floor,
+9. verification receipt.
+
+This turns a risky product promise into something operational:
+
+```text
+kb storage switch --profile pagerank --mode budget-5gb
+
+does not mean:
+  "hope this new layout works"
+
+it means:
+  copy/rebuild artifact
+  validate visible state and hidden indexes
+  verify profile fixtures
+  activate according to policy
+  retain source until rollback window expires
+```
+
+That is the kind of proof-carrying workflow that lets a customer trust lower RAM without feeling they accepted an opaque downgrade.
+
+### Source Frontier Needs Bounded Lineage Evidence
+
+The `chain_head.rs` tests are a surprisingly good model for Knight Bus source-frontier correctness. The important lesson is that a "head" is not simply the newest source item seen by the system. A safe head is a candidate frontier whose predecessor chain has been inspected far enough for the declared mode.
+
+Graph Node's tests make this concrete:
+
+| Fixture Shape | Product Lesson |
+|---|---|
+| missing parent inside ancestor count | stall or refuse the head, and disclose the missing predecessor |
+| missing parent beyond ancestor count | accept under a bounded lineage window, but disclose the window |
+| sibling hashes at same height | do not pretend same-height alternatives do not exist |
+| `confirm_block_hash` | canonicalization should prune competing source versions with evidence |
+| ancestor with root constraint | lineage queries depend on the declared root/source baseline |
+| skipped block numbers | source epochs may be sparse, so offset and root semantics must be explicit |
+
+For Knight Bus this turns into a source frontier receipt:
+
+```text
+SourceFrontierReceipt:
+  source_id
+  candidate_frontier
+  accepted_frontier
+  source_version_hash
+  alternative_hashes_pruned
+  lineage_root
+  ancestor_depth_checked
+  missing_predecessors
+  skipped_epochs
+  accepted_beyond_window
+  recent_frontier_cache_len
+  frontier_status:
+    lineage_verified
+    stalled_missing_predecessor
+    accepted_beyond_window
+    refused_ambiguous_version
+```
+
+This is not blockchain-specific. Any budget-bounded batch system has the same problem when it reads source files, database tables, event logs, object-store partitions, or graph deltas. If source B says "I am at epoch 100" but source A only proves epoch 97, a sealed result may need to wait, while a current result may proceed with visible skew.
+
+### Recurring Aggregations Are Budget-Bounded Graph Compute Cousins
+
+The `aggregation.rs` tests connect our graph thesis to the broader data-engineering thesis. They show a mature graph runtime doing a very familiar analytics move:
+
+```text
+raw events / timeseries
+  -> sealed interval rollups
+  -> optional current bucket computed on demand
+  -> cumulative totals as previous sealed state plus current delta
+  -> nested parent-child windows for query shape
+```
+
+This is exactly the pattern behind budget-bounded batch compute. The system does not need to reread every raw row or hold every intermediate in RAM for every question. It can keep durable sealed checkpoints and compute only the unsealed frontier when the user asks for current state.
+
+For Knight Bus, graph algorithms should copy this shape:
+
+| Graph Algorithm Family | Sealed State | Current Frontier Overlay |
+|---|---|---|
+| PageRank | last converged rank vector plus partition summaries | changed edges/nodes since checkpoint and local residual corrections |
+| Connected components | component labels plus union log checkpoint | new edges/deletions since checkpoint and affected component repair frontier |
+| Shortest path | source-specific distance labels or landmark summaries | changed edge weights/topology in current window |
+| Community detection | sealed community assignment plus score summaries | affected communities and boundary edges |
+| Temporal path/query | sealed interval index windows | events after the last sealed interval |
+| Risk propagation | sealed risk scores plus explanation paths | current events and provisional propagation deltas |
+| Recurring non-graph analytics | sealed time buckets | current unsealed bucket |
+
+The product mode must be explicit:
+
+```text
+sealed_only:
+  return only fully verified checkpoints/rollups
+
+sealed_plus_current:
+  return sealed output plus live delta computation
+
+current_only:
+  return only the unsealed frontier, usually for monitoring/debug
+
+approximate_current:
+  return a budget-capped estimate with declared error/invariant checks
+
+refused_under_budget:
+  refuse output because current overlay cannot fit the declared RAM/time/correctness envelope
+```
+
+This also answers the Spark-adjacent PMF question. The Knight Bus method is not "replace Spark." It is a profile-driven execution style for recurring jobs where the operation has a stable shape, the user cares about a budget, and the system can preserve sealed artifacts plus current overlays with proof. Graph algorithms are the wedge because their state transitions are naturally sparse, frontier-shaped, and receipt-friendly. But the same contract can later apply to daily aggregation, k-means, propensity scoring, fraud/risk propagation, and local personal-data analytics.
+
+The implementation warning from Graph Node is also useful: current-bucket queries require explicit selected columns because the physical path is a union between sealed tables and current computation. Translated to Knight Bus, algorithm profiles should not hide `select everything` behavior. Current-frontier output should declare its fields and evidence rows up front, otherwise a planner can accidentally widen the working set and violate RAM predictability.
+
+### Iggy-Style Sparse Index Modes Make RAM A Product Dial
+
+Apache Iggy is useful here because it does not treat resource behavior as a private implementation detail. The config exposes whether indexes should be cached in memory for all segments, only for the open segment, or not cached. The newer partition poll path goes further: small sealed indexes can be loaded and cached, while large ones are binary-searched on disk with single-entry preads.
+
+This is the exact spirit of our thesis, but translated from messages to graph artifacts:
+
+| Iggy Concept | Knight Bus Equivalent |
+|---|---|
+| segment | graph artifact / partition / algorithm checkpoint chunk |
+| sparse index entry: offset, timestamp, position | jump-table entry: logical graph coordinate, frontier/time, physical position |
+| `cache_indexes = all` | speed/materialized mode |
+| `cache_indexes = open_segment` | balanced active-artifact mode |
+| `cache_indexes = none` | budget/on-file mode |
+| sealed index resident cap | max resident jump-table bytes |
+| binary search sparse index on file | on-file lower-bound lookup for graph windows |
+| active segment protected from deletion | active/current artifact protected from compaction |
+| commit ceiling | safe frontier ceiling for query output |
+| gapless committed prefix | contiguous epoch prefix required before checkpoint flush |
+| evicted repair ring | bounded replay/repair window |
+| fail-closed disk fault | refuse output rather than skip an unreadable graph range |
+
+The direct product shape:
+
+```text
+StorageProfileIndexMode:
+  all:
+    keep all jump tables resident
+    fastest lookup
+    highest RAM
+
+  active_artifact:
+    keep only current/open artifact jump tables resident
+    balanced RAM and latency
+    good default
+
+  none:
+    never materialize large jump tables
+    use on-file binary search / paged lookup
+    lowest RAM, higher latency
+```
+
+The receipt should make the mode observable:
+
+```text
+ArtifactIndexReceipt:
+  index_cache_mode
+  index_entry_shape
+  index_entry_size_bytes
+  index_entries
+  index_total_bytes
+  resident_index_bytes
+  resident_index_cap_bytes
+  lookup_strategy:
+    resident_lower_bound
+    on_file_binary_search
+    byte_zero_scan_fallback
+  lookup_count
+  index_fallback_count
+  torn_partial_entries_ignored
+```
+
+For graph algorithms, these jump tables should not be generic database indexes. They should be algorithm-shaped:
+
+| Algorithm Family | Sparse Jump Table Shape |
+|---|---|
+| PageRank | node/partition -> rank vector block, degree block, residual block |
+| Connected components | node id -> component label block; component id -> member-range block |
+| Shortest path | source/landmark/distance bucket -> edge-neighborhood block |
+| Temporal reachability | time interval/frontier -> edge-event block |
+| Community detection | community id -> boundary-edge block and member-range block |
+| Risk propagation | entity/time/source -> score and explanation-path block |
+| Recurring aggregation | interval/source/key -> sealed bucket block |
+
+This is where the "not terabytes, maybe GB" argument becomes precise. If a workload can be served by sparse jump tables plus on-file blocks, the resident memory is not proportional to the full graph. It is proportional to:
+
+```text
+active frontier state
++ resident jump-table budget
++ source/decode buffers
++ output/checkpoint buffers
++ verifier/proof window
+```
+
+That does not mean every algorithm magically becomes tiny. It means the runtime can give the user a credible budget contract:
+
+```text
+kb run pagerank --ram-cap 10gb --index-mode none --freshness sealed_only
+
+may take longer because it binary-searches and pages artifact blocks,
+but the receipt can prove it never materialized the full adjacency/rank state.
+```
+
+The Iggy journal adds the second half of the contract: eviction must be honest. It keeps a bounded repair ring, exposes the oldest repairable operation, refuses dirty reads past a commit ceiling, and only flushes a gapless committed prefix. Knight Bus needs the same stance for graph artifacts:
+
+```text
+RunJournalReceipt:
+  commit_frontier_ceiling
+  gapless_flush_prefix
+  active_artifact_protected
+  repair_retained_from
+  repair_retained_to
+  repair_retained_bytes
+  range_evicted
+  compaction_barrier_reason
+  fail_closed_reason
+```
+
+This gives us a crisp architecture slogan with engineering teeth:
+
+```text
+RAM is not a promise made by hope.
+RAM is a mode, a cap, a jump-table strategy, an eviction window, and a refusal policy.
+```
+
+### Verification Products Give Agents Better State, Not Just Better Prompts
+
+Arbiter and Aletheia are valuable analogies because their public positioning is very similar to what Knight Bus should become for graph jobs. They give agents structured tools, typed outputs, state graphs, witnesses, browser proof, SARIF/reports, and reproducible evidence. The claim is not "our agent is smart." The claim is "the agent can inspect the right state and produce replayable proof."
+
+The graph-compute equivalent:
+
+| Security Verification Product | Knight Bus Equivalent |
+|---|---|
+| captured traffic -> state graph | input data -> graph projection |
+| infer authorization/order constraints | infer resource/correctness constraints |
+| search vulnerability classes | run graph algorithm profile |
+| browser-verified exploit evidence | Neo4j/oracle/property-verified output |
+| SARIF/report export | OKF-like graph compute receipt |
+| scope/audit controls | RAM/time/exactness/provenance controls |
+
+This is a strong product design pattern: make the hard part inspectable and replayable. A graph algorithm run should leave evidence a human or LLM can audit later.
+
+### Temporal Agent Memory Papers Point To Failure-Mode Receipts
+
+The bitemporal memory and InKH papers reinforce something subtle: the memory graph is not useful just because it is a graph. It is useful when it preserves time, invalidation, provenance, bounded retrieval, and an audit surface.
+
+The failure-mode lesson matters more than the headline:
+
+| Source | Failure / Design Lesson |
+|---|---|
+| Graph-native bitemporal memory | Time-travel retrieval can improve knowledge-update cases but hurt temporal reasoning if filtering/ranking dilutes evidence. |
+| InKH financial memory | Users fail when they must carry stale context; the system should assemble bounded working context and expose a wiki/audit surface. |
+| HyphaeDB | Memory topology can be active, with propagation/consensus/contradiction behavior, but this needs careful validation before product claims. |
+
+For Knight Bus, this argues for receipts that include:
+
+1. What graph state was current.
+2. What older state was still visible.
+3. What invalidation rules fired.
+4. What context was included or excluded under the budget.
+5. Which output changed if the temporal/provenance filter changed.
+
+This is where "lower RAM" and "better correctness" can converge: bound the live working set, but preserve enough versioned/provenance metadata to explain the answer.
+
+### OKF Gives The Receipt Schema Shape
+
+OKF v0.2 is the cleanest artifact-format clue so far. It separates:
+
+| OKF Concept | Knight Bus Equivalent |
+|---|---|
+| `sources` | input graph, projection source, baseline source, benchmark source |
+| `generated` | tool/agent/runtime that produced the artifact |
+| `verified` | human or machine review of the algorithm/storage definition |
+| `stale_after` | when the definition, dataset, or baseline must be refreshed |
+| `type: Attested Computation` | algorithm profile contract |
+| `parameters` | PageRank damping, iteration cap, tolerance, RAM cap, exactness mode |
+| `executor.receipt` | required run evidence: job id, plan, storage artifact, metrics, output hash |
+| `attester` | deterministic checker for parity, invariants, and receipt integrity |
+
+The key product lesson is the separation between definition verification and run attestation:
+
+```text
+verified definition:
+  "This PageRank profile is the sanctioned way to compute X."
+
+per-run attestation:
+  "This exact run used that profile, with these parameters, on this graph,
+   and produced this output under this RAM/time envelope."
+```
+
+This prevents a common benchmark lie. A profile can be human-reviewed and still have a bad run. A run can attest cleanly against a definition that is now stale. Both states need to be visible.
+
+### CodeGraph Shows Benchmark Receipts Need Multiple Orthogonal Metrics
+
+CodeGraph's benchmark docs are unusually useful because they do not reduce success to one number. They separate reads, greps, tool calls, wall-clock, cost, residual context occupancy, sufficiency, allocation efficiency, contamination, payload size, and call sequence.
+
+The direct Knight Bus translation:
+
+| CodeGraph Metric | Knight Bus Metric |
+|---|---|
+| reads/greps saved | graph scans/materializations avoided |
+| wall-clock | end-to-end job time, including projection and verification |
+| residual context occupancy | resident graph state after the run: heap, mapped, page cache, spill |
+| sufficiency | whether the output/receipt answered the user's job without extra manual work |
+| allocation efficiency | share of bytes/state spent on graph regions actually used by the answer |
+| contamination detection | hidden baseline leakage, warmed caches, unreported indexes, config drift |
+| call-sequence analysis | whether planner chose the intended low-RAM path or fell back to broad scans |
+
+This is now a concrete benchmark doctrine:
+
+```text
+Do not publish "4.5x lower RAM" alone.
+Publish a multi-metric receipt that shows what improved, what did not,
+what was held constant, and what could have contaminated the run.
+```
+
+The strongest subtle lesson is planner adoption. CodeGraph had an efficient trace path, but agents underused it. Knight Bus can have brilliant low-RAM storage profiles and still lose if the planner keeps choosing all-in-memory projection. So every benchmark should record not just final metrics, but which storage path was actually selected and why.
+
+### Benchmark Receipts Need Next-Action Evidence
+
+The deeper CodeGraph docs add a second benchmark doctrine: measure what happened after the supposedly good result. The sufficiency metric works because the agent's next move is behavioral evidence:
+
+| Next Action After Retrieval | CodeGraph Diagnosis | Knight Bus Equivalent |
+|---|---|---|
+| explore again | response did not answer | rerun same algorithm/profile |
+| read returned file | right file, wrong bytes | right graph region, wrong slice/window |
+| read unreturned file | recall miss | required graph region never entered the projection |
+| grep/glob | still hunting | planner could not localize the needed graph area |
+| moved on / answered | sufficient, not necessarily correct | user accepted output, still needs oracle/invariant checks |
+
+This is extremely useful for Knight Bus because RAM-bounded execution will have many plausible failure modes that look good in a single metric. A run can use less RAM and still be bad because it forces the user or planner to run again, broaden the slice, inspect missing rows, or abandon the low-RAM mode.
+
+So benchmark receipts should record post-run behavior:
+
+```text
+PostRunBehavior:
+  accepted_output
+  reran_same_profile
+  broadened_graph_slice
+  switched_storage_mode
+  read_extra_source_region
+  invoked_oracle_recheck
+  fell_back_to_materialized_projection
+  refused_under_budget
+```
+
+That lets us say something much more credible than "profile X used 4 GB." We can say:
+
+```text
+profile X used 4 GB
+AND produced the same output under oracle checks
+AND did not require broadened slices
+AND did not fall back to materialized projection
+AND did not force a manual source read
+```
+
+The allocation-efficiency doc also maps cleanly to graph state. For CodeGraph, the question is "of the bytes returned, how much did the answer cite?" For Knight Bus:
+
+```text
+state_allocation_efficiency =
+  bytes/pages/blocks used by output evidence
+  ------------------------------------------------
+  bytes/pages/blocks materialized or kept resident
+```
+
+This should be treated as relative, not absolute, just like CodeGraph warns. Some state may be useful precisely because the verifier ruled it out. But comparing two storage profiles on the same workload becomes much more informative if we know whether profile B kept 5 GB resident but only used 200 MB of it in the proof.
+
+Call-sequence analysis is the planner version of the same idea. CodeGraph found that an efficient trace tool existed, but the agent often chose broader `explore` calls; steering increased trace calls but did not fully displace the broad path until trace became self-sufficient. The Knight Bus translation:
+
+```text
+BenchmarkPathSequence:
+  validate_profile
+  choose_storage_mode
+  build_projection
+  lookup_sparse_index
+  stream_artifact_blocks
+  spill_or_cache
+  run_algorithm_phase
+  verify_output
+  emit_receipt
+  post_run_behavior
+```
+
+A low-RAM architecture is not proven unless the receipt shows the low-RAM path displaced the broad materialized path. Otherwise we may ship the equivalent of "trace plus explore": the correct-looking low-RAM machinery exists, but the planner still materializes too much state.
+
+Finally, the direct-vs-delegated exploration doc is a reminder to label weak evidence honestly. It contains useful observed behavior, but the source itself flags some token figures as unverified because the raw logs are gone. Knight Bus should copy that humility:
+
+```text
+MetricEvidenceLevel:
+  verified_from_receipt
+  reproduced_from_raw_logs
+  benchmark_harness_output
+  manually_observed
+  indicative_estimate
+  vendor_or_self_reported
+```
+
+This matters for founder storytelling. "We estimate 5x lower RAM" may be fine in a private ideation doc. A public claim should say whether the number came from a replayable receipt, raw logs, or an estimate.
+
+### CocoIndex Is A Compute-Router UX Reference
+
+CocoIndex Code is not graph OLAP, but its architecture and embedding docs are a direct product reference for exposing tradeoffs:
+
+| CocoIndex Choice | Knight Bus Analogue |
+|---|---|
+| local sentence-transformers vs cloud embeddings | local bounded storage vs cloud/large-memory execution |
+| encoder vs decoder embedding speed | algorithm family and state-transition cost |
+| MPS/GPU memory limits and OOM retry | RAM cap, spill policy, retry with smaller frontier/block size |
+| language-aware chunking around AST boundaries | graph-shaped partitioning around algorithm access boundaries |
+| long-lived daemon plus per-request client | run daemon plus planner/executor/receipt client |
+| SQLite vector store | SQLite/duckdb/manifest index over durable graph artifacts |
+
+The product copy should be that explicit. Users should not have to infer whether a mode is private, local, cheap, high accuracy, high RAM, low RAM, approximate, or exact.
+
+### CocoIndex Turns Mode Choice Into Agent Ergonomics
+
+The deeper CocoIndex Code pass makes one thing clearer: the hard part is not only choosing a clever physical representation. The hard part is making that representation operable by agents and humans without forcing them to hold the whole system in their head.
+
+CocoIndex solves this by wrapping heavy local compute in a disciplined product shell:
+
+```text
+setup/config       -> ccc init
+artifact creation  -> ccc index
+query path         -> ccc search / ccc grep
+runtime visibility -> ccc status / ccc daemon status
+health checks      -> ccc doctor
+agent doorway      -> skill + MCP
+warm state         -> daemon + heartbeat + idle exit
+resource release   -> last_exit marker + project removal + cache cleanup
+```
+
+Knight Bus needs the same pattern, but with graph-specific nouns:
+
+```text
+setup/config       -> kb init
+profile validation -> kb profile validate
+artifact creation  -> kb project / kb materialize
+algorithm run      -> kb run pagerank --profile bounded-ram
+runtime visibility -> kb status / kb daemon status / kb memory status
+health checks      -> kb doctor
+agent doorway      -> kb skill + kb mcp
+warm state         -> graph-run daemon + profile registry + artifact registry
+resource release   -> idle exit + artifact eviction + receipt-backed close
+```
+
+The most important translation is the mode table. CocoIndex explains local Sentence-Transformers, cloud LiteLLM, and local LiteLLM in user language: fastest/private/offline versus cloud performance/cost/data-leaves-machine versus managed local server complexity. Knight Bus should do the same for graph algorithms:
+
+| Knight Bus Mode | User Promise | Tradeoff To Say Out Loud | Receipt Fields |
+|---|---|---|---|
+| `ram_first_exact` | Fastest exact run when memory is abundant. | Higher peak RSS, longer preparation, possible cache pressure. | `peak_rss`, `prepare_ms`, `algorithm_ms`, `resident_after_run`, `storage_path_sequence`. |
+| `bounded_ram_exact` | Exact output under a declared RAM ceiling. | Slower because sparse/on-file/spill paths are used. | `ram_budget_bytes`, `peak_rss`, `spill_bytes`, `on_file_lookups`, `budget_refusals`. |
+| `bounded_ram_approx` | Lower RAM and predictable completion for ranking/similarity workloads. | Approximation error or confidence interval must be visible. | `epsilon`, `confidence`, `oracle_sample_size`, `exactness_level`, `max_error_observed`. |
+| `accelerated_worker` | Use GPU/vectorized worker for the hot state transition. | Hardware-specific, needs memory watermarks and OOM fallback. | `device`, `worker_peak_memory`, `low_watermark`, `high_watermark`, `retry_smaller_batch_count`. |
+| `cloud_offload` | Run bigger jobs without local memory pressure. | Data movement, privacy, queue time, provider cost. | `egress_bytes`, `provider`, `queue_ms`, `cost_estimate`, `privacy_boundary`. |
+| `direct_scan_light` | Avoid building a heavy projection for simple queries. | Not suitable for iterative/global graph algorithms. | `planner_gate`, `scan_bytes`, `reason_no_profile_materialized`. |
+
+CocoIndex's 512-token-local-model lesson is also a graph lesson. Small local context can work if chunking respects natural boundaries. For Knight Bus, "chunking" should not mean arbitrary node-id ranges. It should mean algorithm-shaped boundaries:
+
+```text
+Code chunking:
+  split at function/class/method boundaries
+  keep chunks around the model window
+  preserve line spans for retrieval proof
+
+Graph chunking:
+  split at weakly connected component, community, temporal window, label/type,
+  source shard, degree class, hub neighborhood, or frontier slab boundaries
+  keep chunks around the memory budget
+  preserve node/edge/property spans for correctness proof
+```
+
+This suggests a strong first-principles architecture:
+
+```text
+raw source graph
+  -> profile manifest
+  -> graph-boundary splitter
+  -> algorithm-shaped artifact store
+  -> bounded run daemon
+  -> receipt index
+  -> agent/human tools
+```
+
+The daemon source also gives us a concrete lifecycle pattern. A Knight Bus daemon should cache loaded datasets and profile artifacts by root, but every client request should handshake with enough metadata to detect stale settings, stale profile manifests, or incompatible receipts:
+
+```text
+HandshakeResponse:
+  kb_version
+  daemon_pid
+  dataset_root
+  dataset_manifest_hash
+  profile_hash
+  settings_mtime_or_hash
+  loaded_artifacts
+  warnings
+```
+
+The `doctor` command should be more than "does it run?" For Knight Bus it should preflight the parts that will otherwise become benchmark contamination:
+
+```text
+kb doctor:
+  source graph reachable?
+  profile manifest valid?
+  expected node/edge/property counts match?
+  baseline adapter reachable?
+  artifact path writable and big enough?
+  RAM budget realistic for selected profile?
+  hidden broad-scan fallback disabled for benchmark mode?
+  prior artifacts compatible with current profile hash?
+  receipt schema version current?
+```
+
+The structural `ccc grep` path is a useful warning against over-materializing. CocoIndex has both `search` and `grep`: semantic indexed path for fuzzy concept retrieval, structural direct path for exact syntax patterns. Knight Bus should also have light and heavy paths. A simple neighborhood/property query should not pay the PageRank projection cost. A PageRank or WCC run should not pretend a direct scan is enough.
+
+```text
+Planner gate:
+  if query is local adjacency/property lookup:
+    use direct_scan_light
+  else if query is one-hop/two-hop bounded traversal:
+    use adjacency_artifact_small
+  else if query is iterative global algorithm:
+    use algorithm_profile
+  else if query exceeds budget and no approximation allowed:
+    refuse_with_budget_receipt
+```
+
+The MPS/GPU subprocess detail becomes a broader compute-isolation principle. If a graph run can blow allocator state, isolate it:
+
+```text
+hot algorithm worker:
+  warm model/artifact/state allowed
+  low/high memory watermarks enforced
+  OOM or budget breach retries with smaller frontier/block/batch
+  final receipt records fallback and degraded mode
+  parent daemon remains alive and inspectable
+```
+
+The product implication is sharper than "build lower-RAM graph algorithms." It is:
+
+```text
+Build an agent-operable local graph compute appliance where every expensive
+mode is explicit, every RAM/latency tradeoff is inspectable, and every result
+comes with a receipt showing which storage path was actually used.
+```
+
+### Structured Harnesses Make Graphs A Verification Interface
+
+The Structured Graph Harness and adjacent harness papers clarify why "graph" keeps showing up around agents. It is not because graph diagrams are fashionable. It is because graphs turn hidden behavior into inspectable state:
+
+```text
+agent loop:
+  model sees history
+  model guesses next action
+  tool returns more history
+  model decides whether it is done
+
+structured harness:
+  state graph / execution DAG is explicit
+  next actions are finite or schedulable
+  validators decide whether state advances
+  recovery has bounded escalation
+  final completion is audited
+```
+
+That maps almost perfectly to our verification-first coding and graph-compute thesis:
+
+```text
+unverified graph job:
+  query/profile text
+  runtime materializes something
+  output table appears
+  user trusts a benchmark chart
+
+Knight Bus graph harness:
+  profile DAG
+  finite storage/run modes
+  verified projection state
+  bounded recovery/fallback edges
+  baseline/oracle checks
+  receipt-indexed completion
+```
+
+The Structured Graph Harness paper is especially important because it states both the promise and the caveat. It proposes immutable plan-version DAGs, separated planning/execution/recovery, and bounded escalation, but it also says the paper is theoretical and not empirically validated. That is the exact posture Knight Bus should take until a profile is measured:
+
+```text
+design claim:
+  "This profile should reduce peak RSS by using sparse/on-file artifacts."
+
+verified claim:
+  "On dataset X, profile hash Y, hardware Z, run N of M,
+   peak RSS was A, spill was B, correctness delta was C,
+   and the storage path sequence proves no broad fallback was used."
+```
+
+Harness-G adds a more operational lesson. It does not ask the policy to invent arbitrary search strings. It builds a paragraph-sentence-entity graph, then exposes a finite menu of typed actions. The environment handles graph navigation, validation, and deduplication. This is exactly how an LLM should interact with Knight Bus:
+
+```text
+bad agent interface:
+  "Here is a huge graph database. Write Cypher or choose an algorithm."
+
+better agent interface:
+  valid actions:
+    1. run `pagerank` with `ram_first_exact`
+    2. run `pagerank` with `bounded_ram_exact`
+    3. run `ppr_local` with `bounded_ram_approx`
+    4. inspect artifact status
+    5. compare against Neo4j/GDS baseline
+    6. refuse because RAM budget cannot be met exactly
+```
+
+That "finite action menu" matters for product design. If the agent can only pick valid storage/run modes, we reduce hallucinated knobs, invalid combinations, and invisible fallbacks. The UI/API should therefore be profile-generated:
+
+```text
+profile manifest
+  -> valid storage modes
+  -> valid algorithm parameters
+  -> valid budget ranges
+  -> valid fallback edges
+  -> valid verification oracles
+  -> generated CLI/MCP action menu
+```
+
+#### Harness-G Implementation Makes Menus A Runtime Contract
+
+The Harness-G source pass makes the finite-action-menu idea much more concrete. The README says "finite menu of typed actions"; the implementation shows what that means operationally:
+
+```text
+protocol:
+  INIT before initialization
+  A0 / A1 / A2 after initialization
+  reject unknown action ids
+  reject natural-language search queries
+  reject A_k || model-written short query
+
+environment:
+  SELECT useful evidence
+  LOOKUP one offered entity
+  ANSWER_WITH visible evidence and finish
+  ANSWER when enough evidence is selected
+  never reoffer already-looked-up entities
+  cap lookup options
+  filter bad lookup targets
+  build the retrieval query from state
+```
+
+This matters because it changes the agent contract:
+
+```text
+Bad contract:
+  "Agent, write the graph query and choose the storage mode."
+
+Harness-G style contract:
+  "Agent, choose one valid next action.
+   Runtime will construct and validate the graph operation."
+```
+
+Knight Bus should copy that exactly. A graph-compute agent should not be asked to invent low-level knobs in prose. The runtime should generate action menus from the current profile state:
+
+| Knight Bus State | Valid Action Examples | Runtime-Owned Work |
+|---|---|---|
+| no projection | `A0 = BUILD_PROJECTION bounded_ppr_profile` | source scan, schema validation, id maps, manifest |
+| projection built | `A1 = RUN bounded_exact_10gb`, `A2 = RUN ram_first_fast`, `A3 = VALIDATE_ONLY` | storage-mode compatibility, budget check, fallback planning |
+| run complete | `A0 = READ_RECEIPT`, `A1 = COMPARE_BASELINE`, `A2 = RERUN_WITH_5GB` | artifact lookup, metric extraction, baseline adapter |
+| run failed | `A0 = SHRINK_BLOCK`, `A1 = INCREASE_TIME`, `A2 = REFUSE_UNDER_BUDGET` | recovery policy and correctness constraints |
+| profile edit proposed | `A0 = APPLY_PATCH`, `A1 = LINT_PROFILE`, `A2 = CREATE_NEW_VERSION` | immutable versioning and dependency validation |
+
+The central rule:
+
+```text
+The model selects intent.
+The runtime owns physical execution.
+```
+
+Harness-G also gives a good storage-artifact shape. It writes a "clean tri-graph" instead of a vague graph database:
+
+```text
+passages.parquet
+sentences.parquet
+entities.parquet
+mentions.parquet
+passage_entity.npz
+sentence_entity.npz
+sentence_sentence_edges.parquet
+sentence_sentence.npz
+entity_synonym_edges.parquet
+entity_entity_synonym.npz
+id_maps.json
+lexical_index.json
+graph_manifest.json
+build_report.md
+optional passage/sentence/entity embeddings
+```
+
+That is a good contrast with "store everything in Neo4j and query it." It says:
+
+```text
+If the workload needs a paragraph/sentence/entity graph,
+store paragraph/sentence/entity artifacts directly.
+```
+
+For Knight Bus:
+
+```text
+If the workload needs PPR/local ranking:
+  store fragment/entity seed sidecars and graph propagation slabs.
+
+If the workload needs temporal evidence recall:
+  store event-time interval slabs, evidence-grade sidecars, and contradiction lanes.
+
+If the workload needs connected components:
+  store union/checkpoint logs and boundary-edge blocks.
+
+If the workload needs shortest path:
+  store degree buckets, frontier slabs, and distance-checkpoint blocks.
+```
+
+The validator is the most important practical carryover. Harness-G validates required files, unique IDs, canonical identities, mention references, id-map lengths, sparse matrix shapes, edge semantics, manifest counts, embedding dimensions, and loader compatibility. That suggests `kb profile validate` should be a first product command, not a CI afterthought:
+
+```text
+kb profile validate:
+  required artifacts exist
+  source manifest hash matches
+  id maps are bijective
+  node/edge/property references resolve
+  sparse matrix shapes match manifest counts
+  directionality matches algorithm semantics
+  embedding dimensions match sidecar metadata
+  storage mode supports chosen algorithm
+  bounded mode has no undeclared full-materialization fallback
+  runtime loader can open the artifact
+```
+
+Harness-G's SNC side-channel adds a subtler benchmark idea. It does not just ask whether the final answer is correct. It asks whether the chosen information action was better than feasible same-state alternatives and whether earlier actions enabled later gains.
+
+For Knight Bus, the analogous receipt should ask:
+
+```text
+At the moment the planner chose bounded-PPR-10GB,
+what were the other legal choices?
+
+  ram-first exact?
+  bounded exact?
+  bounded approximate?
+  light direct retrieval?
+  baseline compare?
+  refuse under budget?
+
+Why was this one selected?
+What would the alternatives have cost?
+Did an earlier artifact-build step enable this cheaper run?
+```
+
+This converts planner evaluation from a retrospective story into a measured state:
+
+| SNC Concept | Knight Bus Equivalent |
+|---|---|
+| taken action | selected profile/storage mode |
+| frontier actions | feasible alternative modes under same state |
+| information gain | correctness/latency/RAM improvement or evidence gained |
+| produced SIDs/entities | artifacts, blocks, frontier state, output rows |
+| consumed SIDs/entities | upstream artifacts and source slices |
+| dependency edge | profile phase or artifact dependency |
+| enabling credit | expensive build step that unlocks cheaper future runs |
+| deadzone | ignore tiny metric deltas beneath noise floor |
+| exact Shapley cap | only do expensive alternative attribution for small runs |
+
+The product implication is big:
+
+```text
+Do not only emit a run receipt.
+Emit a planner receipt.
+```
+
+The run receipt says what happened. The planner receipt says what could have happened and why the runtime chose this path. That is the difference between a benchmark table and an auditable compute router.
+
+StructAgent gives an even harder rule: progress is committed only when a verifier attaches evidence to state. For Knight Bus, this suggests that `RunState` should not be a mutable log where the executor says "done." It should advance only through verified events:
+
+```text
+RunState events:
+  SourceFrontierVerified
+  ProjectionManifestValidated
+  ArtifactHashSealed
+  MemoryBudgetAccepted
+  AlgorithmPhaseCompleted
+  OutputParitySampleChecked
+  BaselineComparisonCompleted
+  ReceiptBundleWritten
+  DoneAuditorAccepted
+```
+
+#### StructAgent Source Makes RunState Verifier-Owned
+
+The StructAgent source pass makes that rule operational enough to turn into Knight Bus architecture. The surprising practical detail is that "verification-first" is not one component. It is a runtime loop, a ledger schema, a boundary verifier, a final auditor, a recovery router, and a replay artifact bundle.
+
+```text
+planner intent
+  -> actor/executor action
+  -> fresh observation / artifact state
+  -> boundary verifier
+  -> typed state event
+  -> DONE gate
+  -> optional adversarial auditor
+  -> terminal receipt or typed recovery
+```
+
+The pattern worth copying is:
+
+```text
+Execution produces claims.
+Verification produces state.
+Auditing produces terminal trust.
+Recovery produces the next legal plan state.
+```
+
+For Knight Bus, this means a graph algorithm run should not transition from `running` to `complete` because the PageRank/PPR/connected-components implementation returned. That return value is only a claim. The run becomes complete only after verifier events attach evidence:
+
+| StructAgent Source Pattern | Knight Bus Translation |
+|---|---|
+| `StepRecord` captures observation, action, planner decision, key nodes | `RunEvent` captures phase, profile action, artifact refs, metrics, verifier events |
+| `Outcome` has state, dependencies, evidence, verifier trace, failures, facts | `PhaseOutcome` has state, artifact hash, oracle/sample trace, budget fields, failure attribution |
+| `VerifySpec` limits what checks can run | `OracleSpec` limits checks to manifest, sparse shape, output parity, checksum, RSS/page-cache sample, and baseline/oracle calls |
+| Boundary verifier checks milestones at declared boundaries | Phase verifier checks after projection build, artifact build, algorithm phase, baseline comparison, and receipt write |
+| Actor `DONE` is only a claim | Algorithm `finished` is only a claim |
+| DONE gate requires all outcomes verified | Terminal gate requires all mandatory phase outcomes verified |
+| DoneAuditor has a per-task budget | Final receipt auditor has a per-run budget and cannot burn unbounded checks |
+| Auditor `FAIL` forces replan; unavailable auditor does not refute | Oracle unavailable, oracle refuted, and oracle inconclusive are separate recovery states |
+| Recovery transitions are small literal labels | Graph-run recovery uses a small enum rather than prose diagnosis |
+| `traj.jsonl` plus `trajectory.html` make runs reviewable | `events.jsonl` plus `receipt.md/html` make performance claims replayable |
+
+This gives a concrete `RunState` shape:
+
+```text
+RunState
+  run_id
+  dataset_manifest_hash
+  profile_version
+  profile_action_id
+  current_phase
+  phase_outcomes[]
+    id
+    state: pending | verified | reverted | failed | inconclusive
+    depends_on[]
+    verifier_kind
+    verifier_trace_hash
+    evidence_refs[]
+    produced_artifact_refs[]
+    consumed_artifact_refs[]
+    budget_snapshot
+  recovery_state
+    last_transition
+    retry_count
+    budget_breach_count
+    same_strategy_no_progress_count
+  final_audit
+    status
+    auditor_budget_spent
+    reason
+```
+
+The important architectural bet: make this state compact enough for an LLM planner to read, but backed by append-only event files and artifact hashes so a human or deterministic checker can reconstruct the claim. The LLM should see a terse state board; the receipt should preserve the full evidence trail.
+
+StructAgent also separates `False`, `None`, and unavailable verifier results. That matters a lot for graph compute. If a verifier says "the output sample mismatched baseline," recovery should debug the algorithm or projection. If the verifier says "oracle timed out," recovery should change oracle/baseline policy or re-run the verifier. If the verifier says "not enough evidence," recovery should collect a better sample. These should not collapse into one "failed" bucket.
+
+```text
+confirmed      -> advance state
+refuted        -> typed recovery
+inconclusive   -> gather more evidence or run stricter oracle
+unavailable    -> retry/check infrastructure/escalate
+```
+
+The source also gives us a direct answer to "how do we make long low-RAM jobs less scary?" We need a small transition vocabulary:
+
+| Proposed Knight Bus Transition | Meaning |
+|---|---|
+| `source_unavailable` | source graph or baseline connector could not be read |
+| `profile_invalid` | profile manifest, artifact schema, or parameter set failed validation |
+| `artifact_invalid` | built artifact does not match manifest or source references |
+| `budget_refuted` | actual peak RSS/page-cache/spill exceeded declared cap |
+| `output_refuted` | sampled or full oracle comparison disagreed with expected output |
+| `oracle_unavailable` | verifier/baseline could not run |
+| `frontier_exhausted` | bounded traversal cannot prove sufficiency under current cap |
+| `spill_exceeded` | bounded mode exceeded declared spill/deadline policy |
+| `same_strategy_no_progress` | repeated recovery chose equivalent physical plan without new evidence |
+| `refuse_under_budget` | runtime refuses to claim correctness under requested cap |
+
+This makes low-RAM execution more predictable because the planner is not improvising a recovery story. It is choosing among legal next states.
+
+One caution from the source pass: StructAgent appears to be a young research repo with strong source organization and reproducibility artifacts, but not a conventional test-heavy library in the visible tree. It is excellent evidence for architecture patterns, not a benchmark baseline we can blindly quote. For Knight Bus, that means we can borrow the contract shape, but our claims must be established by our own executable specs and receipts.
+
+Living-Harness then adds a cumulative-learning layer. When a run fails, the product should not merely save a sad log. It should turn failures into bounded profile updates:
+
+```text
+failed run receipt
+  -> failure attribution
+  -> profile lint rule
+  -> fallback edge
+  -> smaller frontier/block heuristic
+  -> fixture added to regression pack
+  -> future agent skill update
+```
+
+#### Living-Harness Makes Failed Receipts Become Profile Repairs
+
+The Living-Harness paper fills in the next loop after StructAgent. StructAgent teaches "do not advance state without verification." Living-Harness teaches "do not waste verified failures; convert them into bounded reusable repairs."
+
+The transferable model is a two-timescale system:
+
+```text
+within-run time:
+  profile is frozen
+  tools are frozen
+  allowed verifier probes are frozen
+  run emits events, metrics, failures, and receipt evidence
+
+post-run evolution time:
+  evaluator/oracle reads completed receipt
+  Evolution-SOP classifies the failure or success pattern
+  bounded profile patch is proposed
+  regression and safety gates decide whether it can be committed
+  new profile version becomes available for future runs
+```
+
+This is the right antidote to both chaos and stagnation. If the profile can mutate during a run, benchmark claims become contaminated. If the profile never evolves, the same bad projection, block size, frontier cap, or verifier gap will recur forever.
+
+For Knight Bus, the analogous evolving state should have two parts:
+
+```text
+ProfileMemory
+  trigger_conditions
+  observed_failure_pattern
+  recovery_action_that_worked
+  workload_shape
+  budget_context
+  evidence_refs
+
+ProfileStateGraph
+  state_node: workload/profile/budget/oracle condition
+  repair_edge: when condition appears, use/avoid/switch/verify
+  transition_rule: allowed next profile action
+  scope: profile family, dataset family, algorithm family
+  validity: created_at, last_seen, regression_status
+```
+
+That creates a very practical product loop:
+
+| Failed Receipt Signal | Possible Gated Repair |
+|---|---|
+| `budget_refuted` on high-degree graph | add hub sidecar requirement or smaller frontier cap |
+| `output_refuted` only on temporal edges | add temporal-staleness verifier and fixture |
+| `frontier_exhausted` under 5 GB | add "refuse under 5 GB exact mode" edge |
+| repeated `same_strategy_no_progress` | mark the physical plan as a failed path for that workload shape |
+| `oracle_unavailable` on Neo4j baseline | add retry/backoff or alternate oracle path |
+| `artifact_invalid` from sparse shape mismatch | add profile lint rule before expensive run |
+| latency spike with low RSS | add seek-count or row-group locality warning |
+| approximate mode passes sample but fails full parity | lower confidence, require stricter oracle, or disallow approximate mode for that shape |
+
+The Living-Harness limitation section is the part we should take most seriously. It explicitly says the approach does not automatically solve rollback, stale entries, regression testing, arbitrary stream order, manual SOP design, cost, or privacy. That maps directly to Knight Bus:
+
+```text
+profile evolution risks:
+  stale heuristics survive too long
+  private customer workload traces leak into reusable rules
+  one dataset-specific patch damages another dataset family
+  old benchmark fixtures silently regress
+  profile graph grows until retrieval itself becomes expensive
+  "learned" rule hides a broad scan or RAM breach
+```
+
+So `profile_evolution_v1` should not just say "learn from runs." It should be a gated commit pipeline:
+
+```text
+receipt -> posterior -> proposed profile patch -> lint -> replay fixtures
+        -> privacy/redaction check -> rollback plan -> new immutable profile version
+```
+
+The key product phrase:
+
+```text
+Receipts become gated profile repairs.
+```
+
+That is a clean founder-level loop. The first product does not need a thousand graph algorithms. It needs one or two profiles whose receipts are strong enough that failures become better future executions.
+
+AtomicRAG adds the storage-granularity lesson. Coarse chunks increase noise; extremely fine units can lose coverage under a top-k or RAM budget. For graph algorithms, this is the same tradeoff we keep circling:
+
+| Storage Unit | Failure Mode If Too Coarse | Failure Mode If Too Fine | Knight Bus Profile Question |
+|---|---|---|---|
+| node-id block | pulls irrelevant edges/properties into RAM | too many seeks and boundary joins | What block size optimizes coverage/purity under the RAM cap? |
+| community slab | hides important cross-community bridges | loses global signal when over-partitioned | Which bridge edges must stay in the sparse index? |
+| temporal window | stale/current state gets mixed | too many tiny windows to scan | What is the sealed/current frontier policy? |
+| high-degree hub block | hub dominates memory and ranking | hub neighborhood split destroys locality | Do hubs need a custom sidecar artifact? |
+| PPR atom/evidence unit | noisy rank propagation | insufficient evidence coverage | What top-k/restart/damping profile gives enough proof? |
+
+The Harness enterprise Knowledge Graph article is the commercial version of the same lesson. It argues that modeled platform data should be queried through a Knowledge Graph and HQL rather than raw APIs through MCP, because modeled fields, relationships, and aggregations reduce guessing, token load, and latency. The Knight Bus analogue is:
+
+```text
+If data and algorithm are modeled:
+  use graph profile + deterministic executor + receipt
+
+If data is partially modeled:
+  use schema-guided bridge + scoped source retrieval + receipt warning
+
+If data is unmanaged:
+  use raw connector/MCP/Cypher fallback, but mark it highest-cost/lowest-determinism
+```
+
+#### Harness KG Turns Modeled Data Into Product Latency
+
+The Harness article is useful because it makes graph structure a business architecture decision, not an academic preference. Their claim is not "Knowledge Graphs are elegant." Their claim is closer to:
+
+```text
+If the platform already understands the entities, fields, relationships, and aggregations,
+then the agent should not rediscover that structure through raw API calls every time.
+```
+
+That is the same principle Knight Bus can apply to graph compute:
+
+```text
+If the workload shape is known:
+  choose a profile with typed artifacts, legal operations, storage lanes, and receipts
+
+If the workload shape is partially known:
+  bridge from modeled envelope to scoped source retrieval, with warnings
+
+If the workload shape is unknown:
+  run generic fallback, but do not pretend it has bounded RAM or deterministic latency
+```
+
+This gives us a clearer product distinction:
+
+| Layer | Harness AI Analogy | Knight Bus Analogy | Product Meaning |
+|---|---|---|---|
+| modeled path | Knowledge Graph + HQL | custom graph profile + storage manifest + bounded executor | lowest cost, highest determinism |
+| partial bridge | event envelope plus scoped content retrieval | schema-guided import/projection plus scoped source scan | useful transition state |
+| managed integration | curated external system adapter | managed connector/profile for Graphiti, Neo4j, Parquet, Graph Node, etc. | repeatable but not fully owned |
+| raw fallback | external MCP/raw API calls | generic Cypher/raw graph import/raw file scan | highest cost, lowest determinism |
+
+The most important transfer is field and relationship metadata. For Harness, typed fields say what can be filtered, sorted, aggregated, or grouped. For Knight Bus, typed graph-profile fields should say what can be traversed, projected, approximated, materialized, spilled, cached, or refused. That metadata should sit before any algorithm run:
+
+```text
+ProfileSchema
+  entity/node lanes
+  edge lanes
+  property lanes
+  legal algorithms
+  exact/approx modes
+  aggregation/reduction semantics
+  allowed spill strategy
+  RAM ceiling behavior
+  verifier gates
+```
+
+The caution is also important. The Harness token numbers are vendor examples. We should cite them as directional evidence that modeled semantics can reduce context work, not as independent proof of a universal 15-25x result. The Knight Bus version must be more rigorous:
+
+```text
+For every claimed win:
+  baseline command
+  profile command
+  dataset hash
+  artifact hash
+  bytes read
+  slabs touched
+  peak RSS
+  spill bytes
+  wall-clock latency
+  correctness oracle
+  receipt verifier result
+```
+
+This turns the source into an actionable PMF thesis:
+
+```text
+Harness reduces AI-agent token waste by moving platform semantics into a modeled graph.
+Knight Bus reduces graph-compute RAM/latency waste by moving algorithm semantics into
+modeled physical graph profiles.
+```
+
+#### Context Graphs Make The Execution Trace A Graph Too
+
+The context-graph source cluster adds a second half to the Harness KG lesson. The Knowledge Graph article says, roughly: model what exists so agents do not rediscover structure. The Context Graph article says: model how work actually happens so agents do not reinvent process.
+
+For Knight Bus this means the product should model two graph layers:
+
+```text
+Data graph:
+  nodes, edges, properties, temporal validity, partitions, sidecars
+
+Execution graph:
+  projection phase, algorithm phase, spill phase, verifier phase, fallback phase,
+  profile-evolution phase, and the artifacts each phase consumes or produces
+```
+
+That is the missing bridge between "graph algorithms" and "verification-first product." The graph being computed over matters, but the graph of the computation matters too. If a low-RAM run succeeds, the product should know the path:
+
+```text
+workload_shape -> routed_profile -> artifact_build -> bounded_run
+  -> verification -> receipt -> reusable trace pattern
+```
+
+If it fails, the product should know that path as well:
+
+```text
+workload_shape -> routed_profile -> artifact_build -> spill_exceeded
+  -> verifier_refuted_budget -> fallback/refusal -> profile_repair_candidate
+```
+
+This suggests a concrete spec family:
+
+```text
+profile_trace_graph_v1
+  trace_id
+  step_index
+  relative_timestamp
+  action_type
+  tool/profile family
+  artifact/entity/slab IDs
+  process tags
+  outcome
+  duration
+  RAM counters
+  verifier status
+```
+
+The trace should be safe to aggregate. Raw logs can stay private and detailed; abstract trace steps should be compact enough to mine without exposing customer data. The context-graph article's k/n recurrence warning matters here. A single run should not become a default profile rule. Profile learning needs recurrence thresholds, recency weighting, competing path retention, sparse-data warnings, and privacy thresholds.
+
+The Agent Loop article then gives the operating-system metaphor that cleanly fits both Knight Bus and AI-native usage:
+
+```text
+agent context window = RAM
+tool calls = syscalls
+profile registry = filesystem/catalog
+profile schema discovery = virtual memory
+bounded graph artifacts = storage pages
+receipt summary board = process table
+```
+
+This changes the product bar. It is not enough to reduce graph algorithm RAM if the result forces the agent to read 500 KB of logs. A bounded-compute product should bound both:
+
+| Resource | Failure Mode | Knight Bus Design Response |
+|---|---|---|
+| machine RAM | hidden full materialization, hub explosion, whole-vector load | mmap/slabs/spill caps, profile manifests, peak RSS receipts |
+| context RAM | giant logs, huge schemas, unbounded JSON, too many tools | small verbs, pageable profile schemas, compact state board, artifact pointers |
+| human attention | opaque retries, unclear failure classes, benchmark handwaving | verifier-owned states, abstract trace graph, baseline/profile comparison |
+| profile memory | every failure becomes clutter | recurrence thresholds, stale-entry removal, rollback, regression replay |
+
+So the architecture should be deliberately OS-like:
+
+```text
+Small public surface:
+  kb profile list
+  kb profile describe
+  kb profile route
+  kb profile run
+  kb profile verify
+  kb receipt inspect
+  kb baseline compare
+  kb profile evolve
+
+Large private machinery:
+  profile registry
+  artifact store
+  graph sidecars
+  execution trace graph
+  verifier catalog
+  repair memory
+```
+
+This is also a PMF message:
+
+```text
+We make graph compute agent-native by keeping both kinds of RAM clean:
+machine RAM stays bounded, and agent context stays small enough to reason.
+```
+
+This pushes the product north star into a clean sentence:
+
+```text
+Knight Bus is a structured graph-compute harness: it turns graph workloads into
+finite, verifiable, budgeted execution plans whose storage/runtime choices are
+visible to agents, humans, and benchmarks.
+```
+
+### Agent Memory Graphs Define The First Local Workload
+
+The graph-memory sources sharpen the PMF wedge. A generic "memory graph" is already becoming a crowded category. Graphiti, Kumiho, Mem0, SGMem, and the Graph-based Agent Memory survey all point in the same direction: agents need memory that persists, updates, reasons over time, and can retrieve relevant context without stuffing everything into the prompt.
+
+The Knight Bus opportunity is not to build another memory product first. It is to run bounded, proof-carrying graph algorithms over memory graphs.
+
+```text
+generic agent memory product:
+  store conversations/facts/entities
+  retrieve context for the next answer
+  maybe expose a graph view
+
+Knight Bus over agent memory:
+  take a memory graph or context graph
+  choose a bounded algorithm/storage profile
+  run recall/ranking/audit/compaction under a RAM cap
+  emit answer context plus a receipt
+  prove which edges, windows, revisions, and evidence levels were used
+```
+
+This matters because memory graphs naturally become unbounded. A personal or company agent memory can accumulate years of chat, code, tickets, docs, emails, decisions, and artifacts. The survey explicitly names scalability and efficiency as challenges, including graph operations that can be quadratic or worse. That makes "RAM-bounded graph memory algorithms" a clean, tangible first vertical.
+
+The workload family is not one algorithm. It is a small Pareto set of local graph-memory jobs:
+
+| Memory Job | Graph Shape | Custom Storage Format | Why It Can Use Less RAM | Receipt Proof |
+|---|---|---|---|---|
+| Temporal fact lookup | Entity/fact edges with validity windows and source episodes | Interval-indexed edge slabs plus current-pointer side table | Avoid loading stale history unless the query asks for history | Validity windows scanned, source episodes cited, stale edges skipped |
+| Conflict-aware recall | Facts with evidence levels, supersession, and revision siblings | Immutable revision DAG plus mutable tag pointers and evidence-grade index | Load only active/sibling-relevant revisions instead of all memories | Revision frontier, evidence grades, promoted/demoted claims |
+| SGMem-style h-hop expansion | Session/round/turn/sentence/chunk graph with KNN sentence edges | Seven typed indexes plus sentence KNN graph and parent-chunk map | Traverse from candidate sentences and load only parent chunks selected by top-k | Seed indexes, h-hop cap, candidate chunks, final chunk ranking |
+| PPR/local ranking | Atom/entity/evidence graph around a query | Sparse frontier spool, top-k heap, hub sidecar, restart-vector cache | Keep only active frontier and heavy-hitter/hub metadata resident | Frontier bytes, iterations, convergence delta, top-k sufficiency |
+| Dynamic community refresh | Evolving entity/fact graph | Incremental label-propagation sidecar plus changed-edge log | Update affected neighborhoods instead of recomputing all communities | Changed edges, affected communities, skipped full recompute |
+| Stale fact audit | Temporal/provenance graph | Source-episode inverted index plus temporal contradiction index | Scan contradiction candidates, not entire memory | Contradiction candidates, evidence comparison, audit verdict |
+| Memory compaction | Long-lived memory graph with summaries/facts/insights | Offline compaction run folder with sealed before/after graph manifests | Run under batch cap; keep only sealed summary artifacts hot | Before/after hashes, dropped edges, retained evidence, quality checks |
+
+#### Graph Memory Survey Turns Memory Into Profile Families
+
+The graph-memory survey is most useful when treated as a product decomposition. It does not say "graph memory" is one thing. It says agent memory has a lifecycle:
+
+```text
+extraction -> storage -> retrieval -> evolution
+```
+
+That means Knight Bus can pick small, useful, independently benchmarkable profile families:
+
+| Lifecycle Phase | Profile Family | Bounded-Compute Question | First Receipt Fields |
+|---|---|---|---|
+| extraction | `memory_extract_profile` | Can raw text/trajectory/code events become graph facts without unbounded prompts or unverified timestamps? | source window, extracted nodes/edges, rejected claims, event-time confidence |
+| storage | `memory_store_profile` | Can facts/episodes/revisions be written into algorithm-shaped artifacts without whole-graph rebuilds? | artifact files, sidecar lanes, write scope, before/after counts, schema version |
+| retrieval | `memory_retrieve_profile` | Can recall use typed operators under a RAM/context budget? | operator path, seeds, hops, temporal window, candidates, peak RSS, context bytes |
+| evolution | `memory_evolve_profile` | Can repeated evidence repair/compact/reorganize the graph without corrupting old truth? | mutation candidates, recurrence threshold, dry-run diff, rollback pointer, regression replay |
+
+The survey's retrieval taxonomy should become a finite action menu:
+
+```text
+semantic_seed
+rule_filter
+temporal_window
+intra_layer_hop
+inter_layer_hop
+post_retrieval_reformulation
+external_source_bridge
+policy_selector
+```
+
+This is important because local memory queries often mix source types. A question like "what did we decide about low-RAM PageRank?" may need internal project memory, current repo code, old benchmark receipts, and possibly public docs. The survey's hybrid-source rule is a good default:
+
+```text
+For factual claims:
+  prefer independently verifiable authoritative sources
+
+For personal/local experience:
+  prefer scoped internal records matching the right user, project, and time window
+```
+
+That becomes a receipt policy, not a vibe:
+
+```text
+source_class: internal_experience | internal_fact | external_authority | external_unverified
+authority_policy: corroborated | source_of_truth | personal_history | unresolved_conflict
+user_scope: ...
+project_scope: ...
+time_scope: ...
+winner: internal | external | conflict_unresolved
+```
+
+The strongest validation for our low-RAM thesis is in the limitations section. The survey explicitly calls out graph-memory scalability and efficiency, including graph operations that can be quadratic or worse. The recommended directions line up almost exactly with Knight Bus:
+
+| Survey Challenge | Knight Bus Response |
+|---|---|
+| graph quality is hard to measure | structural-quality receipt: coherence, completeness, redundancy, temporal consistency |
+| graph operations can be quadratic or worse | cap-aware traversals, sparse frontiers, hub sidecars, broad-scan regression tests |
+| compression needed | sealed summaries, redundant-edge compaction, before/after graph manifests |
+| incremental update needed | changed-edge logs, affected-neighborhood recompute, protected-scope rebuilds |
+| approximate retrieval needed | exact/approx modes with quality-resource receipts |
+| privacy/security risks | local execution, redacted trace steps, provenance/evidence gates, audit logs |
+| schemas fail to transfer | profile/schema versioning and dynamic routing, with human review gates |
+| interpretability/trust required | explorable receipt graph and source-anchor citations |
+| multi-agent memory coordination | role-aware memory lanes, shared artifact locks, merge/conflict receipts |
+
+The benchmark warning is equally useful. We should not test a memory profile on a task that fits in a prompt and then claim victory. Each profile needs a benchmark matched to the claimed capability:
+
+| Claimed Capability | Better Benchmark Class |
+|---|---|
+| conversational persistence | multi-turn and cross-session interaction |
+| personalization | preference/profile update tasks |
+| long document fact retrieval | LongContext style retrieval |
+| long-horizon browsing/action | web or environment trajectory tasks |
+| workflow/tool memory | tool-use and workflow execution tasks |
+| continual improvement | lifelong/adaptation benchmarks |
+
+The quality metrics should be bundled with resource metrics:
+
+```text
+retrieval quality:
+  Precision@K, Recall@K, MRR
+
+graph quality:
+  coherence, completeness, redundancy, temporal consistency
+
+task utility:
+  task success, interaction efficiency, generalization
+
+Knight Bus resource layer:
+  peak RSS, bytes read, slabs touched, spill bytes, context bytes, wall time
+```
+
+That is a stronger version of the first local workload:
+
+```text
+Knight Bus is not a memory app.
+Knight Bus is the bounded graph-compute layer that makes memory apps affordable,
+auditable, and predictable as their graphs grow.
+```
+
+#### Awesome-GraphMemory Makes The Ecosystem Strategy Concrete
+
+The Awesome-GraphMemory repo is useful because it turns the survey into a living watchlist. The category is no longer a couple of isolated papers. It now includes benchmark suites, memory SDKs, temporal knowledge graph systems, single-file memory capsules, local-first memory products, and lakehouse-native graph engines.
+
+That tells us not to position Knight Bus as "yet another memory product." A sharper strategy is:
+
+```text
+Memory systems own:
+  user experience, ingestion, agent integration, fact extraction, conversation capture
+
+Knight Bus owns:
+  bounded graph algorithms, physical profile execution, verification receipts,
+  low-RAM modes, benchmark harnesses, and cross-system adapters
+```
+
+The ecosystem scan creates an integration shortlist:
+
+| System | What It Teaches | Knight Bus Integration Angle |
+|---|---|---|
+| Graphiti | temporal context graphs, invalidation, hybrid retrieval, community update | run bounded temporal lookup, stale-fact audit, PPR/BFS, community refresh |
+| taOSmd | append-only archive, fact verification, local 8 GB posture, metric honesty | run local bounded recall/compaction over archive-derived KG and verify unsupported facts |
+| Omnigraph | branchable graph state, Lance/lakehouse storage, agent branches, policy | run profiles over object-store graph artifacts and branch results for review |
+| Memvid | single-file append-only memory capsules, frames, time travel, compression | create portable benchmark/memory capsules with graph/vector sidecars |
+| Mem0/LangMem/Cognee-like SDKs | broad adoption of memory APIs | import/export adapter, not core competition |
+
+The recent Awesome-GraphMemory additions are especially interesting:
+
+```text
+Omnigraph:
+  graph state as versioned, branchable, object-store-native infrastructure
+
+taOSmd:
+  memory as append-only archive plus verified derived facts on small local machines
+
+Memvid:
+  memory as single-file append-only compressed capsule
+```
+
+These are three distinct physical design directions. They should become three Knight Bus compatibility tracks:
+
+| Track | Storage Posture | First Profile |
+|---|---|---|
+| lakehouse graph | object-store/Lance/branchable graph tables | bounded traversal and community update on cold artifacts |
+| local archive graph | append-only transcript plus derived temporal KG | temporal fact lookup and unsupported-fact audit |
+| single-file capsule | immutable frame log plus compact indexes | portable bounded recall and time-travel comparison |
+
+The benchmark lesson from taOSmd is worth preserving almost word for word as a principle, though not as a claim we own:
+
+```text
+Separate retrieval quality from generation quality.
+Separate judge sensitivity from algorithm quality.
+Separate hardware tier from headline accuracy.
+Separate unsupported extracted facts from searchable facts.
+```
+
+That is exactly the discipline Knight Bus needs. A graph profile may have excellent retrieval at Recall@5 but still fail end-to-end answer generation. Or it may reduce RSS while harming temporal consistency. Or it may pass on a 64 GB workstation but fail the 8 GB local tier. Those must be separate columns, not marketing fog.
+
+The ecosystem strategy after this pass is:
+
+```text
+1. Build one tiny local-memory fixture.
+2. Support one archive-derived temporal KG shape.
+3. Run three bounded profiles: temporal lookup, conflict-aware recall, compaction.
+4. Compare against at least one memory system's native retrieval path.
+5. Emit receipts that separate retrieval, generation, judge, hardware, RAM, and context cost.
+```
+
+The best first demo is small but emotionally legible:
+
+```text
+Input:
+  one developer's local memory graph
+  chats + docs + code decisions + source anchors
+
+Question:
+  "What did we decide about low-RAM PageRank, and what evidence supports it?"
+
+Modes:
+  1 GB exact-ish local recall
+  2 GB broader recall
+  5 GB high-confidence recall
+
+Output:
+  answer context
+  cited source nodes
+  temporal ordering
+  conflicting claims
+  receipt showing RAM cap, traversal path, skipped stale facts, and evidence grades
+```
+
+Graphiti gives the temporal context graph vocabulary: source episodes, temporal validity windows, hybrid retrieval, and automatic invalidation. SGMem gives the concrete query path: retrieve candidate indexes, expand h hops, map back to parent chunks, rank, and return bounded context. Kumiho gives the revision and evidence vocabulary: immutable revisions, mutable tags, typed dependency edges, belief revision, and evidence grades. Revka gives the runtime vocabulary: agent sessions, plans, RunLogs, audit chains, workflow DAGs, and graph-backed orchestration.
+
+The differentiator sentence becomes:
+
+```text
+Graphiti and Kumiho make memory graphs useful.
+Knight Bus makes expensive graph operations over those memory graphs bounded,
+inspectable, and benchmarkable.
+```
+
+This also gives a cleaner 3-month path:
+
+| Month | Build | Verification |
+|---|---|---|
+| Month 1 | Import local docs/chat/code memory into a simple temporal evidence graph; implement temporal lookup and evidence-filtered recall | Golden fixtures for temporal validity, stale fact invalidation, evidence grades, source anchors |
+| Month 2 | Add bounded h-hop expansion and PPR/local ranking over the memory graph with 1/2/5 GB budget modes | Compare against naive full-graph/in-memory baseline for answer sufficiency, peak RSS, residual resident state, and latency |
+| Month 3 | Add immutable run receipts, profile manifests, dynamic community sidecar, and compaction/audit job | Publish replayable receipts plus benchmark tables; show what changed between exact, bounded, and approximate modes |
+
+The risk is also clear. If Knight Bus talks about "agent memory" too broadly, it enters a noisy category. If it talks about "bounded graph algorithms over temporal/evidence memory graphs", it becomes much more specific and much harder to copy with a normal vector database wrapper.
+
+#### taOSmd Shows What A Local Memory Receipt Must Separate
+
+The taOSmd source pass is useful because it turns "local memory on small machines" from a vibe into an engineering ledger. The headline is not "copy taOSmd." The headline is that a serious memory or graph system needs physically separate layers:
+
+```text
+raw archive:
+  append-only events, hashes, file/line provenance, redaction
+
+derived stores:
+  vector rows, temporal KG triples, claims table, BM25/late-interaction indexes
+
+active views:
+  current valid triples, non-superseded vector rows, scoped retrieval lanes
+
+verification:
+  cited spans, verdict parser, verifier model, fail-closed status
+
+benchmark ledger:
+  measured versus extrapolated, retrieval versus generation, judge family,
+  hardware tier, model/quant, invalid runs, negative results
+```
+
+That is almost exactly the architecture Knight Bus needs for bounded graph compute. A PageRank result, temporal lookup result, community refresh, conflict scan, or compaction job should never be just a number in a log. It should be a claim backed by source graph spans, profile inputs, storage-mode signatures, verifier events, and budget measurements.
+
+The clean translation is:
+
+| taOSmd Pattern | Knight Bus Translation |
+|---|---|
+| zero-loss archive | append-only graph input and run-event archive |
+| archive span IDs | node/edge/file/range IDs cited by every result claim |
+| vector/KG derived stores | profile-specific physical artifacts rebuilt from archive |
+| `valid_to` active filter | active graph view over historical graph state |
+| soft supersede | invalidate stale derived facts without deleting raw evidence |
+| store-mode signature | refuse to mix incompatible physical profile formats |
+| fail-closed verifier | unparseable or unavailable verification never becomes supported |
+| strict/prefer/off claim gate | user-selectable speed versus assurance modes |
+| full/subset/invalid benchmark labels | public benchmark ledger with promotion rules |
+
+The product lesson is sharper than a generic "we should benchmark honestly":
+
+```text
+Every profile result should answer:
+  What raw data did this come from?
+  Which physical layout was used?
+  What RAM budget was promised?
+  What RAM was actually observed?
+  What was skipped, approximated, or spilled?
+  Which claims were supported, unverified, partial, unsupported, or contradicted?
+  Which benchmark parser and judge family scored it?
+  Is this row measured, extrapolated, queued, failed, or invalid?
+```
+
+This is how the PMF wedge becomes credible. If a user says, "I only have 5 GB and I can wait an hour," the system can choose a bounded mode and report the cost. If another user says, "I need the strongest evidence and can spend more RAM," the system can use a stricter gate and broader physical artifact. The difference between those modes should be visible in the receipt, not hidden in implementation detail.
+
+The most concrete executable specs to extract from taOSmd are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_archive_v1` | WHEN graph input or chat/doc/code memory is ingested, THEN raw records SHALL be appended with hashes and source span IDs before any derived artifact is built |
+| `profile_store_mode_signature_v1` | WHEN a profile opens a derived artifact, THEN incompatible layout, dimension, quantization, or algorithm mode SHALL fail loudly with a rebuild instruction |
+| `profile_claim_verifier_v1` | WHEN a profile reports a result claim, THEN the claim SHALL cite source spans and SHALL fail closed to unverified on parser/model/tool ambiguity |
+| `verification_gate_mode_v1` | WHEN a user selects off, prefer_verified, or strict, THEN retrieval/profile output SHALL include the gate mode and the exact dropped/promoted claim counts |
+| `bounded_verify_pass_v1` | WHEN verification runs asynchronously, THEN it SHALL batch, terminate, preserve unverified backlog, and report attempted/written/fail-closed counts |
+| `degraded_run_receipt_v1` | WHEN a derived index write fails after archive succeeds, THEN the system SHALL expose degraded=true, missing artifact counts, and a repair plan |
+| `benchmark_truth_ledger_v1` | WHEN a benchmark row is published, THEN it SHALL include dataset size, subset/full label, measured/extrapolated label, judge/parser version, empty-output guard, hardware tier, model/quant, RAM, latency, and failure/invalid status |
+
+The rubber-duck check:
+
+```text
+Could this become too much ceremony?
+  Yes, if every tiny local run emits a huge legal brief.
+
+How to prevent that?
+  Make the full receipt machine-readable and let the UI show three levels:
+    summary: supported / unverified / failed, peak RAM, wall time
+    inspection: source spans, skipped partitions, layout mode, verifier events
+    audit: full append-only event trail and benchmark config
+
+Is taOSmd proof that Knight Bus can beat Neo4j/GDS?
+  No. It is not a Neo4j benchmark and not a graph-algorithm engine.
+
+What does it prove enough to care about?
+  It proves that serious local AI systems already need append-only evidence,
+  derived graph/vector artifacts, verification gates, degraded-mode repair,
+  and hardware-tier benchmark honesty. That is our product surface.
+```
+
+The Knight Bus phrasing after this pass:
+
+```text
+Knight Bus is a bounded graph-compute engine for evidence-bearing graphs.
+It treats storage layouts, algorithm outputs, and benchmark claims as rebuildable,
+verifiable artifacts over an append-only source archive.
+```
+
+#### Memvid Makes Portable Profile Capsules Plausible
+
+Memvid is useful for a different reason than taOSmd. taOSmd teaches the evidence ledger. Memvid teaches the packaging shape. Its most interesting claim for Knight Bus is not the headline benchmark numbers, because those still need independent replication. The interesting source-level pattern is this:
+
+```text
+a whole memory/search artifact can be one file:
+  header
+  embedded WAL
+  compressed frames
+  lexical index
+  vector index
+  time index
+  footer / TOC
+  optional encryption wrapper
+```
+
+For Knight Bus, this becomes a portable profile capsule:
+
+```text
+graph_profile_capsule_v1:
+  header:
+    magic, spec version, profile kind, algorithm family
+
+  embedded_profile_wal:
+    pending run events, writes, segment refs, verifier events
+
+  graph_frames:
+    raw node/edge chunks, properties, source paths, source hashes
+
+  physical_indexes:
+    csr/csc adjacency, id map, degree sidecar, time index, partition map,
+    optional vector/text indexes for local memory graphs
+
+  profile_receipts:
+    budgets, observed RAM, latency, skipped partitions, spills,
+    approximation mode, verification status
+
+  footer:
+    TOC hash, generation, last valid commit pointer
+
+  optional envelope:
+    streaming encryption, policy labels, expiry, sharing rules
+```
+
+This matters because the current research and coding loop is drowning in repo clones, TSVs, DOT graphs, SQLite files, docs, screenshots, benchmark tables, and chat-derived links. A single portable capsule could make a profile run shareable:
+
+```text
+copy one file to another machine
+open it read-only
+verify header/footer/checksums
+run bounded profile
+compare receipt
+attach artifact to PR, issue, paper, or founder demo
+```
+
+The key Memvid translation table:
+
+| Memvid Pattern | Knight Bus Translation |
+|---|---|
+| `.mv2` single-file memory | `.kbgp` or `.kbgraph` single-file graph-profile capsule |
+| 4KB header with version/spec/WAL/TOC fields | fixed capsule contract with profile kind, budget class, and compatibility version |
+| embedded WAL | bounded run-event log and crash-recovery surface |
+| BLAKE3 record checksums | per-event and per-segment integrity verification |
+| backward scan for last valid footer | recover last valid profile commit after interrupted writes |
+| time index track | event-time and processing-time range replay |
+| manifest WAL for segments | parallel graph-index build without losing segment metadata on crash |
+| single-file tests | artifact can be copied and replayed without sidecars |
+| doctor recovery | explicit repair tool, not silent best-effort opening |
+| bounded deserialization lists/maps | protect local reads from metadata explosion |
+| vector dimension/model checks | prevent silently wrong retrieval or algorithm state |
+| graph-filter plus search ranking | small graph sidecars can prune context without a full graph DB |
+| `.mv2e` encryption tests | local/private graph artifacts can be portable without being plaintext |
+
+The graph-specific storage idea this unlocks:
+
+```text
+For a local-memory or PMF demo graph, do not start with a server.
+Start with a portable graph-profile capsule.
+
+It can contain:
+  1. raw evidence frames
+  2. active graph view
+  3. profile-specific adjacency layout
+  4. compact algorithm state
+  5. receipt and verifier trace
+```
+
+That gives us a better developer experience than "clone repo, install database, load graph, run benchmark, trust me." It becomes "download/open one artifact, inspect its receipt, rerun the profile under a RAM cap."
+
+The caution is important:
+
+```text
+Memvid is not proof that graph algorithms become faster or lower-RAM.
+It is proof that the artifact boundary can be made portable, durable,
+indexed, time-aware, encrypted, and sidecar-free.
+```
+
+The most concrete executable specs to extract from Memvid are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `graph_profile_capsule_v1` | WHEN a profile fixture is exported, THEN one file SHALL contain header, WAL, graph frames, indexes, receipts, and footer without sidecars |
+| `profile_capsule_header_v1` | WHEN opening a capsule, THEN magic/spec/profile fields SHALL be validated before reading derived artifacts |
+| `embedded_profile_wal_v1` | WHEN profile writes are pending, THEN WAL records SHALL carry sequence, length, checksum, payload, and checkpoint metadata |
+| `profile_commit_footer_v1` | WHEN reading a capsule, THEN the last valid generation SHALL be found by footer scan and TOC hash validation |
+| `profile_time_index_v1` | WHEN temporal filtering is requested, THEN sorted event/frame/run entries SHALL support range scans and deterministic checksum verification |
+| `profile_segment_manifest_wal_v1` | WHEN building indexes in parallel, THEN segment refs SHALL be replayable and partial crash-tail records SHALL be truncated |
+| `profile_frame_v1` | WHEN graph partitions or source chunks are stored, THEN metadata vectors/maps SHALL be bounded and source hash/path SHALL be preserved |
+| `capsule_doctor_v1` | WHEN corruption is detected, THEN read-only open SHALL fail strictly and explicit doctor repair SHALL produce a verifiable clean snapshot |
+| `encrypted_profile_capsule_v1` | WHEN private graph data is exported, THEN optional streaming encryption SHALL preserve bytes and reject wrong credentials |
+
+The rubber-duck check:
+
+```text
+Should Knight Bus use a single file for every production graph?
+  No. Large server-side or lakehouse workloads may need object-store partitions.
+
+Where is the single-file capsule perfect?
+  PMF demos, local memory graphs, CI benchmark fixtures, bug reports,
+  founder interviews, reproducibility bundles, and small-to-medium agent graphs.
+
+Does a portable capsule conflict with custom OLAP storage per algorithm?
+  No. It is the envelope. Inside it, each profile can still store CSR, CSC,
+  frontier slabs, sketch state, compressed properties, or temporal edge chunks.
+
+What is the killer move?
+  A user can choose a 1 GB, 5 GB, or 20 GB profile and get one artifact whose
+  receipt proves what happened, what was skipped, and what can be replayed.
+```
+
+This creates a clean two-layer architecture:
+
+```text
+evidence archive and capsule layer:
+  portable, durable, verifiable, inspectable
+
+algorithm profile layer:
+  PageRank, PPR, BFS, community, connected components, temporal lookup,
+  conflict scan, compaction, each with its own physical layout and budget
+```
+
+#### Omnigraph Shows The Lakehouse Counterpart To Capsules
+
+The Omnigraph source pass gives the other half of the storage story. Memvid is the single-file local artifact. Omnigraph is the branchable, object-store, multi-table lakehouse graph artifact. Knight Bus should treat these as two deployment shapes for the same product thesis, not as competing inspirations.
+
+The deepest Omnigraph lesson is this:
+
+```text
+logical truth:
+  accepted schema
+  graph manifest
+  graph commit/head lineage
+  visible table versions
+  branch snapshot
+
+physical acceleration:
+  Lance fragments
+  compaction output
+  CSR/CSC graph indexes
+  runtime caches
+  partial index coverage
+  derived layout files
+```
+
+The logical layer defines correctness. The physical layer is allowed to lag, be rebuilt, be cached, or be absent, as long as reads remain correct and degradation is explicit. That maps almost perfectly to Knight Bus custom OLAP profiles:
+
+```text
+custom graph profile:
+  not the source of truth
+  a rebuildable physical projection over a named graph snapshot
+  scoped to one algorithm family, budget mode, and dataset shape
+  published only through a manifest/receipt boundary
+```
+
+This matters because it prevents a dangerous product trap. We do not want a low-RAM PageRank layout, a traversal layout, and a temporal-memory layout each becoming their own hidden database with ambiguous authority. They should be derived profile artifacts whose identity, inputs, branch, version, and exactness guarantees are visible in one manifest.
+
+| Omnigraph Pattern | Knight Bus Translation |
+|---|---|
+| L1 Lance datasets plus L2 Omnigraph manifest | Separate storage substrate from graph/profile authority |
+| `__manifest` with graph commit/head rows | Profile manifest with run lineage, visible artifacts, and verifier outputs |
+| Strict internal schema version | Refuse or rebuild incompatible profile artifacts before execution |
+| Lazy graph branches | Profile review branches for agent experiments, benchmark runs, and proposed layout updates |
+| Three-way row-level merge | Profile delta review and explicit merge conflict handling |
+| Derived indexes may lag | Correct reads may scan fallback paths, but receipts must show degraded coverage |
+| Topology-only CSR/CSC | Per-algorithm topology projections that read only required edge columns |
+| Runtime cache keyed by table identity/version/branch/e_tag/endpoints | Profile cache keys include every physical input and profile option |
+| Traversal equivalence tests | Physical-mode equivalence fixtures: scan, indexed, partial-index, and bounded modes must agree where exactness is claimed |
+| Merge truth-table tests | Profile artifact merge/update operation matrix with named unsupported cases |
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `lakehouse_graph_profile_v1` | WHEN graph data lives in object-store tables, THEN bounded profiles SHALL run over named branch snapshots and emit reviewable receipts |
+| `profile_manifest_v1` | WHEN a profile artifact is published, THEN raw inputs, derived layouts, verifier outputs, source hashes, schema version, and branch lineage SHALL be listed in one manifest |
+| `logical_contract_physical_layout_v1` | WHEN a physical index/cache/layout lags or is missing, THEN logical correctness SHALL be preserved by scan/fallback or the run SHALL fail with a typed bounded error |
+| `profile_branch_review_v1` | WHEN an agent produces profile output, THEN it SHALL land on a review branch or isolated run folder before canonical merge |
+| `profile_capabilities_v1` | WHEN planning a run, THEN the planner SHALL see row counts, fragment counts, index coverage, pushdown support, estimated RAM cost, and fallback behavior |
+| `topology_only_profile_index_v1` | WHEN an algorithm needs only topology, THEN the profile SHALL build CSR/CSC from required edge endpoint columns without loading unrelated node properties |
+| `profile_cache_key_v1` | WHEN reusing a derived layout, THEN the cache key SHALL include table/artifact identity, version, branch, e_tag or content hash, endpoints, algorithm, budget, and exactness mode |
+| `profile_commit_graph_v1` | WHEN comparing profile runs, THEN parent, merged-parent, actor, generation, timestamp, and merge-base SHALL be projectable from manifest rows |
+| `profile_merge_truth_table_v1` | WHEN profile artifacts are merged, THEN every operation pair SHALL have a named outcome, conflict, or unsupported state |
+
+The rubber-duck check:
+
+```text
+Is Omnigraph proof that Knight Bus can reduce RAM?
+  No. It proves a clean authority model for branchable graph artifacts.
+  The RAM claim still needs our own benchmarks.
+
+What does it teach that Memvid does not?
+  How to operate the same profile idea in an object-store/server setting with
+  branches, manifests, commits, partial indexes, and recovery audits.
+
+What is the main product rule?
+  Logical truth belongs to graph/profile manifests.
+  Physical layout belongs to algorithm-specific, rebuildable acceleration.
+
+What is the first demo this unlocks?
+  Read a branchable graph artifact, run a topology-only profile under a RAM cap,
+  publish a receipt to a review branch, compare, and merge only after verifier gates.
+```
+
+This gives Knight Bus a clean dual architecture:
+
+```text
+local/person-scale:
+  graph profile capsule
+  one file
+  copyable fixture
+  encrypted optional
+
+server/lakehouse-scale:
+  lakehouse graph profile
+  object-store artifacts
+  branch/merge review
+  manifest-published authority
+```
+
+#### Omnigraph Cost Gates Are The Verification Spine
+
+The second Omnigraph pass is less about storage layout and more about verification culture. It shows a mature pattern Knight Bus should copy aggressively:
+
+```text
+Do not merely say "bounded."
+Name the resource term.
+Measure the resource term on the backend where it appears.
+Assert the slope.
+Record the remaining unbounded term as a known tripwire.
+Refuse to ship the design if any physical-I/O cell fails.
+```
+
+That matters for our "budget-bounded batch compute" thesis because the hard part is not inventing clever graph layouts. The hard part is preventing ourselves and future LLM agents from making fake performance claims. Omnigraph's docs and tests repeatedly separate terms that most systems blur together:
+
+| Blurred Claim | Omnigraph-Style Split | Knight Bus Rule |
+|---|---|---|
+| "This is faster" | serial hops, object-store op count, bytes, concurrency cap, history depth | Receipts must decompose latency into serial stages and parallelizable ops |
+| "This read is warm" | zero `__manifest` reads, one freshness probe, external commit visibility | Warm profile cache must prove freshness and no authority rescan |
+| "This traversal is optimized" | indexed per-hop scan versus CSR build/reuse versus edge-binding scan | Profile planner chooses physical mode by frontier, hops, coverage, and required columns |
+| "This is O(delta)" | candidate discovery, deletion discovery, payload fetch, merge truth table | O(delta) claims require insert/update/delete discovery proofs |
+| "This index is covered" | indexed, degraded, or coverage-check failed | Degraded coverage remains correct but must appear in the receipt |
+| "This benchmark is valid" | setup child, operation child, verify child, operation wait4 HWM, exact-content hash | Benchmark operation and verification phases must be separate |
+| "This design seems good" | research-blocked until physical-I/O gates pass | Blocked designs stay in the ledger with the failed cell named |
+
+This gives Knight Bus a practical verification spine:
+
+```text
+profile spec:
+  logical contract
+  physical modes
+  source-cut identity
+  budget constants
+  backend assumptions
+  exactness mode
+
+profile planner:
+  cheap counts
+  index coverage
+  frontier size
+  hop bound
+  history depth
+  cache availability
+
+profile run:
+  open/source-cut phase
+  build/reuse physical layout phase
+  algorithm phase
+  spill/fallback phase
+  output phase
+
+profile verification:
+  exactness oracle
+  physical-mode equivalence
+  IO/RSS counters
+  slope gate
+  receipt hash
+  recovery/failpoint matrix
+```
+
+The traversal cost model is especially relevant to our custom OLAP storage idea. Omnigraph does not hard-code "CSR is always good" or "indexes are always good." It uses cheap counts and coverage to choose:
+
+```text
+if frontier is small and BTREE coverage is good:
+  do indexed per-hop neighbor lookup
+
+if frontier is large, hops are deep, coverage is degraded, or CSR is already warm:
+  use topology-only CSR
+
+if edge properties are needed:
+  scan/bind edge rows because topology-only CSR cannot answer property output
+```
+
+For Knight Bus, that same pattern becomes more general:
+
+```text
+PageRank:
+  dense iterative frontier -> compressed CSR/CSC or block CSR
+
+PPR/local ranking:
+  small seed/frontier -> indexed adjacency slabs and bounded residual heap
+
+BFS/shortest path:
+  frontier slabs, visited bitmaps, optional direction-optimizing switch
+
+temporal lookup:
+  time index plus active-view edge slabs
+
+community update:
+  affected partition/community sidecar before full rebuild
+
+stale-fact audit:
+  contradiction/supersession edges prioritized before ordinary neighbors
+```
+
+The product move is not "choose one storage format." It is:
+
+```text
+Choose a physical mode per algorithm run,
+prove why that mode was legal,
+prove what it cost,
+and prove whether cheaper modes still matched the exact oracle where exactness is claimed.
+```
+
+The strongest Omnigraph pattern for our LLM coding loop is the cost-slope test. A good Knight Bus benchmark should not be a single number. It should be a curve:
+
+```text
+dataset sizes:
+  10K, 100K, 1M, 10M, maybe larger when feasible
+
+history depths:
+  shallow, medium, deep
+
+backend modes:
+  local NVMe, mmap, S3/R2-like object store, capped-concurrency proxy
+
+budget modes:
+  1 GB, 5 GB, 20 GB, exact/high-memory
+
+assertions:
+  flat where we claim flat
+  grows where we admit growth
+  fails closed where coverage/recovery/candidate discovery is unknown
+```
+
+The negative RFCs may be more valuable than the green tests. Durable heads, checkpoint retention, lineage merge deltas, and MemWAL streaming ingest are all conceptually attractive. Omnigraph keeps them blocked or rejected because the physical proof is not there, or because the graph-level coordination cost overwhelms the substrate feature.
+
+That should become a Knight Bus rule:
+
+```text
+No storage innovation graduates from idea to architecture until it has:
+  1. logical correctness contract
+  2. physical-I/O cost gate
+  3. recovery/failpoint gate
+  4. exactness/fallback gate
+  5. benchmark-phase contract
+  6. blocked-design note if any gate fails
+```
+
+The executable-spec candidates from this pass are:
+
+| Spec | Acceptance Shape |
+|---|---|
+| `profile_execution_pipeline_v1` | WHEN a profile run starts, THEN the system SHALL parse/validate, gather cheap counts, choose a legal physical mode, enforce caps before durable effects, and emit a receipt |
+| `profile_traversal_dispatch_v1` | WHEN traversal is requested, THEN indexed, CSR, and edge-binding paths SHALL be selected by manifest counts, coverage, hop/frontier bounds, and required output columns |
+| `profile_budget_constants_v1` | WHEN a profile mode is published, THEN row, byte, frontier, hop, version-scan, queue, and concurrency ceilings SHALL be visible in docs and receipts |
+| `profile_latency_decomposition_v1` | WHEN latency is reported, THEN serial stages, parallel op count, backend, history depth, concurrency cap, and bytes read SHALL be separate fields |
+| `capture_once_profile_builder_v1` | WHEN building derived profile artifacts, THEN source-cut authority SHALL be captured once and cold refresh SHALL occur only after conflict |
+| `profile_io_probe_harness_v1` | WHEN benchmarking a profile, THEN opener, scan, manifest, index, cache, spill, NotFound, and stream-attempt counters SHALL be separable |
+| `profile_cost_slope_gate_v1` | WHEN a boundedness claim is made, THEN shallow/deep sweeps SHALL assert the named resource term is flat within slack |
+| `profile_negative_tripwire_v1` | WHEN a known unbounded term remains, THEN a test MAY assert growth until the fix lands, after which it SHALL be inverted to a flat gate |
+| `profile_backend_specific_gate_v1` | WHEN a backend-specific cost exists, THEN local/S3/NVMe/mmap gates SHALL be separate and skip/fail behavior SHALL be explicit |
+| `profile_warm_cache_gate_v1` | WHEN a profile cache is warm, THEN the test SHALL prove freshness and zero unexpected authority rescans |
+| `profile_benchmark_phase_contract_v1` | WHEN measuring performance, THEN setup, measured operation, and verification SHALL be separate phases and exact output hashes SHALL be verified outside the measured operation |
+| `profile_delta_merge_gate_v1` | WHEN profile deltas merge, THEN validation SHALL be delta-scoped and remaining history-sensitive terms SHALL be disclosed |
+| `profile_physical_mode_proptest_v1` | WHEN multiple physical modes implement one logical operation, THEN generated adversarial graphs SHALL compare their outputs |
+| `profile_recovery_sidecar_v1` | WHEN a profile build touches multiple durable artifacts, THEN recovery sidecars SHALL make crash outcomes recoverable, rejected, or audited |
+| `profile_recovery_budget_v1` | WHEN recovery scans history, THEN scan windows SHALL be bounded and excess history SHALL fail closed |
+| `profile_failpoint_matrix_v1` | WHEN a durable stage boundary exists, THEN injected failures before/after that stage SHALL have named expected outcomes |
+| `profile_blocked_design_ledger_v1` | WHEN a design fails a physical gate, THEN the blocked state, failed cell, and successor condition SHALL be documented |
+| `profile_retention_pin_v1` | WHEN retaining a profile snapshot, THEN physical pins SHALL exist before logical authority is published and be released only after authority tombstone |
+| `profile_delta_discovery_gate_v1` | WHEN O(delta) is claimed, THEN insert, update, and delete candidate discovery SHALL each be bounded by changed set or recorded as fallback |
+| `profile_storage_feature_kill_gate_v1` | WHEN a substrate feature improves one layer but worsens graph-level coordination, THEN the feature SHALL be rejected or kept experimental |
+
+The rubber-duck check:
+
+```text
+Can we use these Omnigraph numbers as Knight Bus numbers?
+  No. They are Omnigraph project-reported evidence. We use them as design and
+  verification patterns until our own receipts reproduce our own claims.
+
+Is the most important lesson Rust/Lance/object-store?
+  No. The most important lesson is resource-term honesty. The same benchmark
+  must say whether the cost is opener, scan, manifest, cache miss, serial hop,
+  concurrency cap, or verification.
+
+Does a lower-RAM profile need all this complexity on day one?
+  The first demo can be small, but its claim must already have this shape:
+  source cut, physical mode, budget constants, exactness oracle, peak RSS,
+  quality score, and fallback/degraded state.
+
+What should we build first from this?
+  A tiny PageRank/PPR/traversal profile harness that runs exact and bounded
+  modes on generated adversarial graphs and emits one receipt with slope terms.
+```
+
+### Graphiti Shows Profiles Are Already Hiding Inside Agent Memory
+
+The Graphiti source pass makes the architecture lesson concrete. The interesting thing is not just that Graphiti has a graph. It is that its memory graph operations already have implicit profiles:
+
+```text
+episode ingest profile:
+  reference_time
+  group_id
+  previous_episode_window
+  node extraction
+  edge extraction
+  duplicate resolution
+  contradiction/invalidation
+  optional community update
+  saved episode/fact/provenance edges
+  trace counts
+
+hybrid search profile:
+  scopes: edges, nodes, episodes, communities
+  methods: BM25, cosine, BFS
+  candidate overfetch: 2 * limit
+  reranker: RRF, MMR, node distance, episode mentions, cross encoder
+  filters: group, edge type, node label, valid_at, invalid_at, expired_at
+  return limit
+
+community profile:
+  group-scoped projection
+  label propagation
+  summarize cluster
+  update entity's community
+  optional full rebuild
+  protected group scope
+```
+
+Knight Bus should make those implicit profiles explicit and budgeted. That is the whole product move.
+
+| Graphiti Implementation Lesson | Knight Bus Architecture Move | Verification Gate |
+|---|---|---|
+| `add_episode` is staged and sequentially awaited | Run profiles are DAGs, not one opaque call | Receipt lists every stage with duration/RAM/candidate counts |
+| Episodes carry `valid_at`; sagas distinguish wall-clock and episode-time watermarks | Every artifact separates event time from processing time | Backfill fixture proves old event-time data remains queryable |
+| Entity edges carry `valid_at`, `invalid_at`, `expired_at`, and source episode UUIDs | Temporal edge slabs and provenance sidecars | Stale-fact audit fixture proves invalidated edges are retained, not silently deleted |
+| Search recipes are finite combinations of BM25/vector/BFS/rerankers | Agent-facing algorithm profiles should be finite menus | Invalid profile combinations are rejected before execution |
+| Search uses candidate overfetch and reranks/truncates | Candidate count is a budget knob | Receipt records overfetch factor, candidate count, reranked count, returned count |
+| BFS bug fix removed an `O(matches x graph)` re-match pattern | Physical query shape matters as much as algorithm name | Query-shape tests fail on broad re-scan, swapped direction, or missing event-time fields |
+| Community rebuild needed scoped `group_ids` protection | Artifact rebuilds need explicit partition scope | Protected-scope test proves unrelated groups/artifacts survive |
+| Community update can run per new entity | Incremental profiles should be default before full rebuild | Receipt says incremental vs full, affected nodes/groups, skipped groups |
+
+The BFS query-shape fix is the most important micro-example. A graph traversal can look semantically identical while being physically disastrous:
+
+```text
+bad physical path:
+  find paths
+  for each relationship hit
+  re-match by relationship uuid against broad graph
+  accidentally duplicate or swap direction
+
+better physical path:
+  find paths
+  consume relationships already in the path
+  derive source/target from startNode/endNode
+  filter exact relationship type
+  return distinct edges under a limit
+```
+
+This is exactly what our custom OLAP-storage thesis means in a small form. The win is not magic Rust. The win is making the data arrive already shaped like the algorithm needs it, and then proving the physical path did not fall back to a broad scan.
+
+For the first Knight Bus memory-graph profile, the executable spec should probably look like this:
+
+```text
+Profile: temporal_evidence_recall_v1
+
+Inputs:
+  memory graph
+  group_id
+  query
+  event_time cutoff
+  max_previous_episodes
+  max_bfs_depth
+  candidate_limit
+  RAM cap
+
+Stages:
+  retrieve relevant episodes at event time
+  seed fact/entity candidates
+  run bounded BFS/PPR expansion
+  apply valid_at/invalid_at/expired_at filters
+  rerank under candidate budget
+  produce answer context
+  emit receipt
+
+Receipt:
+  physical search methods used
+  filters compiled
+  origin nodes
+  depth
+  candidate count
+  invalidated edge count
+  stale edges skipped
+  source episodes cited
+  peak RSS
+  residual resident state
+  fallback path used or not used
+```
+
+That profile would let us compare against three baselines:
+
+| Baseline | Why It Matters |
+|---|---|
+| Full-context prompt | Shows token/latency pressure and validates Zep-style benchmark logic |
+| Naive full graph in memory | Shows RAM pressure and motivates custom storage |
+| Graphiti/Neo4j query path | Shows whether Knight Bus improves physical execution for the same logical memory graph |
+
+The next architecture rule is sharp:
+
+```text
+Never benchmark only the logical algorithm.
+Benchmark the physical path:
+  indexes touched
+  slabs loaded
+  relationships traversed
+  broad scans avoided
+  partitions protected
+  stale state retained/skipped
+  receipts emitted
+```
+
+Graphiti is therefore not just a possible integration target. It is a map of the first useful local workload. We can ingest or mirror a temporal context graph, then specialize bounded algorithm profiles around the exact hot operations Graphiti exposes: temporal lookup, contradiction invalidation, bounded BFS/PPR recall, community update, and summary/compaction maintenance.
+
+### Kumiho Makes Evidence A Ranking And Traversal Primitive
+
+The Kumiho Memory source pass adds a sharper layer to the Graphiti insight. Graphiti shows that agent memory already has temporal graph operations. Kumiho shows how evidence, validity, and graph traversal can become deterministic budget policy.
+
+The key idea is simple:
+
+```text
+Evidence is not a label at the end.
+Evidence is an input to which candidates survive a bounded run.
+```
+
+Kumiho does this in several separate axes that should stay separate in Knight Bus:
+
+| Axis | Kumiho Mechanism | Knight Bus Equivalent |
+|---|---|---|
+| Provenance grade | `official`, `corroborated`, `single_source`, `unverified` in metadata plus mirrored tags | `evidence_level` on benchmark claims, source slices, verifier outputs, and algorithm results |
+| Ranking effect | deterministic O(k) evidence deltas before caps | candidate survival policy before RAM or context caps |
+| Valid interval | `valid_from` and `valid_to`, opt-in as-of demotion | temporal graph profiles that demote lapsed or pending facts without erasing audit trails |
+| Date confidence | `verified`, `derived`, `unverified` event-date corroboration | source-time receipt showing whether temporal rank came from literal, derived, legacy, or unverified time evidence |
+| Traversal priority | belief-change edges sorted before positive edges under caps | contradiction, supersession, and invalidation edges get priority in bounded frontier windows |
+| Mutation authority | embeddings nominate, deterministic gates authorize | approximate indexes may suggest candidates, but verifier logic decides state mutation |
+
+This gives Knight Bus a concrete rule for RAM-bounded graph algorithms:
+
+```text
+When a profile cannot hold all candidate state in RAM,
+it must disclose the semantic priority order used before the cap.
+```
+
+That priority order should not be arbitrary server-return order, file order, hash-map order, or parallel arrival order. It should be part of the profile manifest:
+
+```text
+profile_priority:
+  1. contradiction / supersession / invalidation evidence
+  2. verified source anchors
+  3. corroborated evidence
+  4. direct measured relevance
+  5. graph-neighbor expansion
+  6. unmeasured traversal placeholders
+  7. unverified or stale candidates
+```
+
+The exact order will differ by algorithm. PageRank may prioritize high-mass frontier blocks. Stale-fact audit may prioritize `CONTRADICTS` and `SUPERSEDES`. Connected components may prioritize boundary edges between chunks. But the invariant should hold across profiles: if a low-RAM mode evicts state, the receipt explains why that state lost the budget contest.
+
+Kumiho also teaches a subtle but crucial temporal rule:
+
+```text
+Demotion is safer than deletion.
+```
+
+For memory graphs, lapsed facts, pending facts, invalidated facts, score-less graph hops, unverified dates, and stale grounding should stay visible enough for audit, but not strong enough to pollute the top answer. For Knight Bus this means low-RAM profiles should prefer:
+
+| Bad Shortcut | Better Product Contract |
+|---|---|
+| Drop stale edges silently | Keep stale edges in cold/provenance slabs and mark `stale_skipped` or `as_of_excluded` |
+| Treat any ISO date as trusted | Record date confidence and disable temporal boost for unverified dates |
+| Let traversal placeholders outrank measured hits | Keep measured direct hits and unmeasured graph hops on separate score axes |
+| Let embeddings merge facts | Let embeddings nominate candidates and require deterministic confirmation |
+| Hide cap side effects | Record which semantic class was cut first |
+
+The source-level tests are the useful part. Kumiho does not only document the policy; it pins the failure modes:
+
+1. An official memory beyond the unweighted boundary must survive a tight cap.
+2. Applying evidence weights twice must not accumulate boosts.
+3. Missing evidence must be a byte-identical no-op.
+4. Score-less memories must not get fake relevance scores.
+5. Graph traversal placeholder scores must not outrank measured direct hits.
+6. As-of recall must demote excluded facts stably rather than delete them.
+7. A plausible but hallucinated date must not receive the temporal boost.
+
+Those become direct Knight Bus executable specs. The first local-memory profile should not start from "optimize PageRank." It should start from these proof obligations:
+
+```text
+temporal_evidence_recall_v1:
+  - evidence-aware candidate survival
+  - event-date confidence gate
+  - valid-time demotion
+  - contradiction/supersession priority
+  - measured-vs-unmeasured score separation
+  - stable cap application
+  - explicit fallback/no-op behavior
+```
+
+The big architecture implication is that custom OLAP storage is not only about bytes. It is about making the correct bytes survive the budget.
+
+```text
+Generic low-RAM mode:
+  use less memory by loading less graph
+
+Knight Bus low-RAM mode:
+  use less memory by loading the graph slices whose semantic class,
+  evidence grade, time validity, and algorithm role justify residence
+```
+
+That is much harder for a generic graph database to imitate because the storage format is bound to the algorithm's proof obligations.
+
+### Revka Shows The Runtime Shape For Profile DAGs
+
+Revka is useful here because it turns graph memory into an operational runtime. Its workflow schema is a typed DAG surface, not a free-form task list: agent, shell, python, compute, conditional, parallel, goto, human approval, map-reduce, supervisor, group chat, handoff, Kumiho context, bundle update, patch apply, tag, deprecate, and more.
+
+For Knight Bus, that suggests the unit of execution should be a `ProfileRunDAG`.
+
+```text
+ProfileRunDAG:
+  ingest_source
+  validate_projection
+  build_storage_artifact
+  run_algorithm_phase
+  check_invariants
+  compare_baseline
+  emit_receipt
+  maybe_retry_or_refuse
+```
+
+Revka's validator has a very important test: a step can claim `depends_on`, but if the downstream agent prompt does not reference the upstream output or artifact path, the dependency is fake. The test rejects that pattern. This is directly relevant to verification-first graph compute:
+
+```text
+Fake verification dependency:
+  verify_pagerank depends_on build_projection
+  but verifier never reads build_projection.hash or artifact path
+
+Real verification dependency:
+  verify_pagerank depends_on build_projection
+  verifier input includes projection_hash, artifact_path, node_count, edge_count,
+  profile_hash, source_frontier, and expected oracle contract
+```
+
+The lesson is harsher than normal workflow validation:
+
+```text
+A DAG edge is not real unless data crosses it.
+```
+
+That gives a concrete `kb profile lint` rule:
+
+| Lint Rule | Why It Matters |
+|---|---|
+| Every verifier step references upstream artifact hashes or paths | Prevents ceremonial verification |
+| Every benchmark step references profile, dataset, and hardware metadata | Prevents non-reproducible performance claims |
+| Every rebuild step declares protected partition scope | Prevents Graphiti-style accidental broad deletion |
+| Every low-RAM step declares cap behavior and fallback policy | Prevents hidden materialized fallback |
+| Every approximate step declares output-delta tolerance and oracle | Prevents vague "good enough" claims |
+| Every dependent step has actual dataflow, not only ordering | Prevents graph-shaped theatre |
+
+Revka's executor also gives the operational skeleton. Long-running graph jobs need checkpoints, resume, cancellation, human pauses, retries, max-total-time guards, cost guards, wave-level persistence, and terminal state persistence outside disposable checkpoints. This maps very cleanly:
+
+| Revka Runtime Primitive | Knight Bus Graph-Compute Primitive |
+|---|---|
+| Workflow checkpoint | phase checkpoint with frontier, artifact hash, and iteration state |
+| Retry with delay | retry same phase, shrink block/frontier, switch storage mode, or refuse |
+| Human approval pause | approve lossy approximation, bigger RAM cap, or slower spill path |
+| Max total time guard | deadline-bound graph job contract |
+| Cost guard | cloud/baseline/oracle budget cap |
+| Run-to-here | run only projection, artifact build, or verifier slice |
+| Parallel join strategy | run independent partitions or oracle checks with all/any/majority semantics |
+| Terminal checkpoint sweep | keep authoritative receipt while pruning transient execution dumps |
+
+RunLog gives the file format clue. It uses append-only JSONL so tool calls, subprocesses, stdout/stderr tails, files touched, errors, lifecycle failures, prompts, usage, cost, and status remain inspectable after completion. Knight Bus should copy the shape, but with graph-compute events:
+
+```text
+kb-run-events.jsonl
+  run_started
+  profile_loaded
+  source_frontier_accepted
+  projection_validated
+  slab_loaded
+  frontier_advanced
+  spill_written
+  broad_scan_refused
+  cap_applied
+  verifier_passed
+  baseline_compared
+  receipt_emitted
+  run_failed_or_completed
+```
+
+The powerful combined architecture is therefore:
+
+```text
+Kumiho:
+  evidence and temporal truth decide candidate priority
+
+Revka:
+  typed DAG runtime makes execution inspectable and resumable
+
+Knight Bus:
+  algorithm-shaped storage plus evidence-aware profile DAGs
+  make graph compute bounded, verifiable, and low-RAM by construction
+```
+
+This moves us away from "rewrite Neo4j" as the product story. A complete Neo4j rewrite says:
+
+```text
+same database, different implementation language
+```
+
+This evidence points to a more famous and useful wedge:
+
+```text
+proof-carrying graph compute profiles for agent memory and structured workloads,
+where storage is shaped around the algorithm and every bounded tradeoff is visible.
+```
+
+### AtomicRAG Turns PPR Into A Retrieval Profile
+
+AtomicRAG is especially useful because it is not trying to be a general graph database. It builds a graph for one concrete algorithmic purpose: better retrieval over fine-grained knowledge atoms. That makes it a clean example of the product direction we keep converging on:
+
+```text
+raw corpus
+  -> extracted fragments / atoms
+  -> entities
+  -> atom-entity graph
+  -> dense fragment seeds
+  -> query entity seeds
+  -> Personalized PageRank
+  -> fragment sieve
+  -> answer evidence
+```
+
+This is almost exactly the kind of unit Knight Bus should call a profile:
+
+```text
+ppr_local_ranking_v1:
+  source_artifacts:
+    chunks
+    extracted_entities
+    extracted_triples
+    extracted_fragments
+
+  storage_artifacts:
+    fragment_embedding_sidecar
+    entity_embedding_sidecar
+    atom_entity_edge_slab
+    entity_entity_edge_slab
+    synonym_edge_slab
+    entity_to_fragment_index
+
+  run_inputs:
+    query_embedding
+    extracted_query_entities
+    fragment_top_k
+    entity_top_k
+    entity_sim_threshold
+    passage_node_weight
+    entity_node_weight
+    damping
+    memory_mode
+
+  run_outputs:
+    ranked_fragments
+    scores
+    kept_fragment_ids
+    run_receipt
+```
+
+The core insight is that PPR is not one thing. The logical algorithm is one thing, but the physical profile has many parts:
+
+| Physical Part | AtomicRAG Current Shape | Knight Bus Low-RAM Shape |
+|---|---|---|
+| Fragment vectors | loaded as a numpy array | mmap/Arrow/Parquet block reads with top-k merge |
+| Entity vectors | loaded as a numpy array | entity top-k blocks plus cached query-entity sidecar |
+| Reset vector | full graph-length dense arrays for fragments and entities | sparse seed vector plus active frontier blocks |
+| Graph storage | whole python-igraph object, pickle cache | CSR/CSC edge slabs, degree/hub sidecars, mapped pages |
+| PPR execution | PRPACK through python-igraph under an RLock | profile-owned iterative kernel with frontier/block accounting |
+| Concurrency | API/filter concurrency high; PPR effectively serialized | explicit separation of API, vector, graph, and partition concurrency |
+| Filter failure | fail-open to keep all fragments | strict benchmark mode must fail, refuse, or declare budget breach |
+| Evidence output | predictions/statistics JSON | proof-carrying receipt with physical path counters |
+
+This is the sharper lesson:
+
+```text
+AtomicRAG proves the algorithm shape.
+It does not prove the bounded-memory physical shape.
+```
+
+That is good news for Knight Bus. The differentiation is not "we also run PPR." The differentiation is:
+
+```text
+we run this graph-shaped retrieval workload with a declared RAM cap,
+show which blocks were touched,
+show whether the full graph/vector store was avoided,
+and prove the output against a baseline/oracle.
+```
+
+The low-RAM version should start by turning AtomicRAG's hidden physical work into receipt fields:
+
+| Receipt Field | Why It Matters |
+|---|---|
+| `fragment_count`, `entity_count`, `edge_count_by_kind` | establishes the graph projection shape |
+| `fragment_embedding_bytes_total`, `fragment_embedding_bytes_resident` | separates logical artifact size from live RAM |
+| `entity_embedding_bytes_total`, `entity_embedding_bytes_resident` | same for entity seeds |
+| `reset_vector_density` | proves sparse seed path rather than full dense vector path |
+| `knn_query_batches`, `knn_key_batches` | proves blockwise vector search |
+| `ppr_frontier_blocks_touched` | proves graph access locality |
+| `ppr_iterations` or `ppr_solver` | separates exact/iterative implementation behavior |
+| `graph_lock_wait_ms` | catches accidental serialization |
+| `sieve_input_count`, `sieve_keep_count`, `sieve_failure_mode` | prevents silent fail-open budget loss |
+| `cache_mode`, `rebuild_reason`, `artifact_hashes` | makes workspace reuse trustworthy |
+| `baseline_comparison_path` | shows whether Neo4j/GDS or another oracle was actually used |
+
+The blockwise KNN utility is the most directly reusable physical idea. It computes per-key-batch top-k candidates, then merges those candidates into final top-k. The general pattern is:
+
+```text
+for query_block in query_vectors:
+  local_candidates = []
+  for key_block in mapped_vector_store:
+    scores = dot(query_block, key_block)
+    local_candidates += top_k(scores)
+    release key_block
+  final_candidates = top_k(local_candidates)
+  emit receipt for blocks touched
+```
+
+Knight Bus should apply the same shape to graph kernels:
+
+```text
+for active_frontier_block in frontier:
+  load neighbor slab
+  update local score deltas
+  spill or merge deltas
+  release neighbor slab
+  record block and bytes touched
+```
+
+The two loops are structurally similar. One is vector top-k; the other is probability-mass flow through graph neighborhoods. Both can be budget-bounded if the runtime controls the block size and the receipt proves no full materialization fallback happened.
+
+The other major AtomicRAG lesson is that granularity is not an aesthetic choice. Atoms/fragments beat coarse chunks for retrieval because coarse chunks mix facts and add noise. But extremely fine fragments can also hurt if top-k, RAM, or context budgets cut off needed coverage. Therefore every Knight Bus profile should record:
+
+| Granularity Metric | Meaning |
+|---|---|
+| `source_unit_count` | number of original chunks/records/episodes |
+| `algorithm_unit_count` | number of atoms/fragments/nodes actually ranked |
+| `avg_entities_per_unit` | how wide each unit connects to graph structure |
+| `cross_unit_edge_rate` | how much reasoning crosses storage units |
+| `top_k_coverage` | how much expected evidence survives the result cap |
+| `sieve_drop_rate` | how much retrieved material was noise |
+| `boundary_miss_count` | how often the answer needed units outside the first chosen blocks |
+
+That gives us a verification-first path:
+
+```text
+First benchmark:
+  same dataset
+  same retrieval objective
+  AtomicRAG-like in-memory baseline
+  Knight Bus bounded profile
+  measured correctness / answer accuracy
+  measured peak RSS
+  measured latency
+  receipt proving blockwise execution
+```
+
+The most honest current conclusion:
+
+```text
+PPR/local ranking should be an early Knight Bus profile.
+But the product claim should not be "PPR is faster in Rust."
+The claim should be "PPR-like retrieval can be made budget-bounded,
+auditable, and cache-reusable when its storage layout is shaped around
+fragment seeds, entity seeds, and sparse graph propagation."
+```
+
+### Algorithm Profiles Can Be Contributor-Market Artifacts
+
+The Hermes profile bounty proof shows a public process for distributed agent-profile work: issues, PRs, wallets, Solscan transaction links, integration commits, and rules for future bounty handling.
+
+Knight Bus can apply that to algorithm/storage profiles:
+
+```text
+Issue: implement connected-components-low-ram-v1
+Acceptance: named graph fixtures + large skew fixture + Neo4j parity + RAM cap receipt
+PR: profile.yaml + storage plan + tests + sample receipts
+Payout proof: public transaction after CI and maintainer review
+```
+
+This matters because custom OLAP storage per algorithm is too large for one monolithic implementation sprint. Profiles create contribution boundaries that humans and LLM agents can understand.
+
+### Solana Rug Is A Concrete Deterministic Receipt Example
+
+Solana Rug Guard is a small but surprisingly instructive applied workload. It has:
+
+1. deterministic checks,
+2. explicit risk factors,
+3. public data sources,
+4. JSON and markdown outputs,
+5. validation reports,
+6. score-version reconciliation,
+7. forensic timelines,
+8. local SQLite history,
+9. agent skill packaging.
+
+The graph analogy is clear:
+
+```text
+wallet/token/event graph -> deterministic risk checks -> score + explanation + history
+```
+
+It gives Knight Bus a candidate benchmark family and a report style. If PageRank outputs "top nodes," the receipt should explain why those nodes are important with the same clarity Solana Rug explains why a token is risky: factors, source data, timeline, version, warnings, and raw JSON.
+
+### State-Space Computation Is Another Representation Lesson
+
+The Qter and Rubik's Cube links are weird but useful. They show a computation recast around permutation groups and human-manipulable state transitions. The lesson is not "build a Rubik's Cube database." The lesson is that state spaces, moves, group operations, and reachable configurations can be a native computational substrate.
+
+For graph algorithms, this encourages asking:
+
+| Workload | Native State Space |
+|---|---|
+| shortest paths | distance labels plus relaxation frontier |
+| PageRank | probability mass flow plus dangling-node correction |
+| connected components | equivalence classes plus union log |
+| temporal path queries | interval algebra state plus edge validity windows |
+| workflow graphs | task states, dependencies, retries, and recovery transitions |
+| security analysis | program states, taint edges, constraints, and exploit evidence |
+
+This is a deeper version of "storage in the shape of the read": storage should be in the shape of the state transitions the algorithm actually performs.
+
+### DeFi And Token Trust Graphs Are Concrete Auditable Workloads
+
+The Solana Rug / token timeline lead is small but concrete. It is open source, tied to Hermes workflows, and has obvious graph structure: wallets, tokens, transfers, authorities, contracts, risk signals, timelines, and provenance.
+
+This is not necessarily the first market to attack, but it is a good benchmark family because:
+
+1. It is naturally graph-shaped.
+2. It needs audit trails and evidence, not only fast output.
+3. It has time/version/timeline aspects.
+4. It can be run locally over public chain data.
+5. It is emotionally legible: "why is this token risky?"
+
+If used as a demo, keep it careful and bounded:
+
+```text
+Input: token/wallet/event graph
+Algorithm: risk propagation + suspicious component/path extraction
+Receipt: sources, graph projection, rule/algorithm version, RAM/time, explanation paths
+Baseline: simple Python/NetworkX or existing repo behavior where possible
+```
+
+## URL Queue And Follow-Up Reads
 
 | Priority | URL | Why Open |
 |---:|---|---|
@@ -359,6 +6022,425 @@ The Arto Bendiken / Neuro-Symbolic AI Summer School link is not yet verified bey
 | 16 | https://youtu.be/-qhIIAylWGc | Determine if the "graph moment" video is relevant or just social filler. |
 | 17 | Find/ask for public artifact behind 1casie's local model infra thread | The private thread mentions possible future open source and concrete RAM/throughput claims; needs public repo/paper before use as external evidence. |
 | 18 | Build synthetic industrial process/parts graph fixture | The semiconductor process/parts mapping story is the strongest benchmark shape so far. |
+| 19 | https://x.com/Internode_ai | Inspect public material for graph transformers and AI memory architecture. |
+| 20 | https://x.com/0xcodez/status/2079165300625330317 | Deeper extraction: turn the full 14-step graph-agent course into an agent-workflow graph benchmark map if that becomes PMF front. |
+| 21 | https://github.com/Dicklesworthstone/beads_viewer | Clone/read later as a concrete PageRank-for-agent-planning reference. |
+| 22 | https://x.com/DmitryRybin1/status/2079904005652893709 | Follow source chat and proof discussion only if we create graph-theory verification examples. |
+| 23 | https://x.com/IntuitMachine/status/2078419526354378975 | Deeper extraction: turn loop-to-graph engineering concepts into the agent-workflow PMF map. |
+| 24 | https://x.com/graphtheory/status/2078698691934797879 | Inspect DAG/loop critique if building graph-literacy UX or docs. |
+| 25 | https://x.com/majamediaco/status/2078233877534171435 | Inspect for visual/social graph metaphors if designing a local graph explorer. |
+| 26 | Research The Graph Protocol / DeFi Llama | Read in pass 017; decentralized indexing/query workloads do belong in the research map as manifest-driven public-data benchmark families. |
+| 27 | https://luma.com/asimov-devlabs-10 or resolve https://t.co/TVf5jhHoe9 | Open ASIMOV DevLabs #10 event page and compare to DevLabs #12 for narrative evolution around local/private context graphs. |
+| 28 | https://x.com/i/status/2075643450196971805 | Verify or discard the Cycle Double Cover proof claim; use only as verification-culture evidence unless independent sources exist. |
+| 29 | https://x.com/mohitdotdev/status/2074834340622799043 | Open exact RAM-measurement post and extract language for resident vs mapped vs swapped memory. |
+| 30 | https://x.com/mohitdotdev/status/2074836926390223360?s=20 | Check whether Grok repo-upload concern has local/privacy implications worth preserving. |
+| 31 | https://github.com/colbymchenry/codegraph/tree/main/docs/benchmarks | Read benchmark docs for receipt style, contamination controls, residual context, and what a graph-index benchmark packet should look like. |
+| 32 | https://github.com/cocoindex-io/cocoindex-code | Read architecture docs/code later for incremental AST chunking and local MCP deployment patterns. |
+| 33 | https://github.com/robert-mcdermott/ai-knowledge-graph | Clone/read as a possible generator for text-to-knowledge-graph benchmark fixtures. |
+| 34 | https://github.com/codegraphtheory/heavy-coder | Clone/read if agent-task graph workflows become a first demo. |
+| 35 | https://github.com/codegraphtheory/tetramegistus | Read for graph-shaped agent architecture vocabulary: C4, MoA routing, recursive pruning. |
+| 36 | https://rdlyons.pages.iu.edu/prbtree/book_online.pdf | Build a deeper graph-algorithm reading map from random walks, spanning trees, electrical networks, percolation, and reliability. |
+| 37 | https://www.w3.org/TR/owl-time/ | Read in pass 017; next convert OWL-Time / Allen interval relations into temporal-graph fixtures and storage-profile requirements. |
+| 38 | https://arxiv.org/pdf/2604.11378 | Read the Structured Graph Harness paper fully and extract scheduler/plan/recovery concepts for agent-workflow graph benchmarks. |
+| 39 | https://github.com/codegraphtheory/hermes-profile-template/blob/main/BOUNTIES.md | Inspect contributor/bounty mechanics and decide whether algorithm profiles should have a similar contribution model. |
+| 40 | https://github.com/NousResearch/hermes-agent/issues/52598 | Convert the scaffold/validate/smoke-test requirements into a Knight Bus algorithm-profile spec. |
+| 41 | https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf | Read OKF `SPEC.md` and map required frontmatter fields to Knight Bus run, storage, algorithm, and correctness receipts. |
+| 42 | https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing | Read in pass 016; next convert the file-native format argument into a concrete Knight Bus receipt bundle schema. |
+| 43 | https://iggy.apache.org/docs/introduction/architecture/ | Read in pass 016; next convert segment/index/cache/io_uring ideas into concrete graph storage-profile sketches. |
+| 44 | https://github.com/apache/iggy | Inspect benchmark and storage code paths if we want a concrete Rust reference for low-resource append/read-shaped storage. |
+| 45 | https://arxiv.org/abs/2601.06793 | Read CliffordNet only as a representation-design analogy, not as graph-market evidence. |
+| 46 | https://shoggoth.ai/ | Revisit only if the site returns; current capture was under maintenance and has no usable evidence. |
+| 47 | https://x.com/_can1357/article/2064802476742574459 | Extract the Snapcompact article body and turn it into a storage-format/degradation checklist. |
+| 48 | https://x.com/GoodfireAI/thread/2065118189986717902 | Read the full predictive data debugging thread and map it to graph preflight checks. |
+| 49 | https://x.com/codegraph/article/2064394441691975985 | Extract Codegraph's predictive-intents architecture and benchmark framing. |
+| 50 | https://supermodeltools.com/blog/dead-code-benchmark | Try archives or alternate URLs; the page returned Railway 404 during capture but may be important benchmark evidence. |
+| 51 | https://arbitersec.com/arbiter | Inspect Arbiter product page for concolic/path/falsification workflow details. |
+| 52 | https://arbitersec.com/blog | Inspect Arbiter research posts if security/code-graph verification becomes a PMF branch. |
+| 53 | https://x.com/soulblocks/article/2064518392334414046 | Extract the Semantic Logic Graph Language article body if accessible. |
+| 54 | https://x.com/soulblocks/thread/2064965247673516332 | Revisit the logic-spaces thread only if we need creative semantic-graph examples. |
+| 55 | https://github.com/gitschwifty/orboros | Read code only if later chat establishes this as more than a weak repo lead. |
+| 56 | https://x.com/mathemetica/status/2065744824884756498 | Find whether the named-graph gallery has an external artifact or only X media. |
+| 57 | https://hydradb.com/ | Extract HydraDB architecture/pricing/benchmark claims into a direct comparator table. |
+| 58 | https://hydradb.com/use-cases | Map HydraDB use cases to Knight Bus demo tracks and decide which to avoid vs target. |
+| 59 | https://x.com/contextkingceo/thread/2061452631298752790 | Read the full HydraDB launch thread if accessible. |
+| 60 | https://github.com/qter-project/qter | Inspect Qter code only as a representation/substrate architecture inspiration source. |
+| 61 | https://qter.dev/paper.pdf | Extract sections on architecture solver, group theory, cycle structures, and memory tapes if we want a state-space design appendix. |
+| 62 | https://github.com/codegraphtheory/solana-rug | Clone/read as a concrete token/wallet/risk graph benchmark candidate. |
+| 63 | https://arbitersec.com/aletheia | Inspect Aletheia for binary-analysis graph primitives: SSA, taint, concolic proofs, hybrid fuzzing. |
+| 64 | https://x.com/ProfBuehlerMIT/thread/2062865983459475830 | Read full self-evolving AI scientist thread only if adaptive search-space graphs become a research track. |
+| 65 | https://www.techrxiv.org/doi/full/10.36227/techrxiv.175606841.18630027/v1 | Keep as cryptographic receipt/privacy theory lead; low priority unless privacy-preserving graph compute becomes central. |
+| 66 | https://hydradb.com/blog/neo4j-alternatives | Extract a comparator checklist for Neo4j vs HydraDB vs Knight Bus, especially memory/page-cache/temporal-history caveats. |
+| 67 | https://research.hydradb.com | Resolved to public benchmark PDF in pass 016; next verify whether independent methodology/hardware disclosure exists outside the vendor PDF. |
+| 68 | https://docs.hydradb.com | Read in pass 016; next compare HydraDB's API controls against a Knight Bus planner/profile/receipt API. |
+| 69 | https://arxiv.org/abs/2607.26520 | Read the full bitemporal-memory paper and turn failure modes into temporal graph receipt requirements. |
+| 70 | https://arxiv.org/abs/2606.01886 | Read InKH for bounded working context, temporal graph memory, wiki audit surface, maturity/decay, and invalidation mechanics. |
+| 71 | https://arxiv.org/abs/2606.28781 | Read HyphaeDB only if active topology/gossip/consensus memory becomes a research branch. |
+| 72 | https://arbitersec.com/ | Convert Arbiter/Aletheia's state-graph -> constraint -> verification -> evidence pattern into a Knight Bus receipt architecture note. |
+| 73 | https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md | Turn OKF's definition-verification and per-run attestation split into a Knight Bus receipt schema. |
+| 74 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/agent-eval-feedback-metrics.md | Adapt the three-metric benchmark harness to graph compute: sufficiency, allocation efficiency, and residual state. |
+| 75 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/residual-context-occupancy.md | Map residual context occupancy to graph resident/mapped/spill occupancy after a run. |
+| 76 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/call-sequence-analysis.md | Convert planner adoption and payload-size lessons into Knight Bus planner metrics. |
+| 77 | https://github.com/cocoindex-io/cocoindex-code/blob/main/CLAUDE.md | Borrow daemon/client/project-registry/artifact-index architecture for local compute-router ergonomics. |
+| 78 | https://github.com/cocoindex-io/cocoindex-code/blob/main/EMBEDDINGS.md | Borrow explicit hardware/privacy/cost/speed mode disclosure for RAM-bounded graph runs. |
+| 79 | https://github.com/codegraphtheory/hermes-profile-template/blob/main/BOUNTIES.md | Design algorithm-profile contribution rules with fixtures, receipts, review, merge proof, and payout proof. |
+| 80 | https://github.com/codegraphtheory/solana-rug/blob/main/VALIDATION_REPORT.md | Use as a validation-report template for deterministic graph algorithm profiles. |
+| 81 | https://github.com/codegraphtheory/solana-rug/blob/main/RUG_FORENSICS.md | Use as a human-readable forensic receipt template for graph risk/provenance demos. |
+| 82 | https://github.com/codegraphtheory/solana-rug/blob/main/SKILL.md | Use as a skill-like packaging model for algorithm profiles: when to use, inputs, outputs, risk factors, commands. |
+| 83 | https://github.com/apache/iggy/blob/master/core/configs/src/server_config/cache_indexes.rs | Use `All` / `OpenSegment` / `None` as a concrete precedent for user-facing memory strategy config. |
+| 84 | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index.rs | Translate sparse offset/timestamp/position index entries into graph artifact jump tables. |
+| 85 | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_reader.rs | Translate load-all vs on-file binary-search index lookup into RAM-bounded algorithm support indexes. |
+| 86 | https://github.com/apache/iggy/blob/master/core/partitions/src/journal.rs | Translate bounded retention, commit-frontier ceiling, and honest eviction behavior into graph run/checkpoint receipts. |
+| 87 | https://docs.hydradb.com/essentials/v2/context-graphs | Use HydraDB's "skip graph context for direct lookup" warning to design a planner gate for graph algorithm mode. |
+| 88 | https://docs.hydradb.com/essentials/v2/bring-your-own-graph | Use BYOG-style explicit entities/relations/temporal details as a benchmark-fixture input format. |
+| 89 | https://benchmarks.hydradb.com/hydradb.pdf | Mine the benchmark PDF for disclosure fields to include and missing systems metrics Knight Bus should improve on. |
+| 90 | https://thegraph.com/docs/en/subgraphs/developing/creating/subgraph-manifest/ | Convert manifest fields into a Knight Bus `algorithm-profile.yaml` schema. |
+| 91 | https://thegraph.com/docs/en/subgraphs/developing/creating/assemblyscript-mappings/ | Convert mapping-handler boundaries into a projection-handler design for source data to algorithm-shaped graph artifacts. |
+| 92 | https://github.com/graphprotocol/graph-node | Targeted source read for Graph Node indexing/query/pruning/proof-of-indexing boundaries. |
+| 93 | https://thegraph.com/docs/en/subgraphs/best-practices/pruning/ | Convert pruning tradeoffs into Knight Bus retention, replay, and time-travel receipt fields. |
+| 94 | https://github.com/graphprotocol/graph-node/blob/master/docs/implementation/pruning.md | Mine implementation details for earliest-block, reorg threshold, batch pruning, and rebuild/delete strategy fields. |
+| 95 | https://docs.llama.fi/list-your-project/how-to-write-an-sdk-adapter.md | Turn the adapter abstraction into a graph-profile authoring guide. |
+| 96 | https://docs.llama.fi/list-your-project/readme.md | Build a DeFi workload taxonomy for benchmark candidates: TVL, fees, volumes, bridges, stablecoins, yields, oracles. |
+| 97 | https://docs.llama.fi/list-your-project/other-dashboards.md | Turn time-range dimension adapters into a recurring batch analytics extension path beyond graph algorithms. |
+| 98 | https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/skills/adapter-author/SKILL.md | Design a Knight Bus `algorithm-profile-author` skill with repo-fit gates, fixtures, tests, and forbidden shortcuts. |
+| 99 | https://github.com/graphprotocol/graph-node/blob/master/docs/aggregations.md | Read in pass 018; next convert raw timeseries + rollups + current bucket into a Knight Bus sealed-checkpoint/current-frontier profile design. |
+| 100 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/components/subgraph/proof_of_indexing | Read in pass 018; next convert semantic event hashing and causality regions into proof-of-projection/proof-of-run design. |
+| 101 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/rollup.rs | Read in pass 018; next mine query-generation/indexing comments deeper for cumulative-state and current-bucket storage decisions. |
+| 102 | https://github.com/graphprotocol/graph-node/tree/master/tests/integration-tests/poi-for-failed-subgraph | Read in pass 018; convert deterministic-failure fixture into Knight Bus unhappy-path profile fixtures. |
+| 103 | https://thegraph.com/docs/en/subgraphs/developing/creating/advanced/ | Read in pass 018; convert indexed argument filters and declared parallel calls into profile-level preflight declarations. |
+| 104 | https://github.com/DefiLlama/dimension-adapters | Read in pass 018; use as a time-windowed analytics adapter ecosystem reference. |
+| 105 | https://github.com/DefiLlama/dimension-adapters/blob/master/GUIDELINES.md | Read in pass 018; convert recurring review failures into Knight Bus profile lint checks. |
+| 106 | https://github.com/DefiLlama/dimension-adapters/blob/master/adapters/types.ts | Read in pass 018; design typed `FetchOptions`-like runtime handles for graph profile execution. |
+| 107 | https://github.com/DefiLlama/dimension-adapters/blob/master/skills/adapter-author/SKILL.md | Read in pass 018; adapt the repo-fit gate and checkpoint workflow to `algorithm-profile-author`. |
+| 108 | https://github.com/DefiLlama/dimension-adapters/blob/master/fees/GUIDELINES.md | Read in pass 018; convert domain accounting identities into a pattern for algorithm-family invariants. |
+| 109 | https://github.com/graphprotocol/graph-node/tree/master/store/test-store/tests/postgres | Read in pass 019 via `aggregation.rs`; next convert current-bucket test cases into Knight Bus fixture templates. |
+| 110 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/stream_aggregator | Read in pass 019; bounded multi-stream grouping is relevant to graph projection and should be turned into a concrete architecture sketch. |
+| 111 | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/latest_blocks.rs | Read in pass 020; convert minimum latest-block frontier, completed-source filtering, and deterministic/nondeterministic classification into Knight Bus projection-runner receipts. |
+| 112 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/codec/test_fixtures.rs | Read in pass 020; convert Arrow physical-type fixture coverage into a Knight Bus graph-slice interchange fixture pack. |
+| 113 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/manifest_validation.rs | Read in pass 020; convert pure manifest validation into `kb profile validate` requirements. |
+| 114 | https://github.com/graphprotocol/graph-node/blob/master/docs/subgraph-manifest.md | Read in pass 020; convert hashed manifest-plus-linked-files design into content-addressed Knight Bus profile bundles. |
+| 115 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/mod.rs | Read in pass 020; next convert integrated datasource, feature, graft, template, subgraph-datasource, and AMP restrictions into profile composition rules. |
+| 116 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/api_version.rs | Read in pass 020; next turn API/spec-version gates into a Knight Bus profile-version compatibility matrix. |
+| 117 | https://github.com/graphprotocol/graph-node/tree/master/gnd/tests/fixtures/codegen_verification | Read in pass 020; next design generated-binding fixture directories for filters, optional sources, topic/key filters, and profile edge cases. |
+| 118 | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/error.rs | Read in pass 020; next translate deterministic/nondeterministic error propagation into receipt and retry semantics. |
+| 119 | https://github.com/graphprotocol/graph-node/tree/master/core/src/amp_subgraph/runner | Read in pass 021 through `mod.rs`, `context.rs`, `data_stream.rs`, `data_processing.rs`, `reorg_handler.rs`, `error.rs`, and `compat.rs`; next convert this into a Knight Bus runner-state-machine spec. |
+| 120 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/data/subgraph | Read in pass 021 through `features.rs` and `schema.rs` plus prior manifest/API validation files; next inspect schema validation and status reporting as profile metadata model. |
+| 121 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/schema.rs | Read in pass 021; next map persisted deployment/error fields into a concrete `profile_runs` SQLite schema. |
+| 122 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/data/subgraph/features.rs | Read in pass 021; next design `declared_features` versus `detected_features` profile-lint output. |
+| 123 | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/data_stream.rs | Read in pass 021; next translate bounded block-range planner into `max_live_slice_bytes` and `frontier_window` knobs. |
+| 124 | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/data_processing.rs | Read in pass 021; next translate LFU entity cache plus block transaction into active-state/checkpoint separation. |
+| 125 | https://github.com/graphprotocol/graph-node/blob/master/core/src/amp_subgraph/runner/reorg_handler.rs | Read in pass 021; next translate reorg handling into generic source-version invalidation receipts. |
+| 126 | https://github.com/graphprotocol/graph-node/tree/master/core/src/amp_subgraph | Read in pass 022 through `manager.rs`, `monitor.rs`, `metrics.rs`, and `mod.rs`; next convert lifecycle supervision into a Knight Bus run-manager spec. |
+| 127 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp | Read in pass 022 through client, manifest, data-source resolver, SQL query builder, schema generator, and codec files; next convert physical batch contracts into profile-source adapter requirements. |
+| 128 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/client/flight_client.rs | Read in pass 022; next map Flight batch metadata and resume/reorg protocol to `BatchEvidence` and `SourceEvent` receipt schemas. |
+| 129 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/sql/query_builder | Read in pass 022; next design graph-slice AST rewriting for allowed sources, bounded windows, context/provenance columns, and deterministic ordering. |
+| 130 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/manifest/data_source/raw.rs | Read in pass 022; next translate raw datasource validation into a full `kb profile validate --probe-source` checklist. |
+| 131 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/codec | Read in pass 022; next define Knight Bus graph-slice codec contract and fixture matrix. |
+| 132 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/schema/generator | Read in pass 022; next define what can be autogenerated versus what graph profile authors must declare. |
+| 133 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/common | Read in pass 023; extracted required context-column alias strategy for block number/hash/timestamp. |
+| 134 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/amp/stream_aggregator | Revisited in pass 023 with pass 022 context; converted multi-stream grouping, blocked buffers, common completed frontier, and delayed materialization into `SourceEvent` + `BatchEvidence` design. |
+| 135 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/codec/utils.rs | Read in pass 023; next map alias-based required-column discovery to Knight Bus graph-slice codec validation. |
+| 136 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/group_data.rs | Read in pass 023; next design reference-plus-row-index grouping and late graph-slice materialization. |
+| 137 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/buffer.rs | Read in pass 023; next design `common_completed_frontier`, `pacing_streams`, `blocked_streams`, and `hash_disagreement` receipt fields. |
+| 138 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/amp/stream_aggregator/record_batch/aggregator.rs | Read in pass 023; next translate completed-group rules into algorithm-family completion contracts. |
+| 139 | https://github.com/graphprotocol/graph-node/tree/master/store/postgres/src/relational | Read in pass 024; converted Layout, block ranges, index descriptors, pruning, and typed decoding into graph-slice storage/profile/compaction requirements. |
+| 140 | https://github.com/graphprotocol/graph-node/tree/master/graph/src/components/store | Read in pass 024; converted store traits, EntityCache, write batches, and StoreError determinism into durable-store, hot-state, and receipt/retry contracts. |
+| 141 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/traits.rs | Read in pass 024; next turn sourceable/writable/cursor traits into a Knight Bus storage-interface executable spec. |
+| 142 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/entity_cache.rs | Read in pass 024; next design `AlgorithmEpochCache` and minimal checkpoint modification tests. |
+| 143 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/write.rs | Read in pass 024; next design `RunBatch`, `StateGroup`, `CheckpointChunk`, forward-only append, and batch poisoning requirements. |
+| 144 | https://github.com/graphprotocol/graph-node/blob/master/graph/src/components/store/err.rs | Read in pass 024; next define Knight Bus deterministic/nondeterministic error taxonomy and retry policy. |
+| 145 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational.rs | Read in pass 024; next turn Layout operations into a graph-projection storage contract with find/range/insert/update/revert semantics. |
+| 146 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/block_range.rs | Read in pass 024; next design validity-interval storage profiles for mutable graph projections and immutable edge/event batches. |
+| 147 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/index.rs | Read in pass 024; next define storage-profile index descriptor schema. |
+| 148 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/prune.rs | Read in pass 024; next design compaction/pruning receipt fields and retention policy options. |
+| 149 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/value.rs | Read in pass 024; next define deterministic physical-type decoder fixture matrix. |
+| 150 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/writable.rs | Read in pass 025; converted sync/async writer modes, write queue, pending overlay reads, flush/poison/synced semantics, and batch weight/age knobs into Knight Bus freshness and queue receipts. |
+| 151 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational_queries.rs | Read in pass 025; converted dynamic query physicalization, range replay, changes/deletions, multi-lookup, chunking, filtering/windowing, clamp, and revert queries into source-plan/profile requirements. |
+| 152 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/deployment_store.rs | Read in pass 026; converted epoch transaction, lock, modifications, rollups, dynamic metadata, deterministic errors, head/cursor/count advance, prune trigger, and rewind/truncate semantics into `EpochCommit` requirements. |
+| 153 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/subgraph_store.rs | Read in pass 026; converted primary/shard orchestration, one writable per deployment, poisoned-writable replacement, store events, writable/sourceable creation, and stop behavior into run-manager requirements. |
+| 154 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/relational/dsl.rs | Read in pass 026; converted typed visibility, causality, selected-column, system-column, and block-range predicate helpers into graph-slice profile DSL requirements. |
+| 155 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/transaction_receipt.rs | Read in pass 026; converted raw-to-light transaction receipt decoding and byte-width fixture into source receipt normalization requirements. |
+| 156 | https://github.com/graphprotocol/graph-node/tree/master/store/test-store/tests/postgres | Read in pass 026 through writable/relational/graft/store test maps and key snippets; extracted fixture pack for pending overlay, source replay, poison/restart, graft boundary, revert, and pruning behavior. |
+| 157 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs | Read next if turning pass 026 into executable specs: port pending overlay, poison/restart, sourceable range, and immutable replay tests. |
+| 158 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs | Read next if turning visibility/query behavior into fixtures: port revert, changed-since, block-find, fulltext exclusion, and skip-duplicate cases as needed. |
+| 159 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs | Read next if designing retention/import-boundary fixtures: port cannot-rewind-past-graft and earliest-frontier-after-prune tests. |
+| 160 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/deployment.rs | Read in pass 027; converted persisted head/deployment/error/manifest schema helpers, deterministic error ranges, reorg/invalidation counters, synced state, earliest block, history blocks, and forward/revert constraints into run-registry requirements. |
+| 161 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/notification_sender.rs | Resolved in pass 027 as moved/nonexistent path; equivalent functionality is in `notification_listener.rs`, `store_events.rs`, and `chain_head_listener.rs`. |
+| 162 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/notification_listener.rs | Read in pass 027; converted safe channel names, reconnect backoff, batch notification reads, broadcast timeout, large-notification table, and cleanup into run-event design. |
+| 163 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/store_events.rs | Read in pass 027; converted store-event subscription manager, invalid startup message policy, subscriber broadcast, and stale cleanup into event-stream requirements. |
+| 164 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/chain_head_listener.rs | Read in pass 027; converted per-network frontier watchers, metrics, notification sender, and timeout wakeups into source-frontier watcher requirements. |
+| 165 | https://github.com/graphprotocol/graph-node/tree/master/store/postgres/migrations | Read in pass 028; converted deployment/head/error/manifest/cursor/prune/notification/dynamic-source/postponed-index schema evolution into Knight Bus SQLite run-registry and job-ledger requirements. |
+| 166 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds.rs | Resolved in pass 028 as moved/nonexistent path; current module is `store/postgres/src/dynds/{mod.rs,private.rs,shared.rs}`. |
+| 167 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/mod.rs | Read in pass 028; converted private/shared dynamic-source dispatcher into runtime profile-addendum requirements. |
+| 168 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/private.rs | Read in pass 028; converted validity-ranged dynamic source metadata, causality regions, offchain `done_at`, copy/remap/restore, and chunking into low-RAM runtime-source storage requirements. |
+| 169 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/src/dynds/shared.rs | Read in pass 028; converted legacy shared dynamic-source compatibility into versioned profile-layout adapter requirements. |
+| 170 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2025-05-13-173523_split_subgraph_deployment/up.sql | Read in pass 028; next use as schema seed for Knight Bus `profile_run` plus `run_head`. |
+| 171 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2025-04-08-224710_add_prune_state/up.sql | Read in pass 028; next convert into `artifact_compaction_jobs` executable spec. |
+| 172 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2024-10-01-100427_create_graphman_command_executions_table/up.sql | Read in pass 028; next convert into `kb_commands` job-ledger executable spec. |
+| 173 | https://github.com/graphprotocol/graph-node/blob/master/store/postgres/migrations/2026-05-27-171745_postponed_indexes_created/up.sql | Read in pass 028; next convert into deferred-index build-state spec. |
+| 174 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs | Read next if turning visibility/query behavior into fixtures: port revert, changed-since, block-find, fulltext exclusion, and skip-duplicate cases as needed. |
+| 175 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/dynds.rs | Resolved in pass 029 as nonexistent; relevant evidence lives in runner fixtures plus `store.rs` dynamic-source revert test. |
+| 176 | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/dynamic-data-source | Read in pass 029; next port minimal static-source plus dynamic-template fixture into Knight Bus runtime-source smoke test. |
+| 177 | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/data-source-revert | Read in pass 029; next port context-preservation and revert fixture into `runtime_source_addendum` acceptance tests. |
+| 178 | https://github.com/graphprotocol/graph-node/blob/master/tests/runner-tests/data-source-revert/grafted.yaml | Read in pass 029; next port graft/import boundary fixture into profile fork/import tests. |
+| 179 | https://github.com/graphprotocol/graph-node/tree/master/tests/runner-tests/data-source-revert2 | Read in pass 029; next port schema-evolution fixture where base output changes but dynamic template semantics remain stable. |
+| 180 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/store.rs | Read in pass 029 around `revert_block_with_dynamic_data_source_operations`; next port atomic entity-plus-runtime-source commit/revert fixture. |
+| 181 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/subgraph.rs | Read targeted failure/recovery sections in pass 030; next port deterministic/non-deterministic recovery outcomes into failure receipt specs. |
+| 182 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/relational.rs | Read targeted visibility/copy/revert/change-filter sections in pass 030; next port graph-slice verification fixtures. |
+| 183 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#dynamic-source-fixtures-should-be-first-class | Next convert this section into an executable spec block or separate spec doc if the user asks for implementation kickoff. |
+| 184 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#relational-tests-become-graph-slice-verification | Next convert this section into executable specs for `GraphSliceStore` visibility, copy, revert, and changed-since contracts. |
+| 185 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#failure-recovery-needs-four-outcomes | Next convert this section into executable specs for deterministic/non-deterministic failure receipts and recovery outcomes. |
+| 186 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/writable.rs | Read targeted sections in pass 031; next port pending overlay, poison/restart, sourceable range replay, immutable replay, and duplicate immutable failure specs. |
+| 187 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/graft.rs | Read targeted sections in pass 031; next port import/graft boundary, copy/on-sync activation, and prune retention specs. |
+| 188 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#pending-overlay-is-a-freshness-mode | Next convert this section into executable specs for `sealed_only`, `overlay_visible`, `pending_revert_visible`, `flush_required`, and `queue_poisoned`. |
+| 189 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#sourceable-range-replay-beats-snapshot-thinking | Next convert this section into executable specs for `SourceOperation::{Create,Modify,Delete}` range replay. |
+| 190 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#artifact-boundary-receipts-are-non-negotiable | Next convert this section into executable specs for storage-mode switch, fork/import, activation, retention, and rollback floors. |
+| 191 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs | Read in pass 032; next port bounded source lineage, missing predecessor, sibling hash, confirmation, and ancestor-root fixtures. |
+| 192 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs | Read in pass 032; next port sealed bucket, current bucket include/exclude, cumulative delta, filter, and nested-window fixtures. |
+| 193 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#source-frontier-needs-bounded-lineage-evidence | Next convert this section into executable specs for `SourceFrontierReceipt`, lineage windows, missing predecessor stalls, canonical hash pruning, and sparse epoch ancestry. |
+| 194 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#recurring-aggregations-are-budget-bounded-graph-compute-cousins | Next convert this section into executable specs for sealed checkpoints, current-frontier overlays, explicit selected fields, cumulative deltas, and nested graph output windows. |
+| 195 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs#L87-L221 | Use as fixture source for accepting or refusing source frontiers under bounded ancestor checks. |
+| 196 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/chain_head.rs#L263-L430 | Use as fixture source for source version hash confirmation, sparse epochs, and root-constrained ancestor lookup. |
+| 197 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs#L453-L664 | Use as fixture source for sealed-only versus sealed-plus-current analytics outputs and cumulative current deltas. |
+| 198 | https://github.com/graphprotocol/graph-node/blob/master/store/test-store/tests/postgres/aggregation.rs#L569-L850 | Use as fixture source for nested parent-child metric windows and empty-window semantics. |
+| 199 | https://github.com/apache/iggy/blob/master/core/configs/src/server_config/cache_indexes.rs | Read in pass 033; next convert `all/open_segment/none` into Knight Bus `index_cache_mode` specs. |
+| 200 | https://github.com/apache/iggy/blob/master/core/server/config.toml#L499-L514 | Read in pass 033; use as product-language precedent for documenting RAM/speed tradeoffs plainly. |
+| 201 | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index.rs | Read in pass 033; next design graph artifact sparse jump-table entries and lower-bound predecessor semantics. |
+| 202 | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_reader.rs | Read in pass 033; next convert load-all-under-cap and on-file-binary-search-over-cap into executable lookup fixtures. |
+| 203 | https://github.com/apache/iggy/blob/master/core/partitions/src/iggy_index_writer.rs | Read in pass 033; next design append-only index writer receipt fields and fsync/sync policy knobs. |
+| 204 | https://github.com/apache/iggy/blob/master/core/partitions/src/poll_plan.rs | Read in pass 033; next convert sealed-index resident cap, fail-closed IO, and borrow-free poll plan into Knight Bus artifact read-plan specs. |
+| 205 | https://github.com/apache/iggy/blob/master/core/partitions/src/journal.rs | Read in pass 033; next convert commit ceiling, gapless prefix flush, repair ring, and range-evicted behavior into run journal specs. |
+| 206 | https://github.com/apache/iggy/blob/master/core/server/src/shard/system/segments.rs | Read in pass 033; next convert active-artifact protection and consumer/replay barriers into compaction-retention specs. |
+| 207 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#iggy-style-sparse-index-modes-make-ram-a-product-dial | Next turn this section into executable specs for `ArtifactIndexReceipt`, `RunJournalReceipt`, and storage-profile memory modes. |
+| 208 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#iggy-style-sparse-index-modes-make-ram-a-product-dial | Next use this section to design the first implementation slice: one append-only graph artifact, one sparse jump table, one RAM cap, one on-file lower-bound lookup, and one receipt. |
+| 209 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/agent-eval-feedback-metrics.md | Re-read in pass 034; next convert three-metric doctrine into Knight Bus benchmark receipt fields. |
+| 210 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/residual-context-occupancy.md | Re-read in pass 034; next map residual context occupancy to resident/mapped/cache/spill-after-run metrics. |
+| 211 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/explore-sufficiency.md | Read in pass 034; next design post-run behavior buckets for graph algorithm/profile sufficiency. |
+| 212 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/explore-allocation-efficiency.md | Read in pass 034; next define `state_allocation_efficiency` with relative-metric caveats. |
+| 213 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/call-sequence-analysis.md | Re-read in pass 034; next convert planner/tool adoption analysis into storage-path sequence receipts. |
+| 214 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/codegraph-ab-matrix.md | Re-read in pass 034; next copy benchmark disclosure fields into Knight Bus benchmark template. |
+| 215 | https://github.com/colbymchenry/codegraph/blob/main/docs/benchmarks/answer-directly-vs-explore-agent.md | Read in pass 034; next copy verified-vs-indicative metric labeling into Knight Bus research docs. |
+| 216 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#benchmark-receipts-need-next-action-evidence | Next turn this section into executable specs for `PostRunBehavior`, `BenchmarkPathSequence`, `MetricEvidenceLevel`, and `state_allocation_efficiency`. |
+| 217 | https://github.com/cocoindex-io/cocoindex-code | Read in pass 035; next use repo-level packaging, install, and adoption signals as a local-compute-appliance reference. |
+| 218 | https://github.com/cocoindex-io/cocoindex-code/blob/main/README.md | Read in pass 035; next convert skill/MCP/hook/CLI/daemon commands into a Knight Bus `kb` command-map and agent skill spec. |
+| 219 | https://github.com/cocoindex-io/cocoindex-code/blob/main/CLAUDE.md | Read in pass 035; next convert daemon/client/project-registry architecture into a Knight Bus run-daemon executable spec. |
+| 220 | https://github.com/cocoindex-io/cocoindex-code/blob/main/EMBEDDINGS.md | Read in pass 035; next convert hardware/privacy/cost/speed mode disclosure into a graph-profile mode table. |
+| 221 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/daemon.py | Read in pass 035; next use `ProjectRegistry`, handshake, idle reaper, project status, heartbeat, and doctor dispatch as implementation precedent. |
+| 222 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/project.py | Read in pass 035; next map index locks, initial-index events, progress streaming, and status reads to projection/run lifecycle specs. |
+| 223 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/indexer.py | Read in pass 035; next map language-aware chunking and SQLite vector artifact rows to graph-boundary splitting and provenance rows. |
+| 224 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/settings.py | Read in pass 035; next adapt global-vs-project settings and path mapping to graph artifact placement and resource policy. |
+| 225 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/litellm_embedder.py | Read in pass 035; next adapt pacing, retry, and batching to source adapters, baseline adapters, cloud offload, and oracle checks. |
+| 226 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/grep.py | Read in pass 035; next use structural no-index direct path as precedent for Knight Bus light query path. |
+| 227 | https://github.com/cocoindex-io/cocoindex-code/blob/main/src/cocoindex_code/server.py | Read in pass 035; next use small high-intent MCP tool design as precedent for `profile_run`, `artifact_status`, `receipt_read`, and `doctor`. |
+| 228 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#cocoindex-turns-mode-choice-into-agent-ergonomics | Next turn this section into executable specs for `kb init`, `kb doctor`, `kb daemon`, `kb run`, mode disclosure, handshake hashes, planner gates, and isolated workers. |
+| 229 | https://arxiv.org/abs/2604.11378 | Read in pass 036; next convert immutable plan-version DAGs, three-layer separation, contract validation, and bounded recovery escalation into Knight Bus profile-run DAG specs. |
+| 230 | https://arxiv.org/html/2604.11378v1 | Read in pass 036; next mine sections on node state machine, scheduler tuple, and seven-group experimental protocol if building a benchmark harness doc. |
+| 231 | https://github.com/RUCAIBox/awesome-agent-harness | Read in pass 036; next use as source map for harness engineering, graph memory, skill libraries, safety, and benchmark follow-up papers. |
+| 232 | https://arxiv.org/abs/2607.27652 | Read in pass 036; next convert finite typed action menus and retrieval-equivalence collapse into Knight Bus agent/MCP planner-menu specs. |
+| 233 | https://github.com/7HHHHH/Harness-G | Read in pass 036; next inspect `harness_g/snc.py`, graph construction scripts, and evaluation utilities if designing graph-action benchmark fixtures. |
+| 234 | https://arxiv.org/abs/2607.11388 | Read in pass 036; next convert verifier-backed state transitions and evidence-driven completion into `RunState` event specs. |
+| 235 | https://github.com/WenyiWU0111/StructAgent | Read in pass 036; next inspect `mm_agents/structagent/ledger`, verifier, recovery, and final audit files if designing run-ledger implementation. |
+| 236 | https://arxiv.org/abs/2607.26598 | Read in pass 036; next convert episodic memory plus state-graph repair edges into profile-evolution and failure-attribution specs. |
+| 237 | https://arxiv.org/abs/2604.20844 | Read in pass 036; next convert atom/entity granularity, PPR, coverage, and purity arguments into graph artifact granularity metrics. |
+| 238 | https://github.com/7HHHHH/AtomicRAG | Read in pass 036; next inspect `atomicrag/atomicrag.py`, caches, PPR path, statistics output, and run scripts for a PPR/local-ranking profile. |
+| 239 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 036; next turn the four-tier data ownership model into Knight Bus planner gates for modeled/profiled vs partially modeled vs raw connector paths. |
+| 240 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#structured-harnesses-make-graphs-a-verification-interface | Next turn this section into executable specs for finite action menus, verifier events, profile evolution, storage granularity metrics, and modeled-data planner gates. |
+| 241 | https://arxiv.org/abs/2602.05665 | Read in pass 037; next convert graph-memory lifecycle, taxonomy, scalability challenges, compression, incremental updates, and approximate retrieval into first local workload specs. |
+| 242 | https://github.com/DEEP-PolyU/Awesome-GraphMemory | Read in pass 037; next use as graph-memory reading map for benchmarks, libraries, and profile candidates. |
+| 243 | https://arxiv.org/abs/2501.13956 | Read in pass 037; next convert LongMemEval honesty, temporal validity, community update, and token/latency comparisons into benchmark requirements. |
+| 244 | https://github.com/getzep/graphiti | Read in pass 037; next inspect source paths for temporal facts, invalidation, hybrid retrieval, and community maintenance if implementing a Graphiti-compatible profile. |
+| 245 | https://arxiv.org/abs/2509.21212 | Read in pass 037; next convert seven-index SGMem design and h-hop expansion into `sentence_graph_recall` profile specs. |
+| 246 | https://arxiv.org/abs/2603.17244 | Read in pass 037; next convert immutable revisions, mutable tags, typed dependency edges, and belief revision into receipt graph specs. |
+| 247 | https://kumiho.io/en | Read in pass 037; next treat vendor claims as positioning input and independently verify before citation as performance evidence. |
+| 248 | https://github.com/KumihoIO/kumiho-memory | Read in pass 037; next inspect evidence-level state machine, Decision Memory, skill ingest, and MCP tools for receipt/evidence design. |
+| 249 | https://github.com/KumihoIO/Revka | Read in pass 037; next inspect workflow DAG, RunLog, trust scoring, and memory graph explorer for run-runtime design. |
+| 250 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#agent-memory-graphs-define-the-first-local-workload | Next turn this section into executable specs for temporal lookup, evidence-filtered recall, h-hop sentence graph expansion, PPR/local ranking, dynamic community update, stale fact audit, and memory compaction. |
+| 251 | https://github.com/getzep/graphiti/blob/main/graphiti_core/graphiti.py | Read in pass 038; next convert `add_episode` pipeline stages and span counts into profile-run DAG and receipt fields. |
+| 252 | https://github.com/getzep/graphiti/blob/main/graphiti_core/nodes.py | Read in pass 038; next convert `valid_at`, source metadata, and saga event-time/wall-clock watermarks into temporal artifact specs. |
+| 253 | https://github.com/getzep/graphiti/blob/main/graphiti_core/edges.py | Read in pass 038; next convert fact edge temporal/provenance fields into interval slab and source-episode sidecar specs. |
+| 254 | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_filters.py | Read in pass 038; next convert typed filters into finite profile predicate compiler specs. |
+| 255 | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/edge_operations.py | Read in pass 038; next convert duplicate/contradiction/invalidation flow into stale-fact audit profile specs. |
+| 256 | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_config_recipes.py | Read in pass 038; next convert hybrid recipes into Knight Bus finite action menus and benchmark mode matrix. |
+| 257 | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search.py | Read in pass 038; next convert candidate overfetch/rerank/truncate into receipt counters and budget knobs. |
+| 258 | https://github.com/getzep/graphiti/blob/main/graphiti_core/search/search_utils.py | Read in pass 038; next convert BFS physical query shape into traversal-profile tests. |
+| 259 | https://github.com/getzep/graphiti/blob/main/tests/utils/search/test_edge_bfs_query_shape.py | Read in pass 038; next copy the query-shape regression-test pattern for Knight Bus broad-scan prevention tests. |
+| 260 | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/community_operations.py | Read in pass 038; next convert label propagation, update-community, and group-scoped remove semantics into community profile specs. |
+| 261 | https://github.com/getzep/graphiti/blob/main/graphiti_core/utils/maintenance/graph_data_operations.py | Read in pass 038; next convert previous-episode windowing into event-time local context retrieval specs. |
+| 262 | https://github.com/getzep/graphiti/commit/245320997d0d225d9972a111ac1301c8f83cb031 | Read in pass 038; next use as exemplar for query-shape/performance commit documentation. |
+| 263 | https://github.com/getzep/graphiti/commit/784782c0854b49ae1c16ec80aac0f78eeac63acf | Read in pass 038; next use as exemplar for scoped artifact rebuild safety requirements. |
+| 264 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#graphiti-shows-profiles-are-already-hiding-inside-agent-memory | Next turn this section into `temporal_evidence_recall_v1` executable specs with physical path receipts and broad-scan prevention tests. |
+| 265 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/evidence.py | Read in pass 039; next convert evidence metadata/tag precedence into receipt schema and promotion/demotion specs. |
+| 266 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/evidence_rank.py | Read in pass 039; next convert O(k) evidence weighting, idempotency, and score-less handling into bounded candidate-survival tests. |
+| 267 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/valid_time.py | Read in pass 039; next convert valid-time demotion and partial-precision interval semantics into temporal graph fixtures. |
+| 268 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/temporal_guard.py | Read in pass 039; next convert verified/derived/unverified date confidence into event-time ranking gates. |
+| 269 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/graph_augmentation.py | Read in pass 039; next extract exact cap fields and priority classes into `profile_priority` manifest fields. |
+| 270 | https://github.com/KumihoIO/kumiho-memory/blob/main/kumiho_memory/graph_maintenance.py | Read in pass 039; next convert dry-run, deprecation budget, deterministic merge gates, and official-grade protection into maintenance-profile specs. |
+| 271 | https://github.com/KumihoIO/kumiho-memory/blob/main/docs/DECISION_MEMORY_DESIGN.md | Read in pass 039; next convert code decision, anchor, commit, and evidence nodes into Knight Bus evidence graph schema. |
+| 272 | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_evidence_rank.py | Read in pass 039; next copy the failure-mode style for evidence-aware cap regression tests. |
+| 273 | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_valid_time.py | Read in pass 039; next copy interval/no-op/demotion fixture patterns for temporal profile tests. |
+| 274 | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_temporal_guard.py | Read in pass 039; next copy date-corroboration fixture patterns for temporal profile tests. |
+| 275 | https://github.com/KumihoIO/kumiho-memory/blob/main/tests/test_graph_recall_rerank.py | Read in pass 039; next inspect remaining reserve/seed tests if implementing graph-augmented recall. |
+| 276 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/schema.py | Read in pass 039; next convert typed step DSL into `ProfileRunDAG` schema. |
+| 277 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/validator.py | Read in pass 039; next convert workflow validation checks into `kb profile lint`. |
+| 278 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/tests/test_workflow_validator_unused_depends.py | Read in pass 039; next turn fake-dependency rejection into verifier-artifact-reference specs. |
+| 279 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/workflow/executor.py | Read in pass 039; next map checkpoints, retries, cancellation, cost/time guards, and human pauses to graph-run lifecycle specs. |
+| 280 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/run_log.py | Read in pass 039; next design append-only `kb-run-events.jsonl` receipt event schema. |
+| 281 | https://github.com/KumihoIO/Revka/blob/main/operator-mcp/operator_mcp/tool_handlers/workflow_revisions.py | Read in pass 039; next convert structured workflow mutation ops into revision-native profile evolution. |
+| 282 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#kumiho-makes-evidence-a-ranking-and-traversal-primitive | Next turn Kumiho plus Revka synthesis into `temporal_evidence_recall_v1` and `profile_run_dag_v1` executable specs. |
+| 283 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/atomicrag.py | Read in pass 040; next convert dense fragment retrieval, entity seed scoring, reset-vector construction, and PRPACK PPR into `ppr_local_ranking_v1` executable specs. |
+| 284 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/embedding_store.py | Read in pass 040; next design bounded/mmap vector sidecar and no-whole-store-materialization tests. |
+| 285 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/utils/embed_utils.py | Read in pass 040; next convert blockwise KNN top-k merge into generic `BlockwiseTopKReceipt` specs. |
+| 286 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/query_decomposition.py | Read in pass 040; next convert complexity-threshold and max-sub-question gates into profile planner/refusal specs. |
+| 287 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/fragment_filter.py | Read in pass 040; next create strict-vs-relaxed sieve failure policy specs for benchmark and answer modes. |
+| 288 | https://github.com/7HHHHH/AtomicRAG/blob/main/scripts/run_atomicrag.py | Read in pass 040; next design Knight Bus workspace/results/log/statistics folder contract and cache inconsistency recovery receipt. |
+| 289 | https://github.com/7HHHHH/AtomicRAG/blob/main/atomicrag/utils/config_utils.py | Read in pass 040; next turn hidden runtime knobs into typed profile manifest fields with allowed ranges. |
+| 290 | https://github.com/7HHHHH/AtomicRAG/blob/main/configs/atomicrag/config.json | Read in pass 040; next split API/vector/graph/corpus concurrency fields in run receipts. |
+| 291 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#atomicrag-turns-ppr-into-a-retrieval-profile | Next turn this synthesis into `ppr_local_ranking_v1` executable spec, receipt schema, baseline plan, and first benchmark fixture list. |
+| 292 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/protocol.py | Read in pass 041; next convert finite action parser and rejection rules into `kb profile action` protocol specs. |
+| 293 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/env.py | Read in pass 041; next map stateful action menus, lookup caps, bad-target filters, dedup, and runtime-built mixqueries into graph-compute session specs. |
+| 294 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/graph_builder.py | Read in pass 041; next design clean profile artifact folder layout, manifest fields, sparse sidecars, and human build report. |
+| 295 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/graph_index.py | Read in pass 041; next separate paragraph/sentence/entity/mention/adjacency/synonym lanes into mapped low-RAM artifact-access patterns. |
+| 296 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/snc.py | Read in pass 041; next convert same-state alternatives and enabling credit into planner-receipt specs. |
+| 297 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/snc_api.py | Read in pass 041; next specify bounded frontier alternatives, selected-action exclusion, deduped physical-path alternatives, and payload caps. |
+| 298 | https://github.com/7HHHHH/Harness-G/blob/main/scripts/validate_harness_g_graph.py | Read in pass 041; next convert graph artifact validator checks into `kb profile validate` requirements. |
+| 299 | https://github.com/7HHHHH/Harness-G/blob/main/scripts/run_harness_g_api.py | Read in pass 041; next design stateful profile daemon/session API, health route, nav/run JSONL, and metrics aggregation. |
+| 300 | https://github.com/7HHHHH/Harness-G/blob/main/harness_g/metrics.py | Read in pass 041; next define action-quality metrics for Knight Bus planner adoption and invalid-action rate. |
+| 301 | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_harness_g_protocol.py | Read in pass 041; next copy finite-action rejection fixture style for profile actions. |
+| 302 | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_harness_g_action_v3.py | Read in pass 041; next copy action-menu, dedup, bad-target, terminal-state, and preview semantics tests. |
+| 303 | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_harness_g_graph_build.py | Read in pass 041; next copy tiny fixture plus full artifact validation test pattern. |
+| 304 | https://github.com/7HHHHH/Harness-G/blob/main/tests/test_snc.py | Read in pass 041; next copy planner-credit, dependency-edge, deadzone, and enabling-value test patterns. |
+| 305 | local: docs_PMF_01/PMF003-Graph-Developer-Alpha-Radar.md#harness-g-implementation-makes-menus-a-runtime-contract | Next turn this synthesis into `profile_action_menu_v1`, `profile_validate_v1`, and `planner_receipt_v1` executable specs. |
+| 306 | https://github.com/WenyiWU0111/StructAgent/blob/main/README.md | Read in pass 042; next turn planner/actor/verifier/DONE-auditor description into `profile_run_state_v1` vocabulary. |
+| 307 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/loop.py | Read in pass 042; next specify executor-claim vs verifier-state semantics for every graph-run phase. |
+| 308 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/ledger.py | Read in pass 042; next design `PhaseOutcome`, `OracleSpec`, and state mutation rules. |
+| 309 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/records.py | Read in pass 042; next design evidence bundle fields, validity horizon, status, and typed facts for graph receipts. |
+| 310 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/timeline.py | Read in pass 042; next design append-only events plus compact state-board rendering. |
+| 311 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/verifier/boundary_verify.py | Read in pass 042; next write phase-boundary verifier contract and allowed oracle/probe menu. |
+| 312 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/verifier/verifiers.py | Read in pass 042; next encode confirmed/refuted/inconclusive/unavailable semantics. |
+| 313 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/dispatcher.py | Read in pass 042; next write graph-run recovery transition enum and routing policy. |
+| 314 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/state.py | Read in pass 042; next add machine-readable recovery state to the receipt schema. |
+| 315 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/core/recovery/transitions.py | Read in pass 042; next keep transition vocabulary deliberately small and testable. |
+| 316 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/ledger/core/phase_board.py | Read in pass 042; next model profile phases and handoff artifacts as a phase board. |
+| 317 | https://github.com/WenyiWU0111/StructAgent/blob/main/docs/CONFIG.md | Read in pass 042; next split correctness-critical gates from optional hints and ablations. |
+| 318 | https://github.com/WenyiWU0111/StructAgent/blob/main/docs/REPRODUCE.md | Read in pass 042; next define benchmark-output directory contract: result, events, receipt, config, verifier traces, and replay report. |
+| 319 | https://github.com/WenyiWU0111/StructAgent/blob/main/scripts/run.sh | Read in pass 042; next define one full-verification bench command with named ablations. |
+| 320 | https://github.com/WenyiWU0111/StructAgent/blob/main/lib_run_single.py | Read in pass 042; next preserve partial/failed-run artifacts and evaluator-compared outputs in Knight Bus. |
+| 321 | https://github.com/WenyiWU0111/StructAgent/blob/main/mm_agents/structagent/memory/README.md | Read in pass 042; next separate learned profile hints from correctness-critical verifier behavior. |
+| 322 | https://arxiv.org/html/2607.26598v1 | Read in pass 043; next define the two-timescale profile runtime: frozen execution state and post-run profile evolution state. |
+| 323 | https://arxiv.org/abs/2607.26598 | Read in pass 043; next keep the author/date/abstract source as the concise citable pointer. |
+| 324 | https://arxiv.org/html/2607.26598v1#S3 | Read in pass 043; next define `ProfileMemory` and `ProfileStateGraph` schemas from episodic memory plus state graph. |
+| 325 | https://arxiv.org/html/2607.26598v1#S3.SS1 | Read in pass 043; next define `EvolutionSOP` for graph profile update scope, commit gates, and tool/profile constraints. |
+| 326 | https://arxiv.org/html/2607.26598v1#S4 | Read in pass 043; next turn reported improvements and ablations into directional PMF evidence, not product claims. |
+| 327 | https://arxiv.org/html/2607.26598v1#A11.T5 | Read in pass 043; next add profile-state growth/compaction metrics to receipts. |
+| 328 | https://arxiv.org/html/2607.26598v1#A11.T6 | Read in pass 043; next position Knight Bus against logs/reflection/fine-tuning as bounded executable procedure evolution. |
+| 329 | https://arxiv.org/html/2607.26598v1#S11 | Read in pass 043; next require rollback, stale-entry removal, regression replay, privacy/redaction, and human review for profile evolution. |
+| 330 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next convert modeled KG/HQL versus raw MCP/API distinction into Knight Bus optimized-profile versus raw-fallback architecture. |
+| 331 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next reproduce the article's token-savings style as a Knight Bus receipt comparison: baseline bytes/materialization/RSS versus profile slabs/bytes/RSS. |
+| 332 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next define `ProfileSchema` metadata fields: type, unit, legal operation, allowed aggregation/reduction, exactness, spill policy, and verifier gate. |
+| 333 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next define explicit relationship/edge-lane metadata: connected entity types, join keys, direction, cardinality, traversal name, and source validity. |
+| 334 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next build a `profile route` spec from semantic annotations: tags, candidate profiles, rejected profiles, strict schema output, and reason trace. |
+| 335 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next define a small profile-plan grammar before exposing arbitrary Cypher or agent-written physical plans. |
+| 336 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next convert the four-tier data ownership model into Knight Bus determinism tiers for profile adoption and PMF positioning. |
+| 337 | https://www.harness.io/blog/why-harness-ai-uses-knowledge-graph | Read in pass 044; next mark all Harness token numbers as vendor examples until independently reproduced. |
+| 338 | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Read in pass 045; next define `profile_trace_graph_v1` as structural data graph plus executional graph of run phases and artifacts. |
+| 339 | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Read in pass 045; next design safe abstract run-event schema with trace ID, step index, action type, artifact/slab IDs, outcome, duration, and RAM counters. |
+| 340 | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Read in pass 045; next add recurrence/confidence/privacy thresholds before profile repairs become default execution rules. |
+| 341 | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Read in pass 045; next define hybrid storage lanes for profile traces: graph events, vector/text sidecars, entity IDs, and slice-size receipts. |
+| 342 | https://www.harness.io/blog/what-a-context-graph-actually-is-and-how-to-build-one | Read in pass 045; next add evaluation metrics: coverage, path agreement, task completion, time-to-fresh, and context/RAM cost. |
+| 343 | https://www.harness.io/blog/agent-loop-new-os | Read in pass 045; next translate OS analogy into Knight Bus CLI/API: small stable verbs, profile registry, pageable schema discovery, and kernel-like verifier policy. |
+| 344 | https://www.harness.io/blog/agent-loop-new-os | Read in pass 045; next bound both machine RAM and agent context RAM in receipt design. |
+| 345 | https://www.harness.io/blog/agent-loop-new-os | Read in pass 045; next define `profile_describe` and `profile_schema` as demand-paged metadata calls rather than always-loaded docs. |
+| 346 | https://www.harness.io/blog/harness-mcp-server-redesign | Read in pass 045; next keep Knight Bus agent/tool surface near 8-12 verbs and grow through profile registry rather than tool explosion. |
+| 347 | https://www.harness.io/blog/harness-mcp-server-redesign | Read in pass 045; next specify confirmations, read-only mode, and fail-closed delete/rebuild semantics for artifact mutation. |
+| 348 | https://www.harness.io/blog/knowledge-graph-rag | Read in pass 045; next formalize KG/RAG boundary: structured graph profiles own relational constraints; vector/text sidecars supply breadth. |
+| 349 | https://www.harness.io/blog/knowledge-graph-rag | Read in pass 045; next keep vendor outcomes as vendor outcomes until reproduced in Knight Bus benchmarks. |
+| 350 | https://www.harness.io/blog/your-repo-is-a-knowledge-graph-you-just-dont-query-it-yet | Read in pass 045; next connect codebase context engines to Knight Bus profile authoring and verification loops. |
+| 351 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next define graph-memory lifecycle specs: extraction, storage, retrieval, and evolution as separate profile families. |
+| 352 | https://arxiv.org/abs/2602.05665 | Read in pass 046; next keep author/date/abstract source as concise citation for graph-memory category framing. |
+| 353 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next turn graph-memory storage forms into physical profiles: temporal slabs, hierarchy/community sidecars, hyperedge tables, and working-memory overlays. |
+| 354 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next convert retrieval taxonomy into finite profile action menu: semantic seed, rule filter, temporal window, intra/inter-layer traversal, and external-source bridge. |
+| 355 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next define hybrid-source conflict receipts for internal experience versus external authority. |
+| 356 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next convert memory evolution into offline profile jobs: compaction, conflict resolution, missing-edge candidates, and topology reorganization. |
+| 357 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next map every memory-profile claim to the correct benchmark class before building. |
+| 358 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next require quality-resource joint reporting: Precision@K, Recall@K, MRR, graph coherence/completeness/redundancy/temporal consistency, task utility, RSS, bytes, and context cost. |
+| 359 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next make scalability/privacy/trust limitations first-class acceptance criteria for local-memory profiles. |
+| 360 | https://arxiv.org/html/2602.05665v1 | Read in pass 046; next use open-source library comparison dimensions to design integration checklist for memory systems. |
+| 361 | https://github.com/DEEP-PolyU/Awesome-GraphMemory | Read in pass 047; next track repo changes as a living graph-memory ecosystem watchlist. |
+| 362 | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | Read in pass 047; next turn taxonomy branches into profile categories and integration adapter requirements. |
+| 363 | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | Read in pass 047; next select five benchmark tracks: cross-session recall, temporal fact lookup, workflow/tool memory, continual update/compaction, and code/project memory. |
+| 364 | https://raw.githubusercontent.com/DEEP-PolyU/Awesome-GraphMemory/main/README.md | Read in pass 047; next prioritize integration adapters for Graphiti, taOSmd, Omnigraph, Memvid, and Mem0-style memory exports. |
+| 365 | https://github.com/ModernRelay/omnigraph | Read in pass 047; next inspect Omnigraph docs/source for Lance/object-store graph artifacts, branch/review/merge semantics, query runtime, and policy enforcement. |
+| 366 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/README.md | Read in pass 047; next design `lakehouse_graph_profile_v1` compatibility track for branchable object-store graph artifacts. |
+| 367 | https://github.com/jaylfc/taosmd | Read in pass 047; next inspect `docs/benchmarks.md`, fact verifier, archive, and temporal KG internals for local 8 GB memory profile fixtures. |
+| 368 | https://raw.githubusercontent.com/jaylfc/taosmd/master/README.md | Read in pass 047; next convert metric honesty into receipt schema: retrieval vs generation vs judge vs hardware tier vs unsupported-fact rate. |
+| 369 | https://github.com/memvid/memvid | Read in pass 047; next inspect single-file capsule format and Rust core layout for portable memory benchmark fixtures. |
+| 370 | https://raw.githubusercontent.com/memvid/memvid/main/README.md | Read in pass 047; next design `memory_capsule_profile_v1`: immutable frames, compression, time travel, graph/vector sidecars, encryption, and local recall. |
+| 371 | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | Read in pass 048; next translate benchmark metric separation into `local_memory_receipt_v1`. |
+| 372 | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/benchmarks.md | Read in pass 048; next turn hardware-tier rows into measured/extrapolated/queued labels for Knight Bus receipts. |
+| 373 | https://raw.githubusercontent.com/jaylfc/taosmd/master/docs/research-report.md | Read in pass 048; next design a public research ledger with finding IDs, negative results, kill criteria, and invalid-run labels. |
+| 374 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/archive.py | Read in pass 048; next design `profile_archive_v1` for append-only graph inputs and run events. |
+| 375 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/verifier.py | Read in pass 048; next design fail-closed `profile_claim_verifier_v1`. |
+| 376 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/gate.py | Read in pass 048; next design `verification_gate_mode_v1` with off, prefer_verified, and strict modes. |
+| 377 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/store.py | Read in pass 048; next add unsupported/contradicted/unverified rate accounting to receipts. |
+| 378 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/claims/verify_pass.py | Read in pass 048; next design bounded asynchronous verification pass receipts. |
+| 379 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/knowledge_graph.py | Read in pass 048; next build temporal graph fixtures for active view, point-in-time lookup, contradiction detection, and invalidation. |
+| 380 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/vector_memory.py | Read in pass 048; next design `profile_store_mode_signature_v1` and soft-supersede behavior for derived graph artifacts. |
+| 381 | https://raw.githubusercontent.com/jaylfc/taosmd/master/taosmd/retrieval.py | Read in pass 048; next map multi-lane retrieval and RRF fusion into a profile router receipt. |
+| 382 | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_zero_loss_integrity.py | Read in pass 048; next add degraded-run acceptance tests for archive-first behavior and repairable derived-index gaps. |
+| 383 | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_vector_supersede.py | Read in pass 048; next add active-view versus historical-view tests for graph/vector artifacts. |
+| 384 | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/claims/test_verify_pass.py | Read in pass 048; next add fail-closed bounded verifier tests. |
+| 385 | https://raw.githubusercontent.com/jaylfc/taosmd/master/tests/test_judge_verdict_parser.py | Read in pass 048; next add adversarial benchmark-parser tests for substring traps and empty/unrecognized judge output. |
+| 386 | https://github.com/memvid/memvid | Read in pass 049; next track single-file memory-capsule ecosystem signals and benchmark reproducibility. |
+| 387 | https://raw.githubusercontent.com/memvid/memvid/main/README.md | Read in pass 049; next design `graph_profile_capsule_v1` file layout and keep benchmark claims separate until independently reproduced. |
+| 388 | https://raw.githubusercontent.com/memvid/memvid/main/src/io/header.rs | Read in pass 049; next design capsule header validation and compatibility rules. |
+| 389 | https://raw.githubusercontent.com/memvid/memvid/main/src/io/wal.rs | Read in pass 049; next design embedded bounded WAL for profile-run events. |
+| 390 | https://raw.githubusercontent.com/memvid/memvid/main/src/footer.rs | Read in pass 049; next design commit footer and last-valid-generation recovery. |
+| 391 | https://raw.githubusercontent.com/memvid/memvid/main/src/io/time_index.rs | Read in pass 049; next design event-time and processing-time index tracks. |
+| 392 | https://raw.githubusercontent.com/memvid/memvid/main/src/io/manifest_wal.rs | Read in pass 049; next design parallel segment-build WAL. |
+| 393 | https://raw.githubusercontent.com/memvid/memvid/main/src/types/frame.rs | Read in pass 049; next design bounded graph/source frame metadata. |
+| 394 | https://raw.githubusercontent.com/memvid/memvid/main/src/graph_search.rs | Read in pass 049; next design lightweight graph-filter sidecar for memory capsule retrieval. |
+| 395 | https://raw.githubusercontent.com/memvid/memvid/main/src/memvid/search/api.rs | Read in pass 049; next extend store-mode signatures with model/dimension/scope/ACL checks. |
+| 396 | https://raw.githubusercontent.com/memvid/memvid/main/tests/single_file.rs | Read in pass 049; next add no-sidecar and copy-replay acceptance tests. |
+| 397 | https://raw.githubusercontent.com/memvid/memvid/main/tests/crash_recovery.rs | Read in pass 049; next add strict snapshot open plus explicit doctor repair tests. |
+| 398 | https://raw.githubusercontent.com/memvid/memvid/main/tests/replay_integrity.rs | Read in pass 049; next add replay/audit append does not corrupt search/graph indexes tests. |
+| 399 | https://raw.githubusercontent.com/memvid/memvid/main/tests/mutation.rs | Read in pass 049; next add model identity and mixed-artifact warning/refusal tests. |
+| 400 | https://raw.githubusercontent.com/memvid/memvid/main/tests/encryption_capsule.rs | Read in pass 049; next add optional encrypted capsule roundtrip tests for private graph artifacts. |
+| 401 | https://github.com/ModernRelay/omnigraph | Read in pass 050; next track lakehouse graph engine changes as a branchable object-store profile exemplar. |
+| 402 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/README.md | Read in pass 050; next convert declared cluster/object-store/Lance/branch features into `lakehouse_graph_profile_v1`. |
+| 403 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/concepts/storage.md | Read in pass 050; next design `profile_manifest_v1` around a strict logical catalog over rebuildable physical artifacts. |
+| 404 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/branching/index.md | Read in pass 050; next design branch lifecycle for profile review, time travel, and isolated agent experiments. |
+| 405 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/branching/merge.md | Read in pass 050; next design three-way merge/conflict handling for profile artifacts and benchmark ledgers. |
+| 406 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/architecture.md | Read in pass 050; next define planner-facing capability/stat surfaces for RAM-bounded execution. |
+| 407 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/writes.md | Read in pass 050; next map direct publish, authority tokens, row/byte caps, and recovery sidecars into profile write gates. |
+| 408 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/invariants.md | Read in pass 050; next formalize `logical_contract_physical_layout_v1`. |
+| 409 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/search/index.md | Read in pass 050; next map graph/vector/full-text/RRF query runtime into profile lane fusion. |
+| 410 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/graph_index/mod.rs | Read in pass 050; next design topology-only CSR/CSC profile indexes over required endpoint columns. |
+| 411 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/runtime_cache.rs | Read in pass 050; next design `profile_cache_key_v1` with source artifact identity and profile options. |
+| 412 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/manifest.rs | Read in pass 050; next make profile snapshots safe handles, not raw mutable datasets. |
+| 413 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/commit_graph.rs | Read in pass 050; next project profile run DAGs from manifest rows. |
+| 414 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/traversal_indexed.rs | Read in pass 050; next require scan/indexed/partial-index mode equivalence where exactness is claimed. |
+| 415 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/traversal.rs | Read in pass 050; next build traversal correctness fixtures for direction, bounds, cycles, anti-join, and type collisions. |
+| 416 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/branching.rs | Read in pass 050; next build branch-isolated profile run fixtures and pinned snapshot tests. |
+| 417 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/merge_truth_table.rs | Read in pass 050; next define `profile_merge_truth_table_v1` with named unsupported operation cells. |
+| 418 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/execution.md | Read in pass 051; next turn scoped execution, filter hoisting, edge-binding scans, and batch caps into `profile_execution_pipeline_v1`. |
+| 419 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/queries/index.md | Read in pass 051; next formalize indexed/CSR/edge-binding traversal dispatch as profile physical modes. |
+| 420 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/reference/constants.md | Read in pass 051; next expose profile row/byte/frontier/hop/version-scan/concurrency constants in receipts. |
+| 421 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/maintenance.md | Read in pass 051; next design profile optimize/repair/cleanup cadence and dry-run semantics. |
+| 422 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/errors.md | Read in pass 051; next define typed profile errors and caller actions. |
+| 423 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/write-latency-roadmap.md | Read in pass 051; next convert write-latency decomposition into profile latency receipt fields. |
+| 424 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/rfc-013-write-path-latency.md | Read in pass 051; next define capture-once profile builder and backend-specific cost gates. |
+| 425 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/helpers/cost.rs | Read in pass 051; next build path-classifying profile IO probe harness. |
+| 426 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/write_cost.rs | Read in pass 051; next define slope gates and negative tripwires for profile builders. |
+| 427 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/write_cost_s3.rs | Read in pass 051; next split local and object-store acceptance gates. |
+| 428 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/warm_read_cost.rs | Read in pass 051; next define warm-cache freshness and scoped topology reuse gates. |
+| 429 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/benchmark_scenario_contract.rs | Read in pass 051; next write benchmark phase contract with setup/operation/verify isolation. |
+| 430 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/merge_cost.rs | Read in pass 051; next define delta-scoped merge validation and residual history-growth disclosures. |
+| 431 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/proptest_equivalence.rs | Read in pass 051; next build adversarial graph generators for physical-mode equivalence. |
+| 432 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/tests/recovery.rs | Read in pass 051; next design profile recovery sidecar and read-only/recovery behavior tests. |
+| 433 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/crates/omnigraph/src/db/manifest/recovery.rs | Read in pass 051; next define recovery scan ceilings and fail-closed history limits. |
+| 434 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0024-durable-table-heads.md | Read in pass 051; next preserve durable-heads as blocked-design caution about logical O(tables) versus physical O(history). |
+| 435 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0025-checkpoint-retention.md | Read in pass 051; next design logical retention authority versus physical pins for profile artifacts. |
+| 436 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0027-lineage-merge-deltas.md | Read in pass 051; next require insert/update/delete delta-discovery gates before O(delta) profile claims. |
+| 437 | https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/rfcs/0026-memwal-streaming-ingest.md | Read in pass 051; next add kill gate for substrate features whose graph-level coordination cost dominates. |
 
 ## Product Implications So Far
 
@@ -375,10 +6457,487 @@ The Arto Bendiken / Neuro-Symbolic AI Summer School link is not yet verified bey
 11. Stop treating 4x lower RAM as a standalone sale. Pair every RAM claim with CPU latency, deadline, correctness, and a receipt.
 12. Add "custom LLM-written traversal code" as a named competitor.
 13. Use industrial process/parts mapping as the most concrete first benchmark scenario discovered so far.
+14. Add Amazon Neptune-style workloads to the comparator set if claiming hyperscale graph performance.
+15. Add Beads/PageRank as a developer-facing demo for graph algorithms over agent task graphs.
+16. Add epistemic independence as a named requirement in the verification loop.
+17. Consider "AI builders shift from loops to graphs" as a top-level market narrative for the agent side of the product.
+18. Add graph-literacy constraints to docs and UI: do not call a cyclic plan a DAG.
+19. Make fail-closed artifact invalidation part of the resource-contract runtime.
+20. Use "knowledge as topology" as narrative, but keep benchmarks grounded in concrete workloads.
+21. Add "versioned graph artifacts" as a core design primitive: graph projections, storage plans, algorithm parameters, and run receipts need migration/rollback semantics.
+22. Use a phase ledger for every performance claim; aggregate timings are not credible enough.
+23. Define RAM with multiple fields: peak RSS, mapped bytes, page cache, allocator heap, active algorithm state, and spill footprint.
+24. Treat CodeGraph and CocoIndex Code as go-to-market analogies: local index, agent integration, surgical retrieval, exact benchmark receipts.
+25. Add temporal graph workloads as a possible differentiated storage family: interval indexes, fuzzy time ranges, Allen relations, provenance chains.
+26. Use text-to-knowledge-graph generation as a cheap, inspectable demo corpus before jumping to giant industrial graphs.
+27. Split the roadmap into at least three demo tracks: industrial process/parts OLAP, agent workflow graphs, and local/personal knowledge graphs.
+28. Upgrade the public 4.5x RAM claim into a full benchmark packet before repeating it broadly.
+29. Treat Knight Bus as a compute router: the planner should choose storage mode, RAM cap, exactness, parallelism, and deadline strategy before execution.
+30. Package graph algorithms as distributable profiles with manifests, fixtures, smoke tests, validation, benchmark scripts, and example receipts.
+31. Use an OKF-like artifact bundle for run receipts: markdown/YAML for human-agent readability, SQLite or another index only as acceleration over durable files.
+32. Make space complexity, memory bandwidth, mapped bytes, resident working set, page cache, and spill footprint first-class product vocabulary.
+33. Borrow Apache Iggy's "storage in the shape of the read" lesson, but translate it to graph-specific artifacts: frontier windows, neighbor blocks, interval indexes, component logs, and algorithm checkpoints.
+34. Add agent workflow graphs as a near-term PMF demo track because the Graph Technology Developers chat repeatedly treats AI workflows, verifier swarms, profile distributions, and plan graphs as graph-shaped engineering problems.
+35. Use math-shaped representation as a decision principle: for each algorithm family, ask what representation reduces live state before asking whether Rust, io_uring, SIMD, or threads will help.
+36. Add "graph preflight" as a product step before expensive compute: predict memory spikes, convergence issues, bad projections, schema gaps, and supernodes before the run starts.
+37. Treat compression/storage innovation as a contract with measured degradation, not a slogan. Every memory-saving mode needs a receipt for decode cost, lost semantics, and algorithm-output delta.
+38. Add predictive-intents/local-memory graphs as a flagship developer demo: memories -> intent graph -> human/agent task split -> artifacts -> hours-returned receipt.
+39. Create a named-graph fixture pack for early correctness: small classic graphs, shortest-path examples, disconnected/skewed adversarial graphs, and visual receipts.
+40. Keep security/code-graph verification as a serious adjacent branch: concolic/path/dataflow/call graphs may be a better local-first wedge than generic enterprise analytics.
+41. Use "architecture should be benchmarked, not debated" as an internal rule for every storage profile: each architecture option must ship with a fixture, baseline, receipt, and failure case.
+42. Treat HydraDB as a direct strategic comparator: it validates graph-native agent context, so Knight Bus must differentiate on budget-bounded algorithm execution, proof-carrying receipts, and algorithm-shaped OLAP storage.
+43. Do not enter "agent memory graph" generically. If entering that branch, pick a concrete algorithmic job: intent prioritization, provenance expansion, conflict-aware retrieval, critical path, or temporal memory audit.
+44. Consider DeFi/token trust graphs as an auditable public-data benchmark family: wallet/token/event graph, risk propagation, suspicious path extraction, and local receipts.
+45. Add "state-transition-native storage" to the architecture vocabulary: design around the state transitions each algorithm performs, not just node/edge persistence.
+46. Every public benchmark claim should disclose date, product version, hardware, dataset, workload, config, active working set, heap/page cache if relevant, and exact verification method.
+47. Add "failure-mode receipts" for temporal/agent memory workloads: included context, excluded context, invalidated facts, stale-state risk, and output sensitivity.
+48. Borrow security-tooling language from Arbiter/Aletheia: structured state, constraints, witnesses, replayable proof, and scoped audit logs.
+49. Use HydraDB's own limitation as positioning oxygen: it is not a Cypher drop-in, so Knight Bus also does not need to be one if the wedge is bounded verified OLAP artifacts.
+50. Split every profile artifact into two layers: a verified algorithm-profile definition and a per-run attestation receipt. The former proves the recipe is well-formed; the latter proves this exact run followed the recipe.
+51. Benchmark receipts need orthogonal metrics, not one headline number: correctness, latency, RAM/residual occupancy, allocation efficiency, planner adoption, and contamination controls.
+52. Track planner adoption explicitly: did the low-RAM path actually get selected, or did runtime fall back to all-in-memory projection, broad scan, or oversized intermediate state?
+53. Expose compute-router modes the way local indexing tools expose embedding modes: local/offline, cloud, CPU, GPU, RAM cap, exactness, deadline, and privacy posture.
+54. Package algorithm profiles as skill-like artifacts with when-to-use guidance, commands, inputs, outputs, thresholds, validation reports, and example receipts.
+55. Use deterministic validation and forensics reports as product templates: expected-vs-actual tables, score or metric changes, raw JSON, timeline, source versions, and replay instructions.
+56. Make Knight Bus receipt artifacts file-native first, database-indexed second. OKF's market lesson is that portable formats beat yet another service boundary.
+57. Give every algorithm profile explicit memory modes: speed/materialized, balanced/active-window, and budget/on-file sparse-index mode.
+58. Add a planner gate that decides when graph compute is not worth invoking. Graph mode should be justified by ownership, dependency, path, ranking, connectedness, temporal, or similarity structure.
+59. Treat vendor benchmark PDFs as category evidence until systems metrics are independently reproducible. Require hardware, graph size, RSS/mapped/page-cache, phase latency, and spill metrics for our own claims.
+60. Use sparse graph artifact jump tables as a first implementation primitive: logical node/edge/time/frontier coordinates should map to physical positions without full resident state.
+61. Add honest eviction/spill semantics to receipts: the system must say when state was resident, spilled, evicted, replayed, or unavailable under the declared budget.
+62. Support BYOG-style fixtures from day one: explicit entities, relations, predicates, properties, temporal details, and provenance should be valid inputs without relying on extractor magic.
+63. Treat algorithm/storage profiles as manifests, not loose code folders: source, projection, storage layout, RAM mode, retention, algorithm parameters, oracle, and receipt fields should be declared.
+64. Make retention and pruning tradeoffs explicit in the user contract: lower RAM/storage can reduce time-travel, provenance, graft/replay, or exact parity capability.
+65. Copy the adapter contribution model: one folder per profile, shared methodology, public validation command, no hidden dependencies, metadata review, and sample receipts.
+66. Add a source-of-truth rule for benchmark profiles: outputs must be reproducible from source graph/event/table data, not copied from an aggregate API unless the API is explicitly the oracle.
+67. Add `timetravel_supported`, `earliest_replayable_state`, `history_retention`, and `lossy_representation` fields to profile manifests and run receipts.
+68. Build a temporal graph fixture suite from OWL-Time and Allen relations before claiming temporal storage superiority.
+69. Use public blockchain/DeFi workloads as benchmark candidates because they combine append-only events, entity projection, time-windowed analytics, public methodology, and auditability.
+70. Separate extraction, storage, algorithm execution, output normalization, and verification so profile authors can innovate in one layer without rewriting the runtime.
+71. Package an `algorithm-profile-author` skill so LLM agents can contribute profiles with the same discipline DeFiLlama applies to adapters.
+72. Add proof-of-indexing and proof-of-run as separate research tracks: one proves the projection/index was built honestly, the other proves the algorithm run followed the declared profile.
+73. Design sealed-checkpoint plus current-frontier query modes: users should know whether an answer uses only verified state or includes unsealed/current data.
+74. Add `proof_events` to receipt vocabulary: node/edge set/remove, property update, deterministic projection error, frontier update, spill write, rollback, checkpoint, and output emit.
+75. Keep proof state streaming and resumable so RAM-bounded execution can remain proof-carrying without retaining every event in memory.
+76. Add causality regions or partition proof domains so one unreliable source/partition does not contaminate the proof state for the whole graph.
+77. Add unhappy-path fixtures to every serious profile: projection failure, deterministic rollback, budget exceed, spill failure, replay mismatch, and partial-output refusal.
+78. Add profile-level source filters, required properties, time windows, parallel lookups, supernode thresholds, and freshness/exactness declarations before execution starts.
+79. Build `kb profile lint` as a first-class command; it should catch hidden broad scans, silent fallbacks, missing methodology, wrong time windows, double-counting, and undeclared dependencies.
+80. Treat domain invariants as more durable than baseline parity. Neo4j/GDS parity is necessary for compatibility claims; algorithm-specific invariants are necessary for trust.
+81. Model recurring analytics as a second expansion wedge after graph algorithms: the same budget-bounded profile/receipt structure applies to daily/hourly metrics, not only graph OLAP.
+82. Give profile authors typed runtime handles, not raw global access: graph/window/block/budget/spill/oracle handles should constrain what a profile can do.
+83. Add freshness modes to every output receipt: sealed-only, sealed-plus-current, current-only, approximate-current, or refused-under-budget.
+84. Create current-frontier fixtures for each incremental algorithm: checkpoint state plus unsealed delta must equal expected output under declared freshness mode.
+85. Use bounded epoch synchronizers for multi-source graph projection: node, edge, property, deletion, temporal, and oracle streams should meet at explicit watermarks.
+86. Expose slow-stream and blocked-buffer events as first-class receipt fields. Backpressure is not an implementation detail when RAM is bounded.
+87. Define completion watermarks at every layer: source ingest, graph projection, storage build, algorithm iteration, spill/replay, and output emission.
+88. Prefer deterministic corruption errors over best-effort merge when source streams disagree on version/hash/order.
+89. Store human-readable entity/state diffs for fixture mismatches; a failed graph profile should show what state changed, not just a boolean failure.
+90. Treat skew as a product tradeoff: a consistent bounded multi-stream run may be paced by the slowest stream, while a partial run must declare exactly which source was missing.
+91. Make profile bundles content-addressed: `profile_id` should hash the manifest, projection code, storage layout, fixtures, receipt schema, and verification oracle.
+92. Build `kb profile validate` as a pure pre-run command; it should fail before expensive compute if sources, versions, budgets, output semantics, or runtime/profile compatibility are invalid.
+93. Gate profile capabilities by explicit spec versions: current-frontier mode, approximate storage, multi-source synchronizers, temporal semantics, and proof mode should not appear as informal flags.
+94. Expose `source_latest_epochs`, `safe_projection_frontier`, completed sources, waiting sources, and empty-source policy in every projection receipt.
+95. Separate deterministic from nondeterministic errors in receipts and retry policy; decode/schema bugs and empty/not-yet-available sources should not be handled the same way.
+96. Build typed physical fixture packs that cover dense and sparse IDs, hashes, decimals, floats, nulls, timestamps, lists, signed weights, and precision-sensitive properties.
+97. Reject unsupported profile compositions early: mixed source kinds, duplicate source graphs, incompatible freshness modes, too many source graphs, or storage modes that break algorithm invariants.
+98. Include a deployment-feature summary in every profile metadata report: declared features, used features, handler/source kinds, version gates, proof mode, and storage mode.
+99. Test generated adapters and bindings with codegen fixtures, not only runtime integration tests; manifest/profile edge cases should have tiny fixture directories.
+100. Feature declarations should be strict: used-but-undeclared features fail validation, while declared-but-unused features should be visible as lint warnings instead of silently changing behavior.
+101. Design the Knight Bus runner as an explicit state machine: observe frontiers, validate, choose bounded slice, stream/decode, mutate hot state, commit checkpoint, emit receipt, then wait/retry/finish.
+102. Add planner-controlled RAM knobs before decoding starts: `max_live_slice_bytes`, `max_frontier_edges`, `max_partition_state_bytes`, `frontier_window_epochs`, and `stream_buffer_size`.
+103. Treat spill as a planned storage mode, not a panic path. A profile should declare whether it is RAM-first, active-window, or spill-first, and receipts should prove the chosen mode was actually followed.
+104. Persist run health in a queryable state table: profile id, source hash, deterministic failure flag, nonfatal count, earliest/latest processed epoch, safe frontier, invalidation count, peak resident state, spill bytes, and receipt path.
+105. Add generic projection invalidation semantics: source version/hash changes, source ordering changes, schema changes, partition remaps, and deleted edges should force rewind/refusal according to profile policy.
+106. Keep hot algorithm state separate from durable checkpoint state. The resident state should be the frontier/community/path/sketch state needed now, while the checkpoint and proof state remain resumable.
+107. Use feature detection in addition to feature declaration. The profile validator should catch hidden approximate mode, hidden spill mode, hidden current-frontier output, and hidden lossy storage.
+108. Make profile compatibility adapters explicit: Neo4j/GDS parity APIs, internal Rust physical layouts, and receipt schemas should have named conversion boundaries.
+109. Add close-to-head/current-frontier sync semantics to receipts: users should know whether a run is fully sealed, current-but-conditional, or stalled waiting for a source.
+110. Treat runtime metrics as product evidence: indexing/run duration, first-batch latency, process-batch latency, transaction/checkpoint latency, waits, retries, and invalidation handling should be exposed per phase.
+111. Build a run manager before building a pile of standalone algorithm binaries: resolve profile bundle, acquire writer lease, start one supervised runner, support cancellation/restart, flush receipts, release lease.
+112. Make duplicate-run prevention a correctness feature. A RAM-bounded claim is weak if two workers can mutate the same output artifact concurrently.
+113. Put lifecycle events in receipts: started, cancelled, graceful-stop, forced-abort, restarted, flushed, writer-stopped, and output-lease-released.
+114. Treat source access expressions as compilable artifacts. Parse, validate, rewrite, and hash them before running; do not let arbitrary source code broad-scan behind the profile.
+115. Add AST-level graph-slice rewriting: inject bounded windows, allowed source filters, deterministic ordering, context/provenance columns, and output-shape checks.
+116. Define `BatchEvidence` as a first-class receipt object with source id, partition id, slice range, source version hash, previous hash, row/edge counts, physical bytes, decoded bytes, spill bytes, plan hash, and resume token.
+117. Model source adapters as streams of `SourceEvent::{Batch, Invalidation, End, Error}` so source invalidation and data are processed by the same runner protocol.
+118. Combine static profile lint with live source probes. A serious validator should check files and schemas, not merely parse YAML.
+119. Add source-count and table-count limits to profile validation; "unbounded fan-in" should require an explicit higher-tier profile mode.
+120. Make generated schemas explicitly limited: auto-generated scalar/entity shape can help, but edge semantics, temporal validity, direction, labels, weights, and deletion behavior must be declared.
+121. Treat codec failures as deterministic correctness evidence. Bad physical types should produce replayable failure receipts, not vague runtime errors.
+122. Add query/plan hash correlation to logs and receipts so a specific source expression can be tied to every batch and output.
+123. Expose `target_frontier` separately from `processed_frontier`; the gap between them is the user's visible lag.
+124. Add `synced_state` values richer than boolean: `not_started`, `running`, `sealed_synced`, `current_conditional`, `stalled_waiting_source`, `failed_deterministic`, `failed_nondeterministic`, `cancelled`.
+125. Use max message/batch/window sizing as explicit product knobs; "bounded" should include physical input batch size, not only algorithm heap size.
+126. Support narrow alias groups for required graph-slice columns, but record the exact matched alias, type, and nullability in validation receipts.
+127. Define "completed frontier" per algorithm family. Output should not be emitted merely because rows arrived; it should be emitted because a completion rule was satisfied.
+128. Add `completed_frontier_reason`: `later_frontier_observed`, `stream_finalized`, `checkpoint_sealed`, `oracle_confirmed`, or `approximation_budget_reached`.
+129. Make backpressure visible: blocked stream, buffer cap, buffered bytes, waiting stream, and policy should appear in receipts.
+130. Offer explicit backpressure policies: fail-fast, wait, spill, or degrade; do not let the runtime silently choose.
+131. Use reference-plus-row-index grouping to delay graph-slice materialization until a group/frontier/partition is safe.
+132. Keep immutable physical batches addressable so receipt rows can point back to source batch and row indices.
+133. Introduce `SourceEvent` as a small public protocol before building many algorithms: `Batch`, `Invalidation`, `Blocked`, `Completed`, `Error`.
+134. Introduce `BatchEvidence` as a receipt object with source id, partition id, slice range, hashes, counts, bytes, schema hash, plan hash, matched columns, and resume token.
+135. Treat common-frontier calculation as a synchronizer component, not hidden inside each algorithm implementation.
+136. Hash disagreement across streams should be deterministic corruption, not retryable flakiness.
+137. Stream speed matching the slowest required source is not a bug; it is the price of sealed correctness under bounded memory.
+138. Add row-index/provenance fixtures so profile tests can prove that materialized graph slices correspond to the correct physical source rows.
+139. Build algorithm profiles around completion units: PageRank partition wave, connected-components frontier, shortest-path distance bucket, temporal window, recurring analytics bucket.
+140. Document RAM caps at three layers: input buffer cap, active algorithm state cap, and materialized output/checkpoint cap.
+141. Split the store interface into read, sourceable replay, writable checkpoint, cursor/frontier tracking, and run-state health instead of hiding everything behind a graph database facade.
+142. Treat block/epoch transactions as the unit of durability. A run should commit, revert, or refuse output at an explicit frontier.
+143. Build a hot-state cache that emits minimal modifications plus LFU/eviction stats; do not make every algorithm hold full durable state in RAM.
+144. Give algorithm subtasks handler-style commit/discard semantics so partial local work can be abandoned without contaminating the epoch state.
+145. Encode frontier/epoch provenance into generated IDs or checkpoint ordering where useful, so ordering and replay evidence are cheap.
+146. Use validity ranges for mutable graph state and point-visibility columns for immutable edge/event batches.
+147. Promote `changed_since` and range-source operations into the public source adapter API; incremental profiles need source deltas, not only snapshots.
+148. Make pruning retention declare earliest replayable state, final/nonfinal semantics, and time-travel loss before compaction runs.
+149. Prefer rebuild-style compaction for large retained-subset changes when delete-plus-vacuum would leave scattered pages or unpredictable stalls.
+150. Put physical index descriptors in the storage profile manifest: method, expression, prefix, current/history condition, and supported algorithm phase.
+151. Make string/bytes prefix indexing decisions explicit. Prefix savings can lower RAM, but the receipt must say what exact comparison/proof remains exact.
+152. Classify deterministic store/profile/source errors separately from nondeterministic infrastructure errors, and make retry policy receipt-visible.
+153. Require forward-only batch append. If append fails and state becomes indeterminate, poison the batch and refuse writes.
+154. Treat write chunks, clamp batches, and range-copy batches as memory/latency knobs exposed to the planner.
+155. Build a typed physical decoder contract for graph slices: nullability, arrays, ranges, precision, signedness, timestamps, weights, and deterministic failure fixtures.
+156. Distinguish sealed durable state from queued overlay state in every output mode; "current" answers should say whether pending writes are included.
+157. Add `max_batch_weight`, `max_batch_age_ms`, and `write_queue_capacity` as first-class runtime knobs for RAM-latency tradeoffs.
+158. A write queue error should poison the queue and clear pending requests rather than let a low-RAM run continue from indeterminate state.
+159. Reads during a run must account for pending writes when the chosen freshness mode requires it; otherwise iterative graph algorithms can read stale state.
+160. Add `sealed_only`, `current_conditional`, and `overlay_visible` as receipt-level freshness labels.
+161. Use `flush_required` before any query whose correctness claim depends on durable state rather than pending overlay state.
+162. Disable or narrow batching when a revert, stop, or synced transition requires strict ordering.
+163. Source/query physicalization should be hashed and receipt-visible just like algorithm code and storage layout.
+164. Bind-count limits and chunk sizes are not backend trivia; they are memory bounds and should appear in profile validation output.
+165. Deletion inference should be explicit: lower-bound changes alone are not enough when updates and deletes can share related evidence.
+166. Ordered range replay needs stable ordering keys such as frontier/block, entity type, and id; receipts should disclose them.
+167. Query observability tags should include profile id, source plan hash, frontier, and run id so benchmark evidence is traceable.
+168. A planned low-RAM source path should fail or warn when runtime falls back to broad scans or unsupported window/filter shapes.
+169. Current-bucket/current-frontier queries should require explicit selected fields and semantics; avoid hidden `select *` style physical ambiguity.
+170. Add pending-overlay fixtures for PageRank, connected components, and shortest path so tests prove sealed/current behavior before algorithm performance claims.
+171. Define `EpochCommit` before implementing many algorithms: modifications, derived summaries, source metadata, errors, frontier/cursor/counts, compaction trigger, and receipt emission.
+172. Clamp/close old state before inserting new state to prevent overlapping validity ranges in mutable graph projections.
+173. Treat shared-interface or shared-ID conflicts as deterministic data/profile errors with witnesses.
+174. Keep derived summaries such as rollups, component counts, rank convergence summaries, and top-k snapshots inside the same commit envelope as state changes.
+175. Make dynamic source/profile metadata part of the transaction, so runtime-discovered inputs are replayable after restart.
+176. Trigger pruning/compaction from explicit history-slack or retention policy, not from hidden background heuristics.
+177. Rewind/truncate must revert data and metadata together; otherwise receipts can point to source/runtime facts that no longer match graph state.
+178. Reject forward reverts and rewinds past import/graft/baseline boundaries; these are deterministic contract violations.
+179. Separate run registry/orchestration from per-artifact storage shards so algorithm code does not decide placement or ownership.
+180. Cache at most one healthy writer per run/artifact and replace poisoned writers only by reinitializing from durable state.
+181. Emit structured run/store events for assignment, pause, resume, stop, commit, revert, prune, and poison transitions.
+182. Build typed visibility predicates into the profile DSL: `visible_at`, `changed_since`, `partition_eq`, `source_eq`, `system_columns_required`.
+183. Do not let arbitrary profile code bypass typed source predicates unless the profile explicitly enters an unsafe/custom mode.
+184. Normalize raw source receipts before proof construction; physical byte encodings, nulls, and status flags belong in decoder fixtures.
+185. Port Graph Node-inspired store tests before algorithm benchmarks: pending overlay, sealed-only, pending revert, poison/restart, range replay, immutable replay, import-boundary rewind refusal, and pruning-frontier movement.
+186. Build a SQLite `profile_runs` registry before complex storage innovation: health, head/frontier, cursor, earliest replayable frontier, synced state, invalidation counts, history retention, and manifest hash.
+187. Persist deterministic failures as stable-hashed, time-ranged facts with witness paths rather than plain log strings.
+188. Reverting a run must also revert or close future deterministic error facts, not just algorithm state.
+189. Track `first_error_frontier` so a run can be unhealthy without making users scan every receipt artifact.
+190. Keep fatal and nonfatal errors separate; nonfatal deterministic issues should degrade health without necessarily aborting all output modes.
+191. Store raw profile manifests and detected causality/partition domains so future LLM agents can reconstruct why a run behaved the way it did.
+192. Treat postponed/deferred indexes as persisted state so restarts do not recreate expensive indexes blindly.
+193. Use small live notifications with pointers to large receipt/proof artifacts; do not send giant diffs through the event channel.
+194. Cap notification/event batches and subscriber buffers so observability cannot violate the memory budget.
+195. Time out slow event subscribers and record dropped/skipped event counts as operational evidence.
+196. Clean up large event payload artifacts according to a retention policy; otherwise receipts can become the new unbounded storage problem.
+197. Source-frontier watchers should wake on timeout even when sources are silent, so planners can detect stalls and poll.
+198. Record source silence/stall as a planning fact with `last_update_at`, `target_frontier`, and `stalled_reason`.
+199. Use safe, predeclared event channel names or equivalent typed event topics; user-controlled event channel strings are a security boundary.
+200. Add run-event metrics from day one: events sent, received, dropped, invalid, stale subscriptions removed, and frontier watcher timeouts.
+201. Treat migration history as product evidence. If a mature graph runtime had to persist a field, Knight Bus should ask whether the same invariant belongs in the first SQLite schema.
+202. Split run metadata into `profile_run` and `run_head`: the profile/run row changes slowly, while the head/frontier/cursor/count row changes every epoch.
+203. Store raw profile manifests and detected profile features, not only parsed summaries, so future agents can audit the original recipe.
+204. Model runtime-discovered sources as profile addenda with creation frontier, template/source identity, params, context, causality or partition domain, and completion status.
+205. Persist runtime addenda in the same epoch commit as algorithm state, otherwise restart/replay cannot explain why a source or partition existed.
+206. Make dynamic source visibility range-based; a source can be live at one frontier, removed by revert, copied to a fork/import boundary, or remapped across profile versions.
+207. Use stable template/source names and content hashes for remapping; numeric manifest indexes are implementation details.
+208. Build a `kb_commands` ledger for `run`, `resume`, `cancel`, `verify`, `prune`, `rebuild-index`, and `switch-storage-mode`.
+209. Treat compaction as a resumable job with phases, cursors, row counts, batch size, started/finished/error timestamps, and writer-blocking windows.
+210. Treat deferred index creation as durable state. A restart should know whether an expensive index already exists, is pending, failed, or was intentionally skipped for budget mode.
+211. Add `earliest_replayable_frontier` and `history_retention` to every storage artifact, because pruning changes what can be verified later.
+212. Add `large_receipt_artifacts` separate from `run_events`; event streams should point to artifacts, not carry full proof payloads.
+213. Let low-RAM execution activate sources lazily, but never let lazy activation be invisible. The receipt should disclose every runtime-discovered source.
+214. Version the SQLite metadata schema from day one and write migrations/tests for it; the metadata plane is part of the product, not scaffolding.
+215. Before more algorithm work, draft executable specs for `profile_run`, `run_head`, `runtime_source_addendum`, `kb_commands`, `artifact_compaction_jobs`, and `artifact_index_state`.
+216. Treat runtime-discovered source fixtures as earlier than algorithm benchmarks. If the engine cannot create/replay/revert sources safely, low-RAM PageRank is built on sand.
+217. Add `RuntimeSourceContext` to the public receipt vocabulary: creation frontier, source version hash, template/profile source id, params hash, context hash, and source visibility range.
+218. Require every runtime source addendum to produce at least one observable fixture output, not only an internal metadata row.
+219. Test context preservation by making the algorithm/verifier assert a value captured at source creation time after restart/replay.
+220. Revert tests must prove both sides: runtime addendum disappears and derived graph/algorithm state returns to the previous visible state.
+221. Import/fork/graft boundaries need dedicated fixtures: adding new sources after a baseline should work, while rewinding through the baseline should fail deterministically.
+222. Profile schema evolution should preserve stable runtime-template semantics through names/content hashes, not numeric indexes.
+223. Dynamic-source fixtures are a low-cost way to test bounded activation: discover only the needed source, persist compact metadata, and avoid up-front materialization of all possible partitions.
+224. Runtime-source addenda should be part of `EpochCommit`, not a side table updated after the algorithm state; otherwise proofs and rollback can diverge.
+225. Use Graph Node's dynamic-source fixtures as a template for Knight Bus v0 acceptance tests before writing the first serious custom OLAP storage format.
+226. Make `GraphSliceStore` semantics executable before storage optimization: find/missing, visible-at-frontier, changed-since, copy, revert, and invalid-query behavior.
+227. Copy/compaction tests must prove hidden physical state survives or is rebuilt, not only that visible node/edge rows match.
+228. Add `changed_since_frontier` as a first-class source adapter API because low-RAM recurring jobs should read deltas whenever possible.
+229. Mutable algorithm state and immutable event/edge batches need separate physical encodings but one shared rollback contract.
+230. Invalid profile/source expressions should be deterministic failures with precise parser/planner evidence.
+231. Failure recovery should expose four outcomes: `rewound_and_cleared`, `cleared_without_rewind`, `noop_mismatch`, and `behind_error_frontier`.
+232. Deterministic failures should rewind to a verified predecessor frontier; non-deterministic failures may be cleared without rewind only with receipt evidence that durable state is valid.
+233. Recovery requests must match determinism and frontier/hash evidence; wrong recovery should be an explicit no-op, not best-effort mutation.
+234. Store failure recovery receipts should include before/after state hashes and output invalidation flags.
+235. This verification spine is more important than a first algorithm benchmark: a fast PageRank result without copy/revert/failure semantics is not yet an operational product.
+236. Make overlay freshness a named contract: `sealed_only`, `overlay_visible`, `pending_revert_visible`, `flush_required`, and `queue_poisoned`.
+237. Every read path should be tested under pending writes and pending reverts, not only after flush.
+238. A failed flush should poison the writer and force restart from durable state; continuing with an indeterminate writer should be impossible.
+239. Range replay should emit `Create`, `Modify`, and `Delete` operations with frontier/VID/source metadata; snapshot-only source APIs are too blunt for low-RAM recurring algorithms.
+240. Immutable event/edge batches should have duplicate-detection fixtures because append-only storage can still corrupt outputs through duplicate physical identity.
+241. Treat storage-mode switch as copy/rebuild plus verification plus activation, not as a config flag.
+242. Artifact copies should separate copied, started, verified, active, and source-replaced states.
+243. Import/graft baselines should be hard rollback floors and should be written into receipts as `import_base_frontier` plus source artifact hash.
+244. Retention/pruning policies must validate safety thresholds before running, then prove visible state and earliest replayable frontier after pruning.
+245. Lower-RAM storage profiles need rollback windows: keep the previous artifact until the new artifact has passed visible-state and hidden-index checks.
+246. Source frontiers must be lineage-evidenced, not merely "latest observed." Receipts should disclose candidate frontier, accepted frontier, predecessor proof, and any missing source epochs.
+247. Bounded lineage windows are legitimate if explicit. A result can say `accepted_beyond_window`, but it should not pretend the whole source history was proven.
+248. Same-height or same-epoch source alternatives need canonicalization receipts: alternative hashes seen, hash confirmed, alternatives pruned, and root/baseline used.
+249. Sparse epochs should be tested directly. Offset-based ancestor logic can be wrong when source numbers skip, so root-constrained ancestor fixtures belong in v0.
+250. Recurring analytics and graph algorithms should share a sealed-checkpoint plus current-frontier overlay architecture.
+251. Every output needs a freshness mode: `sealed_only`, `sealed_plus_current`, `current_only`, `approximate_current`, or `refused_under_budget`.
+252. Current-frontier output must declare selected fields up front, because hidden broad output can widen the physical plan and break RAM predictability.
+253. Cumulative analytics should be computed as previous sealed state plus current delta, with both pieces visible in the receipt.
+254. Nested graph output windows need fixtures: parent node/community/source/path rows plus child metric/evidence rows, with explicit empty-window behavior.
+255. The Spark-adjacent expansion path is profile-driven recurring compute, not general-purpose cluster replacement: sealed artifacts, current overlays, resource caps, and proof-carrying receipts for stable repeated jobs.
+256. RAM mode should be a product-visible setting, not hidden magic: `all`, `active_artifact`, and `none` are the core index-cache modes to test.
+257. Sparse graph jump tables should be algorithm-shaped, not generic: each profile declares the logical coordinate that maps to physical artifact positions.
+258. Resident index caps should be explicit. Below the cap, load/cache the jump table; above it, use on-file lower-bound lookup and record the latency tradeoff.
+259. Below-range lookup semantics matter. A sparse-index miss should fall back to a safe artifact start or refuse, never skip older persisted state silently.
+260. Torn/partial index entries should be handled deterministically and reported; append-only indexes need corruption/torn-write fixtures.
+261. File IO read plans should fail closed on unreadable or unresolvable artifact ranges rather than jumping to later resident/current state.
+262. Poll/read plans should be borrow-free snapshots where possible: capture what is needed under the runtime lock, then do slow IO outside the critical section.
+263. Dirty-read ceilings belong in graph compute too. A query should not serve graph state beyond the safe committed/proven frontier.
+264. Gapless-prefix flush is a good checkpoint rule: do not persist or advertise a checkpoint over a missing epoch/predecessor.
+265. Eviction is acceptable only with a named repair/replay window. Receipts should expose `repair_retained_from`, `repair_retained_bytes`, and `range_evicted`.
+266. Active/current artifacts should be protected from retention deletion unless a stronger activation/rollback receipt proves it is safe.
+267. The first implementation slice can be small: append-only artifact plus sparse jump table plus RAM cap plus on-file lower-bound lookup plus proof receipt.
+268. Benchmark receipts should include post-run behavior: accepted output, rerun, broadened slice, switched storage mode, read extra source, oracle recheck, materialized fallback, or refused under budget.
+269. A low-RAM win is weak if it causes reruns or manual source reads; sufficiency must be measured alongside RAM and latency.
+270. Define `state_allocation_efficiency`: bytes/pages/blocks used by output evidence divided by bytes/pages/blocks materialized or kept resident.
+271. Treat allocation efficiency as relative. Some state is useful because it was ruled out, so compare profiles on the same workload rather than quoting waste as an absolute fact.
+272. Record benchmark path sequence so we know whether the planner actually chose sparse/on-file/budget mode or quietly fell back to broad materialization.
+273. Optimize for path displacement, not feature existence. A better low-RAM path only matters if it replaces the expensive path in real runs.
+274. Distinguish verified metrics from indicative estimates in every research and PMF doc.
+275. Do not quote benchmark numbers when raw logs or receipts cannot be re-derived; label them as indicative and preserve that label.
+276. Benchmark templates should disclose date, branch/version, hardware, dataset shape, graph size, density/skew, model/agent if applicable, exact workload, one changed variable, run count, variance, and reproduce command.
+277. Add contamination gates: hidden indexes, warmed caches, fallback broad scans, copied baseline outputs, non-equivalent source filters, and unreported hardware/runtime settings.
+278. Use next-action buckets as product diagnostics: broadening means projection recall failure; switching mode means resource contract failure; oracle recheck means trust gap; rerun means planner/profile insufficiency.
+279. Make `PostRunBehavior`, `BenchmarkPathSequence`, `MetricEvidenceLevel`, and `state_allocation_efficiency` first-class fields in the v0 receipt schema.
+280. Copy CocoIndex's user-facing mode table discipline: every graph profile should say fastest/private/offline/cloud/approximate/exact/bounded before users run it.
+281. Add an agent skill as a first-class interface, not afterthought docs. The skill should teach agents when to initialize, materialize, run, inspect status, call doctor, and read receipts.
+282. Use a daemon/client split for local graph compute: keep heavy artifacts warm behind a small per-request CLI/MCP surface.
+283. Include dataset manifest hash, profile hash, settings hash or mtime, loaded-artifact list, and warning list in every daemon handshake.
+284. Make `kb status`, `kb daemon status`, `kb memory status`, and `kb doctor` part of the first usable product slice.
+285. Treat graph-boundary splitting as the graph analogue of language-aware chunking: components, communities, hubs, temporal shards, label/type partitions, frontier slabs, and source shards.
+286. Bounded RAM is easier when chunks fit natural algorithm windows. Do not split only by arbitrary node-id ranges unless the algorithm proves that works.
+287. Isolate accelerator-heavy or allocator-risky runs in worker processes with watermarks so the parent daemon remains inspectable.
+288. On OOM or budget breach, retry with smaller frontier/block/batch only if correctness/approximation semantics are preserved and the fallback is recorded.
+289. Record privacy/cost posture in receipts for any cloud offload or remote verification path.
+290. Add pacing, retry, and batching knobs for remote source reads, Neo4j/GDS baseline adapters, oracle checks, and cloud execution.
+291. Separate global runtime resource policy from per-dataset/per-profile storage policy; support artifact path mapping for fast disks or Docker/bind-mount setups.
+292. Offer both light and heavy paths: direct scan/neighborhood paths for local queries, profile-shaped OLAP artifacts for iterative/global algorithms.
+293. Treat Knight Bus as a structured graph-compute harness, not merely a graph storage engine.
+294. Represent each algorithm/profile run as an explicit DAG: projection, artifact build, algorithm phase, verification, baseline comparison, receipt emission, and recovery.
+295. Make plan versions immutable during a run. If the planner changes the profile, create a new plan version and record why.
+296. Use finite typed action menus for agents: only valid profile/mode/budget/oracle combinations should be selectable.
+297. Progress should advance only through verifier events, not executor/model self-report.
+298. Add a `DoneAuditorAccepted` or equivalent final gate before any run is marked complete.
+299. Bounded recovery should have escalation levels: retry same step, shrink frontier/block/batch, switch profile, invoke baseline/oracle, refuse under budget.
+300. Failed runs should update profile knowledge: lint rule, fixture, fallback edge, heuristic, or skill note.
+301. Track artifact granularity metrics: coverage, purity, block size, cross-boundary edges, top-k sufficiency, and seek count.
+302. PageRank/PPR/local ranking should probably be an early profile because AtomicRAG and Harness-G both use graph navigation/ranking as an agent-retrieval substrate.
+303. Model-data planner gates should separate fully modeled graph profiles from partially modeled bridge paths and raw connector/Cypher/MCP fallback.
+304. Raw API/MCP/Cypher fallback should be labeled highest-cost and lowest-determinism when a modeled graph profile exists.
+305. Do not cite SGH performance benefits as proven. Cite it as design theory until Knight Bus has replayable benchmark receipts.
+306. Use harness-engineering papers as PMF evidence that the market is moving toward explicit state/workflow/control surfaces for agents.
+307. Graph memory is now a real developer category: Graphiti, Kumiho, Mem0, SGMem, and graph-memory surveys give enough signal to treat it as a serious adjacent market.
+308. Do not enter as "another memory graph." Enter as bounded graph algorithms over memory graphs: recall, ranking, audit, compaction, community update, temporal lookup.
+309. The graph-memory lifecycle maps to our profile lifecycle: extraction becomes source ingest, storage becomes algorithm-shaped artifact, retrieval becomes bounded profile run, and evolution becomes profile/receipt update.
+310. Scalability is not a side issue. Graph-memory research itself names compression, incremental updates, and approximate retrieval as future needs, which aligns with Knight Bus differentiation.
+311. Temporal validity windows, source episodes, provenance, evidence grades, and revision pointers should be first-class in every local-memory profile.
+312. Dynamic community maintenance is a useful graph algorithm wedge because temporal memory graphs change continuously and full community recompute is unattractive.
+313. SGMem gives a concrete first profile shape: typed memory indexes, candidate retrieval, bounded h-hop sentence graph expansion, parent-chunk ranking, and receipt-backed top-k context.
+314. Kumiho's immutable revisions and mutable tag pointers map cleanly to Knight Bus run/artifact/profile receipts.
+315. Revka/Kumiho show graph memory becoming a runtime and audit surface for agents, not only a retrieval database.
+316. First local demo candidate: bounded evidence-memory recall over the user's own docs/chats/code decisions with 1/2/5 GB RAM modes and an explicit receipt.
+317. Graphiti implementation confirms memory-graph workloads already have implicit profiles; Knight Bus should make them explicit, budgeted, and receipt-bearing.
+318. Event time and processing time must be separated in data structures, filters, and receipts.
+319. Temporal edge fields (`valid_at`, `invalid_at`, `expired_at`) should become storage-layout columns, not opaque properties hidden behind generic graph access.
+320. Invalidation should be recorded as a first-class outcome: resolved, invalidated, new, stale-skipped, duplicate, contradictory.
+321. Search profiles need fixed knobs: methods, candidate overfetch factor, reranker, BFS origin count, BFS max depth, filter predicate, and returned limit.
+322. Physical query-shape tests are as important as numerical benchmarks. A traversal that re-scans the graph by UUID can invalidate both RAM and latency claims.
+323. Every profile receipt should say whether a broad fallback path, full materialization, or full partition rebuild occurred.
+324. Community rebuild/update profiles must carry protected partition scope and prove unrelated groups/artifacts survived.
+325. Recent Graphiti commits are useful examples of public performance/correctness documentation: query shape, directionality, reference-time fields, and scoped deletion are all named in commit messages and tests.
+326. The first executable spec should be `temporal_evidence_recall_v1`: event-time filtered memory recall with bounded BFS/PPR expansion, stale-edge filtering, source episode citations, and physical-path receipts.
+327. Evidence grade should be a planner input, not only a UI badge. Under tight RAM/context caps, higher-evidence candidates should survive before lower-evidence candidates when relevance is comparable.
+328. Store provenance grade separately from model confidence. `official` or `corroborated` means something different from an LLM saying it feels confident.
+329. Preserve `base_score` and adjusted score in receipts so evidence weighting is auditable and idempotency can be tested.
+330. Never fabricate scores for unmeasured graph traversal entries. Keep measured direct hits and unmeasured traversal payloads on separate axes.
+331. Temporal filtering should prefer stable demotion over deletion: lapsed, pending, stale, invalidated, or unverified facts should be cold/auditable, not silently gone.
+332. `event_date`, `event_date_confidence`, `valid_from`, and `valid_to` should be four distinct fields in profile artifacts.
+333. Date confidence gates are product-critical. A well-formed ISO date is not enough evidence for temporal ranking unless corroborated by source text or valid derivation.
+334. Bounded traversal needs semantic priority classes before caps: contradiction, supersession, invalidation, verified evidence, measured relevance, graph-neighbor expansion, and unverified/stale state.
+335. Candidate cap survival must be deterministic. Sort by declared priority and stable tie-breakers before applying fan-out, reserve, or result limits.
+336. Embeddings and approximate indexes may nominate graph mutations but should not authorize them without deterministic gates.
+337. Graph maintenance jobs need dry-run mode, destructive mutation budgets, protected evidence classes, truncation warnings, and mutation receipts.
+338. Decision/evidence graphs should use stable identity separate from volatile source coordinates; SHAs, line numbers, and frontier IDs are evidence coordinates, not durable semantic identity.
+339. Anchor fan-out should be capped and validated against source ground truth before writing evidence edges.
+340. Profile execution should be a typed DAG, not a single command: projection, storage build, algorithm, verification, baseline comparison, receipt emission, and recovery are separate phases.
+341. A DAG edge is not real unless data crosses it. Verifier steps must reference upstream artifact hashes, paths, outputs, or receipt fields.
+342. Build `kb profile lint` early. It should reject fake dependencies, unsafe rebuild scope, invalid cap/freshness combinations, hidden broad scans, and missing verifier inputs.
+343. Long graph jobs need checkpoint/resume/cancel/human-approval semantics before scale tests; otherwise low-RAM jobs will be operationally brittle.
+344. Append-only JSONL run events are a better first receipt substrate than a complex database schema. SQLite can index the events later.
+345. Terminal receipts should outlive disposable checkpoints. Execution caches can be swept, but authoritative profile/run state must remain queryable.
+346. Profile evolution should be op-based and revision-native: add/edit/delete/wire/rename profile phases through structured operations that create new immutable versions.
+347. Failed profile edits should return typed repair reasons agents can act on, such as cycle_detected, missing_artifact_reference, unsafe_broad_scan, stale_profile_version, or validation_failed.
+348. The evidence-memory wedge now has two specs waiting to be written: `temporal_evidence_recall_v1` for bounded recall and `profile_run_dag_v1` for durable execution.
+349. Add a third immediate spec: `ppr_local_ranking_v1`, inspired by AtomicRAG's dense fragment seeds, entity seeds, and PPR over an Atom-Entity Graph.
+350. Do not sell this profile as "PPR in Rust is faster." Sell it as bounded, auditable local ranking with receipt-proven storage behavior.
+351. Any PPR benchmark must disclose whether fragment vectors, entity vectors, reset vectors, and graph edges were fully resident or loaded blockwise.
+352. Split concurrency metrics by stage: extraction/API calls, vector top-k, graph propagation, fragment filtering, corpus scheduling, and lock wait time.
+353. Treat fail-open filters as incompatible with strict RAM claims unless the receipt explicitly records the failure and budget breach.
+354. Make blockwise top-k a reusable primitive for graph profiles: local candidates per block, global merge, bounded device/RAM state, and proof that full-store materialization was avoided.
+355. Use granularity metrics in every retrieval or memory profile: source units, algorithm units, entities per unit, cross-unit edges, top-k coverage, sieve drop rate, and boundary misses.
+356. A young research repo can be high-value evidence without being a performance baseline. AtomicRAG should guide profile shape, while our own receipts must establish RAM/latency/correctness.
+357. Add `profile_action_menu_v1` as a spec: the agent selects a valid action ID, while the runtime owns query construction, budget validation, fallback selection, and receipt fields.
+358. Reject model-invented graph queries and appended mini-queries in agent mode. If a profile action needs parameters, those parameters should be typed, declared, validated, and shown in the menu.
+359. Make invalid action rate and natural-query attempt rate part of planner ergonomics metrics. If agents keep trying invalid graph actions, the interface is underspecified.
+360. Treat action-menu caps as product knobs: visible candidates, lookup/frontier options, alternative modes, and recovery choices must have explicit caps and receipt counters.
+361. Build `profile_artifact_build_v1` around clean files and manifests, not hidden database state: tables, sparse matrices, sidecars, id maps, manifest, build report, warnings.
+362. `kb profile validate` should run before expensive compute and should verify required files, id maps, references, sparse matrix shapes, edge direction, embedding dimensions, manifest counts, and loader compatibility.
+363. Distinguish run receipts from planner receipts. Run receipts say what happened; planner receipts say which alternatives were legal and why one was selected.
+364. Compare selected storage modes against feasible same-state alternatives. A bounded mode that only wins because no alternative was evaluated is weaker evidence.
+365. Give enabling credit to artifact builds and profile phases. A costly projection build can be a win if it unlocks many low-RAM future runs.
+366. Add deadzones/noise floors to performance comparisons so tiny RAM or latency differences do not produce false planner conclusions.
+367. Keep the graph query construction inside the runtime. Agent text should express intent; profile code should produce the physical plan.
+368. Log navigation/planner events as JSONL with run ID, action type, input state, result IDs/artifacts, new state, and turn/phase number.
+369. Add health endpoints or status commands that expose loaded artifact counts, active sessions, graph/profile version, and current memory mode.
+370. Tiny graph fixtures are not optional. Every profile should first pass a small human-readable fixture that validates identity normalization, artifact files, sparse structures, and terminal semantics.
+371. Do not conflate information actions with commit/terminal actions. Retrieval/expansion can be frontier-compared; commit/output actions need outcome or verifier credit.
+372. The next concrete spec bundle after `ppr_local_ranking_v1` should include `profile_action_menu_v1`, `profile_validate_v1`, and `planner_receipt_v1`.
+373. Add `profile_run_state_v1` as the source-spine spec that unifies planner action menus, phase outcomes, verifier events, recovery transitions, and final audit.
+374. Treat algorithm completion as an executor claim. Only verifier-owned events may advance graph-run state.
+375. Split verifier results into `confirmed`, `refuted`, `inconclusive`, and `unavailable`; do not route all four through generic failure recovery.
+376. Add a bounded final auditor for benchmark claims. It should spend a declared budget and check whether the receipt really supports correctness, RAM, and latency claims.
+377. The first receipt schema should include a compact state-board view for LLM planning and append-only event files for replay.
+378. Recovery should be enum-backed: source unavailable, profile invalid, artifact invalid, budget refuted, output refuted, oracle unavailable, frontier exhausted, spill exceeded, same strategy no progress, and refuse under budget.
+379. Learned profile hints should be optional. A missing memory bank or heuristic sidecar may reduce planner quality, but it must not silently weaken correctness or RAM claims.
+380. The default benchmark command should run full verification; all speed-only, no-baseline, no-auditor, no-receipt, approximate, or RAM-first shortcuts should be named ablations.
+381. Preserve failed and partial runs. They are the raw material for profile lint rules, fallback edges, and future fixtures.
+382. Phase handoffs need evidence. A projection phase should say exactly which artifact hash/path it produced and which later phase consumed it.
+383. Separate within-run execution from post-run profile evolution. A profile should be immutable while a benchmark/run is active.
+384. Add `profile_evolution_v1` as a spec after `profile_run_state_v1`: receipts become gated profile repairs.
+385. A failed run should produce structured posterior evidence: trigger condition, failure pattern, recovery action, workload shape, budget context, and evidence references.
+386. Store profile learning in two layers: `ProfileMemory` for recurring lessons and `ProfileStateGraph` for state-conditioned repair edges and transition rules.
+387. Every profile repair needs scope: algorithm family, dataset family, source shape, budget mode, exactness mode, and oracle assumptions.
+388. The Evolution-SOP should be fixed during a run and should govern post-run commits. It is the anti-chaos layer between "learn from failures" and "randomly mutate the runtime."
+389. Profile evolution needs rollback and regression replay before it can influence public benchmark claims.
+390. Profile-state growth is itself a resource problem. Receipts should track learned entries, graph nodes, graph edges, retrieval latency, memory footprint, merged entries, invalidated entries, and stale entries.
+391. Privacy/redaction must apply before adding customer workload traces to reusable profile memory or repair graphs.
+392. Do not confuse reflection with repair. A usable repair must specify condition, action/transition, scope, evidence, and commit gate.
+393. Directional PMF lesson: structured harness/profile evolution may improve capability without changing the model or core runtime, but Knight Bus must prove this through its own replayable receipts.
+394. Model semantics before optimizing execution. A custom storage profile without typed operations, relationships, units, and verifier gates is only an implementation trick, not a product surface.
+395. Default user-facing modes should be determinism tiers: optimized modeled profile, schema-guided bridge, managed connector, and raw fallback.
+396. Raw fallback must be visibly expensive and low-determinism. Do not let a generic Cypher/import path inherit claims from a modeled profile.
+397. Add `profile_route_v1` before `profile_run_state_v1`: route workload shape to a small set of legal profiles, with rejected candidates and reasons recorded.
+398. Add `profile_schema_v1` as a manifest contract: fields, edge lanes, legal operations, exactness modes, allowed spill behavior, aggregation/reduction semantics, and verifier gates.
+399. A receipt should include a "modeled path saved work" panel: baseline bytes read/materialized/RSS versus profile slabs touched/bytes read/peak RSS.
+400. Treat Harness's 15-25x token reduction as a useful analogy, not a Knight Bus claim. Our claim must be measured on our datasets with public commands and receipts.
+401. The PMF phrase becomes stronger: "move graph algorithm semantics into modeled physical profiles so compute is bounded by design."
+402. The first founder demo should show the fallback difference: generic graph import can run, but only the modeled profile can promise a RAM ceiling and explain exactly why.
+403. Add `profile_trace_graph_v1`: every run becomes an executional graph with phases, artifacts, budgets, verifier events, fallbacks, and outcomes.
+404. Treat successful low-RAM paths as reusable trace patterns, but only after recurrence thresholds and regression replay.
+405. Treat failed low-RAM paths as repair candidates, not shameful logs. The failed path should explain which condition, cap, artifact, or verifier gate broke.
+406. Separate raw run logs from safe abstract trace steps. The latter should be compact and privacy-preserving enough to aggregate.
+407. Profile evolution should carry uncertainty forward: competing paths, confidence, sparse-data warnings, and recency weighting.
+408. Add privacy thresholds before process/profile traces become shared learning. One user's workload pattern is not a product rule.
+409. Bound two RAMs, not one: machine RAM for graph execution and context RAM for agent reasoning.
+410. Keep the Knight Bus agent surface small. More profiles should mean more registry entries and schemas, not more agent tools.
+411. Add demand-paged metadata calls: `profile describe`, `profile schema`, `artifact describe`, and `receipt summary`.
+412. Use "context cost" as a first-class metric beside RSS and wall-clock. If an agent must ingest giant receipts, the product has leaked abstraction.
+413. The first local developer demo can be codebase-shaped: repo/code graph -> profile route -> bounded traversal/ranking -> compact receipt -> semantic diff or impact answer.
+414. The founder-level claim becomes: Knight Bus keeps graph work small enough for computers and summarized enough for agents.
+415. Add `memory_profile_lifecycle_v1`: split local memory work by lifecycle: extraction, storage, retrieval, and evolution. Each phase deserves its own bounded profile and receipt.
+416. Do not call a memory benchmark valid unless it tests the claimed capability. A cross-session memory claim needs cross-session data; a continual-learning claim needs recurrence and update pressure.
+417. Add quality metrics to resource benchmarks. Cheap memory retrieval that lowers Precision@K, Recall@K, temporal consistency, or task success is not a win.
+418. Hybrid-source retrieval needs explicit conflict policy: external authority for facts, internal scoped history for personal/project experience, and an unresolved-conflict state when neither dominates.
+419. Graph-memory storage should be plural by design: temporal slabs, hierarchy/community sidecars, hyperedge tables, working-memory overlays, and vector/text sidecars.
+420. Memory evolution should be an offline bounded job first, not hidden online mutation: compaction, conflict resolution, missing-edge proposal, and topology reorganization.
+421. Treat graph-memory scalability as public validation of the Knight Bus thesis. The survey names quadratic-or-worse graph operations, compression, incremental updates, and approximate retrieval as open challenges.
+422. Add privacy/security gates to local-memory profiles before PMF demos: redaction, local-only mode, provenance tracking, anomaly checks, and audit logs.
+423. Memory products are integration targets, not necessarily competitors. Knight Bus can sit underneath Graphiti/Mem0/Cognee-style systems as the bounded algorithm/runtime layer.
+424. The local wedge should be phrased as: bounded graph compute for agent memory that stays affordable, auditable, and predictable as memory grows.
+425. Add `memory_ecosystem_adapter_v1`: a compatibility layer for Graphiti, taOSmd, Omnigraph, Memvid, and Mem0-style exports.
+426. Add `lakehouse_graph_profile_v1`: support branchable object-store graph artifacts and run bounded profiles over cold columnar graph data.
+427. Add `memory_capsule_profile_v1`: support portable single-file memory fixtures with immutable frames, compact indexes, and time-travel comparison.
+428. Use taOSmd as a benchmark-honesty exemplar: retrieval, generation, judge, hardware tier, and unsupported-fact rate are separate receipt sections.
+429. Use Omnigraph as a branch/versioning exemplar: agents should write profile outputs on isolated branches or run folders, then merge only after verification.
+430. Use Memvid as a distribution exemplar: a small reproducible `.mv2`-style fixture may be easier for developers than a database deployment.
+431. The first integration should probably not be Neo4j. It should be a local-memory artifact where the RAM cap is felt immediately and the user understands the value.
+432. The ecosystem map suggests three physical storage bets: lakehouse graph tables, append-only local archive plus temporal KG, and portable memory capsules.
+433. Add `local_memory_receipt_v1`: separate retrieval quality, generated-answer quality, judge family, parser version, hardware tier, model/quant, RAM cap, observed RAM, and unsupported-fact rate.
+434. Add `profile_archive_v1`: archive raw graph inputs and run events before building derived indexes, with source span IDs and per-record hashes.
+435. Add `profile_store_mode_signature_v1`: derived artifacts must record layout, dimension, quantization, embedder or algorithm identity, and rebuild requirements.
+436. Add `profile_claim_verifier_v1`: every user-visible profile claim should cite source spans and fail closed to unverified if verification is ambiguous.
+437. Add `verification_gate_mode_v1`: users can choose off, prefer_verified, or strict, and receipts must show dropped/promoted counts.
+438. Add `bounded_verify_pass_v1`: background verification should be batched, idempotent, terminating, retryable, and explicit about unverified backlog.
+439. Add `degraded_run_receipt_v1`: archive-first success with derived-index failure is a degraded success, not a silent success or total failure.
+440. Add `benchmark_truth_ledger_v1`: benchmark rows must distinguish measured, extrapolated, queued, failed, and invalid states.
+441. Benchmark parsers need adversarial tests before any public performance claim. The taOSmd `INCORRECT`/`CORRECT` trap is exactly the class of bug to prevent.
+442. For local memory and local graph PMF, publish modes as budgets: for example 1 GB exact-ish, 2 GB broader, 5 GB high-confidence, each with quality loss made visible.
+443. Treat active graph state as a view, not the only truth. Historical archive and soft-superseded artifacts must remain inspectable.
+444. Negative results should be first-class artifacts because they prevent false product direction. Record what failed, on what hardware, with what parser, and why it was not promoted.
+445. The first Knight Bus local-memory fixture should compare full-context, naive full-graph, bounded traversal, PPR/local ranking, and evidence-gated recall under the same question set.
+446. Profile results should have three user-facing inspection levels: summary, inspection, and audit. This preserves trust without making every run feel ceremonial.
+447. Add `graph_profile_capsule_v1`: a single portable artifact for PMF demos and benchmark fixtures, carrying graph frames, profile-specific indexes, receipts, and verification data.
+448. Add `embedded_profile_wal_v1`: profile-run writes should be crash-recoverable inside the artifact, with bounded region, sequence numbers, checksums, and checkpoints.
+449. Add `profile_commit_footer_v1`: every capsule commit should have a generationed TOC footer and a last-valid-generation recovery path.
+450. Add `profile_time_index_v1`: local memory and temporal graph profiles should support time-bounded replay without scanning the entire artifact.
+451. Add `profile_segment_manifest_wal_v1`: parallel graph-index builders need a recoverable segment metadata log before materializing indexes.
+452. Add `profile_frame_v1`: source chunks and graph partitions should store bounded metadata, source hash/path, parent/chunk relations, active status, and supersession links.
+453. Add `capsule_doctor_v1`: strict read-only open should fail on corrupt snapshots, and repair should be explicit, reported, and re-verified.
+454. Add `encrypted_profile_capsule_v1`: portable local graph artifacts need optional streaming encryption before they are shareable with real personal/company data.
+455. Treat single-file capsules as a PMF and verification artifact, not necessarily the production storage for every massive workload.
+456. A capsule can be the envelope for multiple custom OLAP layouts. PageRank, PPR, BFS, components, temporal lookup, and community detection can each store their own internal shape.
+457. Benchmark and bug-report UX should become "send one artifact, rerun one command, compare one receipt."
+458. The next source-deepening branch should inspect Omnigraph for the server/lakehouse counterpart to Memvid's local single-file counterpart.
+459. Add `lakehouse_graph_profile_v1`: support object-store graph artifacts, branch snapshots, RAM-bounded profile runs, review receipts, and verifier-gated merge.
+460. Add `profile_manifest_v1`: every profile artifact should list source graph snapshot, raw chunks, derived layouts, indexes, receipts, verifier outputs, schema version, and branch lineage.
+461. Add `logical_contract_physical_layout_v1`: accepted graph/profile manifests define logical truth; compaction, indexes, caches, and layout files are rebuildable acceleration.
+462. Add `profile_branch_review_v1`: agent-generated profile artifacts should land in isolated branches or run folders before becoming canonical benchmark or product state.
+463. Add `profile_capabilities_v1`: planners need rows, fragments, index coverage, pushdown support, RAM estimates, fallback paths, and failure modes before execution.
+464. Add `topology_only_profile_index_v1`: topology-heavy algorithms should build the smallest CSR/CSC projection from required endpoint columns, not load unrelated properties.
+465. Add `profile_cache_key_v1`: reusable derived layouts must be keyed by source artifact identity, version, branch, content hash/e_tag, endpoints, algorithm, budget, and exactness mode.
+466. Add `profile_commit_graph_v1`: run lineage should be reconstructable from manifest rows with parents, merged parents, actor, generation, timestamp, and merge-base.
+467. Add `profile_merge_truth_table_v1`: profile artifact operations need an explicit merge/conflict/unsupported outcome matrix, not ad hoc merge behavior.
+468. Keep two storage envelopes, not one: local capsules for personal/portable PMF and lakehouse profiles for server/object-store graph artifacts.
+469. Derived acceleration may lag only if logical correctness remains guaranteed and the receipt exposes degraded coverage, scan fallback, or typed failure.
+470. The first server/lakehouse demo should read a branchable graph artifact, run a topology-only profile under a RAM cap, publish a receipt to a review branch, compare, and merge after verifier gates.
+471. Add `profile_execution_pipeline_v1`: every profile run should parse/validate, gather cheap counts, select physical mode, enforce caps before durable effects, execute, and emit a receipt.
+472. Add `profile_traversal_dispatch_v1`: traversal profiles should expose indexed, CSR, and edge-binding paths with chooser inputs and equivalence tests.
+473. Add `profile_budget_constants_v1`: named row, byte, frontier, hop, version-scan, queue, and concurrency constants should be visible to users and tests.
+474. Add `profile_latency_decomposition_v1`: latency claims must separate serial stages, parallel op count, backend, concurrency cap, bytes, history depth, and compaction state.
+475. Add `capture_once_profile_builder_v1`: profile builders should capture source-cut authority once and avoid cold re-derivation unless a conflict forces it.
+476. Add `profile_io_probe_harness_v1`: benchmark instrumentation should split opener, scan, manifest, index, cache, spill, NotFound, and stream-attempt terms.
+477. Add `profile_cost_slope_gate_v1`: every boundedness claim needs shallow/deep sweeps and a flatness assertion for the named resource term.
+478. Add `profile_negative_tripwire_v1`: known-bad growth should be pinned as a red-future tripwire until the fix lands, then inverted into a flat gate.
+479. Add `profile_backend_specific_gate_v1`: local FS, NVMe, mmap, S3/R2, and capped-concurrency modes need separate gates because costs surface differently.
+480. Add `profile_warm_cache_gate_v1`: warm cache wins must prove freshness and zero unexpected authority rescans, not only lower elapsed time.
+481. Add `profile_benchmark_phase_contract_v1`: setup, measured operation, and verification phases should be isolated with per-phase RSS and exact output hashes.
+482. Add `profile_delta_merge_gate_v1`: profile artifact validation should be delta-scoped, while residual history-sensitive costs remain disclosed.
+483. Add `profile_physical_mode_proptest_v1`: generated adversarial graphs should compare every physical mode implementing the same logical operation.
+484. Add `profile_recovery_sidecar_v1`: multi-artifact profile builds need operation ids, sidecars, read-only behavior, recovery classification, and audit rows.
+485. Add `profile_recovery_budget_v1`: recovery itself needs bounded scan windows and fail-closed behavior when history exceeds the supported proof window.
+486. Add `profile_failpoint_matrix_v1`: durable stage boundaries should have failpoints before/after persistence so crash safety is executable.
+487. Add `profile_blocked_design_ledger_v1`: blocked storage ideas should record which physical-I/O cell failed and what evidence would unblock them.
+488. Add `profile_retention_pin_v1`: logical retention authority and physical pins are separate; cleanup must never under-retain a receipt-reconstructable artifact.
+489. Add `profile_delta_discovery_gate_v1`: O(delta) claims require bounded insert, update, and delete discovery, or an explicit fallback reason.
+490. Add `profile_storage_feature_kill_gate_v1`: clever substrate features should be killed or kept experimental when graph-level validation, correction, and publication cost dominates.
 
 ## Next Capture Steps
 
-1. Scroll upward from the Jul 27 2026 visible position.
+1. Scroll upward from the Jun 1 2026 visible position.
 2. At each stable date boundary, extract public URLs, linked authors, chat author if visible, and one-line relevance.
 3. Open high-priority public URLs in small batches and add source-specific notes.
 4. Update `journals/graph-tech-chat-alpha-capture.md` after each date boundary or every 20-40 minutes.

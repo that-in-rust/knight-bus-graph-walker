@@ -175,3 +175,69 @@ Extend the guiding spec with exhaustive PRD03-PRD06 and graph-learning architect
 
 #### Performance/Metrics:
 - Document corpus: PRD03 222 files; PRD04 68; PRD05+06 94; total 384
+
+### Session: 2026-08-08 01:25:30Z
+
+#### Current Phase: Red
+
+#### Tests Written:
+- lowram_architecture_atlas_contract: failing - expected RED because LowRAM-Algorithm-Architecture-Decision-Atlas.md does not exist yet
+- lowram_architecture_validator_compiles: passing - architecture, corpus, family, and mega-spec Python validators compile
+- requested_code_graph_is_operational: passing - npx code-graph index contains 447 files, 12,864 nodes, and 2,907 edges
+
+#### Implementation Progress:
+- scripts/validate_lowram_architecture_atlas.py: requires three options per algorithm family, retained fit and spill choices, explicit working-set/refusal/verification fields, and dual-corpus citations
+- docs_PRD04/reference-learning/lowram-architecture-corpus/main-codegraph-architecture-evidence.md: records the current parser, GDS estimate, external-run, and runtime seams
+
+#### Current Focus:
+Reconcile three exhaustive PRD evidence lanes before selecting algorithm-specific fit, spill, approximate, and refuse architectures
+
+#### Next Steps:
+- Validate each agent ledger against the frozen 384-file denominator
+- Synthesize at least 27 evidence-backed architecture options across the nine founder-ordered families
+- Integrate the retained selector contracts and differential tests into the guiding mega spec
+
+#### Context Notes:
+- The global code-graph binary was absent; the requested package was run through npx and indexed successfully
+- Current GDS code exposes catalog and estimate foundations but not the required nine production algorithm kernels
+
+#### Performance/Metrics:
+- Code-graph: 447 files, 12,864 nodes, 2,907 edges; FTS5-only
+- Architecture atlas: RED, 0 of at least 27 required options written
+
+### Session: 2026-08-08 02:04:00Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- neo4j_family_evidence_union: passing - 32,262/32,262 rows across 20 repositories; frozen SHA-256 `03e35cf1a1b0964e7876bf8b25b9e8819f5578e06b4efb4c9ab3f182193b4846`
+- document_corpus_evidence_union: passing - 384/384 rows; 186 semantic reads, 91 structured queries, 100 generated classifications, 6 superseded classifications, 1 binary inspection
+- lowram_architecture_atlas_contract: passing - 27 options, 9 families, retained fit/spill per family, 19 upstream and 32 document citations
+- mega_spec_contract_lint: passing - 106 requirements, 60 tests, 100% mapping, 60 upstream, 10 document, and 6 local citations
+- python_evidence_tooling_compiles: passing - all six manifest/validator scripts compile
+- formatting_and_structure_review: passing - git diff check clean; Clarity shows 15 isolated documentation/evidence/tooling files and no source dependency edges
+- frozen_manifest_overwrite_guard: passing - ordinary document-manifest invocation preserves SHA-256 `6bfce85458a4935fd530c7156bca8a21c390a35b595660f85973dce700ec537c`
+
+#### Implementation Progress:
+- docs_PRD04/reference-learning/lowram-architecture-corpus/LowRAM-Algorithm-Architecture-Decision-Atlas.md: 27 evidence-backed algorithm options with equations, trade-offs, refusal conditions, and verification contracts
+- docs_PRD04/Neo4j-Compatibility-LowRAM-Mega-Spec.md: integrated versioned registry/selection, representation economics, exact fallback, mapped/output charging, forced resource-mode, spill invariant, and founder breadth requirements
+- docs_PRD04/reference-learning/lowram-architecture-corpus/integration-audit.md: final research-to-implementation handoff
+- Three exhaustive architecture dossiers and exact per-file ledgers completed and corrected under validator feedback
+
+#### Current Focus:
+Close the research/specification goal without implying that the Rust algorithm portfolios are implemented
+
+#### Next Steps:
+- Freeze one `KB-ACCESS-P0` customer artifact, exact query/profile, oracle, and useful RAM/time/temp ceilings
+- Implement `ARCH-PATH-001` fit, `ARCH-PATH-002` forced spill, and deterministic refusal behind the supervised resource ledger
+- Close the path receipt before WCC; close WCC before PageRank; keep the remaining six families buyer-gated
+
+#### Context Notes:
+- A007 remains binding: no database rewrite, OLTP ownership, or broad compatibility expansion
+- Neo4j/GDS are behavior, estimator, fixture, and benchmark oracles; they are not the Rust kernel architecture
+- No measured RAM or latency delta is claimed by this specification work
+
+#### Performance/Metrics:
+- Neo4j-family corpus: 32,262 files, 478,516,872 blob bytes, 41,225,296 direct-read bytes
+- PRD corpus: 384 files, 224,889,145 frozen bytes
+- Guiding artifacts: 1,182-line mega spec, 469-line atlas, 4,112 lines across the eight primary architecture documents

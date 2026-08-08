@@ -17,6 +17,10 @@ OPTION_HEADING_PATTERN = re.compile(
 FIELD_PATTERN = re.compile(r"^\*\*([^*]+):\*\*\s*(.+)$", re.MULTILINE)
 UPSTREAM_EVIDENCE_PATTERN = re.compile(r"\bA0[123]-\d{6}\b")
 DOCUMENT_EVIDENCE_PATTERN = re.compile(r"\bA0[456]-\d{6}\b")
+DOCUMENT_LANE_PATTERN = re.compile(r"\b(A0[456])-\d{6}\b")
+WORKING_SET_SYMBOL_PATTERN = re.compile(
+    r"\b(?:n|m|m_u|p|t|d|k|f|c|a|B_ram|B_os|B_io|B_out|B_tmp)\b"
+)
 
 REQUIRED_FIELDS = {
     "Algorithms",
@@ -75,6 +79,9 @@ def validate_option_field_contracts(
 ) -> None:
     failures: list[str] = []
     for option_id, (title, fields) in options.items():
+        option_family = option_id.split("-")[1]
+        if option_family not in REQUIRED_FAMILIES:
+            failures.append(f"{option_id} has unknown family {option_family!r}")
         missing_fields = sorted(REQUIRED_FIELDS - set(fields))
         if missing_fields:
             failures.append(f"{option_id} missing fields {missing_fields}")
@@ -93,6 +100,10 @@ def validate_option_field_contracts(
         }
         if not algorithms:
             failures.append(f"{option_id} has no algorithm families")
+        elif option_family not in algorithms:
+            failures.append(
+                f"{option_id} heading family is absent from Algorithms field {sorted(algorithms)}"
+            )
         option_text = " ".join([title, *fields.values()])
         if re.search(r"\b(?:TODO|TBD|PLACEHOLDER|FIXME)\b", option_text, re.IGNORECASE):
             failures.append(f"{option_id} contains a placeholder")
@@ -103,6 +114,10 @@ def validate_option_field_contracts(
                 failures.append(f"{option_id} lacks PRD03-PRD06 document evidence")
             if len(fields["Working-set model"]) < 20:
                 failures.append(f"{option_id} working-set model is too weak")
+            elif "=" not in fields["Working-set model"]:
+                failures.append(f"{option_id} working-set model lacks an equation")
+            elif not WORKING_SET_SYMBOL_PATTERN.search(fields["Working-set model"]):
+                failures.append(f"{option_id} working-set model lacks shared symbols")
             if len(fields["Refusal condition"]) < 20:
                 failures.append(f"{option_id} refusal condition is too weak")
             if len(fields["Verification"]) < 20:
@@ -132,6 +147,11 @@ def validate_family_option_coverage(
         retained_fields = [
             fields for fields in option_fields if fields.get("Decision", "").lower() in {"choose", "experiment"}
         ]
+        chosen_fields = [
+            fields for fields in option_fields if fields.get("Decision", "").lower() == "choose"
+        ]
+        if not chosen_fields:
+            failures.append(f"{family} lacks a chosen default or bounded profile")
         retained_classes = {
             plan_class.strip().lower()
             for fields in retained_fields
@@ -201,6 +221,25 @@ def validate_option_evidence_ids(
     return len(cited_upstream), len(cited_documents)
 
 
+def validate_atlas_document_spine(atlas: str) -> None:
+    failures: list[str] = []
+    for required_text in (
+        "A007-spc-founder-interview-prep-v7.md",
+        "fit",
+        "spill",
+        "approximate",
+        "refuse",
+    ):
+        if required_text not in atlas:
+            failures.append(f"atlas does not mention binding term {required_text!r}")
+    cited_lanes = set(DOCUMENT_LANE_PATTERN.findall(atlas))
+    missing_lanes = {"A04", "A05", "A06"} - cited_lanes
+    if missing_lanes:
+        failures.append(f"atlas lacks citations from document lanes {sorted(missing_lanes)}")
+    if failures:
+        raise ArchitectureAtlasError("atlas spine failures:\n- " + "\n- ".join(failures))
+
+
 def run_architecture_atlas_validation() -> int:
     workspace_root = Path(__file__).resolve().parents[1]
     atlas_path = (
@@ -216,6 +255,7 @@ def run_architecture_atlas_validation() -> int:
     options = extract_architecture_option_blocks(atlas)
     validate_option_field_contracts(options)
     validate_family_option_coverage(options)
+    validate_atlas_document_spine(atlas)
     upstream_count, document_count = validate_option_evidence_ids(atlas, workspace_root)
     print(
         f"PASS: {len(options)} architecture options, {len(REQUIRED_FAMILIES)} families, "

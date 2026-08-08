@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import os
@@ -99,9 +100,27 @@ def write_document_denominator_now(output_path: Path, rows: list[dict[str, objec
     os.replace(temporary_path, output_path)
 
 
-def run_document_manifest_now() -> int:
+def parse_manifest_arguments_now() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Create the initial frozen PRD03-PRD06 denominator."
+    )
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="explicitly replace an existing denominator with current filesystem hashes",
+    )
+    return parser.parse_args()
+
+
+def run_document_manifest_now(refresh_existing: bool = False) -> int:
     workspace_root = Path(__file__).resolve().parents[1]
     output_path = workspace_root / OUTPUT_SUBTREE / "evidence" / "all-documents-denominator.tsv"
+    if output_path.is_file() and not refresh_existing:
+        print(
+            f"preserved frozen denominator at {output_path}; "
+            "pass --refresh only when intentionally starting a new evidence baseline"
+        )
+        return 0
     rows = collect_document_corpus_rows(workspace_root)
     write_document_denominator_now(output_path, rows)
     lane_counts: dict[str, int] = {}
@@ -118,4 +137,5 @@ def run_document_manifest_now() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(run_document_manifest_now())
+    arguments = parse_manifest_arguments_now()
+    sys.exit(run_document_manifest_now(refresh_existing=arguments.refresh))

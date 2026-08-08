@@ -110,15 +110,17 @@ def validate_document_classification_now(
 ) -> None:
     path = denominator["path"]
     default_class = denominator["default_file_class"]
+    evidence_class = evidence["file_class"]
     status = evidence["coverage_status"]
-    if default_class == "semantic_text_candidate" and status not in {
-        "semantic_read", "superseded_classified"
-    }:
-        raise DocumentEvidenceError(
-            f"{path}: semantic text requires semantic_read or superseded_classified, found {status}"
-        )
-    if denominator["extension"] == "md" and status != "semantic_read":
-        raise DocumentEvidenceError(f"{path}: every Markdown file requires semantic_read")
+    if default_class == "semantic_text_candidate":
+        if evidence_class.startswith("generated_") or evidence_class == "tool_diagnostic_output":
+            allowed_statuses = {"semantic_read", "structured_queried", "generated_classified"}
+        else:
+            allowed_statuses = {"semantic_read", "structured_queried", "superseded_classified"}
+        if status not in allowed_statuses:
+            raise DocumentEvidenceError(
+                f"{path}: semantic text class {evidence_class!r} has incompatible status {status}"
+            )
     if default_class == "bulk_text_candidate" and status not in {
         "semantic_read", "structured_queried", "generated_classified"
     }:

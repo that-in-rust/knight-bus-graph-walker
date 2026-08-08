@@ -20,7 +20,9 @@ TEST_ROW_PATTERN = re.compile(
 )
 
 REFERENCE_PATTERN = re.compile(r"([A-Z]+)-(\d{3})(?:\.\.(\d{3}))?")
-EVIDENCE_ID_PATTERN = re.compile(r"\bA0[123]-\d{6}\b")
+UPSTREAM_EVIDENCE_ID_PATTERN = re.compile(r"\bA0[123]-\d{6}\b")
+DOCUMENT_EVIDENCE_ID_PATTERN = re.compile(r"\bA0[456]-\d{6}\b")
+DOCUMENT_LANE_PATTERN = re.compile(r"\b(A0[456])-\d{6}\b")
 LOCAL_EVIDENCE_ID_PATTERN = re.compile(r"\b(?:CG-MAIN|KW-CURRENT)-\d{3}\b")
 
 REQUIRED_SECTION_HEADINGS = [
@@ -126,7 +128,7 @@ def validate_test_coverage_now(
         )
 
 
-def load_evidence_identifiers_now(workspace_root: Path) -> set[str]:
+def load_upstream_evidence_identifiers(workspace_root: Path) -> set[str]:
     evidence_root = (
         workspace_root
         / "docs_PRD04"
@@ -148,14 +150,60 @@ def load_evidence_identifiers_now(workspace_root: Path) -> set[str]:
     return identifiers
 
 
-def validate_evidence_references_now(specification: str, workspace_root: Path) -> int:
-    cited_identifiers = set(EVIDENCE_ID_PATTERN.findall(specification))
+def load_document_evidence_identifiers(workspace_root: Path) -> set[str]:
+    evidence_root = (
+        workspace_root
+        / "docs_PRD04"
+        / "reference-learning"
+        / "lowram-architecture-corpus"
+        / "evidence"
+    )
+    identifiers: set[str] = set()
+    for filename in (
+        "agent-04-prd03-files.tsv",
+        "agent-05-prd04-files.tsv",
+        "agent-06-prd05-prd06-files.tsv",
+    ):
+        path = evidence_root / filename
+        if not path.is_file():
+            raise SpecValidationError(f"missing document evidence ledger: {path}")
+        with path.open("r", encoding="utf-8", newline="") as source_file:
+            for row in csv.DictReader(source_file, delimiter="\t"):
+                evidence_id = row.get("evidence_id", "")
+                if evidence_id in identifiers:
+                    raise SpecValidationError(f"duplicate document evidence ID: {evidence_id}")
+                identifiers.add(evidence_id)
+    return identifiers
+
+
+def validate_upstream_evidence_references(specification: str, workspace_root: Path) -> int:
+    cited_identifiers = set(UPSTREAM_EVIDENCE_ID_PATTERN.findall(specification))
     if not cited_identifiers:
-        raise SpecValidationError("mega spec contains no file-level evidence citations")
-    known_identifiers = load_evidence_identifiers_now(workspace_root)
+        raise SpecValidationError("mega spec contains no upstream file-level evidence citations")
+    known_identifiers = load_upstream_evidence_identifiers(workspace_root)
     missing_identifiers = sorted(cited_identifiers - known_identifiers)
     if missing_identifiers:
-        raise SpecValidationError(f"unknown file-level evidence citations: {missing_identifiers}")
+        raise SpecValidationError(f"unknown upstream evidence citations: {missing_identifiers}")
+    return len(cited_identifiers)
+
+
+def validate_document_evidence_references(specification: str, workspace_root: Path) -> int:
+    cited_identifiers = set(DOCUMENT_EVIDENCE_ID_PATTERN.findall(specification))
+    if not cited_identifiers:
+        raise SpecValidationError("mega spec contains no PRD03-PRD06 evidence citations")
+    cited_lanes = set(DOCUMENT_LANE_PATTERN.findall(specification))
+    missing_lanes = {"A04", "A05", "A06"} - cited_lanes
+    if missing_lanes:
+        raise SpecValidationError(
+            f"mega spec lacks document evidence lanes: {sorted(missing_lanes)}"
+        )
+    known_identifiers = load_document_evidence_identifiers(workspace_root)
+    missing_identifiers = sorted(cited_identifiers - known_identifiers)
+    if missing_identifiers:
+        raise SpecValidationError(f"unknown document evidence citations: {missing_identifiers}")
+    atlas_reference = "LowRAM-Algorithm-Architecture-Decision-Atlas.md"
+    if atlas_reference not in specification:
+        raise SpecValidationError(f"mega spec does not reference {atlas_reference}")
     return len(cited_identifiers)
 
 
@@ -190,12 +238,14 @@ def run_spec_validation_now() -> int:
     validate_requirement_contracts_now(requirement_blocks)
     test_mappings = extract_test_mappings_now(specification)
     validate_test_coverage_now(requirement_blocks, test_mappings)
-    evidence_reference_count = validate_evidence_references_now(specification, workspace_root)
+    upstream_reference_count = validate_upstream_evidence_references(specification, workspace_root)
+    document_reference_count = validate_document_evidence_references(specification, workspace_root)
     local_reference_count = validate_local_references_now(specification, workspace_root)
     print(
         f"PASS: {len(requirement_blocks)} requirements, "
         f"{len(test_mappings)} tests, 100% requirement-to-test coverage, "
-        f"{evidence_reference_count} verified file-level citations, "
+        f"{upstream_reference_count} verified upstream citations, "
+        f"{document_reference_count} verified document citations, "
         f"{local_reference_count} verified local citations"
     )
     return 0

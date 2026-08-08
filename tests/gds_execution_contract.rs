@@ -4,8 +4,8 @@ use knight_bus::{
     GdsExecutionContext, GdsExecutionRequest, GdsExecutionResult, GdsExecutionValue,
     GraphProjectionCatalog, GraphProjectionMetadata, GraphProjectionSpec, MemoryEstimate,
     ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow, ProjectionSelector,
-    PropertySelector, RelationshipOrientation,
-    execute_registered_gds_procedure, execute_registered_gds_user_function,
+    PropertySelector, RelationshipOrientation, execute_registered_gds_procedure,
+    execute_registered_gds_user_function,
 };
 
 fn sample_projection_spec_now(graph_name: &str) -> GraphProjectionSpec {
@@ -103,7 +103,11 @@ fn gds_catalog_execution_round_trips_now() {
         other => panic!("expected table result, got {other:?}"),
     }
 
-    assert_eq!(context.catalog().len(), 0, "estimate must not mutate catalog");
+    assert_eq!(
+        context.catalog().len(),
+        0,
+        "estimate must not mutate catalog"
+    );
 
     let project_result = execute_registered_gds_procedure(
         &mut context,
@@ -144,7 +148,9 @@ fn gds_catalog_execution_round_trips_now() {
         GdsExecutionResult::Table(table) => {
             assert_eq!(table.rows.len(), 1);
             assert_eq!(
-                table.rows[0].get("exists").and_then(GdsExecutionValue::as_bool),
+                table.rows[0]
+                    .get("exists")
+                    .and_then(GdsExecutionValue::as_bool),
                 Some(true)
             );
         }
@@ -157,7 +163,10 @@ fn gds_catalog_execution_round_trips_now() {
         &GdsExecutionRequest::graph_name_only("roads"),
     )
     .expect("graph exists function");
-    assert_eq!(exists_func, GdsExecutionResult::Scalar(GdsExecutionValue::Bool(true)));
+    assert_eq!(
+        exists_func,
+        GdsExecutionResult::Scalar(GdsExecutionValue::Bool(true))
+    );
 
     let list_result = execute_registered_gds_procedure(
         &mut context,

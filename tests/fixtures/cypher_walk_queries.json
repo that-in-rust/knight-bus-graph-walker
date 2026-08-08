@@ -1,0 +1,66 @@
+{
+  "profile_version": "knight-bus-neighborhood-walk-v1",
+  "neo4j_parser_artifact": "org.neo4j:neo4j-cypher-dsl-parser:2025.1.0",
+  "supported": [
+    {
+      "id": "forward_one",
+      "query": "MATCH (n {node_id: $node_id})-[:DEPENDS_ON]->(m) RETURN m.node_id AS node_id ORDER BY node_id",
+      "variants": [
+        "match (seed {node_id:$node_id})-[:DEPENDS_ON]->(endpoint) return endpoint.node_id as node_id order by node_id asc",
+        "/* formatting */ MATCH (a {node_id: $node_id}) -[:DEPENDS_ON]-> (b) RETURN b.node_id AS node_id ORDER BY node_id"
+      ]
+    },
+    {
+      "id": "reverse_one",
+      "query": "MATCH (n {node_id: $node_id})<-[:DEPENDS_ON]-(m) RETURN m.node_id AS node_id ORDER BY node_id",
+      "variants": [
+        "match (seed {node_id:$node_id})<-[:DEPENDS_ON]-(endpoint) return endpoint.node_id as node_id order by node_id asc"
+      ]
+    },
+    {
+      "id": "reverse_one_to_two",
+      "query": "MATCH (n {node_id: $node_id})<-[:DEPENDS_ON*1..2]-(m) RETURN DISTINCT m.node_id AS node_id ORDER BY node_id",
+      "variants": [
+        "match (seed {node_id:$node_id})<-[:DEPENDS_ON*1..2]-(endpoint) return distinct endpoint.node_id as node_id order by node_id asc"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "id": "malformed_parenthesis",
+      "query": "MATCH (n RETURN n",
+      "reference_outcome": "syntax",
+      "native_outcome": "syntax"
+    },
+    {
+      "id": "optional_match",
+      "query": "OPTIONAL MATCH (n {node_id: $node_id})-[:DEPENDS_ON]->(m) RETURN m.node_id AS node_id ORDER BY node_id",
+      "reference_outcome": "accepted",
+      "native_outcome": "unsupported"
+    },
+    {
+      "id": "write_create",
+      "query": "CREATE (n {node_id: $node_id})",
+      "reference_outcome": "accepted",
+      "native_outcome": "unsupported"
+    },
+    {
+      "id": "wrong_relationship",
+      "query": "MATCH (n {node_id: $node_id})-[:KNOWS]->(m) RETURN m.node_id AS node_id ORDER BY node_id",
+      "reference_outcome": "accepted",
+      "native_outcome": "unsupported"
+    },
+    {
+      "id": "unbounded_range",
+      "query": "MATCH (n {node_id: $node_id})-[:DEPENDS_ON*]->(m) RETURN DISTINCT m.node_id AS node_id ORDER BY node_id",
+      "reference_outcome": "accepted",
+      "native_outcome": "unsupported"
+    },
+    {
+      "id": "descending_order",
+      "query": "MATCH (n {node_id: $node_id})-[:DEPENDS_ON]->(m) RETURN m.node_id AS node_id ORDER BY node_id DESC",
+      "reference_outcome": "accepted",
+      "native_outcome": "unsupported"
+    }
+  ]
+}

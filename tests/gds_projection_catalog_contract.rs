@@ -4,9 +4,8 @@ use serde_json::json;
 
 use knight_bus::{
     GraphProjectionCatalog, GraphProjectionMetadata, GraphProjectionSpec, KnightBusError,
-    MemoryEstimate, ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow,
-    ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector,
-    RelationshipOrientation,
+    MemoryEstimate, ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow, ProjectionSelector,
+    ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector, RelationshipOrientation,
 };
 
 fn sample_projection_spec_now(orientation: RelationshipOrientation) -> GraphProjectionSpec {

@@ -4,6 +4,7 @@ target/
 .DS_Store
 __pycache__/
 .venv-bench/
+.venv-cypher-bolt/
 artifacts/
 reports/
 .env.neo4j.local
@@ -20,3 +21,4 @@ reference-repos-competitors/
 # mcp-codebase-index
 .codebase-index-cache.pkl
 reference-repos-corpus/
+.code-graph/

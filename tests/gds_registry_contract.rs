@@ -141,12 +141,12 @@ fn gds_registered_lookup_preserves_inventory_count_now() {
 
 #[test]
 fn built_in_catalog_entries_are_supported_now() {
-    let project_estimate =
-        require_supported_gds_procedure("gds.graph.project.estimate").expect("graph.project.estimate");
-    let node_props =
-        require_supported_gds_procedure("gds.graph.nodeProperties.stream").expect("nodeProperties.stream");
-    let node_prop =
-        require_supported_gds_procedure("gds.graph.nodeProperty.stream").expect("nodeProperty.stream");
+    let project_estimate = require_supported_gds_procedure("gds.graph.project.estimate")
+        .expect("graph.project.estimate");
+    let node_props = require_supported_gds_procedure("gds.graph.nodeProperties.stream")
+        .expect("nodeProperties.stream");
+    let node_prop = require_supported_gds_procedure("gds.graph.nodeProperty.stream")
+        .expect("nodeProperty.stream");
     let rel_props = require_supported_gds_procedure("gds.graph.relationshipProperties.stream")
         .expect("relationshipProperties.stream");
     let rel_prop = require_supported_gds_procedure("gds.graph.relationshipProperty.stream")

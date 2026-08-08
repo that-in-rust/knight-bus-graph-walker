@@ -6,8 +6,8 @@ use serde_json::Value as JsonValue;
 use crate::{
     error::KnightBusError,
     gds::catalog::{
-        GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec,
-        MemoryEstimate,
+        GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata,
+        GraphProjectionSpec, MemoryEstimate,
     },
 };
 
@@ -270,12 +270,18 @@ pub fn execute_registered_gds_entry(
         | (GdsEntryKind::Procedure, "gds.graph.streamNodeProperty") => {
             execute_graph_stream_node_property_now(context, request)
         }
-        (GdsEntryKind::Procedure, "gds.graph.exists") => execute_graph_exists_proc_now(context, request),
+        (GdsEntryKind::Procedure, "gds.graph.exists") => {
+            execute_graph_exists_proc_now(context, request)
+        }
         (GdsEntryKind::UserFunction, "gds.graph.exists") => {
             execute_graph_exists_func_now(context, request)
         }
-        (GdsEntryKind::Procedure, "gds.graph.list") => execute_graph_list_proc_now(context, request),
-        (GdsEntryKind::Procedure, "gds.graph.drop") => execute_graph_drop_proc_now(context, request),
+        (GdsEntryKind::Procedure, "gds.graph.list") => {
+            execute_graph_list_proc_now(context, request)
+        }
+        (GdsEntryKind::Procedure, "gds.graph.drop") => {
+            execute_graph_drop_proc_now(context, request)
+        }
         (GdsEntryKind::Procedure, "gds.graph.relationshipProperties.stream")
         | (GdsEntryKind::Procedure, "gds.graph.streamRelationshipProperties") => {
             execute_graph_stream_relationship_properties_now(context, request)
@@ -398,7 +404,10 @@ fn execute_graph_stream_node_properties_now(
         .into_iter()
         .map(|row| {
             let mut values = BTreeMap::new();
-            values.insert("nodeId".to_owned(), GdsExecutionValue::Unsigned(row.node_id));
+            values.insert(
+                "nodeId".to_owned(),
+                GdsExecutionValue::Unsigned(row.node_id),
+            );
             values.insert(
                 "nodeProperty".to_owned(),
                 GdsExecutionValue::String(row.node_property),
@@ -436,7 +445,8 @@ fn execute_graph_stream_node_property_now(
     request: &GdsExecutionRequest,
 ) -> Result<GdsExecutionResult, KnightBusError> {
     let graph_name = required_graph_name_now("gds.graph.nodeProperty.stream", request)?;
-    let property_name = required_single_node_property_now("gds.graph.nodeProperty.stream", request)?;
+    let property_name =
+        required_single_node_property_now("gds.graph.nodeProperty.stream", request)?;
     let node_labels = request
         .node_labels
         .clone()
@@ -453,7 +463,10 @@ fn execute_graph_stream_node_property_now(
         .into_iter()
         .map(|row| {
             let mut values = BTreeMap::new();
-            values.insert("nodeId".to_owned(), GdsExecutionValue::Unsigned(row.node_id));
+            values.insert(
+                "nodeId".to_owned(),
+                GdsExecutionValue::Unsigned(row.node_id),
+            );
             values.insert(
                 "propertyValue".to_owned(),
                 json_value_to_execution_value_now(row.property_value),
@@ -495,12 +508,9 @@ fn execute_graph_stream_relationship_properties_now(
     context: &mut GdsExecutionContext<'_>,
     request: &GdsExecutionRequest,
 ) -> Result<GdsExecutionResult, KnightBusError> {
-    let graph_name =
-        required_graph_name_now("gds.graph.relationshipProperties.stream", request)?;
-    let property_names = required_relationship_properties_now(
-        "gds.graph.relationshipProperties.stream",
-        request,
-    )?;
+    let graph_name = required_graph_name_now("gds.graph.relationshipProperties.stream", request)?;
+    let property_names =
+        required_relationship_properties_now("gds.graph.relationshipProperties.stream", request)?;
     let relationship_types = request
         .relationship_types
         .clone()
@@ -556,8 +566,7 @@ fn execute_graph_stream_relationship_property_now(
     context: &mut GdsExecutionContext<'_>,
     request: &GdsExecutionRequest,
 ) -> Result<GdsExecutionResult, KnightBusError> {
-    let graph_name =
-        required_graph_name_now("gds.graph.relationshipProperty.stream", request)?;
+    let graph_name = required_graph_name_now("gds.graph.relationshipProperty.stream", request)?;
     let property_name = required_single_relationship_property_now(
         "gds.graph.relationshipProperty.stream",
         request,
@@ -641,11 +650,9 @@ fn execute_graph_drop_proc_now(
             columns: graph_info_columns_now(),
             rows: vec![graph_info_row_now(&handle)],
         })),
-        Err(KnightBusError::UnknownGraphProjection { .. }) if !request.fail_if_missing => {
-            Ok(GdsExecutionResult::Table(GdsExecutionTable::empty(
-                graph_info_columns_now(),
-            )))
-        }
+        Err(KnightBusError::UnknownGraphProjection { .. }) if !request.fail_if_missing => Ok(
+            GdsExecutionResult::Table(GdsExecutionTable::empty(graph_info_columns_now())),
+        ),
         Err(error) => Err(error),
     }
 }
@@ -685,9 +692,10 @@ fn required_projection_inputs_now(
     procedure_name: &str,
     request: &GdsExecutionRequest,
 ) -> Result<(GraphProjectionSpec, GraphProjectionMetadata), KnightBusError> {
-    let spec = request.projection_spec.clone().ok_or_else(|| {
-        invalid_gds_invocation_now(procedure_name, "projection spec is required")
-    })?;
+    let spec = request
+        .projection_spec
+        .clone()
+        .ok_or_else(|| invalid_gds_invocation_now(procedure_name, "projection spec is required"))?;
     let metadata = request.projection_metadata.clone().ok_or_else(|| {
         invalid_gds_invocation_now(procedure_name, "projection metadata is required")
     })?;
@@ -850,7 +858,10 @@ fn graph_info_row_now(handle: &GraphProjectionHandle) -> GdsExecutionRow {
         "memoryUsage".to_owned(),
         GdsExecutionValue::String(format_bytes_human_readable_now(size_in_bytes)),
     );
-    row.insert("sizeInBytes".to_owned(), GdsExecutionValue::Unsigned(size_in_bytes));
+    row.insert(
+        "sizeInBytes".to_owned(),
+        GdsExecutionValue::Unsigned(size_in_bytes),
+    );
     row.insert(
         "nodeCount".to_owned(),
         GdsExecutionValue::Unsigned(handle.node_count),
@@ -875,7 +886,10 @@ fn graph_info_row_now(handle: &GraphProjectionHandle) -> GdsExecutionRow {
         "modificationTime".to_owned(),
         GdsExecutionValue::Unsigned(handle.modified_at_epoch_millis),
     );
-    row.insert("schema".to_owned(), projection_schema_value_now(handle, false));
+    row.insert(
+        "schema".to_owned(),
+        projection_schema_value_now(handle, false),
+    );
     row.insert(
         "schemaWithOrientation".to_owned(),
         projection_schema_value_now(handle, true),
@@ -906,7 +920,10 @@ fn graph_memory_usage_row_now(handle: &GraphProjectionHandle) -> GdsExecutionRow
         "sizeInBytes".to_owned(),
         GdsExecutionValue::Unsigned(handle.memory_estimate.required_bytes),
     );
-    row.insert("detailSizeInBytes".to_owned(), GdsExecutionValue::Map(detail));
+    row.insert(
+        "detailSizeInBytes".to_owned(),
+        GdsExecutionValue::Map(detail),
+    );
     row.insert(
         "nodeCount".to_owned(),
         GdsExecutionValue::Unsigned(handle.node_count),
@@ -935,8 +952,14 @@ fn project_estimate_row_now(metadata: &GraphProjectionMetadata) -> GdsExecutionR
         "mapView".to_owned(),
         GdsExecutionValue::Map(memory_estimate_detail_map_now(&metadata.memory_estimate)),
     );
-    row.insert("bytesMin".to_owned(), GdsExecutionValue::Unsigned(required_bytes));
-    row.insert("bytesMax".to_owned(), GdsExecutionValue::Unsigned(required_bytes));
+    row.insert(
+        "bytesMin".to_owned(),
+        GdsExecutionValue::Unsigned(required_bytes),
+    );
+    row.insert(
+        "bytesMax".to_owned(),
+        GdsExecutionValue::Unsigned(required_bytes),
+    );
     row.insert(
         "nodeCount".to_owned(),
         GdsExecutionValue::Unsigned(metadata.node_count),
@@ -1092,7 +1115,9 @@ fn selector_value_now(selector: &crate::gds::catalog::ProjectionSelector) -> Gds
     }
 }
 
-fn property_selector_value_now(selector: &crate::gds::catalog::PropertySelector) -> GdsExecutionValue {
+fn property_selector_value_now(
+    selector: &crate::gds::catalog::PropertySelector,
+) -> GdsExecutionValue {
     match selector {
         crate::gds::catalog::PropertySelector::None => GdsExecutionValue::String("NONE".to_owned()),
         crate::gds::catalog::PropertySelector::All => GdsExecutionValue::String("ALL".to_owned()),
@@ -1131,7 +1156,10 @@ fn projection_configuration_value_now(handle: &GraphProjectionHandle) -> GdsExec
     GdsExecutionValue::Map(configuration)
 }
 
-fn projection_schema_value_now(handle: &GraphProjectionHandle, include_orientation: bool) -> GdsExecutionValue {
+fn projection_schema_value_now(
+    handle: &GraphProjectionHandle,
+    include_orientation: bool,
+) -> GdsExecutionValue {
     let mut schema = BTreeMap::new();
     schema.insert(
         "nodeLabels".to_owned(),

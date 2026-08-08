@@ -74,7 +74,9 @@ pub enum KnightBusError {
     DuplicateGraphProjection { graph_name: String },
     #[error("unknown graph projection `{graph_name}`")]
     UnknownGraphProjection { graph_name: String },
-    #[error("graph projection `{graph_name}` does not expose requested {property_kind} `{property_name}`")]
+    #[error(
+        "graph projection `{graph_name}` does not expose requested {property_kind} `{property_name}`"
+    )]
     UnknownProjectedProperty {
         graph_name: String,
         property_kind: &'static str,

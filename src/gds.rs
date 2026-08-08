@@ -9,9 +9,8 @@ use crate::error::KnightBusError;
 
 pub use self::catalog::{
     GraphProjectionCatalog, GraphProjectionHandle, GraphProjectionMetadata, GraphProjectionSpec,
-    MemoryEstimate, ProjectionSelector, ProjectionSidecarKind, ProjectionSidecarNeed,
-    ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow, PropertySelector,
-    RelationshipOrientation,
+    MemoryEstimate, ProjectedNodePropertyRow, ProjectedRelationshipPropertyRow, ProjectionSelector,
+    ProjectionSidecarKind, ProjectionSidecarNeed, PropertySelector, RelationshipOrientation,
 };
 pub use self::execution::{
     GdsExecutionContext, GdsExecutionRequest, GdsExecutionResult, GdsExecutionRow,

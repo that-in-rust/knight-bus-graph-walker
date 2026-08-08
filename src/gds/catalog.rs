@@ -1,4 +1,7 @@
-use std::{collections::{BTreeMap, BTreeSet}, str::FromStr};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    str::FromStr,
+};
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value as JsonValue;
@@ -228,11 +231,7 @@ pub struct ProjectedNodePropertyRow {
 }
 
 impl ProjectedNodePropertyRow {
-    pub fn new(
-        node_id: u64,
-        labels: Vec<String>,
-        properties: BTreeMap<String, JsonValue>,
-    ) -> Self {
+    pub fn new(node_id: u64, labels: Vec<String>, properties: BTreeMap<String, JsonValue>) -> Self {
         Self {
             node_id,
             labels,
@@ -578,17 +577,17 @@ impl GraphProjectionCatalog {
             handle
                 .relationship_property_rows
                 .iter()
-                .filter(|row| selector_matches_name_now(relationship_types, row.relationship_type.as_str()))
+                .filter(|row| {
+                    selector_matches_name_now(relationship_types, row.relationship_type.as_str())
+                })
                 .flat_map(|row| row.properties.keys())
                 .map(|name| name.as_str()),
         )?;
 
         let mut rows = Vec::new();
-        for row in handle
-            .relationship_property_rows
-            .iter()
-            .filter(|row| selector_matches_name_now(relationship_types, row.relationship_type.as_str()))
-        {
+        for row in handle.relationship_property_rows.iter().filter(|row| {
+            selector_matches_name_now(relationship_types, row.relationship_type.as_str())
+        }) {
             for property_name in property_names {
                 if let Some(property_value) = row.properties.get(property_name) {
                     rows.push(StreamedRelationshipPropertyRow {
@@ -664,9 +663,9 @@ fn selector_matches_name_now(selector: &ProjectionSelector, value: &str) -> bool
 fn selector_matches_any_now(selector: &ProjectionSelector, values: &[String]) -> bool {
     match selector {
         ProjectionSelector::All => true,
-        ProjectionSelector::Named(expected) => {
-            values.iter().any(|value| expected.iter().any(|candidate| candidate == value))
-        }
+        ProjectionSelector::Named(expected) => values
+            .iter()
+            .any(|value| expected.iter().any(|candidate| candidate == value)),
     }
 }
 

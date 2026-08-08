@@ -1,0 +1,1096 @@
+{
+  "corpus": {
+    "corpus_path": "/Users/amuldotexe/Desktop/personal-repos-lane/knight-bus-graph-walker/artifacts/code_sparse_2gb/query_corpus.csv",
+    "corpus_sha256": "4aeca3cc3a111de164ad71984dbe680d1485279cde2d13c241f89877edd86464",
+    "edges_bytes": 1959890605,
+    "edges_sha256": "e20f6da02267031df26a17c9832deaf3bc3ea90cc52e2594d91ac63b564e5d50",
+    "nodes_bytes": 227885366,
+    "nodes_sha256": "81e589c3a9d9d083cd4e52e39a9a690ff0d04aebaca4d8c4afcf5d06945690aa",
+    "query_count": 60,
+    "query_text_by_family": {
+      "forward_one": "MATCH (n:Entity {node_id: $node_id})-[:DEPENDS_ON]->(m:Entity) RETURN m.node_id AS node_id ORDER BY node_id",
+      "reverse_one": "MATCH (n:Entity {node_id: $node_id})<-[:DEPENDS_ON]-(m:Entity) RETURN m.node_id AS node_id ORDER BY node_id",
+      "reverse_two": "MATCH (n:Entity {node_id: $node_id})<-[:DEPENDS_ON*1..2]-(m:Entity) RETURN DISTINCT m.node_id AS node_id ORDER BY node_id"
+    },
+    "snapshot_bytes": 514242740,
+    "snapshot_sha256": "ff9716d81a7bb8df38e19e91ff3eb6fa7d257a42951bdef21f9cfe93260a596b"
+  },
+  "created_unix_ns": 1786126212868950000,
+  "driver_version": "6.1.0",
+  "engines": {
+    "knight_bus": {
+      "compatibility_owned_processes": 1,
+      "first_query_ms": 0.463666,
+      "measurement": {
+        "latency": {
+          "maximum_ms": 4.47875,
+          "mean_ms": 0.6717012055555556,
+          "p50_ms": 0.2744375,
+          "p95_ms": 3.4209065999999972,
+          "p99_ms": 3.9702999300000017,
+          "sample_count": 180
+        },
+        "memory_sample_count": 13,
+        "memory_sampling_interval_ms": 5.0,
+        "peak_rss_bytes": 234176512,
+        "peak_virtual_bytes": 420769923072,
+        "rss_scope": "server_process_plus_recursive_children"
+      },
+      "negotiated_bolt_protocol": [
+        5,
+        4
+      ],
+      "readiness_ms": 2045.280167,
+      "server_agent": "knight-bus/0.0.2",
+      "snapshot_mapping": {
+        "mapped_bytes": null,
+        "mapped_file_count": null,
+        "reason": "'Process' object has no attribute 'memory_maps'",
+        "resident_bytes": null,
+        "status": "unavailable"
+      },
+      "verification": {
+        "aggregate_result_hash": "dbda232863c2d4249e829bc665b430a42b9cba13ab3fb92c82f11044b0969ab2",
+        "query_count": 60,
+        "query_receipts": [
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 3,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 12,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "17fdd990658d9235318408108a802a4d1b2b784a84e8d3b7e3b4de4e5b1eafe8",
+            "result_row_count": 1,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 8,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 9,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "e6135b8ac7ec1fb597bc336a65c2169e3a81d5121b3bb7a062146c8d682b674e",
+            "result_row_count": 4,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 19,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "d0b1a879da8f85cab3082b47dd8e1e9a4a6d087e5afb3c9983a9e98454e3a1eb",
+            "result_row_count": 6,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 17,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 6,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "8e76b3f9d048fc190a418bcf09d830a7965c78addd0b17cefcbd2c51a6c85363",
+            "result_row_count": 6,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 17,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "da801ddc61178a24df789aa3ad19657565960ca7271149998f083a0768b0e6b7",
+            "result_row_count": 6,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 10,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "a8cbbd645a288909b8cbea6f13958700abe3412639a155fc0ca1e9bffd650b99",
+            "result_row_count": 7,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "2ee52e3c93f2b607ce290701aee38b3453a6e2ff3be2bb6ee2c7a787dad8f361",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 3,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "9e7c3db137809f718bf9b7729ea19f74289077e463d9f3e2f5d9371e94011bf3",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 15,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "e2e2cc0bd312dd05d63b0a938ee89744df88b594830dc37087d4660246c84ebf",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 12,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "5f8b42c4dd6c7852e337a2992ec414b06d621b02e605d22561e18f4029886d1e",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 15,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "bdc4834adedae0bebb6e2a11ba59dc88c4e0bc81283af6ba8c02238b1764ca91",
+            "result_row_count": 10,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "1008dddfa0e989c6e68a19c2a4a8e2d4b6f1c3902e16fc97d42752c92f1e2d0c",
+            "result_row_count": 10,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 15,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "4b7fd578bff04de123d7aea46f21a02687aaee9d3ef7572e6e809ae01cedc10e",
+            "result_row_count": 10,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "d018045b7fee74fd38a00c409031e24c9ca505d8a6cf397d410f9c0e331f2bec",
+            "result_row_count": 11,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 4,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "c17c5b340282cd19e09992781342a505686881f3a2c1fcef507c107ce6d75461",
+            "result_row_count": 11,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "6cae2564378a7eb7ad31dfe30214e3e7c0e61439bc42a45678ba644412bee51a",
+            "result_row_count": 12,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "e2f88056614a0efd50c570c4e4a7e25b79a7f12bbf0a5ac829dbb63d4ff196aa",
+            "result_row_count": 12,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "9987636f38f1373502388a6d7e6816f57a315cd419783b2eccb938c677199f2d",
+            "result_row_count": 14,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 14,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "a8468b3569f95bfc09abe456054aad9c251f7ce1d458d2acdc05034db8f6f57f",
+            "result_row_count": 14,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "22d7465ca97fa7a7c9f3d53b05b19b696a135c64d929b6069a0dfe0c461392de",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "63285231e3b1812518d25f0a0084069f398edf54afb49d4780d38171b620cfa5",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "44454a6368e74b893e9bf4301bde31a77121d7e3d73548ba260c776d98fb50d9",
+            "result_row_count": 14,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "2957c2773d28f14c8e42f98df906a9984a18fd03a7e18a9f9deab7844c03fbaa",
+            "result_row_count": 1,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 6,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "c5a77b8b4085b68c9a74aeba64335308771bed82cc0edf3b2f5feba64ac1e066",
+            "result_row_count": 3,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 17,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "35c8c09e195de5b119fae4c3e07379c1b6ee207781d32cb6338373f3c3eba0df",
+            "result_row_count": 5,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 9,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "0e667550c28a7255144734a7a0f6b95104d3a95ae954bbf9eb3cac2bc2d56572",
+            "result_row_count": 6,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 8,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "43a21637a188cb959da8077d78a51c6576c89eeaad2c7e461960c3f9156114bd",
+            "result_row_count": 7,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "accb1680f9efd3c4545af8b7ac3926489a34ac21c48691205b112781ad18269d",
+            "result_row_count": 7,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 3,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 6,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "4bcf91e7e6793c581c9083cae22736919c852d4a81ab172c5bdabf75b6d01317",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 2,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "0fd39cf4953bc8de82adf5d9fb82b99ee34be5691320dc65bda828c0c9f020a4",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 10,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "31ff5f344808f01fa5579489e69b257db80f7a22bb91613c4b5ea2bd84ba03b7",
+            "result_row_count": 8,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 13,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "4b072991c27ff3c660c30da23e932ba8a5b26d8563e4ebf0423be5c22b392206",
+            "result_row_count": 9,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "fc358f6377b6eea20a843575792bf7c42a5d60ccb871616b4ddd5dd6cb7e9a06",
+            "result_row_count": 9,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 10,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "00bf19ac0653cbe0ceb25e874c377494d4bda8d90237b6e892299a8c6ec0aec7",
+            "result_row_count": 10,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 10,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "6559cda8e14ecdfd696957f571c810a966028cea8b7e249e614a1ebec331a9df",
+            "result_row_count": 10,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "04676a5df31f4757561d49f0cbd6322a1e7338124ab0a278b52ee8090798eef8",
+            "result_row_count": 11,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 3,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "399274b958bb4ae3bf2cf81fce45297119ddb62343a22a2e984811fe0cd4e10e",
+            "result_row_count": 11,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 6,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "7fd1c56dc163db060938566c3ac13f873e4eb4f735d7e5588e280d89b1d9828a",
+            "result_row_count": 11,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 8,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "3adceb348a99b37e7d5127d6a94fa42d65544f0ac658b7fdb41639a97f587313",
+            "result_row_count": 12,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 7,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "264fb77785516fcd9b4b84be5d08af70709fdf36ab17e8884ff054db290deb90",
+            "result_row_count": 13,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 9,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "7c88792d5d49a36c4d795b3a9c941c4b53de2c7d9c918399959f645e4d2f0870",
+            "result_row_count": 15,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "b255f5703672f14a568aceac8902556e1876ee12eb75a0f5d9ead33fb0519171",
+            "execution_micros": 10,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "bb4acdc0816503e639166f1915ed5dea4aac198672e9b10f24faf5b7c2d8b1ae",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "a8a5fa454af625dc92faf8ae744326018697f334c597aa34f3e4ef89a0ceede1",
+            "result_row_count": 29,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 11,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "922c7c56c83ae9f8e6abec7fc0f134a15bccdc93cfc2f5e72b1ae0a64420e9a9",
+            "result_row_count": 2,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 24,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "d354d49139014f6edf07b377b93d544765193cb9b632d59f166038006c19230e",
+            "result_row_count": 42,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 29,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 6,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "0cf66658fbad7dd33af9751f774f7fa8eadd446e6e884f9e41bc1c80a9b1f1f6",
+            "result_row_count": 53,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 33,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "f1d8195127802e34a9df4b6cc58777e4c046257510037b042f1029de46ccd2ec",
+            "result_row_count": 68,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 31,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "ccdbaf1c1ed035e0597a4e7f8883e7a24ad8af969256d937fa102f12f267a791",
+            "result_row_count": 63,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 33,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "65cbfc92c79df2387bb9ac750202c14bb399bd89263d53710e9a7e2887761c32",
+            "result_row_count": 86,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 37,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "003c14f33fe2dc84125501fec4a41e5792924d153fea24e4cb3f0797194bef6e",
+            "result_row_count": 86,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 27,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "43a3b7a324c09fa3eaff5a679fa826ca2db9847eb9ecee0d199db020bf51ffa7",
+            "result_row_count": 76,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 33,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "649a13699fed99494b5e58a8b58bfb7240ba427645f593a75177cc48a6112ec6",
+            "result_row_count": 93,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 34,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "b5d2c30eaf03a47f65441e6edd976aaef48d52af98a20e1a46c26efa32697f70",
+            "result_row_count": 96,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 39,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "ffaf0a4bce660bee55c4c65c221f2835c2b5a14bf89d94b93bcef30ac8381468",
+            "result_row_count": 105,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 41,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "bd0ed4f1e99b33901768fd8f0675eadaf53879c07cae249b72f04caca79139cb",
+            "result_row_count": 106,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 45,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "13576c8905c26c379e3c1213d665066845f91f5c73d36b48b2db4a9830b3a2e7",
+            "result_row_count": 116,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 42,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 4,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "ac5f17e864641464040527870b899c6960688cb41b29ee7e1399e2e1b3a89630",
+            "result_row_count": 139,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 38,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "a41707e4a774dbbcddf64ffcb29afa697ef106de172521c63189f1db3689df9a",
+            "result_row_count": 104,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 35,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 5,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "77fb3af935a0c1ab290d5b949142f9df31da7dfda9011019adc121c860e84ce6",
+            "result_row_count": 53,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 43,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "08ce883766e08c269cb38d3aa8cb276f9779dc8ab59c6e55604ae29d88553fe2",
+            "result_row_count": 125,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 46,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "a0d34cdc6adc9ff5844354143e1de48d40bc7c72d3e5e8c91697f980cf83b961",
+            "result_row_count": 148,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 57,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "f6d6ed412612a576f9e9765add1995015cca4ef3cd2728729f9aeedea6a8d54e",
+            "result_row_count": 158,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          },
+          {
+            "canonical_plan_hash": "3b5e5969a9cf40903bb76908f52f4a4cd51f653c76a1df07f77bb18e7ad11f7c",
+            "execution_micros": 93,
+            "parameter_names": [
+              "node_id"
+            ],
+            "parse_compile_micros": 3,
+            "profile_version": "knight-bus-neighborhood-walk-v1",
+            "query_hash": "a40c23df8faa4c05bea5a0e2824abf340405018c9fe0e9ed9462263da215b32c",
+            "resource_high_water_status": "unavailable",
+            "result_hash": "8a157573310d29ea655dd52e42a3d66722a7a65b9c3c862b1c500aa7ba8033f5",
+            "result_row_count": 317,
+            "snapshot_generation": 0,
+            "snapshot_hash": "5f8708c926bb74311b35cf37f949e9f3ad19dbea9fce66691f923a12a5ecc235",
+            "termination_status": "success"
+          }
+        ]
+      },
+      "version": "0.0.2"
+    },
+    "neo4j": {
+      "driver_connect_ms": 39.219584,
+      "first_query_ms": 1.656458,
+      "measurement": {
+        "latency": {
+          "maximum_ms": 7.185708,
+          "mean_ms": 1.1267990777777779,
+          "p50_ms": 0.5169375,
+          "p95_ms": 4.308975,
+          "p99_ms": 5.302670140000013,
+          "sample_count": 180
+        },
+        "memory_sample_count": 21,
+        "memory_sampling_interval_ms": 5.0,
+        "peak_rss_bytes": 374046720,
+        "peak_virtual_bytes": 432236494848,
+        "rss_scope": "server_process_plus_recursive_children"
+      },
+      "negotiated_bolt_protocol": [
+        6,
+        0
+      ],
+      "preflight": {
+        "index": {
+          "entityType": "NODE",
+          "labelsOrTypes": [
+            "Entity"
+          ],
+          "name": "knight_bus_entity_node_id",
+          "properties": [
+            "node_id"
+          ],
+          "state": "ONLINE",
+          "type": "RANGE"
+        },
+        "index_seek_verified": true,
+        "plan_operators": [
+          "ProduceResults@neo4j",
+          "Sort@neo4j",
+          "Projection@neo4j",
+          "Filter@neo4j",
+          "Expand(All)@neo4j",
+          "NodeIndexSeek@neo4j"
+        ]
+      },
+      "server_agent": "Neo4j/2026.07.0",
+      "server_cold_boot": "unavailable_not_owned_by_runner",
+      "verification": {
+        "aggregate_result_hash": "dbda232863c2d4249e829bc665b430a42b9cba13ab3fb92c82f11044b0969ab2",
+        "query_count": 60,
+        "query_receipts": []
+      },
+      "version": "2026.07.0"
+    }
+  },
+  "environment": {
+    "machine": "arm64",
+    "platform": "macOS-15.3.1-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.12"
+  },
+  "profile_version": "knight-bus-neighborhood-walk-v1",
+  "release_gate": {
+    "conditions": {
+      "knight_bus_peak_rss_lower": true,
+      "knight_bus_warm_p99_lower": true,
+      "neo4j_index_seek_verified": true,
+      "ordered_results_match": true
+    },
+    "latency_ratio_neo4j_over_knight_bus": 1.3355842715892778,
+    "rss_ratio_neo4j_over_knight_bus": 1.5972853844539285,
+    "status": "passed"
+  },
+  "schema_version": "knight-bus-cypher-bolt-receipt-v1",
+  "transaction_mode": "read-only auto-commit",
+  "uri_mode": "direct bolt://"
+}

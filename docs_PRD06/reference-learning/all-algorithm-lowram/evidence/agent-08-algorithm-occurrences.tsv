@@ -1,347 +1,1228 @@
 canonical_hint	raw_name	path	line_start	line_end	context_kind	evidence_id
 lsm-compaction	LSM	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0001
 wal-group-commit	WAL	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0002
-roaring-idsets	roaring	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0003
-mvcc-snapshot	MVCC	docs_PRD06/graph-learning/README.md	17	17	protocol	A08-O0004
-cow-tree-snapshot	COW	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0005
-bloom-filter	bloom	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0006
-csr-adjacency	CSR	docs_PRD06/graph-learning/README.md	18	18	supporting_structure	A08-O0007
-frontier-push-pull	push/pull	docs_PRD06/graph-learning/README.md	18	18	algorithm_family	A08-O0008
-semiring-traversal	semirings	docs_PRD06/graph-learning/README.md	18	18	algorithm_family	A08-O0009
-connected-components	hooking	docs_PRD06/graph-learning/README.md	18	18	algorithm_family	A08-O0010
-pagerank	PageRank	docs_PRD06/graph-learning/README.md	18	18	algorithm	A08-O0011
-delta-stepping	delta-stepping	docs_PRD06/graph-learning/README.md	18	18	algorithm	A08-O0012
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0003
+bloom-filter	bloom	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0004
+roaring-idsets	roaring	docs_PRD06/graph-learning/README.md	17	17	storage_algorithm	A08-O0005
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/README.md	17	17	protocol	A08-O0006
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/README.md	18	18	algorithm	A08-O0007
+hook-shortcut	hooking	docs_PRD06/graph-learning/README.md	18	18	algorithm	A08-O0008
+pagerank	PageRank	docs_PRD06/graph-learning/README.md	18	18	algorithm	A08-O0009
+csr-build	CSR	docs_PRD06/graph-learning/README.md	18	18	storage_algorithm	A08-O0010
+semiring-traversal	semiring	docs_PRD06/graph-learning/README.md	18	18	algorithm_family	A08-O0011
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/README.md	18	18	algorithm_family	A08-O0012
 hnsw-search	HNSW	docs_PRD06/graph-learning/README.md	19	19	algorithm	A08-O0013
-product-quantization	PQ	docs_PRD06/graph-learning/README.md	19	19	storage_algorithm	A08-O0014
-vamana-ann	DiskANN	docs_PRD06/graph-learning/README.md	19	19	algorithm_family	A08-O0015
-ivf-probe	IVF	docs_PRD06/graph-learning/README.md	19	19	algorithm_family	A08-O0016
-posting-compression	postings	docs_PRD06/graph-learning/README.md	20	20	storage_algorithm	A08-O0017
-bm25-scoring	BM25	docs_PRD06/graph-learning/README.md	20	20	algorithm	A08-O0018
-wand-pruning	WAND	docs_PRD06/graph-learning/README.md	20	20	algorithm	A08-O0019
-fst-dictionary	FST	docs_PRD06/graph-learning/README.md	20	20	storage_algorithm	A08-O0020
+vamana-ann	DiskANN	docs_PRD06/graph-learning/README.md	19	19	algorithm_family	A08-O0014
+ivf-probe	IVF	docs_PRD06/graph-learning/README.md	19	19	algorithm_family	A08-O0015
+vector-quantization	PQ	docs_PRD06/graph-learning/README.md	19	19	storage_algorithm	A08-O0016
+bm25-scoring	BM25	docs_PRD06/graph-learning/README.md	20	20	algorithm	A08-O0017
+wand-pruning	WAND	docs_PRD06/graph-learning/README.md	20	20	algorithm_family	A08-O0018
+fst-dictionary	FST	docs_PRD06/graph-learning/README.md	20	20	storage_algorithm	A08-O0019
+posting-compression	posting	docs_PRD06/graph-learning/README.md	20	20	storage_algorithm	A08-O0020
 record-chain-adjacency	record chains	docs_PRD06/graph-learning/README.md	21	21	storage_algorithm	A08-O0021
-pull-operator-pipeline	pull pipelines	docs_PRD06/graph-learning/README.md	21	21	protocol	A08-O0022
-triple-permutation-indexing	triple permutations	docs_PRD06/graph-learning/README.md	21	21	storage_algorithm	A08-O0023
+triple-permutation-indexing	triple permutations	docs_PRD06/graph-learning/README.md	21	21	storage_algorithm	A08-O0022
+pull-operator-pipeline	pull pipeline	docs_PRD06/graph-learning/README.md	21	21	protocol	A08-O0023
 packstream-encoding	PackStream	docs_PRD06/graph-learning/README.md	22	22	protocol	A08-O0024
-stub-script-conformance	testkit/boltstub	docs_PRD06/graph-learning/README.md	22	22	verification_method	A08-O0025
+stub-conformance	boltstub	docs_PRD06/graph-learning/README.md	22	22	verification_method	A08-O0025
 incremental-delta-iteration	differential frontiers	docs_PRD06/graph-learning/README.md	23	23	algorithm_family	A08-O0026
-superstep-convergence	Pregel supersteps	docs_PRD06/graph-learning/README.md	23	23	protocol	A08-O0027
-metamorphic-testing	metamorphic oracles	docs_PRD06/graph-learning/README.md	24	24	verification_method	A08-O0028
-tolerant-validation	tolerant validation	docs_PRD06/graph-learning/README.md	24	24	verification_method	A08-O0029
-reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	24	29	algorithm_family	A08-O0030
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	34	35	algorithm_family	A08-O0031
-pagerank	PageRank	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	34	35	algorithm	A08-O0032
-reachability	reverse reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	59	61	algorithm_family	A08-O0033
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	62	63	algorithm	A08-O0034
-pagerank	PageRank	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	62	63	algorithm	A08-O0035
-nodesimilarity	NodeSimilarity	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	64	66	algorithm_family	A08-O0036
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	64	66	algorithm_family	A08-O0037
-reachability	forward reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	67	68	algorithm_family	A08-O0038
-reachability	forward/reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	92	99	algorithm_family	A08-O0039
-shortest-paths	shortest path	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	92	99	algorithm_family	A08-O0040
-k-core	k-core	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	100	100	algorithm	A08-O0041
-ranked-reverse-bfs	reverse BFS ranked by path count	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	113	114	algorithm_family	A08-O0042
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	117	118	algorithm	A08-O0043
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	119	120	algorithm_family	A08-O0044
-nodesimilarity	NodeSimilarity	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	121	122	algorithm_family	A08-O0045
-louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	134	135	algorithm	A08-O0046
-reachability	reverse reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	136	138	algorithm_family	A08-O0047
-scc	cycle detection SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	139	139	algorithm	A08-O0048
-weighted-path-product	weighted-path product	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	148	150	algorithm_family	A08-O0049
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	149	150	algorithm_family	A08-O0050
-louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	154	156	algorithm	A08-O0051
-shortest-paths	shortest path	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	157	159	algorithm_family	A08-O0052
-bfs	BFS	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	157	159	algorithm	A08-O0053
-scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	169	173	algorithm	A08-O0054
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	169	173	algorithm	A08-O0055
-reachability	forward/reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	169	184	algorithm_family	A08-O0056
-scc	SCC/cycles	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	189	193	algorithm	A08-O0057
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	189	193	algorithm	A08-O0058
-louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	209	210	algorithm	A08-O0059
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	211	212	algorithm	A08-O0060
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	222	225	algorithm_family	A08-O0061
-community-detection	community detection	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	227	229	algorithm_family	A08-O0062
-reachability	reverse/forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	245	algorithm_family	A08-O0063
-louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	246	algorithm	A08-O0064
-connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	246	algorithm_family	A08-O0065
-scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	246	algorithm	A08-O0066
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	246	algorithm	A08-O0067
-centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	236	246	algorithm_family	A08-O0068
-tlp-testing	TLP	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	13	15	verification_method	A08-O0069
-norec-testing	NoREC	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	13	15	verification_method	A08-O0070
-history-checking	Jepsen history models	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	13	15	verification_method	A08-O0071
-tolerant-validation	Graphalytics validation	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	13	15	verification_method	A08-O0072
-ground-truth-recall	ann-benchmarks recall	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	13	15	verification_method	A08-O0073
-metamorphic-testing	metamorphic identities	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	22	27	verification_method	A08-O0074
-history-checking	history checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	22	27	verification_method	A08-O0075
-differential-validation	differential validation	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	22	27	verification_method	A08-O0076
-ground-truth-recall	brute-force k-NN recall	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	22	27	verification_method	A08-O0077
-linearizability-checking	linearizability checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	34	39	verification_method	A08-O0078
-partition-equivalence	EquivalenceValidationRule	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	56	61	verification_method	A08-O0079
-tlp-testing	TLP	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	71	77	verification_method	A08-O0080
-ground-truth-recall	ANN recall	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	71	77	verification_method	A08-O0081
-pqs-testing	PQS	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	86	90	verification_method	A08-O0082
-cert-testing	CERT	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	86	90	verification_method	A08-O0083
-elle-anomaly-inference	elle	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	86	90	verification_method	A08-O0084
-bloom-filter	Bloom filter query	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	9	16	storage_algorithm	A08-O0085
-bloom-filter	double hashing	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	19	30	storage_algorithm	A08-O0086
-bloom-filter	Bloom sizing formula	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	33	45	storage_algorithm	A08-O0087
-bloom-filter	LSM Bloom read shortcut	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	47	66	storage_algorithm	A08-O0088
-blocked-bloom	Blocked Bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	68	79	storage_algorithm	A08-O0089
-ribbon-filter	Ribbon filters	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	123	130	storage_algorithm	A08-O0090
-connected-components	component hooking and shortcutting	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	1	7	algorithm_family	A08-O0091
-hook-shortcut	hook and shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	9	18	algorithm	A08-O0092
-afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	51	58	algorithm	A08-O0093
-fastsv	FastSV6	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	69	76	algorithm	A08-O0094
-union-find	UnionFind	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	69	76	algorithm	A08-O0095
-shiloach-vishkin	ShiloachVishkin	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	69	76	algorithm	A08-O0096
-liu-tarjan	LiuTarjan	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	69	76	algorithm	A08-O0097
-label-propagation	LabelPropagation	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	69	76	algorithm	A08-O0098
-union-find	union-find path compression	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	81	86	algorithm	A08-O0099
-large-small-star	large-star/small-star	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	81	86	algorithm	A08-O0100
-fastsv	FastSV algebraic hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	98	120	algorithm	A08-O0101
-boruvka-components	Boruvka-style alternative	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	123	131	algorithm	A08-O0102
-lsm-compaction	LSM SSTables	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	28	32	storage_algorithm	A08-O0103
-wal-group-commit	WAL group commit	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	28	32	storage_algorithm	A08-O0104
-cow-tree-snapshot	COW roots	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	28	32	storage_algorithm	A08-O0105
-hnsw-search	HNSW-per-segment	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	28	32	algorithm	A08-O0106
-posting-compression	posting blocks	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	33	35	storage_algorithm	A08-O0107
-fst-dictionary	FSTs	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	33	35	storage_algorithm	A08-O0108
-triple-permutation-indexing	triple permutations	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	33	35	storage_algorithm	A08-O0109
-vamana-ann	Vamana sectors	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	33	35	algorithm_family	A08-O0110
-roaring-idsets	roaring	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	33	35	storage_algorithm	A08-O0111
-wand-pruning	WAND cursors	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	36	41	algorithm	A08-O0112
-bloom-filter	bloom filters	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	39	41	storage_algorithm	A08-O0113
-product-quantization	PQ codes	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	39	41	storage_algorithm	A08-O0114
-hnsw-search	HNSW ef	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	39	41	algorithm	A08-O0115
-ivf-probe	IVF nprobe	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	39	41	algorithm_family	A08-O0116
-bm25-scoring	BM25 saturation	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	39	41	algorithm	A08-O0117
-bm25-wand	BM25+WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	82	97	algorithm_family	A08-O0118
-hnsw-search	HNSW beam	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	82	97	algorithm	A08-O0119
-rrf-or-score-fusion	text+vector score fusion	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	82	97	algorithm_family	A08-O0120
-wal-group-commit	group commit	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	103	106	storage_algorithm	A08-O0121
-lsm-compaction	CSR overlay compaction	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	107	116	storage_algorithm	A08-O0122
-bloom-filter	Bloom negative probes	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	107	116	storage_algorithm	A08-O0123
-cow-tree-snapshot	copy-on-write B-tree	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	1	17	storage_algorithm	A08-O0124
-cow-tree-snapshot	dual meta root flip	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	34	55	storage_algorithm	A08-O0125
-cow-tree-snapshot	path-copy write transaction	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	57	76	storage_algorithm	A08-O0126
-cow-tree-snapshot	zero-copy snapshot reads	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	83	96	storage_algorithm	A08-O0127
-cow-tree-snapshot	COW write amplification	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	99	118	storage_algorithm	A08-O0128
-cow-tree-snapshot	highest-valid-txid recovery	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	120	135	storage_algorithm	A08-O0129
-csr-adjacency	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	1	29	supporting_structure	A08-O0130
-csr-build	count prefix-sum scatter	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	55	74	storage_algorithm	A08-O0131
-bfs	BFS over CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	76	90	algorithm	A08-O0132
-delta-rle-compression	byte-RLE delta compression	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	97	113	storage_algorithm	A08-O0133
-immutable-delta-rebuild	immutable CSR plus delta log rebuild	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	115	135	storage_algorithm	A08-O0134
-spmv-traversal	BFS as SpMV	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	137	148	algorithm_family	A08-O0135
-csr-adjacency	CSR/CSC	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	22	33	supporting_structure	A08-O0136
-csr-build	count prefix-sum scatter	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	35	47	storage_algorithm	A08-O0137
-delta-rle-compression	byteRLE deltas	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	68	78	storage_algorithm	A08-O0138
-immutable-delta-rebuild	immutable CSR plus delta log	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	80	90	storage_algorithm	A08-O0139
-direction-optimizing-bfs	direction-optimized BFS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	103	118	algorithm	A08-O0140
-incremental-delta-iteration	incremental delta iteration	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	17	24	algorithm_family	A08-O0141
-superstep-convergence	superstep message convergence	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	17	24	protocol	A08-O0142
-semi-naive-iteration	signed-diff incremental view maintenance	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	47	63	algorithm_family	A08-O0143
-differential-maintenance	differential friend-of-friend maintenance	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	65	81	algorithm_family	A08-O0144
-hook-shortcut	hooking/shortcutting	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	101	120	algorithm	A08-O0145
-delta-stepping	Delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	1	7	algorithm	A08-O0146
-dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	11	20	algorithm	A08-O0147
-bellman-ford	Bellman-Ford	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	11	20	algorithm	A08-O0148
-delta-stepping	bucketed relaxations	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	22	37	algorithm	A08-O0149
-delta-stepping	thread-local bins lazy deletion bucket fusion	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	59	82	algorithm	A08-O0150
-delta-stepping	delta tuning	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	105	121	algorithm	A08-O0151
-min-plus-relaxation	MIN_PLUS semiring relax	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	124	135	algorithm_family	A08-O0152
-near-far-buckets	near-far buckets	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	138	148	algorithm_family	A08-O0153
-louvain	Louvain	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0154
-leiden	Leiden	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0155
-label-propagation	label propagation	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0156
-connected-components	WCC / connected components	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm_family	A08-O0157
-scc	SCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0158
-pagerank	PageRank	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0159
-betweenness-centrality	betweenness	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0160
-degree-centrality	degree	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0161
-closeness-centrality	closeness	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0162
-eigenvector-centrality	eigenvector	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0163
-articlerank	ArticleRank	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0164
-bfs	BFS	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	44	algorithm	A08-O0165
-dfs	DFS	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	44	algorithm	A08-O0166
-dijkstra	Dijkstra	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	44	algorithm	A08-O0167
-a-star	A*	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	44	algorithm	A08-O0168
-yen-k-shortest	Yen's k-shortest	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	44	algorithm	A08-O0169
-delta-stepping	delta-stepping	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	44	algorithm	A08-O0170
-nodesimilarity	node similarity	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	45	algorithm_family	A08-O0171
-jaccard-similarity	Jaccard	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	45	algorithm_family	A08-O0172
-overlap-similarity	overlap	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	45	algorithm_family	A08-O0173
-cosine-similarity	cosine	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	45	algorithm_family	A08-O0174
-knn-search	KNN	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	45	algorithm_family	A08-O0175
-adamic-adar	Adamic-Adar	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm	A08-O0176
-common-neighbors	common neighbors	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm	A08-O0177
-fastrp	FastRP	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	46	algorithm	A08-O0178
-node2vec	node2vec	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	46	algorithm	A08-O0179
-graphsage	GraphSAGE	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	46	algorithm	A08-O0180
-hashgnn	HashGNN	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	46	algorithm	A08-O0181
-triangle-counting	triangle counting	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	47	algorithm	A08-O0182
-local-clustering-coefficient	local clustering coefficient	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	47	algorithm	A08-O0183
-k-core	k-core	docs_PRD06/graph-learning/domain-keywords-glossary.md	47	47	algorithm	A08-O0184
-spmv-traversal	SpMV	docs_PRD06/graph-learning/domain-keywords-glossary.md	49	53	algorithm_family	A08-O0185
-spgemm-traversal	SpGEMM	docs_PRD06/graph-learning/domain-keywords-glossary.md	49	53	algorithm_family	A08-O0186
-graphchi-psw	GraphChi parallel sliding windows	docs_PRD06/graph-learning/domain-keywords-glossary.md	55	58	algorithm_family	A08-O0187
-gridgraph-partitioning	GridGraph 2D partitioning	docs_PRD06/graph-learning/domain-keywords-glossary.md	55	58	algorithm_family	A08-O0188
-xstream-edge-streaming	X-Stream edge-centric streaming	docs_PRD06/graph-learning/domain-keywords-glossary.md	55	58	algorithm_family	A08-O0189
-hnsw-search	HNSW	docs_PRD06/graph-learning/domain-keywords-glossary.md	76	78	algorithm	A08-O0190
-ivf-probe	IVF	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm_family	A08-O0191
-product-quantization	product quantization	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	storage_algorithm	A08-O0192
-scalar-quantization	scalar quantization	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	storage_algorithm	A08-O0193
-binary-quantization	binary quantization	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	storage_algorithm	A08-O0194
-opq	OPQ	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	storage_algorithm	A08-O0195
-vamana-ann	Vamana graph	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm_family	A08-O0196
-nsg-ann	NSG	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm_family	A08-O0197
-kd-tree	KD-tree	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm	A08-O0198
-random-projection-trees	random projection trees	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm_family	A08-O0199
-lsh	LSH	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	80	algorithm_family	A08-O0200
-rrf-fusion	RRF reciprocal rank fusion	docs_PRD06/graph-learning/domain-keywords-glossary.md	82	87	algorithm	A08-O0201
-bm25-scoring	BM25	docs_PRD06/graph-learning/domain-keywords-glossary.md	95	104	algorithm	A08-O0202
-tf-idf	TF-IDF	docs_PRD06/graph-learning/domain-keywords-glossary.md	100	104	algorithm	A08-O0203
-block-max-wand	block-max WAND	docs_PRD06/graph-learning/domain-keywords-glossary.md	95	98	algorithm	A08-O0204
-levenshtein-automata	Levenshtein automata	docs_PRD06/graph-learning/domain-keywords-glossary.md	100	104	algorithm	A08-O0205
-lsm-compaction	LSM tree compaction	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	120	storage_algorithm	A08-O0206
-bloom-filter	bloom filters	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	120	storage_algorithm	A08-O0207
-wal-group-commit	WAL group commit	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	120	storage_algorithm	A08-O0208
-cow-tree-snapshot	copy-on-write B-trees	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	120	storage_algorithm	A08-O0209
-aries-recovery	ARIES	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	120	storage_algorithm	A08-O0210
-differential-testing	differential testing	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0211
-canonicalization	WCC relabeling	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0212
-property-based-testing	property-based testing	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0213
-fuzzing	fuzzing	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0214
-failpoint-injection	failpoint injection	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0215
-ground-truth-recall	ANN-benchmarks recall	docs_PRD06/graph-learning/domain-keywords-glossary.md	122	129	verification_method	A08-O0216
-frontier-push-pull	frontier push/pull switching	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	1	7	algorithm_family	A08-O0217
-direction-optimizing-bfs	BFS push/pull	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	11	31	algorithm	A08-O0218
-frontier-push-pull	queue/bitmap conversion	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	33	52	algorithm_family	A08-O0219
-direction-optimizing-bfs	Beamer alpha/beta switching	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	54	77	algorithm	A08-O0220
-direction-optimizing-bfs	direction-optimized BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	79	97	algorithm	A08-O0221
-direction-optimizing-bfs	push/pull cost model	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	99	129	algorithm	A08-O0222
-edgemap-switching	Ligra edgeMap sparse/dense	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	132	147	algorithm_family	A08-O0223
-posting-compression	posting blocks	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	11	19	storage_algorithm	A08-O0224
-fst-dictionary	minimal FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	11	19	storage_algorithm	A08-O0225
-block-max-wand	block maxima	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	11	19	algorithm	A08-O0226
-bm25-wand	BM25 WAND pruning	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	22	29	algorithm_family	A08-O0227
-bm25-wand	exact top-k WAND loop	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	42	57	algorithm_family	A08-O0228
-rrf-fusion	RRF hybrid fusion	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	59	66	algorithm	A08-O0229
-semiring-traversal	SpMV over semirings	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	9	16	algorithm_family	A08-O0230
-direction-optimizing-bfs	push/pull frontiers	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	19	30	algorithm	A08-O0231
-pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	19	30	algorithm	A08-O0232
-connected-components	hook and shortcut WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	19	30	algorithm_family	A08-O0233
-delta-stepping	delta buckets SSSP	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	19	30	algorithm	A08-O0234
-afforest	Afforest	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	75	84	algorithm	A08-O0235
-hnsw-search	HNSW best-first frontier	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	87	94	algorithm	A08-O0236
-louvain	Louvain	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	107	114	algorithm	A08-O0237
-leiden	Leiden	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	107	114	algorithm	A08-O0238
-k-core	k-core peeling	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	107	114	algorithm	A08-O0239
-hnsw-search	HNSW layered greedy search	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	1	15	algorithm	A08-O0240
-hnsw-search	greedy descent plus ef beam	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	17	32	algorithm	A08-O0241
-hnsw-search	geometric levels and M/ef knobs	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	34	56	algorithm	A08-O0242
-hnsw-search	layer-0 beam search	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	58	78	algorithm	A08-O0243
-hnsw-neighbor-selection	diverse neighbor heuristic	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	80	97	algorithm	A08-O0244
-product-quantization	PQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	99	112	storage_algorithm	A08-O0245
-scalar-quantization	SQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	99	112	storage_algorithm	A08-O0246
-vamana-ann	DiskANN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	99	112	algorithm_family	A08-O0247
-hnsw-search	ef recall dial	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	114	126	algorithm	A08-O0248
-acorn-filtered-search	ACORN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	129	147	algorithm_family	A08-O0249
-incremental-delta-iteration	Differential dataflow signed updates	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	1	16	algorithm_family	A08-O0250
-trace-arrangement	arranged update traces	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	18	32	supporting_structure	A08-O0251
-antichain-progress	antichain frontiers	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	34	50	protocol	A08-O0252
-semi-naive-iteration	semi-naive iteration	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	53	65	algorithm_family	A08-O0253
-incremental-bfs	incremental BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	68	82	algorithm	A08-O0254
-incremental-bfs	edge insertion delta propagation	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	85	97	algorithm	A08-O0255
-trace-compaction	frontier-gated trace compaction	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	100	112	storage_algorithm	A08-O0256
-incremental-vs-scratch	incremental vs from-scratch	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	138	151	verification_method	A08-O0257
-metamorphic-testing	metamorphic self-oracles	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	1	20	verification_method	A08-O0258
-history-checking	history-based checking	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	9	20	verification_method	A08-O0259
-tlp-testing	TLP ternary logic partitioning	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	22	39	verification_method	A08-O0260
-norec-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	42	56	verification_method	A08-O0261
-linearizability-checking	Jepsen linearizability checker	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	59	75	verification_method	A08-O0262
-knossos-search	Knossos WGL search	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	59	75	verification_method	A08-O0263
-tlp-testing	TLP worked example	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	78	93	verification_method	A08-O0264
-knossos-search	non-linearizable history search	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	96	107	verification_method	A08-O0265
-reproducer-reduction	automated reproducer reduction	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	121	135	verification_method	A08-O0266
-mvcc-snapshot	MVCC snapshot visibility	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	1	16	protocol	A08-O0267
-mvcc-snapshot	key plus version ordering	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	24	41	storage_algorithm	A08-O0268
-mvcc-snapshot	snapshot active-set visibility rule	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	43	63	protocol	A08-O0269
-ssi-conflict-check	SSI-style conflict check	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	65	85	protocol	A08-O0270
-mvcc-gc	oldest-read watermark GC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	65	85	storage_algorithm	A08-O0271
-aries-recovery	ARIES	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	154	160	storage_algorithm	A08-O0272
-packstream-encoding	PackStream marker dispatch	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	1	20	protocol	A08-O0273
-smallest-width-encoding	smallest integer encoding	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	22	33	storage_algorithm	A08-O0274
-bolt-protocol	Bolt session protocol	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	45	60	protocol	A08-O0275
-byte-differential	PackStream byte diff	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	92	100	verification_method	A08-O0276
-pagerank	PageRank power iteration	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	1	18	algorithm	A08-O0277
-fixed-point-message-passing	label propagation Katz HITS belief propagation GNN	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	21	23	algorithm_family	A08-O0278
-pagerank-delta	PageRankDelta	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	25	30	algorithm	A08-O0279
-pagerank	sink handling policies	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	33	42	algorithm	A08-O0280
-pagerank	power-iteration cost	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	64	70	algorithm	A08-O0281
-pagerank	rank epsilon equivalence	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	84	90	verification_method	A08-O0282
-label-propagation	label propagation	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	93	101	algorithm	A08-O0283
-katz-centrality	Katz centrality	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	93	101	algorithm	A08-O0284
-gnn-message-passing	GNN layer	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	93	101	algorithm_family	A08-O0285
-lsm-compaction	LSM compaction tradeoff	docs_PRD06/graph-learning/pattern-index.md	8	8	storage_algorithm	A08-O0286
-wal-group-commit	WAL group commit	docs_PRD06/graph-learning/pattern-index.md	9	9	storage_algorithm	A08-O0287
-roaring-idsets	Roaring bitmap ID sets	docs_PRD06/graph-learning/pattern-index.md	10	10	storage_algorithm	A08-O0288
-mvcc-snapshot	MVCC snapshot visibility	docs_PRD06/graph-learning/pattern-index.md	11	11	protocol	A08-O0289
-cow-tree-snapshot	COW tree snapshot	docs_PRD06/graph-learning/pattern-index.md	12	12	storage_algorithm	A08-O0290
-bloom-filter	Bloom filter shortcut	docs_PRD06/graph-learning/pattern-index.md	13	13	storage_algorithm	A08-O0291
-csr-adjacency	CSR adjacency layout	docs_PRD06/graph-learning/pattern-index.md	14	14	supporting_structure	A08-O0292
-frontier-push-pull	Frontier push/pull switching	docs_PRD06/graph-learning/pattern-index.md	15	15	algorithm_family	A08-O0293
-semiring-traversal	Semiring matrix traversal	docs_PRD06/graph-learning/pattern-index.md	16	16	algorithm_family	A08-O0294
-connected-components	Component hooking shortcutting	docs_PRD06/graph-learning/pattern-index.md	17	17	algorithm_family	A08-O0295
-pagerank	PageRank iteration convergence	docs_PRD06/graph-learning/pattern-index.md	18	18	algorithm	A08-O0296
-delta-stepping	Delta-stepping buckets	docs_PRD06/graph-learning/pattern-index.md	19	19	algorithm	A08-O0297
-hnsw-search	HNSW layered greedy search	docs_PRD06/graph-learning/pattern-index.md	20	20	algorithm	A08-O0298
-product-quantization	Product quantization ladder	docs_PRD06/graph-learning/pattern-index.md	21	21	storage_algorithm	A08-O0299
-vamana-ann	DiskANN Vamana	docs_PRD06/graph-learning/pattern-index.md	22	22	algorithm_family	A08-O0300
-ivf-probe	IVF partitioned probe	docs_PRD06/graph-learning/pattern-index.md	23	23	algorithm_family	A08-O0301
-posting-compression	Posting block compression	docs_PRD06/graph-learning/pattern-index.md	25	25	storage_algorithm	A08-O0302
-bm25-wand	BM25 plus WAND pruning	docs_PRD06/graph-learning/pattern-index.md	26	26	algorithm_family	A08-O0303
-fst-dictionary	FST term dictionary	docs_PRD06/graph-learning/pattern-index.md	27	27	storage_algorithm	A08-O0304
-record-chain-adjacency	Record chain adjacency	docs_PRD06/graph-learning/pattern-index.md	29	29	storage_algorithm	A08-O0305
-pull-operator-pipeline	Pull operator pipeline	docs_PRD06/graph-learning/pattern-index.md	30	30	protocol	A08-O0306
-triple-permutation-indexing	Triple permutation indexing	docs_PRD06/graph-learning/pattern-index.md	31	31	storage_algorithm	A08-O0307
-packstream-encoding	PackStream wire encoding	docs_PRD06/graph-learning/pattern-index.md	33	33	protocol	A08-O0308
-stub-script-conformance	Stub script conformance	docs_PRD06/graph-learning/pattern-index.md	34	34	verification_method	A08-O0309
-incremental-delta-iteration	Incremental delta iteration	docs_PRD06/graph-learning/pattern-index.md	36	36	algorithm_family	A08-O0310
-superstep-convergence	Superstep message convergence	docs_PRD06/graph-learning/pattern-index.md	37	37	protocol	A08-O0311
-metamorphic-testing	Metamorphic oracle testing	docs_PRD06/graph-learning/pattern-index.md	39	39	verification_method	A08-O0312
-tolerant-validation	Tolerant equivalence validation	docs_PRD06/graph-learning/pattern-index.md	40	40	verification_method	A08-O0313
-posting-compression	delta bit-packed posting blocks	docs_PRD06/graph-learning/posting-block-compression-ascii.md	1	24	storage_algorithm	A08-O0314
-posting-skips	two-level posting skips	docs_PRD06/graph-learning/posting-block-compression-ascii.md	49	71	storage_algorithm	A08-O0315
-galloping-intersection	short-list driven intersection	docs_PRD06/graph-learning/posting-block-compression-ascii.md	73	84	algorithm	A08-O0316
-posting-compression	block size arithmetic	docs_PRD06/graph-learning/posting-block-compression-ascii.md	92	114	storage_algorithm	A08-O0317
-ivf-probe	IVF bucket kinship	docs_PRD06/graph-learning/posting-block-compression-ascii.md	117	131	algorithm_family	A08-O0318
-posting-compression	delta bit-packed posting blocks	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	1	27	storage_algorithm	A08-O0319
-posting-skips	two-level posting skips	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	30	55	storage_algorithm	A08-O0320
-galloping-intersection	short-list driven intersection	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	58	67	algorithm	A08-O0321
-posting-compression	flush-time encoding and merge	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	111	128	storage_algorithm	A08-O0322
-record-chain-adjacency	fixed-record adjacency chains	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	1	29	storage_algorithm	A08-O0323
-packed-csr-maintenance	packed CSR slack and checkpoint	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	31	41	storage_algorithm	A08-O0324
-record-chain-adjacency	chain versus CSR traversal	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	43	79	storage_algorithm	A08-O0325
-kv-adjacency	KV adjacency posting lists	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	81	90	storage_algorithm	A08-O0326
-neighbor-set-equivalence	neighbor-set differential	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	92	100	verification_method	A08-O0327
-roaring-idsets	Roaring adaptive containers	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	1	47	storage_algorithm	A08-O0328
-roaring-add	Roaring add and container conversion	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	49	64	storage_algorithm	A08-O0329
-roaring-intersection	Roaring kind-pair intersection	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	66	85	algorithm	A08-O0330
-run-length-encoding	RUN encoding	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	38	42	storage_algorithm	A08-O0331
-roaring-idsets	Roaring adaptive containers	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	1	36	storage_algorithm	A08-O0332
-roaring-add	Roaring add state machine	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	38	51	storage_algorithm	A08-O0333
-roaring-intersection	Roaring kind-pair intersection	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	53	67	algorithm	A08-O0334
-roaring-serialized-ops	serialized mmap set operations	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	117	136	storage_algorithm	A08-O0335
-stub-script-conformance	testkit plus boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	1	20	verification_method	A08-O0336
-script-language-membership	boltstub script DSL	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	33	42	verification_method	A08-O0337
-dual-oracle-conformance	stub and real-server oracles	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	62	69	verification_method	A08-O0338
-layered-conformance	byte script result history oracles	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	110	120	verification_method	A08-O0339
-accepting-automaton	conversation accepting automaton	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	122	131	verification_method	A08-O0340
-superstep-convergence	Pregel superstep convergence	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	1	16	protocol	A08-O0341
-pregel-loop	GraphX Pregel loop	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	18	45	protocol	A08-O0342
-vote-to-halt	Giraph voteToHalt	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	47	57	protocol	A08-O0343
-vertex-cut-partitioning	EdgePartition2D vertex cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	60	75	algorithm_family	A08-O0344
-min-label-propagation	Pregel connected components	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	90	104	algorithm	A08-O0345
-periodic-checkpointing	PeriodicGraphCheckpointer	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	124	138	storage_algorithm	A08-O0346
+superstep-bsp	superstep	docs_PRD06/graph-learning/README.md	23	23	algorithm_family	A08-O0027
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/README.md	24	24	verification_method	A08-O0028
+tolerant-validation	tolerant	docs_PRD06/graph-learning/README.md	24	24	verification_method	A08-O0029
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	25	25	algorithm_family	A08-O0030
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	28	28	algorithm_family	A08-O0031
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	35	35	algorithm_family	A08-O0032
+pagerank	PageRank	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	35	35	algorithm	A08-O0033
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	41	41	algorithm_family	A08-O0034
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	41	41	algorithm_family	A08-O0035
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	60	60	algorithm_family	A08-O0036
+csr-build	CSR	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	60	60	storage_algorithm	A08-O0037
+pagerank	PageRank	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	63	63	algorithm	A08-O0038
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	63	63	algorithm	A08-O0039
+nodesimilarity	NodeSimilarity	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	65	65	algorithm_family	A08-O0040
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	66	66	algorithm_family	A08-O0041
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	68	68	algorithm_family	A08-O0042
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	73	73	algorithm_family	A08-O0043
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	79	79	algorithm_family	A08-O0044
+pagerank	PageRank	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	80	80	algorithm	A08-O0045
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	80	80	algorithm	A08-O0046
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	81	81	algorithm_family	A08-O0047
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	85	85	algorithm_family	A08-O0048
+reachability	REACHABILITY	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	92	92	algorithm_family	A08-O0049
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	95	95	algorithm_family	A08-O0050
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	96	96	algorithm_family	A08-O0051
+shortest-paths	shortest path	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	97	97	algorithm_family	A08-O0052
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	100	100	algorithm_family	A08-O0053
+k-core	k-core	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	100	100	algorithm	A08-O0054
+bfs	BFS	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	114	114	algorithm	A08-O0055
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	116	116	algorithm_family	A08-O0056
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	118	118	algorithm	A08-O0057
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	120	120	algorithm_family	A08-O0058
+nodesimilarity	NodeSimilarity	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	122	122	algorithm_family	A08-O0059
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	122	122	algorithm_family	A08-O0060
+louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	135	135	algorithm	A08-O0061
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	136	136	algorithm_family	A08-O0062
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	138	138	algorithm_family	A08-O0063
+scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	139	139	algorithm	A08-O0064
+weighted-path-product	weighted-path product	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	149	149	algorithm_family	A08-O0065
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	150	150	algorithm_family	A08-O0066
+louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	155	155	algorithm	A08-O0067
+shortest-paths	shortest path	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	157	157	algorithm_family	A08-O0068
+bfs	BFS	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	159	159	algorithm	A08-O0069
+csr-build	CSR	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	159	159	storage_algorithm	A08-O0070
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	171	171	algorithm_family	A08-O0071
+scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	172	172	algorithm	A08-O0072
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	173	173	algorithm	A08-O0073
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	177	177	algorithm_family	A08-O0074
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	190	190	algorithm_family	A08-O0075
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	191	191	algorithm_family	A08-O0076
+scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	192	192	algorithm	A08-O0077
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	193	193	algorithm	A08-O0078
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	206	206	algorithm_family	A08-O0079
+louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	210	210	algorithm	A08-O0080
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	211	211	algorithm	A08-O0081
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	224	224	algorithm_family	A08-O0082
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	224	224	algorithm_family	A08-O0083
+community-detection	community detection	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	228	228	algorithm_family	A08-O0084
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	238	238	algorithm_family	A08-O0085
+bfs	BFS	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	240	240	algorithm	A08-O0086
+louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	241	241	algorithm	A08-O0087
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	242	242	algorithm_family	A08-O0088
+scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	243	243	algorithm	A08-O0089
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	243	243	algorithm	A08-O0090
+reachability	forward reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	244	244	algorithm_family	A08-O0091
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	246	246	algorithm_family	A08-O0092
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	250	250	algorithm_family	A08-O0093
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	250	250	algorithm_family	A08-O0094
+centrality-family	centrality	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	250	250	algorithm_family	A08-O0095
+louvain	Louvain	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	250	250	algorithm	A08-O0096
+scc	SCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	251	251	algorithm	A08-O0097
+connected-components	WCC	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	254	254	algorithm_family	A08-O0098
+connected-components	wcc	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	273	273	algorithm_family	A08-O0099
+reachability	reverse reach	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	280	280	algorithm_family	A08-O0100
+csr-build	CSR	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	284	284	storage_algorithm	A08-O0101
+reachability	reachability	docs_PRD06/graph-learning/algorithm-application-domains-map-v2.md	285	285	algorithm_family	A08-O0102
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	7	7	verification_method	A08-O0103
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	14	14	verification_method	A08-O0104
+history-checking	Jepsen	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	14	14	verification_method	A08-O0105
+tolerant-validation	tolerant	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	15	15	verification_method	A08-O0106
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	23	23	verification_method	A08-O0107
+history-checking	history checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	24	24	verification_method	A08-O0108
+differential-validation	differential validation	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	25	25	verification_method	A08-O0109
+tolerant-validation	epsilon	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	25	25	verification_method	A08-O0110
+recall-validation	brute-force k-NN	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	26	26	verification_method	A08-O0111
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	34	34	verification_method	A08-O0112
+history-checking	history checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	37	37	verification_method	A08-O0113
+history-checking	Jepsen	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	39	39	verification_method	A08-O0114
+history-checking	Jepsen	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	46	46	verification_method	A08-O0115
+connected-components	WCC	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	52	52	algorithm_family	A08-O0116
+connected-components	WCC	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	56	56	algorithm_family	A08-O0117
+hook-shortcut	hook	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	56	56	algorithm	A08-O0118
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	57	57	verification_method	A08-O0119
+tolerant-validation	EquivalenceValidationRule	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	58	58	verification_method	A08-O0120
+connected-components	WCC	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	59	59	algorithm_family	A08-O0121
+history-checking	history checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	60	60	verification_method	A08-O0122
+packstream-encoding	PackStream	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	71	71	protocol	A08-O0123
+differential-validation	exact diff	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	71	71	verification_method	A08-O0124
+bolt-protocol	Bolt	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	72	72	protocol	A08-O0125
+stub-conformance	boltstub	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	72	72	verification_method	A08-O0126
+metamorphic-testing	TLP	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	73	73	verification_method	A08-O0127
+stub-conformance	TCK	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	74	74	verification_method	A08-O0128
+tolerant-validation	epsilon	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	75	75	verification_method	A08-O0129
+metamorphic-testing	PQS	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	87	87	verification_method	A08-O0130
+history-checking	Jepsen	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	88	88	verification_method	A08-O0131
+differential-validation	differential validation	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	108	108	verification_method	A08-O0132
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	109	109	verification_method	A08-O0133
+history-checking	history checking	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	112	112	verification_method	A08-O0134
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	125	125	verification_method	A08-O0135
+history-checking	jepsen	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	126	126	verification_method	A08-O0136
+tolerant-validation	EquivalenceValidationRule	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	128	128	verification_method	A08-O0137
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	133	133	verification_method	A08-O0138
+tolerant-validation	tolerant	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	134	134	verification_method	A08-O0139
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/bench-testing-pattern-synthesis-mermaid.md	143	143	verification_method	A08-O0140
+hook-shortcut	Shortcut	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	1	1	algorithm	A08-O0141
+bloom-filter	Bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	1	1	storage_algorithm	A08-O0142
+hook-shortcut	shortcut	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	6	6	algorithm	A08-O0143
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	6	6	storage_algorithm	A08-O0144
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	13	13	storage_algorithm	A08-O0145
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	34	34	storage_algorithm	A08-O0146
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	34	34	storage_algorithm	A08-O0147
+lsm-compaction	LSM	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	47	47	storage_algorithm	A08-O0148
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	55	55	storage_algorithm	A08-O0149
+ordered-search-merge	binary search	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	57	57	algorithm_family	A08-O0150
+lsm-compaction	SSTable	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	64	64	storage_algorithm	A08-O0151
+lsm-compaction	compaction	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	65	65	storage_algorithm	A08-O0152
+lsm-compaction	compaction	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	66	66	storage_algorithm	A08-O0153
+bloom-filter	Bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	68	68	storage_algorithm	A08-O0154
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	83	83	storage_algorithm	A08-O0155
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	83	83	storage_algorithm	A08-O0156
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	84	84	storage_algorithm	A08-O0157
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	86	86	storage_algorithm	A08-O0158
+lsm-compaction	LSM	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	90	90	storage_algorithm	A08-O0159
+ordered-search-merge	binary search	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	95	95	algorithm_family	A08-O0160
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	98	98	storage_algorithm	A08-O0161
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	111	111	storage_algorithm	A08-O0162
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	117	117	storage_algorithm	A08-O0163
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	120	120	storage_algorithm	A08-O0164
+posting-compression	posting	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	120	120	storage_algorithm	A08-O0165
+hook-shortcut	shortcut	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	127	127	algorithm	A08-O0166
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	127	127	storage_algorithm	A08-O0167
+fst-dictionary	FST	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	128	128	storage_algorithm	A08-O0168
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	129	129	storage_algorithm	A08-O0169
+bloom-filter	Ribbon filter	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	130	130	storage_algorithm	A08-O0170
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	137	137	storage_algorithm	A08-O0171
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	137	137	storage_algorithm	A08-O0172
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	138	138	storage_algorithm	A08-O0173
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	139	139	storage_algorithm	A08-O0174
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	141	141	storage_algorithm	A08-O0175
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	141	141	storage_algorithm	A08-O0176
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	142	142	storage_algorithm	A08-O0177
+bloom-filter	bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	142	142	storage_algorithm	A08-O0178
+lsm-compaction	lsm	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	146	146	storage_algorithm	A08-O0179
+roaring-idsets	roaring	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	147	147	storage_algorithm	A08-O0180
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	148	148	protocol	A08-O0181
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	149	149	algorithm_family	A08-O0182
+bloom-filter	Bloom	docs_PRD06/graph-learning/bloom-filter-shortcut-mermaid.md	150	150	storage_algorithm	A08-O0183
+hook-shortcut	Hooking	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	1	1	algorithm	A08-O0184
+hook-shortcut	hooking	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	6	6	algorithm	A08-O0185
+bfs	BFS	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	7	7	algorithm	A08-O0186
+connected-components	connected components	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	7	7	algorithm_family	A08-O0187
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	7	7	algorithm	A08-O0188
+hook-shortcut	HOOK	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	14	14	algorithm	A08-O0189
+hook-shortcut	SHORTCUT	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	15	15	algorithm	A08-O0190
+bfs	BFS	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	18	18	algorithm	A08-O0191
+hook-shortcut	hooking	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	18	18	algorithm	A08-O0192
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	21	21	algorithm	A08-O0193
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	32	32	algorithm	A08-O0194
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	37	37	algorithm	A08-O0195
+hook-shortcut	shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	48	48	algorithm	A08-O0196
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	51	51	algorithm	A08-O0197
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	55	55	algorithm	A08-O0198
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	65	65	algorithm	A08-O0199
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	65	65	algorithm	A08-O0200
+bfs	BFS	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	66	66	algorithm	A08-O0201
+connected-components	WCC	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	66	66	algorithm_family	A08-O0202
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	66	66	algorithm	A08-O0203
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	73	73	algorithm	A08-O0204
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	74	74	algorithm	A08-O0205
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	74	74	algorithm	A08-O0206
+semiring-traversal	semiring	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	74	74	algorithm_family	A08-O0207
+union-find	UnionFind	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	75	75	algorithm	A08-O0208
+label-propagation	LabelPropagation	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	75	75	algorithm	A08-O0209
+connected-components	WCC	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	83	83	algorithm_family	A08-O0210
+union-find	union-find	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	83	83	algorithm	A08-O0211
+fastsv	large-star	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	84	84	algorithm	A08-O0212
+superstep-bsp	BSP	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	84	84	algorithm_family	A08-O0213
+connected-components	WCC	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	85	85	algorithm_family	A08-O0214
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	86	86	algorithm	A08-O0215
+csr-build	CSR	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	86	86	storage_algorithm	A08-O0216
+immutable-delta-rebuild	immutable CSR	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	86	86	storage_algorithm	A08-O0217
+connected-components	component labels	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	93	93	algorithm_family	A08-O0218
+tolerant-validation	partition equality	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	93	93	verification_method	A08-O0219
+connected-components	WCC	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	94	94	algorithm_family	A08-O0220
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	98	98	algorithm	A08-O0221
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	98	98	algorithm	A08-O0222
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	102	102	algorithm	A08-O0223
+a-star	A*	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	106	106	algorithm	A08-O0224
+semiring-traversal	semiring	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	106	106	algorithm_family	A08-O0225
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	107	107	algorithm	A08-O0226
+hook-shortcut	shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	108	108	algorithm	A08-O0227
+semiring-traversal	semiring	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	109	109	algorithm_family	A08-O0228
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	114	114	algorithm	A08-O0229
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	115	115	algorithm_family	A08-O0230
+hook-shortcut	shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	118	118	algorithm	A08-O0231
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	127	127	algorithm	A08-O0232
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	128	128	algorithm	A08-O0233
+hook-shortcut	Shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	131	131	algorithm	A08-O0234
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	135	135	algorithm	A08-O0235
+semiring-traversal	semiring	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	135	135	algorithm_family	A08-O0236
+csr-build	csr	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	137	137	storage_algorithm	A08-O0237
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	138	138	algorithm	A08-O0238
+pagerank	PageRank	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	138	138	algorithm	A08-O0239
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	141	141	algorithm	A08-O0240
+hook-shortcut	shortcut	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	142	142	algorithm	A08-O0241
+bloom-filter	bloom	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	142	142	storage_algorithm	A08-O0242
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	145	145	algorithm	A08-O0243
+fastsv	FastSV	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	146	146	algorithm	A08-O0244
+union-find	union-find	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	148	148	algorithm	A08-O0245
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	148	148	algorithm_family	A08-O0246
+hook-shortcut	hook	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	149	149	algorithm	A08-O0247
+afforest	Afforest	docs_PRD06/graph-learning/component-hooking-shortcutting-mermaid.md	149	149	algorithm	A08-O0248
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	7	7	storage_algorithm	A08-O0249
+lsm-compaction	LSM	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	30	30	storage_algorithm	A08-O0250
+wal-group-commit	WAL	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	30	30	storage_algorithm	A08-O0251
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	30	30	storage_algorithm	A08-O0252
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	31	31	algorithm	A08-O0253
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	34	34	storage_algorithm	A08-O0254
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	34	34	storage_algorithm	A08-O0255
+vamana-ann	Vamana	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	35	35	algorithm_family	A08-O0256
+roaring-idsets	roaring	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	35	35	storage_algorithm	A08-O0257
+superstep-bsp	superstep	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	37	37	algorithm_family	A08-O0258
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	37	37	algorithm_family	A08-O0259
+pull-operator-pipeline	pull operator	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	37	37	protocol	A08-O0260
+wand-pruning	WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	38	38	algorithm_family	A08-O0261
+incremental-delta-iteration	differential frontiers	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	38	38	algorithm_family	A08-O0262
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	40	40	algorithm	A08-O0263
+ivf-probe	IVF	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	40	40	algorithm_family	A08-O0264
+vector-quantization	PQ	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	40	40	storage_algorithm	A08-O0265
+bloom-filter	bloom	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	40	40	storage_algorithm	A08-O0266
+ivf-probe	nprobe	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	41	41	algorithm_family	A08-O0267
+bm25-scoring	BM25	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	41	41	algorithm	A08-O0268
+tolerant-validation	epsilon	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	41	41	verification_method	A08-O0269
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	43	43	verification_method	A08-O0270
+tolerant-validation	tolerant	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	43	43	verification_method	A08-O0271
+stub-conformance	stub script	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	44	44	verification_method	A08-O0272
+lsm-compaction	SSTable	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	54	54	storage_algorithm	A08-O0273
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	54	54	storage_algorithm	A08-O0274
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	54	54	storage_algorithm	A08-O0275
+ivf-probe	IVF	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	56	56	algorithm_family	A08-O0276
+lsm-compaction	LSM	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	57	57	storage_algorithm	A08-O0277
+lsm-compaction	compaction	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	58	58	storage_algorithm	A08-O0278
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	60	60	storage_algorithm	A08-O0279
+roaring-idsets	roaring	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	61	61	storage_algorithm	A08-O0280
+packstream-encoding	PackStream	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	61	61	protocol	A08-O0281
+wand-pruning	block-max	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	63	63	algorithm_family	A08-O0282
+bloom-filter	bloom	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	63	63	storage_algorithm	A08-O0283
+posting-compression	skip list	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	63	63	storage_algorithm	A08-O0284
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	64	64	algorithm	A08-O0285
+wand-pruning	WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	64	64	algorithm_family	A08-O0286
+incremental-delta-iteration	signed delta	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	66	66	algorithm_family	A08-O0287
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	66	66	protocol	A08-O0288
+out-of-core-graph-processing	x stream	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	68	68	storage_algorithm	A08-O0289
+ivf-probe	IVF	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	69	69	algorithm_family	A08-O0290
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	69	69	algorithm_family	A08-O0291
+lsm-compaction	LSM	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	70	70	storage_algorithm	A08-O0292
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	71	71	storage_algorithm	A08-O0293
+tolerant-validation	epsilon	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	72	72	verification_method	A08-O0294
+fst-dictionary	FST	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	83	83	storage_algorithm	A08-O0295
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	84	84	storage_algorithm	A08-O0296
+pull-operator-pipeline	pull pipeline	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	85	85	protocol	A08-O0297
+roaring-idsets	roaring	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	86	86	storage_algorithm	A08-O0298
+bm25-scoring	BM25	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	87	87	algorithm	A08-O0299
+wand-pruning	WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	87	87	algorithm_family	A08-O0300
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	87	87	storage_algorithm	A08-O0301
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	88	88	algorithm	A08-O0302
+metamorphic-testing	TLP	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	94	94	verification_method	A08-O0303
+wand-pruning	WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	96	96	algorithm_family	A08-O0304
+roaring-idsets	roaring	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	96	96	storage_algorithm	A08-O0305
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	97	97	algorithm	A08-O0306
+wal-group-commit	group commit	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	105	105	storage_algorithm	A08-O0307
+wal-group-commit	WAL	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	106	106	storage_algorithm	A08-O0308
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	107	107	storage_algorithm	A08-O0309
+lsm-compaction	compaction	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	108	108	storage_algorithm	A08-O0310
+lsm-compaction	LSM	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	112	112	storage_algorithm	A08-O0311
+bloom-filter	bloom	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	114	114	storage_algorithm	A08-O0312
+csr-build	CSR	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	116	116	storage_algorithm	A08-O0313
+stub-conformance	boltstub	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	130	130	verification_method	A08-O0314
+worst-case-optimal-join	WCOJ	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	146	146	algorithm_family	A08-O0315
+hashgnn	GNN	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	150	150	algorithm_family	A08-O0316
+graph-embeddings	embedding	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	150	150	algorithm_family	A08-O0317
+lsm-compaction	LSM	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	157	157	storage_algorithm	A08-O0318
+wal-group-commit	WAL	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	157	157	storage_algorithm	A08-O0319
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	157	157	protocol	A08-O0320
+pull-operator-pipeline	pull pipeline	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	158	158	protocol	A08-O0321
+wand-pruning	WAND	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	160	160	algorithm_family	A08-O0322
+fst-dictionary	FST	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	160	160	storage_algorithm	A08-O0323
+posting-compression	posting	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	160	160	storage_algorithm	A08-O0324
+hnsw-search	HNSW	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	161	161	algorithm	A08-O0325
+ivf-probe	IVF	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	161	161	algorithm_family	A08-O0326
+vector-quantization	PQ	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	161	161	storage_algorithm	A08-O0327
+incremental-delta-iteration	signed delta	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	162	162	algorithm_family	A08-O0328
+tolerant-validation	EquivalenceValidationRule	docs_PRD06/graph-learning/corpus-capstone-pattern-synthesis-ascii.md	164	164	verification_method	A08-O0329
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	1	1	storage_algorithm	A08-O0330
+cow-tree-snapshot	cow	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	6	6	storage_algorithm	A08-O0331
+wal-group-commit	WAL	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	7	7	storage_algorithm	A08-O0332
+lsm-compaction	LSM	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	11	11	storage_algorithm	A08-O0333
+wal-group-commit	wal	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	11	11	storage_algorithm	A08-O0334
+cow-tree-snapshot	copy-on-write	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	12	12	storage_algorithm	A08-O0335
+cow-tree-snapshot	root flip	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	20	20	storage_algorithm	A08-O0336
+eigenvector-family	hits	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	27	27	algorithm_family	A08-O0337
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	30	30	protocol	A08-O0338
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	32	32	protocol	A08-O0339
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	79	79	storage_algorithm	A08-O0340
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	104	104	storage_algorithm	A08-O0341
+lsm-compaction	LSM	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	107	107	storage_algorithm	A08-O0342
+wal-group-commit	WAL	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	107	107	storage_algorithm	A08-O0343
+lsm-compaction	lsm	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	108	108	storage_algorithm	A08-O0344
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	111	111	storage_algorithm	A08-O0345
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	116	116	storage_algorithm	A08-O0346
+lsm-compaction	LSM	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	117	117	storage_algorithm	A08-O0347
+lsm-compaction	compaction	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	118	118	storage_algorithm	A08-O0348
+cow-tree-snapshot	root flip	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	144	144	storage_algorithm	A08-O0349
+cow-tree-snapshot	copy-on-write	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	146	146	storage_algorithm	A08-O0350
+cow-tree-snapshot	path-copy	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	157	157	storage_algorithm	A08-O0351
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	162	162	protocol	A08-O0352
+lsm-compaction	lsm	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	164	164	storage_algorithm	A08-O0353
+wal-group-commit	wal	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	165	165	storage_algorithm	A08-O0354
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	165	165	storage_algorithm	A08-O0355
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/cow-tree-snapshot-ascii.md	168	168	algorithm_family	A08-O0356
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	1	1	storage_algorithm	A08-O0357
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	6	6	storage_algorithm	A08-O0358
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	13	13	storage_algorithm	A08-O0359
+degree-centrality	degree	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	22	22	algorithm	A08-O0360
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	41	41	storage_algorithm	A08-O0361
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	42	42	storage_algorithm	A08-O0362
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	43	43	storage_algorithm	A08-O0363
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	44	44	storage_algorithm	A08-O0364
+delta-rle-compression	delta compression	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	44	44	storage_algorithm	A08-O0365
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	45	45	storage_algorithm	A08-O0366
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	46	46	storage_algorithm	A08-O0367
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	51	51	storage_algorithm	A08-O0368
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	55	55	storage_algorithm	A08-O0369
+bfs	BFS	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	79	79	algorithm	A08-O0370
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	79	79	storage_algorithm	A08-O0371
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	87	87	storage_algorithm	A08-O0372
+shortest-paths	path search	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	94	94	algorithm_family	A08-O0373
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	94	94	storage_algorithm	A08-O0374
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	104	104	storage_algorithm	A08-O0375
+delta-rle-compression	delta compression	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	110	110	storage_algorithm	A08-O0376
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	117	117	storage_algorithm	A08-O0377
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	121	121	storage_algorithm	A08-O0378
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	124	124	storage_algorithm	A08-O0379
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	126	126	storage_algorithm	A08-O0380
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	128	128	storage_algorithm	A08-O0381
+immutable-delta-rebuild	delta log	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	128	128	storage_algorithm	A08-O0382
+lsm-compaction	LSM	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	129	129	storage_algorithm	A08-O0383
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	130	130	storage_algorithm	A08-O0384
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	140	140	storage_algorithm	A08-O0385
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	140	140	algorithm_family	A08-O0386
+bfs	BFS	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	141	141	algorithm	A08-O0387
+spmv-spgemm	SpMV	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	141	141	algorithm_family	A08-O0388
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	142	142	storage_algorithm	A08-O0389
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	145	145	storage_algorithm	A08-O0390
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	146	146	storage_algorithm	A08-O0391
+immutable-delta-rebuild	immutable CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	146	146	storage_algorithm	A08-O0392
+bloom-filter	bloom	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	147	147	storage_algorithm	A08-O0393
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	155	155	storage_algorithm	A08-O0394
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	157	157	storage_algorithm	A08-O0395
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	158	158	storage_algorithm	A08-O0396
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	159	159	storage_algorithm	A08-O0397
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	160	160	storage_algorithm	A08-O0398
+cow-tree-snapshot	cow	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	164	164	storage_algorithm	A08-O0399
+lsm-compaction	lsm	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	165	165	storage_algorithm	A08-O0400
+lsm-compaction	LSM	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	166	166	storage_algorithm	A08-O0401
+roaring-idsets	roaring	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	166	166	storage_algorithm	A08-O0402
+roaring-idsets	bitmap	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	167	167	storage_algorithm	A08-O0403
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	167	167	storage_algorithm	A08-O0404
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	168	168	algorithm_family	A08-O0405
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	169	169	storage_algorithm	A08-O0406
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	171	171	algorithm_family	A08-O0407
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-ascii.md	171	171	storage_algorithm	A08-O0408
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	1	1	storage_algorithm	A08-O0409
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	6	6	storage_algorithm	A08-O0410
+degree-centrality	degree	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	15	15	algorithm	A08-O0411
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	26	26	storage_algorithm	A08-O0412
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	27	27	storage_algorithm	A08-O0413
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	28	28	storage_algorithm	A08-O0414
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	28	28	storage_algorithm	A08-O0415
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	29	29	storage_algorithm	A08-O0416
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	32	32	storage_algorithm	A08-O0417
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	35	35	storage_algorithm	A08-O0418
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	56	56	storage_algorithm	A08-O0419
+shortest-paths	path search	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	64	64	algorithm_family	A08-O0420
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	74	74	storage_algorithm	A08-O0421
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	77	77	storage_algorithm	A08-O0422
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	82	82	storage_algorithm	A08-O0423
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	87	87	storage_algorithm	A08-O0424
+lsm-compaction	LSM	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	88	88	storage_algorithm	A08-O0425
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	88	88	storage_algorithm	A08-O0426
+immutable-delta-rebuild	immutable CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	88	88	storage_algorithm	A08-O0427
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	89	89	storage_algorithm	A08-O0428
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	97	97	storage_algorithm	A08-O0429
+bfs	BFS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	98	98	algorithm	A08-O0430
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	98	98	storage_algorithm	A08-O0431
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	98	98	algorithm_family	A08-O0432
+spmv-spgemm	SpMV	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	98	98	algorithm_family	A08-O0433
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	99	99	storage_algorithm	A08-O0434
+bloom-filter	bloom	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	100	100	storage_algorithm	A08-O0435
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	100	100	storage_algorithm	A08-O0436
+immutable-delta-rebuild	immutable CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	100	100	storage_algorithm	A08-O0437
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	103	103	storage_algorithm	A08-O0438
+bfs	BFS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	108	108	algorithm	A08-O0439
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	108	108	storage_algorithm	A08-O0440
+pagerank	PageRank	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	109	109	algorithm	A08-O0441
+csr-build	CSC	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	109	109	storage_algorithm	A08-O0442
+csr-build	CSC	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	111	111	storage_algorithm	A08-O0443
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	112	112	storage_algorithm	A08-O0444
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	116	116	algorithm_family	A08-O0445
+bfs	BFS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	117	117	algorithm	A08-O0446
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	117	117	algorithm_family	A08-O0447
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	117	117	algorithm_family	A08-O0448
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	129	129	storage_algorithm	A08-O0449
+csr-build	csr	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	138	138	storage_algorithm	A08-O0450
+delta-rle-compression	byteRLE	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	140	140	storage_algorithm	A08-O0451
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	141	141	storage_algorithm	A08-O0452
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	142	142	storage_algorithm	A08-O0453
+cow-tree-snapshot	cow	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	147	147	storage_algorithm	A08-O0454
+lsm-compaction	lsm	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	148	148	storage_algorithm	A08-O0455
+immutable-delta-rebuild	delta log	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	148	148	storage_algorithm	A08-O0456
+roaring-idsets	roaring	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	149	149	storage_algorithm	A08-O0457
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	149	149	storage_algorithm	A08-O0458
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	150	150	algorithm_family	A08-O0459
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	151	151	storage_algorithm	A08-O0460
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	152	152	algorithm_family	A08-O0461
+csr-build	CSR	docs_PRD06/graph-learning/csr-adjacency-layout-mermaid.md	152	152	storage_algorithm	A08-O0462
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	7	7	algorithm_family	A08-O0463
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	20	20	algorithm_family	A08-O0464
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	21	21	algorithm_family	A08-O0465
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	22	22	algorithm_family	A08-O0466
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	29	29	algorithm_family	A08-O0467
+superstep-bsp	Pregel	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	40	40	algorithm_family	A08-O0468
+connected-components	WCC	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	51	51	algorithm_family	A08-O0469
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	52	52	algorithm_family	A08-O0470
+bfs	BFS	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	54	54	algorithm	A08-O0471
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	56	56	algorithm_family	A08-O0472
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	84	84	algorithm_family	A08-O0473
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	87	87	algorithm_family	A08-O0474
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	88	88	algorithm_family	A08-O0475
+reachability	reachability	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	95	95	algorithm_family	A08-O0476
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	96	96	algorithm_family	A08-O0477
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	110	110	algorithm_family	A08-O0478
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	112	112	algorithm_family	A08-O0479
+superstep-bsp	barrier	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	116	116	algorithm_family	A08-O0480
+hook-shortcut	hooking	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	117	117	algorithm	A08-O0481
+bfs	bfs	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	140	140	algorithm	A08-O0482
+incremental-delta-iteration	semi-naive	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	141	141	algorithm_family	A08-O0483
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	142	142	algorithm_family	A08-O0484
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	143	143	algorithm_family	A08-O0485
+superstep-bsp	superstep	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	149	149	algorithm_family	A08-O0486
+lsm-compaction	LSM	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	152	152	storage_algorithm	A08-O0487
+history-checking	Jepsen	docs_PRD06/graph-learning/dataflow-compute-pattern-synthesis-ascii.md	163	163	verification_method	A08-O0488
+delta-stepping	Delta Stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	1	1	algorithm	A08-O0489
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	6	6	algorithm	A08-O0490
+shortest-paths	shortest path	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	7	7	algorithm_family	A08-O0491
+dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	7	7	algorithm	A08-O0492
+shortest-paths	shortest path	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	11	11	algorithm_family	A08-O0493
+dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	14	14	algorithm	A08-O0494
+bellman-ford	Bellman-Ford	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	17	17	algorithm	A08-O0495
+delta-stepping	Delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	22	22	algorithm	A08-O0496
+bellman-ford	Bellman-Ford	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	24	24	algorithm	A08-O0497
+dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	35	35	algorithm	A08-O0498
+bellman-ford	Bellman-Ford	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	36	36	algorithm	A08-O0499
+a-star	a*	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	70	70	algorithm	A08-O0500
+k-core	k-core	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	82	82	algorithm	A08-O0501
+bfs	BFS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	114	114	algorithm	A08-O0502
+dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	116	116	algorithm	A08-O0503
+superstep-bsp	barrier	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	119	119	algorithm_family	A08-O0504
+bfs	BFS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	120	120	algorithm	A08-O0505
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	124	124	algorithm_family	A08-O0506
+delta-stepping	Delta-Stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	127	127	algorithm	A08-O0507
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	128	128	algorithm_family	A08-O0508
+semiring-traversal	semiring	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	132	132	algorithm_family	A08-O0509
+dijkstra	Dijkstra	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	140	140	algorithm	A08-O0510
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	141	141	algorithm	A08-O0511
+bfs	BFS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	144	144	algorithm	A08-O0512
+k-core	k-core	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	144	144	algorithm	A08-O0513
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	147	147	algorithm	A08-O0514
+differential-validation	differential testing	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	149	149	verification_method	A08-O0515
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	160	160	algorithm	A08-O0516
+semiring-traversal	MIN_PLUS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	160	160	algorithm_family	A08-O0517
+bfs	BFS	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	165	165	algorithm	A08-O0518
+semiring-traversal	semiring	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	166	166	algorithm_family	A08-O0519
+hook-shortcut	hooking	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	167	167	algorithm	A08-O0520
+lsm-compaction	lsm	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	168	168	storage_algorithm	A08-O0521
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	174	174	algorithm	A08-O0522
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/delta-stepping-buckets-ascii.md	174	174	algorithm_family	A08-O0523
+packstream-encoding	PackStream	docs_PRD06/graph-learning/domain-keywords-glossary.md	21	21	protocol	A08-O0524
+bolt-protocol	Bolt protocol	docs_PRD06/graph-learning/domain-keywords-glossary.md	21	21	protocol	A08-O0525
+shortest-paths	shortest path	docs_PRD06/graph-learning/domain-keywords-glossary.md	28	28	algorithm_family	A08-O0526
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	29	29	protocol	A08-O0527
+wal-group-commit	WAL	docs_PRD06/graph-learning/domain-keywords-glossary.md	30	30	storage_algorithm	A08-O0528
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/domain-keywords-glossary.md	35	35	algorithm_family	A08-O0529
+out-of-core-graph-processing	GraphChi	docs_PRD06/graph-learning/domain-keywords-glossary.md	36	36	storage_algorithm	A08-O0530
+graph-partitioning	METIS	docs_PRD06/graph-learning/domain-keywords-glossary.md	37	37	algorithm_family	A08-O0531
+community-detection	community detection	docs_PRD06/graph-learning/domain-keywords-glossary.md	40	40	algorithm_family	A08-O0532
+connected-components	WCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm_family	A08-O0533
+label-propagation	label propagation	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0534
+scc	SCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0535
+louvain	Louvain	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0536
+leiden	Leiden	docs_PRD06/graph-learning/domain-keywords-glossary.md	41	41	algorithm	A08-O0537
+pagerank	PageRank	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0538
+centrality-family	centrality	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm_family	A08-O0539
+betweenness-centrality	betweenness	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0540
+closeness-centrality	closeness	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0541
+degree-centrality	degree	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm	A08-O0542
+eigenvector-family	eigenvector	docs_PRD06/graph-learning/domain-keywords-glossary.md	42	42	algorithm_family	A08-O0543
+bfs	BFS	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0544
+dfs	DFS	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0545
+dijkstra	Dijkstra	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0546
+a-star	A*	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0547
+yen-k-shortest	Yen's k-shortest	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm	A08-O0548
+eigenvector-family	ArticleRank	docs_PRD06/graph-learning/domain-keywords-glossary.md	43	43	algorithm_family	A08-O0549
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	44	algorithm	A08-O0550
+nodesimilarity	node similarity	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	44	algorithm_family	A08-O0551
+jaccard-overlap-cosine	Jaccard	docs_PRD06/graph-learning/domain-keywords-glossary.md	44	44	algorithm_family	A08-O0552
+adamic-common-neighbors	Adamic-Adar	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm_family	A08-O0553
+knn-search	KNN	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm_family	A08-O0554
+fastrp	FastRP	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm	A08-O0555
+graph-embeddings	embeddings	docs_PRD06/graph-learning/domain-keywords-glossary.md	45	45	algorithm_family	A08-O0556
+triangle-counting	triangle counting	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	46	algorithm	A08-O0557
+node2vec	node2vec	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	46	algorithm	A08-O0558
+graphsage	GraphSAGE	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	46	algorithm	A08-O0559
+hashgnn	HashGNN	docs_PRD06/graph-learning/domain-keywords-glossary.md	46	46	algorithm_family	A08-O0560
+k-core	k-core	docs_PRD06/graph-learning/domain-keywords-glossary.md	47	47	algorithm	A08-O0561
+superstep-bsp	BSP	docs_PRD06/graph-learning/domain-keywords-glossary.md	49	49	algorithm_family	A08-O0562
+bfs	BFS	docs_PRD06/graph-learning/domain-keywords-glossary.md	50	50	algorithm	A08-O0563
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/domain-keywords-glossary.md	50	50	algorithm_family	A08-O0564
+semiring-traversal	semiring	docs_PRD06/graph-learning/domain-keywords-glossary.md	52	52	algorithm_family	A08-O0565
+spmv-spgemm	SpMV	docs_PRD06/graph-learning/domain-keywords-glossary.md	52	52	algorithm_family	A08-O0566
+out-of-core-graph-processing	Out-of-core	docs_PRD06/graph-learning/domain-keywords-glossary.md	55	55	storage_algorithm	A08-O0567
+out-of-core-graph-processing	GraphChi	docs_PRD06/graph-learning/domain-keywords-glossary.md	56	56	storage_algorithm	A08-O0568
+graph-partitioning	2D partition	docs_PRD06/graph-learning/domain-keywords-glossary.md	56	56	algorithm_family	A08-O0569
+out-of-core-graph-processing	X-Stream	docs_PRD06/graph-learning/domain-keywords-glossary.md	57	57	storage_algorithm	A08-O0570
+csr-build	CSR	docs_PRD06/graph-learning/domain-keywords-glossary.md	62	62	storage_algorithm	A08-O0571
+lsm-compaction	compaction	docs_PRD06/graph-learning/domain-keywords-glossary.md	64	64	storage_algorithm	A08-O0572
+degree-centrality	degree	docs_PRD06/graph-learning/domain-keywords-glossary.md	66	66	algorithm	A08-O0573
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/domain-keywords-glossary.md	67	67	algorithm_family	A08-O0574
+roaring-idsets	bitmap	docs_PRD06/graph-learning/domain-keywords-glossary.md	68	68	storage_algorithm	A08-O0575
+vamana-ann	DiskANN	docs_PRD06/graph-learning/domain-keywords-glossary.md	73	73	algorithm_family	A08-O0576
+hnsw-search	HNSW	docs_PRD06/graph-learning/domain-keywords-glossary.md	76	76	algorithm	A08-O0577
+ivf-probe	IVF	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	78	algorithm_family	A08-O0578
+vector-quantization	product quantization	docs_PRD06/graph-learning/domain-keywords-glossary.md	78	78	storage_algorithm	A08-O0579
+vamana-ann	DiskANN	docs_PRD06/graph-learning/domain-keywords-glossary.md	79	79	algorithm_family	A08-O0580
+vector-quantization	scalar quantization	docs_PRD06/graph-learning/domain-keywords-glossary.md	79	79	storage_algorithm	A08-O0581
+lsh	LSH	docs_PRD06/graph-learning/domain-keywords-glossary.md	80	80	algorithm_family	A08-O0582
+kd-tree	KD-tree	docs_PRD06/graph-learning/domain-keywords-glossary.md	80	80	algorithm	A08-O0583
+random-projection-trees	random projection trees	docs_PRD06/graph-learning/domain-keywords-glossary.md	80	80	algorithm_family	A08-O0584
+graph-embeddings	embedding	docs_PRD06/graph-learning/domain-keywords-glossary.md	82	82	algorithm_family	A08-O0585
+recall-validation	recall@k	docs_PRD06/graph-learning/domain-keywords-glossary.md	82	82	verification_method	A08-O0586
+jaccard-overlap-cosine	cosine	docs_PRD06/graph-learning/domain-keywords-glossary.md	83	83	algorithm_family	A08-O0587
+rank-fusion	RRF	docs_PRD06/graph-learning/domain-keywords-glossary.md	85	85	algorithm_family	A08-O0588
+vamana-ann	DiskANN	docs_PRD06/graph-learning/domain-keywords-glossary.md	86	86	algorithm_family	A08-O0589
+fst-dictionary	term dictionary	docs_PRD06/graph-learning/domain-keywords-glossary.md	95	95	storage_algorithm	A08-O0590
+posting-compression	posting	docs_PRD06/graph-learning/domain-keywords-glossary.md	95	95	storage_algorithm	A08-O0591
+wand-pruning	WAND	docs_PRD06/graph-learning/domain-keywords-glossary.md	96	96	algorithm_family	A08-O0592
+fst-dictionary	FST	docs_PRD06/graph-learning/domain-keywords-glossary.md	96	96	storage_algorithm	A08-O0593
+posting-compression	skip list	docs_PRD06/graph-learning/domain-keywords-glossary.md	96	96	storage_algorithm	A08-O0594
+bm25-scoring	BM25	docs_PRD06/graph-learning/domain-keywords-glossary.md	100	100	algorithm	A08-O0595
+tf-idf	TF-IDF	docs_PRD06/graph-learning/domain-keywords-glossary.md	100	100	algorithm	A08-O0596
+levenshtein-automata	Levenshtein	docs_PRD06/graph-learning/domain-keywords-glossary.md	103	103	algorithm	A08-O0597
+wal-group-commit	WAL	docs_PRD06/graph-learning/domain-keywords-glossary.md	104	104	storage_algorithm	A08-O0598
+lsm-compaction	LSM	docs_PRD06/graph-learning/domain-keywords-glossary.md	113	113	storage_algorithm	A08-O0599
+bloom-filter	bloom	docs_PRD06/graph-learning/domain-keywords-glossary.md	114	114	storage_algorithm	A08-O0600
+cow-tree-snapshot	copy-on-write	docs_PRD06/graph-learning/domain-keywords-glossary.md	115	115	storage_algorithm	A08-O0601
+wal-group-commit	WAL	docs_PRD06/graph-learning/domain-keywords-glossary.md	116	116	storage_algorithm	A08-O0602
+cow-tree-snapshot	copy-on-write	docs_PRD06/graph-learning/domain-keywords-glossary.md	119	119	storage_algorithm	A08-O0603
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	119	119	protocol	A08-O0604
+aries-recovery	ARIES	docs_PRD06/graph-learning/domain-keywords-glossary.md	120	120	storage_algorithm	A08-O0605
+stub-conformance	TCK	docs_PRD06/graph-learning/domain-keywords-glossary.md	124	124	verification_method	A08-O0606
+differential-validation	differential testing	docs_PRD06/graph-learning/domain-keywords-glossary.md	125	125	verification_method	A08-O0607
+stub-conformance	testkit	docs_PRD06/graph-learning/domain-keywords-glossary.md	125	125	verification_method	A08-O0608
+connected-components	WCC	docs_PRD06/graph-learning/domain-keywords-glossary.md	127	127	algorithm_family	A08-O0609
+csr-build	CSR	docs_PRD06/graph-learning/domain-keywords-glossary.md	133	133	storage_algorithm	A08-O0610
+lsm-compaction	lsm	docs_PRD06/graph-learning/domain-keywords-glossary.md	145	145	storage_algorithm	A08-O0611
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	11	11	algorithm	A08-O0612
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	11	11	algorithm	A08-O0613
+connected-components	connected components	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	11	11	algorithm_family	A08-O0614
+pagerank	PageRank	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	12	12	algorithm	A08-O0615
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	29	29	algorithm	A08-O0616
+csr-build	CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	35	35	storage_algorithm	A08-O0617
+csr-build	CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	36	36	storage_algorithm	A08-O0618
+csr-build	CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	39	39	storage_algorithm	A08-O0619
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	41	41	storage_algorithm	A08-O0620
+csr-build	CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	41	41	storage_algorithm	A08-O0621
+roaring-idsets	bitmap	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	46	46	storage_algorithm	A08-O0622
+roaring-idsets	bitmap	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	47	47	storage_algorithm	A08-O0623
+bfs	bfs	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	50	50	algorithm	A08-O0624
+bfs	bfs	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	57	57	algorithm	A08-O0625
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	57	57	algorithm_family	A08-O0626
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	71	71	algorithm	A08-O0627
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	79	79	algorithm	A08-O0628
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	79	79	algorithm_family	A08-O0629
+csr-build	CSC	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	108	108	storage_algorithm	A08-O0630
+roaring-idsets	bitmap	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	123	123	storage_algorithm	A08-O0631
+csr-build	CSC	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	123	123	storage_algorithm	A08-O0632
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	135	135	algorithm	A08-O0633
+hashgnn	message passing	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	141	141	algorithm_family	A08-O0634
+superstep-bsp	Pregel	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	141	141	algorithm_family	A08-O0635
+csr-build	CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	144	144	storage_algorithm	A08-O0636
+immutable-delta-rebuild	immutable CSR	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	144	144	storage_algorithm	A08-O0637
+bfs	bfs	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	153	153	algorithm	A08-O0638
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	153	153	algorithm_family	A08-O0639
+csr-build	csr	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	161	161	storage_algorithm	A08-O0640
+roaring-idsets	roaring	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	162	162	storage_algorithm	A08-O0641
+roaring-idsets	bitmap	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	163	163	storage_algorithm	A08-O0642
+connected-components	connected components	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	164	164	algorithm_family	A08-O0643
+bfs	BFS	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	165	165	algorithm	A08-O0644
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	165	165	algorithm	A08-O0645
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	166	166	algorithm_family	A08-O0646
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/frontier-pushpull-switching-ascii.md	166	166	algorithm_family	A08-O0647
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	7	7	storage_algorithm	A08-O0648
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	15	15	storage_algorithm	A08-O0649
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	16	16	storage_algorithm	A08-O0650
+wand-pruning	block max	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	17	17	algorithm_family	A08-O0651
+lsm-compaction	LSM	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	18	18	storage_algorithm	A08-O0652
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	18	18	storage_algorithm	A08-O0653
+roaring-idsets	bitmap	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	18	18	storage_algorithm	A08-O0654
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	26	26	storage_algorithm	A08-O0655
+bm25-scoring	bm25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	27	27	algorithm	A08-O0656
+wand-pruning	wand	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	27	27	algorithm_family	A08-O0657
+fst-dictionary	fst	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	28	28	storage_algorithm	A08-O0658
+bm25-scoring	BM25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	37	37	algorithm	A08-O0659
+wand-pruning	WAND	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	37	37	algorithm_family	A08-O0660
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	37	37	storage_algorithm	A08-O0661
+triangle-counting	triangle	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	38	38	algorithm	A08-O0662
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	47	47	storage_algorithm	A08-O0663
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	49	49	storage_algorithm	A08-O0664
+wand-pruning	WAND	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	50	50	algorithm_family	A08-O0665
+posting-compression	skip data	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	53	53	storage_algorithm	A08-O0666
+wand-pruning	block-max	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	55	55	algorithm_family	A08-O0667
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	63	63	storage_algorithm	A08-O0668
+csr-build	CSR	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	63	63	storage_algorithm	A08-O0669
+ivf-probe	IVF	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	64	64	algorithm_family	A08-O0670
+bm25-scoring	BM25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	64	64	algorithm	A08-O0671
+rank-fusion	RRF	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	64	64	algorithm_family	A08-O0672
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	64	64	storage_algorithm	A08-O0673
+lsm-compaction	LSM	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	65	65	storage_algorithm	A08-O0674
+fst-dictionary	fst	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	65	65	storage_algorithm	A08-O0675
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	65	65	protocol	A08-O0676
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	74	74	storage_algorithm	A08-O0677
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	75	75	storage_algorithm	A08-O0678
+wand-pruning	block max	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	76	76	algorithm_family	A08-O0679
+lsm-compaction	sstable	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	78	78	storage_algorithm	A08-O0680
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	78	78	storage_algorithm	A08-O0681
+fst-dictionary	term dictionary	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	90	90	storage_algorithm	A08-O0682
+fst-dictionary	term dictionary	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	91	91	storage_algorithm	A08-O0683
+bm25-scoring	BM25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	95	95	algorithm	A08-O0684
+wand-pruning	WAND	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	96	96	algorithm_family	A08-O0685
+bm25-scoring	BM25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	108	108	algorithm	A08-O0686
+bm25-scoring	BM25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	116	116	algorithm	A08-O0687
+bolt-protocol	bolt	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	117	117	protocol	A08-O0688
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	125	125	storage_algorithm	A08-O0689
+wand-pruning	WAND	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	126	126	algorithm_family	A08-O0690
+fst-dictionary	fst	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	127	127	storage_algorithm	A08-O0691
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	128	128	storage_algorithm	A08-O0692
+bm25-scoring	bm25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	129	129	algorithm	A08-O0693
+lsm-compaction	sstable	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	130	130	storage_algorithm	A08-O0694
+fst-dictionary	FST	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	130	130	storage_algorithm	A08-O0695
+bm25-scoring	bm25	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	138	138	algorithm	A08-O0696
+wand-pruning	wand	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	138	138	algorithm_family	A08-O0697
+posting-compression	posting	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	138	138	storage_algorithm	A08-O0698
+fst-dictionary	fst	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	139	139	storage_algorithm	A08-O0699
+csr-build	CSR	docs_PRD06/graph-learning/full-text-search-pattern-synthesis-mermaid.md	141	141	storage_algorithm	A08-O0700
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	13	13	storage_algorithm	A08-O0701
+frontier-push-pull	direction-optim	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	14	14	algorithm_family	A08-O0702
+semiring-traversal	semiring	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	15	15	algorithm_family	A08-O0703
+spmv-spgemm	SpMV	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	15	15	algorithm_family	A08-O0704
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	23	23	storage_algorithm	A08-O0705
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	23	23	algorithm_family	A08-O0706
+pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	24	24	algorithm	A08-O0707
+connected-components	WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	25	25	algorithm_family	A08-O0708
+hook-shortcut	hook	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	25	25	algorithm	A08-O0709
+bfs	BFS	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	26	26	algorithm	A08-O0710
+delta-stepping	delta bucket	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	26	26	algorithm	A08-O0711
+semiring-traversal	semiring	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	27	27	algorithm_family	A08-O0712
+fastsv	FastSV	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	28	28	algorithm	A08-O0713
+semiring-traversal	MIN_PLUS	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	30	30	algorithm_family	A08-O0714
+pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	38	38	algorithm	A08-O0715
+bfs	BFS	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	39	39	algorithm	A08-O0716
+delta-stepping	delta bucket	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	40	40	algorithm	A08-O0717
+connected-components	WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	41	41	algorithm_family	A08-O0718
+hook-shortcut	hook	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	41	41	algorithm	A08-O0719
+roaring-idsets	bitmap	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	50	50	storage_algorithm	A08-O0720
+semiring-traversal	semiring	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	58	58	algorithm_family	A08-O0721
+hook-shortcut	hook	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	69	69	algorithm	A08-O0722
+delta-stepping	delta bucket	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	70	70	algorithm	A08-O0723
+lsm-compaction	compaction	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	72	72	storage_algorithm	A08-O0724
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	79	79	storage_algorithm	A08-O0725
+bfs	BFS	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	80	80	algorithm	A08-O0726
+connected-components	WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	81	81	algorithm_family	A08-O0727
+afforest	Afforest	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	81	81	algorithm	A08-O0728
+pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	82	82	algorithm	A08-O0729
+connected-components	WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	91	91	algorithm_family	A08-O0730
+pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	91	91	algorithm	A08-O0731
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	91	91	storage_algorithm	A08-O0732
+hnsw-search	HNSW	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	92	92	algorithm	A08-O0733
+tolerant-validation	partition equality	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	94	94	verification_method	A08-O0734
+connected-components	WCC	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	101	101	algorithm_family	A08-O0735
+pagerank	PageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	102	102	algorithm	A08-O0736
+out-of-core-graph-processing	out-of-core	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	111	111	storage_algorithm	A08-O0737
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	112	112	algorithm_family	A08-O0738
+louvain	Louvain	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	113	113	algorithm	A08-O0739
+leiden	Leiden	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	113	113	algorithm	A08-O0740
+k-core	k-core	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	113	113	algorithm	A08-O0741
+hashgnn	GNN	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	114	114	algorithm_family	A08-O0742
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	114	114	storage_algorithm	A08-O0743
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	123	123	storage_algorithm	A08-O0744
+connected-components	wcc	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	125	125	algorithm_family	A08-O0745
+pagerank	pageRank	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	125	125	algorithm	A08-O0746
+hook-shortcut	hook	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	128	128	algorithm	A08-O0747
+bfs	bfs	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	139	139	algorithm	A08-O0748
+csr-build	CSR	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	140	140	storage_algorithm	A08-O0749
+semiring-traversal	semiring	docs_PRD06/graph-learning/graph-analytics-pattern-synthesis-mermaid.md	143	143	algorithm_family	A08-O0750
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	1	1	algorithm	A08-O0751
+hnsw-search	hnsw	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	6	6	algorithm	A08-O0752
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	12	12	algorithm	A08-O0753
+knn-search	k nearest	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	13	13	algorithm_family	A08-O0754
+csr-build	CSR	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	54	54	storage_algorithm	A08-O0755
+knn-search	kNN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	80	80	algorithm_family	A08-O0756
+knn-search	kNN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	96	96	algorithm_family	A08-O0757
+vamana-ann	DiskANN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	109	109	algorithm_family	A08-O0758
+vector-quantization	PQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	109	109	storage_algorithm	A08-O0759
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	132	132	algorithm	A08-O0760
+ivf-probe	IVF	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	132	132	algorithm_family	A08-O0761
+vector-quantization	PQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	132	132	storage_algorithm	A08-O0762
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	133	133	algorithm	A08-O0763
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	139	139	algorithm	A08-O0764
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	141	141	algorithm	A08-O0765
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	143	143	algorithm	A08-O0766
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	156	156	algorithm	A08-O0767
+ivf-probe	IVF	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	156	156	algorithm_family	A08-O0768
+vector-quantization	PQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	156	156	storage_algorithm	A08-O0769
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	157	157	algorithm	A08-O0770
+vamana-ann	DiskANN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	157	157	algorithm_family	A08-O0771
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	161	161	algorithm	A08-O0772
+csr-build	csr	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	162	162	storage_algorithm	A08-O0773
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	163	163	algorithm	A08-O0774
+vector-quantization	PQ	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	165	165	storage_algorithm	A08-O0775
+vamana-ann	DiskANN	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	166	166	algorithm_family	A08-O0776
+differential-validation	Differential testing	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	169	169	verification_method	A08-O0777
+recall-validation	recall@k	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	169	169	verification_method	A08-O0778
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	171	171	algorithm_family	A08-O0779
+hnsw-search	HNSW	docs_PRD06/graph-learning/hnsw-layered-greedy-ascii.md	171	171	algorithm	A08-O0780
+incremental-delta-iteration	Incremental Delta	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	1	1	algorithm_family	A08-O0781
+incremental-delta-iteration	semi-naive	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	7	7	algorithm_family	A08-O0782
+bfs	BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	11	11	algorithm	A08-O0783
+incremental-delta-iteration	Differential dataflow	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	12	12	algorithm_family	A08-O0784
+lsm-compaction	LSM	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	30	30	storage_algorithm	A08-O0785
+incremental-delta-iteration	Semi-naive	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	53	53	algorithm_family	A08-O0786
+bfs	BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	68	68	algorithm	A08-O0787
+bfs	bfs	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	72	72	algorithm	A08-O0788
+bfs	bfs	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	78	78	algorithm	A08-O0789
+bfs	BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	80	80	algorithm	A08-O0790
+bfs	BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	81	81	algorithm	A08-O0791
+lsm-compaction	compaction	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	110	110	storage_algorithm	A08-O0792
+superstep-bsp	Pregel	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	117	117	algorithm_family	A08-O0793
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	117	117	algorithm_family	A08-O0794
+pagerank	PageRank	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	118	118	algorithm	A08-O0795
+superstep-bsp	superstep	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	118	118	algorithm_family	A08-O0796
+bfs	BFS	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	123	123	algorithm	A08-O0797
+connected-components	WCC	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	123	123	algorithm_family	A08-O0798
+pagerank	PageRank	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	123	123	algorithm	A08-O0799
+bfs	bfs	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	135	135	algorithm	A08-O0800
+incremental-delta-iteration	semi-naive	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	136	136	algorithm_family	A08-O0801
+frontier-push-pull	push-pull	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	140	140	algorithm_family	A08-O0802
+lsm-compaction	lsm	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	143	143	storage_algorithm	A08-O0803
+lsm-compaction	LSM	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	144	144	storage_algorithm	A08-O0804
+history-checking	Jepsen	docs_PRD06/graph-learning/incremental-delta-iteration-ascii.md	152	152	verification_method	A08-O0805
+metamorphic-testing	Metamorphic	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	1	1	verification_method	A08-O0806
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	6	6	verification_method	A08-O0807
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	7	7	verification_method	A08-O0808
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	7	7	verification_method	A08-O0809
+differential-validation	Differential testing	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	11	11	verification_method	A08-O0810
+metamorphic-testing	METAMORPHIC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	14	14	verification_method	A08-O0811
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	18	18	verification_method	A08-O0812
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	22	22	verification_method	A08-O0813
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	38	38	verification_method	A08-O0814
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	42	42	verification_method	A08-O0815
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	45	45	verification_method	A08-O0816
+differential-validation	differential testing	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	54	54	verification_method	A08-O0817
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	59	59	verification_method	A08-O0818
+history-checking	jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	62	62	verification_method	A08-O0819
+history-checking	Knossos	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	68	68	verification_method	A08-O0820
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	78	78	verification_method	A08-O0821
+history-checking	Knossos	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	102	102	verification_method	A08-O0822
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	106	106	verification_method	A08-O0823
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	114	114	verification_method	A08-O0824
+history-checking	history checking	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	117	117	verification_method	A08-O0825
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	125	125	verification_method	A08-O0826
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	131	131	verification_method	A08-O0827
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	143	143	verification_method	A08-O0828
+history-checking	jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	144	144	verification_method	A08-O0829
+tolerant-validation	tolerant	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	148	148	verification_method	A08-O0830
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	151	151	verification_method	A08-O0831
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	152	152	verification_method	A08-O0832
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	152	152	verification_method	A08-O0833
+metamorphic-testing	TLP	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	154	154	verification_method	A08-O0834
+metamorphic-testing	NoREC	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	155	155	verification_method	A08-O0835
+bolt-protocol	Bolt	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	156	156	protocol	A08-O0836
+history-checking	Jepsen	docs_PRD06/graph-learning/metamorphic-oracle-testing-ascii.md	156	156	verification_method	A08-O0837
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	1	1	protocol	A08-O0838
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	6	6	protocol	A08-O0839
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	11	11	protocol	A08-O0840
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	31	31	protocol	A08-O0841
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	38	38	protocol	A08-O0842
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	39	39	protocol	A08-O0843
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	59	59	protocol	A08-O0844
+wal-group-commit	wal	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	63	63	storage_algorithm	A08-O0845
+superstep-bsp	barrier	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	73	73	algorithm_family	A08-O0846
+wal-group-commit	group commit	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	83	83	storage_algorithm	A08-O0847
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	132	132	protocol	A08-O0848
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	135	135	protocol	A08-O0849
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	140	140	protocol	A08-O0850
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	148	148	protocol	A08-O0851
+history-checking	elle	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	148	148	verification_method	A08-O0852
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	151	151	protocol	A08-O0853
+mvcc-snapshot	mvcc	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	152	152	protocol	A08-O0854
+wal-group-commit	wal	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	156	156	storage_algorithm	A08-O0855
+cow-tree-snapshot	cow	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	157	157	storage_algorithm	A08-O0856
+cow-tree-snapshot	copy-on-write	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	158	158	storage_algorithm	A08-O0857
+aries-recovery	ARIES	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	159	159	storage_algorithm	A08-O0858
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	161	161	algorithm_family	A08-O0859
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/mvcc-snapshot-visibility-ascii.md	162	162	protocol	A08-O0860
+packstream-encoding	PackStream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	1	1	protocol	A08-O0861
+packstream-encoding	packstream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	6	6	protocol	A08-O0862
+bolt-protocol	Bolt	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	7	7	protocol	A08-O0863
+packstream-encoding	packstream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	26	26	protocol	A08-O0864
+bolt-protocol	Bolt	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	45	45	protocol	A08-O0865
+csr-build	CSR	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	86	86	storage_algorithm	A08-O0866
+pull-operator-pipeline	pull pipeline	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	86	86	protocol	A08-O0867
+packstream-encoding	PackStream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	87	87	protocol	A08-O0868
+stub-conformance	testkit	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	100	100	verification_method	A08-O0869
+packstream-encoding	PackStream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	109	109	protocol	A08-O0870
+stub-conformance	testkit	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	126	126	verification_method	A08-O0871
+packstream-encoding	packstream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	133	133	protocol	A08-O0872
+bolt-protocol	Bolt	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	134	134	protocol	A08-O0873
+packstream-encoding	packstream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	136	136	protocol	A08-O0874
+fst-dictionary	fst	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	142	142	storage_algorithm	A08-O0875
+record-chain-adjacency	record-chain	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	142	142	storage_algorithm	A08-O0876
+posting-compression	posting	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	143	143	storage_algorithm	A08-O0877
+packstream-encoding	PackStream	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	144	144	protocol	A08-O0878
+stub-conformance	testkit	docs_PRD06/graph-learning/packstream-wire-encoding-mermaid.md	149	149	verification_method	A08-O0879
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	1	1	algorithm	A08-O0880
+pagerank	pagerank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	6	6	algorithm	A08-O0881
+csr-build	CSR	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	14	14	storage_algorithm	A08-O0882
+label-propagation	label propagation	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	22	22	algorithm	A08-O0883
+eigenvector-family	Katz	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	22	22	algorithm_family	A08-O0884
+hashgnn	GNN	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	23	23	algorithm_family	A08-O0885
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	30	30	algorithm	A08-O0886
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	39	39	algorithm	A08-O0887
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	40	40	algorithm	A08-O0888
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	41	41	algorithm	A08-O0889
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	42	42	algorithm	A08-O0890
+csr-build	CSR	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	68	68	storage_algorithm	A08-O0891
+out-of-core-graph-processing	out-of-core	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	69	69	storage_algorithm	A08-O0892
+pagerank	pageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	77	77	algorithm	A08-O0893
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	79	79	algorithm	A08-O0894
+hashgnn	GNN	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	80	80	algorithm_family	A08-O0895
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	98	98	algorithm	A08-O0896
+label-propagation	label propagation	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	99	99	algorithm	A08-O0897
+a-star	a*	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	100	100	algorithm	A08-O0898
+centrality-family	centrality	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	100	100	algorithm_family	A08-O0899
+eigenvector-family	Katz	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	100	100	algorithm_family	A08-O0900
+hashgnn	GNN	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	101	101	algorithm_family	A08-O0901
+csr-build	CSR	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	108	108	storage_algorithm	A08-O0902
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	117	117	algorithm_family	A08-O0903
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	124	124	algorithm	A08-O0904
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	125	125	algorithm	A08-O0905
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	126	126	algorithm	A08-O0906
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	127	127	algorithm	A08-O0907
+centrality-family	centrality	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	127	127	algorithm_family	A08-O0908
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	128	128	algorithm	A08-O0909
+semiring-traversal	semiring	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	133	133	algorithm_family	A08-O0910
+csr-build	csr	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	134	134	storage_algorithm	A08-O0911
+out-of-core-graph-processing	out-of-core	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	135	135	storage_algorithm	A08-O0912
+delta-stepping	delta-stepping	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	136	136	algorithm	A08-O0913
+cow-tree-snapshot	root flip	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	139	139	storage_algorithm	A08-O0914
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	145	145	algorithm	A08-O0915
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	146	146	algorithm	A08-O0916
+incremental-delta-iteration	differential dataflow	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	146	146	algorithm_family	A08-O0917
+pagerank	PageRank	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	148	148	algorithm	A08-O0918
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/pagerank-iteration-convergence-mermaid.md	148	148	algorithm_family	A08-O0919
+lsm-compaction	LSM	docs_PRD06/graph-learning/pattern-index.md	8	8	storage_algorithm	A08-O0920
+wal-group-commit	WAL	docs_PRD06/graph-learning/pattern-index.md	9	9	storage_algorithm	A08-O0921
+roaring-idsets	Roaring	docs_PRD06/graph-learning/pattern-index.md	10	10	storage_algorithm	A08-O0922
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/pattern-index.md	11	11	protocol	A08-O0923
+cow-tree-snapshot	COW	docs_PRD06/graph-learning/pattern-index.md	12	12	storage_algorithm	A08-O0924
+hook-shortcut	shortcut	docs_PRD06/graph-learning/pattern-index.md	13	13	algorithm	A08-O0925
+lsm-compaction	lsm	docs_PRD06/graph-learning/pattern-index.md	13	13	storage_algorithm	A08-O0926
+bloom-filter	Bloom	docs_PRD06/graph-learning/pattern-index.md	13	13	storage_algorithm	A08-O0927
+csr-build	CSR	docs_PRD06/graph-learning/pattern-index.md	14	14	storage_algorithm	A08-O0928
+frontier-push-pull	push/pull	docs_PRD06/graph-learning/pattern-index.md	15	15	algorithm_family	A08-O0929
+semiring-traversal	Semiring	docs_PRD06/graph-learning/pattern-index.md	16	16	algorithm_family	A08-O0930
+hook-shortcut	hooking	docs_PRD06/graph-learning/pattern-index.md	17	17	algorithm	A08-O0931
+pagerank	PageRank	docs_PRD06/graph-learning/pattern-index.md	18	18	algorithm	A08-O0932
+delta-stepping	Delta-stepping	docs_PRD06/graph-learning/pattern-index.md	19	19	algorithm	A08-O0933
+hnsw-search	HNSW	docs_PRD06/graph-learning/pattern-index.md	20	20	algorithm	A08-O0934
+vector-quantization	Product quantization	docs_PRD06/graph-learning/pattern-index.md	21	21	storage_algorithm	A08-O0935
+vamana-ann	DiskANN	docs_PRD06/graph-learning/pattern-index.md	22	22	algorithm_family	A08-O0936
+ivf-probe	IVF	docs_PRD06/graph-learning/pattern-index.md	23	23	algorithm_family	A08-O0937
+vamana-ann	DiskANN	docs_PRD06/graph-learning/pattern-index.md	24	24	algorithm_family	A08-O0938
+posting-compression	Posting	docs_PRD06/graph-learning/pattern-index.md	25	25	storage_algorithm	A08-O0939
+bm25-scoring	BM25	docs_PRD06/graph-learning/pattern-index.md	26	26	algorithm	A08-O0940
+wand-pruning	WAND	docs_PRD06/graph-learning/pattern-index.md	26	26	algorithm_family	A08-O0941
+fst-dictionary	FST	docs_PRD06/graph-learning/pattern-index.md	27	27	storage_algorithm	A08-O0942
+record-chain-adjacency	Record chain	docs_PRD06/graph-learning/pattern-index.md	29	29	storage_algorithm	A08-O0943
+pull-operator-pipeline	Pull operator	docs_PRD06/graph-learning/pattern-index.md	30	30	protocol	A08-O0944
+triple-permutation-indexing	Triple permutation	docs_PRD06/graph-learning/pattern-index.md	31	31	storage_algorithm	A08-O0945
+packstream-encoding	PackStream	docs_PRD06/graph-learning/pattern-index.md	33	33	protocol	A08-O0946
+stub-conformance	testkit	docs_PRD06/graph-learning/pattern-index.md	34	34	verification_method	A08-O0947
+stub-conformance	testkit	docs_PRD06/graph-learning/pattern-index.md	35	35	verification_method	A08-O0948
+incremental-delta-iteration	Incremental delta	docs_PRD06/graph-learning/pattern-index.md	36	36	algorithm_family	A08-O0949
+superstep-bsp	Superstep	docs_PRD06/graph-learning/pattern-index.md	37	37	algorithm_family	A08-O0950
+metamorphic-testing	Metamorphic	docs_PRD06/graph-learning/pattern-index.md	39	39	verification_method	A08-O0951
+history-checking	jepsen	docs_PRD06/graph-learning/pattern-index.md	39	39	verification_method	A08-O0952
+tolerant-validation	Tolerant	docs_PRD06/graph-learning/pattern-index.md	40	40	verification_method	A08-O0953
+history-checking	jepsen	docs_PRD06/graph-learning/pattern-index.md	41	41	verification_method	A08-O0954
+fst-dictionary	FST	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	42	42	storage_algorithm	A08-O0955
+posting-compression	posting	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	42	42	storage_algorithm	A08-O0956
+superstep-bsp	superstep	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	73	73	algorithm_family	A08-O0957
+superstep-bsp	Pregel	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	74	74	algorithm_family	A08-O0958
+superstep-bsp	BSP	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	80	80	algorithm_family	A08-O0959
+superstep-bsp	BSP	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	92	92	algorithm_family	A08-O0960
+history-checking	elle	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	94	94	verification_method	A08-O0961
+metamorphic-testing	TLP	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	120	120	verification_method	A08-O0962
+metamorphic-testing	TLP	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	130	130	verification_method	A08-O0963
+graph-embeddings	embedding	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	161	161	algorithm_family	A08-O0964
+metamorphic-testing	TLP	docs_PRD06/graph-learning/pmf-analysis-apache-ecosystem-lens.md	220	220	verification_method	A08-O0965
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	1	1	storage_algorithm	A08-O0966
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	6	6	storage_algorithm	A08-O0967
+posting-compression	skip data	docs_PRD06/graph-learning/posting-block-compression-ascii.md	7	7	storage_algorithm	A08-O0968
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	11	11	storage_algorithm	A08-O0969
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-ascii.md	32	32	storage_algorithm	A08-O0970
+csr-build	CSR	docs_PRD06/graph-learning/posting-block-compression-ascii.md	32	32	storage_algorithm	A08-O0971
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	37	37	storage_algorithm	A08-O0972
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	45	45	storage_algorithm	A08-O0973
+posting-compression	Skip data	docs_PRD06/graph-learning/posting-block-compression-ascii.md	49	49	storage_algorithm	A08-O0974
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	52	52	storage_algorithm	A08-O0975
+posting-compression	docID	docs_PRD06/graph-learning/posting-block-compression-ascii.md	56	56	storage_algorithm	A08-O0976
+lsm-compaction	SSTable	docs_PRD06/graph-learning/posting-block-compression-ascii.md	71	71	storage_algorithm	A08-O0977
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	77	77	storage_algorithm	A08-O0978
+bm25-scoring	BM25	docs_PRD06/graph-learning/posting-block-compression-ascii.md	88	88	algorithm	A08-O0979
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	88	88	storage_algorithm	A08-O0980
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	95	95	storage_algorithm	A08-O0981
+posting-compression	skip data	docs_PRD06/graph-learning/posting-block-compression-ascii.md	98	98	storage_algorithm	A08-O0982
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	101	101	storage_algorithm	A08-O0983
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	107	107	storage_algorithm	A08-O0984
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/posting-block-compression-ascii.md	114	114	algorithm_family	A08-O0985
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	114	114	storage_algorithm	A08-O0986
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-ascii.md	126	126	storage_algorithm	A08-O0987
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	129	129	storage_algorithm	A08-O0988
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	137	137	storage_algorithm	A08-O0989
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	139	139	storage_algorithm	A08-O0990
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	140	140	storage_algorithm	A08-O0991
+csr-build	csr	docs_PRD06/graph-learning/posting-block-compression-ascii.md	145	145	storage_algorithm	A08-O0992
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-ascii.md	146	146	storage_algorithm	A08-O0993
+lsm-compaction	lsm	docs_PRD06/graph-learning/posting-block-compression-ascii.md	147	147	storage_algorithm	A08-O0994
+ivf-probe	ivf	docs_PRD06/graph-learning/posting-block-compression-ascii.md	148	148	algorithm_family	A08-O0995
+lsm-compaction	LSM	docs_PRD06/graph-learning/posting-block-compression-ascii.md	149	149	storage_algorithm	A08-O0996
+bm25-scoring	BM25	docs_PRD06/graph-learning/posting-block-compression-ascii.md	150	150	algorithm	A08-O0997
+wand-pruning	WAND	docs_PRD06/graph-learning/posting-block-compression-ascii.md	150	150	algorithm_family	A08-O0998
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-ascii.md	151	151	storage_algorithm	A08-O0999
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/posting-block-compression-ascii.md	157	157	algorithm_family	A08-O1000
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	1	1	storage_algorithm	A08-O1001
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	6	6	storage_algorithm	A08-O1002
+posting-compression	skip data	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	7	7	storage_algorithm	A08-O1003
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	13	13	storage_algorithm	A08-O1004
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	24	24	storage_algorithm	A08-O1005
+csr-build	CSR	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	24	24	storage_algorithm	A08-O1006
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	27	27	storage_algorithm	A08-O1007
+posting-compression	Skip data	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	30	30	storage_algorithm	A08-O1008
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	34	34	storage_algorithm	A08-O1009
+posting-compression	docID	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	35	35	storage_algorithm	A08-O1010
+lsm-compaction	SSTable	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	39	39	storage_algorithm	A08-O1011
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	62	62	storage_algorithm	A08-O1012
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	63	63	storage_algorithm	A08-O1013
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	65	65	storage_algorithm	A08-O1014
+bm25-scoring	BM25	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	66	66	algorithm	A08-O1015
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	69	69	storage_algorithm	A08-O1016
+posting-compression	skip data	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	75	75	storage_algorithm	A08-O1017
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	76	76	storage_algorithm	A08-O1018
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	83	83	storage_algorithm	A08-O1019
+ivf-probe	IVF	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	86	86	algorithm_family	A08-O1020
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	86	86	storage_algorithm	A08-O1021
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	87	87	storage_algorithm	A08-O1022
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	88	88	storage_algorithm	A08-O1023
+csr-build	CSR	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	104	104	storage_algorithm	A08-O1024
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	105	105	storage_algorithm	A08-O1025
+lsm-compaction	LSM	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	106	106	storage_algorithm	A08-O1026
+ivf-probe	IVF	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	107	107	algorithm_family	A08-O1027
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	116	116	storage_algorithm	A08-O1028
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	118	118	storage_algorithm	A08-O1029
+lsm-compaction	LSM	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	121	121	storage_algorithm	A08-O1030
+roaring-idsets	bitmap	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	121	121	storage_algorithm	A08-O1031
+roaring-idsets	roaring	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	127	127	storage_algorithm	A08-O1032
+posting-compression	Posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	134	134	storage_algorithm	A08-O1033
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	136	136	storage_algorithm	A08-O1034
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	137	137	storage_algorithm	A08-O1035
+lsm-compaction	LSM	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	143	143	storage_algorithm	A08-O1036
+bm25-scoring	BM25	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	144	144	algorithm	A08-O1037
+wand-pruning	WAND	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	144	144	algorithm_family	A08-O1038
+bm25-scoring	BM25	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	145	145	algorithm	A08-O1039
+delta-rle-compression	Delta compression	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	145	145	storage_algorithm	A08-O1040
+wand-pruning	WAND	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	146	146	algorithm_family	A08-O1041
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	147	147	algorithm_family	A08-O1042
+fst-dictionary	Term dictionary	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	150	150	storage_algorithm	A08-O1043
+posting-compression	posting	docs_PRD06/graph-learning/posting-block-compression-mermaid.md	150	150	storage_algorithm	A08-O1044
+record-chain-adjacency	Record Chain	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	1	1	storage_algorithm	A08-O1045
+record-chain-adjacency	record-chain	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	6	6	storage_algorithm	A08-O1046
+record-chain-adjacency	record chains	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	7	7	storage_algorithm	A08-O1047
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	7	7	storage_algorithm	A08-O1048
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	16	16	storage_algorithm	A08-O1049
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	31	31	storage_algorithm	A08-O1050
+lsm-compaction	LSM	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	40	40	storage_algorithm	A08-O1051
+degree-centrality	degree	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	47	47	algorithm	A08-O1052
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	56	56	storage_algorithm	A08-O1053
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	64	64	storage_algorithm	A08-O1054
+degree-centrality	degree	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	68	68	algorithm	A08-O1055
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	74	74	storage_algorithm	A08-O1056
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	87	87	storage_algorithm	A08-O1057
+lsm-compaction	LSM	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	88	88	storage_algorithm	A08-O1058
+posting-compression	posting	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	88	88	storage_algorithm	A08-O1059
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	89	89	storage_algorithm	A08-O1060
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	98	98	storage_algorithm	A08-O1061
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	106	106	storage_algorithm	A08-O1062
+lsm-compaction	LSM	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	107	107	storage_algorithm	A08-O1063
+posting-compression	posting	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	108	108	storage_algorithm	A08-O1064
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	109	109	storage_algorithm	A08-O1065
+mvcc-snapshot	MVCC	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	109	109	protocol	A08-O1066
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	110	110	storage_algorithm	A08-O1067
+lsm-compaction	SSTable	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	125	125	storage_algorithm	A08-O1068
+bloom-filter	bloom	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	125	125	storage_algorithm	A08-O1069
+posting-compression	posting	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	125	125	storage_algorithm	A08-O1070
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	145	145	algorithm_family	A08-O1071
+csr-build	CSR	docs_PRD06/graph-learning/record-chain-adjacency-mermaid.md	147	147	storage_algorithm	A08-O1072
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	1	1	storage_algorithm	A08-O1073
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	6	6	storage_algorithm	A08-O1074
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	17	17	storage_algorithm	A08-O1075
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	18	18	storage_algorithm	A08-O1076
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	22	22	storage_algorithm	A08-O1077
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	35	35	storage_algorithm	A08-O1078
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	36	36	storage_algorithm	A08-O1079
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	40	40	storage_algorithm	A08-O1080
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	45	45	storage_algorithm	A08-O1081
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	47	47	storage_algorithm	A08-O1082
+ordered-search-merge	binary search	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	52	52	algorithm_family	A08-O1083
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	56	56	storage_algorithm	A08-O1084
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	57	57	storage_algorithm	A08-O1085
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	58	58	storage_algorithm	A08-O1086
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	60	60	storage_algorithm	A08-O1087
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	62	62	storage_algorithm	A08-O1088
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	63	63	storage_algorithm	A08-O1089
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	75	75	storage_algorithm	A08-O1090
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	76	76	storage_algorithm	A08-O1091
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	84	84	storage_algorithm	A08-O1092
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	98	98	storage_algorithm	A08-O1093
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	102	102	storage_algorithm	A08-O1094
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	112	112	storage_algorithm	A08-O1095
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	117	117	storage_algorithm	A08-O1096
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	122	122	storage_algorithm	A08-O1097
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	127	127	storage_algorithm	A08-O1098
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	128	128	storage_algorithm	A08-O1099
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	130	130	storage_algorithm	A08-O1100
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	130	130	algorithm_family	A08-O1101
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	132	132	storage_algorithm	A08-O1102
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	133	133	storage_algorithm	A08-O1103
+csr-build	CSR	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	133	133	storage_algorithm	A08-O1104
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	134	134	storage_algorithm	A08-O1105
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	141	141	storage_algorithm	A08-O1106
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	142	142	storage_algorithm	A08-O1107
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	143	143	storage_algorithm	A08-O1108
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	144	144	storage_algorithm	A08-O1109
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	145	145	storage_algorithm	A08-O1110
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	146	146	storage_algorithm	A08-O1111
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	147	147	storage_algorithm	A08-O1112
+posting-compression	posting	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	151	151	storage_algorithm	A08-O1113
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	151	151	storage_algorithm	A08-O1114
+csr-build	CSR	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	152	152	storage_algorithm	A08-O1115
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	157	157	algorithm_family	A08-O1116
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-ascii.md	157	157	storage_algorithm	A08-O1117
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	1	1	storage_algorithm	A08-O1118
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	6	6	storage_algorithm	A08-O1119
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	14	14	storage_algorithm	A08-O1120
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	15	15	storage_algorithm	A08-O1121
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	17	17	storage_algorithm	A08-O1122
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	27	27	storage_algorithm	A08-O1123
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	29	29	storage_algorithm	A08-O1124
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	33	33	storage_algorithm	A08-O1125
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	35	35	storage_algorithm	A08-O1126
+ordered-search-merge	binary search	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	42	42	algorithm_family	A08-O1127
+roaring-idsets	Bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	47	47	storage_algorithm	A08-O1128
+roaring-idsets	Bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	48	48	storage_algorithm	A08-O1129
+roaring-idsets	Bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	49	49	storage_algorithm	A08-O1130
+roaring-idsets	Bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	50	50	storage_algorithm	A08-O1131
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	60	60	storage_algorithm	A08-O1132
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	61	61	storage_algorithm	A08-O1133
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	65	65	storage_algorithm	A08-O1134
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	79	79	storage_algorithm	A08-O1135
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	82	82	storage_algorithm	A08-O1136
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	91	91	storage_algorithm	A08-O1137
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	97	97	storage_algorithm	A08-O1138
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	105	105	storage_algorithm	A08-O1139
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	111	111	storage_algorithm	A08-O1140
+semiring-traversal	GraphBLAS	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	112	112	algorithm_family	A08-O1141
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	113	113	storage_algorithm	A08-O1142
+csr-build	CSR	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	113	113	storage_algorithm	A08-O1143
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	119	119	storage_algorithm	A08-O1144
+roaring-idsets	BITMAP	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	121	121	storage_algorithm	A08-O1145
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	129	129	storage_algorithm	A08-O1146
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	134	134	storage_algorithm	A08-O1147
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	142	142	storage_algorithm	A08-O1148
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	143	143	storage_algorithm	A08-O1149
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	144	144	storage_algorithm	A08-O1150
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	145	145	storage_algorithm	A08-O1151
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	146	146	storage_algorithm	A08-O1152
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	147	147	storage_algorithm	A08-O1153
+roaring-idsets	roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	148	148	storage_algorithm	A08-O1154
+posting-compression	posting	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	152	152	storage_algorithm	A08-O1155
+roaring-idsets	Roaring	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	152	152	storage_algorithm	A08-O1156
+csr-build	CSR	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	153	153	storage_algorithm	A08-O1157
+jaccard-overlap-cosine	overlap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	154	154	algorithm_family	A08-O1158
+roaring-idsets	bitmap	docs_PRD06/graph-learning/roaring-bitmap-idsets-mermaid.md	154	154	storage_algorithm	A08-O1159
+stub-conformance	Stub Script	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	1	1	verification_method	A08-O1160
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	7	7	protocol	A08-O1161
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	7	7	verification_method	A08-O1162
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	14	14	verification_method	A08-O1163
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	16	16	verification_method	A08-O1164
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	19	19	protocol	A08-O1165
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	26	26	protocol	A08-O1166
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	28	28	verification_method	A08-O1167
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	29	29	verification_method	A08-O1168
+stub-conformance	stub script	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	33	33	verification_method	A08-O1169
+bolt-protocol	BOLT	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	38	38	protocol	A08-O1170
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	51	51	verification_method	A08-O1171
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	56	56	protocol	A08-O1172
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	67	67	verification_method	A08-O1173
+stub-conformance	stub script	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	79	79	verification_method	A08-O1174
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	93	93	protocol	A08-O1175
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	93	93	verification_method	A08-O1176
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	94	94	verification_method	A08-O1177
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	95	95	verification_method	A08-O1178
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	102	102	verification_method	A08-O1179
+metamorphic-testing	metamorphic	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	103	103	verification_method	A08-O1180
+history-checking	Jepsen	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	104	104	verification_method	A08-O1181
+packstream-encoding	PackStream	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	114	114	protocol	A08-O1182
+stub-conformance	TCK	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	116	116	verification_method	A08-O1183
+history-checking	Jepsen	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	117	117	verification_method	A08-O1184
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	119	119	verification_method	A08-O1185
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	126	126	verification_method	A08-O1186
+bolt-protocol	BOLT	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	127	127	protocol	A08-O1187
+fst-dictionary	FST	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	130	130	storage_algorithm	A08-O1188
+stub-conformance	boltstub	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	137	137	verification_method	A08-O1189
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	138	138	verification_method	A08-O1190
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	139	139	verification_method	A08-O1191
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	140	140	verification_method	A08-O1192
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	141	141	verification_method	A08-O1193
+packstream-encoding	packstream	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	145	145	protocol	A08-O1194
+stub-conformance	testkit	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	147	147	verification_method	A08-O1195
+bolt-protocol	Bolt	docs_PRD06/graph-learning/stub-script-conformance-mermaid.md	149	149	protocol	A08-O1196
+superstep-bsp	Superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	1	1	algorithm_family	A08-O1197
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	6	6	algorithm_family	A08-O1198
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	7	7	algorithm_family	A08-O1199
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	7	7	algorithm_family	A08-O1200
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	18	18	algorithm_family	A08-O1201
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	22	22	algorithm_family	A08-O1202
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	37	37	algorithm_family	A08-O1203
+graph-partitioning	Vertex-cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	60	60	algorithm_family	A08-O1204
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	72	72	algorithm_family	A08-O1205
+degree-centrality	degree	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	84	84	algorithm	A08-O1206
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	87	87	algorithm_family	A08-O1207
+connected-components	connected components	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	90	90	algorithm_family	A08-O1208
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	90	90	algorithm_family	A08-O1209
+label-propagation	label propagation	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	93	93	algorithm	A08-O1210
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	93	93	algorithm_family	A08-O1211
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	102	102	algorithm_family	A08-O1212
+superstep-bsp	barrier	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	103	103	algorithm_family	A08-O1213
+hook-shortcut	hooking	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	104	104	algorithm	A08-O1214
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	112	112	algorithm_family	A08-O1215
+superstep-bsp	barrier	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	114	114	algorithm_family	A08-O1216
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	131	131	algorithm_family	A08-O1217
+superstep-bsp	pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	132	132	algorithm_family	A08-O1218
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	135	135	algorithm_family	A08-O1219
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	145	145	algorithm_family	A08-O1220
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	146	146	algorithm_family	A08-O1221
+superstep-bsp	barrier	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	152	152	algorithm_family	A08-O1222
+hook-shortcut	hooking	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	153	153	algorithm	A08-O1223
+superstep-bsp	Pregel	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	155	155	algorithm_family	A08-O1224
+graph-partitioning	vertex-cut	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	157	157	algorithm_family	A08-O1225
+superstep-bsp	superstep	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	158	158	algorithm_family	A08-O1226
+history-checking	Jepsen	docs_PRD06/graph-learning/superstep-message-convergence-ascii.md	162	162	verification_method	A08-O1227

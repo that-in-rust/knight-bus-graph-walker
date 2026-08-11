@@ -1,7 +1,7 @@
 # Markdown Repository Value Index
 
-Generated: 2026-08-10
-Scope: 404 source Markdown files discovered with `rg --files -g '*.md'`, plus this generated index (405 indexed entries total).
+Generated: 2026-08-11
+Scope: 406 source Markdown files discovered with `rg --files -g '*.md'`, plus this generated index (407 indexed entries total).
 Method: the first 15 literal lines of every source file were read. The opening title/signal, directory role, revision status, and relationship to the current A007 north star were used to classify value. After generation, the first 15 lines of this index were also read and verified separately.
 
 ## How To Use This Index
@@ -9,10 +9,10 @@ Method: the first 15 literal lines of every source file were read. The opening t
 | Tier | Meaning | Count |
 |---|---|---:|
 | P0 | Governing or current product/architecture truth | 11 |
-| P1 | Direct evidence, executable contract, or high-signal synthesis | 94 |
+| P1 | Direct evidence, executable contract, or high-signal synthesis | 95 |
 | P2 | Useful supporting research or targeted implementation reference | 255 |
 | P3 | Historical, superseded, or duplicate material | 22 |
-| OPS | Instructions, progress journals, runbooks, or audit state | 23 |
+| OPS | Instructions, progress journals, runbooks, or audit state | 24 |
 
 A low tier does not mean a document is bad. It means it should not overrule a newer governing document.
 
@@ -46,7 +46,7 @@ A low tier does not mean a document is bad. It means it should not overrule a ne
 | [Markdown-Value-Index.md](./Markdown-Value-Index.md) | Markdown Repository Value Index: Generated navigation spine for every Markdown document in this repository. | **P0** | Start here to choose the smallest authoritative reading set. |
 | [README.md](./README.md) | Knight Bus Graph Walker v002: This repo was created in 5 hours for a codex hackathon ![What is the main problem](docs/assets/knight-bus-main-problem.jpg) v002 is the cur… | **P0** | Current product proof, benchmark framing, and runnable entry point. |
 
-### arxiv-reference: architecture invention campaign contracts and G00 operations
+### arxiv-reference: architecture invention campaign contracts and G00-G02 operations
 
 | Document | Opening identity from first 15 lines | Value | Best use |
 |---|---|---|---|
@@ -54,11 +54,17 @@ A low tier does not mean a document is bad. It means it should not overrule a ne
 | [arxiv-reference/README.md](./arxiv-reference/README.md) | arXiv Pattern Foundry: Operating contract for a bounded research-to-decision system that keeps artifacts goal-traceable and explicitly rejects a PDF archive or paper-summary collection. | **P1** | Use to understand the foundry boundary and the role of its governed evidence and synthesis artifacts. |
 | [arxiv-reference/governance/G00-generation-ledger.md](./arxiv-reference/governance/G00-generation-ledger.md) | G00 Generation Ledger: Reproducibility record for the delegated LLM generation used to build and repair the zero-research G00 governance scaffold. | **OPS** | Audit writer identities, reconstructed prompts, bounded timestamps, output checksums, and disclosed replay limits. |
 | [arxiv-reference/governance/G00-goal-packet.md](./arxiv-reference/governance/G00-goal-packet.md) | G00 Goal Packet: Standalone bounded-work contract for initializing the minimum campaign scaffold with zero external queries, papers, evidence cards, or architecture candidates. | **P1** | Use as the exact G00 objective, ownership, scope-cap, and exit-test contract. |
+| [arxiv-reference/governance/architecture-question-ledger.md](./arxiv-reference/governance/architecture-question-ledger.md) | G01 Architecture Question Ledger: Twelve open, repository-grounded architecture decisions with frozen encoding, evidence, candidate options, missing evidence, and falsifiers. | **P1** | Use as the bounded decision surface that every G02 metadata query must be able to change. |
 | [arxiv-reference/governance/artifact-schema-contracts.md](./arxiv-reference/governance/artifact-schema-contracts.md) | Artifact Schema Contracts: G00 implementation-facing schema contract that defines later artifact shapes and validation while creating zero artifact instances. | **P1** | Use to implement and validate future foundry artifacts without mistaking schemas for research records. |
-| [arxiv-reference/governance/campaign-status.md](./arxiv-reference/governance/campaign-status.md) | Arxiv Pattern Foundry Campaign Status: G00 is complete and verified as a one-scaffold, zero-research goal; G01 remains not started. | **OPS** | Use for the campaign's current goal, lifecycle state, scope cap, and journal pointer. |
+| [arxiv-reference/governance/campaign-status.md](./arxiv-reference/governance/campaign-status.md) | Arxiv Pattern Foundry Campaign Status: G02 is complete and verified with 25 executed query families, 262 canonical metadata candidates, and a bounded 25-seed G03 handoff. | **OPS** | Use for exact campaign counts, validation state, limitations, decision yield, and the G03 stop boundary. |
 | [arxiv-reference/governance/claim-evidence-policy.md](./arxiv-reference/governance/claim-evidence-policy.md) | Claim And Evidence Policy: G00 campaign contract requiring claim-granular epistemic labels and precise source pointers for source claims. | **P1** | Use to keep sourced claims, derived inferences, and speculative transfers explicit and auditable. |
+| [arxiv-reference/governance/g02-metadata-contract.md](./arxiv-reference/governance/g02-metadata-contract.md) | G02 Metadata Discovery Contract: Frozen request, cache, identity, ranking, retry, and aggregation rules for bounded metadata discovery. | **P1** | Use to reproduce or audit how G02 converted 25 query families into canonical metadata candidates. |
+| [arxiv-reference/governance/g02-service-preflight.md](./arxiv-reference/governance/g02-service-preflight.md) | G02 Source-Service Preflight: Dated authorization decision for respectful arXiv metadata access and explicit non-use of Crossref and OpenAlex. | **OPS** | Audit service terms, client identification, pacing, concurrency, cache, and stop conditions. |
 | [arxiv-reference/governance/source-service-policy.md](./arxiv-reference/governance/source-service-policy.md) | Source Service Policy: G00 campaign contract enforcing a hard no-network gate across metadata, citation, abstract, full-text, and repository source services. | **P1** | Use to enforce G00's local-only source boundary and prohibit external-service activity. |
 | [arxiv-reference/journals/G00-progress.md](./arxiv-reference/journals/G00-progress.md) | TDD Progress Journal: Completed G00 scaffold journal recording six RED cycles, 23-test GREEN evidence, final verification, and the G01 stop boundary. | **OPS** | Audit G00 from its recorded phases, evidence, final handoff, and bounded next steps. |
+| [arxiv-reference/journals/G01-progress.md](./arxiv-reference/journals/G01-progress.md) | TDD Progress Journal: Resumable G01 record of repository evidence mining, RED-GREEN validator work, delegated read lanes, exact artifact counts, and the G02 stop boundary. | **OPS** | Audit G01 provenance, test transitions, graph-tool evidence, and the exact next permitted action. |
+| [arxiv-reference/journals/G02-progress.md](./arxiv-reference/journals/G02-progress.md) | TDD Progress Journal: G02 record of offline fixtures, two query-compiler corrections, 191 requests, four metadata-screening lanes, adversarial repair, and closure verification. | **OPS** | Resume or audit the exact G02 RED-GREEN-VERIFY history without repeating completed requests. |
+| [arxiv-reference/sources/G02-metadata-screening-report.md](./arxiv-reference/sources/G02-metadata-screening-report.md) | G02 Metadata Screening Report: Durable accounting, coverage analysis, ranking limitations, explicit exploration quotas, and balanced 25-seed G03 handoff. | **P1** | Start here for what G02 learned, what metadata cannot prove, and which citation branches G03 should traverse. |
 
 ### docs_PMF_01/evidence: compatibility release evidence
 

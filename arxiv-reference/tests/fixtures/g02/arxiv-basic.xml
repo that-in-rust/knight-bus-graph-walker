@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <entry>
+    <id>http://arxiv.org/abs/2401.00001v2</id>
+    <updated>2024-02-02T00:00:00Z</updated><published>2024-01-01T00:00:00Z</published>
+    <title>Bounded Memory Graph Processing</title>
+    <summary>We present an external-memory PageRank implementation with fixed buffers and report benchmark limitations.</summary>
+    <author><name>Ada Example</name></author>
+    <category term="cs.DS"/><arxiv:primary_category term="cs.DS"/>
+    <arxiv:doi>10.1000/example.1</arxiv:doi>
+    <arxiv:comment>Implementation and benchmark with a memory bound.</arxiv:comment>
+    <link href="http://arxiv.org/abs/2401.00001v2" rel="alternate" type="text/html"/>
+    <link href="http://arxiv.org/pdf/2401.00001v2" rel="related" type="application/pdf" title="pdf"/>
+  </entry>
+</feed>

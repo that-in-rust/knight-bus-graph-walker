@@ -1,0 +1,44 @@
+{
+  "offset": 0,
+  "next": null,
+  "citingPaperInfo": {
+    "title": "Unsolicited parent metadata",
+    "authors": [],
+    "openAccessPdf": {
+      "url": "https://example.invalid/not-fetched.pdf",
+      "status": "UNKNOWN",
+      "license": null,
+      "disclaimer": "Unsolicited provider disclaimer"
+    }
+  },
+  "data": [
+    {
+      "citedPaper": {
+        "paperId": "S2-REFERENCE-1",
+        "externalIds": {"DOI": "10.1000/reference-one"},
+        "url": "https://www.semanticscholar.org/paper/S2-REFERENCE-1",
+        "title": "External Memory PageRank Foundations",
+        "year": 1999,
+        "publicationDate": "1999-01-01",
+        "authors": [{"authorId": "A3", "name": "Edsger Example"}],
+        "venue": "Graph Systems",
+        "citationCount": 91,
+        "referenceCount": 17
+      }
+    },
+    {
+      "citedPaper": {
+        "paperId": null,
+        "externalIds": null,
+        "url": null,
+        "title": "Unavailable Foundational Graph Record",
+        "year": 1988,
+        "publicationDate": null,
+        "authors": [{"authorId": null, "name": "Historical Author"}],
+        "venue": "UNKNOWN",
+        "citationCount": null,
+        "referenceCount": null
+      }
+    }
+  ]
+}

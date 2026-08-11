@@ -132,7 +132,31 @@ source_paper_id	target_paper_id	edge_type	discovery_source	relevance_reason	veri
 
 First data owner: G03.
 
-### 3.5 TSV Details Not Frozen By G00
+### 3.5 Metadata Request Ledger
+
+Path: `arxiv-reference/sources/metadata-request-ledger.tsv`
+
+```text
+request_id	goal_id	query_id	variant_id	service	operation	normalized_query	parameters	requested_at_utc	page_cursor	response_status	result_count	response_checksum	client_version	cache_status	attempt	retry_events	rate_limit_events	policy_url	policy_checked_date	cache_path	terminal_state
+```
+
+First schema and data owner: G02. The exact encoding, caps, retry states, cache
+boundary, and aggregation rules are frozen in
+`arxiv-reference/governance/g02-metadata-contract.md` before the first request.
+
+### 3.6 Citation Request Ledger
+
+Path: `arxiv-reference/sources/citation-request-ledger.tsv`
+
+```text
+request_id	goal_id	seed_paper_id	traversal_paper_id	depth	direction	service	operation	normalized_identifier	parameters	requested_at_utc	page_cursor	response_status	result_count	response_checksum	cache_checksum	client_version	cache_status	attempt	retry_events	rate_limit_events	policy_url	policy_checked_date	cache_path	terminal_state
+```
+
+First schema and data owner: G03. The exact encoding, traversal caps, retry
+states, raw/cache checksum boundary, and provider metadata allowlists are frozen in
+`arxiv-reference/governance/g03-citation-contract.md` before the first request.
+
+### 3.7 TSV Details Not Frozen By G00
 
 `DERIVED_INFERENCE`: Exact headers do not define multi-value separators, escaping,
 null sentinels, timestamp formats, date formats, score serialization, or whether

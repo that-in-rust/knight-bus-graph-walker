@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <entry><id>http://arxiv.org/abs/2301.00001v1</id><updated>2023-01-02T00:00:00Z</updated><published>2023-01-01T00:00:00Z</published><title>Graph Storage</title><summary>First work.</summary><author><name>First Author</name></author><category term="cs.DB"/></entry>
+  <entry><id>http://arxiv.org/abs/2401.00002v1</id><updated>2024-01-02T00:00:00Z</updated><published>2024-01-01T00:00:00Z</published><title>Graph: Storage!</title><summary>Different work.</summary><author><name>Second Author</name></author><category term="cs.DB"/></entry>
+</feed>

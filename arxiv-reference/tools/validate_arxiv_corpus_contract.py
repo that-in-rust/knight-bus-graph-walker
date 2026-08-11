@@ -114,15 +114,169 @@ EXPECTED_TSV_HEADERS = {
         "source_paper_id\ttarget_paper_id\tedge_type\tdiscovery_source\t"
         "relevance_reason\tverified_at"
     ),
+    "sources/metadata-request-ledger.tsv": (
+        "request_id\tgoal_id\tquery_id\tvariant_id\tservice\toperation\t"
+        "normalized_query\tparameters\trequested_at_utc\tpage_cursor\t"
+        "response_status\tresult_count\tresponse_checksum\tclient_version\t"
+        "cache_status\tattempt\tretry_events\trate_limit_events\tpolicy_url\t"
+        "policy_checked_date\tcache_path\tterminal_state"
+    ),
+    "sources/citation-request-ledger.tsv": (
+        "request_id\tgoal_id\tseed_paper_id\ttraversal_paper_id\tdepth\t"
+        "direction\tservice\toperation\tnormalized_identifier\tparameters\t"
+        "requested_at_utc\tpage_cursor\tresponse_status\tresult_count\t"
+        "response_checksum\tcache_checksum\tclient_version\tcache_status\tattempt\t"
+        "retry_events\trate_limit_events\tpolicy_url\tpolicy_checked_date\t"
+        "cache_path\tterminal_state"
+    ),
 }
 
 G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
     EXPECTED_TSV_HEADERS
 )
 
-G00_ALLOWED_CACHE_MODULES = {
+G01_REQUIRED_FILE_PATHS = (
+    "governance/architecture-question-ledger.md",
+    "governance/keyword-taxonomy.tsv",
+    "governance/query-ledger.tsv",
+    "journals/G01-progress.md",
+    "tests/test_validate_g01_discovery_contract.py",
+)
+
+G01_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
+    G01_REQUIRED_FILE_PATHS
+)
+
+G02_REQUIRED_FILE_PATHS = (
+    "governance/architecture-question-ledger.md",
+    "governance/keyword-taxonomy.tsv",
+    "governance/query-ledger.tsv",
+    "governance/g02-metadata-contract.md",
+    "governance/g02-service-preflight.md",
+    "journals/G01-progress.md",
+    "journals/G02-progress.md",
+    "sources/G02-metadata-screening-report.md",
+    "sources/metadata-request-ledger.tsv",
+    "sources/paper-manifest.tsv",
+    "tests/test_validate_g01_discovery_contract.py",
+    "tests/test_validate_g02_metadata_contract.py",
+    "tools/g02_metadata_pipeline.py",
+)
+
+G02_FIXTURE_FILE_PATHS = (
+    "tests/fixtures/g02/arxiv-basic.xml",
+    "tests/fixtures/g02/arxiv-duplicates.xml",
+    "tests/fixtures/g02/arxiv-empty.xml",
+    "tests/fixtures/g02/arxiv-malformed.xml",
+    "tests/fixtures/g02/arxiv-title-collision.xml",
+    "tests/fixtures/g02/http-429.json",
+    "tests/fixtures/g02/interrupted-pagination.json",
+)
+
+G02_ALLOWED_FILE_PATHS = (
+    frozenset(REQUIRED_CONTROL_PATHS)
+    | frozenset(G02_REQUIRED_FILE_PATHS)
+    | frozenset(G02_FIXTURE_FILE_PATHS)
+)
+
+G03_REQUIRED_FILE_PATHS = (
+    *G02_REQUIRED_FILE_PATHS,
+    "governance/G03-goal-packet.md",
+    "governance/g03-citation-contract.md",
+    "governance/g03-service-preflight.md",
+    "journals/G03-progress.md",
+    "sources/citation-edges.tsv",
+    "sources/citation-request-ledger.tsv",
+    "tests/test_validate_g03_citation_contract.py",
+    "tools/g03_citation_pipeline.py",
+)
+
+G03_FIXTURE_FILE_PATHS = (
+    *G02_FIXTURE_FILE_PATHS,
+    "tests/fixtures/g03/http-429.json",
+    "tests/fixtures/g03/openalex-citations.json",
+    "tests/fixtures/g03/openalex-empty.json",
+    "tests/fixtures/g03/openalex-malformed.json",
+    "tests/fixtures/g03/openalex-seed-work.json",
+    "tests/fixtures/g03/openalex-title-collision.json",
+    "tests/fixtures/g03/s2-citations.json",
+    "tests/fixtures/g03/s2-references.json",
+    "tests/fixtures/g03/s2-seed-batch.json",
+)
+
+G03_OPTIONAL_FILE_PATHS = (
+    "sources/G03-citation-ancestry-report.md",
+)
+
+G03_ALLOWED_FILE_PATHS = (
+    frozenset(REQUIRED_CONTROL_PATHS)
+    | frozenset(G03_REQUIRED_FILE_PATHS)
+    | frozenset(G03_FIXTURE_FILE_PATHS)
+    | frozenset(G03_OPTIONAL_FILE_PATHS)
+)
+
+ALLOWED_CACHE_MODULES = {
     "tests": "test_validate_arxiv_corpus_contract",
     "tools": "validate_arxiv_corpus_contract",
+}
+
+ALLOWED_TEST_CACHE_MODULES = {
+    "test_validate_arxiv_corpus_contract",
+    "test_validate_g01_discovery_contract",
+    "test_validate_g02_metadata_contract",
+    "test_validate_g03_citation_contract",
+}
+
+ALLOWED_TOOL_CACHE_MODULES = {
+    "validate_arxiv_corpus_contract",
+    "g02_metadata_pipeline",
+    "g03_citation_pipeline",
+}
+
+G01_QUESTION_FIELDS = (
+    "family_slug",
+    "decision",
+    "product_consequence",
+    "candidate_options",
+    "known_evidence",
+    "missing_evidence",
+    "falsifier",
+    "status",
+    "owner_goal",
+)
+
+G01_REQUIRED_QUESTION_FAMILIES = {
+    "algorithm-specific-layouts",
+    "pagerank",
+    "bfs",
+    "wcc",
+    "triangles",
+    "communities",
+    "similarity-knn",
+    "bounded-ram-external-memory",
+    "preprocessing-repeated-latency",
+    "deterministic-ram-tail-latency",
+    "neo4j-cypher-gds-compatibility",
+    "correctness-verification-receipts",
+}
+
+G01_MAX_QUESTIONS = 12
+G01_MAX_TERMS = 200
+G01_MAX_QUERIES = 25
+G01_NULL_SENTINEL = "NOT_EXECUTED"
+G01_QUERY_GENERIC_TOKENS = {
+    "algorithm",
+    "algorithms",
+    "bounded",
+    "data",
+    "exact",
+    "graph",
+    "graphs",
+    "memory",
+    "processing",
+    "query",
+    "ram",
+    "state",
 }
 
 GIT_COMMAND_TIMEOUT_SECONDS = 30
@@ -180,6 +334,8 @@ TSV_PRIMARY_ID_FIELDS = {
     "governance/keyword-taxonomy.tsv": "term_id",
     "governance/query-ledger.tsv": "query_id",
     "sources/paper-manifest.tsv": "paper_id",
+    "sources/metadata-request-ledger.tsv": "request_id",
+    "sources/citation-request-ledger.tsv": "request_id",
 }
 
 GOAL_PACKET_FIELDS = (
@@ -356,7 +512,7 @@ SCHEMA_REQUIRED_HEADINGS = (
 )
 
 G00_ARTIFACT_SCHEMA_CONTRACT_SHA256 = (
-    "a6f83e526ae35ee9e0296fa377c8d6451f77377d0f397a3b1f2c7f2080e06985"
+    "d674367ef1966e1bc7453ed9abac544a9897e0c5e0e9e8cd174b258d2398da56"
 )
 
 
@@ -619,6 +775,23 @@ def verify_download_license_policy(
             continue
 
         paper_id = normalize_field_text_value(entry.get("paper_id")) or "row {0}".format(index)
+        if local_path == "NOT_ACQUIRED":
+            selection_status = normalize_field_text_value(entry.get("selection_status"))
+            sha256 = normalize_field_text_value(entry.get("sha256"))
+            if selection_status != "METADATA_ONLY":
+                errors.append(
+                    "paper manifest {0}: NOT_ACQUIRED requires METADATA_ONLY".format(
+                        paper_id
+                    )
+                )
+            if sha256 != "NOT_ACQUIRED":
+                errors.append(
+                    "paper manifest {0}: NOT_ACQUIRED path requires NOT_ACQUIRED sha256".format(
+                        paper_id
+                    )
+                )
+            continue
+
         portable_path = local_path.replace("\\", "/")
         parsed_path = PurePosixPath(portable_path)
         normalized_path = normalize_local_paper_path(local_path)
@@ -1024,7 +1197,25 @@ def is_allowed_python_cache(root: Path, relative_path: Path) -> bool:
     if len(relative_path.parts) != 3 or relative_path.parts[1] != "__pycache__":
         return False
 
-    module_name = G00_ALLOWED_CACHE_MODULES.get(relative_path.parts[0])
+    module_name = ALLOWED_CACHE_MODULES.get(relative_path.parts[0])
+    if relative_path.parts[0] == "tests":
+        module_name = next(
+            (
+                candidate
+                for candidate in sorted(ALLOWED_TEST_CACHE_MODULES)
+                if relative_path.name.startswith(candidate + ".")
+            ),
+            None,
+        )
+    elif relative_path.parts[0] == "tools":
+        module_name = next(
+            (
+                candidate
+                for candidate in sorted(ALLOWED_TOOL_CACHE_MODULES)
+                if relative_path.name.startswith(candidate + ".")
+            ),
+            None,
+        )
     cache_tag = sys.implementation.cache_tag
     if not module_name or not cache_tag:
         return False
@@ -1215,8 +1406,10 @@ def normalize_markdown_path_value(value: str) -> str:
     return value.rstrip(".").strip()
 
 
-def validate_goal_packet_shape(packet_text: str, display_path: str) -> List[str]:
-    """Validate one exact, bounded G00 Goal Packet field set."""
+def validate_goal_packet_shape(
+    packet_text: str, display_path: str, expected_goal: str = "G00"
+) -> List[str]:
+    """Validate one exact, bounded Goal Packet field set."""
 
     errors: List[str] = []
     packet_fields: Dict[str, str] = {}
@@ -1234,17 +1427,26 @@ def validate_goal_packet_shape(packet_text: str, display_path: str) -> List[str]
         if field_counts[field_name] > 1:
             errors.append("{0}: Goal Packet repeats {1}".format(display_path, field_name))
 
-    if packet_fields.get("Goal ID") != "G00":
-        errors.append("{0}: Goal Packet must select exactly G00".format(display_path))
+    if packet_fields.get("Goal ID") != expected_goal:
+        errors.append(
+            "{0}: Goal Packet must select exactly {1}".format(
+                display_path, expected_goal
+            )
+        )
     journal_path = normalize_markdown_path_value(packet_fields.get("Journal", ""))
-    if journal_path and journal_path != "arxiv-reference/journals/G00-progress.md":
+    expected_journal_path = "arxiv-reference/journals/{0}-progress.md".format(
+        expected_goal
+    )
+    if journal_path and journal_path != expected_journal_path:
         errors.append("{0}: Goal Packet Journal path is invalid".format(display_path))
 
     return sorted(set(errors))
 
 
 def validate_generation_ledger_shape(
-    ledger_text: str, root: Optional[Path] = None
+    ledger_text: str,
+    root: Optional[Path] = None,
+    verify_current_checksums: bool = True,
 ) -> List[str]:
     """Validate writer, prompt, time-bound, and checksum generation evidence."""
 
@@ -1357,6 +1559,8 @@ def validate_generation_ledger_shape(
                         )
                     )
                 continue
+            if not verify_current_checksums:
+                continue
             try:
                 actual_checksum = hashlib.sha256(output_path.read_bytes()).hexdigest()
             except OSError as error:
@@ -1396,12 +1600,15 @@ def extract_checkpoint_field_text(session_text: str, field_name: str) -> Optiona
     return field_body.strip()
 
 
-def validate_goal_journal_shape(journal_text: str) -> List[str]:
-    """Validate the G00 goal packet and resumable TDD journal shape."""
+def validate_goal_journal_shape(
+    journal_text: str, goal_id: str = "G00"
+) -> List[str]:
+    """Validate one goal packet and resumable TDD journal shape."""
 
     errors: List[str] = []
+    display_path = "journals/{0}-progress.md".format(goal_id)
     if not journal_text.startswith("# TDD Progress Journal\n"):
-        errors.append("journals/G00-progress.md: expected TDD Progress Journal title")
+        errors.append("{0}: expected TDD Progress Journal title".format(display_path))
 
     for metadata_name in ("Task", "Created", "Updated", "Current Phase", "Status"):
         if not re.search(
@@ -1410,20 +1617,26 @@ def validate_goal_journal_shape(journal_text: str) -> List[str]:
             flags=re.MULTILINE,
         ):
             errors.append(
-                "journals/G00-progress.md: missing non-empty metadata {0}".format(metadata_name)
+                "{0}: missing non-empty metadata {1}".format(
+                    display_path, metadata_name
+                )
             )
 
     packet_text = extract_markdown_section_text(journal_text, "Goal Packet")
     if not packet_text:
-        errors.append("journals/G00-progress.md: missing Goal Packet section")
+        errors.append("{0}: missing Goal Packet section".format(display_path))
     else:
-        errors.extend(validate_goal_packet_shape(packet_text, "journals/G00-progress.md"))
+        errors.extend(
+            validate_goal_packet_shape(packet_text, display_path, expected_goal=goal_id)
+        )
 
     sessions_text = extract_markdown_section_text(journal_text, "Sessions")
     if not sessions_text:
-        errors.append("journals/G00-progress.md: missing Sessions section")
+        errors.append("{0}: missing Sessions section".format(display_path))
     elif not re.search(r"^### Session:\s*\S.+$", sessions_text, flags=re.MULTILINE):
-        errors.append("journals/G00-progress.md: Sessions must contain a timestamped session")
+        errors.append(
+            "{0}: Sessions must contain a timestamped session".format(display_path)
+        )
 
     checkpoint_fields = (
         "Current Phase",
@@ -1449,22 +1662,22 @@ def validate_goal_journal_shape(journal_text: str) -> List[str]:
             field_value = extract_checkpoint_field_text(session_text, field_name)
             if field_value is None:
                 errors.append(
-                    "journals/G00-progress.md: session {0} missing {1}".format(
-                        session_index, field_name
+                    "{0}: session {1} missing {2}".format(
+                        display_path, session_index, field_name
                     )
                 )
             elif not field_value:
                 errors.append(
-                    "journals/G00-progress.md: session {0} has empty {1}".format(
-                        session_index, field_name
+                    "{0}: session {1} has empty {2}".format(
+                        display_path, session_index, field_name
                     )
                 )
 
         phase = extract_checkpoint_field_text(session_text, "Current Phase")
         if phase and phase not in allowed_phases:
             errors.append(
-                "journals/G00-progress.md: session {0} has invalid Current Phase {1!r}".format(
-                    session_index, phase
+                "{0}: session {1} has invalid Current Phase {2!r}".format(
+                    display_path, session_index, phase
                 )
             )
 
@@ -1570,6 +1783,36 @@ def validate_citation_edge_rows(rows: Sequence[Mapping[str, str]]) -> List[str]:
     return sorted(errors)
 
 
+def load_g02_pipeline_module() -> object:
+    """Load the sibling G02 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g02_metadata_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g02_metadata_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G02 metadata pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
+def load_g03_pipeline_module() -> object:
+    """Load the sibling G03 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g03_citation_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g03_citation_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G03 citation pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
 def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
     """Validate optional corpus ledgers when their first row appears."""
 
@@ -1619,17 +1862,804 @@ def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
             errors.extend(verify_download_license_policy(rows, ignore_text))
         elif relative_path == "sources/citation-edges.tsv":
             errors.extend(validate_citation_edge_rows(rows))
+        elif relative_path == "sources/metadata-request-ledger.tsv":
+            try:
+                g02_pipeline = load_g02_pipeline_module()
+                errors.extend(g02_pipeline.validate_request_provenance_rows(rows))
+            except (OSError, RuntimeError) as error:
+                errors.append("cannot load G02 request validator: {0}".format(error))
+        elif relative_path == "sources/citation-request-ledger.tsv":
+            try:
+                g03_pipeline = load_g03_pipeline_module()
+                errors.extend(g03_pipeline.validate_citation_request_rows(rows))
+            except (OSError, RuntimeError) as error:
+                errors.append("cannot load G03 request validator: {0}".format(error))
 
     return sorted(set(errors))
 
 
+def split_g01_multi_value(value: str) -> List[str]:
+    """Split one G01 pipe-delimited field into nonblank values."""
+
+    return [part.strip() for part in value.split("|") if part.strip()]
+
+
+def tokenize_g01_query_vocabulary(value: str) -> set[str]:
+    """Return meaningful lowercase tokens for G01 term-to-query overlap."""
+
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", value.casefold())
+        if len(token) >= 3 and token not in G01_QUERY_GENERIC_TOKENS
+    }
+
+
+def parse_g01_architecture_questions(
+    ledger_text: str,
+) -> List[Dict[str, str]]:
+    """Parse the machine-readable single-line fields in the G01 question ledger."""
+
+    question_pattern = re.compile(
+        r"^## (AQ-\d{3}): ([^\n]+)\n(?P<body>.*?)(?=^## AQ-\d{3}:|\Z)",
+        flags=re.MULTILINE | re.DOTALL,
+    )
+    records: List[Dict[str, str]] = []
+    for match in question_pattern.finditer(ledger_text):
+        record = {
+            "question_id": match.group(1),
+            "title": match.group(2).strip(),
+        }
+        for line in match.group("body").splitlines():
+            field_match = re.match(r"^- ([a-z_]+):\s*(.+)$", line)
+            if field_match:
+                record[field_match.group(1)] = field_match.group(2).strip()
+        records.append(record)
+    return records
+
+
+def validate_g01_question_ledger(
+    ledger_text: str, repository_root: Path
+) -> Tuple[List[str], List[Dict[str, str]]]:
+    """Validate the bounded G01 question set and its repository evidence paths."""
+
+    display_path = "governance/architecture-question-ledger.md"
+    errors: List[str] = []
+    encoding_markers = (
+        "## Encoding Contract",
+        "UTF-8",
+        "LF",
+        "TAB",
+        "`|`",
+        "`%7C`",
+        "`NOT_EXECUTED`",
+        "`AQ-NNN`",
+        "`TERM-NNN`",
+        "`QRY-NNN`",
+    )
+    for marker in encoding_markers:
+        if marker not in ledger_text:
+            errors.append("{0}: missing encoding marker {1}".format(display_path, marker))
+    if "## Encoding Contract" in ledger_text and "## AQ-001:" in ledger_text:
+        if ledger_text.index("## Encoding Contract") > ledger_text.index("## AQ-001:"):
+            errors.append("{0}: encoding contract must precede question rows".format(display_path))
+
+    questions = parse_g01_architecture_questions(ledger_text)
+    if len(questions) != G01_MAX_QUESTIONS:
+        errors.append(
+            "{0}: expected exactly {1} architecture questions, found {2}".format(
+                display_path, G01_MAX_QUESTIONS, len(questions)
+            )
+        )
+    expected_ids = ["AQ-{0:03d}".format(index) for index in range(1, len(questions) + 1)]
+    actual_ids = [question.get("question_id", "") for question in questions]
+    if actual_ids != expected_ids:
+        errors.append("{0}: architecture question IDs must be contiguous".format(display_path))
+
+    family_slugs = set()
+    for question in questions:
+        question_id = question.get("question_id", "UNKNOWN")
+        for field_name in G01_QUESTION_FIELDS:
+            if not question.get(field_name, "").strip():
+                errors.append(
+                    "{0}: {1} requires {2}".format(
+                        display_path, question_id, field_name
+                    )
+                )
+        family_slugs.add(question.get("family_slug", ""))
+        if question.get("status") != "OPEN":
+            errors.append("{0}: {1} status must be OPEN".format(display_path, question_id))
+        if question.get("owner_goal") != "G01":
+            errors.append("{0}: {1} owner_goal must be G01".format(display_path, question_id))
+
+        evidence_paths = re.findall(r"`([^`]+)`", question.get("known_evidence", ""))
+        if not evidence_paths:
+            errors.append("{0}: {1} requires repository evidence paths".format(display_path, question_id))
+        for evidence_path in evidence_paths:
+            if "://" in evidence_path or Path(evidence_path).is_absolute():
+                errors.append(
+                    "{0}: {1} evidence path must be repository-relative: {2}".format(
+                        display_path, question_id, evidence_path
+                    )
+                )
+                continue
+            candidate_path = repository_root / evidence_path
+            if not is_path_beneath_root(candidate_path, repository_root) or not is_regular_file_path(
+                candidate_path
+            ):
+                errors.append(
+                    "{0}: {1} evidence path does not exist: {2}".format(
+                        display_path, question_id, evidence_path
+                    )
+                )
+
+    if family_slugs != G01_REQUIRED_QUESTION_FAMILIES:
+        errors.append("{0}: required question-family set is incomplete".format(display_path))
+    return sorted(set(errors)), questions
+
+
+def validate_g01_discovery_rows(
+    taxonomy_rows: Sequence[Mapping[str, str]],
+    query_rows: Sequence[Mapping[str, str]],
+    questions: Sequence[Mapping[str, str]],
+    repository_root: Path,
+) -> List[str]:
+    """Validate G01 taxonomy and planned-query traceability as one closed batch."""
+
+    errors: List[str] = []
+    question_ids = {question.get("question_id", "") for question in questions}
+
+    if not taxonomy_rows or len(taxonomy_rows) > G01_MAX_TERMS:
+        errors.append(
+            "governance/keyword-taxonomy.tsv: expected 1-{0} rows, found {1}".format(
+                G01_MAX_TERMS, len(taxonomy_rows)
+            )
+        )
+    expected_term_ids = [
+        "TERM-{0:03d}".format(index) for index in range(1, len(taxonomy_rows) + 1)
+    ]
+    actual_term_ids = [row.get("term_id", "") for row in taxonomy_rows]
+    if actual_term_ids != expected_term_ids:
+        errors.append("governance/keyword-taxonomy.tsv: term IDs must be contiguous")
+
+    term_ids = set(actual_term_ids)
+    term_rows_by_id = {
+        row.get("term_id", ""): row for row in taxonomy_rows if row.get("term_id", "")
+    }
+    term_questions: Dict[str, set[str]] = {}
+    normalized_terms: Counter[str] = Counter()
+    taxonomy_question_coverage: set[str] = set()
+    taxonomy_fields = EXPECTED_TSV_HEADERS["governance/keyword-taxonomy.tsv"].split("\t")
+    for index, row in enumerate(taxonomy_rows, start=2):
+        prefix = "governance/keyword-taxonomy.tsv: row {0}".format(index)
+        for field_name in taxonomy_fields:
+            if not row.get(field_name, "").strip():
+                errors.append("{0} requires {1}".format(prefix, field_name))
+        normalized_terms[row.get("term", "").strip().casefold()] += 1
+        linked_questions = set(split_g01_multi_value(row.get("architecture_question_ids", "")))
+        if not linked_questions or not linked_questions <= question_ids:
+            errors.append("{0} has invalid architecture_question_ids".format(prefix))
+        taxonomy_question_coverage.update(linked_questions)
+        term_questions[row.get("term_id", "")] = linked_questions
+        for source_path in split_g01_multi_value(row.get("source_repo_paths", "")):
+            candidate_path = repository_root / source_path
+            if Path(source_path).is_absolute() or not is_path_beneath_root(
+                candidate_path, repository_root
+            ) or not is_regular_file_path(candidate_path):
+                errors.append("{0} has invalid source_repo_path {1}".format(prefix, source_path))
+    if any(count > 1 for count in normalized_terms.values()):
+        errors.append("governance/keyword-taxonomy.tsv: term text must be unique")
+    if taxonomy_question_coverage != question_ids:
+        errors.append("governance/keyword-taxonomy.tsv: every question requires source terms")
+
+    if len(query_rows) < len(question_ids) or len(query_rows) > G01_MAX_QUERIES:
+        errors.append(
+            "governance/query-ledger.tsv: expected {0}-{1} rows, found {2}".format(
+                len(question_ids), G01_MAX_QUERIES, len(query_rows)
+            )
+        )
+    expected_query_ids = [
+        "QRY-{0:03d}".format(index) for index in range(1, len(query_rows) + 1)
+    ]
+    actual_query_ids = [row.get("query_id", "") for row in query_rows]
+    if actual_query_ids != expected_query_ids:
+        errors.append("governance/query-ledger.tsv: query IDs must be contiguous")
+
+    query_fields = EXPECTED_TSV_HEADERS["governance/query-ledger.tsv"].split("\t")
+    query_question_coverage: set[str] = set()
+    normalized_query_texts: Counter[str] = Counter()
+    for index, row in enumerate(query_rows, start=2):
+        prefix = "governance/query-ledger.tsv: row {0}".format(index)
+        for field_name in query_fields:
+            if not row.get(field_name, "").strip():
+                errors.append("{0} requires {1}".format(prefix, field_name))
+        linked_questions = set(split_g01_multi_value(row.get("architecture_question_ids", "")))
+        linked_terms = set(split_g01_multi_value(row.get("source_term_ids", "")))
+        normalized_query_texts[row.get("query_text", "").strip().casefold()] += 1
+        if not linked_questions or not linked_questions <= question_ids:
+            errors.append("{0} has invalid architecture_question_ids".format(prefix))
+        if len(linked_terms) < 2 or not linked_terms <= term_ids:
+            errors.append("{0} requires at least two valid source_term_ids".format(prefix))
+        linked_term_types = {
+            term_rows_by_id.get(term_id, {}).get("term_type", "")
+            for term_id in linked_terms
+        }
+        if "ALGORITHM" not in linked_term_types or not (
+            linked_term_types - {"", "ALGORITHM"}
+        ):
+            errors.append(
+                "{0} must combine an ALGORITHM term with a mechanism or resource term".format(
+                    prefix
+                )
+            )
+        for term_id in linked_terms:
+            if term_questions.get(term_id, set()).isdisjoint(linked_questions):
+                errors.append(
+                    "{0} source term {1} is not linked to a query question".format(
+                        prefix, term_id
+                    )
+                )
+        query_question_coverage.update(linked_questions)
+        if row.get("service") != "arXiv":
+            errors.append("{0} service must be arXiv".format(prefix))
+        if row.get("status") != "PLANNED":
+            errors.append("{0} status must remain PLANNED in G01".format(prefix))
+        for field_name in ("executed_at", "result_count", "response_checksum"):
+            if row.get(field_name) != G01_NULL_SENTINEL:
+                errors.append(
+                    "{0} {1} must be {2}".format(
+                        prefix, field_name, G01_NULL_SENTINEL
+                    )
+                )
+        query_words = row.get("query_text", "").split()
+        if len(query_words) < 4 or row.get("query_text", "").strip().casefold() == "graph":
+            errors.append("{0} query_text is too generic".format(prefix))
+        query_tokens = tokenize_g01_query_vocabulary(row.get("query_text", ""))
+        matched_term_ids = {
+            term_id
+            for term_id in linked_terms
+            if query_tokens
+            & tokenize_g01_query_vocabulary(
+                term_rows_by_id.get(term_id, {}).get("term", "")
+            )
+        }
+        if len(matched_term_ids) < 2:
+            errors.append(
+                "{0} query_text must overlap at least two linked taxonomy terms".format(
+                    prefix
+                )
+            )
+    if query_question_coverage != question_ids:
+        errors.append("governance/query-ledger.tsv: every question requires a planned query")
+    if any(count > 1 for count in normalized_query_texts.values()):
+        errors.append("governance/query-ledger.tsv: query_text must be unique")
+    return sorted(set(errors))
+
+
+def validate_g01_allowed_artifacts(root: Path) -> List[str]:
+    """Reject all files outside the complete G00 plus G01 control surface."""
+
+    errors: List[str] = []
+    for relative_path in G01_REQUIRED_FILE_PATHS:
+        required_path = root / relative_path
+        if not is_regular_file_path(required_path):
+            errors.append("{0}: required G01 file is missing".format(relative_path))
+
+    try:
+        corpus_paths = sorted(root.rglob("*"), key=lambda path: path.relative_to(root).as_posix())
+    except OSError as error:
+        return ["root: cannot inspect G01 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_path_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_path_text in G01_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append("{0}: file is not allowed while active goal is G01".format(relative_path_text))
+    return sorted(set(errors))
+
+
+def validate_g01_no_research_boundary(texts: Mapping[str, str]) -> List[str]:
+    """Reject locators or records that would imply G02 literature activity."""
+
+    errors: List[str] = []
+    forbidden_patterns = (
+        (re.compile(r"https?://", flags=re.IGNORECASE), "URL"),
+        (re.compile(r"\barXiv:\d{4}\.\d{4,5}\b", flags=re.IGNORECASE), "arXiv identifier"),
+        (re.compile(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b"), "arXiv-like identifier"),
+    )
+    for display_path, text_value in sorted(texts.items()):
+        for pattern, label in forbidden_patterns:
+            if pattern.search(text_value):
+                errors.append("{0}: G01 must not contain a {1}".format(display_path, label))
+    return errors
+
+
+def validate_g01_campaign_status(
+    status_text: str,
+    question_count: int,
+    term_count: int,
+    query_count: int,
+) -> List[str]:
+    """Validate G01 closure markers and exact discovery-only artifact counts."""
+
+    display_path = "governance/campaign-status.md"
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G01`",
+        "- Goal state: `COMPLETE`",
+        "- Completion state: `COMPLETE`",
+        "- Validation state: `VERIFIED`",
+        "- Journal: `arxiv-reference/journals/G01-progress.md`",
+        "- Recommended next goal: `G02`",
+        "- G02 state: `NOT_STARTED`",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("{0}: missing G01 marker {1}".format(display_path, marker))
+
+    expected_count_rows = (
+        ("Architecture questions", question_count),
+        ("Taxonomy terms", term_count),
+        ("Planned query families", query_count),
+    )
+    for label, expected_count in expected_count_rows:
+        row_pattern = re.compile(
+            r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(
+                re.escape(label), expected_count
+            ),
+            flags=re.MULTILINE,
+        )
+        if not row_pattern.search(status_text):
+            errors.append(
+                "{0}: missing exact {1} count {2}".format(
+                    display_path, label, expected_count
+                )
+            )
+
+    zero_count_labels = (
+        "External queries executed",
+        "Canonical paper records",
+        "Papers screened",
+        "Papers read",
+        "Full-text files downloaded",
+        "Mechanism cards",
+        "Failure cards",
+        "Constraint-transfer cards",
+        "Evidence conflicts",
+        "Architecture genomes",
+        "Architecture candidates",
+        "Candidates changed",
+        "Experiments created",
+    )
+    for label in zero_count_labels:
+        row_pattern = re.compile(
+            r"^\|\s*{0}\s*\|\s*0\s*\|$".format(re.escape(label)),
+            flags=re.MULTILINE,
+        )
+        if not row_pattern.search(status_text):
+            errors.append("{0}: {1} must remain zero in G01".format(display_path, label))
+    return sorted(set(errors))
+
+
+def validate_g02_allowed_artifacts(root: Path) -> List[str]:
+    """Allow only G00-G02 controls, fixtures, and ignored G02 response caches."""
+
+    errors: List[str] = []
+    for relative_path in G02_REQUIRED_FILE_PATHS + G02_FIXTURE_FILE_PATHS:
+        required_path = root / relative_path
+        if not is_regular_file_path(required_path):
+            errors.append("{0}: required G02 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(root.rglob("*"), key=lambda path: path.relative_to(root).as_posix())
+    except OSError as error:
+        return ["root: cannot inspect G02 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_path_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_path_text in G02_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if relative_path.parts[:2] == ("cache", "g02") and is_regular_file_path(corpus_path):
+            continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append("{0}: file is not allowed while active goal is G02".format(relative_path_text))
+    return sorted(set(errors))
+
+
+def validate_g02_query_rows(
+    query_rows: Sequence[Mapping[str, str]],
+    taxonomy_rows: Sequence[Mapping[str, str]],
+    questions: Sequence[Mapping[str, str]],
+    require_terminal: bool,
+) -> List[str]:
+    """Validate the exact G01 family set as a bounded G02 execution ledger."""
+
+    errors: List[str] = []
+    if len(query_rows) != 25:
+        errors.append("governance/query-ledger.tsv: G02 requires exactly 25 query families")
+    expected_ids = ["QRY-{0:03d}".format(index) for index in range(1, len(query_rows) + 1)]
+    if [row.get("query_id", "") for row in query_rows] != expected_ids:
+        errors.append("governance/query-ledger.tsv: G02 query IDs must remain contiguous")
+    question_ids = {row.get("question_id", "") for row in questions}
+    term_rows = {row.get("term_id", ""): row for row in taxonomy_rows}
+    covered_questions: set[str] = set()
+    for index, row in enumerate(query_rows, start=2):
+        prefix = "governance/query-ledger.tsv: row {0}".format(index)
+        linked_questions = set(split_g01_multi_value(row.get("architecture_question_ids", "")))
+        linked_terms = set(split_g01_multi_value(row.get("source_term_ids", "")))
+        if not linked_questions or not linked_questions <= question_ids:
+            errors.append("{0} has invalid architecture_question_ids".format(prefix))
+        if not linked_terms or not linked_terms <= set(term_rows):
+            errors.append("{0} has invalid source_term_ids".format(prefix))
+        linked_types = {term_rows[term_id].get("term_type", "") for term_id in linked_terms if term_id in term_rows}
+        if "ALGORITHM" not in linked_types or not linked_types - {"ALGORITHM"}:
+            errors.append("{0} must remain an algorithm-plus-mechanism family".format(prefix))
+        covered_questions.update(linked_questions)
+        status = row.get("status", "")
+        if status not in ALLOWED_QUERY_STATUSES:
+            errors.append("{0} has invalid status {1!r}".format(prefix, status))
+        if require_terminal and status == "PLANNED":
+            errors.append("{0} must have terminal G02 status".format(prefix))
+        if status == "EXECUTED":
+            for field_name in ("executed_at", "result_count", "response_checksum"):
+                value = row.get(field_name, "")
+                if value in ("", "NOT_EXECUTED"):
+                    errors.append("{0} EXECUTED row requires {1}".format(prefix, field_name))
+            if not row.get("result_count", "").isdigit():
+                errors.append("{0} EXECUTED result_count must be an integer".format(prefix))
+            if not re.fullmatch(r"[0-9a-f]{64}", row.get("response_checksum", "")):
+                errors.append("{0} EXECUTED response_checksum must be SHA-256".format(prefix))
+    if covered_questions != question_ids:
+        errors.append("governance/query-ledger.tsv: G02 must retain coverage of all architecture questions")
+    return sorted(set(errors))
+
+
+def validate_g02_service_preflight(preflight_text: str) -> List[str]:
+    """Validate explicit authorization and non-substitution service boundaries."""
+
+    errors: List[str] = []
+    required_markers = (
+        "**Checked:** 2026-08-11",
+        "arXiv decision: `AUTHORIZED`",
+        "https://info.arxiv.org/help/api/tou.html",
+        "https://info.arxiv.org/help/api/user-manual.html",
+        "one request",
+        "three seconds",
+        "one connection",
+        "Crossref decision: `NOT_USED_NOT_AUTHORIZED`",
+        "OpenAlex decision: `NOT_USED_NOT_AUTHORIZED`",
+        "downloads no PDF",
+    )
+    for marker in required_markers:
+        if marker not in preflight_text:
+            errors.append("governance/g02-service-preflight.md: missing {0}".format(marker))
+    return errors
+
+
+def validate_g02_campaign_status(
+    status_text: str,
+    query_rows: Sequence[Mapping[str, str]],
+    request_rows: Sequence[Mapping[str, str]],
+    manifest_rows: Sequence[Mapping[str, str]],
+) -> List[str]:
+    """Validate active or completed G02 lifecycle and exact visible counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G02`",
+        "- Journal: `arxiv-reference/journals/G02-progress.md`",
+        "- G03 state: `NOT_STARTED`",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G02 marker {0}".format(marker))
+    is_complete = "- Completion state: `COMPLETE`" in status_text
+    if is_complete:
+        if "- Validation state: `VERIFIED`" not in status_text:
+            errors.append("governance/campaign-status.md: completed G02 must be VERIFIED")
+        if any(row.get("status") == "PLANNED" for row in query_rows):
+            errors.append("governance/campaign-status.md: completed G02 has planned queries")
+        exact_counts = (
+            ("Query families executed", sum(row.get("status") == "EXECUTED" for row in query_rows)),
+            ("External HTTP requests", sum(row.get("cache_status") == "MISS" for row in request_rows)),
+            ("Cache hits", sum(row.get("cache_status") == "HIT" for row in request_rows)),
+            ("Raw metadata records", sum(int(row.get("result_count", "0")) for row in request_rows if row.get("terminal_state") == "COMPLETE")),
+            ("Canonical paper records", len(manifest_rows)),
+        )
+        for label, expected_count in exact_counts:
+            if not re.search(r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(re.escape(label), expected_count), status_text, flags=re.MULTILINE):
+                errors.append("governance/campaign-status.md: missing exact {0} count {1}".format(label, expected_count))
+    return sorted(set(errors))
+
+
+def validate_g02_cache_git_boundary(root: Path) -> List[str]:
+    """Reject tracked or staged ignored response bodies."""
+
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "--", "cache/g02"],
+            cwd=str(root),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        return ["git: cannot inspect G02 cache boundary: {0}".format(error)]
+    if result.returncode != 0:
+        return []
+    listed = result.stdout.decode("utf-8", errors="replace").splitlines()
+    tracked = [path for path in listed if path.startswith("cache/g02/")]
+    return ["{0}: G02 response cache must remain ignored".format(path) for path in tracked]
+
+
+def validate_g03_allowed_artifacts(root: Path, require_report: bool) -> List[str]:
+    """Allow only G00-G03 controls, fixtures, reports, and ignored caches."""
+
+    errors: List[str] = []
+    required_paths = list(G03_REQUIRED_FILE_PATHS) + list(G03_FIXTURE_FILE_PATHS)
+    if require_report:
+        required_paths.extend(G03_OPTIONAL_FILE_PATHS)
+    for relative_path in required_paths:
+        if not is_regular_file_path(root / relative_path):
+            errors.append("{0}: required G03 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"), key=lambda path: path.relative_to(root).as_posix()
+        )
+    except OSError as error:
+        return ["root: cannot inspect G03 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_text in G03_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if relative_path.parts[:2] in (("cache", "g02"), ("cache", "g03")):
+            if is_regular_file_path(corpus_path):
+                continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G03".format(relative_text)
+        )
+    return sorted(set(errors))
+
+
+def validate_g03_manifest_rows(
+    rows: Sequence[Mapping[str, str]],
+    valid_query_ids: set[str],
+    valid_question_ids: set[str],
+    seed_ids: Sequence[str],
+    require_complete: bool,
+) -> List[str]:
+    """Validate the preserved G02 baseline plus bounded G03 ancestry rows."""
+
+    errors: List[str] = []
+    baseline_rows = [
+        row for row in rows if row.get("discovery_query_ids") != "NOT_APPLICABLE"
+    ]
+    ancestry_rows = [
+        row for row in rows if row.get("discovery_query_ids") == "NOT_APPLICABLE"
+    ]
+    if len(baseline_rows) != 262:
+        errors.append(
+            "sources/paper-manifest.tsv: G03 must preserve exactly 262 G02 identities"
+        )
+    if len(ancestry_rows) > 250:
+        errors.append(
+            "sources/paper-manifest.tsv: G03 new canonical identity cap 250 exceeded"
+        )
+    try:
+        g02_pipeline = load_g02_pipeline_module()
+        errors.extend(
+            g02_pipeline.validate_metadata_manifest_rows(
+                baseline_rows, valid_query_ids, valid_question_ids
+            )
+        )
+    except (OSError, RuntimeError) as error:
+        errors.append("cannot load preserved G02 manifest validator: {0}".format(error))
+
+    score_pattern = re.compile(
+        r"^ALG=(\d+);MECH=(\d+);ROLE=(\d+);AGE=(\d+);FALS=(\d+)$"
+    )
+    required_note_keys = {
+        "ALIASES",
+        "ANCESTRY_DIRECTIONS",
+        "ANCESTRY_RESOLUTION",
+        "ANCESTRY_SEEDS",
+        "CITATION_DEPTH",
+        "G03_SCREEN",
+        "IDENTITY_STATE",
+        "OPENALEX_ID",
+        "SOURCE_URLS",
+        "VERSIONS",
+    }
+    for index, row in enumerate(ancestry_rows, start=2 + len(baseline_rows)):
+        prefix = "sources/paper-manifest.tsv: G03 row {0}".format(index)
+        if row.get("selection_status") not in {"METADATA_ONLY", "UNAVAILABLE"}:
+            errors.append("{0} must remain metadata-only".format(prefix))
+        if row.get("local_path") != "NOT_ACQUIRED" or row.get("sha256") != "NOT_ACQUIRED":
+            errors.append("{0} cannot acquire full text".format(prefix))
+        if "SOURCE_CLAIM" in " ".join(str(value) for value in row.values()):
+            errors.append("{0} cannot assert SOURCE_CLAIM".format(prefix))
+        question_ids = set(split_g01_multi_value(row.get("architecture_question_ids", "")))
+        if not question_ids or not question_ids <= valid_question_ids:
+            errors.append("{0} has invalid architecture-question provenance".format(prefix))
+        score_match = score_pattern.fullmatch(row.get("score_breakdown", ""))
+        try:
+            relevance_score = int(row.get("relevance_score", "-1"))
+        except ValueError:
+            relevance_score = -1
+        if not score_match:
+            errors.append("{0} has invalid G03 score breakdown".format(prefix))
+        elif relevance_score != sum(int(value) for value in score_match.groups()):
+            errors.append("{0} relevance score does not match G03 breakdown".format(prefix))
+        notes = {
+            clause.split("=", 1)[0]
+            for clause in row.get("notes", "").split(";")
+            if "=" in clause
+        }
+        if not required_note_keys <= notes:
+            errors.append("{0} is missing G03 ancestry notes".format(prefix))
+
+    if require_complete:
+        by_id = {row.get("paper_id", ""): row for row in rows}
+        if len(seed_ids) != 25 or len(set(seed_ids)) != 25:
+            errors.append("sources/G02-metadata-screening-report.md: expected 25 seeds")
+        for seed_id in seed_ids:
+            seed_row = by_id.get(seed_id)
+            if seed_row is None:
+                errors.append("sources/paper-manifest.tsv: missing G03 seed " + seed_id)
+                continue
+            notes = seed_row.get("notes", "")
+            if "G03_SEED=YES" not in notes or "CITATION_DEPTH=0" not in notes:
+                errors.append(
+                    "sources/paper-manifest.tsv: seed {0} lacks depth-0 provenance".format(
+                        seed_id
+                    )
+                )
+    return sorted(set(errors))
+
+
+def validate_g03_report(
+    report_text: str,
+    seed_ids: Sequence[str],
+    manifest_ids: set[str],
+) -> List[str]:
+    """Validate the exact metadata-only G03 decision handoff."""
+
+    errors: List[str] = []
+    required_headings = (
+        "## Executive Result",
+        "## Campaign Accounting",
+        "## Foundational Branches",
+        "## Implementation And Evaluation Branches",
+        "## Contradictory Branches",
+        "## Stopped Branches",
+        "## Architecture-Question Decision Impact",
+        "## Coverage Gaps",
+        "## Exact Recommended G04 Acquisition Set",
+        "## Scope Boundary",
+    )
+    for heading in required_headings:
+        if heading not in report_text:
+            errors.append("sources/G03-citation-ancestry-report.md: missing " + heading)
+    if "Papers read | 0 | 0" not in report_text:
+        errors.append("sources/G03-citation-ancestry-report.md: papers read must be zero")
+    if "Full-text/PDF files acquired | 0 | 0" not in report_text:
+        errors.append("sources/G03-citation-ancestry-report.md: full text must be zero")
+    acquisition_section = extract_markdown_section_text(
+        report_text, "Exact Recommended G04 Acquisition Set"
+    )
+    acquisition_ids = re.findall(r"`(PAPER-[^`]+)`", acquisition_section)
+    if len(acquisition_ids) < 25 or len(acquisition_ids) > 50:
+        errors.append("sources/G03-citation-ancestry-report.md: G04 set must contain 25-50 identities")
+    if len(acquisition_ids) != len(set(acquisition_ids)):
+        errors.append("sources/G03-citation-ancestry-report.md: G04 set has duplicate identities")
+    if not set(seed_ids) <= set(acquisition_ids):
+        errors.append("sources/G03-citation-ancestry-report.md: G04 set omits a G03 seed")
+    if not set(acquisition_ids) <= manifest_ids:
+        errors.append("sources/G03-citation-ancestry-report.md: G04 set has unknown identity")
+    declared_size = re.search(r"Exact G04 set size: \*\*(\d+)\*\*", report_text)
+    if not declared_size or int(declared_size.group(1)) != len(acquisition_ids):
+        errors.append("sources/G03-citation-ancestry-report.md: exact G04 size mismatch")
+    return sorted(set(errors))
+
+
+def validate_g03_campaign_status(
+    status_text: str,
+    request_rows: Sequence[Mapping[str, str]],
+    manifest_rows: Sequence[Mapping[str, str]],
+    edge_rows: Sequence[Mapping[str, str]],
+) -> List[str]:
+    """Validate active and completed G03 lifecycle markers and counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G03`",
+        "- G02 state: `COMPLETE_VERIFIED`",
+        "- Journal: `arxiv-reference/journals/G03-progress.md`",
+        "exactly 25 seeds",
+        "citation depth 2",
+        "250 new canonical identities",
+        "90 HTTP attempts",
+        "6,000 raw metadata observations",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G03 marker " + marker)
+    is_complete = "- Completion state: `COMPLETE`" in status_text
+    if is_complete:
+        for marker in (
+            "- Goal state: `COMPLETE`",
+            "- Validation state: `VERIFIED`",
+            "- Recommended next goal: `G04`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing G03 closure marker " + marker)
+        counts = (
+            ("External citation HTTP attempts", sum(row.get("cache_status") == "MISS" for row in request_rows)),
+            ("Citation metadata observations", sum(int(row.get("result_count", "0")) for row in request_rows if row.get("terminal_state") in {"COMPLETE", "EMPTY"})),
+            ("Final canonical paper records", len(manifest_rows)),
+            ("New G03 canonical identities", max(0, len(manifest_rows) - 262)),
+            ("Citation and semantic edges", len(edge_rows)),
+        )
+        for label, count in counts:
+            if not re.search(
+                r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(re.escape(label), count),
+                status_text,
+                flags=re.MULTILINE,
+            ):
+                errors.append(
+                    "governance/campaign-status.md: missing exact {0} count {1}".format(
+                        label, count
+                    )
+                )
+    elif "- Completion state: `IN_PROGRESS`" not in status_text:
+        errors.append("governance/campaign-status.md: G03 must be IN_PROGRESS or COMPLETE")
+    return sorted(set(errors))
+
+
+def validate_g03_cache_git_boundary(root: Path) -> List[str]:
+    """Reject tracked or staged ignored G03 metadata response bodies."""
+
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "--", "cache/g03"],
+            cwd=str(root),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        return ["git: cannot inspect G03 cache boundary: {0}".format(error)]
+    if result.returncode != 0:
+        return []
+    tracked = [
+        path
+        for path in result.stdout.decode("utf-8", errors="replace").splitlines()
+        if path.startswith("cache/g03/")
+    ]
+    return ["{0}: G03 response cache must remain ignored".format(path) for path in tracked]
+
+
 def run_corpus_contract_checks(root: Path) -> List[str]:
-    """Run every G00 corpus contract check without side effects."""
+    """Run the active G00, G01, or G02 corpus contract without side effects."""
 
     if not root.is_dir():
         return ["root: directory does not exist: {0}".format(root)]
 
     errors = validate_required_control_files(root)
+    active_goal, active_goal_errors = read_active_goal_identifier(root)
+    errors.extend(active_goal_errors)
 
     ignore_text = ""
     ignore_path = root / ".gitignore"
@@ -1668,7 +2698,13 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         )
         errors.extend(read_errors)
         if not read_errors:
-            errors.extend(validate_generation_ledger_shape(generation_ledger_text, root))
+            errors.extend(
+                validate_generation_ledger_shape(
+                    generation_ledger_text,
+                    root,
+                    verify_current_checksums=active_goal == "G00",
+                )
+            )
 
     schema_path = root / "governance/artifact-schema-contracts.md"
     if is_regular_file_path(schema_path):
@@ -1687,14 +2723,371 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
             errors.extend(audit_requirement_test_links(sop_text))
 
     errors.extend(validate_optional_tsv_files(root, ignore_text))
-    active_goal, active_goal_errors = read_active_goal_identifier(root)
-    errors.extend(active_goal_errors)
-    if active_goal is not None and active_goal != "G00":
-        errors.append(
-            "governance/campaign-status.md: active goal must remain G00 for this "
-            "G00 contract validator"
+    if active_goal == "G00":
+        errors.extend(validate_g00_empty_artifacts(root))
+    elif active_goal == "G01":
+        g01_texts: Dict[str, str] = {}
+
+        g01_journal_path = root / "journals/G01-progress.md"
+        if is_regular_file_path(g01_journal_path):
+            g01_journal_text, read_errors = read_text_file_safely(
+                g01_journal_path, "journals/G01-progress.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                g01_texts["journals/G01-progress.md"] = g01_journal_text
+                errors.extend(validate_goal_journal_shape(g01_journal_text, "G01"))
+
+        question_path = root / "governance/architecture-question-ledger.md"
+        questions: List[Dict[str, str]] = []
+        if is_regular_file_path(question_path):
+            question_text, read_errors = read_text_file_safely(
+                question_path, "governance/architecture-question-ledger.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                g01_texts["governance/architecture-question-ledger.md"] = question_text
+                question_errors, questions = validate_g01_question_ledger(
+                    question_text, root.parent
+                )
+                errors.extend(question_errors)
+
+        taxonomy_path = root / "governance/keyword-taxonomy.tsv"
+        taxonomy_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(taxonomy_path):
+            taxonomy_text, read_errors = read_text_file_safely(
+                taxonomy_path, "governance/keyword-taxonomy.tsv"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                g01_texts["governance/keyword-taxonomy.tsv"] = taxonomy_text
+                taxonomy_rows, row_errors = read_tsv_file_rows(
+                    taxonomy_path, "governance/keyword-taxonomy.tsv"
+                )
+                errors.extend(row_errors)
+
+        query_path = root / "governance/query-ledger.tsv"
+        query_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(query_path):
+            query_text, read_errors = read_text_file_safely(
+                query_path, "governance/query-ledger.tsv"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                g01_texts["governance/query-ledger.tsv"] = query_text
+                query_rows, row_errors = read_tsv_file_rows(
+                    query_path, "governance/query-ledger.tsv"
+                )
+                errors.extend(row_errors)
+
+        errors.extend(
+            validate_g01_discovery_rows(
+                taxonomy_rows, query_rows, questions, root.parent
+            )
         )
-    errors.extend(validate_g00_empty_artifacts(root))
+
+        status_path = root / "governance/campaign-status.md"
+        if is_regular_file_path(status_path):
+            status_text, read_errors = read_text_file_safely(
+                status_path, "governance/campaign-status.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                g01_texts["governance/campaign-status.md"] = status_text
+                errors.extend(
+                    validate_g01_campaign_status(
+                        status_text,
+                        len(questions),
+                        len(taxonomy_rows),
+                        len(query_rows),
+                    )
+                )
+
+        errors.extend(validate_g01_no_research_boundary(g01_texts))
+        errors.extend(validate_g01_allowed_artifacts(root))
+    elif active_goal == "G02":
+        g02_journal_path = root / "journals/G02-progress.md"
+        if is_regular_file_path(g02_journal_path):
+            journal_text, read_errors = read_text_file_safely(
+                g02_journal_path, "journals/G02-progress.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                errors.extend(validate_goal_journal_shape(journal_text, "G02"))
+
+        question_path = root / "governance/architecture-question-ledger.md"
+        questions: List[Dict[str, str]] = []
+        if is_regular_file_path(question_path):
+            question_text, read_errors = read_text_file_safely(
+                question_path, "governance/architecture-question-ledger.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                question_errors, questions = validate_g01_question_ledger(
+                    question_text, root.parent
+                )
+                errors.extend(question_errors)
+
+        taxonomy_path = root / "governance/keyword-taxonomy.tsv"
+        taxonomy_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(taxonomy_path):
+            taxonomy_rows, row_errors = read_tsv_file_rows(
+                taxonomy_path, "governance/keyword-taxonomy.tsv"
+            )
+            errors.extend(row_errors)
+
+        query_path = root / "governance/query-ledger.tsv"
+        query_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(query_path):
+            query_rows, row_errors = read_tsv_file_rows(
+                query_path, "governance/query-ledger.tsv"
+            )
+            errors.extend(row_errors)
+
+        request_path = root / "sources/metadata-request-ledger.tsv"
+        request_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(request_path):
+            request_rows, row_errors = read_tsv_file_rows(
+                request_path, "sources/metadata-request-ledger.tsv"
+            )
+            errors.extend(row_errors)
+
+        manifest_path = root / "sources/paper-manifest.tsv"
+        manifest_rows: List[Dict[str, str]] = []
+        if is_regular_file_path(manifest_path):
+            manifest_rows, row_errors = read_tsv_file_rows(
+                manifest_path, "sources/paper-manifest.tsv"
+            )
+            errors.extend(row_errors)
+
+        status_text = ""
+        status_path = root / "governance/campaign-status.md"
+        if is_regular_file_path(status_path):
+            status_text, read_errors = read_text_file_safely(
+                status_path, "governance/campaign-status.md"
+            )
+            errors.extend(read_errors)
+        require_terminal = "- Completion state: `COMPLETE`" in status_text
+        errors.extend(
+            validate_g02_query_rows(
+                query_rows, taxonomy_rows, questions, require_terminal
+            )
+        )
+
+        preflight_path = root / "governance/g02-service-preflight.md"
+        if is_regular_file_path(preflight_path):
+            preflight_text, read_errors = read_text_file_safely(
+                preflight_path, "governance/g02-service-preflight.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                errors.extend(validate_g02_service_preflight(preflight_text))
+
+        try:
+            g02_pipeline = load_g02_pipeline_module()
+            errors.extend(g02_pipeline.validate_request_provenance_rows(request_rows))
+            errors.extend(
+                g02_pipeline.validate_metadata_manifest_rows(
+                    manifest_rows,
+                    {row.get("query_id", "") for row in query_rows},
+                    {row.get("question_id", "") for row in questions},
+                )
+            )
+            errors.extend(
+                g02_pipeline.validate_cached_response_provenance(
+                    root, request_rows
+                )
+            )
+            errors.extend(
+                g02_pipeline.validate_query_aggregate_provenance(
+                    query_rows, request_rows
+                )
+            )
+        except (OSError, RuntimeError) as error:
+            errors.append("cannot load G02 metadata validators: {0}".format(error))
+
+        errors.extend(
+            validate_g02_campaign_status(
+                status_text, query_rows, request_rows, manifest_rows
+            )
+        )
+        errors.extend(validate_g02_allowed_artifacts(root))
+        errors.extend(validate_g02_cache_git_boundary(root))
+    elif active_goal == "G03":
+        status_text = ""
+        status_path = root / "governance/campaign-status.md"
+        if is_regular_file_path(status_path):
+            status_text, read_errors = read_text_file_safely(
+                status_path, "governance/campaign-status.md"
+            )
+            errors.extend(read_errors)
+        require_complete = "- Completion state: `COMPLETE`" in status_text
+
+        g03_journal_path = root / "journals/G03-progress.md"
+        if is_regular_file_path(g03_journal_path):
+            journal_text, read_errors = read_text_file_safely(
+                g03_journal_path, "journals/G03-progress.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                errors.extend(validate_goal_journal_shape(journal_text, "G03"))
+
+        g03_packet_path = root / "governance/G03-goal-packet.md"
+        if is_regular_file_path(g03_packet_path):
+            packet_text, read_errors = read_text_file_safely(
+                g03_packet_path, "governance/G03-goal-packet.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                errors.extend(
+                    validate_goal_packet_shape(
+                        packet_text,
+                        "governance/G03-goal-packet.md",
+                        expected_goal="G03",
+                    )
+                )
+
+        questions: List[Dict[str, str]] = []
+        question_path = root / "governance/architecture-question-ledger.md"
+        if is_regular_file_path(question_path):
+            question_text, read_errors = read_text_file_safely(
+                question_path, "governance/architecture-question-ledger.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                question_errors, questions = validate_g01_question_ledger(
+                    question_text, root.parent
+                )
+                errors.extend(question_errors)
+
+        taxonomy_rows: List[Dict[str, str]] = []
+        taxonomy_path = root / "governance/keyword-taxonomy.tsv"
+        if is_regular_file_path(taxonomy_path):
+            taxonomy_rows, row_errors = read_tsv_file_rows(
+                taxonomy_path, "governance/keyword-taxonomy.tsv"
+            )
+            errors.extend(row_errors)
+
+        query_rows: List[Dict[str, str]] = []
+        query_path = root / "governance/query-ledger.tsv"
+        if is_regular_file_path(query_path):
+            query_rows, row_errors = read_tsv_file_rows(
+                query_path, "governance/query-ledger.tsv"
+            )
+            errors.extend(row_errors)
+        errors.extend(validate_g02_query_rows(query_rows, taxonomy_rows, questions, True))
+
+        metadata_request_rows: List[Dict[str, str]] = []
+        metadata_request_path = root / "sources/metadata-request-ledger.tsv"
+        if is_regular_file_path(metadata_request_path):
+            metadata_request_rows, row_errors = read_tsv_file_rows(
+                metadata_request_path, "sources/metadata-request-ledger.tsv"
+            )
+            errors.extend(row_errors)
+
+        manifest_rows: List[Dict[str, str]] = []
+        manifest_path = root / "sources/paper-manifest.tsv"
+        if is_regular_file_path(manifest_path):
+            manifest_rows, row_errors = read_tsv_file_rows(
+                manifest_path, "sources/paper-manifest.tsv"
+            )
+            errors.extend(row_errors)
+
+        citation_request_rows: List[Dict[str, str]] = []
+        citation_request_path = root / "sources/citation-request-ledger.tsv"
+        if is_regular_file_path(citation_request_path):
+            citation_request_rows, row_errors = read_tsv_file_rows(
+                citation_request_path, "sources/citation-request-ledger.tsv"
+            )
+            errors.extend(row_errors)
+
+        edge_rows: List[Dict[str, str]] = []
+        edge_path = root / "sources/citation-edges.tsv"
+        if is_regular_file_path(edge_path):
+            edge_rows, row_errors = read_tsv_file_rows(
+                edge_path, "sources/citation-edges.tsv"
+            )
+            errors.extend(row_errors)
+
+        seed_ids: List[str] = []
+        screening_report_path = root / "sources/G02-metadata-screening-report.md"
+        try:
+            g02_pipeline = load_g02_pipeline_module()
+            errors.extend(g02_pipeline.validate_request_provenance_rows(metadata_request_rows))
+            errors.extend(g02_pipeline.validate_cached_response_provenance(root, metadata_request_rows))
+            errors.extend(g02_pipeline.validate_query_aggregate_provenance(query_rows, metadata_request_rows))
+        except (OSError, RuntimeError) as error:
+            errors.append("cannot load preserved G02 provenance validators: {0}".format(error))
+
+        try:
+            g03_pipeline = load_g03_pipeline_module()
+            if is_regular_file_path(screening_report_path):
+                screening_text, read_errors = read_text_file_safely(
+                    screening_report_path, "sources/G02-metadata-screening-report.md"
+                )
+                errors.extend(read_errors)
+                if not read_errors:
+                    seed_ids = g03_pipeline.extract_g03_seed_ids(screening_text)
+            preflight_path = root / "governance/g03-service-preflight.md"
+            if is_regular_file_path(preflight_path):
+                preflight_text, read_errors = read_text_file_safely(
+                    preflight_path, "governance/g03-service-preflight.md"
+                )
+                errors.extend(read_errors)
+                if not read_errors:
+                    errors.extend(g03_pipeline.validate_g03_network_preflight(preflight_text))
+            errors.extend(g03_pipeline.validate_citation_request_rows(citation_request_rows))
+            errors.extend(g03_pipeline.validate_g03_cache_provenance(root, citation_request_rows))
+            errors.extend(
+                g03_pipeline.validate_citation_edge_contract(
+                    edge_rows, {row.get("paper_id", "") for row in manifest_rows}
+                )
+            )
+            errors.extend(
+                g03_pipeline.validate_edge_cache_provenance(
+                    root, citation_request_rows, edge_rows, manifest_rows
+                )
+            )
+        except (OSError, RuntimeError, ValueError) as error:
+            errors.append("cannot load G03 citation validators: {0}".format(error))
+
+        errors.extend(
+            validate_g03_manifest_rows(
+                manifest_rows,
+                {row.get("query_id", "") for row in query_rows},
+                {row.get("question_id", "") for row in questions},
+                seed_ids,
+                require_complete,
+            )
+        )
+        if require_complete:
+            report_path = root / "sources/G03-citation-ancestry-report.md"
+            if is_regular_file_path(report_path):
+                report_text, read_errors = read_text_file_safely(
+                    report_path, "sources/G03-citation-ancestry-report.md"
+                )
+                errors.extend(read_errors)
+                if not read_errors:
+                    errors.extend(
+                        validate_g03_report(
+                            report_text,
+                            seed_ids,
+                            {row.get("paper_id", "") for row in manifest_rows},
+                        )
+                    )
+        errors.extend(
+            validate_g03_campaign_status(
+                status_text, citation_request_rows, manifest_rows, edge_rows
+            )
+        )
+        errors.extend(validate_g03_allowed_artifacts(root, require_complete))
+        errors.extend(validate_g02_cache_git_boundary(root))
+        errors.extend(validate_g03_cache_git_boundary(root))
+    elif active_goal is not None:
+        errors.append(
+            "governance/campaign-status.md: active goal {0} is not supported by "
+            "this validator".format(active_goal)
+        )
     errors.extend(validate_git_tracked_pdfs(root))
     return sorted(set(errors))
 

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:arxiv="http://arxiv.org/schemas/atom">
+  <entry><id>http://arxiv.org/abs/2401.00001v1</id><updated>2024-01-02T00:00:00Z</updated><published>2024-01-01T00:00:00Z</published><title>Bounded Memory Graph Processing</title><summary>Earlier version.</summary><author><name>Ada Example</name></author><category term="cs.DS"/><arxiv:doi>https://doi.org/10.1000/EXAMPLE.1</arxiv:doi></entry>
+  <entry><id>http://arxiv.org/abs/2401.00001v2</id><updated>2024-02-02T00:00:00Z</updated><published>2024-01-01T00:00:00Z</published><title>Bounded Memory Graph Processing</title><summary>Later version.</summary><author><name>Ada Example</name></author><category term="cs.DS"/><arxiv:doi>10.1000/example.1</arxiv:doi></entry>
+</feed>

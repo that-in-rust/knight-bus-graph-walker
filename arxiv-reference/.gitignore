@@ -10,6 +10,8 @@ sources/text-cache/
 # Local tool caches.
 .cache/
 **/.cache/
+cache/g02/
+cache/g03/
 __pycache__/
 *.py[cod]
 

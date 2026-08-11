@@ -333,20 +333,19 @@ class ValidateArxivCorpusContractTests(unittest.TestCase):
         self.addCleanup(temporary_directory.cleanup)
         status_path = copied_root / "governance" / "campaign-status.md"
         status_text = status_path.read_text()
-        self.assertIn("- Active goal: `G00`", status_text)
-        status_path.write_text(status_text.replace("- Active goal: `G00`", "- Active goal: `G01`"))
-        refresh_copied_output_checksum(
-            copied_root, "arxiv-reference/governance/campaign-status.md"
+        self.assertIn("- Active goal: `G03`", status_text)
+        status_path.write_text(
+            status_text.replace("- Active goal: `G03`", "- Active goal: `G99`")
         )
         future_path = copied_root / "evidence" / "future-record.md"
         future_path.parent.mkdir(parents=True, exist_ok=True)
-        future_path.write_text("unauthorized G00 record\n")
+        future_path.write_text("unauthorized later-goal record\n")
 
         result = run_validator_with_root(copied_root)
         output = result.stdout + result.stderr
 
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("active goal must remain G00", output)
+        self.assertIn("active goal G99 is not supported", output)
 
     def test_control_symlink_fails(self) -> None:
         temporary_directory, copied_root = copy_contract_to_temp()

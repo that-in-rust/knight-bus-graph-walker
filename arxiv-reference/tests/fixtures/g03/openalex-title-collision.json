@@ -1,0 +1,28 @@
+{
+  "meta": {"count": 2, "page": 1, "per_page": 100, "next_cursor": null},
+  "results": [
+    {
+      "id": "https://openalex.org/W400",
+      "doi": null,
+      "display_name": "Same Graph Title",
+      "publication_date": "1999-01-01",
+      "type": "article",
+      "authorships": [{"author": {"id": "https://openalex.org/A4", "display_name": "First Author"}}],
+      "ids": {"openalex": "https://openalex.org/W400"},
+      "locations": [], "referenced_works": [],
+      "cited_by_count": 1, "is_retracted": false, "updated_date": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "https://openalex.org/W401",
+      "doi": null,
+      "display_name": "Same: Graph Title!",
+      "publication_date": "2004-01-01",
+      "type": "article",
+      "authorships": [{"author": {"id": "https://openalex.org/A5", "display_name": "Second Author"}}],
+      "ids": {"openalex": "https://openalex.org/W401"},
+      "locations": [], "referenced_works": [],
+      "cited_by_count": 2, "is_retracted": false, "updated_date": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "group_by": []
+}

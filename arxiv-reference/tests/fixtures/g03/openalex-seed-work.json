@@ -1,0 +1,14 @@
+{
+  "id": "https://openalex.org/W100",
+  "doi": "https://doi.org/10.1000/seed.1",
+  "display_name": "Bounded Graph Processing",
+  "publication_date": "2024-01-02",
+  "type": "article",
+  "authorships": [{"author": {"id": "https://openalex.org/A1", "display_name": "Ada Example"}}],
+  "ids": {"openalex": "https://openalex.org/W100", "doi": "https://doi.org/10.1000/seed.1"},
+  "locations": [{"landing_page_url": "https://arxiv.org/abs/2401.00001v2", "pdf_url": null}],
+  "referenced_works": ["https://openalex.org/W200", "https://openalex.org/W201"],
+  "cited_by_count": 12,
+  "is_retracted": false,
+  "updated_date": "2026-07-01T00:00:00Z"
+}

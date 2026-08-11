@@ -1,0 +1,27 @@
+[
+  {
+    "paperId": "S2-SEED-1",
+    "externalIds": {"ArXiv": "2401.00001", "DOI": "10.1000/seed-one"},
+    "url": "https://www.semanticscholar.org/paper/S2-SEED-1",
+    "title": "Bounded Graph Processing",
+    "year": 2024,
+    "publicationDate": "2024-01-01",
+    "authors": [{"authorId": "A1", "name": "Ada Example"}],
+    "venue": "arXiv",
+    "citationCount": 7,
+    "referenceCount": 11
+  },
+  {
+    "paperId": "S2-SEED-2",
+    "externalIds": {"ArXiv": "2401.00002"},
+    "url": "https://www.semanticscholar.org/paper/S2-SEED-2",
+    "title": "Predictable Graph Storage",
+    "year": 2024,
+    "publicationDate": "2024-01-02",
+    "authors": [{"authorId": "A2", "name": "Grace Example"}],
+    "venue": "arXiv",
+    "citationCount": 5,
+    "referenceCount": 9
+  },
+  null
+]

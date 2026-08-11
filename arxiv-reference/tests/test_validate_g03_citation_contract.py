@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import importlib.util
+import io
 import re
 import shutil
 import sys
@@ -25,6 +26,8 @@ EDGE_PATH = REFERENCE_ROOT / "sources" / "citation-edges.tsv"
 REQUEST_PATH = REFERENCE_ROOT / "sources" / "citation-request-ledger.tsv"
 PREFLIGHT_PATH = REFERENCE_ROOT / "governance" / "g03-service-preflight.md"
 FINAL_REPORT_PATH = REFERENCE_ROOT / "sources" / "G03-citation-ancestry-report.md"
+STOP_PATH = REFERENCE_ROOT / "sources" / "citation-stops.tsv"
+SCREENING_PATH = REFERENCE_ROOT / "sources" / "citation-screening-ledger.tsv"
 
 spec = importlib.util.spec_from_file_location("g03_citation_pipeline", PIPELINE_PATH)
 if spec is None or spec.loader is None:
@@ -38,6 +41,7 @@ class ValidateG03CitationContractTests(unittest.TestCase):
     def test_mocked_campaign_traverses_all_seeds_and_writes_bounded_outputs(self) -> None:
         with MANIFEST_PATH.open(encoding="utf-8") as handle:
             baseline_rows = list(csv.DictReader(handle, delimiter="\t"))
+        baseline_rows = baseline_rows[: pipeline.EXPECTED_G02_MANIFEST_COUNT]
         baseline_by_id = {row["paper_id"]: row for row in baseline_rows}
 
         def synthetic_record(
@@ -192,6 +196,11 @@ class ValidateG03CitationContractTests(unittest.TestCase):
                 return rows
             suffix = traversal_paper_id.replace("PAPER-", "").replace(".", "")
             if operation == "BACKWARD_REFERENCES":
+                if depth == 0 and seed_paper_id == "PAPER-2401.01019":
+                    payload_error = getattr(
+                        pipeline, "CitationPayloadRejected", RuntimeError
+                    )
+                    raise payload_error("fixture selected payload was rejected")
                 return [
                     synthetic_s2_record(
                         "S2-BACK-{0}-{1}".format(depth, suffix),
@@ -200,6 +209,10 @@ class ValidateG03CitationContractTests(unittest.TestCase):
                     )
                 ]
             if operation == "FORWARD_CITATIONS":
+                if depth == 0 and seed_paper_id == "PAPER-1602.02864":
+                    raise pipeline.CitationRateLimitExhausted(
+                        "fixture branch exhausted its rate-limit attempts"
+                    )
                 return [
                     synthetic_s2_record(
                         "S2-FWD-{0}-{1}".format(depth, suffix),
@@ -220,13 +233,33 @@ class ValidateG03CitationContractTests(unittest.TestCase):
                 source = REFERENCE_ROOT / relative_path
                 destination = reference_root / relative_path
                 destination.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(source, destination)
+                if relative_path == "sources/paper-manifest.tsv":
+                    pipeline.write_tsv_rows(
+                        destination, pipeline.MANIFEST_HEADER, baseline_rows
+                    )
+                else:
+                    shutil.copy2(source, destination)
             (reference_root / "sources" / "citation-request-ledger.tsv").write_text(
                 pipeline.REQUEST_HEADER + "\n", encoding="utf-8"
             )
             (reference_root / "sources" / "citation-edges.tsv").write_text(
                 pipeline.EDGE_HEADER + "\n", encoding="utf-8"
             )
+            (reference_root / "sources" / "citation-screening-ledger.tsv").write_text(
+                pipeline.SCREENING_HEADER + "\n", encoding="utf-8"
+            )
+
+            def fake_reviewed_g04_queue(_screening_path: Path) -> list[str]:
+                generated_rows = pipeline.read_tsv_rows(
+                    reference_root / "sources" / "paper-manifest.tsv",
+                    pipeline.MANIFEST_HEADER,
+                )
+                return [
+                    row["paper_id"]
+                    for row in generated_rows
+                    if row["discovery_query_ids"] == "NOT_APPLICABLE"
+                    and "IDENTITY_STATE=CANONICAL" in row["notes"]
+                ][:25]
 
             with mock.patch.object(
                 pipeline, "_fetch_campaign_page", side_effect=fake_campaign_page
@@ -234,6 +267,12 @@ class ValidateG03CitationContractTests(unittest.TestCase):
                 pipeline, "_fetch_s2_campaign_page", side_effect=fake_s2_campaign_page
             ) as s2_campaign_page, mock.patch.object(
                 pipeline, "validate_edge_cache_provenance", return_value=[]
+            ), mock.patch.object(
+                pipeline, "validate_screening_rows", return_value=[]
+            ), mock.patch.object(
+                pipeline, "load_reviewed_g04_queue", side_effect=fake_reviewed_g04_queue
+            ), mock.patch.object(
+                pipeline, "build_screening_ledger_rows", return_value=[]
             ):
                 result = pipeline.execute_g03_citation_campaign(
                     reference_root, allow_network=False
@@ -282,6 +321,46 @@ class ValidateG03CitationContractTests(unittest.TestCase):
             ).read_text(encoding="utf-8")
             self.assertIn("Exact G04 set size:", report)
             self.assertIn("Papers read | 0 | 0", report)
+            self.assertIn("S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED", report)
+            self.assertIn("S2_SELECTED_PAYLOAD_REJECTED", report)
+            self.assertIn(
+                "OpenAlex and Semantic Scholar provider relations", report
+            )
+            self.assertIn("Semantic Scholar page limit is 75", report)
+            self.assertIn("Depth-2 expansion attempts", report)
+            self.assertIn("Post-Traversal Screening Review", report)
+            self.assertIn("Constraint And Negative-Result Signals", report)
+            self.assertIn("Survey And Review Signals", report)
+            self.assertIn("Displayed", report)
+            self.assertIn("Provider-backed CITES edges", report)
+
+            first_outputs = {
+                relative_path: (reference_root / relative_path).read_bytes()
+                for relative_path in (
+                    "sources/paper-manifest.tsv",
+                    "sources/citation-edges.tsv",
+                    "sources/G03-citation-ancestry-report.md",
+                )
+            }
+            with mock.patch.object(
+                pipeline, "_fetch_campaign_page", side_effect=fake_campaign_page
+            ), mock.patch.object(
+                pipeline, "_fetch_s2_campaign_page", side_effect=fake_s2_campaign_page
+            ), mock.patch.object(
+                pipeline, "validate_edge_cache_provenance", return_value=[]
+            ), mock.patch.object(
+                pipeline, "validate_screening_rows", return_value=[]
+            ), mock.patch.object(
+                pipeline, "load_reviewed_g04_queue", side_effect=fake_reviewed_g04_queue
+            ), mock.patch.object(
+                pipeline, "build_screening_ledger_rows", return_value=[]
+            ):
+                replay_result = pipeline.execute_g03_citation_campaign(
+                    reference_root, allow_network=False
+                )
+            self.assertEqual(replay_result, result)
+            for relative_path, expected in first_outputs.items():
+                self.assertEqual((reference_root / relative_path).read_bytes(), expected)
             written_manifest = pipeline.read_tsv_rows(
                 reference_root / "sources" / "paper-manifest.tsv",
                 pipeline.MANIFEST_HEADER,
@@ -541,6 +620,111 @@ class ValidateG03CitationContractTests(unittest.TestCase):
             )
             self.assertEqual(
                 pipeline.validate_g03_cache_provenance(reference_root, rows), []
+            )
+
+    def test_s2_rate_limit_exhaustion_is_typed_and_persistent(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            reference_root = Path(temporary_directory) / "arxiv-reference"
+            ledger_path = reference_root / "sources" / "citation-request-ledger.tsv"
+            preflight = PREFLIGHT_PATH.read_text(encoding="utf-8")
+            rate_error = pipeline.urllib.error.HTTPError(
+                "https://api.semanticscholar.org/graph/v1/paper/S2-SEED/citations",
+                429,
+                "Too Many Requests",
+                {},
+                io.BytesIO(b'{"error":"rate_limited"}'),
+            )
+            for _attempt in range(2):
+                with mock.patch.object(
+                    pipeline.urllib.request, "urlopen", side_effect=rate_error
+                ), self.assertRaisesRegex(RuntimeError, "status 429"):
+                    pipeline.fetch_s2_metadata_page(
+                        reference_root=reference_root,
+                        ledger_path=ledger_path,
+                        preflight_text=preflight,
+                        operation="FORWARD_CITATIONS",
+                        identifier="S2-SEED",
+                        seed_paper_id="PAPER-2401.00001",
+                        traversal_paper_id="PAPER-2401.00001",
+                        depth=0,
+                        direction="FORWARD",
+                        allow_network=True,
+                        remaining_http_requests=1,
+                        minimum_delay_seconds=0.0,
+                    )
+                rate_error.fp = io.BytesIO(b'{"error":"rate_limited"}')
+            with mock.patch.object(
+                pipeline.urllib.request, "urlopen", side_effect=rate_error
+            ), self.assertRaises(pipeline.CitationRateLimitExhausted):
+                pipeline.fetch_s2_metadata_page(
+                    reference_root=reference_root,
+                    ledger_path=ledger_path,
+                    preflight_text=preflight,
+                    operation="FORWARD_CITATIONS",
+                    identifier="S2-SEED",
+                    seed_paper_id="PAPER-2401.00001",
+                    traversal_paper_id="PAPER-2401.00001",
+                    depth=0,
+                    direction="FORWARD",
+                    allow_network=True,
+                    remaining_http_requests=1,
+                    minimum_delay_seconds=0.0,
+                )
+            rows = pipeline.read_tsv_rows(ledger_path, pipeline.REQUEST_HEADER)
+            self.assertEqual(len(rows), 3)
+            self.assertEqual(rows[-1]["terminal_state"], "RATE_LIMITED")
+            self.assertEqual(pipeline.validate_citation_request_rows(rows), [])
+
+    def test_s2_rejected_payload_is_typed_and_replayed_without_network(self) -> None:
+        class RejectedResponse:
+            status = 200
+            headers: dict[str, str] = {}
+
+            def __enter__(self) -> "RejectedResponse":
+                return self
+
+            def __exit__(self, *_args: object) -> None:
+                return None
+
+            def read(self) -> bytes:
+                return b'{"data":{"error":"invalid citation envelope"}}'
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            reference_root = Path(temporary_directory) / "arxiv-reference"
+            ledger_path = reference_root / "sources" / "citation-request-ledger.tsv"
+            preflight = PREFLIGHT_PATH.read_text(encoding="utf-8")
+            arguments = dict(
+                reference_root=reference_root,
+                ledger_path=ledger_path,
+                preflight_text=preflight,
+                operation="BACKWARD_REFERENCES",
+                identifier="S2-SEED",
+                seed_paper_id="PAPER-2401.00001",
+                traversal_paper_id="PAPER-2401.00001",
+                depth=0,
+                direction="BACKWARD",
+                remaining_http_requests=1,
+                minimum_delay_seconds=0.0,
+            )
+            with mock.patch.object(
+                pipeline.urllib.request, "urlopen", return_value=RejectedResponse()
+            ), self.assertRaisesRegex(RuntimeError, "selected metadata response is invalid"):
+                pipeline.fetch_s2_metadata_page(allow_network=True, **arguments)
+
+            rows = pipeline.read_tsv_rows(ledger_path, pipeline.REQUEST_HEADER)
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["terminal_state"], "PAYLOAD_REJECTED")
+            self.assertEqual(pipeline.validate_citation_request_rows(rows), [])
+            cache_path = reference_root.parent / rows[0]["cache_path"]
+            self.assertEqual(
+                pipeline.validate_g03_cache_provenance(reference_root, rows), []
+            )
+            self.assertIn(b'"error":"rejected_provider_payload"', cache_path.read_bytes())
+
+            with self.assertRaisesRegex(RuntimeError, "payload was previously rejected"):
+                pipeline.fetch_s2_metadata_page(allow_network=False, **arguments)
+            self.assertEqual(
+                len(pipeline.read_tsv_rows(ledger_path, pipeline.REQUEST_HEADER)), 1
             )
 
     def test_network_request_is_preflighted_ledgered_and_cache_resumable(self) -> None:
@@ -832,6 +1016,70 @@ class ValidateG03CitationContractTests(unittest.TestCase):
         self.assertEqual(len({row["paper_id"] for row in identities}), 2)
         self.assertTrue(all(row["identity_state"] == "AMBIGUOUS" for row in identities))
 
+    def test_conflicting_strong_identifiers_never_reuse_either_existing_identity(self) -> None:
+        existing = [
+            {
+                "paper_id": "PAPER-2401.00001",
+                "arxiv_id": "2401.00001",
+                "doi": "10.1000/arxiv-anchor",
+            },
+            {
+                "paper_id": "PAPER-HASH-doi-anchor",
+                "arxiv_id": "UNKNOWN",
+                "doi": "10.1000/doi-anchor",
+            },
+        ]
+        record = {
+            "paper_id": "PAPER-2401.00001",
+            "provider_id": "S2:conflicting-anchor",
+            "semantic_scholar_id": "conflicting-anchor",
+            "arxiv_id": "2401.00001",
+            "doi": "10.1000/doi-anchor",
+            "title": "Conflicting strong identifier fixture",
+            "authors": ["Fixture Author"],
+            "published_date": "2024-01-01",
+        }
+
+        identities = pipeline.reconcile_citation_identities([record], existing)
+
+        self.assertEqual(len(identities), 1)
+        self.assertEqual(identities[0]["identity_state"], "AMBIGUOUS")
+        self.assertNotIn(
+            identities[0]["paper_id"],
+            {"PAPER-2401.00001", "PAPER-HASH-doi-anchor"},
+        )
+        self.assertEqual(
+            set(identities[0]["conflicting_identity_ids"]),
+            {"PAPER-2401.00001", "PAPER-HASH-doi-anchor"},
+        )
+
+        reconciled_map = pipeline._reconcile_record_map([record], existing)
+        reconciled = reconciled_map["S2:conflicting-anchor"]
+        observation = {
+            "paper_id": reconciled["paper_id"],
+            "seed_paper_id": "PAPER-2401.00001",
+            "parent_paper_id": "PAPER-2401.00001",
+            "depth": 1,
+            "direction": "FORWARD",
+            "decision_score": 80,
+            "score_breakdown": "ALG=40;MECH=25;ROLE=15;AGE=0;FALS=0",
+            "architecture_question_ids": ["AQ-001"],
+        }
+        final_manifest = pipeline._update_manifest_rows(
+            existing,
+            {},
+            [],
+            {str(reconciled["paper_id"]): reconciled},
+            [observation],
+        )
+        ambiguous_row = next(
+            row for row in final_manifest if row["paper_id"] == reconciled["paper_id"]
+        )
+        self.assertIn(
+            "CONFLICTING_IDENTITY_IDS=PAPER-2401.00001|PAPER-HASH-doi-anchor",
+            ambiguous_row["notes"],
+        )
+
     def test_citation_direction_is_citing_to_cited(self) -> None:
         citing = pipeline.parse_openalex_work_payload(
             (FIXTURE_ROOT / "openalex-citations.json").read_bytes()
@@ -861,6 +1109,239 @@ class ValidateG03CitationContractTests(unittest.TestCase):
         self.assertTrue(semantic["discovery_source"].endswith("_METADATA_SCREEN"))
         self.assertTrue(semantic["relevance_reason"].startswith("DERIVED_INFERENCE:"))
         self.assertNotIn("SOURCE_CLAIM", semantic["relevance_reason"])
+
+    def test_semantic_edge_accepts_distinctive_target_prefix_before_subtitle(self) -> None:
+        citing = {
+            "paper_id": "PAPER-HASH-30d2a0e04327c2df",
+            "title": "A CUDA implementation of the pagerank pipeline benchmark",
+            "provider_name": "SemanticScholar",
+        }
+        edges = pipeline.build_provider_citation_edges(
+            "PAPER-1603.01876",
+            citing,
+            "2026-08-11T00:00:00Z",
+            target_title=(
+                "PageRank Pipeline Benchmark: Proposal for a Holistic System "
+                "Benchmark for Big-Data Platforms"
+            ),
+        )
+        self.assertEqual({row["edge_type"] for row in edges}, {"CITES", "IMPLEMENTS"})
+        semantic = next(row for row in edges if row["edge_type"] == "IMPLEMENTS")
+        self.assertIn("TARGET_TITLE_ANCHORED", semantic["relevance_reason"])
+
+    def test_reviewed_g04_queue_is_unique_and_excludes_screening_false_positives(self) -> None:
+        reviewed = pipeline.load_reviewed_g04_queue(SCREENING_PATH)
+        self.assertEqual(len(reviewed), 25)
+        self.assertEqual(len(set(reviewed)), 25)
+        self.assertNotIn("PAPER-2608.07254", reviewed)
+        self.assertNotIn("PAPER-HASH-5f08934040ef557c", reviewed)
+        self.assertNotIn("PAPER-HASH-6d247d25d59aa0a2", reviewed)
+        self.assertNotIn("PAPER-HASH-b3b01325cae00d33", reviewed)
+        self.assertNotIn("PAPER-HASH-3cd083d5fa09c1f7", reviewed)
+        self.assertNotIn("PAPER-HASH-5be22f3d593ea876", reviewed)
+
+    def test_screening_ledger_covers_every_retained_ancestry_identity(self) -> None:
+        screening_rows = pipeline.read_tsv_rows(
+            SCREENING_PATH, pipeline.SCREENING_HEADER
+        )
+        with MANIFEST_PATH.open(encoding="utf-8") as handle:
+            manifest_rows = list(csv.DictReader(handle, delimiter="\t"))
+        ancestry_ids = {
+            row["paper_id"]
+            for row in manifest_rows
+            if int(pipeline._parse_notes_map(row["notes"]).get("CITATION_DEPTH", "0")) >= 1
+        }
+        new_ancestry_ids = {
+            row["paper_id"]
+            for row in manifest_rows
+            if row["discovery_query_ids"] == "NOT_APPLICABLE"
+            and int(pipeline._parse_notes_map(row["notes"]).get("CITATION_DEPTH", "0")) >= 1
+        }
+
+        self.assertEqual(
+            {row["candidate_paper_id"] for row in screening_rows}, ancestry_ids
+        )
+        self.assertEqual(len(ancestry_ids), 137)
+        self.assertEqual(len(screening_rows), len(ancestry_ids))
+        self.assertTrue(
+            {
+                row["candidate_paper_id"]
+                for row in screening_rows
+                if row["disposition"] == "ACQUIRE"
+            }.issubset(new_ancestry_ids)
+        )
+        self.assertTrue(
+            all(row["primary_lane"] in {"G03-LANE-A", "G03-LANE-B", "G03-LANE-C"} for row in screening_rows)
+        )
+        self.assertTrue(all(row["audit_lane_id"] == "G03-LANE-D" for row in screening_rows))
+        self.assertTrue(all(re.fullmatch(r"[0-9a-f]{64}", row["result_checksum"]) for row in screening_rows))
+
+    def test_screening_ledger_rebuilds_from_lane_results(self) -> None:
+        manifest_rows = pipeline.read_tsv_rows(
+            MANIFEST_PATH, pipeline.MANIFEST_HEADER
+        )
+        rebuilt_rows = pipeline.build_screening_ledger_rows(
+            manifest_rows, REFERENCE_ROOT
+        )
+        persisted_rows = pipeline.read_tsv_rows(
+            SCREENING_PATH, pipeline.SCREENING_HEADER
+        )
+
+        self.assertEqual(rebuilt_rows, persisted_rows)
+        self.assertEqual(len(rebuilt_rows), 137)
+        self.assertEqual(
+            sum(row["disposition"] == "ACQUIRE" for row in rebuilt_rows), 25
+        )
+
+    def test_populated_cache_replay_is_network_free_and_byte_identical(self) -> None:
+        generated_paths = (
+            "sources/paper-manifest.tsv",
+            "sources/citation-request-ledger.tsv",
+            "sources/citation-edges.tsv",
+            "sources/citation-stops.tsv",
+            "sources/citation-screening-ledger.tsv",
+            "sources/G03-citation-ancestry-report.md",
+        )
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            copied_root = Path(temporary_directory) / "arxiv-reference"
+            shutil.copytree(
+                REFERENCE_ROOT,
+                copied_root,
+                ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+            )
+            before = {
+                relative_path: (copied_root / relative_path).read_bytes()
+                for relative_path in generated_paths
+            }
+
+            with mock.patch.object(
+                pipeline.urllib.request,
+                "urlopen",
+                side_effect=AssertionError("populated-cache replay attempted network"),
+            ):
+                result = pipeline.execute_g03_citation_campaign(
+                    copied_root, allow_network=False
+                )
+
+            self.assertEqual(
+                result,
+                {
+                    "seeds": 25,
+                    "requests": 83,
+                    "raw_observations": 1389,
+                    "baseline_identities": 262,
+                    "final_identities": 377,
+                    "new_identities": 115,
+                    "edges": 159,
+                    "stops": 1251,
+                    "unavailable_seeds": 0,
+                    "semantic_scholar_seeds": 25,
+                },
+            )
+            for relative_path, expected_bytes in before.items():
+                self.assertEqual(
+                    (copied_root / relative_path).read_bytes(), expected_bytes
+                )
+
+    def test_stop_ledger_persists_every_exact_stopped_observation(self) -> None:
+        stop_rows = pipeline.read_tsv_rows(STOP_PATH, pipeline.STOP_HEADER)
+        self.assertTrue(stop_rows)
+        self.assertEqual(len(stop_rows), len({row["stop_id"] for row in stop_rows}))
+        self.assertTrue(
+            all(
+                row["candidate_identity"]
+                and row["seed_paper_id"]
+                and row["parent_paper_id"]
+                and row["direction"] in {"SEED_RESOLUTION", "BACKWARD", "FORWARD"}
+                and row["reason"]
+                for row in stop_rows
+            )
+        )
+        report = FINAL_REPORT_PATH.read_text(encoding="utf-8")
+        declared = re.search(r"Exact stopped observations: \*\*(\d+)\*\*", report)
+        self.assertIsNotNone(declared)
+        self.assertEqual(int(declared.group(1)), len(stop_rows))
+        self.assertEqual(pipeline.validate_citation_stop_rows(stop_rows), [])
+        control_reasons = {
+            "REQUEST_RETRY_RESERVE",
+            "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED",
+            "S2_SELECTED_PAYLOAD_REJECTED",
+            "S2_PROVIDER_ID_UNAVAILABLE",
+        }
+        control_rows = [row for row in stop_rows if row["reason"] in control_reasons]
+        self.assertEqual(len(control_rows), 47)
+        self.assertTrue(
+            all(
+                row["provider_name"] in {"OpenAlex", "SemanticScholar"}
+                and row["provider_id"] not in {"", "UNKNOWN"}
+                and row["architecture_question_ids"] not in {"", "UNKNOWN"}
+                for row in control_rows
+            )
+        )
+
+        tampered = [dict(row) for row in stop_rows]
+        tampered[0]["candidate_identity"] += "-tampered"
+        self.assertTrue(
+            any(
+                "content-derived stop_id mismatch" in error
+                for error in pipeline.validate_citation_stop_rows(tampered)
+            )
+        )
+
+    def test_retained_new_identities_respect_each_seed_direction_quota(self) -> None:
+        with MANIFEST_PATH.open(encoding="utf-8") as handle:
+            manifest_rows = list(csv.DictReader(handle, delimiter="\t"))
+        counts: dict[tuple[str, str], set[str]] = {}
+        for row in manifest_rows:
+            if row["discovery_query_ids"] != "NOT_APPLICABLE":
+                continue
+            notes = dict(
+                clause.split("=", 1)
+                for clause in row["notes"].split(";")
+                if "=" in clause
+            )
+            seeds = notes.get("ANCESTRY_SEEDS", "").split("|")
+            directions = notes.get("ANCESTRY_DIRECTIONS", "").split("|")
+            for seed_id in filter(None, seeds):
+                for direction in filter(None, directions):
+                    counts.setdefault((seed_id, direction), set()).add(row["paper_id"])
+        for (seed_id, direction), identities in counts.items():
+            self.assertLessEqual(
+                len(identities),
+                3,
+                f"{seed_id} {direction} retained {len(identities)} new identities",
+            )
+
+    def test_relation_selection_applies_quota_after_global_identity_reconciliation(self) -> None:
+        candidates = []
+        for seed_id in ("PAPER-SEED-A", "PAPER-SEED-B"):
+            for index, paper_id in enumerate(
+                ("PAPER-SHARED", f"{seed_id}-2", f"{seed_id}-3", f"{seed_id}-4")
+            ):
+                candidates.append(
+                    {
+                        "paper_id": paper_id,
+                        "seed_paper_id": seed_id,
+                        "parent_paper_id": seed_id,
+                        "depth": 1,
+                        "direction": "BACKWARD",
+                        "decision_score": 100 - index,
+                        "published_date": f"200{index}-01-01",
+                    }
+                )
+
+        selected, stops = pipeline.select_bounded_relations(candidates, 20)
+
+        selected_by_key: dict[tuple[str, str], set[str]] = {}
+        for row in selected:
+            key = (row["seed_paper_id"], row["direction"])
+            selected_by_key.setdefault(key, set()).add(row["paper_id"])
+        self.assertEqual(set(selected_by_key), {("PAPER-SEED-A", "BACKWARD"), ("PAPER-SEED-B", "BACKWARD")})
+        self.assertTrue(all(len(values) == 3 for values in selected_by_key.values()))
+        self.assertEqual(sum(row["paper_id"] == "PAPER-SHARED" for row in selected), 2)
+        self.assertEqual(
+            sum(row["reason"] == "PER_SEED_DIRECTION_QUOTA" for row in stops), 2
+        )
 
     def test_bounded_selection_rejects_depth_three_and_caps_new_identities(self) -> None:
         candidates = [

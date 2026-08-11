@@ -1,12 +1,12 @@
 # Arxiv Pattern Foundry Campaign Status
 
 - Active goal: `G03`
-- Goal state: `IN_PROGRESS`
+- Goal state: `COMPLETE`
 - G02 state: `COMPLETE_VERIFIED`
-- Implementation statement: The reproducible 28-request OpenAlex pass resolved 1 of 25 seeds and produced zero edges. G03 is in offline RED for an exact-arXiv Semantic Scholar recovery adapter under the unchanged cap.
-- Research state: `SEMANTIC_SCHOLAR_PROVIDER_RECOVERY_RED`
-- Completion state: `IN_PROGRESS`
-- Validation state: `RED_PROVIDER_ADAPTER_PENDING`
+- Implementation statement: The reproducible two-provider campaign resolved all 25 seeds, retained 115 new identities and 158 provider-backed citation pairs, attempted one depth-2 neighborhood, durably screened all 137 retained depth-1 identities, and produced an exact 50-paper G04 queue without reading or acquiring a paper.
+- Research state: `CITATION_ANCESTRY_COMPLETE`
+- Completion state: `COMPLETE`
+- Validation state: `VERIFIED`
 - Scope cap: exactly 25 seeds, citation depth 2, 250 new canonical identities, 90 HTTP attempts, and 6,000 raw metadata observations
 - Journal: `arxiv-reference/journals/G03-progress.md`
 
@@ -100,37 +100,83 @@ Cypher, and Neo4j GDS procedure evidence.
 
 ## Adversarial Review
 
-A final read-only gpt-5.6-sol xhigh reviewer independently recomputed the
-request, variant, raw, canonical, duplicate, era, AQ, neighboring-domain, lane,
-and seed counts. It found no arithmetic, identity, ranking-order, seed,
-SOURCE_CLAIM, or actual G03-boundary defect.
+The independent read-only `gpt-5.6-sol` xhigh reviewer initially returned
+`NOT_CLEARED` after recomputing the campaign. Arithmetic passed, but six P1 and
+two P2 contract defects prevented premature closure.
 
-Five structural findings were repaired before closure:
+The repair pass has:
 
-1. stale campaign status and G01 snapshot reconstruction;
-2. per-attempt request-cap and successful-retry semantics;
-3. byte-level cache, result-count, date, and aggregate-checksum verification;
-4. exact seed and contradictory-quota auditability;
-5. rejection of unreferenced or full-text files hidden under the ignored cache.
+1. enforced new-identity quotas after reconciliation and global deduplication;
+2. persisted all 1,251 exact stopped observations rather than aggregates;
+3. replaced the hardcoded handoff with a checksummed 137-row screening ledger;
+4. preserved conflicting exact arXiv/DOI anchors as separate ambiguous IDs;
+5. strengthened completion validation to require the exact 50-paper queue;
+6. repaired stale index, lifecycle, journal, and schema ownership records;
+7. disclosed the separately user-authorized commit and push; and
+8. made the lane documents the reproducible source of screening decisions.
 
-Residual limitations are explicit: modern date-bucket recall is incomplete,
-the single pre-2001 result is not useful, citation counts are unknown, and the
-ignored response cache must be retained locally to replay metadata screening.
+The same reviewer then found and drove three deeper repairs: the report queue is
+now bound to exact screening ranks, strong-identifier conflict anchors survive
+into final manifest notes, and every control stop preserves available provider
+and AQ provenance. Its final verdict was `CLEARED` with no P0, P1, or P2
+findings. The 96-test suite, full corpus validator, independent accounting,
+Git/license gates, and network-disabled six-artifact byte replay all pass.
 
-## Active G03 Boundary
+Permissible coverage limits remain explicit: one rate-limited forward branch,
+one rejected depth-2 payload, zero retained depth-2 identities, provider-visible
+bibliography incompleteness, and one-page provider limits.
 
-- G03 state: `IN_PROGRESS`
-- G03 cap: exactly 25 seeds, citation depth 2, and at most 250 new identities
+## G03 Verified Completion
 
-G03 may traverse backward to foundational terminology and forward to
-implementations, evaluations, refinements, and contradictions under the frozen
-Goal Packet, service preflight, fixtures, tests, and journal. At this checkpoint,
-G03 has made 28 exact OpenAlex metadata requests, retained one raw observation,
-and created zero citation edges. Exact provider-unavailable seeds remain known G02
-identities and stop only their own branches. G02 did not
-download full text, read a paper, create an evidence card, synthesize an
-architecture, or design an experiment.
+| Measure | Result | Cap |
+|---|---:|---:|
+| Initial seeds | 25 | exactly 25 |
+| HTTP attempts | 83 | 90 |
+| Selected metadata observations | 1,389 | 6,000 |
+| Baseline identities | 262 | frozen |
+| Final identities | 377 | N/A |
+| New identities | 115 | 250 |
+| Retained depth-1 identities screened | 137 | 137 |
+| Exact stopped observations | 1,251 | N/A |
+| Provider-backed `CITES` edges | 158 | N/A |
+| Metadata-inferred `IMPLEMENTS` edges | 1 | N/A |
+| Retained depth-2 identities | 0 | N/A |
+| G04 queue | 50 | 50 |
+| Papers read or acquired | 0 | 0 |
 
-The next permitted operation is the offline-tested Semantic Scholar adapter and
-then one exact 25-seed batch request. G04 remains forbidden until G03 records
-real citation branches or an explicit provider-coverage failure.
+OpenAlex contributed 28 requests and one selected observation but no retained
+edge. Exact Semantic Scholar resolution covered all 25 seeds; its 55 attempts
+contributed 1,388 observations and all 158 retained citation pairs. One forward
+branch exhausted three 429 attempts. One depth-2 neighborhood returned an
+HTTP-success envelope that violated the selected-metadata contract and is
+preserved as `PAYLOAD_REJECTED` without retaining its raw body.
+
+Three disjoint read-only `gpt-5.6-sol` xhigh screening lanes covered 66 backward,
+57 forward, and 14 constraint/survey identities; a fourth lane audited
+provenance and accounting. They
+replaced generic false positives and ambiguous duplicate identities in the G04
+queue with external-memory traversal, graph-shaped storage, compression,
+algorithm-operable representations, named implementations, and explicit survey
+or failure-boundary candidates. Only the CUDA implementation of the named
+PageRank Pipeline Benchmark satisfied the strict title-token and target-anchor
+rule for an `IMPLEMENTS` inference; every other role remains `CITES` only.
+
+G03 downloaded no PDF, abstract, paper body, source
+archive, or repository; read no paper; created no mechanism, failure, or
+transfer card; and proposed no architecture or experiment. Commit `327a68c`
+and its push were separately authorized by the user's explicit commit-and-push
+instruction. No later commit or push has been authorized or performed.
+
+## Exact Closure Counts
+
+| Measure | Count |
+|---|---:|
+| External citation HTTP attempts | 83 |
+| Citation metadata observations | 1389 |
+| Final canonical paper records | 377 |
+| New G03 canonical identities | 115 |
+| Citation and semantic edges | 159 |
+
+- Recommended next goal: `G04`
+- G04 state: `NOT_STARTED`
+- Final reviewer: `019ff0c1-4af5-74c0-876d-d67f5b7437aa`

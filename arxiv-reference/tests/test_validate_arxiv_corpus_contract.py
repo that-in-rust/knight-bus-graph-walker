@@ -347,6 +347,76 @@ class ValidateArxivCorpusContractTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("active goal G99 is not supported", output)
 
+    def test_in_progress_g03_completion_candidate_requires_exact_fifty_queue(self) -> None:
+        temporary_directory, copied_root = copy_contract_to_temp()
+        self.addCleanup(temporary_directory.cleanup)
+        report_path = copied_root / "sources" / "G03-citation-ancestry-report.md"
+        report = report_path.read_text(encoding="utf-8")
+        section_start = report.index("## Exact Recommended G04 Acquisition Set")
+        scope_start = report.index("## Scope Boundary", section_start)
+        prefix, section, suffix = (
+            report[:section_start],
+            report[section_start:scope_start],
+            report[scope_start:],
+        )
+        rows = re.findall(r"^\| \d+ \| `PAPER-[^\n]+$", section, flags=re.MULTILINE)
+        self.assertEqual(len(rows), 50)
+        section = section.replace(rows[-1] + "\n", "").replace(
+            "Exact G04 set size: **50**", "Exact G04 set size: **49**"
+        )
+        report_path.write_text(prefix + section + suffix, encoding="utf-8")
+
+        result = run_validator_with_root(copied_root)
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("G04 set must contain exactly 50 identities", result.stdout)
+
+    def test_g03_report_rejects_deferred_screening_substitution(self) -> None:
+        temporary_directory, copied_root = copy_contract_to_temp()
+        self.addCleanup(temporary_directory.cleanup)
+        report_path = copied_root / "sources" / "G03-citation-ancestry-report.md"
+        report = report_path.read_text(encoding="utf-8")
+        section_start = report.index("## Exact Recommended G04 Acquisition Set")
+        scope_start = report.index("## Scope Boundary", section_start)
+        section = report[section_start:scope_start]
+        self.assertIn("PAPER-2101.12631", section)
+        self.assertNotIn("PAPER-0709.2938", section)
+        section = section.replace("PAPER-2101.12631", "PAPER-0709.2938")
+        report_path.write_text(
+            report[:section_start] + section + report[scope_start:],
+            encoding="utf-8",
+        )
+
+        result = run_validator_with_root(copied_root)
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("ancestry half must equal screening ACQUIRE ranks", result.stdout)
+
+    def test_g03_report_rejects_acquire_rank_reordering(self) -> None:
+        temporary_directory, copied_root = copy_contract_to_temp()
+        self.addCleanup(temporary_directory.cleanup)
+        report_path = copied_root / "sources" / "G03-citation-ancestry-report.md"
+        report = report_path.read_text(encoding="utf-8")
+        section_start = report.index("## Exact Recommended G04 Acquisition Set")
+        scope_start = report.index("## Scope Boundary", section_start)
+        section = report[section_start:scope_start]
+        first = "PAPER-HASH-9b43309b046b4742"
+        second = "PAPER-HASH-2d35f96d423f4ddb"
+        self.assertIn(first, section)
+        self.assertIn(second, section)
+        section = section.replace(first, "PAPER-SWAP-PLACEHOLDER", 1)
+        section = section.replace(second, first, 1)
+        section = section.replace("PAPER-SWAP-PLACEHOLDER", second, 1)
+        report_path.write_text(
+            report[:section_start] + section + report[scope_start:],
+            encoding="utf-8",
+        )
+
+        result = run_validator_with_root(copied_root)
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("ancestry half must equal screening ACQUIRE ranks", result.stdout)
+
     def test_control_symlink_fails(self) -> None:
         temporary_directory, copied_root = copy_contract_to_temp()
         self.addCleanup(temporary_directory.cleanup)

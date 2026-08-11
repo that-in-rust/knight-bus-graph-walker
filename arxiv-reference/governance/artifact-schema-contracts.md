@@ -155,8 +155,39 @@ request_id	goal_id	seed_paper_id	traversal_paper_id	depth	direction	service	oper
 First schema and data owner: G03. The exact encoding, traversal caps, retry
 states, raw/cache checksum boundary, and provider metadata allowlists are frozen in
 `arxiv-reference/governance/g03-citation-contract.md` before the first request.
+G03 terminal states include `COMPLETE`, `EMPTY`, `UNAVAILABLE`, `RATE_LIMITED`,
+`PAYLOAD_REJECTED`, and `FAILED`; a rejected HTTP-success payload is represented
+only by a checksummed, content-free rejection marker.
 
-### 3.7 TSV Details Not Frozen By G00
+### 3.7 Citation Stop Ledger
+
+Path: `arxiv-reference/sources/citation-stops.tsv`
+
+```text
+stop_id	candidate_identity	seed_paper_id	parent_paper_id	depth	direction	decision_score	score_breakdown	architecture_question_ids	provider_name	provider_id	reason
+```
+
+First schema and data owner: G03. Every stopped provider observation or
+provider-only sampled identity has one stable content-derived `STOP-G03-*` ID.
+The row preserves enough information to reconcile branch, depth, direction,
+score, provider, and stop reason without reading an ignored cache.
+
+### 3.8 Citation Screening Ledger
+
+Path: `arxiv-reference/sources/citation-screening-ledger.tsv`
+
+```text
+candidate_paper_id	primary_lane	direction	disposition	queue_rank	rationale	reviewer_model	reviewer_agent_id	prompt_id	screened_at_utc	evidence_scope	result_checksum	audit_lane_id	audit_reviewer_agent_id	audit_result_checksum
+```
+
+First schema and data owner: G03. It covers every retained ancestry identity,
+including rediscovered baseline rows, exactly once; assigns one deterministic
+primary lane; preserves reviewer and prompt provenance; checksums normalized
+lane results; and derives the exact 25-new-identity ancestry half of the G04
+queue from contiguous `ACQUIRE` ranks. Baseline rediscoveries may be screened
+but SHALL NOT receive `ACQUIRE`.
+
+### 3.9 TSV Details Not Frozen By G00
 
 `DERIVED_INFERENCE`: Exact headers do not define multi-value separators, escaping,
 null sentinels, timestamp formats, date formats, score serialization, or whether
@@ -190,7 +221,8 @@ The headers do freeze these row-level invariants:
   URI or fabricate a license URI. Full text requires artifact-specific human
   approval before it is staged or committed.
 - A citation row links two canonical paper IDs and records edge type, discovery
-  source, relevance reason, and verification timestamp.
+  source, relevance reason, and cache-verification timestamp. Provider-response
+  timestamps remain in the request ledger.
 
 The SOP does not define `term_id` syntax. G01 SHALL freeze it before the first
 taxonomy row.

@@ -95,7 +95,11 @@ source_paper_id\ttarget_paper_id\tedge_type\tdiscovery_source\trelevance_reason\
   name the exact triggering token and SHALL NOT contain `SOURCE_CLAIM`.
 - Multiple materially different edge types for one ordered pair are allowed.
   Exact duplicate rows are forbidden.
-- `verified_at` is the UTC RFC 3339 timestamp of the provider response.
+- `verified_at` is the UTC RFC 3339 timestamp at which the canonical edge was
+  verified against the checksummed provider cache. The request ledger, not the
+  edge row, preserves each provider-response timestamp. Replay preserves an
+  existing edge timestamp byte-for-byte; a newly discovered edge receives the
+  current cache-verification timestamp.
 
 ## Canonical Identity Reconciliation
 
@@ -110,6 +114,10 @@ source_paper_id\ttarget_paper_id\tedge_type\tdiscovery_source\trelevance_reason\
   whitespace collapse. Title similarity alone never authorizes a merge.
 - Exact normalized-title records with conflicting authors or publication dates
   remain distinct and carry `IDENTITY_AMBIGUOUS` provenance.
+- When an exact arXiv identifier and exact DOI resolve to different existing
+  canonical rows, neither row wins silently. The observation receives a stable
+  `PAPER-AMBIG-*` identity, `IDENTITY_STATE=AMBIGUOUS`, and an exact
+  `CONFLICTING_IDENTITY_IDS` note naming both candidates.
 - Missing or conflicting bibliographic fields use explicit sentinels and remain
   auditable. An unavailable ancestor remains a manifest identity with
   `selection_status=METADATA_ONLY`, `ANCESTRY_RESOLUTION=UNAVAILABLE`,
@@ -153,12 +161,56 @@ request_id\tgoal_id\tseed_paper_id\ttraversal_paper_id\tdepth\tdirection\tservic
   storage. Every other forbidden field remains fatal. Raw bytes are not retained;
   their checksum remains in `response_checksum`, while `cache_checksum` proves
   the sanitized selected-metadata body.
-- Terminal states are `COMPLETE`, `EMPTY`, `UNAVAILABLE`, `RATE_LIMITED`, and
-  `FAILED`. A completed operation is never fetched again when its cache verifies.
+- Terminal states are `COMPLETE`, `EMPTY`, `UNAVAILABLE`, `RATE_LIMITED`,
+  `PAYLOAD_REJECTED`, and `FAILED`. `PAYLOAD_REJECTED` means an HTTP-success
+  response violated the selected-metadata envelope; the raw body is discarded,
+  and its durable marker preserves the raw checksum and rejection type. Completed
+  and rejected operations are never fetched again when their caches verify.
 - Each row names `OpenAlex` or `SemanticScholar`; its service, operation,
   parameters, client version, policy URL, and provider-specific cache directory
   must agree. Semantic Scholar batch POST IDs are recorded exactly in sorted
   request parameters so the request body is reproducible without a new column.
+
+## Citation Stop Ledger
+
+Path: `arxiv-reference/sources/citation-stops.tsv`
+
+```text
+stop_id\tcandidate_identity\tseed_paper_id\tparent_paper_id\tdepth\tdirection\tdecision_score\tscore_breakdown\tarchitecture_question_ids\tprovider_name\tprovider_id\treason
+```
+
+- Every sampled provider identity or reconciled observation excluded by a
+  decision, branch, request-reserve, payload, identity, or quota rule receives
+  one stable content-derived `STOP-G03-*` identifier.
+- Rows preserve exact seed, parent, depth, direction, provider identity, score,
+  AQ links, and stop reason. Aggregate report counts SHALL reconcile to the
+  complete row count; a displayed report subset is not a substitute.
+- A stopped row is metadata provenance only and cannot justify a source claim.
+
+## Citation Screening Ledger
+
+Path: `arxiv-reference/sources/citation-screening-ledger.tsv`
+
+```text
+candidate_paper_id\tprimary_lane\tdirection\tdisposition\tqueue_rank\trationale\treviewer_model\treviewer_agent_id\tprompt_id\tscreened_at_utc\tevidence_scope\tresult_checksum\taudit_lane_id\taudit_reviewer_agent_id\taudit_result_checksum
+```
+
+- The ledger is rebuilt deterministically from the frozen lane prompts,
+  normalized lane-result documents, and final manifest. It contains every
+  retained depth-1 identity exactly once, including rediscovered G02 baseline
+  identities.
+- Constraint/survey title signals select Lane C first. Remaining identities
+  with a backward ancestry direction select Lane A; all others select Lane B.
+  Lane D audits accounting and nominates no paper.
+- Result and audit checksums bind every row to exact lane documents. Reviewer
+  identities, prompt IDs, completion timestamps, and metadata-only evidence
+  scope SHALL match those documents.
+- `ACQUIRE` is permitted only for a new canonical ancestry identity. A
+  rediscovered baseline identity may be screened but cannot occupy the 25-paper
+  ancestry half of the G04 queue. Ambiguous and unavailable identities SHALL be
+  `REJECT`; other canonical non-selections SHALL be `DEFER`.
+- The exact ancestry queue is derived only from 25 unique contiguous
+  `ACQUIRE` ranks 1 through 25. No hardcoded fallback queue is permitted.
 
 ## Service And Acquisition Boundary
 

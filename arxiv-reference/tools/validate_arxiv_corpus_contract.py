@@ -129,6 +129,17 @@ EXPECTED_TSV_HEADERS = {
         "retry_events\trate_limit_events\tpolicy_url\tpolicy_checked_date\t"
         "cache_path\tterminal_state"
     ),
+    "sources/citation-stops.tsv": (
+        "stop_id\tcandidate_identity\tseed_paper_id\tparent_paper_id\tdepth\t"
+        "direction\tdecision_score\tscore_breakdown\tarchitecture_question_ids\t"
+        "provider_name\tprovider_id\treason"
+    ),
+    "sources/citation-screening-ledger.tsv": (
+        "candidate_paper_id\tprimary_lane\tdirection\tdisposition\tqueue_rank\t"
+        "rationale\treviewer_model\treviewer_agent_id\tprompt_id\t"
+        "screened_at_utc\tevidence_scope\tresult_checksum\taudit_lane_id\t"
+        "audit_reviewer_agent_id\taudit_result_checksum"
+    ),
 }
 
 G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
@@ -184,9 +195,12 @@ G03_REQUIRED_FILE_PATHS = (
     "governance/G03-goal-packet.md",
     "governance/g03-citation-contract.md",
     "governance/g03-service-preflight.md",
+    "governance/g03-screening-prompts.md",
     "journals/G03-progress.md",
     "sources/citation-edges.tsv",
     "sources/citation-request-ledger.tsv",
+    "sources/citation-stops.tsv",
+    "sources/citation-screening-ledger.tsv",
     "tests/test_validate_g03_citation_contract.py",
     "tools/g03_citation_pipeline.py",
 )
@@ -206,6 +220,10 @@ G03_FIXTURE_FILE_PATHS = (
 
 G03_OPTIONAL_FILE_PATHS = (
     "sources/G03-citation-ancestry-report.md",
+    "governance/reviews/G03-lane-A-backward.md",
+    "governance/reviews/G03-lane-B-forward.md",
+    "governance/reviews/G03-lane-C-constraints.md",
+    "governance/reviews/G03-lane-D-audit.md",
 )
 
 G03_ALLOWED_FILE_PATHS = (
@@ -512,7 +530,7 @@ SCHEMA_REQUIRED_HEADINGS = (
 )
 
 G00_ARTIFACT_SCHEMA_CONTRACT_SHA256 = (
-    "d674367ef1966e1bc7453ed9abac544a9897e0c5e0e9e8cd174b258d2398da56"
+    "4cd0b790b8ff6a2f940b15e39b6782de3869254d5de85b84408736adbcc2fedf"
 )
 
 
@@ -2532,6 +2550,7 @@ def validate_g03_report(
     report_text: str,
     seed_ids: Sequence[str],
     manifest_ids: set[str],
+    screening_rows: Sequence[Mapping[str, str]],
 ) -> List[str]:
     """Validate the exact metadata-only G03 decision handoff."""
 
@@ -2559,12 +2578,31 @@ def validate_g03_report(
         report_text, "Exact Recommended G04 Acquisition Set"
     )
     acquisition_ids = re.findall(r"`(PAPER-[^`]+)`", acquisition_section)
-    if len(acquisition_ids) < 25 or len(acquisition_ids) > 50:
-        errors.append("sources/G03-citation-ancestry-report.md: G04 set must contain 25-50 identities")
+    if len(acquisition_ids) != 50:
+        errors.append("sources/G03-citation-ancestry-report.md: G04 set must contain exactly 50 identities")
     if len(acquisition_ids) != len(set(acquisition_ids)):
         errors.append("sources/G03-citation-ancestry-report.md: G04 set has duplicate identities")
     if not set(seed_ids) <= set(acquisition_ids):
         errors.append("sources/G03-citation-ancestry-report.md: G04 set omits a G03 seed")
+    if acquisition_ids[:25] != list(seed_ids):
+        errors.append("sources/G03-citation-ancestry-report.md: first 25 G04 identities must preserve seed order")
+    if len(set(acquisition_ids[25:]) - set(seed_ids)) != 25:
+        errors.append("sources/G03-citation-ancestry-report.md: G04 ancestry half must contain 25 non-seed identities")
+    acquired_rows = [
+        row for row in screening_rows if row.get("disposition") == "ACQUIRE"
+    ]
+    try:
+        acquired_rows.sort(key=lambda row: int(row.get("queue_rank", "0")))
+    except ValueError:
+        acquired_rows = []
+    expected_ancestry_ids = [
+        row.get("candidate_paper_id", "") for row in acquired_rows
+    ]
+    if acquisition_ids[25:] != expected_ancestry_ids:
+        errors.append(
+            "sources/G03-citation-ancestry-report.md: G04 ancestry half must equal "
+            "screening ACQUIRE ranks 1-25"
+        )
     if not set(acquisition_ids) <= manifest_ids:
         errors.append("sources/G03-citation-ancestry-report.md: G04 set has unknown identity")
     declared_size = re.search(r"Exact G04 set size: \*\*(\d+)\*\*", report_text)
@@ -3009,6 +3047,22 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
             )
             errors.extend(row_errors)
 
+        stop_rows: List[Dict[str, str]] = []
+        stop_path = root / "sources/citation-stops.tsv"
+        if is_regular_file_path(stop_path):
+            stop_rows, row_errors = read_tsv_file_rows(
+                stop_path, "sources/citation-stops.tsv"
+            )
+            errors.extend(row_errors)
+
+        citation_screening_rows: List[Dict[str, str]] = []
+        citation_screening_path = root / "sources/citation-screening-ledger.tsv"
+        if is_regular_file_path(citation_screening_path):
+            citation_screening_rows, row_errors = read_tsv_file_rows(
+                citation_screening_path, "sources/citation-screening-ledger.tsv"
+            )
+            errors.extend(row_errors)
+
         seed_ids: List[str] = []
         screening_report_path = root / "sources/G02-metadata-screening-report.md"
         try:
@@ -3037,6 +3091,12 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                 if not read_errors:
                     errors.extend(g03_pipeline.validate_g03_network_preflight(preflight_text))
             errors.extend(g03_pipeline.validate_citation_request_rows(citation_request_rows))
+            errors.extend(g03_pipeline.validate_citation_stop_rows(stop_rows))
+            errors.extend(
+                g03_pipeline.validate_screening_rows(
+                    citation_screening_rows, manifest_rows, root
+                )
+            )
             errors.extend(g03_pipeline.validate_g03_cache_provenance(root, citation_request_rows))
             errors.extend(
                 g03_pipeline.validate_citation_edge_contract(
@@ -3051,30 +3111,31 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         except (OSError, RuntimeError, ValueError) as error:
             errors.append("cannot load G03 citation validators: {0}".format(error))
 
+        report_path = root / "sources/G03-citation-ancestry-report.md"
+        require_handoff = require_complete or is_regular_file_path(report_path)
         errors.extend(
             validate_g03_manifest_rows(
                 manifest_rows,
                 {row.get("query_id", "") for row in query_rows},
                 {row.get("question_id", "") for row in questions},
                 seed_ids,
-                require_complete,
+                require_handoff,
             )
         )
-        if require_complete:
-            report_path = root / "sources/G03-citation-ancestry-report.md"
-            if is_regular_file_path(report_path):
-                report_text, read_errors = read_text_file_safely(
-                    report_path, "sources/G03-citation-ancestry-report.md"
-                )
-                errors.extend(read_errors)
-                if not read_errors:
-                    errors.extend(
-                        validate_g03_report(
-                            report_text,
-                            seed_ids,
-                            {row.get("paper_id", "") for row in manifest_rows},
-                        )
+        if is_regular_file_path(report_path):
+            report_text, read_errors = read_text_file_safely(
+                report_path, "sources/G03-citation-ancestry-report.md"
+            )
+            errors.extend(read_errors)
+            if not read_errors:
+                errors.extend(
+                    validate_g03_report(
+                        report_text,
+                        seed_ids,
+                        {row.get("paper_id", "") for row in manifest_rows},
+                        citation_screening_rows,
                     )
+                )
         errors.extend(
             validate_g03_campaign_status(
                 status_text, citation_request_rows, manifest_rows, edge_rows

@@ -13,7 +13,7 @@ import urllib.parse
 import urllib.request
 import csv
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Set, Tuple
@@ -29,6 +29,17 @@ REQUEST_HEADER = (
     "page_cursor\tresponse_status\tresult_count\tresponse_checksum\tcache_checksum\tclient_version\t"
     "cache_status\tattempt\tretry_events\trate_limit_events\tpolicy_url\t"
     "policy_checked_date\tcache_path\tterminal_state"
+)
+STOP_HEADER = (
+    "stop_id\tcandidate_identity\tseed_paper_id\tparent_paper_id\tdepth\t"
+    "direction\tdecision_score\tscore_breakdown\tarchitecture_question_ids\t"
+    "provider_name\tprovider_id\treason"
+)
+SCREENING_HEADER = (
+    "candidate_paper_id\tprimary_lane\tdirection\tdisposition\tqueue_rank\t"
+    "rationale\treviewer_model\treviewer_agent_id\tprompt_id\t"
+    "screened_at_utc\tevidence_scope\tresult_checksum\taudit_lane_id\t"
+    "audit_reviewer_agent_id\taudit_result_checksum"
 )
 TAXONOMY_HEADER = (
     "term_id\tterm\tterm_type\tarchitecture_question_ids\tsource_repo_paths\t"
@@ -55,6 +66,7 @@ ALLOWED_TERMINAL_STATES = {
     "EMPTY",
     "UNAVAILABLE",
     "RATE_LIMITED",
+    "PAYLOAD_REJECTED",
     "FAILED",
 }
 MAX_HTTP_REQUESTS = 90
@@ -62,9 +74,12 @@ MAX_ATTEMPTS = 3
 MAX_DEPTH = 2
 MAX_NEW_IDENTITIES = 250
 MAX_RAW_OBSERVATIONS = 6000
+EXPECTED_G02_MANIFEST_COUNT = 262
 MAX_REFERENCE_IDS_PER_SEED = 12
 MAX_S2_PAGE_RESULTS = 75
 MAX_S2_DEPTH2_EXPANSIONS = 5
+MIN_S2_RETRY_RESERVE = 6
+S2_MINIMUM_DELAY_SECONDS = 5.0
 OPENALEX_SELECT_FIELDS = (
     "id,doi,display_name,publication_date,type,authorships,ids,locations,"
     "referenced_works,cited_by_count,is_retracted,updated_date"
@@ -98,6 +113,20 @@ SEMANTIC_TITLE_TOKENS = {
     "CONTRADICTS": ("counterexample", "impossibility", "lower bound"),
     "SURVEYS": ("survey", "review", "taxonomy"),
 }
+SCREENING_RESULT_PATHS = {
+    "G03-LANE-A": "governance/reviews/G03-lane-A-backward.md",
+    "G03-LANE-B": "governance/reviews/G03-lane-B-forward.md",
+    "G03-LANE-C": "governance/reviews/G03-lane-C-constraints.md",
+    "G03-LANE-D": "governance/reviews/G03-lane-D-audit.md",
+}
+
+
+class CitationRateLimitExhausted(RuntimeError):
+    """One citation operation consumed its persistent three-attempt budget."""
+
+
+class CitationPayloadRejected(RuntimeError):
+    """A checksummed provider response violated the selected-metadata contract."""
 
 
 def normalize_inline_text(value: object) -> str:
@@ -584,7 +613,21 @@ def fetch_s2_metadata_page(
         if cache_path is None:
             raise RuntimeError("cached citation response path is unsafe")
         return parse_s2_work_payload(cache_path.read_bytes(), operation)
+    if matching_rows and matching_rows[-1].get("terminal_state") == "PAYLOAD_REJECTED":
+        cache_errors = validate_g03_cache_provenance(reference_root, existing_rows)
+        if cache_errors:
+            raise RuntimeError(
+                "rejected citation response failed verification: "
+                + "; ".join(cache_errors)
+            )
+        raise CitationPayloadRejected(
+            "Semantic Scholar selected payload was previously rejected"
+        )
     if len(matching_rows) >= MAX_ATTEMPTS:
+        if matching_rows[-1].get("response_status") == "429":
+            raise CitationRateLimitExhausted(
+                "Semantic Scholar citation operation exhausted three rate-limit attempts"
+            )
         raise RuntimeError("citation operation attempt cap exhausted")
     if matching_rows:
         last_status = matching_rows[-1].get("response_status", "")
@@ -704,6 +747,8 @@ def fetch_s2_metadata_page(
             terminal_state = "UNAVAILABLE"
         elif status == "429" and attempt == final_attempt:
             terminal_state = "RATE_LIMITED"
+        elif parse_error is not None:
+            terminal_state = "PAYLOAD_REJECTED"
         else:
             terminal_state = "FAILED"
         relative_cache = reference_root.name + "/" + cache_file.relative_to(reference_root).as_posix()
@@ -732,10 +777,14 @@ def fetch_s2_metadata_page(
         if status == "200" and parse_error is None:
             return records
         if parse_error is not None:
-            raise RuntimeError(
+            raise CitationPayloadRejected(
                 "Semantic Scholar selected metadata response is invalid: {0}".format(
                     parse_error
                 )
+            )
+        if status == "429" and attempt >= MAX_ATTEMPTS:
+            raise CitationRateLimitExhausted(
+                "Semantic Scholar citation operation exhausted three rate-limit attempts"
             )
         if not _is_retryable_status(status) or attempt == final_attempt:
             raise RuntimeError(
@@ -1156,6 +1205,18 @@ def reconcile_citation_identities(
         }
         if len(existing_ids) > 1:
             record["identity_state"] = "AMBIGUOUS"
+            record["conflicting_identity_ids"] = sorted(existing_ids)
+            conflict_key = "|".join(
+                [
+                    "STRONG_ID_CONFLICT",
+                    *sorted(existing_ids),
+                    _provider_record_key(record),
+                    normalize_title_identity(record.get("title")),
+                ]
+            )
+            record["paper_id"] = "PAPER-AMBIG-" + hashlib.sha256(
+                conflict_key.encode("utf-8")
+            ).hexdigest()[:16]
         elif existing_ids:
             record["paper_id"] = next(iter(existing_ids))
         reconciled.append(record)
@@ -1184,7 +1245,12 @@ def reconcile_citation_identities(
 def _semantic_title_edges(title: str, target_title: str) -> List[Tuple[str, str]]:
     normalized_title = normalize_title_identity(title)
     normalized_target = normalize_title_identity(target_title)
-    if not normalized_target or normalized_target not in normalized_title:
+    target_anchors = [normalized_target] if normalized_target else []
+    if ":" in target_title:
+        prefix = normalize_title_identity(target_title.split(":", 1)[0])
+        if len(prefix.split()) >= 3:
+            target_anchors.append(prefix)
+    if not any(anchor and anchor in normalized_title for anchor in target_anchors):
         return []
     edges: List[Tuple[str, str]] = []
     for edge_type, tokens in SEMANTIC_TITLE_TOKENS.items():
@@ -1341,15 +1407,45 @@ def select_bounded_candidates(
     max_new_identities: int = MAX_NEW_IDENTITIES,
     existing_identity_ids: Optional[Iterable[str]] = None,
 ) -> Tuple[List[Dict[str, object]], List[Dict[str, object]]]:
-    """Deduplicate then apply deterministic depth, relevance, quota, and global caps."""
+    """Apply deterministic relation-level depth, relevance, identity, and branch caps."""
+
+    return select_bounded_relations(
+        candidates,
+        max_new_identities=max_new_identities,
+        existing_identity_ids=existing_identity_ids,
+    )
+
+
+def select_bounded_relations(
+    candidates: Sequence[Mapping[str, object]],
+    max_new_identities: int = MAX_NEW_IDENTITIES,
+    existing_identity_ids: Optional[Iterable[str]] = None,
+) -> Tuple[List[Dict[str, object]], List[Dict[str, object]]]:
+    """Retain bounded seed/direction relations after canonical reconciliation."""
 
     selected: List[Dict[str, object]] = []
     stops: List[Dict[str, object]] = []
-    selected_ids: Set[str] = set()
     baseline_ids = set(existing_identity_ids or [])
     selected_new_ids: Set[str] = set()
-    quota_counts: Dict[Tuple[str, int, str], int] = defaultdict(int)
-    for source in sorted((dict(row) for row in candidates), key=_candidate_sort_key):
+    quota_identities: Dict[Tuple[str, int, str], Set[str]] = defaultdict(set)
+    relation_rows: Dict[Tuple[str, str, str, int, str], Dict[str, object]] = {}
+    for source in candidates:
+        row = dict(source)
+        relation_key = (
+            str(row.get("paper_id") or ""),
+            str(row.get("seed_paper_id") or ""),
+            str(row.get("parent_paper_id") or ""),
+            int(row.get("depth") or 0),
+            str(row.get("direction") or ""),
+        )
+        prior = relation_rows.get(relation_key)
+        if prior is None or (
+            prior.get("provider_name") != "SemanticScholar"
+            and row.get("provider_name") == "SemanticScholar"
+        ):
+            relation_rows[relation_key] = row
+
+    for source in sorted(relation_rows.values(), key=_candidate_sort_key):
         paper_id = str(source.get("paper_id") or "")
         depth = int(source.get("depth") or 0)
         if depth > MAX_DEPTH:
@@ -1358,22 +1454,501 @@ def select_bounded_candidates(
         if int(source.get("decision_score") or 0) <= 0:
             stops.append({**source, "reason": "NO_DECISION_IMPACT"})
             continue
-        if paper_id in selected_ids:
-            continue
         if paper_id not in baseline_ids and len(selected_new_ids) >= max_new_identities:
-            stops.append({**source, "reason": "GLOBAL_IDENTITY_CAP"})
-            continue
+            if paper_id in selected_new_ids:
+                pass
+            else:
+                stops.append({**source, "reason": "GLOBAL_IDENTITY_CAP"})
+                continue
         key = (str(source.get("seed_paper_id") or ""), depth, str(source.get("direction") or ""))
         quota = 3 if depth == 1 else 2
-        if quota_counts[key] >= quota:
+        if (
+            paper_id not in baseline_ids
+            and paper_id not in quota_identities[key]
+            and len(quota_identities[key]) >= quota
+        ):
             stops.append({**source, "reason": "PER_SEED_DIRECTION_QUOTA"})
             continue
         selected.append(source)
-        selected_ids.add(paper_id)
         if paper_id not in baseline_ids:
             selected_new_ids.add(paper_id)
-        quota_counts[key] += 1
+            quota_identities[key].add(paper_id)
     return selected, stops
+
+
+def _build_provider_control_stop(
+    seed_row: Mapping[str, str],
+    provider_name: str,
+    provider_id: str,
+    direction: str,
+    depth: int,
+    reason: str,
+) -> Dict[str, object]:
+    """Preserve known seed and provider provenance for a control stop."""
+
+    seed_id = seed_row.get("paper_id", "")
+    return {
+        "candidate_identity": seed_id,
+        "paper_id": seed_id,
+        "seed_paper_id": seed_id,
+        "parent_paper_id": seed_id,
+        "depth": depth,
+        "direction": direction,
+        "decision_score": "NOT_SCORED",
+        "score_breakdown": "NOT_APPLICABLE_PROVIDER_CONTROL_STOP",
+        "architecture_question_ids": _split_multi_value(
+            seed_row.get("architecture_question_ids", "")
+        ),
+        "provider_name": provider_name,
+        "provider_id": provider_id,
+        "reason": reason,
+    }
+
+
+def _build_branch_control_stop(
+    branch: Mapping[str, object], depth: int, reason: str
+) -> Dict[str, object]:
+    """Preserve scored branch provenance when expansion is stopped."""
+
+    row = dict(branch)
+    paper_id = str(branch.get("paper_id") or "")
+    row.update({
+        "candidate_identity": paper_id,
+        "paper_id": paper_id,
+        "parent_paper_id": paper_id,
+        "depth": depth,
+        "reason": reason,
+    })
+    return row
+
+
+def normalize_citation_stop_rows(
+    stops: Sequence[Mapping[str, object]],
+) -> List[Dict[str, str]]:
+    """Serialize every stopped observation with a stable content-derived ID."""
+
+    normalized: Dict[Tuple[str, ...], Dict[str, str]] = {}
+    for source in stops:
+        candidate_identity = str(
+            source.get("candidate_identity")
+            or source.get("paper_id")
+            or source.get("provider_id")
+            or "UNKNOWN"
+        )
+        seed_paper_id = str(source.get("seed_paper_id") or "UNKNOWN")
+        parent_paper_id = str(
+            source.get("parent_paper_id")
+            or source.get("traversal_paper_id")
+            or seed_paper_id
+        )
+        question_ids = "|".join(
+            sorted(str(value) for value in source.get("architecture_question_ids") or [])
+        ) or "NONE"
+        values = (
+            candidate_identity,
+            seed_paper_id,
+            parent_paper_id,
+            str(source.get("depth") if source.get("depth") is not None else "UNKNOWN"),
+            str(source.get("direction") or "UNKNOWN"),
+            str(source.get("decision_score") if source.get("decision_score") is not None else "NOT_SCORED"),
+            str(source.get("score_breakdown") or "NOT_SCORED"),
+            question_ids,
+            str(source.get("provider_name") or "UNKNOWN"),
+            str(source.get("provider_id") or "UNKNOWN"),
+            str(source.get("reason") or "UNKNOWN"),
+        )
+        digest = hashlib.sha256("\t".join(values).encode("utf-8")).hexdigest()[:16]
+        normalized[values] = {
+            "stop_id": "STOP-G03-" + digest,
+            "candidate_identity": values[0],
+            "seed_paper_id": values[1],
+            "parent_paper_id": values[2],
+            "depth": values[3],
+            "direction": values[4],
+            "decision_score": values[5],
+            "score_breakdown": values[6],
+            "architecture_question_ids": values[7],
+            "provider_name": values[8],
+            "provider_id": values[9],
+            "reason": values[10],
+        }
+    return sorted(
+        normalized.values(),
+        key=lambda row: (
+            row["seed_paper_id"],
+            row["depth"],
+            row["direction"],
+            row["reason"],
+            row["candidate_identity"],
+            row["provider_name"],
+        ),
+    )
+
+
+def validate_citation_stop_rows(rows: Sequence[Mapping[str, str]]) -> List[str]:
+    """Validate exact stopped-observation provenance and stable identifiers."""
+
+    errors: List[str] = []
+    seen_ids: Set[str] = set()
+    for index, row in enumerate(rows, start=2):
+        prefix = "citation-stops.tsv: row {0}".format(index)
+        stop_id = row.get("stop_id", "")
+        if not re.fullmatch(r"STOP-G03-[0-9a-f]{16}", stop_id):
+            errors.append(prefix + " has invalid stop_id")
+        if stop_id in seen_ids:
+            errors.append(prefix + " duplicates stop_id")
+        seen_ids.add(stop_id)
+        for field in (
+            "candidate_identity",
+            "seed_paper_id",
+            "parent_paper_id",
+            "depth",
+            "direction",
+            "decision_score",
+            "score_breakdown",
+            "architecture_question_ids",
+            "provider_name",
+            "provider_id",
+            "reason",
+        ):
+            if not row.get(field):
+                errors.append(prefix + " is missing " + field)
+        for field in (
+            "candidate_identity",
+            "seed_paper_id",
+            "parent_paper_id",
+            "provider_name",
+            "provider_id",
+        ):
+            if row.get(field) == "UNKNOWN":
+                errors.append(prefix + " has unjustified UNKNOWN " + field)
+        if row.get("provider_name") not in {"OpenAlex", "SemanticScholar"}:
+            errors.append(prefix + " has invalid provider_name")
+        question_ids = row.get("architecture_question_ids", "")
+        if question_ids != "NONE" and any(
+            not re.fullmatch(r"AQ-\d{3}", value)
+            for value in _split_multi_value(question_ids)
+        ):
+            errors.append(prefix + " has invalid architecture_question_ids")
+        if row.get("reason") in {
+            "REQUEST_RETRY_RESERVE",
+            "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED",
+            "S2_SELECTED_PAYLOAD_REJECTED",
+            "S2_PROVIDER_ID_UNAVAILABLE",
+        } and question_ids in {"", "UNKNOWN", "NONE"}:
+            errors.append(prefix + " control stop lacks architecture-question provenance")
+        stop_values = tuple(
+            row.get(field, "")
+            for field in STOP_HEADER.split("\t")[1:]
+        )
+        expected_stop_id = "STOP-G03-" + hashlib.sha256(
+            "\t".join(stop_values).encode("utf-8")
+        ).hexdigest()[:16]
+        if stop_id != expected_stop_id:
+            errors.append(prefix + " has content-derived stop_id mismatch")
+        if row.get("direction") not in ALLOWED_DIRECTIONS:
+            errors.append(prefix + " has invalid direction")
+        try:
+            depth = int(row.get("depth", "-1"))
+        except ValueError:
+            depth = -1
+        if depth < 0 or depth > MAX_DEPTH:
+            errors.append(prefix + " has invalid depth")
+    return sorted(set(errors))
+
+
+def _screening_primary_lane(manifest_row: Mapping[str, str]) -> str:
+    title = normalize_title_identity(manifest_row.get("title"))
+    constraint_tokens = (
+        "counterexample",
+        "lower bound",
+        "impossibility",
+        "limitations",
+        "intractability",
+        "resolution limit",
+        "no harder",
+        "survey",
+        "review",
+    )
+    if any(token in title for token in constraint_tokens):
+        return "G03-LANE-C"
+    notes = _parse_notes_map(manifest_row.get("notes", ""))
+    directions = set(_split_multi_value(notes.get("ANCESTRY_DIRECTIONS", "")))
+    return "G03-LANE-A" if "BACKWARD" in directions else "G03-LANE-B"
+
+
+def is_retained_ancestry_identity(manifest_row: Mapping[str, str]) -> bool:
+    """Return whether a manifest row survived G03 citation selection."""
+
+    depth = _parse_notes_map(manifest_row.get("notes", "")).get(
+        "CITATION_DEPTH", "0"
+    )
+    try:
+        return int(depth) >= 1
+    except ValueError:
+        return False
+
+
+def parse_screening_result_document(
+    reference_root: Path, lane_id: str
+) -> Dict[str, object]:
+    """Parse one frozen lane result without making semantic decisions."""
+
+    relative_path = SCREENING_RESULT_PATHS[lane_id]
+    path = reference_root / relative_path
+    if not path.is_file():
+        raise ValueError(relative_path + ": screening result is missing")
+    result_bytes = path.read_bytes()
+    result_text = result_bytes.decode("utf-8")
+    lane_match = re.search(r"^- Lane ID: `([^`]+)`$", result_text, re.MULTILINE)
+    agent_match = re.search(r"^- Agent ID: `([^`]+)`$", result_text, re.MULTILINE)
+    completed_match = re.search(
+        r"^- Completed: `(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)`$",
+        result_text,
+        re.MULTILINE,
+    )
+    candidate_match = re.search(
+        r"^- Candidate count: `(\d+)`|^- Candidate count: (\d+)",
+        result_text,
+        re.MULTILINE,
+    )
+    if lane_match is None or lane_match.group(1) != lane_id:
+        raise ValueError(relative_path + ": screening result has wrong Lane ID")
+    if agent_match is None:
+        raise ValueError(relative_path + ": screening result lacks exact Agent ID")
+    if completed_match is None:
+        raise ValueError(relative_path + ": screening result lacks exact completion time")
+
+    selections: List[Dict[str, object]] = []
+    for line in result_text.splitlines():
+        match = re.fullmatch(
+            r"\|\s*(\d+)\s*\|\s*`([^`]+)`\s*\|\s*(.*?)\s*\|", line
+        )
+        if match is None:
+            continue
+        selections.append({
+            "rank": int(match.group(1)),
+            "paper_id": match.group(2),
+            "rationale": normalize_inline_text(match.group(3)),
+        })
+    if [row["rank"] for row in selections] != list(range(1, len(selections) + 1)):
+        raise ValueError(relative_path + ": screening ranks must be contiguous")
+    candidate_count = None
+    if candidate_match is not None:
+        candidate_count = int(candidate_match.group(1) or candidate_match.group(2))
+    return {
+        "agent_id": agent_match.group(1),
+        "completed_at": completed_match.group(1),
+        "candidate_count": candidate_count,
+        "checksum": hashlib.sha256(result_bytes).hexdigest(),
+        "selections": selections,
+    }
+
+
+def build_screening_ledger_rows(
+    manifest_rows: Sequence[Mapping[str, str]], reference_root: Path
+) -> List[Dict[str, str]]:
+    """Build the durable screening ledger from frozen lane result documents."""
+
+    ancestry_rows = [row for row in manifest_rows if is_retained_ancestry_identity(row)]
+    ancestry_by_id = {row.get("paper_id", ""): row for row in ancestry_rows}
+    lane_results = {
+        lane_id: parse_screening_result_document(reference_root, lane_id)
+        for lane_id in SCREENING_RESULT_PATHS
+    }
+    lane_counts = Counter(_screening_primary_lane(row) for row in ancestry_rows)
+    for lane_id in ("G03-LANE-A", "G03-LANE-B", "G03-LANE-C"):
+        expected_count = lane_results[lane_id]["candidate_count"]
+        if expected_count != lane_counts[lane_id]:
+            raise ValueError(
+                "{0}: candidate count {1} does not match manifest count {2}".format(
+                    lane_id, expected_count, lane_counts[lane_id]
+                )
+            )
+
+    ranked_selections: List[Tuple[str, Dict[str, object]]] = []
+    for lane_id in ("G03-LANE-A", "G03-LANE-B", "G03-LANE-C"):
+        ranked_selections.extend(
+            (lane_id, dict(selection))
+            for selection in lane_results[lane_id]["selections"]
+        )
+    selected_ids = [str(selection["paper_id"]) for _lane, selection in ranked_selections]
+    if len(selected_ids) != 25 or len(set(selected_ids)) != 25:
+        raise ValueError("screening results must nominate exactly 25 unique identities")
+    selected_by_id = {
+        str(selection["paper_id"]): {
+            "lane_id": lane_id,
+            "queue_rank": str(index),
+            "rationale": str(selection["rationale"]),
+        }
+        for index, (lane_id, selection) in enumerate(ranked_selections, start=1)
+    }
+    for paper_id, selection in selected_by_id.items():
+        manifest_row = ancestry_by_id.get(paper_id)
+        if manifest_row is None:
+            raise ValueError(paper_id + ": selected identity is not retained ancestry")
+        if _screening_primary_lane(manifest_row) != selection["lane_id"]:
+            raise ValueError(paper_id + ": selected identity is in the wrong lane")
+
+    audit_result = lane_results["G03-LANE-D"]
+    rows: List[Dict[str, str]] = []
+    for manifest_row in sorted(ancestry_rows, key=lambda row: row.get("paper_id", "")):
+        paper_id = manifest_row.get("paper_id", "")
+        lane_id = _screening_primary_lane(manifest_row)
+        lane_result = lane_results[lane_id]
+        notes = _parse_notes_map(manifest_row.get("notes", ""))
+        identity_state = notes.get("IDENTITY_STATE", "UNKNOWN")
+        selection = selected_by_id.get(paper_id)
+        if selection is not None:
+            disposition = "ACQUIRE"
+            queue_rank = str(selection["queue_rank"])
+            rationale = str(selection["rationale"])
+        elif identity_state == "CANONICAL":
+            disposition = "DEFER"
+            queue_rank = "NOT_APPLICABLE"
+            rationale = "Not selected within the lane's bounded acquisition quota."
+        else:
+            disposition = "REJECT"
+            queue_rank = "NOT_APPLICABLE"
+            rationale = "Identity state {0} is not eligible for acquisition.".format(
+                identity_state
+            )
+        rows.append({
+            "candidate_paper_id": paper_id,
+            "primary_lane": lane_id,
+            "direction": notes.get("ANCESTRY_DIRECTIONS", "UNKNOWN"),
+            "disposition": disposition,
+            "queue_rank": queue_rank,
+            "rationale": rationale,
+            "reviewer_model": "gpt-5.6-sol",
+            "reviewer_agent_id": str(lane_result["agent_id"]),
+            "prompt_id": lane_id + "-v1",
+            "screened_at_utc": str(lane_result["completed_at"]),
+            "evidence_scope": "COMMITTED_METADATA_AND_CONTROLS_ONLY",
+            "result_checksum": str(lane_result["checksum"]),
+            "audit_lane_id": "G03-LANE-D",
+            "audit_reviewer_agent_id": str(audit_result["agent_id"]),
+            "audit_result_checksum": str(audit_result["checksum"]),
+        })
+    return rows
+
+
+def load_reviewed_g04_queue(screening_path: Path) -> List[str]:
+    """Load the exact reviewed ancestry queue from its durable screening ledger."""
+
+    rows = read_tsv_rows(screening_path, SCREENING_HEADER)
+    acquired = [row for row in rows if row.get("disposition") == "ACQUIRE"]
+    try:
+        acquired.sort(key=lambda row: int(row.get("queue_rank", "0")))
+    except ValueError as error:
+        raise ValueError("screening queue_rank must be numeric for ACQUIRE rows") from error
+    queue = [row.get("candidate_paper_id", "") for row in acquired]
+    if len(queue) != 25 or len(set(queue)) != 25:
+        raise ValueError("screening ledger must yield exactly 25 unique ACQUIRE identities")
+    if [int(row["queue_rank"]) for row in acquired] != list(range(1, 26)):
+        raise ValueError("screening ledger ACQUIRE ranks must be contiguous 1-25")
+    return queue
+
+
+def validate_screening_rows(
+    rows: Sequence[Mapping[str, str]],
+    manifest_rows: Sequence[Mapping[str, str]],
+    reference_root: Path,
+) -> List[str]:
+    """Validate disjoint lane assignment, result checksums, and queue derivation."""
+
+    errors: List[str] = []
+    ancestry_by_id = {
+        row.get("paper_id", ""): row
+        for row in manifest_rows
+        if is_retained_ancestry_identity(row)
+    }
+    new_ancestry_ids = {
+        paper_id
+        for paper_id, row in ancestry_by_id.items()
+        if row.get("discovery_query_ids") == "NOT_APPLICABLE"
+    }
+    row_ids = [row.get("candidate_paper_id", "") for row in rows]
+    if len(row_ids) != len(set(row_ids)):
+        errors.append("citation-screening-ledger.tsv has duplicate candidate identity")
+    if set(row_ids) != set(ancestry_by_id):
+        errors.append("citation-screening-ledger.tsv must cover every ancestry identity exactly once")
+
+    result_checksums: Dict[str, str] = {}
+    result_agent_ids: Dict[str, str] = {}
+    for lane_id, relative_path in SCREENING_RESULT_PATHS.items():
+        path = reference_root / relative_path
+        if not path.is_file():
+            errors.append(relative_path + ": screening result is missing")
+            continue
+        result_bytes = path.read_bytes()
+        result_checksums[lane_id] = hashlib.sha256(result_bytes).hexdigest()
+        result_text = result_bytes.decode("utf-8")
+        agent_match = re.search(r"^- Agent ID: `([^`]+)`$", result_text, re.MULTILINE)
+        if agent_match is None:
+            errors.append(relative_path + ": screening result lacks exact Agent ID")
+        else:
+            result_agent_ids[lane_id] = agent_match.group(1)
+
+    acquired_ranks: List[int] = []
+    acquired_ids: List[str] = []
+    for index, row in enumerate(rows, start=2):
+        prefix = "citation-screening-ledger.tsv: row {0}".format(index)
+        paper_id = row.get("candidate_paper_id", "")
+        manifest_row = ancestry_by_id.get(paper_id)
+        if manifest_row is None:
+            continue
+        expected_lane = _screening_primary_lane(manifest_row)
+        if row.get("primary_lane") != expected_lane:
+            errors.append(prefix + " violates deterministic primary-lane rule")
+        if row.get("audit_lane_id") != "G03-LANE-D":
+            errors.append(prefix + " must name G03-LANE-D audit")
+        if row.get("reviewer_model") != "gpt-5.6-sol":
+            errors.append(prefix + " has wrong reviewer model")
+        if row.get("prompt_id") != expected_lane + "-v1":
+            errors.append(prefix + " has wrong prompt_id")
+        if row.get("evidence_scope") != "COMMITTED_METADATA_AND_CONTROLS_ONLY":
+            errors.append(prefix + " has wrong evidence scope")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", row.get("screened_at_utc", "")):
+            errors.append(prefix + " has invalid screened_at_utc")
+        if row.get("result_checksum") != result_checksums.get(expected_lane):
+            errors.append(prefix + " has incorrect primary-lane result checksum")
+        if row.get("audit_result_checksum") != result_checksums.get("G03-LANE-D"):
+            errors.append(prefix + " has incorrect audit result checksum")
+        if row.get("reviewer_agent_id") != result_agent_ids.get(expected_lane):
+            errors.append(prefix + " has incorrect primary-lane reviewer identity")
+        if row.get("audit_reviewer_agent_id") != result_agent_ids.get("G03-LANE-D"):
+            errors.append(prefix + " has incorrect audit reviewer identity")
+        notes = _parse_notes_map(manifest_row.get("notes", ""))
+        expected_direction = notes.get("ANCESTRY_DIRECTIONS", "UNKNOWN")
+        if row.get("direction") != expected_direction:
+            errors.append(prefix + " has incorrect ancestry direction")
+        if not row.get("rationale"):
+            errors.append(prefix + " is missing screening rationale")
+        disposition = row.get("disposition")
+        if disposition not in {"ACQUIRE", "DEFER", "REJECT"}:
+            errors.append(prefix + " has invalid disposition")
+        identity_state = notes.get("IDENTITY_STATE", "UNKNOWN")
+        if disposition == "ACQUIRE":
+            if identity_state != "CANONICAL":
+                errors.append(prefix + " cannot acquire ambiguous or unavailable identity")
+            if paper_id not in new_ancestry_ids:
+                errors.append(prefix + " cannot acquire a rediscovered baseline identity")
+            try:
+                rank = int(row.get("queue_rank", "0"))
+            except ValueError:
+                rank = 0
+            acquired_ranks.append(rank)
+            acquired_ids.append(paper_id)
+        elif row.get("queue_rank") != "NOT_APPLICABLE":
+            errors.append(prefix + " non-ACQUIRE row must use NOT_APPLICABLE rank")
+        if identity_state != "CANONICAL" and disposition != "REJECT":
+            errors.append(prefix + " ambiguous or unavailable identity must be rejected")
+    if sorted(acquired_ranks) != list(range(1, 26)):
+        errors.append("citation-screening-ledger.tsv must have ACQUIRE ranks 1-25")
+    if len(acquired_ids) != len(set(acquired_ids)):
+        errors.append("citation-screening-ledger.tsv ACQUIRE identities must be unique")
+    return sorted(set(errors))
 
 
 def _is_sha256(value: object) -> bool:
@@ -1464,7 +2039,15 @@ def validate_citation_request_rows(rows: Sequence[Mapping[str, str]]) -> List[st
             )
         elif row.get("terminal_state") in {"COMPLETE", "EMPTY"}:
             raw_observations += result_count
-        if row.get("response_status") == "200":
+        if (
+            row.get("response_status") == "200"
+            and row.get("terminal_state") == "PAYLOAD_REJECTED"
+        ):
+            if result_count != 0 or service != "SemanticScholar":
+                errors.append(
+                    "{0} invalid HTTP 200 payload-rejection state".format(prefix)
+                )
+        elif row.get("response_status") == "200":
             expected_terminal = "COMPLETE" if result_count > 0 else "EMPTY"
             if row.get("terminal_state") != expected_terminal:
                 errors.append("{0} HTTP 200 has inconsistent terminal_state".format(prefix))
@@ -1622,6 +2205,25 @@ def validate_g03_cache_provenance(
             else:
                 if str(len(records)) != row.get("result_count"):
                     errors.append("{0} cached result_count mismatch".format(prefix))
+        elif row.get("terminal_state") == "PAYLOAD_REJECTED":
+            try:
+                rejection = json.loads(payload.decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                rejection = None
+            if not isinstance(rejection, Mapping) or set(rejection) != {
+                "error",
+                "provider",
+                "raw_response_checksum",
+                "reason",
+            }:
+                errors.append("{0} malformed payload-rejection marker".format(prefix))
+            elif (
+                rejection.get("error") != "rejected_provider_payload"
+                or rejection.get("provider") != "SemanticScholar"
+                or rejection.get("raw_response_checksum")
+                != row.get("response_checksum")
+            ):
+                errors.append("{0} inconsistent payload-rejection marker".format(prefix))
     cache_roots = (
         reference_root / "cache" / "g03" / "openalex",
         reference_root / "cache" / "g03" / "semantic-scholar",
@@ -1861,8 +2463,8 @@ def _fetch_s2_campaign_page(
         depth=depth,
         direction=direction,
         allow_network=allow_network,
-        remaining_http_requests=_request_budget_remaining(ledger_path),
-        minimum_delay_seconds=1.1,
+        remaining_http_requests=min(1, _request_budget_remaining(ledger_path)),
+        minimum_delay_seconds=S2_MINIMUM_DELAY_SECONDS,
     )
     if _raw_observations_used(ledger_path) > MAX_RAW_OBSERVATIONS:
         raise RuntimeError("G03 raw-observation cap exceeded")
@@ -2012,6 +2614,10 @@ def _reconcile_record_map(
         merged = dict(source)
         merged["paper_id"] = canonical.get("paper_id", source.get("paper_id"))
         merged["identity_state"] = canonical.get("identity_state", "CANONICAL")
+        if canonical.get("conflicting_identity_ids"):
+            merged["conflicting_identity_ids"] = list(
+                canonical["conflicting_identity_ids"]
+            )
         result[provider_id] = merged
     return result
 
@@ -2101,6 +2707,7 @@ def _build_new_manifest_row(
         "ANCESTRY_RESOLUTION": "RESOLVED",
         "ANCESTRY_SEEDS": "|".join(seed_ids),
         "CITATION_DEPTH": str(minimum_depth),
+        "G03_AQ_LINKS": "|".join(question_ids) or "UNKNOWN",
         "G03_SCREEN": "DERIVED_INFERENCE_METADATA_ONLY",
         "IDENTITY_STATE": str(record.get("identity_state") or "CANONICAL"),
         "OPENALEX_ID": str(record.get("openalex_id") or "UNKNOWN"),
@@ -2112,6 +2719,13 @@ def _build_new_manifest_row(
         ) or "UNKNOWN",
         "VERSIONS": str(record.get("arxiv_version") or "UNKNOWN"),
     }
+    conflicting_identity_ids = [
+        str(value) for value in record.get("conflicting_identity_ids") or []
+    ]
+    if conflicting_identity_ids:
+        notes["CONFLICTING_IDENTITY_IDS"] = "|".join(
+            sorted(conflicting_identity_ids)
+        )
     return {
         "paper_id": str(record.get("paper_id") or ""),
         "arxiv_id": str(record.get("arxiv_id") or "UNKNOWN"),
@@ -2182,6 +2796,15 @@ def _update_manifest_rows(
                 "ANCESTRY_RESOLUTION": "RESOLVED",
                 "ANCESTRY_SEEDS": "|".join(sorted({str(item.get("seed_paper_id")) for item in related})),
                 "CITATION_DEPTH": str(min(int(item.get("depth") or 0) for item in related)),
+                "G03_AQ_LINKS": "|".join(
+                    sorted(
+                        {
+                            str(question)
+                            for item in related
+                            for question in item.get("architecture_question_ids") or []
+                        }
+                    )
+                ) or "UNKNOWN",
                 "G03_SCREEN": "DERIVED_INFERENCE_METADATA_ONLY",
                 "OPENALEX_ID": str(record.get("openalex_id") or "UNKNOWN"),
                 "SEMANTIC_SCHOLAR_ID": str(
@@ -2294,6 +2917,7 @@ def build_g03_citation_report(
     edge_rows: Sequence[Mapping[str, str]],
     observations: Sequence[Mapping[str, object]],
     selected_ids: Set[str],
+    reviewed_g04_ids: Sequence[str],
     stops: Sequence[Mapping[str, object]],
     sampled_reference_omissions: int,
 ) -> str:
@@ -2303,22 +2927,51 @@ def build_g03_citation_report(
     selected = _unique_selected_observations(observations, selected_ids)
     backward = [row for row in selected if row.get("direction") == "BACKWARD"]
     forward = [row for row in selected if row.get("direction") == "FORWARD"]
-    contradiction_tokens = ("counterexample", "lower bound", "impossibility", "limitations", "incorrect")
-    contradictory = [
+    direction_sets: Dict[str, Set[str]] = defaultdict(set)
+    for row in observations:
+        paper_id = str(row.get("paper_id") or "")
+        if paper_id in selected_ids:
+            direction_sets[paper_id].add(str(row.get("direction") or "UNKNOWN"))
+    backward_identity_count = sum("BACKWARD" in value for value in direction_sets.values())
+    forward_identity_count = sum("FORWARD" in value for value in direction_sets.values())
+    bidirectional_identity_count = sum(
+        {"BACKWARD", "FORWARD"}.issubset(value) for value in direction_sets.values()
+    )
+    negative_tokens = (
+        "counterexample",
+        "lower bound",
+        "impossibility",
+        "limitations",
+        "incorrect",
+        "intractability",
+        "resolution limit",
+        "no harder",
+    )
+    negative_signals = [
         row for row in selected
         if any(
             token in normalize_title_identity(manifest_by_id.get(str(row.get("paper_id")), {}).get("title"))
-            for token in contradiction_tokens
+            for token in negative_tokens
+        )
+    ]
+    survey_signals = [
+        row
+        for row in selected
+        if any(
+            token
+            in normalize_title_identity(
+                manifest_by_id.get(str(row.get("paper_id")), {}).get("title")
+            )
+            for token in ("survey", "review")
         )
     ]
     stop_counts: Dict[str, int] = defaultdict(int)
     for row in stops:
         stop_counts[str(row.get("reason") or "UNKNOWN")] += 1
-    if sampled_reference_omissions:
-        stop_counts["REFERENCE_SAMPLE_CAP"] += sampled_reference_omissions
     question_counts: Dict[str, int] = defaultdict(int)
-    for row in selected:
-        for question_id in row.get("architecture_question_ids") or []:
+    for paper_id in selected_ids:
+        notes = _parse_notes_map(manifest_by_id.get(paper_id, {}).get("notes", ""))
+        for question_id in _split_multi_value(notes.get("G03_AQ_LINKS", "")):
             question_counts[str(question_id)] += 1
     new_identity_ids = selected_ids - set(seed_ids) - {
         row.get("paper_id", "") for row in final_manifest_rows[:baseline_manifest_count]
@@ -2326,11 +2979,15 @@ def build_g03_citation_report(
     semantic_counts: Dict[str, int] = defaultdict(int)
     for row in edge_rows:
         semantic_counts[row.get("edge_type", "UNKNOWN")] += 1
-    g04_new = [
-        row for row in selected
-        if row.get("paper_id") in new_identity_ids
-    ][:25]
-    g04_ids = list(seed_ids) + [str(row.get("paper_id")) for row in g04_new]
+    g04_new_ids = list(reviewed_g04_ids)
+    if (
+        len(g04_new_ids) != 25
+        or len(set(g04_new_ids)) != 25
+        or not set(g04_new_ids) <= new_identity_ids
+    ):
+        raise ValueError("screening ledger must select 25 retained new identities")
+    g04_queue_basis = "FOUR_LANE_SCREENING_LEDGER"
+    g04_ids = list(seed_ids) + g04_new_ids
     g04_ids = list(dict.fromkeys(g04_ids))
     external_requests = sum(row.get("cache_status") == "MISS" for row in request_rows)
     raw_observations = sum(
@@ -2338,15 +2995,48 @@ def build_g03_citation_report(
         for row in request_rows
         if row.get("terminal_state") in {"COMPLETE", "EMPTY"}
     )
+    depth2_request_rows = [
+        row
+        for row in request_rows
+        if row.get("depth") == "1"
+        and row.get("operation") in {"BACKWARD_REFERENCES", "FORWARD_CITATIONS"}
+    ]
+    depth2_completed_requests = sum(
+        row.get("terminal_state") in {"COMPLETE", "EMPTY"}
+        for row in depth2_request_rows
+    )
+    provider_request_counts = Counter(row.get("service", "UNKNOWN") for row in request_rows)
+    provider_observation_counts = Counter()
+    for row in request_rows:
+        if row.get("terminal_state") in {"COMPLETE", "EMPTY"}:
+            provider_observation_counts[row.get("service", "UNKNOWN")] += int(
+                row.get("result_count", "0")
+            )
+    screening_lane_counts = Counter(
+        _screening_primary_lane(row)
+        for row in final_manifest_rows
+        if is_retained_ancestry_identity(row)
+    )
+    displayed_control_stops = [
+        row
+        for row in stops
+        if row.get("reason")
+        in {
+            "REQUEST_RETRY_RESERVE",
+            "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED",
+            "S2_SELECTED_PAYLOAD_REJECTED",
+            "S2_PROVIDER_ID_UNAVAILABLE",
+        }
+    ]
     lines = [
         "# G03 Citation Ancestry Report",
         "",
         "**Status:** `METADATA_TRAVERSAL_COMPLETE`",
-        "**Epistemic boundary:** OpenAlex provider relations establish only `CITES`. All branch roles and decision scores are `DERIVED_INFERENCE` metadata-screening judgments, not `SOURCE_CLAIM`s.",
+        "**Epistemic boundary:** OpenAlex and Semantic Scholar provider relations establish only `CITES`. All branch roles and decision scores are `DERIVED_INFERENCE` metadata-screening judgments, not `SOURCE_CLAIM`s.",
         "",
         "## Executive Result",
         "",
-        "G03 converted the 25 G02 seeds into a bounded, depth-2 citation map and an exact G04 reading queue. It did not read or acquire a paper. The result prioritizes citation-visible branches that can change an open architecture question; it does not prove any mechanism, performance result, or compatibility claim.",
+        "G03 converted the 25 G02 seeds into a bounded depth-1 citation map and an exact G04 reading queue. One depth-2 neighborhood was attempted; its selected payload was rejected, so zero depth-2 identities or edges were retained. G03 did not read or acquire a paper. The result prioritizes citation-visible branches that can change an open architecture question; it does not prove any mechanism, performance result, or compatibility claim.",
         "",
         "## Campaign Accounting",
         "",
@@ -2358,12 +3048,31 @@ def build_g03_citation_report(
         "| Baseline canonical identities | {0} | frozen |".format(baseline_manifest_count),
         "| Final canonical identities | {0} | N/A |".format(len(final_manifest_rows)),
         "| New canonical identities retained | {0} | 250 |".format(len(new_identity_ids)),
-        "| Citation and semantic edges | {0} | N/A |".format(len(edge_rows)),
+        "| Provider-backed CITES edges | {0} | N/A |".format(
+            semantic_counts.get("CITES", 0)
+        ),
+        "| Metadata-inferred semantic edges | {0} | N/A |".format(
+            len(edge_rows) - semantic_counts.get("CITES", 0)
+        ),
+        "| Depth-2 expansion attempts | {0} | at most 5 |".format(
+            len(depth2_request_rows)
+        ),
+        "| Successful/empty depth-2 responses | {0} | N/A |".format(
+            depth2_completed_requests
+        ),
         "| Papers read | 0 | 0 |",
         "| Full-text/PDF files acquired | 0 | 0 |",
         "| Repositories acquired | 0 | 0 |",
         "",
         "Edge counts: " + ", ".join("`{0}`={1}".format(key, semantic_counts[key]) for key in sorted(semantic_counts)) + ".",
+        "",
+        "Provider accounting: OpenAlex={0} requests/{1} observations/0 retained edges; Semantic Scholar={2} requests/{3} observations/{4} retained edges.".format(
+            provider_request_counts.get("OpenAlex", 0),
+            provider_observation_counts.get("OpenAlex", 0),
+            provider_request_counts.get("SemanticScholar", 0),
+            provider_observation_counts.get("SemanticScholar", 0),
+            len(edge_rows),
+        ),
         "",
         "## Foundational Branches",
         "",
@@ -2371,19 +3080,58 @@ def build_g03_citation_report(
         "",
         *_render_branch_table(backward, manifest_by_id),
         "",
+        "Displayed {0} of {1} retained identities whose observations include `BACKWARD`; {2} identities were reached in both directions.".format(
+            min(40, len(backward)), backward_identity_count, bidirectional_identity_count
+        ),
+        "",
         "## Implementation And Evaluation Branches",
         "",
         "Forward branches are later citing works. A role is semantically typed only when its title explicitly anchors the cited target; otherwise the report merely nominates the branch for G04 reading.",
         "",
         *_render_branch_table(forward, manifest_by_id),
         "",
+        "Displayed {0} of {1} retained identities whose observations include `FORWARD`; {2} identities were reached in both directions.".format(
+            min(40, len(forward)), forward_identity_count, bidirectional_identity_count
+        ),
+        "",
         "## Contradictory Branches",
         "",
-        "These titles contain an explicit counterexample, lower-bound, impossibility, limitation, or incorrectness signal. Reading is required before treating any as contradictory evidence.",
+        "Constraint And Negative-Result Signals: these titles contain an explicit counterexample, lower-bound, impossibility, limitation, intractability, resolution-limit, or complexity-relief signal. They can constrain a design without contradicting the cited target. Reading is required before assigning `CONTRADICTS`.",
         "",
-        *_render_branch_table(contradictory, manifest_by_id),
+        *_render_branch_table(negative_signals, manifest_by_id),
+        "",
+        "## Survey And Review Signals",
+        "",
+        "These titles explicitly identify a survey or review. They are G04 routing candidates, not `SURVEYS` edges, unless the title also anchors the exact cited target.",
+        "",
+        *_render_branch_table(survey_signals, manifest_by_id),
+        "",
+        "## Post-Traversal Screening Review",
+        "",
+        "Four disjoint read-only `gpt-5.6-sol` xhigh lanes screened backward candidates, forward systems, negative/survey signals, and provenance/accounting. The lanes read metadata and control artifacts only. They did not read papers or ignored provider caches.",
+        "",
+        "- Backward lane: {0} identities after constraint-lane precedence, prioritizing external-memory traversal, adjacency compression, local PageRank, dynamic indexes, direction-optimizing BFS, and path-query semantics.".format(
+            screening_lane_counts.get("G03-LANE-A", 0)
+        ),
+        "- Forward lane: {0} identities after constraint- and backward-lane precedence, prioritizing graph-shaped SSD/storage systems, partitioned processing, direct compressed-query execution, named benchmark implementations, RPQ systems, and I/O-aware ANN scheduling.".format(
+            screening_lane_counts.get("G03-LANE-B", 0)
+        ),
+        "- Constraint lane: {0} lower-bound, intractability, resolution-limit, survey, or review identities remained reading nominations rather than semantic claims.".format(
+            screening_lane_counts.get("G03-LANE-C", 0)
+        ),
+        "- Audit lane: independently reconciled {0} seeds, {1} attempts, {2} observations, {3} identities, {4} typed edges, {5} exact stops, provider attribution, and the G04 queue.".format(
+            len(seed_ids),
+            external_requests,
+            raw_observations,
+            len(final_manifest_rows),
+            len(edge_rows),
+            len(stops),
+        ),
+        "- Semantic result: exactly one title-explicit `IMPLEMENTS` inference survives the strict target-anchor rule; all other retained role relationships remain `CITES` only.",
         "",
         "## Stopped Branches",
+        "",
+        "Exact stopped observations: **{0}**. The complete identity-level record is `sources/citation-stops.tsv`; the table below displays provider, retry-reserve, and payload stops while the reason table reconciles every row.".format(len(stops)),
         "",
         "| Stop reason | Count |",
         "|---|---:|",
@@ -2394,7 +3142,36 @@ def build_g03_citation_report(
         lines.append("| `NONE` | 0 |")
     lines.extend([
         "",
-        "Depth-2 works were retained but never expanded. Forward traversal used one page per operation; backward traversal sampled at most 12 evenly spaced references per expanded work. These are explicit recall limits.",
+        "Exact provider and retry-reserve stops:",
+        "",
+        "| Paper | Seed | Depth | Direction | Reason |",
+        "|---|---|---:|---|---|",
+    ])
+    if displayed_control_stops:
+        for row in sorted(
+            displayed_control_stops,
+            key=lambda value: (
+                str(value.get("reason") or ""),
+                str(value.get("paper_id") or ""),
+                str(value.get("seed_paper_id") or ""),
+            ),
+        ):
+            lines.append(
+                "| `{0}` | `{1}` | {2} | {3} | `{4}` |".format(
+                    row.get("paper_id") or "UNKNOWN",
+                    row.get("seed_paper_id") or "UNKNOWN",
+                    row.get("depth") or "UNKNOWN",
+                    row.get("direction") or "UNKNOWN",
+                    row.get("reason") or "UNKNOWN",
+                )
+            )
+    else:
+        lines.append("| `NONE` | `NONE` | 0 | N/A | `NONE` |")
+    lines.extend([
+        "",
+        "Depth-2 expansion was attempted {0} time(s), with {1} successful or empty selected-metadata response(s). A retained depth-2 identity is never expanded further. Forward and backward traversal used one page per operation; the Semantic Scholar page limit is 75 and the OpenAlex page limit is 100. These are explicit recall limits.".format(
+            len(depth2_request_rows), depth2_completed_requests
+        ),
         "",
         "## Architecture-Question Decision Impact",
         "",
@@ -2411,15 +3188,19 @@ def build_g03_citation_report(
         "## Coverage Gaps",
         "",
         "- OpenAlex `referenced_works` omits references it cannot resolve to an OpenAlex identity; this is not a complete bibliography.",
-        "- Exact arXiv-location resolution can miss provider records whose location metadata differs.",
-        "- One-page forward traversal can miss lower-ranked citing works beyond 100 results.",
+        "- OpenAlex exact arXiv-location resolution can miss records whose location metadata differs; Semantic Scholar exact arXiv resolution repaired this for all 25 seeds in this campaign.",
+        "- One-page traversal can miss lower-ranked relations beyond 75 Semantic Scholar results or 100 OpenAlex results.",
+        "- One depth-2 Semantic Scholar response violated the selected-metadata envelope and was retained only as a checksummed `PAYLOAD_REJECTED` marker.",
+        "- One seed's forward branch exhausted three Semantic Scholar rate-limit attempts and remains an explicit coverage gap.",
         "- Twelve-reference sampling can miss a relevant ancestor in a long bibliography.",
         "- Titles and bibliographic types cannot prove implementation, evaluation, contradiction, mechanism, correctness, RAM, or latency claims.",
         "- No citation metadata directly closes Bolt, Cypher, GDS procedure, admission-control, whole-process RSS, or verification-receipt gaps unless its title matched the frozen taxonomy.",
         "",
         "## Exact Recommended G04 Acquisition Set",
         "",
-        "The set contains all 25 original seeds plus at most 25 highest-priority new ancestry identities after global deduplication. Order is reading priority within the two groups. G04 must perform its own license and acquisition preflight.",
+        "The set contains all 25 original seeds plus 25 new ancestry identities after global deduplication and four-lane post-traversal screening. The reviewed queue replaces generic taxonomy/clustering false positives and ambiguous duplicate PageRank identities with architecture-direct external-memory, storage, compression, query, implementation, and survey candidates. Queue basis: `{0}`. G04 must perform its own license, availability, and acquisition-time identity preflight.".format(
+            g04_queue_basis
+        ),
         "",
         "| # | Paper | Metadata title | G03 basis |",
         "|---:|---|---|---|",
@@ -2432,7 +3213,7 @@ def build_g03_citation_report(
             basis = "G02_SEED"
         else:
             observation = g04_observations.get(paper_id, {})
-            basis = "{0}_DEPTH_{1}_SCORE_{2}".format(
+            basis = "SCREENED_{0}_DEPTH_{1}_SCORE_{2}".format(
                 observation.get("direction", "UNKNOWN"),
                 observation.get("depth", "UNKNOWN"),
                 observation.get("decision_score", 0),
@@ -2444,7 +3225,7 @@ def build_g03_citation_report(
         "",
         "## Scope Boundary",
         "",
-        "G03 downloaded no PDF, abstract, paper body, source archive, or repository; read no paper; created no mechanism, failure, or transfer card; proposed no architecture or experiment; and did not begin G04. OpenAlex response bodies remain ignored local cache files. The report is a citation-metadata routing artifact only.",
+        "G03 downloaded no PDF, abstract, paper body, source archive, or repository; read no paper; created no mechanism, failure, or transfer card; proposed no architecture or experiment; and did not begin G04. OpenAlex and sanitized Semantic Scholar selected-metadata bodies remain ignored local cache files. The report is a citation-metadata routing artifact only.",
         "",
     ])
     return "\n".join(lines)
@@ -2459,12 +3240,24 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
     preflight_path = reference_root / "governance" / "g03-service-preflight.md"
     ledger_path = reference_root / "sources" / "citation-request-ledger.tsv"
     edge_path = reference_root / "sources" / "citation-edges.tsv"
+    stop_path = reference_root / "sources" / "citation-stops.tsv"
+    screening_path = reference_root / "sources" / "citation-screening-ledger.tsv"
     final_report_path = reference_root / "sources" / "G03-citation-ancestry-report.md"
 
     seed_ids = extract_g03_seed_ids(report_path.read_text(encoding="utf-8"))
-    baseline_manifest = read_tsv_rows(manifest_path, MANIFEST_HEADER)
-    if len(baseline_manifest) != 262:
+    manifest_rows = read_tsv_rows(manifest_path, MANIFEST_HEADER)
+    if len(manifest_rows) < EXPECTED_G02_MANIFEST_COUNT:
         raise RuntimeError("G03 requires the frozen 262-row G02 manifest baseline")
+    if len(manifest_rows) > EXPECTED_G02_MANIFEST_COUNT:
+        g03_suffix = manifest_rows[EXPECTED_G02_MANIFEST_COUNT:]
+        if not final_report_path.is_file() or any(
+            row.get("discovery_query_ids") != "NOT_APPLICABLE"
+            or "CITATION_DEPTH=" not in row.get("notes", "")
+            or "G03_SCREEN=DERIVED_INFERENCE_METADATA_ONLY" not in row.get("notes", "")
+            for row in g03_suffix
+        ):
+            raise RuntimeError("manifest suffix is not a verified G03 replay artifact")
+    baseline_manifest = manifest_rows[:EXPECTED_G02_MANIFEST_COUNT]
     baseline_by_id = _manifest_rows_by_id(baseline_manifest)
     if any(seed_id not in baseline_by_id for seed_id in seed_ids):
         raise RuntimeError("one or more G03 seeds are absent from the G02 manifest")
@@ -2565,11 +3358,27 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
             seed_records[seed_id] = reconciled
 
     sampled_reference_omissions = 0
+    sampled_reference_stops: List[Dict[str, object]] = []
     backward_relations: List[Tuple[str, str]] = []
     for seed_id in openalex_seed_records:
         references = list(openalex_seed_records[seed_id].get("referenced_works") or [])
         sampled = _evenly_sample_values(references, MAX_REFERENCE_IDS_PER_SEED)
-        sampled_reference_omissions += max(0, len(list(dict.fromkeys(references))) - len(sampled))
+        unique_references = list(dict.fromkeys(references))
+        omitted_references = [value for value in unique_references if value not in set(sampled)]
+        sampled_reference_omissions += len(omitted_references)
+        sampled_reference_stops.extend(
+            {
+                "candidate_identity": value,
+                "seed_paper_id": seed_id,
+                "parent_paper_id": seed_id,
+                "depth": 1,
+                "direction": "BACKWARD",
+                "provider_name": "OpenAlex",
+                "provider_id": value,
+                "reason": "REFERENCE_SAMPLE_CAP",
+            }
+            for value in omitted_references
+        )
         backward_relations.extend((seed_id, value) for value in sampled)
     depth1_backward_records = _fetch_batched_work_records(
         reference_root,
@@ -2628,35 +3437,86 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
 
     s2_backward_relations: List[Tuple[str, Dict[str, object]]] = []
     s2_forward_relations: List[Tuple[str, Dict[str, object]]] = []
+    s2_provider_stops: List[Dict[str, object]] = []
     for seed_id in seed_ids:
         parent = s2_seed_records.get(seed_id)
         if parent is None:
             continue
         semantic_scholar_id = str(parent.get("semantic_scholar_id") or "")
-        referenced_records = _fetch_s2_campaign_page(
-            reference_root,
-            ledger_path,
-            preflight_text,
-            "BACKWARD_REFERENCES",
-            semantic_scholar_id,
-            seed_id,
-            seed_id,
-            0,
-            "BACKWARD",
-            allow_network,
-        )
-        citing_records = _fetch_s2_campaign_page(
-            reference_root,
-            ledger_path,
-            preflight_text,
-            "FORWARD_CITATIONS",
-            semantic_scholar_id,
-            seed_id,
-            seed_id,
-            0,
-            "FORWARD",
-            allow_network,
-        )
+        try:
+            referenced_records = _fetch_s2_campaign_page(
+                reference_root,
+                ledger_path,
+                preflight_text,
+                "BACKWARD_REFERENCES",
+                semantic_scholar_id,
+                seed_id,
+                seed_id,
+                0,
+                "BACKWARD",
+                allow_network,
+            )
+        except CitationRateLimitExhausted:
+            referenced_records = []
+            s2_provider_stops.append(
+                _build_provider_control_stop(
+                    baseline_by_id[seed_id],
+                    "SemanticScholar",
+                    semantic_scholar_id,
+                    "BACKWARD",
+                    1,
+                    "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED",
+                )
+            )
+        except CitationPayloadRejected:
+            referenced_records = []
+            s2_provider_stops.append(
+                _build_provider_control_stop(
+                    baseline_by_id[seed_id],
+                    "SemanticScholar",
+                    semantic_scholar_id,
+                    "BACKWARD",
+                    1,
+                    "S2_SELECTED_PAYLOAD_REJECTED",
+                )
+            )
+        try:
+            citing_records = _fetch_s2_campaign_page(
+                reference_root,
+                ledger_path,
+                preflight_text,
+                "FORWARD_CITATIONS",
+                semantic_scholar_id,
+                seed_id,
+                seed_id,
+                0,
+                "FORWARD",
+                allow_network,
+            )
+        except CitationRateLimitExhausted:
+            citing_records = []
+            s2_provider_stops.append(
+                _build_provider_control_stop(
+                    baseline_by_id[seed_id],
+                    "SemanticScholar",
+                    semantic_scholar_id,
+                    "FORWARD",
+                    1,
+                    "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED",
+                )
+            )
+        except CitationPayloadRejected:
+            citing_records = []
+            s2_provider_stops.append(
+                _build_provider_control_stop(
+                    baseline_by_id[seed_id],
+                    "SemanticScholar",
+                    semantic_scholar_id,
+                    "FORWARD",
+                    1,
+                    "S2_SELECTED_PAYLOAD_REJECTED",
+                )
+            )
         s2_backward_relations.extend((seed_id, record) for record in referenced_records)
         s2_forward_relations.extend((seed_id, record) for record in citing_records)
 
@@ -2701,7 +3561,7 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         existing_identity_ids=set(baseline_by_id),
     )
     depth1_selected_ids = {str(row["paper_id"]) for row in depth1_selected}
-    branches = _select_expansion_branches(depth1_observations, depth1_selected_ids)
+    branches = _select_expansion_branches(depth1_selected, depth1_selected_ids)
 
     depth2_backward_relations: List[Tuple[str, str, str]] = []
     for (seed_id, direction), branch in sorted(branches.items()):
@@ -2712,7 +3572,22 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
             continue
         references = list(parent.get("referenced_works") or [])
         sampled = _evenly_sample_values(references, MAX_REFERENCE_IDS_PER_SEED)
-        sampled_reference_omissions += max(0, len(list(dict.fromkeys(references))) - len(sampled))
+        unique_references = list(dict.fromkeys(references))
+        omitted_references = [value for value in unique_references if value not in set(sampled)]
+        sampled_reference_omissions += len(omitted_references)
+        sampled_reference_stops.extend(
+            {
+                "candidate_identity": value,
+                "seed_paper_id": seed_id,
+                "parent_paper_id": str(branch["paper_id"]),
+                "depth": 2,
+                "direction": "BACKWARD",
+                "provider_name": "OpenAlex",
+                "provider_id": value,
+                "reason": "REFERENCE_SAMPLE_CAP",
+            }
+            for value in omitted_references
+        )
         depth2_backward_relations.extend(
             (seed_id, str(branch["paper_id"]), value) for value in sampled
         )
@@ -2798,14 +3673,26 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
             )
         )
 
-    s2_expansion_branches = sorted(
+    ranked_s2_expansion_branches = sorted(
         (
             dict(branch)
             for branch in branches.values()
             if branch.get("provider_name") == "SemanticScholar"
         ),
         key=_candidate_sort_key,
-    )[:MAX_S2_DEPTH2_EXPANSIONS]
+    )
+    expansion_capacity = max(
+        0,
+        min(
+            MAX_S2_DEPTH2_EXPANSIONS,
+            _request_budget_remaining(ledger_path) - MIN_S2_RETRY_RESERVE,
+        ),
+    )
+    s2_expansion_branches = ranked_s2_expansion_branches[:expansion_capacity]
+    depth2_provider_stops: List[Dict[str, object]] = [
+        _build_branch_control_stop(branch, 2, "REQUEST_RETRY_RESERVE")
+        for branch in ranked_s2_expansion_branches[expansion_capacity:]
+    ]
     for branch in s2_expansion_branches:
         seed_id = str(branch.get("seed_paper_id") or "")
         direction = str(branch.get("direction") or "")
@@ -2815,18 +3702,36 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         operation = (
             "BACKWARD_REFERENCES" if direction == "BACKWARD" else "FORWARD_CITATIONS"
         )
-        fetched = _fetch_s2_campaign_page(
-            reference_root,
-            ledger_path,
-            preflight_text,
-            operation,
-            str(parent.get("semantic_scholar_id") or ""),
-            seed_id,
-            str(branch.get("paper_id") or ""),
-            1,
-            direction,
-            allow_network,
-        )
+        if str(parent.get("semantic_scholar_id") or "").startswith("UNAVAILABLE:"):
+            depth2_provider_stops.append(
+                _build_branch_control_stop(branch, 2, "S2_PROVIDER_ID_UNAVAILABLE")
+            )
+            continue
+        try:
+            fetched = _fetch_s2_campaign_page(
+                reference_root,
+                ledger_path,
+                preflight_text,
+                operation,
+                str(parent.get("semantic_scholar_id") or ""),
+                seed_id,
+                str(branch.get("paper_id") or ""),
+                1,
+                direction,
+                allow_network,
+            )
+        except CitationRateLimitExhausted:
+            depth2_provider_stops.append(
+                _build_branch_control_stop(
+                    branch, 2, "S2_RATE_LIMIT_ATTEMPTS_EXHAUSTED"
+                )
+            )
+            continue
+        except CitationPayloadRejected:
+            depth2_provider_stops.append(
+                _build_branch_control_stop(branch, 2, "S2_SELECTED_PAYLOAD_REJECTED")
+            )
+            continue
         reconciled = _reconcile_record_map(fetched, identity_reference_rows)
         records_by_s2.update(reconciled)
         for source_record in fetched:
@@ -2850,7 +3755,7 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         existing_identity_ids=set(baseline_by_id) | depth1_selected_ids,
     )
     selected_ids = depth1_selected_ids | {str(row["paper_id"]) for row in depth2_selected}
-    all_observations = depth1_observations + depth2_observations
+    selected_observations = depth1_selected + depth2_selected
     selected_records: Dict[str, Dict[str, object]] = {}
     records_by_paper: Dict[str, Dict[str, object]] = {
         seed_id: record for seed_id, record in seed_records.items()
@@ -2873,15 +3778,32 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         seed_records,
         unavailable_seed_ids,
         selected_records,
-        all_observations,
+        selected_observations,
     )
     final_manifest_ids = {row["paper_id"] for row in final_manifest}
     if len(final_manifest_ids - set(baseline_by_id)) > MAX_NEW_IDENTITIES:
         raise RuntimeError("G03 canonical identity cap exceeded after reconciliation")
+    existing_edge_rows = (
+        read_tsv_rows(edge_path, EDGE_HEADER) if edge_path.is_file() else []
+    )
+    existing_edge_timestamps = {
+        (
+            row.get("source_paper_id", ""),
+            row.get("target_paper_id", ""),
+            row.get("edge_type", ""),
+        ): row.get("verified_at", "")
+        for row in existing_edge_rows
+    }
     verified_at = utc_timestamp_now()
     edge_rows = _build_selected_edges(
-        all_observations, selected_ids, records_by_paper, verified_at
+        selected_observations, selected_ids, records_by_paper, verified_at
     )
+    for row in edge_rows:
+        prior_timestamp = existing_edge_timestamps.get(
+            (row["source_paper_id"], row["target_paper_id"], row["edge_type"])
+        )
+        if prior_timestamp:
+            row["verified_at"] = prior_timestamp
     edge_errors = validate_citation_edge_contract(edge_rows, final_manifest_ids)
     if edge_errors:
         raise RuntimeError("G03 citation edges failed validation: " + "; ".join(edge_errors))
@@ -2897,27 +3819,51 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         raise RuntimeError("G03 request provenance failed validation: " + "; ".join(request_errors))
     write_tsv_rows(manifest_path, MANIFEST_HEADER, final_manifest)
     write_tsv_rows(edge_path, EDGE_HEADER, edge_rows)
+    all_stops = (
+        depth1_stops
+        + depth2_stops
+        + s2_provider_stops
+        + depth2_provider_stops
+        + sampled_reference_stops
+        + [
+            {
+                "paper_id": seed_id,
+                "seed_paper_id": seed_id,
+                "parent_paper_id": seed_id,
+                "depth": 0,
+                "direction": "SEED_RESOLUTION",
+                "reason": "SEED_ALL_PROVIDERS_UNAVAILABLE",
+            }
+            for seed_id in sorted(unavailable_seed_ids)
+        ]
+    )
+    stop_rows = normalize_citation_stop_rows(all_stops)
+    stop_errors = validate_citation_stop_rows(stop_rows)
+    if stop_errors:
+        raise RuntimeError("G03 citation stops failed validation: " + "; ".join(stop_errors))
+    write_tsv_rows(stop_path, STOP_HEADER, stop_rows)
+    screening_rows = build_screening_ledger_rows(final_manifest, reference_root)
+    write_tsv_rows(screening_path, SCREENING_HEADER, screening_rows)
+    screening_errors = validate_screening_rows(
+        screening_rows, final_manifest, reference_root
+    )
+    if screening_errors:
+        raise RuntimeError(
+            "G03 citation screening failed validation: "
+            + "; ".join(screening_errors)
+        )
+    reviewed_g04_ids = load_reviewed_g04_queue(screening_path)
     report = build_g03_citation_report(
         seed_ids,
         len(baseline_manifest),
         final_manifest,
         request_rows,
         edge_rows,
-        all_observations,
+        selected_observations,
         selected_ids,
-        depth1_stops
-        + depth2_stops
-        + [
-            {
-                "paper_id": seed_id,
-                "seed_paper_id": seed_id,
-                "depth": 0,
-                "direction": "SEED_RESOLUTION",
-                "reason": "SEED_ALL_PROVIDERS_UNAVAILABLE",
-            }
-            for seed_id in sorted(unavailable_seed_ids)
-        ],
-        sampled_reference_omissions,
+        reviewed_g04_ids,
+        all_stops,
+        0,
     )
     final_report_path.write_text(report, encoding="utf-8")
     return {
@@ -2928,7 +3874,9 @@ def execute_g03_citation_campaign(reference_root: Path, allow_network: bool) -> 
         "final_identities": len(final_manifest),
         "new_identities": len(final_manifest_ids - set(baseline_by_id)),
         "edges": len(edge_rows),
-        "stops": len(depth1_stops) + len(depth2_stops) + len(unavailable_seed_ids) + sampled_reference_omissions,
+        "stops": (
+            len(stop_rows)
+        ),
         "unavailable_seeds": len(unavailable_seed_ids),
         "semantic_scholar_seeds": len(s2_seed_records),
     }

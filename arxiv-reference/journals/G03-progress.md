@@ -2,8 +2,8 @@
 
 - Task: G03 bounded citation archaeology from 25 G02 seeds
 - Created: 2026-08-11 10:04:56Z
-- Updated: 2026-08-11 11:31:30Z
-- Current Phase: Green
+- Updated: 2026-08-11 13:46:02Z
+- Current Phase: Refactor
 - Status: active
 
 ## Goal Packet
@@ -14,7 +14,7 @@
 - Inputs: `arxiv-reference/Arxiv-Pattern-Foundry-SOP.md`, `arxiv-reference/sources/G02-metadata-screening-report.md`, `arxiv-reference/sources/paper-manifest.tsv`, `arxiv-reference/governance/architecture-question-ledger.md`, `arxiv-reference/governance/g03-citation-contract.md`, and `docs_PRD04/A007-spc-founder-interview-prep-v7.md`.
 - Owned outputs: `arxiv-reference/governance/G03-goal-packet.md`, `arxiv-reference/governance/g03-citation-contract.md`, `arxiv-reference/governance/g03-service-preflight.md`, `arxiv-reference/sources/citation-request-ledger.tsv`, `arxiv-reference/sources/citation-edges.tsv`, citation-driven updates to `arxiv-reference/sources/paper-manifest.tsv`, `arxiv-reference/sources/G03-citation-ancestry-report.md`, `arxiv-reference/tools/g03_citation_pipeline.py`, `arxiv-reference/tests/test_validate_g03_citation_contract.py`, G03 fixtures, validator extensions, this journal, campaign status, and `Markdown-Value-Index.md`.
 - Batch caps: exactly 25 depth-0 seeds; citation depth at most 2; at most 250 new canonical identities; at most 90 external HTTP attempts; at most 6,000 raw metadata observations; one page and 100 results per branch operation; three attempts per retry chain; no explicit token cap.
-- Excluded work: PDFs, abstracts, full text, paper reading, evidence extraction, mechanism/failure/transfer cards, architectures, experiments, GitHub acquisition, repository inspection, G04, commits, and pushes.
+- Excluded work: PDFs, abstracts, full text, paper reading, evidence extraction, mechanism/failure/transfer cards, architectures, experiments, GitHub acquisition, repository inspection, G04, and any commit or push not separately requested by the user.
 - Entry tests: G02 is `COMPLETE` and `VERIFIED`; exactly 25 unique ordered seeds resolve to existing metadata-only manifest rows; G03 began with a missing-pipeline RED test.
 - Exit tests: all G00-G03 unit tests and the full corpus validator pass; request/cache/identity/edge/depth/cap accounting reconciles; Git, whitespace, PDF/archive/full-text, license, and ignored-cache gates pass; one independent adversarial reviewer clears or durably records every finding.
 - Stop conditions: unclear access or licensing; unexpected credential requirement; inability to suppress abstract/full-text fields; HTTP 401/403; persistent 429/5xx/transport failure; malformed or ambiguous seed resolution; request, observation, identity, depth, or branch-cap exhaustion; or work outside the owned outputs.
@@ -83,7 +83,7 @@ Implement authorized request compilation, cache verification, and G03 lifecycle 
 - Implement the three offline safety functions and transition lifecycle/validator to G03; leave final report RED until traversal completes
 
 #### Context Notes:
-- OpenAlex official pages disagree on anonymous daily budget, so the lower /bin/zsh.01 amount and maximum listed cost /bin/zsh.009 govern
+- OpenAlex official pages disagree on anonymous daily budget, so the lower $0.01 amount and maximum listed cost $0.009 govern
 
 #### Performance/Metrics:
 - (none recorded)
@@ -332,3 +332,228 @@ Resume bounded S2 traversal from sanitized REQ-G03-0030 cache
 
 #### Performance/Metrics:
 - External attempts=30; raw selected observations=101; remaining attempts=60; tests=82/82
+
+### Session: 2026-08-11 11:39:58Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- test_mocked_campaign_traverses_all_seeds_and_writes_bounded_outputs: passing - provider rate-limit stop now appears in report
+- test_s2_rate_limit_exhaustion_is_typed_and_persistent: passing - three persisted 429 attempts raise typed branch-local stop
+
+#### Implementation Progress:
+- g03_citation_pipeline.py: provider stops now contribute to report and campaign stop accounting
+
+#### Current Focus:
+Resume bounded S2 traversal one request at a time from the persisted 43-row ledger
+
+#### Next Steps:
+- Run one cache-first campaign invocation; inspect either one newly persisted response or one provider stop before continuing
+
+#### Context Notes:
+- Authoritative ledger has 43 attempts, including one forward branch with three 429 attempts; six-attempt reserve remains binding
+
+#### Performance/Metrics:
+- Focused G03 suite: 28 of 28 passing; selected observations=447; remaining HTTP attempts=47
+
+### Session: 2026-08-11 11:44:36Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- live_cache_first_campaign: partial_progress - 36 successful S2 pages persisted before one new 429 stop
+
+#### Implementation Progress:
+- citation-request-ledger.tsv: advanced from 43 to 79 attempts with checksummed metadata-only responses
+
+#### Current Focus:
+Complete the three unresolved depth-1 operations without consuming the six-attempt closure reserve
+
+#### Next Steps:
+- After provider cooldown, replay caches and retry PAPER-1603.01876 forward once; then process both PAPER-2401.01019 depth-1 directions
+
+#### Context Notes:
+- PAPER-1602.02864 forward is permanently branch-stopped after three 429 attempts; PAPER-1603.01876 forward has one 429 attempt
+
+#### Performance/Metrics:
+- Attempts=79/90; selected metadata observations=1304; unique S2 depth-1 operations seen=48/50; remaining budget=11
+
+### Session: 2026-08-11 12:01:55Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- full_g00_g03_suite: passing - 84 of 84 tests pass after final manifest generation
+- full_corpus_validator: passing - 83-request two-provider corpus reconciles
+- cache_only_replay: passing - manifest, edges, and report remain byte-identical across replay
+
+#### Implementation Progress:
+- Final metadata traversal: 25 seeds, 83 requests, 1389 observations, 123 new identities, 164 CITES edges
+- Report now attributes both providers, records one depth-2 attempt, and names rate-limit and payload-rejection coverage gaps
+
+#### Current Focus:
+Integrate four disjoint post-traversal screening lanes into the final report and G04 set
+
+#### Next Steps:
+- Wait for and integrate the four disjoint metadata screening lane findings
+- Launch one independent adversarial reviewer after integration
+
+#### Context Notes:
+- No PDF, abstract, paper body, repository, card, architecture, experiment, commit, or push occurred
+
+#### Performance/Metrics:
+- Manifest=385 identities; new=123/250; requests=83/90; observations=1389/6000; edges=164; G04 queue=50
+
+### Session: 2026-08-11 12:10:18Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- four_lane_screening: passing - backward, forward, constraint/survey, and provenance lanes completed read-only
+- reviewed_g04_queue: passing - 25 unique screened ancestry identities exclude four false positives and ambiguous DF* duplicates
+
+#### Implementation Progress:
+- Report now discloses 74 backward, 56 forward, 2 bidirectional identities; exact retry-reserve stops; negative and survey signals; and lane decisions
+- citation-edges.tsv now has 164 CITES plus one DERIVED_INFERENCE IMPLEMENTS edge with exact title anchor
+- Manifest rows persist G03_AQ_LINKS; report queue is four-lane reviewed and reproducible
+
+#### Current Focus:
+Submit integrated G03 artifacts to one independent adversarial reviewer
+
+#### Next Steps:
+- Run one fresh independent gpt-5.6-sol xhigh adversarial review against the integrated artifacts
+- Repair every finding, rerun full gates, and close G03 without starting G04
+
+#### Context Notes:
+- All four screening lanes were metadata/control only and made no edits or external requests
+
+#### Performance/Metrics:
+- Post-screening: 385 identities; 165 typed edges; exact G04 queue=25 seeds+25 reviewed ancestry identities
+
+### Session: 2026-08-11 12:16:41Z
+
+#### Current Phase: Green
+
+#### Tests Written:
+- full_g00_g03_suite: passing - 86 tests pass after lifecycle and handoff-heading repair
+- full_corpus_validator: passing - PASS arxiv corpus contract
+- git_diff_check: passing - no whitespace findings
+
+#### Implementation Progress:
+- g03_citation_pipeline.py: restored required Foundational Branches and Contradictory Branches handoff headings while preserving metadata-only caveats
+- campaign-status.md: active completion remains IN_PROGRESS pending adversarial clearance
+
+#### Current Focus:
+Submit green integrated G03 artifacts to one fresh independent adversarial reviewer
+
+#### Next Steps:
+- Run one fresh gpt-5.6-sol xhigh read-only adversarial review against every G03 requirement and artifact
+- Repair every substantiated finding, then rerun complete closure gates
+
+#### Context Notes:
+- No G04, paper, PDF, full text, repository, architecture, experiment, commit, or push work occurred
+
+#### Performance/Metrics:
+- tests=86 passing; validator=PASS; seeds=25; requests=83; observations=1389; manifest=385; edges=165; G04 queue=50
+
+### Session: 2026-08-11 12:31:58Z
+
+#### Current Phase: Red
+
+#### Tests Written:
+- independent_adversarial_review: failing - P1 blockers in per-seed quota enforcement, exact stops, lane provenance, strong-ID conflicts, completion validation, and Git-history disclosure
+
+#### Implementation Progress:
+- Reviewer independently recomputed 385 identities, 83 requests, 1389 observations, 165 edges, and the 50-paper queue; arithmetic passed but closure contracts did not
+
+#### Current Focus:
+Repair the independent reviewer NOT CLEARED findings without starting G04
+
+#### Next Steps:
+- Add RED tests for per-seed/direction relation caps, exact stopped-identity persistence, screening-ledger-derived queue, and conflicting arXiv/DOI anchors
+- Strengthen completion-candidate validation and correct lifecycle/index/journal ownership records
+- Audit commit 327a68c and origin reflog against the separate explicit user commit/push request
+
+#### Context Notes:
+- G03 remains IN_PROGRESS and NOT CLEARED; reviewer used no network, cache, PDF, full text, repository acquisition, edits, commit, or push
+
+#### Performance/Metrics:
+- review_verdict=NOT_CLEARED; P0=0; P1=6; P2=2
+
+### Session: 2026-08-11 13:07:37Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- focused_g03_suite: passing - 37 of 37 tests pass with 137-row screening reconstruction
+- full_g00_g03_suite: passing - 93 of 93 tests pass before final documentation refresh
+- full_corpus_validator: passing - active G03 corpus accepted before final documentation refresh
+
+#### Implementation Progress:
+- g03_citation_pipeline.py: deterministic lane-result parser and 137-row screening-ledger reconstruction
+- citation-screening-ledger.tsv: 137 identities, 25 ACQUIRE, lane split 66/57/14
+- campaign artifacts: 377 identities, 115 new, 158 CITES plus 1 IMPLEMENTS, 1251 exact stops
+
+#### Current Focus:
+Reconcile repaired screening and governance artifacts before adversarial re-clearance
+
+#### Next Steps:
+- Rerun all tests and validator after governance edits, prove populated-cache byte replay, then submit repairs to the same independent reviewer
+
+#### Context Notes:
+- G03 remains IN_PROGRESS; no G04, paper reading, acquisition, architecture, experiment, or new commit/push is authorized
+
+#### Performance/Metrics:
+- requests=83; observations=1389; identities=377; new=115; edges=159; stops=1251; screened=137; queue=50
+
+### Session: 2026-08-11 13:32:43Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- full_g00_g03_suite: passing - 96 of 96 tests pass, including queue substitution, queue reordering, conflict-manifest, stop-provenance, and populated-cache replay tests
+- full_corpus_validator: passing - PASS arxiv corpus contract after all second-review repairs
+- six_artifact_cache_replay: passing - network-disabled replay reproduced manifest, request ledger, edges, stops, screening ledger, and report byte-for-byte
+
+#### Implementation Progress:
+- validate_arxiv_corpus_contract.py: report ancestry queue is now exactly bound to screening ACQUIRE ranks 1-25
+- g03_citation_pipeline.py: strong-ID conflict anchors propagate into final manifest notes
+- citation-stops.tsv: all 47 control stops now preserve provider, provider-ID, AQ, and scored-branch or typed non-score provenance
+
+#### Current Focus:
+Submit second adversarial repair set after final local closure gates
+
+#### Next Steps:
+- Return the complete second repair set to the same independent adversarial reviewer; if cleared, rerun final Git/Clarity/GitNexus gates and close lifecycle markers
+
+#### Context Notes:
+- Correction to earlier journal entries at 12:01:55Z and 12:16:41Z: commit 327a68c and its push had already occurred under the user separate explicit commit-and-push instruction. No later commit or push has been authorized or performed.
+
+#### Performance/Metrics:
+- tests=96/96; validator=PASS; replay=BYTE_IDENTICAL; requests=83; observations=1389; identities=377; new=115; edges=159; stops=1251; queue=50
+
+### Session: 2026-08-11 13:46:02Z
+
+#### Current Phase: Refactor
+
+#### Tests Written:
+- independent_adversarial_reviewer: passing - same gpt-5.6-sol xhigh reviewer returned CLEARED with P0=0, P1=0, P2=0
+- full_g00_g03_suite: passing - 96 of 96 tests passed before lifecycle closure markers
+- full_corpus_validator: passing - PASS before lifecycle closure markers
+- six_artifact_cache_replay: passing - network-disabled replay remained byte-identical after all substantive repairs
+
+#### Implementation Progress:
+- campaign-status.md: G03 COMPLETE and VERIFIED with exact validator-bound closure counts
+- Markdown-Value-Index.md: G03 artifacts now describe verified closure rather than active repair
+
+#### Current Focus:
+G03 complete and verified; preserve the exact handoff without starting G04
+
+#### Next Steps:
+- Do not begin G04 inside G03; wait for a separate user goal authorizing selected-paper acquisition and parsing
+
+#### Context Notes:
+- Final reviewer 019ff0c1-4af5-74c0-876d-d67f5b7437aa independently cleared every original and second-review blocker. Permissible provider and depth-2 coverage gaps remain documented, not hidden.
+
+#### Performance/Metrics:
+- review=CLEARED; P0=0; P1=0; P2=0; tests=96/96; validator=PASS; replay=BYTE_IDENTICAL; G04=NOT_STARTED

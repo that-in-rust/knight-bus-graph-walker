@@ -1,7 +1,7 @@
 # Markdown Repository Value Index
 
 Generated: 2026-08-10
-Scope: 395 source Markdown files discovered with `rg --files -g '*.md'`, plus this generated index (396 indexed entries total).
+Scope: 404 source Markdown files discovered with `rg --files -g '*.md'`, plus this generated index (405 indexed entries total).
 Method: the first 15 literal lines of every source file were read. The opening title/signal, directory role, revision status, and relationship to the current A007 north star were used to classify value. After generation, the first 15 lines of this index were also read and verified separately.
 
 ## How To Use This Index
@@ -9,10 +9,10 @@ Method: the first 15 literal lines of every source file were read. The opening t
 | Tier | Meaning | Count |
 |---|---|---:|
 | P0 | Governing or current product/architecture truth | 11 |
-| P1 | Direct evidence, executable contract, or high-signal synthesis | 88 |
+| P1 | Direct evidence, executable contract, or high-signal synthesis | 94 |
 | P2 | Useful supporting research or targeted implementation reference | 255 |
 | P3 | Historical, superseded, or duplicate material | 22 |
-| OPS | Instructions, progress journals, runbooks, or audit state | 20 |
+| OPS | Instructions, progress journals, runbooks, or audit state | 23 |
 
 A low tier does not mean a document is bad. It means it should not overrule a newer governing document.
 
@@ -45,6 +45,20 @@ A low tier does not mean a document is bad. It means it should not overrule a ne
 | [Markdown-Repository-Index-Progress.md](./Markdown-Repository-Index-Progress.md) | TDD Progress Journal: - Task: Read the first 15 lines of every Markdown file and create a root value index - Created: 2026-08-10 05:26:49Z - Updated: 2026-08-10 05:32:36Z | **OPS** | Resume history and audit trail; useful for exact status, not governing product truth. |
 | [Markdown-Value-Index.md](./Markdown-Value-Index.md) | Markdown Repository Value Index: Generated navigation spine for every Markdown document in this repository. | **P0** | Start here to choose the smallest authoritative reading set. |
 | [README.md](./README.md) | Knight Bus Graph Walker v002: This repo was created in 5 hours for a codex hackathon ![What is the main problem](docs/assets/knight-bus-main-problem.jpg) v002 is the cur… | **P0** | Current product proof, benchmark framing, and runnable entry point. |
+
+### arxiv-reference: architecture invention campaign contracts and G00 operations
+
+| Document | Opening identity from first 15 lines | Value | Best use |
+|---|---|---|---|
+| [arxiv-reference/Arxiv-Pattern-Foundry-SOP.md](./arxiv-reference/Arxiv-Pattern-Foundry-SOP.md) | Arxiv Pattern Foundry SOP: Goal-ready executable specification for converting literature into mechanism cards, counterexamples, constraint transfers, diverse architectures, and falsifying experiments. | **P1** | Use as the bounded, resumable SOP and copy-paste goal contract for the arXiv architecture-invention campaign. |
+| [arxiv-reference/README.md](./arxiv-reference/README.md) | arXiv Pattern Foundry: Operating contract for a bounded research-to-decision system that keeps artifacts goal-traceable and explicitly rejects a PDF archive or paper-summary collection. | **P1** | Use to understand the foundry boundary and the role of its governed evidence and synthesis artifacts. |
+| [arxiv-reference/governance/G00-generation-ledger.md](./arxiv-reference/governance/G00-generation-ledger.md) | G00 Generation Ledger: Reproducibility record for the delegated LLM generation used to build and repair the zero-research G00 governance scaffold. | **OPS** | Audit writer identities, reconstructed prompts, bounded timestamps, output checksums, and disclosed replay limits. |
+| [arxiv-reference/governance/G00-goal-packet.md](./arxiv-reference/governance/G00-goal-packet.md) | G00 Goal Packet: Standalone bounded-work contract for initializing the minimum campaign scaffold with zero external queries, papers, evidence cards, or architecture candidates. | **P1** | Use as the exact G00 objective, ownership, scope-cap, and exit-test contract. |
+| [arxiv-reference/governance/artifact-schema-contracts.md](./arxiv-reference/governance/artifact-schema-contracts.md) | Artifact Schema Contracts: G00 implementation-facing schema contract that defines later artifact shapes and validation while creating zero artifact instances. | **P1** | Use to implement and validate future foundry artifacts without mistaking schemas for research records. |
+| [arxiv-reference/governance/campaign-status.md](./arxiv-reference/governance/campaign-status.md) | Arxiv Pattern Foundry Campaign Status: G00 is complete and verified as a one-scaffold, zero-research goal; G01 remains not started. | **OPS** | Use for the campaign's current goal, lifecycle state, scope cap, and journal pointer. |
+| [arxiv-reference/governance/claim-evidence-policy.md](./arxiv-reference/governance/claim-evidence-policy.md) | Claim And Evidence Policy: G00 campaign contract requiring claim-granular epistemic labels and precise source pointers for source claims. | **P1** | Use to keep sourced claims, derived inferences, and speculative transfers explicit and auditable. |
+| [arxiv-reference/governance/source-service-policy.md](./arxiv-reference/governance/source-service-policy.md) | Source Service Policy: G00 campaign contract enforcing a hard no-network gate across metadata, citation, abstract, full-text, and repository source services. | **P1** | Use to enforce G00's local-only source boundary and prohibit external-service activity. |
+| [arxiv-reference/journals/G00-progress.md](./arxiv-reference/journals/G00-progress.md) | TDD Progress Journal: Completed G00 scaffold journal recording six RED cycles, 23-test GREEN evidence, final verification, and the G01 stop boundary. | **OPS** | Audit G00 from its recorded phases, evidence, final handoff, and bounded next steps. |
 
 ### docs_PMF_01/evidence: compatibility release evidence
 

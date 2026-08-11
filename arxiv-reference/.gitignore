@@ -1,0 +1,17 @@
+# Full text and source archives stay local by default.
+sources/papers/
+*.pdf
+
+# Local extraction and conversion output.
+sources/extracted/
+sources/extraction-cache/
+sources/text-cache/
+
+# Local tool caches.
+.cache/
+**/.cache/
+__pycache__/
+*.py[cod]
+
+# Metadata, policies, prompts, schemas, and source code are intentionally
+# not ignored.

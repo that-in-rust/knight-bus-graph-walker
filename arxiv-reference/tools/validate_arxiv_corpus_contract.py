@@ -1,0 +1,1732 @@
+#!/usr/bin/env python3
+"""Validate the deterministic arXiv Pattern Foundry corpus contract."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import importlib.util
+import marshal
+import re
+import subprocess
+import sys
+import types
+from collections import Counter
+from pathlib import Path, PurePosixPath
+from typing import Dict, Iterable, List, Mapping, MutableSequence, Optional, Sequence, Tuple
+
+
+ALLOWED_EPISTEMIC_LABELS = {
+    "SOURCE_CLAIM",
+    "DERIVED_INFERENCE",
+    "SPECULATIVE_TRANSFER",
+}
+
+ALLOWED_TERM_TYPES = {
+    "ALGORITHM",
+    "LAYOUT",
+    "STATE",
+    "SCHEDULING",
+    "IO",
+    "PREDICTABILITY",
+    "CORRECTNESS",
+    "HARDWARE",
+    "PRODUCT_CONTRACT",
+}
+
+ALLOWED_QUERY_STATUSES = {
+    "PLANNED",
+    "EXECUTED",
+    "RATE_LIMITED",
+    "FAILED",
+    "SUPERSEDED",
+}
+
+ALLOWED_PAPER_STATUSES = {
+    "METADATA_ONLY",
+    "DEEP_READ",
+    "READ_COMPLETE",
+    "REJECTED",
+    "UNAVAILABLE",
+}
+
+ALLOWED_CITATION_EDGE_TYPES = {
+    "CITES",
+    "IMPLEMENTS",
+    "EVALUATES",
+    "REFINES",
+    "CONTRADICTS",
+    "SURVEYS",
+}
+
+ALLOWED_LICENSE_STATES = {
+    "LICENSE_PERMISSIVE_VERIFIED",
+    "LICENSE_RESTRICTED_OR_CONDITIONAL",
+    "LICENSE_UNKNOWN",
+    "LICENSE_UNAVAILABLE",
+}
+
+PUBLIC_VALIDATOR_FUNCTIONS = (
+    "validate_source_query_terms",
+    "deduplicate_paper_manifest_entries",
+    "validate_mechanism_card_fields",
+    "validate_failure_card_fields",
+    "validate_transfer_card_invariants",
+    "score_architecture_candidate_niches",
+    "verify_download_license_policy",
+    "audit_requirement_test_links",
+)
+
+REQUIRED_CONTROL_PATHS = (
+    ".gitignore",
+    "Arxiv-Pattern-Foundry-SOP.md",
+    "README.md",
+    "governance/G00-goal-packet.md",
+    "governance/G00-generation-ledger.md",
+    "governance/artifact-schema-contracts.md",
+    "governance/campaign-status.md",
+    "governance/claim-evidence-policy.md",
+    "governance/source-service-policy.md",
+    "journals/G00-progress.md",
+    "tests/test_validate_arxiv_corpus_contract.py",
+    "tools/validate_arxiv_corpus_contract.py",
+)
+
+EXPECTED_TSV_HEADERS = {
+    "governance/keyword-taxonomy.tsv": (
+        "term_id\tterm\tterm_type\tarchitecture_question_ids\tsource_repo_paths\t"
+        "synonyms\thistorical_terms\tadjacent_domain_terms\texclusion_terms\tnotes"
+    ),
+    "governance/query-ledger.tsv": (
+        "query_id\tarchitecture_question_ids\tsource_term_ids\tservice\tquery_text\t"
+        "categories\tdate_from\tdate_to\texclusions\texecuted_at\tresult_count\t"
+        "response_checksum\tstatus"
+    ),
+    "sources/paper-manifest.tsv": (
+        "paper_id\tarxiv_id\tdoi\ttitle\tauthors\tpublished_date\tupdated_date\t"
+        "categories\tabstract_url\tpdf_url\tlicense_uri\tcanonical_version\t"
+        "discovery_query_ids\tarchitecture_question_ids\trelevance_score\t"
+        "score_breakdown\tselection_status\tevidence_grade\tcode_urls\tlocal_path\t"
+        "sha256\tnotes"
+    ),
+    "sources/citation-edges.tsv": (
+        "source_paper_id\ttarget_paper_id\tedge_type\tdiscovery_source\t"
+        "relevance_reason\tverified_at"
+    ),
+}
+
+G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
+    EXPECTED_TSV_HEADERS
+)
+
+G00_ALLOWED_CACHE_MODULES = {
+    "tests": "test_validate_arxiv_corpus_contract",
+    "tools": "validate_arxiv_corpus_contract",
+}
+
+GIT_COMMAND_TIMEOUT_SECONDS = 30
+
+G00_GENERATION_WRITERS = {
+    "Planck": "019fec71-4b28-7bd1-8333-67af2c159524",
+    "Raman": "019fec71-4ab0-7de3-9bd2-8bad97b8a06f",
+    "Zeno": "019fec71-4a11-7f11-9940-41b66d9ec811",
+    "Sartre": "019fec71-4bb7-7bf3-b041-293bfdf52bce",
+    "Hypatia": "019fec84-86fa-7ff3-89fd-102f29e2c19f",
+    "James": "019fec84-87ef-73a0-aa31-37b6ece9b0a9",
+    "Euclid": "019fec84-8783-74c2-91b2-5ce1e61457dc",
+    "Jason": "019fec84-8865-7542-9123-2c4210be9a5e",
+    "Anscombe": "019fec9e-2394-7a62-9df1-7e31d3cd2d29",
+    "Curie": "019fec9e-2314-72d3-ae46-f89d86aff681",
+    "Newton": "019fec9e-252a-7f32-bed5-cda901506a16",
+    "Ptolemy": "019fecbd-acf7-7e62-a28f-e3b2b8cab527",
+    "Avicenna": "019fecbd-af95-7920-b1f9-39643eeb2048",
+    "Plato": "019fecbd-b271-7aa3-8e3e-bc08fbd0a71e",
+}
+
+G00_PROMPT_SECTION_HEADINGS = (
+    "### Initial Lane A Body: Planck",
+    "### Initial Lane B Body: Raman",
+    "### Initial Lane C Body: Zeno",
+    "### Initial Lane D Body: Sartre",
+    "### Repair Lane V Body: Hypatia",
+    "### Repair Lane G Body: James",
+    "### Repair Lane S Body: Euclid",
+    "### Repair Lane I Body: Jason",
+    "### Final Repair Lane: Anscombe",
+    "### Final Repair Lane: Curie",
+    "### Final Repair Lane: Newton",
+    "### Integrity Repair Lane: Ptolemy",
+    "### Integrity Repair Lane: Avicenna",
+    "### Integrity Repair Lane: Plato",
+)
+
+G00_CHECKSUM_OUTPUT_PATHS = frozenset(
+    {
+        "Markdown-Value-Index.md",
+        "arxiv-reference/.gitignore",
+        "arxiv-reference/README.md",
+        "arxiv-reference/governance/G00-goal-packet.md",
+        "arxiv-reference/governance/artifact-schema-contracts.md",
+        "arxiv-reference/governance/campaign-status.md",
+        "arxiv-reference/governance/claim-evidence-policy.md",
+        "arxiv-reference/governance/source-service-policy.md",
+        "arxiv-reference/tests/test_validate_arxiv_corpus_contract.py",
+        "arxiv-reference/tools/validate_arxiv_corpus_contract.py",
+    }
+)
+
+TSV_PRIMARY_ID_FIELDS = {
+    "governance/keyword-taxonomy.tsv": "term_id",
+    "governance/query-ledger.tsv": "query_id",
+    "sources/paper-manifest.tsv": "paper_id",
+}
+
+GOAL_PACKET_FIELDS = (
+    "Goal ID",
+    "Objective",
+    "A007 uncertainty reduced",
+    "Inputs",
+    "Owned outputs",
+    "Batch caps",
+    "Excluded work",
+    "Entry tests",
+    "Exit tests",
+    "Stop conditions",
+    "Journal",
+)
+
+MECHANISM_CARD_FIELDS = (
+    "pattern_id",
+    "name",
+    "epistemic_label",
+    "source_paper_ids",
+    "source_pointers",
+    "source_domain",
+    "problem",
+    "invariant",
+    "mechanism",
+    "data_arrangement",
+    "access_schedule",
+    "resident_state",
+    "streamed_state",
+    "recomputed_state",
+    "resource_model",
+    "works_when",
+    "fails_when",
+    "unknown_when",
+    "knight_bus_algorithm_families",
+    "a007_consequence",
+    "falsifying_experiment_id",
+    "evidence_grade",
+    "confidence_rationale",
+    "related_pattern_ids",
+)
+
+FAILURE_CARD_FIELDS = (
+    "failure_id",
+    "name",
+    "epistemic_label",
+    "source_paper_ids",
+    "source_pointers",
+    "broken_assumption",
+    "triggering_workload",
+    "observable_symptom",
+    "breakpoint_equation",
+    "affected_pattern_ids",
+    "affected_architecture_ids",
+    "adversarial_fixture",
+    "expected_failure_signal",
+    "repair_options",
+    "confidence_rationale",
+)
+
+TRANSFER_CARD_FIELDS = (
+    "transfer_id",
+    "name",
+    "epistemic_label",
+    "source_pattern_ids",
+    "original_domain",
+    "original_constraints",
+    "original_cost_model",
+    "surviving_invariant",
+    "reversed_assumptions",
+    "modern_knight_bus_constraints",
+    "proposed_transfer",
+    "modern_resource_model",
+    "analogy_failure_modes",
+    "target_algorithm_families",
+    "falsifying_experiment_id",
+)
+
+SCHEMA_SECTION_FIELDS = {
+    "### 5.1 Architecture Question": (
+        "question_id",
+        "decision",
+        "product_consequence",
+        "candidate_options",
+        "known_evidence",
+        "missing_evidence",
+        "falsifier",
+        "status",
+        "owner_goal",
+    ),
+    "### 5.2 Mechanism Card": MECHANISM_CARD_FIELDS
+    + ("ram", "io", "preprocessing", "persistent_storage", "temporary_storage"),
+    "### 5.3 Failure Card": FAILURE_CARD_FIELDS,
+    "### 5.4 Constraint-Transfer Card": TRANSFER_CARD_FIELDS
+    + ("ram", "io", "preprocessing", "storage", "concurrency"),
+    "### 5.5 Architecture Candidate": (
+        "architecture_id",
+        "name",
+        "epistemic_label",
+        "architecture_question_ids",
+        "parent_architecture_ids",
+        "mechanism_pattern_ids",
+        "failure_card_ids",
+        "constraint_transfer_ids",
+        "workload_contract",
+        "genome",
+        "resource_model",
+        "preparation_model",
+        "storage_amplification",
+        "correctness_contract",
+        "determinism_contract",
+        "failure_boundaries",
+        "fallback_response",
+        "pareto_niches",
+        "highest_evaluator_stage",
+        "falsifying_experiment_id",
+        "artifact",
+        "algorithm_family",
+        "exactness",
+        "ram_ceiling_bytes",
+        "storage_allowance_bytes",
+        "deadline_model",
+        "output_bound",
+        "topology_layout",
+        "ordering",
+        "state_placement",
+        "scheduling",
+        "overflow_behavior",
+        "admission_model",
+        "receipt_model",
+        "compatibility_boundary",
+        "topology",
+        "algorithm_state",
+        "frontier_or_active_set",
+        "scratch",
+        "output",
+        "conversion",
+        "page_cache_or_direct_io",
+        "runtime_overhead",
+        "spill",
+        "safety_margin",
+    ),
+    "### 5.6 Experiment Packet": (
+        "experiment_id",
+        "architecture_id",
+        "hypothesis",
+        "fixture_ids",
+        "holdout_fixture_ids",
+        "baseline",
+        "independent_oracle",
+        "controlled_variables",
+        "measured_metrics",
+        "acceptance_thresholds",
+        "disconfirming_result",
+        "modeled_expectation",
+        "required_implementation_scope",
+    ),
+}
+
+SCHEMA_REQUIRED_HEADINGS = (
+    "# Artifact Schema Contracts",
+    "## 1. Scope And Epistemic Discipline",
+    "## 2. Stable Identifier Contract",
+    "## 3. Exact TSV Headers",
+    "## 4. Controlled Values",
+    "## 5. Required Logical Schemas",
+    "## 6. Completed And DRAFT Artifacts",
+    "## 7. Empty-Corpus Semantics",
+    "## 8. Cross-Link And Claim Rules",
+    "## 9. Validator Behavior",
+    "## 10. Deferred Schemas And Freeze Owners",
+    "## 11. G00 Acceptance Contract",
+)
+
+G00_ARTIFACT_SCHEMA_CONTRACT_SHA256 = (
+    "a6f83e526ae35ee9e0296fa377c8d6451f77377d0f397a3b1f2c7f2080e06985"
+)
+
+
+def normalize_field_text_value(value: object) -> str:
+    """Return a stable, whitespace-normalized textual field value."""
+
+    if value is None:
+        return ""
+    return " ".join(str(value).split())
+
+
+def is_blank_field_value(value: object) -> bool:
+    """Recognize absent scalar and empty collection values."""
+
+    if value is None:
+        return True
+    if isinstance(value, str):
+        return not value.strip()
+    if isinstance(value, (list, tuple, set, dict)):
+        return not value
+    return False
+
+
+def validate_source_query_terms(terms: object) -> List[str]:
+    """Validate taxonomy terms used to construct source queries.
+
+    SOURCE_CLAIM provenance starts at this boundary: each term must identify the
+    repository path and architecture question that caused it to be collected.
+    """
+
+    errors: List[str] = []
+    if terms is None:
+        records: List[object] = []
+    elif isinstance(terms, Mapping):
+        records = [terms]
+    elif isinstance(terms, (str, bytes)):
+        return ["keyword terms: expected a mapping or iterable of mappings"]
+    else:
+        try:
+            records = list(terms)  # type: ignore[arg-type]
+        except TypeError:
+            return ["keyword terms: expected a mapping or iterable of mappings"]
+    seen_term_ids = set()
+
+    for index, term in enumerate(records, start=1):
+        prefix = "keyword term row {0}".format(index)
+        if not isinstance(term, Mapping):
+            errors.append("{0}: expected a mapping".format(prefix))
+            continue
+        term_id = normalize_field_text_value(term.get("term_id"))
+        if not term_id:
+            errors.append("{0}: term_id is required".format(prefix))
+        elif term_id in seen_term_ids:
+            errors.append("{0}: duplicate term_id {1}".format(prefix, term_id))
+        else:
+            seen_term_ids.add(term_id)
+
+        for field_name in ("term", "architecture_question_ids", "source_repo_paths"):
+            if is_blank_field_value(term.get(field_name)):
+                errors.append("{0}: {1} is required".format(prefix, field_name))
+
+        term_type = normalize_field_text_value(term.get("term_type"))
+        if term_type not in ALLOWED_TERM_TYPES:
+            errors.append("{0}: invalid term_type {1!r}".format(prefix, term_type))
+
+    return sorted(errors)
+
+
+def deduplicate_paper_manifest_entries(
+    entries: Iterable[Mapping[str, object]],
+    duplicate_paper_ids: Optional[MutableSequence[str]] = None,
+) -> List[Dict[str, object]]:
+    """Remove exact duplicate rows and report exact duplicate primary IDs.
+
+    G00 deliberately does not normalize titles, DOI forms, arXiv versions, or
+    merge precedence. G02 owns those policies before its first manifest merge.
+    """
+
+    unique_entries: List[Dict[str, object]] = []
+    paper_id_counts: Counter[str] = Counter()
+
+    for raw_entry in entries:
+        entry = dict(raw_entry)
+        raw_paper_id = entry.get("paper_id")
+        paper_id = "" if raw_paper_id is None else str(raw_paper_id)
+        if paper_id:
+            paper_id_counts[paper_id] += 1
+
+        if not any(entry == known_entry for known_entry in unique_entries):
+            unique_entries.append(entry)
+
+    if duplicate_paper_ids is not None:
+        duplicate_paper_ids.extend(
+            sorted(paper_id for paper_id, count in paper_id_counts.items() if count > 1)
+        )
+
+    return unique_entries
+
+
+def validate_card_required_fields(
+    card: Mapping[str, object],
+    required_fields: Sequence[str],
+    card_kind: str,
+    empty_list_fields: Sequence[str] = (),
+) -> List[str]:
+    """Validate common completed-card fields and epistemic labels."""
+
+    errors: List[str] = []
+    is_draft = normalize_field_text_value(card.get("status")).upper() == "DRAFT"
+
+    for field_name in required_fields:
+        if field_name not in card:
+            errors.append("{0}: missing field {1}".format(card_kind, field_name))
+        elif (
+            not is_draft
+            and is_blank_field_value(card.get(field_name))
+            and not (
+                field_name in empty_list_fields
+                and isinstance(card.get(field_name), (list, tuple, set))
+            )
+        ):
+            errors.append("{0}: blank field {1}".format(card_kind, field_name))
+
+    epistemic_label = normalize_field_text_value(card.get("epistemic_label"))
+    if epistemic_label and epistemic_label not in ALLOWED_EPISTEMIC_LABELS:
+        errors.append("{0}: invalid epistemic_label {1!r}".format(card_kind, epistemic_label))
+    if epistemic_label == "SOURCE_CLAIM":
+        if is_blank_field_value(card.get("source_paper_ids")):
+            errors.append("{0}: SOURCE_CLAIM requires source_paper_ids".format(card_kind))
+        if is_blank_field_value(card.get("source_pointers")):
+            errors.append("{0}: SOURCE_CLAIM requires source_pointers".format(card_kind))
+
+    return errors
+
+
+def validate_nested_model_fields(
+    card: Mapping[str, object], model_name: str, required_fields: Sequence[str], card_kind: str
+) -> List[str]:
+    """Validate one nested resource-model mapping."""
+
+    model = card.get(model_name)
+    if not isinstance(model, Mapping):
+        return ["{0}: {1} must be a mapping".format(card_kind, model_name)]
+
+    is_draft = normalize_field_text_value(card.get("status")).upper() == "DRAFT"
+    errors = []
+    for field_name in required_fields:
+        if field_name not in model:
+            errors.append("{0}: {1}.{2} is missing".format(card_kind, model_name, field_name))
+        elif not is_draft and is_blank_field_value(model.get(field_name)):
+            errors.append("{0}: {1}.{2} is blank".format(card_kind, model_name, field_name))
+    return errors
+
+
+def validate_mechanism_card_fields(card: Mapping[str, object]) -> List[str]:
+    """Validate a completed mechanism card and SOURCE_CLAIM provenance."""
+
+    errors = validate_card_required_fields(
+        card,
+        MECHANISM_CARD_FIELDS,
+        "mechanism card",
+        ("source_paper_ids", "source_pointers", "related_pattern_ids"),
+    )
+    errors.extend(
+        validate_nested_model_fields(
+            card,
+            "resource_model",
+            ("ram", "io", "preprocessing", "persistent_storage", "temporary_storage"),
+            "mechanism card",
+        )
+    )
+    return sorted(set(errors))
+
+
+def validate_failure_card_fields(card: Mapping[str, object]) -> List[str]:
+    """Validate a failure card, including its adversarial failure signal."""
+
+    return sorted(
+        set(
+            validate_card_required_fields(
+                card,
+                FAILURE_CARD_FIELDS,
+                "failure card",
+                (
+                    "source_paper_ids",
+                    "source_pointers",
+                    "affected_pattern_ids",
+                    "affected_architecture_ids",
+                ),
+            )
+        )
+    )
+
+
+def validate_transfer_card_invariants(card: Mapping[str, object]) -> List[str]:
+    """Validate a SPECULATIVE_TRANSFER without presenting it as source evidence."""
+
+    errors = validate_card_required_fields(card, TRANSFER_CARD_FIELDS, "transfer card")
+    epistemic_label = normalize_field_text_value(card.get("epistemic_label"))
+    if epistemic_label and epistemic_label != "SPECULATIVE_TRANSFER":
+        errors.append(
+            "transfer card: epistemic_label must be SPECULATIVE_TRANSFER, not {0!r}".format(
+                epistemic_label
+            )
+        )
+    errors.extend(
+        validate_nested_model_fields(
+            card,
+            "modern_resource_model",
+            ("ram", "io", "preprocessing", "storage", "concurrency"),
+            "transfer card",
+        )
+    )
+    return sorted(set(errors))
+
+
+def score_architecture_candidate_niches(
+    candidates: Iterable[Mapping[str, object]],
+) -> List[Tuple[str, int]]:
+    """Report per-niche candidate coverage without ranking candidate quality."""
+
+    niche_counts: Counter[str] = Counter()
+
+    for candidate in candidates:
+        raw_niches = candidate.get("pareto_niches", [])
+        if isinstance(raw_niches, str):
+            normalized_niche = normalize_field_text_value(raw_niches)
+            niches = {normalized_niche} if normalized_niche else set()
+        elif isinstance(raw_niches, Iterable) and not isinstance(raw_niches, Mapping):
+            niches = {
+                normalize_field_text_value(niche)
+                for niche in raw_niches
+                if normalize_field_text_value(niche)
+            }
+        else:
+            niches = set()
+        niche_counts.update(niches)
+
+    return sorted(niche_counts.items())
+
+
+def normalize_local_paper_path(local_path: str) -> str:
+    """Normalize a manifest local path without touching the filesystem."""
+
+    normalized = local_path.replace("\\", "/")
+    return str(PurePosixPath(normalized))
+
+
+def verify_download_license_policy(
+    manifest_entries: Iterable[Mapping[str, object]], ignore_text: str
+) -> List[str]:
+    """Validate ignored full text, acquisition status, checksums, and license state."""
+
+    errors = validate_ignore_policy_rules(ignore_text)
+    sha256_pattern = re.compile(r"^[0-9a-fA-F]{64}$")
+
+    for index, entry in enumerate(manifest_entries, start=1):
+        local_path = normalize_field_text_value(entry.get("local_path"))
+        if not local_path:
+            continue
+
+        paper_id = normalize_field_text_value(entry.get("paper_id")) or "row {0}".format(index)
+        portable_path = local_path.replace("\\", "/")
+        parsed_path = PurePosixPath(portable_path)
+        normalized_path = normalize_local_paper_path(local_path)
+        if (
+            parsed_path.is_absolute()
+            or ".." in parsed_path.parts
+            or len(parsed_path.parts) < 3
+            or parsed_path.parts[:2] != ("sources", "papers")
+        ):
+            errors.append(
+                "paper manifest {0}: local_path must be a safe relative path under "
+                "sources/papers/".format(paper_id)
+            )
+
+        selection_status = normalize_field_text_value(entry.get("selection_status"))
+        if selection_status not in {"DEEP_READ", "READ_COMPLETE"}:
+            errors.append(
+                "paper manifest {0}: local full text requires DEEP_READ or READ_COMPLETE".format(
+                    paper_id
+                )
+            )
+
+        notes = normalize_field_text_value(entry.get("notes"))
+        license_tokens = re.findall(r"(?<![A-Z0-9_])LICENSE_[A-Z0-9_]+(?![A-Z0-9_])", notes)
+        if len(license_tokens) != 1:
+            errors.append(
+                "paper manifest {0}: acquired full text requires exactly one "
+                "explicit license state in notes".format(
+                    paper_id
+                )
+            )
+        elif license_tokens[0] not in ALLOWED_LICENSE_STATES:
+            errors.append(
+                "paper manifest {0}: unsupported license state {1}".format(
+                    paper_id, license_tokens[0]
+                )
+            )
+        elif license_tokens[0] == "LICENSE_PERMISSIVE_VERIFIED":
+            license_uri = normalize_field_text_value(entry.get("license_uri"))
+            if not license_uri or license_uri.upper() in {
+                "UNKNOWN",
+                "UNAVAILABLE",
+                "NONE",
+                "NOT_APPLICABLE",
+            }:
+                errors.append(
+                    "paper manifest {0}: LICENSE_PERMISSIVE_VERIFIED requires "
+                    "a discovered license URI".format(
+                        paper_id
+                    )
+                )
+
+        sha256 = normalize_field_text_value(entry.get("sha256"))
+        if not sha256_pattern.fullmatch(sha256):
+            errors.append(
+                "paper manifest {0}: acquired full text requires a 64-character sha256".format(
+                    paper_id
+                )
+            )
+
+    return sorted(set(errors))
+
+
+def audit_requirement_test_links(sop_text: str) -> List[str]:
+    """Audit the SOP's 49 one-to-one REQ-to-TEST traceability links."""
+
+    errors: List[str] = []
+    requirement_ids = re.findall(
+        r"^###\s+(REQ-[A-Z]+-\d{3}\.\d+):", sop_text, flags=re.MULTILINE
+    )
+    matrix_links = re.findall(
+        r"^\|\s*(REQ-[A-Z]+-\d{3}\.\d+)\s*\|\s*(TEST-[A-Z]+-\d{3})\s*\|",
+        sop_text,
+        flags=re.MULTILINE,
+    )
+    matrix_requirement_ids = [requirement_id for requirement_id, _ in matrix_links]
+    matrix_test_ids = [test_id for _, test_id in matrix_links]
+
+    if len(requirement_ids) != 49:
+        errors.append("SOP: expected 49 requirement definitions, found {0}".format(len(requirement_ids)))
+    if len(matrix_links) != 49:
+        errors.append("SOP: expected 49 requirement-to-test links, found {0}".format(len(matrix_links)))
+
+    for requirement_id, count in sorted(Counter(requirement_ids).items()):
+        if count != 1:
+            errors.append("SOP: requirement defined {0} times: {1}".format(count, requirement_id))
+    for requirement_id, count in sorted(Counter(matrix_requirement_ids).items()):
+        if count != 1:
+            errors.append("SOP: requirement linked {0} times: {1}".format(count, requirement_id))
+    for test_id, count in sorted(Counter(matrix_test_ids).items()):
+        if count != 1:
+            errors.append("SOP: test ID linked {0} times: {1}".format(count, test_id))
+
+    missing_links = sorted(set(requirement_ids) - set(matrix_requirement_ids))
+    extra_links = sorted(set(matrix_requirement_ids) - set(requirement_ids))
+    for requirement_id in missing_links:
+        errors.append("SOP: requirement has no test link: {0}".format(requirement_id))
+    for requirement_id in extra_links:
+        errors.append("SOP: test matrix references undefined requirement: {0}".format(requirement_id))
+
+    return sorted(set(errors))
+
+
+def read_text_file_safely(path: Path, display_path: str) -> Tuple[str, List[str]]:
+    """Read one UTF-8 contract file and return deterministic diagnostics."""
+
+    try:
+        return path.read_text(encoding="utf-8"), []
+    except OSError as error:
+        return "", ["{0}: cannot read file: {1}".format(display_path, error.strerror or error)]
+    except UnicodeError:
+        return "", ["{0}: file is not valid UTF-8".format(display_path)]
+
+
+def is_regular_file_path(path: Path) -> bool:
+    """Return whether a path is a regular file and not a symbolic link."""
+
+    try:
+        return not path.is_symlink() and path.is_file()
+    except OSError:
+        return False
+
+
+def is_path_beneath_root(path: Path, root: Path) -> bool:
+    """Return whether a resolved path remains beneath a resolved root."""
+
+    try:
+        path.resolve(strict=False).relative_to(root.resolve(strict=True))
+    except (OSError, ValueError):
+        return False
+    return True
+
+
+def has_symlink_path_component(path: Path, root: Path) -> bool:
+    """Return whether any component beneath root is a symbolic link."""
+
+    try:
+        relative_path = path.relative_to(root)
+    except ValueError:
+        return True
+
+    current_path = root
+    for path_part in relative_path.parts:
+        current_path = current_path / path_part
+        try:
+            if current_path.is_symlink():
+                return True
+        except OSError:
+            return True
+    return False
+
+
+def extract_markdown_heading_text(text: str, heading: str) -> str:
+    """Extract one Markdown heading body through the next peer heading."""
+
+    lines = text.splitlines()
+    try:
+        start_index = lines.index(heading) + 1
+    except ValueError:
+        return ""
+
+    heading_level = len(heading) - len(heading.lstrip("#"))
+    section_lines = []
+    for line in lines[start_index:]:
+        match = re.match(r"^(#+)\s+", line)
+        if match and len(match.group(1)) <= heading_level:
+            break
+        section_lines.append(line)
+    return "\n".join(section_lines)
+
+
+def validate_artifact_schema_contract(schema_text: str) -> List[str]:
+    """Validate the semantic minimum of the authoritative G00 schema contract."""
+
+    display_path = "governance/artifact-schema-contracts.md"
+    errors: List[str] = []
+    schema_checksum = hashlib.sha256(schema_text.encode("utf-8")).hexdigest()
+    if schema_checksum != G00_ARTIFACT_SCHEMA_CONTRACT_SHA256:
+        errors.append(
+            "{0}: SHA-256 contract mismatch; expected {1}, found {2}".format(
+                display_path,
+                G00_ARTIFACT_SCHEMA_CONTRACT_SHA256,
+                schema_checksum,
+            )
+        )
+    lines = schema_text.splitlines()
+
+    for heading in SCHEMA_REQUIRED_HEADINGS:
+        heading_count = lines.count(heading)
+        if heading_count != 1:
+            errors.append(
+                "{0}: expected one schema heading {1!r}, found {2}".format(
+                    display_path, heading, heading_count
+                )
+            )
+
+    metadata_patterns = (
+        r"^\*\*Status:\*\*\s+G00 schema definition$",
+        r"^\*\*Authority:\*\*\s+`arxiv-reference/Arxiv-Pattern-Foundry-SOP\.md` version 0\.1$",
+        r"^\*\*Instance count created by this document:\*\*\s+zero$",
+    )
+    for pattern in metadata_patterns:
+        if not re.search(pattern, schema_text, flags=re.MULTILINE):
+            errors.append("{0}: missing required G00 schema metadata".format(display_path))
+
+    for relative_path, expected_header in sorted(EXPECTED_TSV_HEADERS.items()):
+        if schema_text.count(expected_header) != 1:
+            errors.append(
+                "{0}: must contain the exact {1} header once".format(
+                    display_path, relative_path
+                )
+            )
+
+    for heading, required_fields in SCHEMA_SECTION_FIELDS.items():
+        section_text = extract_markdown_heading_text(schema_text, heading)
+        if not section_text:
+            continue
+        for field_name in required_fields:
+            if not re.search(
+                r"(?<![A-Za-z0-9_]){0}(?![A-Za-z0-9_])".format(
+                    re.escape(field_name)
+                ),
+                section_text,
+            ):
+                errors.append(
+                    "{0}: {1} omits required field {2}".format(
+                        display_path, heading, field_name
+                    )
+                )
+
+    controlled_values = (
+        tuple(sorted(ALLOWED_EPISTEMIC_LABELS))
+        + tuple(sorted(ALLOWED_TERM_TYPES))
+        + tuple(sorted(ALLOWED_QUERY_STATUSES))
+        + tuple(sorted(ALLOWED_PAPER_STATUSES))
+        + tuple(sorted(ALLOWED_CITATION_EDGE_TYPES))
+        + tuple(sorted(ALLOWED_LICENSE_STATES))
+        + (
+            "OPEN",
+            "EVIDENCE_COLLECTING",
+            "EXPERIMENT_READY",
+            "DECIDED",
+            "REJECTED",
+            "A_REPRODUCED",
+            "B_CODE_BACKED",
+            "C_PAPER_BENCHMARK",
+            "D_THEORETICAL_OR_INCOMPLETE",
+            "E_CONTRADICTED",
+            "REPAIR",
+            "SPECIALIZE",
+            "DEFER",
+            "DRAFT",
+            "SCHEMA_ONLY",
+        )
+    )
+    controlled_section = extract_markdown_heading_text(
+        schema_text, "## 4. Controlled Values"
+    )
+    for controlled_value in controlled_values:
+        if not re.search(
+            r"(?<![A-Za-z0-9_]){0}(?![A-Za-z0-9_])".format(
+                re.escape(controlled_value)
+            ),
+            controlled_section,
+        ):
+            errors.append(
+                "{0}: controlled values omit {1}".format(display_path, controlled_value)
+            )
+
+    validator_section = extract_markdown_heading_text(
+        schema_text, "## 9. Validator Behavior"
+    )
+    for function_name in PUBLIC_VALIDATOR_FUNCTIONS:
+        if not re.search(
+            r"(?<![A-Za-z0-9_]){0}(?![A-Za-z0-9_])".format(
+                re.escape(function_name)
+            ),
+            validator_section,
+        ):
+            errors.append(
+                "{0}: validator behavior omits public function {1}".format(
+                    display_path, function_name
+                )
+            )
+
+    normalized_schema = normalize_field_text_value(schema_text)
+    semantic_markers = (
+        "A later-goal path MAY be absent during G00.",
+        "G00 SHALL NOT create any of the following:",
+        "Every required list key SHALL be present.",
+        "a list SHALL be non-empty only when the SOP or this contract states "
+        "explicit non-empty semantics for that list.",
+        "the header followed by zero data rows is valid.",
+        "SHALL NOT rank candidate quality",
+        "prohibit tracked or staged PDFs",
+        "G00 only rejects exact duplicate IDs and exact duplicate rows or records",
+        "G02 SHALL freeze those details before the first manifest merge.",
+        "exactly one explicit `LICENSE_*` state in `notes`",
+    )
+    for marker in semantic_markers:
+        if marker not in normalized_schema:
+            errors.append(
+                "{0}: missing semantic contract marker {1!r}".format(
+                    display_path, marker
+                )
+            )
+
+    deferred_section = extract_markdown_heading_text(
+        schema_text, "## 10. Deferred Schemas And Freeze Owners"
+    )
+    deferred_owners = (
+        ("sources/download-ledger.tsv", "G04"),
+        ("evidence/evidence-conflicts.tsv", "G06"),
+        ("synthesis/pareto-archive.tsv", "G08"),
+    )
+    for deferred_path, owner_goal in deferred_owners:
+        matching_lines = [
+            line
+            for line in deferred_section.splitlines()
+            if deferred_path in line and owner_goal in line
+        ]
+        if len(matching_lines) != 1:
+            errors.append(
+                "{0}: deferred schema must assign {1} to {2}".format(
+                    display_path, deferred_path, owner_goal
+                )
+            )
+
+    return sorted(set(errors))
+
+
+def read_active_goal_identifier(root: Path) -> Tuple[Optional[str], List[str]]:
+    """Read the campaign's single active goal identifier."""
+
+    relative_path = "governance/campaign-status.md"
+    status_path = root / relative_path
+    if not is_regular_file_path(status_path):
+        return None, []
+
+    status_text, errors = read_text_file_safely(status_path, relative_path)
+    if errors:
+        return None, errors
+    matches = re.findall(
+        r"^- Active goal:\s*`?(G\d{2})`?\s*$", status_text, flags=re.MULTILINE
+    )
+    if len(matches) != 1:
+        return None, [
+            "{0}: expected exactly one Active goal identifier".format(relative_path)
+        ]
+    return matches[0], []
+
+
+def validate_g00_empty_artifacts(root: Path) -> List[str]:
+    """Allow only the complete G00 control surface while G00 remains active."""
+
+    errors: List[str] = []
+
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"),
+            key=lambda path: path.relative_to(root).as_posix(),
+        )
+    except OSError as error:
+        return ["root: cannot inspect G00 corpus: {0}".format(error.strerror or error)]
+
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_path_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_path_text in G00_ALLOWED_FILE_PATHS and is_regular_file_path(
+            corpus_path
+        ):
+            continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G00".format(
+                relative_path_text
+            )
+        )
+
+    for relative_path in sorted(EXPECTED_TSV_HEADERS):
+        tsv_path = root / relative_path
+        if not is_regular_file_path(tsv_path):
+            continue
+        rows, row_errors = read_tsv_file_rows(tsv_path, relative_path)
+        if row_errors:
+            continue
+        for row_number, _row in enumerate(rows, start=2):
+            errors.append(
+                "{0}: row {1} is not allowed while active goal is G00".format(
+                    relative_path, row_number
+                )
+            )
+
+    return sorted(set(errors))
+
+
+def is_allowed_python_cache(root: Path, relative_path: Path) -> bool:
+    """Allow only interpreter-created bytecode in owned tool cache directories."""
+
+    if len(relative_path.parts) != 3 or relative_path.parts[1] != "__pycache__":
+        return False
+
+    module_name = G00_ALLOWED_CACHE_MODULES.get(relative_path.parts[0])
+    cache_tag = sys.implementation.cache_tag
+    if not module_name or not cache_tag:
+        return False
+
+    cache_name_pattern = re.compile(
+        r"^{0}\.{1}(?:\.opt-[12])?\.pyc$".format(
+            re.escape(module_name), re.escape(cache_tag)
+        )
+    )
+    if not cache_name_pattern.fullmatch(relative_path.name):
+        return False
+
+    cache_path = root / relative_path
+    if not is_regular_file_path(cache_path):
+        return False
+    try:
+        cache_payload = cache_path.read_bytes()
+    except OSError:
+        return False
+    if len(cache_payload) < 16 or cache_payload[:4] != importlib.util.MAGIC_NUMBER:
+        return False
+
+    bytecode_flags = int.from_bytes(cache_payload[4:8], byteorder="little")
+    if bytecode_flags & ~0x03:
+        return False
+    try:
+        code_object = marshal.loads(cache_payload[16:])
+    except (EOFError, TypeError, ValueError):
+        return False
+    return isinstance(code_object, types.CodeType)
+
+
+def validate_git_tracked_pdfs(root: Path) -> List[str]:
+    """Reject Git tracked or staged PDFs beneath the explicit corpus root."""
+
+    try:
+        worktree_result = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=str(root),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        return ["git: timed out while locating the worktree for tracked PDF inspection"]
+    except OSError as error:
+        return ["git: cannot inspect tracked PDFs: {0}".format(error.strerror or error)]
+
+    if worktree_result.returncode != 0:
+        return []
+
+    worktree_path = Path(
+        worktree_result.stdout.decode("utf-8", errors="surrogateescape").strip()
+    )
+    try:
+        root_relative_path = root.resolve(strict=True).relative_to(
+            worktree_path.resolve(strict=True)
+        )
+    except (OSError, ValueError):
+        return ["git: arxiv-reference root is outside the discovered worktree"]
+
+    root_pathspec = root_relative_path.as_posix() or "."
+    try:
+        tracked_result = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(worktree_path),
+                "ls-files",
+                "--cached",
+                "-z",
+                "--",
+                root_pathspec,
+            ],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        return ["git: timed out while listing tracked PDFs under arxiv-reference"]
+    except OSError as error:
+        return ["git: cannot list tracked PDFs: {0}".format(error.strerror or error)]
+    if tracked_result.returncode != 0:
+        return [
+            "git: cannot list tracked PDFs under arxiv-reference (exit {0})".format(
+                tracked_result.returncode
+            )
+        ]
+
+    tracked_paths = []
+    for encoded_path in tracked_result.stdout.split(b"\0"):
+        if not encoded_path:
+            continue
+        tracked_path = encoded_path.decode("utf-8", errors="surrogateescape")
+        if not tracked_path.casefold().endswith(".pdf"):
+            continue
+        try:
+            relative_path = PurePosixPath(tracked_path).relative_to(
+                PurePosixPath(root_pathspec)
+            )
+        except ValueError:
+            continue
+        tracked_paths.append(relative_path.as_posix())
+
+    return [
+        "{0}: PDF is tracked or staged by Git".format(path)
+        for path in sorted(tracked_paths)
+    ]
+
+
+def validate_required_control_files(root: Path) -> List[str]:
+    """Require every control file owned by the minimum G00 scaffold."""
+
+    errors = []
+    for relative_path in REQUIRED_CONTROL_PATHS:
+        control_path = root / relative_path
+        if control_path.is_symlink() or (control_path.exists() and not control_path.is_file()):
+            errors.append(
+                "{0}: required G00 control file must be a regular non-symlink file".format(
+                    relative_path
+                )
+            )
+            continue
+        if not control_path.exists():
+            errors.append("{0}: required G00 control file is missing".format(relative_path))
+            continue
+        try:
+            if control_path.stat().st_size == 0:
+                errors.append("{0}: required G00 control file is empty".format(relative_path))
+        except OSError as error:
+            errors.append(
+                "{0}: cannot inspect file: {1}".format(relative_path, error.strerror or error)
+            )
+    return sorted(errors)
+
+
+def validate_ignore_policy_rules(ignore_text: str) -> List[str]:
+    """Validate the local full-text and PDF ignore policy."""
+
+    errors = []
+    policy_lines = {
+        line.strip()
+        for line in ignore_text.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    for required_rule in ("sources/papers/", "*.pdf"):
+        if required_rule not in policy_lines:
+            errors.append(".gitignore: missing required rule {0}".format(required_rule))
+
+    for policy_line in sorted(policy_lines):
+        if not policy_line.startswith("!"):
+            continue
+        unignored_path = policy_line[1:].lstrip("/")
+        if unignored_path.casefold().endswith(".pdf") or unignored_path.startswith(
+            "sources/papers/"
+        ):
+            errors.append(".gitignore: full text must not be unignored: {0}".format(policy_line))
+
+    return errors
+
+
+def extract_markdown_section_text(text: str, heading: str) -> str:
+    """Extract one level-two Markdown section by exact heading."""
+
+    marker = "## " + heading
+    lines = text.splitlines()
+    try:
+        start_index = lines.index(marker) + 1
+    except ValueError:
+        return ""
+
+    section_lines = []
+    for line in lines[start_index:]:
+        if line.startswith("## "):
+            break
+        section_lines.append(line)
+    return "\n".join(section_lines)
+
+
+def normalize_markdown_path_value(value: str) -> str:
+    """Extract a path from Markdown inline code or plain sentence text."""
+
+    inline_path_match = re.search(r"`([^`]+)`", value)
+    if inline_path_match:
+        return inline_path_match.group(1)
+    return value.rstrip(".").strip()
+
+
+def validate_goal_packet_shape(packet_text: str, display_path: str) -> List[str]:
+    """Validate one exact, bounded G00 Goal Packet field set."""
+
+    errors: List[str] = []
+    packet_fields: Dict[str, str] = {}
+    field_counts: Counter[str] = Counter()
+    for line in packet_text.splitlines():
+        match = re.match(r"^- ([^:]+):\s*(.*)$", line)
+        if match:
+            field_name = match.group(1).strip()
+            field_counts[field_name] += 1
+            packet_fields[field_name] = match.group(2).strip()
+
+    for field_name in GOAL_PACKET_FIELDS:
+        if not packet_fields.get(field_name):
+            errors.append("{0}: Goal Packet missing {1}".format(display_path, field_name))
+        if field_counts[field_name] > 1:
+            errors.append("{0}: Goal Packet repeats {1}".format(display_path, field_name))
+
+    if packet_fields.get("Goal ID") != "G00":
+        errors.append("{0}: Goal Packet must select exactly G00".format(display_path))
+    journal_path = normalize_markdown_path_value(packet_fields.get("Journal", ""))
+    if journal_path and journal_path != "arxiv-reference/journals/G00-progress.md":
+        errors.append("{0}: Goal Packet Journal path is invalid".format(display_path))
+
+    return sorted(set(errors))
+
+
+def validate_generation_ledger_shape(
+    ledger_text: str, root: Optional[Path] = None
+) -> List[str]:
+    """Validate writer, prompt, time-bound, and checksum generation evidence."""
+
+    display_path = "governance/G00-generation-ledger.md"
+    errors: List[str] = []
+    required_markers = (
+        "# G00 Generation Ledger",
+        "## Generation Environment",
+        "## Writer Registry",
+        "## Read-Only Reviewers",
+        "## Checkpoint Time Bounds",
+        "gpt-5.6-sol",
+        "xhigh",
+        "priority",
+        "## Prompt Reconstruction",
+        "## Artifact Checksum Snapshot",
+        "## Reproducibility Limits",
+    )
+    for marker in required_markers:
+        if marker not in ledger_text:
+            errors.append(
+                "{0}: missing required generation marker {1!r}".format(
+                    display_path, marker
+                )
+            )
+
+    for writer_name, agent_id in sorted(G00_GENERATION_WRITERS.items()):
+        if writer_name not in ledger_text or agent_id not in ledger_text:
+            errors.append(
+                "{0}: missing writer registry evidence for {1}".format(
+                    display_path, writer_name
+                )
+            )
+
+    for prompt_heading in G00_PROMPT_SECTION_HEADINGS:
+        if ledger_text.count(prompt_heading) != 1:
+            errors.append(
+                "{0}: expected one prompt section {1!r}".format(
+                    display_path, prompt_heading
+                )
+            )
+
+    time_bound_rows = re.findall(
+        r"^\| (Initial|Repair|Final repair|Integrity repair) \| `([0-9TZ: -]+)` \| "
+        r"`([0-9TZ: -]+)` \|",
+        ledger_text,
+        flags=re.MULTILINE,
+    )
+    if len(time_bound_rows) != 4:
+        errors.append(
+            "{0}: expected four bounded checkpoint time rows".format(display_path)
+        )
+
+    checksum_rows = re.findall(
+        r"^\| `([^`]+)` \| `([0-9a-f]{64})` \| ([^|]+) \|$",
+        ledger_text,
+        flags=re.MULTILINE,
+    )
+    checksum_paths = [path for path, _checksum, _history in checksum_rows]
+    if len(checksum_rows) != len(G00_CHECKSUM_OUTPUT_PATHS):
+        errors.append(
+            "{0}: expected {1} output checksum rows, found {2}".format(
+                display_path, len(G00_CHECKSUM_OUTPUT_PATHS), len(checksum_rows)
+            )
+        )
+    if set(checksum_paths) != G00_CHECKSUM_OUTPUT_PATHS:
+        errors.append("{0}: output checksum path set is incomplete".format(display_path))
+    if len(checksum_paths) != len(set(checksum_paths)):
+        errors.append("{0}: output checksum paths must be unique".format(display_path))
+
+    if root is not None:
+        repository_root = root.parent
+        for relative_path, expected_checksum, _history in checksum_rows:
+            if relative_path not in G00_CHECKSUM_OUTPUT_PATHS:
+                errors.append(
+                    "{0}: checksum path is not an allowed G00 output: {1}".format(
+                        display_path, relative_path
+                    )
+                )
+                continue
+
+            output_path = repository_root / relative_path
+            if not is_path_beneath_root(output_path, repository_root):
+                errors.append(
+                    "{0}: checksum path escapes the repository: {1}".format(
+                        display_path, relative_path
+                    )
+                )
+                continue
+            if has_symlink_path_component(output_path, repository_root):
+                errors.append(
+                    "{0}: checksum target must be a regular non-symlink file: {1}".format(
+                        display_path, relative_path
+                    )
+                )
+                continue
+            if not is_regular_file_path(output_path):
+                if relative_path == "Markdown-Value-Index.md" and not output_path.exists():
+                    continue
+                if not output_path.exists():
+                    errors.append(
+                        "{0}: checksum path is missing: {1}".format(
+                            display_path, relative_path
+                        )
+                    )
+                else:
+                    errors.append(
+                        "{0}: checksum target must be a regular non-symlink file: {1}".format(
+                            display_path, relative_path
+                        )
+                    )
+                continue
+            try:
+                actual_checksum = hashlib.sha256(output_path.read_bytes()).hexdigest()
+            except OSError as error:
+                errors.append(
+                    "{0}: cannot read checksum target {1}: {2}".format(
+                        display_path, relative_path, error.strerror or error
+                    )
+                )
+                continue
+            if actual_checksum != expected_checksum:
+                errors.append(
+                    "{0}: checksum mismatch for {1}".format(
+                        display_path, relative_path
+                    )
+                )
+
+    return sorted(set(errors))
+
+
+def extract_checkpoint_field_text(session_text: str, field_name: str) -> Optional[str]:
+    """Extract one inline or block checkpoint field value."""
+
+    heading_match = re.search(
+        r"^#{{4,6}}\s+{0}:?[ \t]*(.*)$".format(re.escape(field_name)),
+        session_text,
+        flags=re.MULTILINE,
+    )
+    if not heading_match:
+        return None
+    inline_value = heading_match.group(1).strip()
+    if inline_value:
+        return inline_value
+
+    remaining_text = session_text[heading_match.end() :]
+    next_heading = re.search(r"^#{3,6}\s+", remaining_text, flags=re.MULTILINE)
+    field_body = remaining_text[: next_heading.start()] if next_heading else remaining_text
+    return field_body.strip()
+
+
+def validate_goal_journal_shape(journal_text: str) -> List[str]:
+    """Validate the G00 goal packet and resumable TDD journal shape."""
+
+    errors: List[str] = []
+    if not journal_text.startswith("# TDD Progress Journal\n"):
+        errors.append("journals/G00-progress.md: expected TDD Progress Journal title")
+
+    for metadata_name in ("Task", "Created", "Updated", "Current Phase", "Status"):
+        if not re.search(
+            r"^- {0}:\s*\S.+$".format(re.escape(metadata_name)),
+            journal_text,
+            flags=re.MULTILINE,
+        ):
+            errors.append(
+                "journals/G00-progress.md: missing non-empty metadata {0}".format(metadata_name)
+            )
+
+    packet_text = extract_markdown_section_text(journal_text, "Goal Packet")
+    if not packet_text:
+        errors.append("journals/G00-progress.md: missing Goal Packet section")
+    else:
+        errors.extend(validate_goal_packet_shape(packet_text, "journals/G00-progress.md"))
+
+    sessions_text = extract_markdown_section_text(journal_text, "Sessions")
+    if not sessions_text:
+        errors.append("journals/G00-progress.md: missing Sessions section")
+    elif not re.search(r"^### Session:\s*\S.+$", sessions_text, flags=re.MULTILINE):
+        errors.append("journals/G00-progress.md: Sessions must contain a timestamped session")
+
+    checkpoint_fields = (
+        "Current Phase",
+        "Tests Written",
+        "Implementation Progress",
+        "Current Focus",
+        "Next Steps",
+        "Context Notes",
+        "Performance/Metrics",
+    )
+    allowed_phases = {"Stub", "Red", "Green", "Refactor", "Verify"}
+    session_starts = list(
+        re.finditer(r"^### Session:\s*\S.+$", sessions_text, flags=re.MULTILINE)
+    )
+    for session_index, session_start in enumerate(session_starts, start=1):
+        session_end = (
+            session_starts[session_index].start()
+            if session_index < len(session_starts)
+            else len(sessions_text)
+        )
+        session_text = sessions_text[session_start.end() : session_end]
+        for field_name in checkpoint_fields:
+            field_value = extract_checkpoint_field_text(session_text, field_name)
+            if field_value is None:
+                errors.append(
+                    "journals/G00-progress.md: session {0} missing {1}".format(
+                        session_index, field_name
+                    )
+                )
+            elif not field_value:
+                errors.append(
+                    "journals/G00-progress.md: session {0} has empty {1}".format(
+                        session_index, field_name
+                    )
+                )
+
+        phase = extract_checkpoint_field_text(session_text, "Current Phase")
+        if phase and phase not in allowed_phases:
+            errors.append(
+                "journals/G00-progress.md: session {0} has invalid Current Phase {1!r}".format(
+                    session_index, phase
+                )
+            )
+
+    return sorted(set(errors))
+
+
+def read_tsv_file_rows(path: Path, relative_path: str) -> Tuple[List[Dict[str, str]], List[str]]:
+    """Read a header-validated TSV file into row dictionaries."""
+
+    text, errors = read_text_file_safely(path, relative_path)
+    if errors:
+        return [], errors
+
+    lines = text.splitlines()
+    expected_header = EXPECTED_TSV_HEADERS[relative_path]
+    if not lines or lines[0] != expected_header:
+        return [], ["{0}: header does not match the SOP contract".format(relative_path)]
+
+    expected_fields = expected_header.split("\t")
+    rows: List[Dict[str, str]] = []
+    reader = csv.reader(lines[1:], delimiter="\t", strict=True)
+    try:
+        for line_number, values in enumerate(reader, start=2):
+            if not values or all(not value for value in values):
+                continue
+            if len(values) != len(expected_fields):
+                errors.append(
+                    "{0}: row {1} has {2} columns; expected {3}".format(
+                        relative_path, line_number, len(values), len(expected_fields)
+                    )
+                )
+                continue
+            rows.append(dict(zip(expected_fields, values)))
+    except csv.Error as error:
+        errors.append("{0}: invalid TSV data: {1}".format(relative_path, error))
+
+    return rows, sorted(errors)
+
+
+def validate_query_ledger_rows(rows: Sequence[Mapping[str, str]]) -> List[str]:
+    """Validate traceability and closed statuses for query ledger rows."""
+
+    errors = []
+    for index, row in enumerate(rows, start=2):
+        prefix = "governance/query-ledger.tsv: row {0}".format(index)
+        for field_name in ("query_id", "architecture_question_ids", "source_term_ids"):
+            if not row.get(field_name, "").strip():
+                errors.append("{0} requires {1}".format(prefix, field_name))
+        status = row.get("status", "").strip()
+        if status not in ALLOWED_QUERY_STATUSES:
+            errors.append("{0} has invalid status {1!r}".format(prefix, status))
+        if status == "EXECUTED":
+            for field_name in (
+                "service",
+                "query_text",
+                "categories",
+                "date_from",
+                "date_to",
+                "exclusions",
+                "executed_at",
+                "result_count",
+                "response_checksum",
+            ):
+                if not row.get(field_name, "").strip():
+                    errors.append(
+                        "{0} EXECUTED row requires {1}".format(prefix, field_name)
+                    )
+    return sorted(errors)
+
+
+def validate_paper_manifest_rows(rows: Sequence[Mapping[str, str]]) -> List[str]:
+    """Validate canonical paper IDs and selection statuses."""
+
+    errors = []
+    for index, row in enumerate(rows, start=2):
+        prefix = "sources/paper-manifest.tsv: row {0}".format(index)
+        if not row.get("paper_id", "").strip():
+            errors.append("{0} requires paper_id".format(prefix))
+        status = row.get("selection_status", "").strip()
+        if status not in ALLOWED_PAPER_STATUSES:
+            errors.append("{0} has invalid selection_status {1!r}".format(prefix, status))
+    return sorted(errors)
+
+
+def validate_citation_edge_rows(rows: Sequence[Mapping[str, str]]) -> List[str]:
+    """Validate citation endpoints, provenance, and closed edge types."""
+
+    errors = []
+    for index, row in enumerate(rows, start=2):
+        prefix = "sources/citation-edges.tsv: row {0}".format(index)
+        for field_name in (
+            "source_paper_id",
+            "target_paper_id",
+            "discovery_source",
+            "relevance_reason",
+            "verified_at",
+        ):
+            if not row.get(field_name, "").strip():
+                errors.append("{0} requires {1}".format(prefix, field_name))
+        edge_type = row.get("edge_type", "").strip()
+        if edge_type not in ALLOWED_CITATION_EDGE_TYPES:
+            errors.append("{0} has invalid edge_type {1!r}".format(prefix, edge_type))
+    return sorted(errors)
+
+
+def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
+    """Validate optional corpus ledgers when their first row appears."""
+
+    errors: List[str] = []
+    for relative_path in sorted(EXPECTED_TSV_HEADERS):
+        tsv_path = root / relative_path
+        if not tsv_path.exists():
+            continue
+        if not is_regular_file_path(tsv_path):
+            errors.append("{0}: expected a regular non-symlink file".format(relative_path))
+            continue
+
+        rows, row_errors = read_tsv_file_rows(tsv_path, relative_path)
+        errors.extend(row_errors)
+        if row_errors:
+            continue
+
+        expected_fields = EXPECTED_TSV_HEADERS[relative_path].split("\t")
+        row_counts = Counter(
+            tuple(row.get(field_name, "") for field_name in expected_fields)
+            for row in rows
+        )
+        if any(count > 1 for count in row_counts.values()):
+            errors.append("{0}: contains an exact duplicate row".format(relative_path))
+
+        primary_id_field = TSV_PRIMARY_ID_FIELDS.get(relative_path)
+        if primary_id_field:
+            primary_id_counts = Counter(
+                row.get(primary_id_field, "")
+                for row in rows
+                if row.get(primary_id_field, "")
+            )
+            for primary_id, count in sorted(primary_id_counts.items()):
+                if count > 1:
+                    errors.append(
+                        "{0}: duplicate {1} {2}".format(
+                            relative_path, primary_id_field, primary_id
+                        )
+                    )
+
+        if relative_path == "governance/keyword-taxonomy.tsv":
+            errors.extend(validate_source_query_terms(rows))
+        elif relative_path == "governance/query-ledger.tsv":
+            errors.extend(validate_query_ledger_rows(rows))
+        elif relative_path == "sources/paper-manifest.tsv":
+            errors.extend(validate_paper_manifest_rows(rows))
+            errors.extend(verify_download_license_policy(rows, ignore_text))
+        elif relative_path == "sources/citation-edges.tsv":
+            errors.extend(validate_citation_edge_rows(rows))
+
+    return sorted(set(errors))
+
+
+def run_corpus_contract_checks(root: Path) -> List[str]:
+    """Run every G00 corpus contract check without side effects."""
+
+    if not root.is_dir():
+        return ["root: directory does not exist: {0}".format(root)]
+
+    errors = validate_required_control_files(root)
+
+    ignore_text = ""
+    ignore_path = root / ".gitignore"
+    if is_regular_file_path(ignore_path):
+        ignore_text, read_errors = read_text_file_safely(ignore_path, ".gitignore")
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(validate_ignore_policy_rules(ignore_text))
+
+    journal_path = root / "journals/G00-progress.md"
+    if is_regular_file_path(journal_path):
+        journal_text, read_errors = read_text_file_safely(
+            journal_path, "journals/G00-progress.md"
+        )
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(validate_goal_journal_shape(journal_text))
+
+    goal_packet_path = root / "governance/G00-goal-packet.md"
+    if is_regular_file_path(goal_packet_path):
+        goal_packet_text, read_errors = read_text_file_safely(
+            goal_packet_path, "governance/G00-goal-packet.md"
+        )
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(
+                validate_goal_packet_shape(
+                    goal_packet_text, "governance/G00-goal-packet.md"
+                )
+            )
+
+    generation_ledger_path = root / "governance/G00-generation-ledger.md"
+    if is_regular_file_path(generation_ledger_path):
+        generation_ledger_text, read_errors = read_text_file_safely(
+            generation_ledger_path, "governance/G00-generation-ledger.md"
+        )
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(validate_generation_ledger_shape(generation_ledger_text, root))
+
+    schema_path = root / "governance/artifact-schema-contracts.md"
+    if is_regular_file_path(schema_path):
+        schema_text, read_errors = read_text_file_safely(
+            schema_path, "governance/artifact-schema-contracts.md"
+        )
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(validate_artifact_schema_contract(schema_text))
+
+    sop_path = root / "Arxiv-Pattern-Foundry-SOP.md"
+    if is_regular_file_path(sop_path):
+        sop_text, read_errors = read_text_file_safely(sop_path, "Arxiv-Pattern-Foundry-SOP.md")
+        errors.extend(read_errors)
+        if not read_errors:
+            errors.extend(audit_requirement_test_links(sop_text))
+
+    errors.extend(validate_optional_tsv_files(root, ignore_text))
+    active_goal, active_goal_errors = read_active_goal_identifier(root)
+    errors.extend(active_goal_errors)
+    if active_goal is not None and active_goal != "G00":
+        errors.append(
+            "governance/campaign-status.md: active goal must remain G00 for this "
+            "G00 contract validator"
+        )
+    errors.extend(validate_g00_empty_artifacts(root))
+    errors.extend(validate_git_tracked_pdfs(root))
+    return sorted(set(errors))
+
+
+def build_validator_argument_parser() -> argparse.ArgumentParser:
+    """Build the dependency-free corpus validator CLI parser."""
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", required=True, type=Path, help="path to arxiv-reference")
+    return parser
+
+
+def print_contract_check_results(errors: Sequence[str]) -> int:
+    """Print deterministic PASS or FAIL diagnostics and return an exit code."""
+
+    if errors:
+        print("FAIL arxiv corpus contract")
+        for error in sorted(set(errors)):
+            print("FAIL " + error)
+        return 1
+
+    print("PASS arxiv corpus contract")
+    return 0
+
+
+def run_corpus_validator_cli() -> int:
+    """Parse CLI arguments and validate one corpus root."""
+
+    arguments = build_validator_argument_parser().parse_args()
+    errors = run_corpus_contract_checks(arguments.root)
+    return print_contract_check_results(errors)
+
+
+if __name__ == "__main__":
+    raise SystemExit(run_corpus_validator_cli())

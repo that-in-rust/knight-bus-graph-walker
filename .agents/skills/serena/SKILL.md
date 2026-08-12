@@ -35,4 +35,4 @@ Useful CLI subcommands: `serena project index`, `serena memories`, `serena confi
 
 - Language servers are auto-managed; first symbol query in a session may be slow while rust-analyzer warms up.
 - Re-run `serena project index` after large refactors.
-- Prefer Serena for symbol-precise questions ("who references X?"); use codebase-memory-mcp/GitNexus for architecture-level graph queries.
+- Prefer Serena for symbol-precise questions ("who references X?"); use codebase-memory-mcp for architecture-level graph queries.

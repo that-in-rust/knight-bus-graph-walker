@@ -1,35 +1,40 @@
 # Arxiv Pattern Foundry Campaign Status
 
-- Active goal: `G05`
+- Active goal: `G06`
 - Goal state: `COMPLETE`
 - G02 state: `COMPLETE_VERIFIED`
 - G03 state: `COMPLETE_VERIFIED_CLEARED`
 - G04 state: `COMPLETE_VERIFIED_CLEARED`
-- Implementation statement: G05 completed the deterministic 25-paper full-text reading, integrated 67 source-grounded mechanism cards and 47 typed relationships, passed two adversarial repair cycles, rebound every terminal outcome to canonical result checksums, and transitioned exactly 25 papers to READ_COMPLETE. The final frozen corpus passed 158 tests, the full corpus validator, and independent skeptical review with P0=0, P1=0, and P2=0. No G06 work has begun.
-- Research state: `G05_MECHANISM_CORPUS_VERIFIED`
+- G05 state: `COMPLETE_VERIFIED_CLEARED`
+- Implementation statement: Five disjoint read-only G06 lanes inspected all 427 pages of the frozen 25-paper corpus and adversarialized all 67 mechanisms. Independent review rejected the 81-card draft with six P1 and one P2 findings, then rejected the repaired 79-card draft with two P1 source-scope findings. The controller repaired reciprocal links, evidence bases, body locators, field-level provenance, and two semantic duplicate pairs. The third independent pass cleared 79 canonical cards, 174 pointers, all 92 reviewer/checksum-bound plan rows, and zero conflicts with P0=0, P1=0, and P2=0; no external request occurred.
+- Research state: `G06_COMPLETE_VERIFIED_CLEARED`
 - Completion state: `COMPLETE`
 - Validation state: `VERIFIED`
 - Review state: `CLEARED`
-- Recommended next goal: `G06`
-- Scope cap: exactly 25 of 34 G04-eligible papers, five disjoint batches of five, 427 selected PDF pages, zero external requests, no added paper identity, and no explicit token cap
-- Journal: `arxiv-reference/journals/G05-progress.md`
+- Recommended next goal: `G07`
+- Scope cap: exactly the existing 25 READ_COMPLETE papers, 67 G05 mechanism cards, 47 G05 pattern edges, 92 plan subjects, five disjoint lanes, zero external requests, zero added paper identities, and no explicit token cap
+- Journal: `arxiv-reference/journals/G06-progress.md`
 
-## G05 Verified Completion Counts
+## G06 Verified Completion Counts
 
 | Measure | Count |
 |---|---:|
-| G05 selected papers | 25 |
-| G05 completed paper reads | 25 |
-| G05 selected PDF pages | 427 |
-| G05 mechanism cards | 67 |
-| G05 pattern edges | 47 |
-| G05 external requests | 0 |
-| G05 later-goal artifacts | 0 |
+| G06 frozen papers | 25 |
+| G06 frozen mechanisms | 67 |
+| G06 frozen pattern edges | 47 |
+| G06 plan subjects | 92 |
+| G06 completed paper inspections | 25 |
+| G06 completed pattern dispositions | 67 |
+| G06 failure cards | 79 |
+| G06 evidence conflicts | 0 |
+| G06 external requests | 0 |
+| G06 later-goal artifacts | 0 |
 
 All 25 selected papers have terminal `MECHANISM_EXTRACTED` outcomes. The nine
-other checksum-verified G04-eligible papers remain `DEEP_READ`. The evidence
-profile is 59 grade-C cards and eight grade-D cards; no card is reproduced or
-code-backed by this campaign.
+other checksum-verified G04-eligible papers remain `DEEP_READ`. The frozen G05
+input profile is 59 grade-C cards and eight grade-D cards. G06 produced 41
+source-reported failures, 20 source-supported derivations, and 18 analytical
+counterexamples. No card is reproduced or code-backed by this campaign.
 
 G01 remains complete and verified at 12 open architecture questions, 109
 traceable taxonomy terms, and 25 planned query families at G01 closure. Those
@@ -229,5 +234,8 @@ mechanically extracted texts, and request traces are ignored and untracked.
 - G05 state: `COMPLETE_VERIFIED_CLEARED`
 - Independent G04 reviewer: `019ff1ac-564c-7b53-a586-7498b453fbd9`
 - Independent G05 reviewer: `019ff438-df36-7080-b8b4-0c8a57571f7d`
+- Independent G06 reviewer: `019ff4ec-552b-7a10-bab1-0a7742bae998`
 - G05 review state: final frozen pass `CLEARED`; unresolved P0=0, P1=0, P2=0 after both adversarial repair cycles
 - G05 review artifact: `arxiv-reference/governance/reviews/G05-adversarial-review.md`
+- G06 review state: third frozen pass `CLEARED`; unresolved P0=0, P1=0, P2=0 after two adversarial repair cycles
+- G06 review artifact: `arxiv-reference/governance/reviews/G06-adversarial-review.md`

@@ -14,6 +14,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 from xml.sax.saxutils import escape
 
 from pypdf import PdfWriter
@@ -633,23 +634,39 @@ class ValidateG04AcquisitionContractTests(unittest.TestCase):
                 "arxiv-reference/sources/download-ledger.tsv"
             )
         )
-        g04_scope_errors = validator.validate_g04_worktree_scope(REFERENCE_ROOT, packet)
+        status_result = subprocess.CompletedProcess(
+            args=["git", "status"],
+            returncode=0,
+            stdout=(
+                b" M AGENTS.md\0"
+                b" M CLAUDE.md\0"
+                b" M arxiv-reference/sources/download-ledger.tsv\0"
+                b"?? unrelated-user-file.md\0"
+            ),
+            stderr=b"",
+        )
+        with mock.patch.object(validator.subprocess, "run", return_value=status_result):
+            g04_scope_errors = validator.validate_g04_worktree_scope(
+                REFERENCE_ROOT, packet
+            )
         self.assertTrue(g04_scope_errors)
+        self.assertEqual(len(g04_scope_errors), 1)
         self.assertTrue(
             all("outside G04 ownership" in error for error in g04_scope_errors),
             g04_scope_errors,
         )
-        self.assertEqual(validator.validate_g05_worktree_scope(REFERENCE_ROOT), [])
+        self.assertEqual(validator.validate_g06_worktree_scope(REFERENCE_ROOT), [])
 
         undisclosed = packet.replace("- `AGENTS.md`", "- `MISSING.md`", 1)
-        self.assertTrue(
-            any(
-                "AGENTS.md" in error and "not declared" in error
-                for error in validator.validate_g04_worktree_scope(
-                    REFERENCE_ROOT, undisclosed
+        with mock.patch.object(validator.subprocess, "run", return_value=status_result):
+            self.assertTrue(
+                any(
+                    "AGENTS.md" in error and "not declared" in error
+                    for error in validator.validate_g04_worktree_scope(
+                        REFERENCE_ROOT, undisclosed
+                    )
                 )
             )
-        )
 
     def test_nonqueue_acquisition_rejection(self) -> None:
         queue = pipeline.derive_exact_queue_records(REFERENCE_ROOT)

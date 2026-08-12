@@ -977,11 +977,12 @@ class ValidateG03CitationContractTests(unittest.TestCase):
 
     def test_active_g03_lifecycle_preserves_verified_g02(self) -> None:
         status = (REFERENCE_ROOT / "governance" / "campaign-status.md").read_text()
-        self.assertIn("- Active goal: `G05`", status)
+        self.assertIn("- Active goal: `G06`", status)
         self.assertIn("- G02 state: `COMPLETE_VERIFIED`", status)
         self.assertIn("- G03 state: `COMPLETE_VERIFIED_CLEARED`", status)
         self.assertIn("- G04 state: `COMPLETE_VERIFIED_CLEARED`", status)
-        self.assertIn("- Journal: `arxiv-reference/journals/G05-progress.md`", status)
+        self.assertIn("- G05 state: `COMPLETE_VERIFIED_CLEARED`", status)
+        self.assertIn("- Journal: `arxiv-reference/journals/G06-progress.md`", status)
 
     def test_exactly_twenty_five_frozen_seeds_are_extracted(self) -> None:
         seeds = pipeline.extract_g03_seed_ids(REPORT_PATH.read_text(encoding="utf-8"))

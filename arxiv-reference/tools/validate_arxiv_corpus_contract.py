@@ -161,6 +161,23 @@ EXPECTED_TSV_HEADERS = {
         "edge_id\tsource_pattern_id\ttarget_pattern_id\trelationship_type\t"
         "rationale\tepistemic_label\tsource_paper_ids\tsource_pointer_ids"
     ),
+    "governance/g06-adversarial-plan.tsv": (
+        "subject_type\tsubject_rank\tlane_id\tlane_position\tsubject_id\t"
+        "source_paper_ids\treader_agent_id\treviewer_agent_id\tinspection_status\t"
+        "terminal_disposition\tfailure_ids\tevidence_gap\tmeasurement_needed\t"
+        "reading_coverage\tresult_checksum"
+    ),
+    "evidence/evidence-conflicts.tsv": (
+        "conflict_id\tleft_evidence_type\tleft_evidence_id\tright_evidence_type\t"
+        "right_evidence_id\tconflict_type\taffected_pattern_ids\tclaim_scope\t"
+        "rationale\tepistemic_label\tsource_paper_ids\tsource_pointer_ids\t"
+        "resolution_state"
+    ),
+}
+
+DEFERRED_TSV_SCHEMA_OWNERS = {
+    "governance/g06-adversarial-plan.tsv": "governance/g06-counterexample-contract.md",
+    "evidence/evidence-conflicts.tsv": "governance/g06-counterexample-contract.md",
 }
 
 G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
@@ -343,6 +360,46 @@ G05_MUTABLE_FILE_PATHS = (
     )
 )
 
+G06_REQUIRED_FILE_PATHS = (
+    *G05_REQUIRED_FILE_PATHS,
+    *G05_COMPLETION_FILE_PATHS,
+    "governance/G06-goal-packet.md",
+    "governance/g06-counterexample-contract.md",
+    "governance/g06-adversarial-plan.tsv",
+    "evidence/evidence-conflicts.tsv",
+    "journals/G06-progress.md",
+    "tests/test_validate_g06_counterexample_contract.py",
+    "tools/g06_counterexample_pipeline.py",
+)
+
+G06_COMPLETION_FILE_PATHS = (
+    "governance/reviews/G06-adversarial-review.md",
+    "sources/G06-counterexample-report.md",
+)
+
+G06_ALLOWED_FILE_PATHS = (
+    G05_ALLOWED_FILE_PATHS
+    | frozenset(G06_REQUIRED_FILE_PATHS)
+    | frozenset(G06_COMPLETION_FILE_PATHS)
+)
+
+G06_MUTABLE_FILE_PATHS = (
+    G05_MUTABLE_FILE_PATHS
+    | frozenset(
+        {
+            "governance/G06-goal-packet.md",
+            "governance/g06-counterexample-contract.md",
+            "governance/g06-adversarial-plan.tsv",
+            "governance/reviews/G06-adversarial-review.md",
+            "evidence/evidence-conflicts.tsv",
+            "journals/G06-progress.md",
+            "sources/G06-counterexample-report.md",
+            "tests/test_validate_g06_counterexample_contract.py",
+            "tools/g06_counterexample_pipeline.py",
+        }
+    )
+)
+
 ALLOWED_CACHE_MODULES = {
     "tests": "test_validate_arxiv_corpus_contract",
     "tools": "validate_arxiv_corpus_contract",
@@ -355,6 +412,7 @@ ALLOWED_TEST_CACHE_MODULES = {
     "test_validate_g03_citation_contract",
     "test_validate_g04_acquisition_contract",
     "test_validate_g05_mechanism_contract",
+    "test_validate_g06_counterexample_contract",
 }
 
 ALLOWED_TOOL_CACHE_MODULES = {
@@ -363,6 +421,7 @@ ALLOWED_TOOL_CACHE_MODULES = {
     "g03_citation_pipeline",
     "g04_acquisition_pipeline",
     "g05_mechanism_pipeline",
+    "g06_counterexample_pipeline",
 }
 
 G01_QUESTION_FIELDS = (
@@ -1133,6 +1192,8 @@ def validate_artifact_schema_contract(schema_text: str) -> List[str]:
             errors.append("{0}: missing required G00 schema metadata".format(display_path))
 
     for relative_path, expected_header in sorted(EXPECTED_TSV_HEADERS.items()):
+        if relative_path in DEFERRED_TSV_SCHEMA_OWNERS:
+            continue
         if schema_text.count(expected_header) != 1:
             errors.append(
                 "{0}: must contain the exact {1} header once".format(
@@ -1994,6 +2055,21 @@ def load_g05_pipeline_module() -> object:
     )
     if specification is None or specification.loader is None:
         raise RuntimeError("cannot load G05 mechanism pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
+def load_g06_pipeline_module() -> object:
+    """Load the sibling G06 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g06_counterexample_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g06_counterexample_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G06 counterexample pipeline")
     module = importlib.util.module_from_spec(specification)
     sys.modules[specification.name] = module
     specification.loader.exec_module(module)
@@ -3292,8 +3368,212 @@ def validate_g05_worktree_scope(root: Path) -> List[str]:
     return sorted(set(errors))
 
 
+def validate_g06_allowed_artifacts(root: Path, require_complete: bool) -> List[str]:
+    """Allow preserved G00-G05 artifacts and only G06-owned outputs."""
+
+    errors: List[str] = []
+    required_paths = list(G06_REQUIRED_FILE_PATHS)
+    if require_complete:
+        required_paths.extend(G06_COMPLETION_FILE_PATHS)
+    for relative_path in required_paths:
+        if not is_regular_file_path(root / relative_path):
+            errors.append("{0}: required G06 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"), key=lambda path: path.relative_to(root).as_posix()
+        )
+    except OSError as error:
+        return ["root: cannot inspect G06 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_text in G06_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "mechanism-cards")
+            and re.fullmatch(r"PAT-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "failure-cards")
+            and re.fullmatch(r"FAIL-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if relative_path.parts[:2] in (
+            ("cache", "g02"),
+            ("cache", "g03"),
+            ("cache", "g04"),
+            ("sources", "papers"),
+        ):
+            if is_regular_file_path(corpus_path):
+                continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G06".format(relative_text)
+        )
+    return sorted(set(errors))
+
+
+def validate_g06_campaign_status(
+    status_text: str,
+    plan_rows: Sequence[Mapping[str, str]],
+    failure_card_count: int,
+    conflict_count: int,
+) -> List[str]:
+    """Validate active or completed G06 lifecycle markers and exact counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G06`",
+        "- G05 state: `COMPLETE_VERIFIED_CLEARED`",
+        "- Journal: `arxiv-reference/journals/G06-progress.md`",
+        "five disjoint lanes",
+        "zero external requests",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G06 marker " + marker)
+    is_complete = "- Completion state: `COMPLETE`" in status_text
+    if is_complete:
+        for marker in (
+            "- Goal state: `COMPLETE`",
+            "- Validation state: `VERIFIED`",
+            "- Review state: `CLEARED`",
+            "- Recommended next goal: `G07`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing G06 closure marker " + marker)
+    else:
+        for marker in (
+            "- Goal state: `IN_PROGRESS`",
+            "- Completion state: `IN_PROGRESS`",
+            "- Validation state: `CONTRACT_GREEN`",
+            "- Review state: `PENDING`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing active G06 marker " + marker)
+    counts = (
+        ("G06 frozen papers", sum(row.get("subject_type") == "PAPER" for row in plan_rows)),
+        ("G06 frozen mechanisms", sum(row.get("subject_type") == "PATTERN" for row in plan_rows)),
+        ("G06 plan subjects", len(plan_rows)),
+        (
+            "G06 completed paper inspections",
+            sum(
+                row.get("subject_type") == "PAPER"
+                and row.get("inspection_status") == "COMPLETE"
+                for row in plan_rows
+            ),
+        ),
+        (
+            "G06 completed pattern dispositions",
+            sum(
+                row.get("subject_type") == "PATTERN"
+                and row.get("inspection_status") == "COMPLETE"
+                for row in plan_rows
+            ),
+        ),
+        ("G06 failure cards", failure_card_count),
+        ("G06 evidence conflicts", conflict_count),
+    )
+    for label, count in counts:
+        if not re.search(
+            r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(re.escape(label), count),
+            status_text,
+            flags=re.MULTILINE,
+        ):
+            errors.append(
+                "governance/campaign-status.md: missing exact {0} count {1}".format(
+                    label, count
+                )
+            )
+    return sorted(set(errors))
+
+
+def validate_g06_review_clearance(status_text: str, review_text: str) -> List[str]:
+    """Require independent zero-severity review before G06 completion."""
+
+    if "- Completion state: `COMPLETE`" not in status_text:
+        return []
+    required_markers = (
+        "- Final verdict: `CLEARED`",
+        "**Unresolved findings: P0=0, P1=0, P2=0.**",
+        "G06 is **CLEARED**.",
+    )
+    return sorted(
+        "governance/reviews/G06-adversarial-review.md: missing completion marker "
+        + marker
+        for marker in required_markers
+        if marker not in review_text
+    )
+
+
+def is_g06_owned_worktree_path(changed_path: str) -> bool:
+    """Return whether one repository-relative path is mutable during G06."""
+
+    if changed_path == "Markdown-Value-Index.md":
+        return True
+    failure_prefix = "arxiv-reference/evidence/failure-cards/"
+    if changed_path.startswith(failure_prefix):
+        return bool(
+            re.fullmatch(
+                r"FAIL-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md",
+                changed_path[len(failure_prefix) :],
+            )
+        )
+    prefix = "arxiv-reference/"
+    return changed_path.startswith(prefix) and (
+        changed_path[len(prefix) :] in G06_MUTABLE_FILE_PATHS
+    )
+
+
+def validate_g06_worktree_scope(root: Path) -> List[str]:
+    """Isolate G06-owned changes from unrelated worktree paths."""
+
+    errors: List[str] = []
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+            cwd=str(root.parent),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        return ["git scope: cannot inspect G06 worktree: {0}".format(error)]
+    if result.returncode != 0:
+        return ["git scope: G06 status command failed"]
+    records = [record for record in result.stdout.split(b"\0") if record]
+    skip_rename_source = False
+    for record in records:
+        if skip_rename_source:
+            skip_rename_source = False
+            continue
+        decoded = record.decode("utf-8", errors="replace")
+        if len(decoded) < 4:
+            errors.append("git scope: malformed G06 porcelain record")
+            continue
+        status_code = decoded[:2]
+        changed_path = decoded[3:]
+        if "R" in status_code or "C" in status_code:
+            skip_rename_source = True
+        if changed_path in {"AGENTS.md", "CLAUDE.md"}:
+            continue
+        if is_g06_owned_worktree_path(changed_path):
+            continue
+        errors.append("git scope: changed path is outside G06 ownership: " + changed_path)
+    return sorted(set(errors))
+
+
 def run_corpus_contract_checks(root: Path) -> List[str]:
-    """Run the active G00-G05 corpus contract without side effects."""
+    """Run the active G00-G06 corpus contract without side effects."""
 
     if not root.is_dir():
         return ["root: directory does not exist: {0}".format(root)]
@@ -3554,10 +3834,12 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         )
         errors.extend(validate_g02_allowed_artifacts(root))
         errors.extend(validate_g02_cache_git_boundary(root))
-    elif active_goal in {"G03", "G04", "G05"}:
+    elif active_goal in {"G03", "G04", "G05", "G06"}:
         is_g04 = active_goal == "G04"
         is_g05 = active_goal == "G05"
-        is_post_g03 = is_g04 or is_g05
+        is_g06 = active_goal == "G06"
+        is_g05_or_later = is_g05 or is_g06
+        is_post_g03 = is_g04 or is_g05_or_later
         status_text = ""
         status_path = root / "governance/campaign-status.md"
         if is_regular_file_path(status_path):
@@ -3568,9 +3850,12 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         require_complete = "- Completion state: `COMPLETE`" in status_text
 
         active_journal_name = (
-            "G05-progress.md"
+            "G06-progress.md"
+            if is_g06
+            else ("G05-progress.md"
             if is_g05
             else ("G04-progress.md" if is_g04 else "G03-progress.md")
+            )
         )
         active_journal_path = root / "journals" / active_journal_name
         if is_regular_file_path(active_journal_path):
@@ -3582,9 +3867,12 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                 errors.extend(validate_goal_journal_shape(journal_text, active_goal))
 
         active_packet_name = (
-            "G05-goal-packet.md"
+            "G06-goal-packet.md"
+            if is_g06
+            else ("G05-goal-packet.md"
             if is_g05
             else ("G04-goal-packet.md" if is_g04 else "G03-goal-packet.md")
+            )
         )
         active_packet_path = root / "governance" / active_packet_name
         packet_text = ""
@@ -3789,15 +4077,15 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                         manifest_rows,
                         download_rows,
                         queue_records,
-                        require_complete=True if is_g05 else require_complete,
-                        allow_read_complete=is_g05,
+                        require_complete=True if is_g05_or_later else require_complete,
+                        allow_read_complete=is_g05_or_later,
                     )
                 )
                 if download_rows:
                     errors.extend(
                         g04_pipeline.validate_local_artifact_records(root, download_rows)
                     )
-            if is_g05:
+            if is_g05_or_later:
                 g05_plan_rows: List[Dict[str, str]] = []
                 plan_path = root / "governance/g05-reading-plan.tsv"
                 if is_regular_file_path(plan_path):
@@ -3860,8 +4148,9 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                                 },
                             )
                         )
-                    errors.extend(g05_pipeline.validate_later_artifacts_absent(root))
-                    if require_complete:
+                    if is_g05:
+                        errors.extend(g05_pipeline.validate_later_artifacts_absent(root))
+                    if require_complete or is_g06:
                         errors.extend(
                             g05_pipeline.validate_completed_reading_rows(g05_plan_rows)
                         )
@@ -3882,26 +4171,178 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                 except (OSError, RuntimeError, ValueError) as error:
                     errors.append("cannot load G05 mechanism validators: {0}".format(error))
 
-                errors.extend(
-                    validate_g05_campaign_status(
-                        status_text,
-                        g05_plan_rows,
-                        len(mechanism_cards),
-                        len(pattern_edge_rows),
+                if is_g05:
+                    errors.extend(
+                        validate_g05_campaign_status(
+                            status_text,
+                            g05_plan_rows,
+                            len(mechanism_cards),
+                            len(pattern_edge_rows),
+                        )
                     )
-                )
-                g05_review_text = ""
-                g05_review_path = root / "governance/reviews/G05-adversarial-review.md"
-                if is_regular_file_path(g05_review_path):
-                    g05_review_text, read_errors = read_text_file_safely(
-                        g05_review_path,
-                        "governance/reviews/G05-adversarial-review.md",
+                    g05_review_text = ""
+                    g05_review_path = root / "governance/reviews/G05-adversarial-review.md"
+                    if is_regular_file_path(g05_review_path):
+                        g05_review_text, read_errors = read_text_file_safely(
+                            g05_review_path,
+                            "governance/reviews/G05-adversarial-review.md",
+                        )
+                        errors.extend(read_errors)
+                    errors.extend(validate_g05_review_clearance(status_text, g05_review_text))
+                    errors.extend(validate_g05_allowed_artifacts(root, require_complete))
+                    errors.extend(validate_g04_cache_git_boundary(root))
+                    errors.extend(validate_g05_worktree_scope(root))
+                else:
+                    g06_plan_rows: List[Dict[str, str]] = []
+                    g06_plan_path = root / "governance/g06-adversarial-plan.tsv"
+                    if is_regular_file_path(g06_plan_path):
+                        g06_plan_rows, row_errors = read_tsv_file_rows(
+                            g06_plan_path, "governance/g06-adversarial-plan.tsv"
+                        )
+                        errors.extend(row_errors)
+
+                    failure_cards: List[Dict[str, object]] = []
+                    failure_cards_by_id: Dict[str, Dict[str, object]] = {}
+                    conflict_rows: List[Dict[str, str]] = []
+                    try:
+                        g06_pipeline = load_g06_pipeline_module()
+                        errors.extend(g06_pipeline.validate_g06_entry_corpus(root))
+                        g06_contract_path = root / "governance/g06-counterexample-contract.md"
+                        if is_regular_file_path(g06_contract_path):
+                            g06_contract_text, read_errors = read_text_file_safely(
+                                g06_contract_path,
+                                "governance/g06-counterexample-contract.md",
+                            )
+                            errors.extend(read_errors)
+                            if not read_errors:
+                                for owned_path, owner_path in sorted(
+                                    DEFERRED_TSV_SCHEMA_OWNERS.items()
+                                ):
+                                    if owner_path != "governance/g06-counterexample-contract.md":
+                                        continue
+                                    expected_header = EXPECTED_TSV_HEADERS[owned_path]
+                                    if g06_contract_text.count(expected_header) != 1:
+                                        errors.append(
+                                            "{0}: must contain the exact {1} header once".format(
+                                                owner_path, owned_path
+                                            )
+                                        )
+
+                        snapshot = g06_pipeline.derive_g06_corpus_records(root)
+                        paper_page_counts = snapshot.get("paper_page_counts", {})
+                        pattern_source_papers = snapshot.get("pattern_source_papers", {})
+                        mechanism_cards_by_id = snapshot.get("pattern_cards", {})
+                        source_hashes = snapshot.get("paper_source_hashes", {})
+                        if not isinstance(paper_page_counts, Mapping):
+                            paper_page_counts = {}
+                        if not isinstance(pattern_source_papers, Mapping):
+                            pattern_source_papers = {}
+                        if not isinstance(mechanism_cards_by_id, Mapping):
+                            mechanism_cards_by_id = {}
+                        if not isinstance(source_hashes, Mapping):
+                            source_hashes = {}
+
+                        failure_dir = root / "evidence/failure-cards"
+                        if failure_dir.is_dir():
+                            for card_path in sorted(failure_dir.glob("FAIL-*.md")):
+                                try:
+                                    card = g06_pipeline.parse_failure_card_file(card_path)
+                                except (OSError, UnicodeError, ValueError) as error:
+                                    errors.append(
+                                        "{0}: cannot parse failure card: {1}".format(
+                                            card_path.relative_to(root).as_posix(), error
+                                        )
+                                    )
+                                    continue
+                                failure_cards.append(card)
+                                failure_cards_by_id[str(card.get("failure_id", ""))] = card
+                        errors.extend(
+                            g06_pipeline.validate_failure_card_collection(
+                                failure_cards,
+                                paper_page_counts,
+                                set(map(str, mechanism_cards_by_id)),
+                            )
+                        )
+
+                        conflict_path = root / "evidence/evidence-conflicts.tsv"
+                        if is_regular_file_path(conflict_path):
+                            conflict_rows, row_errors = read_tsv_file_rows(
+                                conflict_path, "evidence/evidence-conflicts.tsv"
+                            )
+                            errors.extend(row_errors)
+                        errors.extend(
+                            g06_pipeline.validate_evidence_conflict_rows(
+                                conflict_rows,
+                                mechanism_cards_by_id,
+                                failure_cards_by_id,
+                                set(map(str, paper_page_counts)),
+                            )
+                        )
+                        errors.extend(
+                            g06_pipeline.validate_adversarial_plan_rows(
+                                g06_plan_rows,
+                                paper_page_counts,
+                                pattern_source_papers,
+                                failure_cards_by_id,
+                                require_complete,
+                            )
+                        )
+                        if require_complete:
+                            errors.extend(
+                                g06_pipeline.validate_adversarial_result_checksums(
+                                    g06_plan_rows, failure_cards_by_id, source_hashes
+                                )
+                            )
+                        g06_report_path = root / "sources/G06-counterexample-report.md"
+                        if is_regular_file_path(g06_report_path):
+                            g06_report_text, read_errors = read_text_file_safely(
+                                g06_report_path,
+                                "sources/G06-counterexample-report.md",
+                            )
+                            errors.extend(read_errors)
+                            if not read_errors:
+                                errors.extend(
+                                    g06_pipeline.validate_counterexample_report(
+                                        g06_report_text,
+                                        g06_plan_rows,
+                                        failure_cards_by_id,
+                                        conflict_rows,
+                                        paper_page_counts,
+                                    )
+                                )
+                                errors.extend(
+                                    g06_pipeline.validate_reviewed_semantic_merge_resolution(
+                                        failure_cards_by_id,
+                                        g06_plan_rows,
+                                        g06_report_text,
+                                    )
+                                )
+                        errors.extend(g06_pipeline.validate_later_artifacts_absent(root))
+                    except (OSError, RuntimeError, TypeError, ValueError) as error:
+                        errors.append(
+                            "cannot load G06 counterexample validators: {0}".format(error)
+                        )
+
+                    errors.extend(
+                        validate_g06_campaign_status(
+                            status_text,
+                            g06_plan_rows,
+                            len(failure_cards),
+                            len(conflict_rows),
+                        )
                     )
-                    errors.extend(read_errors)
-                errors.extend(validate_g05_review_clearance(status_text, g05_review_text))
-                errors.extend(validate_g05_allowed_artifacts(root, require_complete))
-                errors.extend(validate_g04_cache_git_boundary(root))
-                errors.extend(validate_g05_worktree_scope(root))
+                    g06_review_text = ""
+                    g06_review_path = root / "governance/reviews/G06-adversarial-review.md"
+                    if is_regular_file_path(g06_review_path):
+                        g06_review_text, read_errors = read_text_file_safely(
+                            g06_review_path,
+                            "governance/reviews/G06-adversarial-review.md",
+                        )
+                        errors.extend(read_errors)
+                    errors.extend(validate_g06_review_clearance(status_text, g06_review_text))
+                    errors.extend(validate_g06_allowed_artifacts(root, require_complete))
+                    errors.extend(validate_g04_cache_git_boundary(root))
+                    errors.extend(validate_g06_worktree_scope(root))
             else:
                 errors.extend(validate_g04_campaign_status(status_text, download_rows))
                 review_text = ""

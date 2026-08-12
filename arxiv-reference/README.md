@@ -21,7 +21,38 @@ Only one campaign goal may be active at a time. A goal must stop at its declared
 outputs and caps. Starting the recommended next goal always requires explicit
 authorization.
 
-## Current G05 Evidence Corpus
+## Current G06 Counterexample Corpus
+
+G06 adversarialized the complete frozen G05 evidence corpus without adding a
+paper, making a network request, or beginning architecture synthesis. Five
+disjoint lanes inspected all 427 pages of the same 25 `READ_COMPLETE` papers
+and gave all 67 mechanisms a terminal disposition. The result is 79 canonical
+failure cards with 174 source pointers: 41 source-reported failures, 20
+source-supported derivations, and 18 analytical counterexamples. Thirty-five
+mechanisms are source-failure-linked and 32 are analytical-test-linked; the
+strict two-sided evidence-conflict ledger has zero rows.
+
+The canonical G06 entry points are:
+
+- `sources/G06-counterexample-report.md` for exact accounting, the complete
+  mechanism-to-failure matrix, A007 decision yield, and explicit unknowns;
+- `governance/g06-adversarial-plan.tsv` for all 92 terminal paper and mechanism
+  subjects with reader, reviewer, and result-checksum receipts;
+- `evidence/failure-cards/` for the 79 canonical counterexamples and falsifiers;
+- `governance/reviews/G06-adversarial-review.md` for the three-pass independent
+  audit ending `CLEARED` with P0=0, P1=0, and P2=0;
+- `evidence/evidence-conflicts.tsv` for the intentionally empty, strictly
+  defined two-sided conflict ledger; and
+- `governance/g06-counterexample-contract.md` for frozen epistemic, pointer,
+  fixture, breakpoint, duplicate, and scope rules.
+
+G06 supplies failure envelopes, admission terms, and falsifiers. It does not
+claim portable numeric crossover points or measured Knight Bus performance,
+and it creates no constraint transfer, architecture candidate, experiment,
+implementation, or benchmark. G07 is the recommended next goal, but it remains
+separately authorized.
+
+## Frozen G05 Input Corpus
 
 G05 selected exactly 25 of the 34 checksum-verified papers acquired and parsed
 by G04, read all 427 selected PDF pages, and extracted 67 source-grounded
@@ -51,9 +82,10 @@ unknown in 39 cards and temporary-storage cost in 30. No card proves a Knight
 Bus RAM or latency delta, whole-process RSS enforcement, compatibility, or a
 customer outcome.
 
-G05 stops before counterexample extraction, modern constraint transfer,
-architecture synthesis, and experiments. Those remain separately authorized
-later goals.
+G05 stopped before counterexample extraction, modern constraint transfer,
+architecture synthesis, and experiments. G06 has now completed only the
+counterexample layer; constraint transfer and later synthesis remain separately
+authorized goals.
 
 ## G00 Empty-Corpus State
 
@@ -72,7 +104,7 @@ architecture candidates, or product performance because G00 created none.
 The G00 closure state, zero decision-yield counts, verification evidence, and
 then-future G01 boundary are recorded in `governance/campaign-status.md` and
 `journals/G00-progress.md`. Later goals supersede that historical handoff; the
-current campaign state is the G05 evidence corpus described above.
+current campaign state is the G06 counterexample corpus described above.
 
 The G00 requirement closure matrix lives in
 `governance/G00-goal-packet.md`. It separates requirements that apply to the

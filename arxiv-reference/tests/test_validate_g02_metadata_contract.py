@@ -120,10 +120,11 @@ class ValidateG02MetadataContractTests(unittest.TestCase):
 
     def test_active_g03_lifecycle_preserves_verified_g02(self) -> None:
         status = (REFERENCE_ROOT / "governance" / "campaign-status.md").read_text()
-        self.assertIn("- Active goal: `G05`", status)
+        self.assertIn("- Active goal: `G06`", status)
         self.assertIn("- G02 state: `COMPLETE_VERIFIED`", status)
         self.assertIn("- G03 state: `COMPLETE_VERIFIED_CLEARED`", status)
         self.assertIn("- G04 state: `COMPLETE_VERIFIED_CLEARED`", status)
+        self.assertIn("- G05 state: `COMPLETE_VERIFIED_CLEARED`", status)
 
     def test_basic_metadata_fixture_parses(self) -> None:
         records = pipeline.parse_arxiv_metadata_feed(

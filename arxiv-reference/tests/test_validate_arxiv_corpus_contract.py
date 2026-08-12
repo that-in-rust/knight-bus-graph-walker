@@ -336,9 +336,9 @@ class ValidateArxivCorpusContractTests(unittest.TestCase):
         active_goals = re.findall(
             r"^- Active goal: `(G\d{2})`$", status_text, flags=re.MULTILINE
         )
-        self.assertEqual(active_goals, ["G05"])
+        self.assertEqual(active_goals, ["G06"])
         status_path.write_text(
-            status_text.replace("- Active goal: `G05`", "- Active goal: `G99`")
+            status_text.replace("- Active goal: `G06`", "- Active goal: `G99`")
         )
         future_path = copied_root / "evidence" / "future-record.md"
         future_path.parent.mkdir(parents=True, exist_ok=True)

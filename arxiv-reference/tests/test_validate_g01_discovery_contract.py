@@ -169,6 +169,15 @@ def copy_g01_contract_to_temp() -> tuple[tempfile.TemporaryDirectory[str], Path]
         "evidence/pattern-edges.tsv",
         "tests/test_validate_g05_mechanism_contract.py",
         "tools/g05_mechanism_pipeline.py",
+        "governance/G06-goal-packet.md",
+        "governance/g06-counterexample-contract.md",
+        "governance/g06-adversarial-plan.tsv",
+        "journals/G06-progress.md",
+        "sources/G06-counterexample-report.md",
+        "evidence/failure-cards",
+        "evidence/evidence-conflicts.tsv",
+        "tests/test_validate_g06_counterexample_contract.py",
+        "tools/g06_counterexample_pipeline.py",
     )
     for relative_path in g02_paths:
         candidate = copied_reference_root / relative_path
@@ -273,7 +282,7 @@ class ValidateG01DiscoveryContractTests(unittest.TestCase):
         cls.taxonomy_rows = read_tsv_rows(TAXONOMY_PATH, TAXONOMY_HEADER)
         cls.query_rows = read_tsv_rows(QUERY_LEDGER_PATH, QUERY_LEDGER_HEADER)
         if re.search(
-            r"^- Active goal: `G0[2345]`$",
+            r"^- Active goal: `G0[23456]`$",
             STATUS_PATH.read_text(encoding="utf-8"),
             flags=re.MULTILINE,
         ):
@@ -291,7 +300,7 @@ class ValidateG01DiscoveryContractTests(unittest.TestCase):
         status_text = STATUS_PATH.read_text(encoding="utf-8")
         self.assertEqual(
             re.findall(r"^- Active goal:\s*`(G\d{2})`$", status_text, flags=re.MULTILINE),
-            ["G05"],
+            ["G06"],
         )
         self.assertIn("G01 remains complete and verified", status_text)
         self.assertIn("12 open architecture questions", status_text)

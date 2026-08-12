@@ -14,4 +14,4 @@ PROJECT_ROOT=/home/ubuntu/repos/knight-bus-graph-walker mcp-codebase-index   # s
 - 18 query tools over functions, classes, imports, dependency graphs, call chains.
 - Auto-incremental: checks `git diff`/`git status` before every query; no manual reindex.
 - Persists cache to `.codebase-index-cache.pkl` (gitignored) for instant restarts.
-- Rust support is regex-based (Python uses full `ast`) — prefer GitNexus/Serena for symbol-precise Rust work.
+- Rust support is regex-based (Python uses full `ast`) — prefer Serena for symbol-precise Rust work.

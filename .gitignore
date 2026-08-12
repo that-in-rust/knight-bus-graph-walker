@@ -11,7 +11,6 @@ reports/
 reference-repos-neo4j-family/
 reference-repos-competitors/
 .serena/
-.gitnexus/
 # CocoIndex Code (ccc)
 /.cocoindex_code/
 # sdsrs code-graph

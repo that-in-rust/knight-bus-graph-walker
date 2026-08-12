@@ -148,6 +148,27 @@ def copy_g01_contract_to_temp() -> tuple[tempfile.TemporaryDirectory[str], Path]
         "tests/test_validate_g03_citation_contract.py",
         "tools/g03_citation_pipeline.py",
         "cache/g03",
+        "governance/G04-goal-packet.md",
+        "governance/g04-acquisition-contract.md",
+        "governance/g04-service-preflight.md",
+        "journals/G04-progress.md",
+        "requirements-g04.txt",
+        "sources/download-ledger.tsv",
+        "sources/G04-acquisition-parsing-report.md",
+        "sources/papers",
+        "tests/fixtures/g04",
+        "tests/test_validate_g04_acquisition_contract.py",
+        "tools/g04_acquisition_pipeline.py",
+        "cache/g04",
+        "governance/G05-goal-packet.md",
+        "governance/g05-mechanism-extraction-contract.md",
+        "governance/g05-reading-plan.tsv",
+        "journals/G05-progress.md",
+        "sources/G05-mechanism-extraction-report.md",
+        "evidence/mechanism-cards",
+        "evidence/pattern-edges.tsv",
+        "tests/test_validate_g05_mechanism_contract.py",
+        "tools/g05_mechanism_pipeline.py",
     )
     for relative_path in g02_paths:
         candidate = copied_reference_root / relative_path
@@ -252,7 +273,7 @@ class ValidateG01DiscoveryContractTests(unittest.TestCase):
         cls.taxonomy_rows = read_tsv_rows(TAXONOMY_PATH, TAXONOMY_HEADER)
         cls.query_rows = read_tsv_rows(QUERY_LEDGER_PATH, QUERY_LEDGER_HEADER)
         if re.search(
-            r"^- Active goal: `G0[23]`$",
+            r"^- Active goal: `G0[2345]`$",
             STATUS_PATH.read_text(encoding="utf-8"),
             flags=re.MULTILINE,
         ):
@@ -270,7 +291,7 @@ class ValidateG01DiscoveryContractTests(unittest.TestCase):
         status_text = STATUS_PATH.read_text(encoding="utf-8")
         self.assertEqual(
             re.findall(r"^- Active goal:\s*`(G\d{2})`$", status_text, flags=re.MULTILINE),
-            ["G03"],
+            ["G05"],
         )
         self.assertIn("G01 remains complete and verified", status_text)
         self.assertIn("12 open architecture questions", status_text)

@@ -187,7 +187,48 @@ lane results; and derives the exact 25-new-identity ancestry half of the G04
 queue from contiguous `ACQUIRE` ranks. Baseline rediscoveries may be screened
 but SHALL NOT receive `ACQUIRE`.
 
-### 3.9 TSV Details Not Frozen By G00
+### 3.9 Download And Parse Ledger
+
+Path: `arxiv-reference/sources/download-ledger.tsv`
+
+```text
+request_id	goal_id	queue_rank	paper_id	source_service	retrieval_uri	accessed_at_utc	response_status	media_type	content_length_bytes	source_checksum	local_path	license_uri	license_state	acquisition_status	attempt_count	retry_events	rate_limit_events	policy_url	policy_checked_date	cache_status	trace_path	trace_checksum	parser_name	parser_version	parser_options	page_count	extracted_path	extracted_checksum	parse_status	terminal_reason
+```
+
+First schema and data owner: G04. The ledger contains exactly one terminal row
+per selected G04 identity. Per-attempt and redirect details live in the ignored,
+checksummed `trace_path`; the committed row retains their counts and checksum.
+The frozen controlled values, sentinels, path grammar, checksum boundary, parser
+contract, service limits, and terminal-state rules are defined in
+`governance/g04-acquisition-contract.md` before the first external request.
+
+### 3.10 G05 Reading Plan
+
+Path: `arxiv-reference/governance/g05-reading-plan.tsv`
+
+```text
+selection_rank	batch_id	batch_position	paper_id	g04_queue_rank	relevance_score	page_count	pdf_path	pdf_sha256	text_path	text_sha256	architecture_question_ids	selection_basis	reader_agent_id	reviewer_agent_id	reading_status	terminal_outcome	card_ids	reading_coverage	no_mechanism_rationale	result_checksum
+```
+
+First schema and data owner: G05. Exactly 25 rows preserve deterministic G04
+provenance and split into five disjoint five-paper batches. Terminal rows use
+exactly `MECHANISM_EXTRACTED` or `NO_MECHANISM`; the latter requires complete
+all-page coverage and a substantive rationale.
+
+### 3.11 Pattern Relationship Edges
+
+Path: `arxiv-reference/evidence/pattern-edges.tsv`
+
+```text
+edge_id	source_pattern_id	target_pattern_id	relationship_type	rationale	epistemic_label	source_paper_ids	source_pointer_ids
+```
+
+First schema and data owner: G05. The closed relationship enum is
+`SHARES_MECHANISM_WITH`, `COMPLEMENTS`, `CONTRADICTS`, and `SUBSUMES`.
+The first three are symmetric and serialize in ascending endpoint order;
+`SUBSUMES` is directional. Exact and inverse symmetric duplicates are invalid.
+
+### 3.12 TSV Details Not Frozen By G00
 
 `DERIVED_INFERENCE`: Exact headers do not define multi-value separators, escaping,
 null sentinels, timestamp formats, date formats, score serialization, or whether
@@ -327,6 +368,7 @@ fails_when
 unknown_when
 knight_bus_algorithm_families
 a007_consequence
+falsifying_test
 falsifying_experiment_id
 evidence_grade
 confidence_rationale
@@ -361,6 +403,19 @@ Completion requirements:
   universal fit.
 - `a007_consequence`, `falsifying_experiment_id`, `evidence_grade`, and
   `confidence_rationale` are non-empty.
+- `confidence_rationale` is always a `DERIVED_INFERENCE`: it is the extractor's
+  evidence appraisal, not a claim made by the paper. It SHALL name source-backed
+  premises, campaign assumptions, and residual uncertainty.
+- An `unknown_when` absence judgment such as "the paper does not establish X"
+  is a `DERIVED_INFERENCE` unless the cited source explicitly states that
+  limitation. Complete reading does not turn absence of evidence into an author
+  claim.
+- `falsifying_test` states the smallest fixture, independent oracle, controlled
+  variables, expected failure signal, and scope. It is not a G09 experiment.
+- During G05, `falsifying_experiment_id` uses
+  `RESERVED-G09-FOR-<pattern_id>`. It is a reservation, not a foreign key or a
+  claim that an experiment exists. G09 owns resolution and G10 rejects an
+  unresolved reservation.
 - `related_pattern_ids` contains only mechanism-card IDs. Typed relationship
   semantics are required by REQ-PAT-005.0 but are not represented by this field;
   G05 SHALL freeze the edge schema and relationship enum before first use.
@@ -829,10 +884,8 @@ formats.
 
 | Deferred artifact | Missing contract | Goal that freezes it before first use |
 | --- | --- | --- |
-| `sources/download-ledger.tsv` | Exact header, acquisition-status enum, license-state encoding | G04 |
 | `evidence/evidence-conflicts.tsv` | Exact header, conflict type, resolution state | G06 |
 | `synthesis/pareto-archive.tsv` | Exact header, niche serialization, ranking fields | G08 |
-| Pattern relationship edges | Storage path/header and typed relationship enum | G05 |
 | Adversarial fixture registry | Registry path, fixture-ID format, payload/link syntax | G06 |
 | Separate architecture genomes | File envelope and relationship to candidate cards | G08 |
 | Candidate mutation records | Added/removed patterns, intended behavior, composability fields | G08 |

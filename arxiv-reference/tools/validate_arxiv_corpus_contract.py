@@ -140,6 +140,27 @@ EXPECTED_TSV_HEADERS = {
         "screened_at_utc\tevidence_scope\tresult_checksum\taudit_lane_id\t"
         "audit_reviewer_agent_id\taudit_result_checksum"
     ),
+    "sources/download-ledger.tsv": (
+        "request_id\tgoal_id\tqueue_rank\tpaper_id\tsource_service\t"
+        "retrieval_uri\taccessed_at_utc\tresponse_status\tmedia_type\t"
+        "content_length_bytes\tsource_checksum\tlocal_path\tlicense_uri\t"
+        "license_state\tacquisition_status\tattempt_count\tretry_events\t"
+        "rate_limit_events\tpolicy_url\tpolicy_checked_date\tcache_status\t"
+        "trace_path\ttrace_checksum\tparser_name\tparser_version\t"
+        "parser_options\tpage_count\textracted_path\textracted_checksum\t"
+        "parse_status\tterminal_reason"
+    ),
+    "governance/g05-reading-plan.tsv": (
+        "selection_rank\tbatch_id\tbatch_position\tpaper_id\tg04_queue_rank\t"
+        "relevance_score\tpage_count\tpdf_path\tpdf_sha256\ttext_path\t"
+        "text_sha256\tarchitecture_question_ids\tselection_basis\treader_agent_id\t"
+        "reviewer_agent_id\treading_status\tterminal_outcome\tcard_ids\t"
+        "reading_coverage\tno_mechanism_rationale\tresult_checksum"
+    ),
+    "evidence/pattern-edges.tsv": (
+        "edge_id\tsource_pattern_id\ttarget_pattern_id\trelationship_type\t"
+        "rationale\tepistemic_label\tsource_paper_ids\tsource_pointer_ids"
+    ),
 }
 
 G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
@@ -233,6 +254,95 @@ G03_ALLOWED_FILE_PATHS = (
     | frozenset(G03_OPTIONAL_FILE_PATHS)
 )
 
+G04_REQUIRED_FILE_PATHS = (
+    *G03_REQUIRED_FILE_PATHS,
+    *G03_OPTIONAL_FILE_PATHS,
+    "governance/G04-goal-packet.md",
+    "governance/g04-acquisition-contract.md",
+    "governance/g04-service-preflight.md",
+    "journals/G04-progress.md",
+    "requirements-g04.txt",
+    "sources/download-ledger.tsv",
+    "tests/test_validate_g04_acquisition_contract.py",
+    "tools/g04_acquisition_pipeline.py",
+)
+
+G04_OPTIONAL_FILE_PATHS = (
+    "governance/reviews/G04-adversarial-review.md",
+    "sources/G04-acquisition-parsing-report.md",
+)
+
+G04_ALLOWED_FILE_PATHS = (
+    G03_ALLOWED_FILE_PATHS
+    | frozenset(G04_REQUIRED_FILE_PATHS)
+    | frozenset(G04_OPTIONAL_FILE_PATHS)
+)
+
+G04_MUTABLE_FILE_PATHS = frozenset(
+    {
+        ".gitignore",
+        "README.md",
+        "governance/G04-goal-packet.md",
+        "governance/artifact-schema-contracts.md",
+        "governance/campaign-status.md",
+        "governance/g04-acquisition-contract.md",
+        "governance/g04-service-preflight.md",
+        "governance/reviews/G04-adversarial-review.md",
+        "journals/G04-progress.md",
+        "requirements-g04.txt",
+        "sources/G04-acquisition-parsing-report.md",
+        "sources/download-ledger.tsv",
+        "sources/paper-manifest.tsv",
+        "tests/test_validate_arxiv_corpus_contract.py",
+        "tests/test_validate_g01_discovery_contract.py",
+        "tests/test_validate_g02_metadata_contract.py",
+        "tests/test_validate_g03_citation_contract.py",
+        "tests/test_validate_g04_acquisition_contract.py",
+        "tools/g04_acquisition_pipeline.py",
+        "tools/validate_arxiv_corpus_contract.py",
+    }
+)
+
+G05_REQUIRED_FILE_PATHS = (
+    *G04_REQUIRED_FILE_PATHS,
+    *G04_OPTIONAL_FILE_PATHS,
+    "governance/G05-goal-packet.md",
+    "governance/g05-mechanism-extraction-contract.md",
+    "governance/g05-reading-plan.tsv",
+    "journals/G05-progress.md",
+    "tests/test_validate_g05_mechanism_contract.py",
+    "tools/g05_mechanism_pipeline.py",
+)
+
+G05_COMPLETION_FILE_PATHS = (
+    "evidence/pattern-edges.tsv",
+    "governance/reviews/G05-adversarial-review.md",
+    "sources/G05-mechanism-extraction-report.md",
+)
+
+G05_ALLOWED_FILE_PATHS = (
+    G04_ALLOWED_FILE_PATHS
+    | frozenset(G05_REQUIRED_FILE_PATHS)
+    | frozenset(G05_COMPLETION_FILE_PATHS)
+)
+
+G05_MUTABLE_FILE_PATHS = (
+    G04_MUTABLE_FILE_PATHS
+    | frozenset(
+        {
+            "governance/G05-goal-packet.md",
+            "governance/g05-mechanism-extraction-contract.md",
+            "governance/g05-reading-plan.tsv",
+            "governance/reviews/G05-adversarial-review.md",
+            "journals/G05-progress.md",
+            "evidence/pattern-edges.tsv",
+            "sources/G05-mechanism-extraction-report.md",
+            "tests/test_validate_g05_mechanism_contract.py",
+            "tools/g05_mechanism_pipeline.py",
+        }
+    )
+)
+
 ALLOWED_CACHE_MODULES = {
     "tests": "test_validate_arxiv_corpus_contract",
     "tools": "validate_arxiv_corpus_contract",
@@ -243,12 +353,16 @@ ALLOWED_TEST_CACHE_MODULES = {
     "test_validate_g01_discovery_contract",
     "test_validate_g02_metadata_contract",
     "test_validate_g03_citation_contract",
+    "test_validate_g04_acquisition_contract",
+    "test_validate_g05_mechanism_contract",
 }
 
 ALLOWED_TOOL_CACHE_MODULES = {
     "validate_arxiv_corpus_contract",
     "g02_metadata_pipeline",
     "g03_citation_pipeline",
+    "g04_acquisition_pipeline",
+    "g05_mechanism_pipeline",
 }
 
 G01_QUESTION_FIELDS = (
@@ -354,6 +468,9 @@ TSV_PRIMARY_ID_FIELDS = {
     "sources/paper-manifest.tsv": "paper_id",
     "sources/metadata-request-ledger.tsv": "request_id",
     "sources/citation-request-ledger.tsv": "request_id",
+    "sources/download-ledger.tsv": "request_id",
+    "governance/g05-reading-plan.tsv": "selection_rank",
+    "evidence/pattern-edges.tsv": "edge_id",
 }
 
 GOAL_PACKET_FIELDS = (
@@ -391,6 +508,7 @@ MECHANISM_CARD_FIELDS = (
     "unknown_when",
     "knight_bus_algorithm_families",
     "a007_consequence",
+    "falsifying_test",
     "falsifying_experiment_id",
     "evidence_grade",
     "confidence_rationale",
@@ -530,7 +648,7 @@ SCHEMA_REQUIRED_HEADINGS = (
 )
 
 G00_ARTIFACT_SCHEMA_CONTRACT_SHA256 = (
-    "4cd0b790b8ff6a2f940b15e39b6782de3869254d5de85b84408736adbcc2fedf"
+    "a46089c6e058d14f0014691fc17a3c0840d4ba6e6aed1f999206bcc2e2b77765"
 )
 
 
@@ -796,11 +914,10 @@ def verify_download_license_policy(
         if local_path == "NOT_ACQUIRED":
             selection_status = normalize_field_text_value(entry.get("selection_status"))
             sha256 = normalize_field_text_value(entry.get("sha256"))
-            if selection_status != "METADATA_ONLY":
+            if selection_status not in {"METADATA_ONLY", "DEEP_READ", "UNAVAILABLE"}:
                 errors.append(
-                    "paper manifest {0}: NOT_ACQUIRED requires METADATA_ONLY".format(
-                        paper_id
-                    )
+                    "paper manifest {0}: NOT_ACQUIRED requires metadata-only, "
+                    "selected, or unavailable state".format(paper_id)
                 )
             if sha256 != "NOT_ACQUIRED":
                 errors.append(
@@ -1121,7 +1238,6 @@ def validate_artifact_schema_contract(schema_text: str) -> List[str]:
         schema_text, "## 10. Deferred Schemas And Freeze Owners"
     )
     deferred_owners = (
-        ("sources/download-ledger.tsv", "G04"),
         ("evidence/evidence-conflicts.tsv", "G06"),
         ("synthesis/pareto-archive.tsv", "G08"),
     )
@@ -1669,6 +1785,7 @@ def validate_goal_journal_shape(
     session_starts = list(
         re.finditer(r"^### Session:\s*\S.+$", sessions_text, flags=re.MULTILINE)
     )
+    latest_session_phase: Optional[str] = None
     for session_index, session_start in enumerate(session_starts, start=1):
         session_end = (
             session_starts[session_index].start()
@@ -1692,10 +1809,32 @@ def validate_goal_journal_shape(
                 )
 
         phase = extract_checkpoint_field_text(session_text, "Current Phase")
+        latest_session_phase = phase
         if phase and phase not in allowed_phases:
             errors.append(
                 "{0}: session {1} has invalid Current Phase {2!r}".format(
                     display_path, session_index, phase
+                )
+            )
+
+    if session_starts:
+        latest_session_timestamp = session_starts[-1].group(0).split(":", 1)[1].strip()
+        updated_match = re.search(r"^- Updated:\s*(\S.+)$", journal_text, flags=re.MULTILINE)
+        if updated_match and updated_match.group(1).strip() != latest_session_timestamp:
+            errors.append(
+                "{0}: header Updated does not match latest session".format(display_path)
+            )
+        phase_match = re.search(
+            r"^- Current Phase:\s*(\S.+)$", journal_text, flags=re.MULTILINE
+        )
+        if (
+            phase_match
+            and latest_session_phase
+            and phase_match.group(1).strip() != latest_session_phase
+        ):
+            errors.append(
+                "{0}: header Current Phase does not match latest session".format(
+                    display_path
                 )
             )
 
@@ -1831,6 +1970,36 @@ def load_g03_pipeline_module() -> object:
     return module
 
 
+def load_g04_pipeline_module() -> object:
+    """Load the sibling G04 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g04_acquisition_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g04_acquisition_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G04 acquisition pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
+def load_g05_pipeline_module() -> object:
+    """Load the sibling G05 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g05_mechanism_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g05_mechanism_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G05 mechanism pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
 def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
     """Validate optional corpus ledgers when their first row appears."""
 
@@ -1892,6 +2061,14 @@ def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
                 errors.extend(g03_pipeline.validate_citation_request_rows(rows))
             except (OSError, RuntimeError) as error:
                 errors.append("cannot load G03 request validator: {0}".format(error))
+        elif relative_path == "sources/download-ledger.tsv":
+            try:
+                g04_pipeline = load_g04_pipeline_module()
+                queue = g04_pipeline.derive_exact_queue_records(root)
+                if rows:
+                    errors.extend(g04_pipeline.validate_download_ledger_rows(rows, queue))
+            except (OSError, RuntimeError, ValueError) as error:
+                errors.append("cannot load G04 download validator: {0}".format(error))
 
     return sorted(set(errors))
 
@@ -2689,8 +2866,434 @@ def validate_g03_cache_git_boundary(root: Path) -> List[str]:
     return ["{0}: G03 response cache must remain ignored".format(path) for path in tracked]
 
 
+def validate_g04_allowed_artifacts(root: Path, require_report: bool) -> List[str]:
+    """Allow only preserved G00-G03 artifacts and G04-owned outputs."""
+
+    errors: List[str] = []
+    required_paths = list(G04_REQUIRED_FILE_PATHS)
+    if require_report:
+        required_paths.extend(G04_OPTIONAL_FILE_PATHS)
+    for relative_path in required_paths:
+        if not is_regular_file_path(root / relative_path):
+            errors.append("{0}: required G04 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"), key=lambda path: path.relative_to(root).as_posix()
+        )
+    except OSError as error:
+        return ["root: cannot inspect G04 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_text in G04_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if relative_path.parts[:2] in (
+            ("cache", "g02"),
+            ("cache", "g03"),
+            ("cache", "g04"),
+            ("sources", "papers"),
+        ):
+            if is_regular_file_path(corpus_path):
+                continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G04".format(relative_text)
+        )
+    return sorted(set(errors))
+
+
+def validate_g04_service_preflight(preflight_text: str) -> List[str]:
+    """Validate the bounded G04 source-service authorization markers."""
+
+    required_markers = (
+        "**Status:** `AUTHORIZED_BOUNDED_LOCAL_RESEARCH_ACQUISITION`",
+        "**Goal:** `G04`",
+        "**Checked:** 2026-08-11",
+        "`AUTHORIZED_EXACT_METADATA_AND_PDF`",
+        "`AUTHORIZED_EXACT_DOI_LOCATION_METADATA`",
+        "`CONDITIONAL_DIRECT_PDF_ONLY`",
+        "`NOT_USED_NOT_AUTHORIZED`",
+        "`PROHIBITED`",
+        "https://info.arxiv.org/help/api/tou.html",
+        "https://info.arxiv.org/help/license/index.html",
+        "https://info.arxiv.org/help/bulk_data/index.html",
+        "https://developers.openalex.org/api-reference/authentication",
+        "https://developers.openalex.org/api-reference/works",
+        "https://doi.org/help.html",
+        "https://www.crossref.org/documentation/retrieve-metadata/content-negotiation/",
+        "Global concurrency: one request",
+        "Hard ceiling: 220 attempts globally",
+        "Credentials: none authorized",
+    )
+    return sorted(
+        "governance/g04-service-preflight.md: missing {0}".format(marker)
+        for marker in required_markers
+        if marker not in preflight_text
+    )
+
+
+def validate_g04_campaign_status(
+    status_text: str,
+    ledger_rows: Sequence[Mapping[str, str]],
+) -> List[str]:
+    """Validate active and completed G04 lifecycle markers and counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G04`",
+        "- G03 state: `COMPLETE_VERIFIED_CLEARED`",
+        "- Journal: `arxiv-reference/journals/G04-progress.md`",
+        "exactly 50 selected identities",
+        "220 external HTTP attempts",
+        "five attempts per paper",
+        "one in-flight request",
+        "100 MiB per PDF",
+        "5 GiB total local PDF bytes",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G04 marker " + marker)
+    is_complete = "- Completion state: `COMPLETE`" in status_text
+    if is_complete:
+        for marker in (
+            "- Goal state: `COMPLETE`",
+            "- Validation state: `VERIFIED`",
+            "- Recommended next goal: `G05`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing G04 closure marker " + marker)
+        counts = (
+            ("G04 terminal identities", len(ledger_rows)),
+            (
+                "G04 acquired PDFs",
+                sum(row.get("acquisition_status") == "ACQUIRED" for row in ledger_rows),
+            ),
+            (
+                "G04 parsed texts",
+                sum(row.get("parse_status") == "PARSED" for row in ledger_rows),
+            ),
+            (
+                "G04 unavailable or failed",
+                sum(row.get("acquisition_status") != "ACQUIRED" for row in ledger_rows),
+            ),
+        )
+        for label, count in counts:
+            if not re.search(
+                r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(re.escape(label), count),
+                status_text,
+                flags=re.MULTILINE,
+            ):
+                errors.append(
+                    "governance/campaign-status.md: missing exact {0} count {1}".format(
+                        label, count
+                    )
+                )
+    elif "- Completion state: `IN_PROGRESS`" not in status_text:
+        errors.append("governance/campaign-status.md: G04 must be IN_PROGRESS or COMPLETE")
+    return sorted(set(errors))
+
+
+def validate_g04_review_clearance(
+    status_text: str,
+    review_text: str,
+) -> List[str]:
+    """Require explicit zero-blocker review evidence before G04 completion."""
+
+    if "- Completion state: `COMPLETE`" not in status_text:
+        return []
+    required_markers = (
+        "- Fifth-pass verdict: `CLEARED`",
+        "**Unresolved findings: P0=0, P1=0, P2=0.**",
+        "G04 is **CLEARED**.",
+    )
+    return sorted(
+        "governance/reviews/G04-adversarial-review.md: missing completion marker "
+        + marker
+        for marker in required_markers
+        if marker not in review_text
+    )
+
+
+def is_g04_owned_worktree_path(changed_path: str) -> bool:
+    """Return whether one repository-relative path is mutable during G04."""
+
+    if changed_path == "Markdown-Value-Index.md":
+        return True
+    prefix = "arxiv-reference/"
+    return changed_path.startswith(prefix) and (
+        changed_path[len(prefix) :] in G04_MUTABLE_FILE_PATHS
+    )
+
+
+def validate_g04_worktree_scope(root: Path, packet_text: str) -> List[str]:
+    """Isolate G04-owned changes from declared pre-existing user diffs."""
+
+    errors: List[str] = []
+    repository_root = root.parent
+    declared_exclusions = {"AGENTS.md", "CLAUDE.md"}
+    for excluded_path in sorted(declared_exclusions):
+        if "- `{0}`".format(excluded_path) not in packet_text:
+            errors.append(
+                "git scope: pre-existing path {0} is not declared in G04 packet".format(
+                    excluded_path
+                )
+            )
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+            cwd=str(repository_root),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        return ["git scope: cannot inspect worktree: {0}".format(error)]
+    if result.returncode != 0:
+        return [
+            "git scope: status failed: {0}".format(
+                result.stderr.decode("utf-8", errors="replace").strip()
+            )
+        ]
+    records = [record for record in result.stdout.split(b"\0") if record]
+    skip_rename_source = False
+    for record in records:
+        if skip_rename_source:
+            skip_rename_source = False
+            continue
+        decoded = record.decode("utf-8", errors="replace")
+        if len(decoded) < 4:
+            errors.append("git scope: malformed porcelain record")
+            continue
+        status_code = decoded[:2]
+        changed_path = decoded[3:]
+        if "R" in status_code or "C" in status_code:
+            skip_rename_source = True
+        if changed_path in declared_exclusions:
+            continue
+        if is_g04_owned_worktree_path(changed_path):
+            continue
+        errors.append("git scope: changed path is outside G04 ownership: " + changed_path)
+    return sorted(set(errors))
+
+
+def validate_g04_cache_git_boundary(root: Path) -> List[str]:
+    """Reject tracked or unignored G04 full text and extraction artifacts."""
+
+    errors: List[str] = []
+    commands = (
+        (["git", "ls-files", "--cached", "--", "cache/g04", "sources/papers"], "must not be tracked"),
+        (["git", "ls-files", "--others", "--exclude-standard", "--", "cache/g04", "sources/papers"], "must remain ignored"),
+    )
+    for command, message in commands:
+        try:
+            result = subprocess.run(
+                command,
+                cwd=str(root),
+                check=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+            )
+        except (OSError, subprocess.TimeoutExpired) as error:
+            errors.append("git: cannot inspect G04 local artifact boundary: {0}".format(error))
+            continue
+        if result.returncode != 0:
+            continue
+        for path in result.stdout.decode("utf-8", errors="replace").splitlines():
+            errors.append("{0}: G04 local artifact {1}".format(path, message))
+    return sorted(set(errors))
+
+
+def validate_g05_allowed_artifacts(root: Path, require_complete: bool) -> List[str]:
+    """Allow preserved G00-G04 artifacts and only G05-owned outputs."""
+
+    errors: List[str] = []
+    required_paths = list(G05_REQUIRED_FILE_PATHS)
+    if require_complete:
+        required_paths.extend(G05_COMPLETION_FILE_PATHS)
+    for relative_path in required_paths:
+        if not is_regular_file_path(root / relative_path):
+            errors.append("{0}: required G05 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"), key=lambda path: path.relative_to(root).as_posix()
+        )
+    except OSError as error:
+        return ["root: cannot inspect G05 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_text in G05_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "mechanism-cards")
+            and re.fullmatch(r"PAT-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if relative_path.parts[:2] in (
+            ("cache", "g02"),
+            ("cache", "g03"),
+            ("cache", "g04"),
+            ("sources", "papers"),
+        ):
+            if is_regular_file_path(corpus_path):
+                continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G05".format(relative_text)
+        )
+    return sorted(set(errors))
+
+
+def validate_g05_campaign_status(
+    status_text: str,
+    plan_rows: Sequence[Mapping[str, str]],
+    mechanism_card_count: int,
+    pattern_edge_count: int,
+) -> List[str]:
+    """Validate active or completed G05 lifecycle markers and exact counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G05`",
+        "- G04 state: `COMPLETE_VERIFIED_CLEARED`",
+        "- Journal: `arxiv-reference/journals/G05-progress.md`",
+        "exactly 25 of 34 G04-eligible papers",
+        "five disjoint batches of five",
+        "427 selected PDF pages",
+        "zero external requests",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G05 marker " + marker)
+    is_complete = "- Completion state: `COMPLETE`" in status_text
+    if is_complete:
+        for marker in (
+            "- Goal state: `COMPLETE`",
+            "- Validation state: `VERIFIED`",
+            "- Review state: `CLEARED`",
+            "- Recommended next goal: `G06`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing G05 closure marker " + marker)
+        counts = (
+            ("G05 selected papers", len(plan_rows)),
+            (
+                "G05 completed paper reads",
+                sum(row.get("reading_status") == "COMPLETE" for row in plan_rows),
+            ),
+            ("G05 mechanism cards", mechanism_card_count),
+            ("G05 pattern edges", pattern_edge_count),
+        )
+        for label, count in counts:
+            if not re.search(
+                r"^\|\s*{0}\s*\|\s*{1}\s*\|$".format(re.escape(label), count),
+                status_text,
+                flags=re.MULTILINE,
+            ):
+                errors.append(
+                    "governance/campaign-status.md: missing exact {0} count {1}".format(
+                        label, count
+                    )
+                )
+    else:
+        for marker in (
+            "- Goal state: `IN_PROGRESS`",
+            "- Completion state: `IN_PROGRESS`",
+            "- Validation state: `CONTRACT_GREEN`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing active G05 marker " + marker)
+    return sorted(set(errors))
+
+
+def validate_g05_review_clearance(status_text: str, review_text: str) -> List[str]:
+    """Require independent zero-severity review before G05 completion."""
+
+    if "- Completion state: `COMPLETE`" not in status_text:
+        return []
+    required_markers = (
+        "- Final verdict: `CLEARED`",
+        "**Unresolved findings: P0=0, P1=0, P2=0.**",
+        "G05 is **CLEARED**.",
+    )
+    return sorted(
+        "governance/reviews/G05-adversarial-review.md: missing completion marker "
+        + marker
+        for marker in required_markers
+        if marker not in review_text
+    )
+
+
+def is_g05_owned_worktree_path(changed_path: str) -> bool:
+    """Return whether one repository-relative path is mutable during G05."""
+
+    if changed_path == "Markdown-Value-Index.md":
+        return True
+    mechanism_prefix = "arxiv-reference/evidence/mechanism-cards/"
+    if changed_path.startswith(mechanism_prefix):
+        return bool(
+            re.fullmatch(
+                r"PAT-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md",
+                changed_path[len(mechanism_prefix) :],
+            )
+        )
+    prefix = "arxiv-reference/"
+    return changed_path.startswith(prefix) and (
+        changed_path[len(prefix) :] in G05_MUTABLE_FILE_PATHS
+    )
+
+
+def validate_g05_worktree_scope(root: Path) -> List[str]:
+    """Isolate G05-owned changes from declared pre-existing user diffs."""
+
+    errors: List[str] = []
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"],
+            cwd=str(root.parent),
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=GIT_COMMAND_TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        return ["git scope: cannot inspect G05 worktree: {0}".format(error)]
+    if result.returncode != 0:
+        return ["git scope: G05 status command failed"]
+    records = [record for record in result.stdout.split(b"\0") if record]
+    skip_rename_source = False
+    for record in records:
+        if skip_rename_source:
+            skip_rename_source = False
+            continue
+        decoded = record.decode("utf-8", errors="replace")
+        if len(decoded) < 4:
+            errors.append("git scope: malformed G05 porcelain record")
+            continue
+        status_code = decoded[:2]
+        changed_path = decoded[3:]
+        if "R" in status_code or "C" in status_code:
+            skip_rename_source = True
+        if changed_path in {"AGENTS.md", "CLAUDE.md"}:
+            continue
+        if is_g05_owned_worktree_path(changed_path):
+            continue
+        errors.append("git scope: changed path is outside G05 ownership: " + changed_path)
+    return sorted(set(errors))
+
+
 def run_corpus_contract_checks(root: Path) -> List[str]:
-    """Run the active G00, G01, or G02 corpus contract without side effects."""
+    """Run the active G00-G05 corpus contract without side effects."""
 
     if not root.is_dir():
         return ["root: directory does not exist: {0}".format(root)]
@@ -2951,7 +3554,10 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         )
         errors.extend(validate_g02_allowed_artifacts(root))
         errors.extend(validate_g02_cache_git_boundary(root))
-    elif active_goal == "G03":
+    elif active_goal in {"G03", "G04", "G05"}:
+        is_g04 = active_goal == "G04"
+        is_g05 = active_goal == "G05"
+        is_post_g03 = is_g04 or is_g05
         status_text = ""
         status_path = root / "governance/campaign-status.md"
         if is_regular_file_path(status_path):
@@ -2961,27 +3567,38 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
             errors.extend(read_errors)
         require_complete = "- Completion state: `COMPLETE`" in status_text
 
-        g03_journal_path = root / "journals/G03-progress.md"
-        if is_regular_file_path(g03_journal_path):
+        active_journal_name = (
+            "G05-progress.md"
+            if is_g05
+            else ("G04-progress.md" if is_g04 else "G03-progress.md")
+        )
+        active_journal_path = root / "journals" / active_journal_name
+        if is_regular_file_path(active_journal_path):
             journal_text, read_errors = read_text_file_safely(
-                g03_journal_path, "journals/G03-progress.md"
+                active_journal_path, "journals/" + active_journal_name
             )
             errors.extend(read_errors)
             if not read_errors:
-                errors.extend(validate_goal_journal_shape(journal_text, "G03"))
+                errors.extend(validate_goal_journal_shape(journal_text, active_goal))
 
-        g03_packet_path = root / "governance/G03-goal-packet.md"
-        if is_regular_file_path(g03_packet_path):
+        active_packet_name = (
+            "G05-goal-packet.md"
+            if is_g05
+            else ("G04-goal-packet.md" if is_g04 else "G03-goal-packet.md")
+        )
+        active_packet_path = root / "governance" / active_packet_name
+        packet_text = ""
+        if is_regular_file_path(active_packet_path):
             packet_text, read_errors = read_text_file_safely(
-                g03_packet_path, "governance/G03-goal-packet.md"
+                active_packet_path, "governance/" + active_packet_name
             )
             errors.extend(read_errors)
             if not read_errors:
                 errors.extend(
                     validate_goal_packet_shape(
                         packet_text,
-                        "governance/G03-goal-packet.md",
-                        expected_goal="G03",
+                        "governance/" + active_packet_name,
+                        expected_goal=active_goal,
                     )
                 )
 
@@ -3030,6 +3647,35 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                 manifest_path, "sources/paper-manifest.tsv"
             )
             errors.extend(row_errors)
+
+        download_rows: List[Dict[str, str]] = []
+        g03_manifest_rows = manifest_rows
+        g04_pipeline = None
+        queue_records: List[Dict[str, object]] = []
+        if is_post_g03:
+            download_path = root / "sources/download-ledger.tsv"
+            if is_regular_file_path(download_path):
+                download_rows, row_errors = read_tsv_file_rows(
+                    download_path, "sources/download-ledger.tsv"
+                )
+                errors.extend(row_errors)
+            try:
+                g04_pipeline = load_g04_pipeline_module()
+                queue_records = g04_pipeline.derive_exact_queue_records(root)
+                g03_manifest_rows = g04_pipeline.project_manifest_before_g04(
+                    manifest_rows, queue_records
+                )
+            except (OSError, RuntimeError, ValueError) as error:
+                errors.append("cannot load G04 queue and manifest projection: {0}".format(error))
+
+            g04_preflight_path = root / "governance/g04-service-preflight.md"
+            if is_regular_file_path(g04_preflight_path):
+                preflight_text, read_errors = read_text_file_safely(
+                    g04_preflight_path, "governance/g04-service-preflight.md"
+                )
+                errors.extend(read_errors)
+                if not read_errors:
+                    errors.extend(validate_g04_service_preflight(preflight_text))
 
         citation_request_rows: List[Dict[str, str]] = []
         citation_request_path = root / "sources/citation-request-ledger.tsv"
@@ -3094,7 +3740,7 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
             errors.extend(g03_pipeline.validate_citation_stop_rows(stop_rows))
             errors.extend(
                 g03_pipeline.validate_screening_rows(
-                    citation_screening_rows, manifest_rows, root
+                    citation_screening_rows, g03_manifest_rows, root
                 )
             )
             errors.extend(g03_pipeline.validate_g03_cache_provenance(root, citation_request_rows))
@@ -3105,7 +3751,7 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
             )
             errors.extend(
                 g03_pipeline.validate_edge_cache_provenance(
-                    root, citation_request_rows, edge_rows, manifest_rows
+                    root, citation_request_rows, edge_rows, g03_manifest_rows
                 )
             )
         except (OSError, RuntimeError, ValueError) as error:
@@ -3115,7 +3761,7 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         require_handoff = require_complete or is_regular_file_path(report_path)
         errors.extend(
             validate_g03_manifest_rows(
-                manifest_rows,
+                g03_manifest_rows,
                 {row.get("query_id", "") for row in query_rows},
                 {row.get("question_id", "") for row in questions},
                 seed_ids,
@@ -3132,16 +3778,151 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                     validate_g03_report(
                         report_text,
                         seed_ids,
-                        {row.get("paper_id", "") for row in manifest_rows},
+                        {row.get("paper_id", "") for row in g03_manifest_rows},
                         citation_screening_rows,
                     )
                 )
-        errors.extend(
-            validate_g03_campaign_status(
-                status_text, citation_request_rows, manifest_rows, edge_rows
+        if is_post_g03:
+            if g04_pipeline is not None and queue_records:
+                errors.extend(
+                    g04_pipeline.validate_g04_manifest_rows(
+                        manifest_rows,
+                        download_rows,
+                        queue_records,
+                        require_complete=True if is_g05 else require_complete,
+                        allow_read_complete=is_g05,
+                    )
+                )
+                if download_rows:
+                    errors.extend(
+                        g04_pipeline.validate_local_artifact_records(root, download_rows)
+                    )
+            if is_g05:
+                g05_plan_rows: List[Dict[str, str]] = []
+                plan_path = root / "governance/g05-reading-plan.tsv"
+                if is_regular_file_path(plan_path):
+                    g05_plan_rows, row_errors = read_tsv_file_rows(
+                        plan_path, "governance/g05-reading-plan.tsv"
+                    )
+                    errors.extend(row_errors)
+
+                mechanism_cards: List[Dict[str, object]] = []
+                pattern_edge_rows: List[Dict[str, str]] = []
+                g05_pipeline = None
+                try:
+                    g05_pipeline = load_g05_pipeline_module()
+                    errors.extend(
+                        g05_pipeline.validate_reading_plan_rows(g05_plan_rows, root)
+                    )
+                    errors.extend(
+                        g05_pipeline.validate_read_complete_transitions(
+                            manifest_rows, g05_plan_rows
+                        )
+                    )
+                    selected_page_counts = {
+                        str(row["paper_id"]): int(row["page_count"])
+                        for row in g05_pipeline.derive_selected_paper_records(root)
+                    }
+                    cards_path = root / "evidence/mechanism-cards"
+                    if cards_path.is_dir():
+                        for card_path in sorted(cards_path.glob("PAT-*.md")):
+                            try:
+                                card = g05_pipeline.parse_mechanism_card_file(card_path)
+                            except (OSError, UnicodeError, ValueError) as error:
+                                errors.append(
+                                    "{0}: cannot parse mechanism card: {1}".format(
+                                        card_path.relative_to(root).as_posix(), error
+                                    )
+                                )
+                                continue
+                            mechanism_cards.append(card)
+                            errors.extend(
+                                g05_pipeline.validate_mechanism_card_record(
+                                    card, selected_page_counts
+                                )
+                            )
+                    errors.extend(
+                        g05_pipeline.validate_mechanism_card_collection(mechanism_cards)
+                    )
+
+                    pattern_edge_path = root / "evidence/pattern-edges.tsv"
+                    if is_regular_file_path(pattern_edge_path):
+                        pattern_edge_rows, row_errors = read_tsv_file_rows(
+                            pattern_edge_path, "evidence/pattern-edges.tsv"
+                        )
+                        errors.extend(row_errors)
+                        errors.extend(
+                            g05_pipeline.validate_pattern_edge_rows(
+                                pattern_edge_rows,
+                                {
+                                    str(card.get("pattern_id", ""))
+                                    for card in mechanism_cards
+                                },
+                            )
+                        )
+                    errors.extend(g05_pipeline.validate_later_artifacts_absent(root))
+                    if require_complete:
+                        errors.extend(
+                            g05_pipeline.validate_completed_reading_rows(g05_plan_rows)
+                        )
+                        cards_by_id = {
+                            str(card.get("pattern_id", "")): card
+                            for card in mechanism_cards
+                        }
+                        errors.extend(
+                            g05_pipeline.validate_output_crosslinks_complete(
+                                mechanism_cards, pattern_edge_rows, g05_plan_rows
+                            )
+                        )
+                        errors.extend(
+                            g05_pipeline.validate_reading_result_checksums(
+                                g05_plan_rows, cards_by_id
+                            )
+                        )
+                except (OSError, RuntimeError, ValueError) as error:
+                    errors.append("cannot load G05 mechanism validators: {0}".format(error))
+
+                errors.extend(
+                    validate_g05_campaign_status(
+                        status_text,
+                        g05_plan_rows,
+                        len(mechanism_cards),
+                        len(pattern_edge_rows),
+                    )
+                )
+                g05_review_text = ""
+                g05_review_path = root / "governance/reviews/G05-adversarial-review.md"
+                if is_regular_file_path(g05_review_path):
+                    g05_review_text, read_errors = read_text_file_safely(
+                        g05_review_path,
+                        "governance/reviews/G05-adversarial-review.md",
+                    )
+                    errors.extend(read_errors)
+                errors.extend(validate_g05_review_clearance(status_text, g05_review_text))
+                errors.extend(validate_g05_allowed_artifacts(root, require_complete))
+                errors.extend(validate_g04_cache_git_boundary(root))
+                errors.extend(validate_g05_worktree_scope(root))
+            else:
+                errors.extend(validate_g04_campaign_status(status_text, download_rows))
+                review_text = ""
+                review_path = root / "governance/reviews/G04-adversarial-review.md"
+                if is_regular_file_path(review_path):
+                    review_text, read_errors = read_text_file_safely(
+                        review_path,
+                        "governance/reviews/G04-adversarial-review.md",
+                    )
+                    errors.extend(read_errors)
+                errors.extend(validate_g04_review_clearance(status_text, review_text))
+                errors.extend(validate_g04_allowed_artifacts(root, require_complete))
+                errors.extend(validate_g04_cache_git_boundary(root))
+                errors.extend(validate_g04_worktree_scope(root, packet_text))
+        else:
+            errors.extend(
+                validate_g03_campaign_status(
+                    status_text, citation_request_rows, manifest_rows, edge_rows
+                )
             )
-        )
-        errors.extend(validate_g03_allowed_artifacts(root, require_complete))
+            errors.extend(validate_g03_allowed_artifacts(root, require_complete))
         errors.extend(validate_g02_cache_git_boundary(root))
         errors.extend(validate_g03_cache_git_boundary(root))
     elif active_goal is not None:

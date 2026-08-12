@@ -20,6 +20,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 REFERENCE_ROOT = REPOSITORY_ROOT / "arxiv-reference"
 FIXTURE_ROOT = REFERENCE_ROOT / "tests" / "fixtures" / "g03"
 PIPELINE_PATH = REFERENCE_ROOT / "tools" / "g03_citation_pipeline.py"
+G04_PIPELINE_PATH = REFERENCE_ROOT / "tools" / "g04_acquisition_pipeline.py"
 REPORT_PATH = REFERENCE_ROOT / "sources" / "G02-metadata-screening-report.md"
 MANIFEST_PATH = REFERENCE_ROOT / "sources" / "paper-manifest.tsv"
 EDGE_PATH = REFERENCE_ROOT / "sources" / "citation-edges.tsv"
@@ -35,6 +36,13 @@ if spec is None or spec.loader is None:
 pipeline = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = pipeline
 spec.loader.exec_module(pipeline)
+
+g04_spec = importlib.util.spec_from_file_location("g04_acquisition_pipeline_for_g03", G04_PIPELINE_PATH)
+if g04_spec is None or g04_spec.loader is None:
+    raise RuntimeError("cannot load G04 acquisition pipeline")
+g04_pipeline = importlib.util.module_from_spec(g04_spec)
+sys.modules[g04_spec.name] = g04_pipeline
+g04_spec.loader.exec_module(g04_pipeline)
 
 
 class ValidateG03CitationContractTests(unittest.TestCase):
@@ -969,9 +977,11 @@ class ValidateG03CitationContractTests(unittest.TestCase):
 
     def test_active_g03_lifecycle_preserves_verified_g02(self) -> None:
         status = (REFERENCE_ROOT / "governance" / "campaign-status.md").read_text()
-        self.assertIn("- Active goal: `G03`", status)
+        self.assertIn("- Active goal: `G05`", status)
         self.assertIn("- G02 state: `COMPLETE_VERIFIED`", status)
-        self.assertIn("- Journal: `arxiv-reference/journals/G03-progress.md`", status)
+        self.assertIn("- G03 state: `COMPLETE_VERIFIED_CLEARED`", status)
+        self.assertIn("- G04 state: `COMPLETE_VERIFIED_CLEARED`", status)
+        self.assertIn("- Journal: `arxiv-reference/journals/G05-progress.md`", status)
 
     def test_exactly_twenty_five_frozen_seeds_are_extracted(self) -> None:
         seeds = pipeline.extract_g03_seed_ids(REPORT_PATH.read_text(encoding="utf-8"))
@@ -1208,6 +1218,18 @@ class ValidateG03CitationContractTests(unittest.TestCase):
                 REFERENCE_ROOT,
                 copied_root,
                 ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+            )
+            copied_manifest_path = copied_root / "sources" / "paper-manifest.tsv"
+            copied_manifest_rows = g04_pipeline.read_tsv_rows_exact(
+                copied_manifest_path
+            )
+            copied_queue = g04_pipeline.derive_exact_queue_records(copied_root)
+            g04_pipeline.write_tsv_rows_atomic(
+                copied_manifest_path,
+                tuple(copied_manifest_rows[0]),
+                g04_pipeline.project_manifest_before_g04(
+                    copied_manifest_rows, copied_queue
+                ),
             )
             before = {
                 relative_path: (copied_root / relative_path).read_bytes()
@@ -1455,6 +1477,10 @@ class ValidateG03CitationContractTests(unittest.TestCase):
     def test_manifest_remains_metadata_only_and_unacquired(self) -> None:
         with MANIFEST_PATH.open(encoding="utf-8") as handle:
             rows = list(csv.DictReader(handle, delimiter="\t"))
+        rows = g04_pipeline.project_manifest_before_g04(
+            rows,
+            g04_pipeline.derive_exact_queue_records(REFERENCE_ROOT),
+        )
         self.assertTrue(all(row["selection_status"] in {"METADATA_ONLY", "UNAVAILABLE"} for row in rows))
         self.assertTrue(all(row["local_path"] == "NOT_ACQUIRED" for row in rows))
         self.assertTrue(all(row["sha256"] == "NOT_ACQUIRED" for row in rows))

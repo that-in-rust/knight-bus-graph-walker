@@ -18,6 +18,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 REFERENCE_ROOT = REPOSITORY_ROOT / "arxiv-reference"
 FIXTURE_ROOT = REFERENCE_ROOT / "tests" / "fixtures" / "g02"
 PIPELINE_PATH = REFERENCE_ROOT / "tools" / "g02_metadata_pipeline.py"
+G04_PIPELINE_PATH = REFERENCE_ROOT / "tools" / "g04_acquisition_pipeline.py"
 MANIFEST_PATH = REFERENCE_ROOT / "sources" / "paper-manifest.tsv"
 REQUEST_LEDGER_PATH = REFERENCE_ROOT / "sources" / "metadata-request-ledger.tsv"
 SCREENING_REPORT_PATH = REFERENCE_ROOT / "sources" / "G02-metadata-screening-report.md"
@@ -37,6 +38,13 @@ if spec is None or spec.loader is None:
 pipeline = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = pipeline
 spec.loader.exec_module(pipeline)
+
+g04_spec = importlib.util.spec_from_file_location("g04_acquisition_pipeline_for_g02", G04_PIPELINE_PATH)
+if g04_spec is None or g04_spec.loader is None:
+    raise RuntimeError("cannot load G04 acquisition pipeline")
+g04_pipeline = importlib.util.module_from_spec(g04_spec)
+sys.modules[g04_spec.name] = g04_pipeline
+g04_spec.loader.exec_module(g04_pipeline)
 
 
 class ValidateG02MetadataContractTests(unittest.TestCase):
@@ -71,6 +79,10 @@ class ValidateG02MetadataContractTests(unittest.TestCase):
 
         with MANIFEST_PATH.open(encoding="utf-8") as handle:
             manifest_rows = list(csv.DictReader(handle, delimiter="\t"))
+        manifest_rows = g04_pipeline.project_manifest_before_g04(
+            manifest_rows,
+            g04_pipeline.derive_exact_queue_records(REFERENCE_ROOT),
+        )
         manifest_by_id = {row["paper_id"]: row for row in manifest_rows}
         manifest_ids = set(manifest_by_id)
         self.assertTrue(set(seed_ids) <= manifest_ids)
@@ -108,8 +120,10 @@ class ValidateG02MetadataContractTests(unittest.TestCase):
 
     def test_active_g03_lifecycle_preserves_verified_g02(self) -> None:
         status = (REFERENCE_ROOT / "governance" / "campaign-status.md").read_text()
-        self.assertIn("- Active goal: `G03`", status)
+        self.assertIn("- Active goal: `G05`", status)
         self.assertIn("- G02 state: `COMPLETE_VERIFIED`", status)
+        self.assertIn("- G03 state: `COMPLETE_VERIFIED_CLEARED`", status)
+        self.assertIn("- G04 state: `COMPLETE_VERIFIED_CLEARED`", status)
 
     def test_basic_metadata_fixture_parses(self) -> None:
         records = pipeline.parse_arxiv_metadata_feed(
@@ -325,6 +339,10 @@ class ValidateG02MetadataContractTests(unittest.TestCase):
         if MANIFEST_PATH.exists():
             with MANIFEST_PATH.open(encoding="utf-8") as handle:
                 rows = list(csv.DictReader(handle, delimiter="\t"))
+            rows = g04_pipeline.project_manifest_before_g04(
+                rows,
+                g04_pipeline.derive_exact_queue_records(REFERENCE_ROOT),
+            )
             self.assertTrue(all(row["local_path"] == "NOT_ACQUIRED" for row in rows))
 
 

@@ -21,6 +21,40 @@ Only one campaign goal may be active at a time. A goal must stop at its declared
 outputs and caps. Starting the recommended next goal always requires explicit
 authorization.
 
+## Current G05 Evidence Corpus
+
+G05 selected exactly 25 of the 34 checksum-verified papers acquired and parsed
+by G04, read all 427 selected PDF pages, and extracted 67 source-grounded
+mechanism cards plus 47 typed relationships. All 25 selected papers have a
+terminal `MECHANISM_EXTRACTED` outcome and are `READ_COMPLETE`; the other nine
+eligible papers remain `DEEP_READ`. G05 made zero external requests. The final
+frozen corpus passed 158 tests, the full validator, and independent review with
+no unresolved P0, P1, or P2 findings.
+
+The canonical entry points are:
+
+- `sources/G05-mechanism-extraction-report.md` for exact accounting, evidence
+  profile, reusable mechanism families, A007 consequences, and preserved gaps;
+- `governance/g05-reading-plan.tsv` for deterministic selection, complete-page
+  coverage, reader/reviewer identities, card links, and result checksums;
+- `evidence/mechanism-cards/` for canonical claim- and resource-granular cards;
+- `governance/reviews/G05-adversarial-review.md` for the independent frozen
+  semantic, accounting, reproducibility, and boundary audit;
+- `evidence/pattern-edges.tsv` for the typed relationship graph; and
+- `governance/g05-mechanism-extraction-contract.md` for the frozen scope and
+  epistemic rules.
+
+This is still an evidence result, not an architecture recommendation. Fifty-
+nine cards are grade C paper evidence and eight are grade D; none was
+reproduced or backed by campaign code inspection. Persistent-storage cost is
+unknown in 39 cards and temporary-storage cost in 30. No card proves a Knight
+Bus RAM or latency delta, whole-process RSS enforcement, compatibility, or a
+customer outcome.
+
+G05 stops before counterexample extraction, modern constraint transfer,
+architecture synthesis, and experiments. Those remain separately authorized
+later goals.
+
 ## G00 Empty-Corpus State
 
 G00 initializes one minimum scaffold. The campaign is intentionally empty:
@@ -35,9 +69,10 @@ G00 is complete: its integrated exit criteria pass for the zero-research
 scaffold. This says nothing about the quality of literature, evidence cards,
 architecture candidates, or product performance because G00 created none.
 
-The final campaign state, zero decision-yield counts, verification evidence,
-and G01 boundary are recorded in `governance/campaign-status.md` and
-`journals/G00-progress.md`. G01 remains `NOT_STARTED`.
+The G00 closure state, zero decision-yield counts, verification evidence, and
+then-future G01 boundary are recorded in `governance/campaign-status.md` and
+`journals/G00-progress.md`. Later goals supersede that historical handoff; the
+current campaign state is the G05 evidence corpus described above.
 
 The G00 requirement closure matrix lives in
 `governance/G00-goal-packet.md`. It separates requirements that apply to the

@@ -12,6 +12,7 @@ sources/text-cache/
 **/.cache/
 cache/g02/
 cache/g03/
+cache/g04/
 __pycache__/
 *.py[cod]
 

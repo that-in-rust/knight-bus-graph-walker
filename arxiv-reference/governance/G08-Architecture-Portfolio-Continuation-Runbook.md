@@ -752,3 +752,318 @@ Do not spend the next usage window proving that the scaffolding exists. It
 does. Spend it producing the architecture decisions that the scaffolding was
 built to protect.
 
+---
+
+# Beyond G08: Product And Engineering Futures
+
+This section begins only after G08 is `COMPLETE_VERIFIED_CLEARED`. It is a
+rough causal roadmap, not an authorization to start G09 early and not a claim
+that any architecture will outperform Neo4j/GDS.
+
+## Post-G08 Decision Frame
+
+### The next fork
+
+Once G08 has produced 12-18 survivors and 3-8 falsifying experiments, Knight
+Bus must choose what kind of proof to build first:
+
+1. a customer-shaped dependency/security/access-path proof;
+2. a technically famous PageRank/iterative-analytics proof; or
+3. a compatibility-first Neo4j sidecar that reduces adoption friction.
+
+These are not merely different feature priorities. They produce different
+learning, users, architecture pressure, and failure modes.
+
+### Assumptions
+
+- One founder or a very small team works primarily with capable coding LLMs.
+- The existing Night Bus dataset can be an initial fixture but is not general
+  proof.
+- Neo4j/GDS remains the comparison oracle only where semantics genuinely
+  overlap.
+- No RAM or latency claim becomes public until whole-process measurement exists.
+- The A007 promise remains more important than broad Neo4j surface parity.
+- Storage specialization is valuable only if build cost, freshness, temporary
+  coexistence, and fallback are included.
+
+### What a three-month win looks like
+
+By day 90, a user can submit one production-shaped analytical request through
+a declared compatibility boundary and receive:
+
+1. an estimate tied to a hard RAM budget;
+2. an admitted plan or pre-execution refusal;
+3. exact or explicitly bounded semantics;
+4. execution under measured whole-process resource accounting;
+5. comparison against a reference oracle; and
+6. a machine-readable receipt containing predicted versus observed high water.
+
+One proof-carrying slice is a win. A broad but unverifiable Neo4j rewrite is not.
+
+## Post-G08 Timeline A: Customer-Wedge Proof
+
+**Recommended first future.** Build the dependency/security/access-path slice
+that most directly expresses A007.
+
+### First two weeks: G09 decision atlas
+
+1. Select two or three access-path survivors plus both baselines.
+2. Convert their smallest falsifiers into executable experiment packets.
+3. Freeze one exact path/reachability semantic contract.
+4. Define graph-shape fixtures: shallow-wide, deep-narrow, skewed hubs,
+   disconnected regions, large output, and frontier-spill crossover.
+5. Define the independent result oracle and canonical digest.
+6. Instrument whole-process RSS, page-cache policy, mmap residency, direct-I/O
+   buffers, build peak, spill bytes, output bytes, and wall-clock distribution.
+
+**Gate at day 14:** every contender has a runnable verification loop before it
+has an optimized implementation.
+
+### Weeks three and four: conservative baseline first
+
+1. Make the current Knight Bus reference path produce the complete A007
+   receipt.
+2. Execute the same semantic fixture against Neo4j where the query overlaps.
+3. Calibrate estimator constants on separate calibration fixtures.
+4. Reserve holdout shapes that implementation agents cannot optimize against.
+5. Demonstrate pre-execution refusal below the minimum resident kernel.
+
+**Gate at day 30:** result parity and resource observability are trustworthy,
+even if performance has not improved.
+
+### Month two: one specialized capsule
+
+1. Implement the lowest-risk survivor, likely a forward-only or streamed exact
+   access-path capsule.
+2. Add bounded frontier, worker, output, and I/O admission units.
+3. Implement fit, lower-concurrency, stream/spill, reference, and refuse paths
+   only where their guards are measurable.
+4. Preserve the reference path as the correctness fallback.
+5. Run calibration fixtures, then sealed holdouts.
+6. Repair the estimator before tuning throughput when observed high water
+   escapes the envelope.
+
+**Gate at day 60:** the specialized capsule either meets a user-declared
+budget/latency objective on holdouts or is rejected/narrowed. “Promising” is
+not a terminal result.
+
+### Month three: thin production surface
+
+1. Expose only the Cypher/Bolt subset needed by the chosen access-path workflow.
+2. Return stable unsupported-surface errors for everything else.
+3. Add a GDS-like estimate/run facade only if it helps the same workflow.
+4. Package the fixture, oracle, resource receipt, and comparison command.
+5. Put the artifact in front of design partners with graphs too costly or
+   unpredictable for their current workflow.
+
+**Gate at day 90:** at least one external user can understand why Knight Bus
+admitted, changed, or refused the plan and can reproduce the result.
+
+### Months four to six
+
+- Add PageRank as the second cartridge because it exercises dense iterative
+  state and a very different storage/scheduling regime.
+- Introduce an artifact broker only after two capsules prove that shared IDs,
+  manifests, receipts, and fallback can be reused without forcing shared
+  topology.
+- Calibrate concurrent-query admission and artifact replacement peaks.
+
+### Months six to twelve
+
+- Add WCC or Louvain/Leiden only when a real workload justifies the next state
+  shape.
+- Turn receipts and estimator errors into a deployment-specific calibration
+  corpus.
+- Generalize the budget planner to non-graph deterministic analytical jobs only
+  after at least two graph algorithms validate the abstraction.
+
+### Lived experience
+
+- Daily work feels concrete because every optimization has an oracle and budget.
+- Product conversations begin early.
+- Technical fame may arrive more slowly than with a PageRank headline.
+- The main stress is resisting requests for broad Cypher/GDS compatibility.
+
+### Main risk
+
+The access-path workload may be too narrow or already cheap enough in existing
+systems. The mitigation is early design-partner testing and a day-60 kill gate.
+
+## Post-G08 Timeline B: PageRank Flagship
+
+Build the clearest algorithm-shaped storage demonstration first: bounded
+PageRank/SpMV with streamed sparse topology and controlled dense state.
+
+### First two weeks
+
+1. Select the resident shared-layout baseline, conservative Knight Bus
+   baseline, stream-sparse/retain-dense candidate, destination-log candidate,
+   and resident-block candidate.
+2. Freeze numerical tolerance, convergence, iteration cap, ordering, and
+   deterministic reduction contracts.
+3. Build graph-shape fixtures spanning degree skew, partition imbalance,
+   sparse/dense crossover, and slow convergence.
+
+### Month one
+
+1. Make baseline PageRank execution and receipts reproducible.
+2. Measure topology, rank vectors, next-state vectors, worker scratch, queues,
+   page cache/direct-I/O, output, and runtime separately.
+3. Calibrate one-complete-dense-column and concurrency minimum kernels.
+
+### Month two
+
+1. Implement one semi-external PageRank capsule.
+2. Compare source-order streaming, destination logs, and resident-block reuse
+   only through controlled variants of the same kernel.
+3. Use sealed holdouts to detect partition and cache-policy overfitting.
+4. Reject any variant whose preparation or temporary storage erases its runtime
+   value under realistic reuse.
+
+### Month three
+
+1. Publish a reproducible technical artifact with correctness, whole-process
+   RAM, preparation, storage amplification, latency distribution, and receipts.
+2. Demonstrate budget-driven concurrency reduction and refusal.
+3. Offer a narrow GDS `estimate`/`run` surface for the proven PageRank contract.
+
+### Months four to twelve
+
+- Extend the sparse-stream/dense-state kernel to personalized PageRank or SpMV.
+- Build a reusable fixed-memory iterative analytics runtime.
+- Explore non-graph matrix/aggregation jobs only when the state and I/O model
+  genuinely transfers.
+
+### Lived experience
+
+- The technical story is easier to explain and benchmark.
+- The work is engineering-heavy and can become cache/partition tuning rather
+  than customer discovery.
+- Publication and open-source attention may arrive earlier.
+- Adoption may lag because PageRank alone is not a full workflow.
+
+### Main risk
+
+The result may be a strong benchmark with weak product pull. The mitigation is
+requiring a real repeated PageRank-like customer job before month three.
+
+## Post-G08 Timeline C: Compatibility-First Sidecar
+
+Lead with a Neo4j-shaped interface and route supported operations to Knight Bus
+reference or specialized capsules.
+
+### First two weeks
+
+1. Freeze the exact Bolt messages, Cypher subset, GDS procedure names,
+   parameters, outputs, errors, and notifications required by one workflow.
+2. Build differential fixtures against Neo4j for that subset.
+3. Declare every unsupported construct explicitly.
+
+### Month one
+
+1. Wire the supported query into the current Knight Bus reference layout.
+2. Preserve exact semantic and error parity where claimed.
+3. Emit estimates and receipts even before storage specialization exists.
+4. Make fallback to Neo4j explicit rather than transparent magic.
+
+### Month two
+
+1. Add one optimized access-path or PageRank backend behind the same facade.
+2. Let admission choose optimized Knight Bus, conservative Knight Bus,
+   Neo4j/reference, or refusal.
+3. Compare the routes with the same oracle and resource instrumentation.
+
+### Month three
+
+1. Test migration friction with existing Neo4j users.
+2. Expand only surface elements demanded by the target workflow.
+3. Publish the compatibility matrix beside the performance/resource receipt.
+
+### Months four to twelve
+
+- Add algorithm cartridges behind stable procedure contracts.
+- Keep the compatibility layer thin and separate from storage/algorithm cores.
+- Consider becoming a bounded analytical accelerator for Neo4j rather than a
+  replacement database.
+
+### Lived experience
+
+- Demos feel real quickly because existing clients can connect.
+- User feedback arrives earlier.
+- Compatibility edge cases consume attention and can crowd out differentiation.
+- There is a constant temptation to chase full Cypher/Bolt/GDS parity.
+
+### Main risk
+
+Knight Bus becomes an adapter project before proving its lower-RAM thesis. The
+mitigation is a hard rule: no compatibility feature unless it unlocks a proven
+bounded analytical workflow.
+
+## Post-G08 Cross-Timeline Analysis
+
+| Dimension | A: customer wedge | B: PageRank flagship | C: compatibility sidecar |
+|---|---|---|---|
+| First proof | Exact access path under budget | Iterative analytics under budget | Existing Neo4j-shaped query runs |
+| Fastest customer learning | **High** | Medium-low | High |
+| Clearest technical benchmark | Medium | **Highest** | Medium |
+| Strongest A007 expression | **Highest** | High | Medium-high |
+| Differentiated storage pressure | High | **Highest** | Initially low |
+| Adoption friction | Medium | High | **Lowest** |
+| Scope-creep risk | Medium | Medium | **Highest** |
+| Risk of benchmark without product | Low-medium | **High** | Low-medium |
+| Risk of adapter without moat | Low | Low | **High** |
+| Reversibility at day 30 | High | High | Medium-high |
+
+### Robust hybrid
+
+The strongest sequence is not a simultaneous blend. It is an ordered hybrid:
+
+```text
+Customer-shaped access-path proof
+        -> thin Cypher/Bolt skin for that proof
+        -> PageRank as second algorithm-shaped cartridge
+        -> shared admission/receipt/artifact broker
+        -> broader deterministic analytical compute
+```
+
+The ordering matters. Building compatibility before the proof risks an adapter;
+building PageRank before a customer wedge risks a benchmark project; building
+both after the access-path verification loop turns them into leverage.
+
+### Shared kill criteria
+
+Pause or pivot when any of these persists through a bounded repair cycle:
+
+1. Whole-process RSS cannot be explained by named estimator terms.
+2. Preparation and old/new coexistence make the specialized artifact
+   uneconomic at realistic reuse.
+3. The low-RAM plan has unacceptable tail latency under the declared deadline.
+4. Correctness requires a reference fallback so often that specialization has
+   no useful operating envelope.
+5. Users do not value predictable refusal/receipts enough to change behavior.
+6. Compatibility work repeatedly exceeds algorithm/storage work.
+7. Holdout results reverse the apparent calibration-fixture advantage.
+
+## Post-G08 Decision Filter
+
+Choose Timeline A by default.
+
+Choose Timeline B first only if a real workload runs iterative graph analytics
+repeatedly, cost is visibly dominated by resident topology/state, and a
+reproducible PageRank result would unlock users or contributors.
+
+Choose Timeline C first only if a committed design partner requires an existing
+Neo4j query/client to participate in the verification loop and the exact
+compatibility subset is small.
+
+### The uncertainty-collapsing first experiment
+
+Regardless of the product timeline, the first experiment should answer:
+
+> Can Knight Bus predict and enforce whole-process peak memory for one exact
+> analytical request, including runtime, page cache/direct I/O, output, spill,
+> and temporary coexistence, while matching an independent oracle?
+
+If the answer is no, more storage inventions are premature. If the answer is
+yes, every later algorithm becomes a bounded variation on a proven control
+loop.

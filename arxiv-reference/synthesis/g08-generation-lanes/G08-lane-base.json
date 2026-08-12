@@ -1,0 +1,338 @@
+{
+  "lane_id": "G08-LANE-BASE",
+  "generator_identity": "CONTROLLER-CODEX",
+  "g06_failure_context_loaded": false,
+  "generation_prompt_constraints": "Create two non-strawman shared-layout baselines with the same whole-process, preparation, correctness, compatibility, and falsifier accounting as specialized candidates; make no measured performance claim.",
+  "candidates": [
+    {
+      "candidate_id": "ARCH-G08-049",
+      "name": "Resident Shared Projection Baseline",
+      "epistemic_label": "SPECULATIVE_TRANSFER",
+      "primary_niche": "BASELINE",
+      "secondary_niches": ["LOWEST_ADOPTION_FRICTION", "LOWEST_TAIL_LATENCY"],
+      "parents": [],
+      "generation_lineage": {
+        "lane_id": "G08-LANE-BASE",
+        "lane_position": 1,
+        "generator_identity": "CONTROLLER-CODEX",
+        "prompt_id": "G08-BASELINE-V1",
+        "generated_at": "2026-08-12T19:30:00+05:30",
+        "added_transfer_ids": [],
+        "removed_transfer_ids": [],
+        "intended_changed_behavior": "Provide a strong Neo4j/GDS-like fully resident shared-projection comparison point rather than a lower-RAM proposal."
+      },
+      "inherited_transfer_ids": [],
+      "target_workload_contract": {
+        "artifact": "one fully resident shared property-graph projection with forward and reverse adjacency plus projected properties",
+        "algorithm_family": "MULTI_ALGORITHM_SHARED_ARTIFACT",
+        "algorithm_semantics": "Reference-equivalent semantics for each admitted algorithm with its own state and oracle contract",
+        "exactness_requirement": "EXACT_OR_DECLARED_GDS_NUMERICAL_CONTRACT",
+        "ram_ceiling": "B_user",
+        "storage_allowance": "S_user",
+        "deadline_model": "D_user or no deadline",
+        "output_bound": "O_user",
+        "a007_decision_strengthened": "Provides the resident fast-path and explicit refusal baseline when full projection plus algorithm state cannot fit",
+        "first_wedge": false
+      },
+      "genome": {
+        "topology_layout": "Shared resident dual adjacency with dense local IDs and resident projected properties",
+        "prepared_artifact_variants": ["resident-dual-adjacency-property-projection"],
+        "ordering_and_identifier_representation": "Dense local IDs with stable external-ID mapping and deterministic optional adjacency ordering",
+        "algorithm_state_placement": "All topology and current algorithm state resident in process memory",
+        "scheduling_and_concurrency": "Parallel workers over partitions with admitted worker and concurrent-query counts",
+        "overflow_behavior": "Lower concurrency, select reference engine, or refuse; no hidden spill in the baseline",
+        "exactness": "Per-algorithm exactness, tolerance, seed, and convergence contract",
+        "admission_model": "Admit only if the projection, chosen algorithm state, output, runtime, page-cache policy, and reserve fit B_user",
+        "receipt_model": "Emit predicted and observed projection, state, worker, output, runtime, and reserve high-water terms",
+        "compatibility_boundary": "Neo4j-facing procedures can be mapped, but internal store/layout and the full GDS catalog are not implicitly compatible"
+      },
+      "minimum_resident_kernel": {
+        "admission_unit": "complete selected projection plus one algorithm's minimum state and runtime reserve",
+        "expression": "RAM_kernel = RAM_dual_adjacency + RAM_projected_properties + RAM_algorithm_minimum + RAM_runtime + RAM_safety_margin",
+        "refusal_condition": "RAM_kernel > B_user"
+      },
+      "resource_model": {
+        "peak_ram_equation": "RAM_peak = RAM_topology + RAM_algorithm_state + RAM_frontier_active_set + RAM_scratch + RAM_output + RAM_conversion + RAM_page_cache_or_direct_io + RAM_runtime_overhead + RAM_spill + RAM_safety_margin + RAM_temporary_artifact_coexistence",
+        "ram_terms": {
+          "topology": "RAM_topology = c_node * N + c_edge_fwd * M + c_edge_rev * M + sum_p(c_property_p * entries_p)",
+          "algorithm_state": "RAM_algorithm_state = sum_s(c_state_s * multiplicity_s * domain_s)",
+          "frontier_active_set": "RAM_frontier_active_set = c_active * active_capacity",
+          "scratch": "RAM_scratch = W * c_worker_scratch + c_global_scratch",
+          "output": "RAM_output = min(O_actual, O_user) * c_output + RAM_output_buffers",
+          "conversion": "RAM_conversion = RAM_id_mapping + RAM_parameter_decode + RAM_result_encode",
+          "page_cache_or_direct_io": "RAM_page_cache_or_direct_io = RAM_projection_source_cache_budget + D_io * c_io_buffer",
+          "runtime_overhead": "RAM_runtime_overhead = c_runtime + c_allocator * allocation_classes + c_thread * threads",
+          "spill": "RAM_spill = 0_declared_baseline_spill + c_spill_control",
+          "safety_margin": "RAM_safety_margin = c_reserve_fixed + c_reserve_fraction * RAM_modeled_before_reserve",
+          "temporary_artifact_coexistence": "RAM_temporary_artifact_coexistence = max(RAM_old_projection + RAM_new_projection, RAM_single_projection) during replacement"
+        },
+        "io": "IO_total = IO_source_scan + IO_projection_build + IO_output + IO_replacement",
+        "preprocessing": "T_prepare = T_project_nodes + T_project_edges + T_project_properties + T_order_optional + T_verify",
+        "storage": "Storage_total = S_source + S_projection_persistent_optional + S_manifests + S_receipts",
+        "recomputation": "Work_recompute = rebuild_epochs * (N + M + property_entries)",
+        "concurrency": "RAM_concurrency = Q * RAM_algorithm_query + W * RAM_worker_private + D_io * RAM_io_buffer"
+      },
+      "state_multiplicity": {
+        "workers": "W * RAM_worker_private",
+        "queries": "Q * (RAM_algorithm_state + RAM_output_private)",
+        "partitions": "P_active * RAM_partition_metadata",
+        "stages": "max_stage(RAM_stage_i) unless stage barriers permit explicit reclamation",
+        "io_depth": "D_io * RAM_io_buffer"
+      },
+      "page_cache_direct_io_policy": {
+        "mode": "EXPLICIT_SOURCE_PAGE_CACHE_BUDGET",
+        "equation": "RAM_io_accounted = RAM_source_page_cache_budget + RAM_direct_buffers + RAM_kernel_io",
+        "guard": "Resident projection bytes and source page-cache bytes are distinct and both counted"
+      },
+      "preparation_model": {
+        "artifact_build_phases": ["source-scan", "id-map", "adjacency-build", "property-project", "verify", "publish"],
+        "build_peak_ram": "RAM_build_peak = max(RAM_scan, RAM_id_map, RAM_adjacency_build, RAM_property_build, RAM_verify) + RAM_old_new_coexistence + RAM_runtime",
+        "build_io": "IO_build = IO_source_read + IO_intermediate + IO_projection_write_optional + IO_verify",
+        "persistent_bytes": "S_persistent = S_projection_optional + S_manifest + S_receipt_history",
+        "temporary_bytes": "S_temporary_peak = S_old_projection + S_new_projection + S_build_intermediate + S_journal",
+        "freshness_model": "Versioned immutable projection rebuilt or updated under an explicit freshness policy",
+        "amortization_assumptions": ["Projection build is reused across Q_amortized algorithms or runs", "Mutation rate permits the selected freshness policy"],
+        "shared_layout_baseline_comparison": "This candidate is the shared-layout baseline against which specialization must report omitted and added bytes"
+      },
+      "fallback_ladder": ["FIT", "LOWER_CONCURRENCY", "REFERENCE", "REFUSE"],
+      "correctness_and_determinism": {
+        "exactness": "Algorithm-specific exact or declared numerical contract",
+        "numerical_tolerance": "epsilon_algorithm and convergence_rule remain explicit",
+        "seed_policy": "Caller-provided or receipt-recorded seed for randomized algorithms",
+        "ordering_guarantee": "Only declared order is guaranteed; parallel accumulation order is recorded",
+        "nondeterministic_sources": ["parallel reduction order", "work stealing", "randomized initialization"],
+        "oracle_strategy": "Compare against the same Neo4j/GDS procedure fixture or a separately declared canonical oracle",
+        "refusal_rule": "Refuse when requested semantics, determinism, projection, or state cannot fit the admitted budget"
+      },
+      "compatibility_boundary": {
+        "neo4j": "Property-graph input/output semantics and selected procedures; no store-format identity",
+        "cypher": "Only query patterns explicitly compiled to projection/catalog/algorithm operations",
+        "bolt": "Supported request, result, notification, and error framing only",
+        "gds": "Selected estimate/run procedure signatures with explicit unsupported catalog entries",
+        "unsupported_behavior": "Stable pre-execution unsupported-surface error"
+      },
+      "crossover_guards": [
+        {
+          "guard": "Select resident projection only when all modeled bytes plus reserve fit B_user",
+          "unknown_constants": ["c_allocator", "c_runtime", "c_state_s", "c_worker_scratch"],
+          "switch_action": "LOWER_CONCURRENCY_OR_REFERENCE_OR_REFUSE"
+        }
+      ],
+      "composition_review": {
+        "invariant_compatibility": "A shared immutable projection can serve algorithms whose required directions and properties are all present",
+        "memory_term_overlap": "Projection bytes are shared across queries; algorithm and output state multiply per concurrent query",
+        "prepared_artifact_coexistence": "A replacement may require old and new projections simultaneously and is accounted explicitly",
+        "access_pattern_conflicts": "One adjacency ordering may be neutral or poor for some algorithms; the baseline accepts that compromise",
+        "fallback_composition": "Failure to fit does not silently spill; it lowers concurrency, invokes a declared reference, or refuses",
+        "exactness_determinism_composition": "Shared topology does not define algorithm exactness; each algorithm contract does",
+        "preparation_rationality": "Build is rational only when cross-algorithm reuse and freshness outweigh projection cost"
+      },
+      "receipt_fields": ["algorithm_contract", "budget_bytes", "compatibility_scope", "concurrency", "estimator_error_bytes", "fallback_taken", "observed_peak_rss_bytes", "output_bound", "plan_id", "predicted_peak_bytes", "projection_epoch", "seed_and_order_policy"],
+      "estimator_feedback": {
+        "error_equation": "E_ram = RAM_observed_peak - RAM_predicted_peak",
+        "calibration_action": "Calibrate projection, algorithm-state, allocator, worker, and source-cache constants separately in G09",
+        "safety_action": "Increase reserve, reduce concurrency, or refuse when calibrated upper error exceeds policy"
+      },
+      "linked_g06_failure_ids": [],
+      "g06_challenge_responses": [],
+      "adversarial_review": {
+        "loaded_after_raw_portfolio_freeze": false,
+        "raw_portfolio_freeze_id": "PENDING",
+        "reviewer_identity": "PENDING",
+        "challenged_at": "PENDING",
+        "failure_selection_basis": "PENDING_POST_FREEZE"
+      },
+      "loses_when": ["Projection plus state cannot fit B_user", "A specialized artifact omits large unused topology or property terms", "Mutation invalidates projection reuse", "Concurrent per-query state dominates shared topology"],
+      "smallest_g09_falsifier": {
+        "experiment_id": "RESERVED-G09-FOR-ARCH-G08-049",
+        "fixture": "One graph fixture reused by traversal, PageRank, WCC, and community procedures",
+        "baseline": "Neo4j/GDS procedure and estimate on the same logical graph",
+        "oracle": "Per-algorithm result digest, tolerance, seed, and ordering contract",
+        "metrics": ["whole-process peak RSS", "projection build peak", "projection bytes", "algorithm state bytes", "p99/P100 wall time", "result digest"],
+        "modeled_expectation": "The fully resident plan is admissible only when calibrated whole-process terms fit B_user",
+        "acceptance_thresholds": "Reserved for G09; none asserted in G08",
+        "disconfirming_result": "Unmodeled resident state, wrong result, unexplained nondeterminism, or an estimate that cannot bound observed RSS"
+      },
+      "qualitative_pareto": {
+        "peak_ram": "HIGH",
+        "tail_latency_risk": "LOW_AFTER_PROJECTION_IF_NO_CONTENTION",
+        "predictability": "MEDIUM_PENDING_RUNTIME_CALIBRATION",
+        "preprocessing_cost": "MEDIUM_TO_HIGH",
+        "persistent_storage_amplification": "MEDIUM_IF_PROJECTION_PERSISTED",
+        "temporary_storage_peak": "HIGH_DURING_REPLACEMENT",
+        "exactness_determinism": "ALGORITHM_SPECIFIC",
+        "operational_complexity": "MEDIUM",
+        "neo4j_adoption_friction": "LOWEST_AMONG_INTERNAL_REDIGNS",
+        "calibration_debt": "MEDIUM_TO_HIGH"
+      },
+      "highest_completed_stage": "RAW_GENERATED",
+      "terminal_disposition": "",
+      "disposition_reason": "PENDING_POST_FREEZE_REVIEW"
+    },
+    {
+      "candidate_id": "ARCH-G08-050",
+      "name": "Conservative Knight Bus Reference Baseline",
+      "epistemic_label": "SPECULATIVE_TRANSFER",
+      "primary_niche": "BASELINE",
+      "secondary_niches": ["HIGHEST_PREDICTABILITY", "LOWEST_ADOPTION_FRICTION"],
+      "parents": [],
+      "generation_lineage": {
+        "lane_id": "G08-LANE-BASE",
+        "lane_position": 2,
+        "generator_identity": "CONTROLLER-CODEX",
+        "prompt_id": "G08-BASELINE-V1",
+        "generated_at": "2026-08-12T19:30:00+05:30",
+        "added_transfer_ids": [],
+        "removed_transfer_ids": [],
+        "intended_changed_behavior": "Preserve the current immutable dual-CSR and reference-algorithm path as a correctness and adoption baseline"
+      },
+      "inherited_transfer_ids": [],
+      "target_workload_contract": {
+        "artifact": "current Knight Bus immutable snapshot with forward and reverse CSR and manifest",
+        "algorithm_family": "MULTI_ALGORITHM_SHARED_ARTIFACT",
+        "algorithm_semantics": "Current supported reference semantics with explicit unsupported operations",
+        "exactness_requirement": "EXACT_FOR_SUPPORTED_REFERENCE_OPERATIONS",
+        "ram_ceiling": "B_user",
+        "storage_allowance": "S_user",
+        "deadline_model": "D_user or no deadline",
+        "output_bound": "O_user",
+        "a007_decision_strengthened": "Provides the trusted fallback and oracle surface against which specialized capsules are verified",
+        "first_wedge": true
+      },
+      "genome": {
+        "topology_layout": "Immutable forward and reverse CSR snapshot with manifest and stable IDs",
+        "prepared_artifact_variants": ["current-dual-csr-reference-snapshot"],
+        "ordering_and_identifier_representation": "Snapshot-local dense IDs with stable mapping and current ordering semantics",
+        "algorithm_state_placement": "Reference operation state allocated conservatively and accounted per query",
+        "scheduling_and_concurrency": "Conservative bounded workers and query admission; no speculative overlap",
+        "overflow_behavior": "Use current bounded build/runtime path where supported or refuse",
+        "exactness": "Current supported operation semantics are the oracle contract",
+        "admission_model": "Admit only supported operations whose conservative whole-process estimate fits B_user",
+        "receipt_model": "Extend current receipt seeds with observed high-water and estimator error once calibrated",
+        "compatibility_boundary": "Current narrow Bolt/Cypher/GDS surface only; unsupported entries fail before work"
+      },
+      "minimum_resident_kernel": {
+        "admission_unit": "current snapshot mappings plus minimum reference operation state",
+        "expression": "RAM_kernel = RAM_snapshot_mappings + RAM_reference_state + RAM_runtime + RAM_safety_margin",
+        "refusal_condition": "RAM_kernel > B_user or operation outside supported reference surface"
+      },
+      "resource_model": {
+        "peak_ram_equation": "RAM_peak = RAM_topology + RAM_algorithm_state + RAM_frontier_active_set + RAM_scratch + RAM_output + RAM_conversion + RAM_page_cache_or_direct_io + RAM_runtime_overhead + RAM_spill + RAM_safety_margin + RAM_temporary_artifact_coexistence",
+        "ram_terms": {
+          "topology": "RAM_topology = RAM_forward_csr_mapping + RAM_reverse_csr_mapping + RAM_manifest + RAM_id_maps",
+          "algorithm_state": "RAM_algorithm_state = Q * RAM_reference_state_per_query",
+          "frontier_active_set": "RAM_frontier_active_set = Q * RAM_reference_active_bound",
+          "scratch": "RAM_scratch = W * RAM_reference_worker_scratch + RAM_global_scratch",
+          "output": "RAM_output = min(O_actual, O_user) * c_output + RAM_encode_buffers",
+          "conversion": "RAM_conversion = RAM_bolt_decode + RAM_cypher_plan + RAM_id_translation",
+          "page_cache_or_direct_io": "RAM_page_cache_or_direct_io = RAM_mmap_resident_accounted + RAM_page_cache_budget + D_io * RAM_io_buffer",
+          "runtime_overhead": "RAM_runtime_overhead = c_runtime + c_allocator * allocation_classes + c_thread * threads",
+          "spill": "RAM_spill = RAM_external_run_buffers + RAM_spill_metadata",
+          "safety_margin": "RAM_safety_margin = c_reserve_fixed + c_reserve_fraction * RAM_modeled_before_reserve",
+          "temporary_artifact_coexistence": "RAM_temporary_artifact_coexistence = RAM_old_snapshot_mapped + RAM_new_snapshot_build_or_map during epoch transition"
+        },
+        "io": "IO_total = IO_snapshot_read + IO_reference_operation + IO_output + IO_build_if_needed",
+        "preprocessing": "T_prepare = T_external_runs + T_merge + T_emit_forward + T_emit_reverse + T_verify",
+        "storage": "Storage_total = S_forward_csr + S_reverse_csr + S_id_maps + S_manifest + S_receipts",
+        "recomputation": "Work_recompute = snapshot_rebuilds * (N + M) + reference_passes * work_per_pass",
+        "concurrency": "RAM_concurrency = Q * RAM_reference_query + W * RAM_worker_private + D_io * RAM_io_buffer"
+      },
+      "state_multiplicity": {
+        "workers": "W * RAM_worker_private",
+        "queries": "Q * RAM_reference_query",
+        "partitions": "P_active * RAM_partition_metadata",
+        "stages": "max(RAM_build_stage_i, RAM_query_stage_j) plus explicit overlap when both coexist",
+        "io_depth": "D_io * RAM_io_buffer"
+      },
+      "page_cache_direct_io_policy": {
+        "mode": "MMAP_RESIDENCY_PLUS_PAGE_CACHE_ACCOUNTED",
+        "equation": "RAM_io_accounted = RAM_mmap_resident_accounted + RAM_page_cache_budget + RAM_direct_buffers + RAM_kernel_io",
+        "guard": "Mapped bytes are not assumed resident or free; measured RSS and residency counters remain distinct receipt fields"
+      },
+      "preparation_model": {
+        "artifact_build_phases": ["parse", "node-runs", "edge-runs", "resolve", "emit-forward", "emit-reverse", "verify", "publish"],
+        "build_peak_ram": "RAM_build_peak = max_phase(RAM_phase_i) + RAM_runtime + RAM_old_new_coexistence",
+        "build_io": "IO_build = IO_input + IO_runs + IO_merge + IO_forward + IO_reverse + IO_verify",
+        "persistent_bytes": "S_persistent = S_forward_csr + S_reverse_csr + S_id_maps + S_manifest",
+        "temporary_bytes": "S_temporary_peak = S_old_snapshot + S_new_snapshot + S_runs + S_sort_workspace + S_journal",
+        "freshness_model": "Immutable snapshot epochs with verified publish",
+        "amortization_assumptions": ["Snapshot is reused across supported operations", "Freshness permits epoch rebuild cadence"],
+        "shared_layout_baseline_comparison": "This is the conservative Knight Bus shared-layout and reference fallback baseline"
+      },
+      "fallback_ladder": ["FIT", "LOWER_CONCURRENCY", "STREAM", "SPILL", "REFUSE"],
+      "correctness_and_determinism": {
+        "exactness": "Exact for supported reference operations",
+        "numerical_tolerance": "Operation-specific or NOT_APPLICABLE",
+        "seed_policy": "Receipt-recorded seed where applicable",
+        "ordering_guarantee": "Current stable snapshot and result ordering contract where declared",
+        "nondeterministic_sources": ["parallel execution if enabled", "filesystem completion order hidden by verified publication"],
+        "oracle_strategy": "Use current reference implementation and Neo4j fixture agreement where the compatibility scope overlaps",
+        "refusal_rule": "Refuse unsupported semantics or budgets below the conservative minimum kernel"
+      },
+      "compatibility_boundary": {
+        "neo4j": "Supported logical graph and result semantics only",
+        "cypher": "Current narrow neighborhood/path subset",
+        "bolt": "Current implemented framing and stable unsupported errors",
+        "gds": "Current graph catalog/projection entries plus only explicitly implemented algorithms",
+        "unsupported_behavior": "Stable pre-execution unsupported-surface error"
+      },
+      "crossover_guards": [
+        {
+          "guard": "Remain on reference layout whenever a specialized candidate lacks a calibrated advantage or matching oracle",
+          "unknown_constants": ["c_allocator", "c_runtime", "mmap_residency_factor", "page_cache_interference"],
+          "switch_action": "REFERENCE_OR_REFUSE"
+        }
+      ],
+      "composition_review": {
+        "invariant_compatibility": "The current immutable snapshot and reference operation define the fallback correctness invariant",
+        "memory_term_overlap": "Mapped topology, page cache, resident pages, and RSS are tracked without summing aliases blindly",
+        "prepared_artifact_coexistence": "Old and new snapshot epochs may coexist and are explicit build/publish terms",
+        "access_pattern_conflicts": "Dual CSR favors traversal reuse but may retain direction or ordering bytes unused by one algorithm",
+        "fallback_composition": "Specialized candidates may return to this baseline only when its own budget admission succeeds",
+        "exactness_determinism_composition": "Reference semantics become an oracle only for operations already supported and matched",
+        "preparation_rationality": "The shared snapshot is rational when multi-operation reuse exceeds dual-CSR and rebuild costs"
+      },
+      "receipt_fields": ["budget_bytes", "compatibility_scope", "estimator_error_bytes", "fallback_taken", "mmap_resident_bytes", "observed_peak_rss_bytes", "operation_contract", "page_cache_budget", "plan_id", "predicted_peak_bytes", "snapshot_epoch", "spill_bytes"],
+      "estimator_feedback": {
+        "error_equation": "E_ram = RAM_observed_peak - RAM_predicted_peak",
+        "calibration_action": "Calibrate mapping residency, allocator, page cache, worker state, and output separately in G09",
+        "safety_action": "Increase reserve, reduce concurrency, or refuse when prediction error violates the envelope"
+      },
+      "linked_g06_failure_ids": [],
+      "g06_challenge_responses": [],
+      "adversarial_review": {
+        "loaded_after_raw_portfolio_freeze": false,
+        "raw_portfolio_freeze_id": "PENDING",
+        "reviewer_identity": "PENDING",
+        "challenged_at": "PENDING",
+        "failure_selection_basis": "PENDING_POST_FREEZE"
+      },
+      "loses_when": ["Dual CSR or reference state exceeds B_user", "One specialized capsule safely omits substantial shared-layout state", "Freshness requires costly rebuild overlap", "The requested Neo4j/GDS surface is broader than current support"],
+      "smallest_g09_falsifier": {
+        "experiment_id": "RESERVED-G09-FOR-ARCH-G08-050",
+        "fixture": "The existing 2 GB Night Bus dependency/access-path dataset and supported query fixture",
+        "baseline": "Current Knight Bus reference path and matching Neo4j query where available",
+        "oracle": "Exact canonical result digest and stable error contract",
+        "metrics": ["whole-process peak RSS", "mapped resident bytes", "page-cache bytes", "build peak", "spill bytes", "p99/P100 wall time", "result digest"],
+        "modeled_expectation": "The conservative model can reject before execution and explain observed high-water by named terms after calibration",
+        "acceptance_thresholds": "Reserved for G09; none asserted in G08",
+        "disconfirming_result": "Wrong result, unstable unsupported behavior, hidden build overlap, or peak RSS outside the calibrated conservative envelope"
+      },
+      "qualitative_pareto": {
+        "peak_ram": "MEDIUM_TO_HIGH",
+        "tail_latency_risk": "MEDIUM",
+        "predictability": "MEDIUM_TO_HIGH_AFTER_CALIBRATION",
+        "preprocessing_cost": "MEDIUM",
+        "persistent_storage_amplification": "MEDIUM_FROM_DUAL_CSR",
+        "temporary_storage_peak": "MEDIUM_TO_HIGH_DURING_REBUILD",
+        "exactness_determinism": "STRONG_FOR_SUPPORTED_REFERENCE_SURFACE",
+        "operational_complexity": "LOWEST_KNIGHT_BUS_CHANGE",
+        "neo4j_adoption_friction": "LOW_FOR_CURRENT_SUPPORTED_SUBSET",
+        "calibration_debt": "MEDIUM"
+      },
+      "highest_completed_stage": "RAW_GENERATED",
+      "terminal_disposition": "",
+      "disposition_reason": "PENDING_POST_FREEZE_REVIEW"
+    }
+  ]
+}

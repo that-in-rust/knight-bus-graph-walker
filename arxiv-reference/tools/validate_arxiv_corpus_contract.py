@@ -14,7 +14,7 @@ import sys
 import types
 from collections import Counter
 from pathlib import Path, PurePosixPath
-from typing import Dict, Iterable, List, Mapping, MutableSequence, Optional, Sequence, Tuple
+from typing import Dict, Iterable, List, Mapping, MutableSequence, Optional, Sequence, Set, Tuple
 
 
 ALLOWED_EPISTEMIC_LABELS = {
@@ -167,6 +167,12 @@ EXPECTED_TSV_HEADERS = {
         "terminal_disposition\tfailure_ids\tevidence_gap\tmeasurement_needed\t"
         "reading_coverage\tresult_checksum"
     ),
+    "governance/g07-transfer-plan.tsv": (
+        "selection_rank\tlane_id\tlane_position\tpattern_id\tsource_paper_ids\t"
+        "source_domain\tselection_score\tselection_basis\treader_agent_id\t"
+        "reviewer_agent_id\tinspection_status\tterminal_disposition\ttransfer_ids\t"
+        "evidence_gap\tmeasurement_needed\tresult_checksum"
+    ),
     "evidence/evidence-conflicts.tsv": (
         "conflict_id\tleft_evidence_type\tleft_evidence_id\tright_evidence_type\t"
         "right_evidence_id\tconflict_type\taffected_pattern_ids\tclaim_scope\t"
@@ -178,6 +184,7 @@ EXPECTED_TSV_HEADERS = {
 DEFERRED_TSV_SCHEMA_OWNERS = {
     "governance/g06-adversarial-plan.tsv": "governance/g06-counterexample-contract.md",
     "evidence/evidence-conflicts.tsv": "governance/g06-counterexample-contract.md",
+    "governance/g07-transfer-plan.tsv": "governance/g07-constraint-transfer-contract.md",
 }
 
 G00_ALLOWED_FILE_PATHS = frozenset(REQUIRED_CONTROL_PATHS) | frozenset(
@@ -400,6 +407,28 @@ G06_MUTABLE_FILE_PATHS = (
     )
 )
 
+G07_REQUIRED_FILE_PATHS = (
+    *G06_REQUIRED_FILE_PATHS,
+    *G06_COMPLETION_FILE_PATHS,
+    "governance/G07-goal-packet.md",
+    "governance/g07-constraint-transfer-contract.md",
+    "governance/g07-transfer-plan.tsv",
+    "journals/G07-progress.md",
+    "tests/test_validate_g07_constraint_transfer_contract.py",
+    "tools/g07_constraint_transfer_pipeline.py",
+)
+
+G07_COMPLETION_FILE_PATHS = (
+    "governance/reviews/G07-adversarial-review.md",
+    "sources/G07-constraint-transfer-report.md",
+)
+
+G07_ALLOWED_FILE_PATHS = (
+    G06_ALLOWED_FILE_PATHS
+    | frozenset(G07_REQUIRED_FILE_PATHS)
+    | frozenset(G07_COMPLETION_FILE_PATHS)
+)
+
 ALLOWED_CACHE_MODULES = {
     "tests": "test_validate_arxiv_corpus_contract",
     "tools": "validate_arxiv_corpus_contract",
@@ -413,6 +442,7 @@ ALLOWED_TEST_CACHE_MODULES = {
     "test_validate_g04_acquisition_contract",
     "test_validate_g05_mechanism_contract",
     "test_validate_g06_counterexample_contract",
+    "test_validate_g07_constraint_transfer_contract",
 }
 
 ALLOWED_TOOL_CACHE_MODULES = {
@@ -422,6 +452,7 @@ ALLOWED_TOOL_CACHE_MODULES = {
     "g04_acquisition_pipeline",
     "g05_mechanism_pipeline",
     "g06_counterexample_pipeline",
+    "g07_constraint_transfer_pipeline",
 }
 
 G01_QUESTION_FIELDS = (
@@ -2076,6 +2107,21 @@ def load_g06_pipeline_module() -> object:
     return module
 
 
+def load_g07_pipeline_module() -> object:
+    """Load the sibling G07 pipeline without relying on process import paths."""
+
+    pipeline_path = Path(__file__).with_name("g07_constraint_transfer_pipeline.py")
+    specification = importlib.util.spec_from_file_location(
+        "arxiv_g07_constraint_transfer_pipeline", pipeline_path
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("cannot load G07 constraint-transfer pipeline")
+    module = importlib.util.module_from_spec(specification)
+    sys.modules[specification.name] = module
+    specification.loader.exec_module(module)
+    return module
+
+
 def validate_optional_tsv_files(root: Path, ignore_text: str) -> List[str]:
     """Validate optional corpus ledgers when their first row appears."""
 
@@ -3421,6 +3467,140 @@ def validate_g06_allowed_artifacts(root: Path, require_complete: bool) -> List[s
     return sorted(set(errors))
 
 
+def validate_g07_allowed_artifacts(root: Path, require_complete: bool) -> List[str]:
+    """Allow preserved G00-G06 artifacts and only G07-owned outputs."""
+
+    errors: List[str] = []
+    required_paths = list(G07_REQUIRED_FILE_PATHS)
+    if require_complete:
+        required_paths.extend(G07_COMPLETION_FILE_PATHS)
+    for relative_path in required_paths:
+        if not is_regular_file_path(root / relative_path):
+            errors.append("{0}: required G07 file is missing".format(relative_path))
+    try:
+        corpus_paths = sorted(
+            root.rglob("*"), key=lambda path: path.relative_to(root).as_posix()
+        )
+    except OSError as error:
+        return ["root: cannot inspect G07 corpus: {0}".format(error.strerror or error)]
+    for corpus_path in corpus_paths:
+        relative_path = corpus_path.relative_to(root)
+        relative_text = relative_path.as_posix()
+        if corpus_path.is_dir() and not corpus_path.is_symlink():
+            continue
+        if relative_text in G07_ALLOWED_FILE_PATHS and is_regular_file_path(corpus_path):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "mechanism-cards")
+            and re.fullmatch(r"PAT-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "failure-cards")
+            and re.fullmatch(r"FAIL-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if (
+            len(relative_path.parts) == 3
+            and relative_path.parts[:2] == ("evidence", "constraint-transfer-cards")
+            and re.fullmatch(r"XFER-(?:[A-Z0-9]+-){3}[A-Z0-9]+\.md", relative_path.name)
+            and is_regular_file_path(corpus_path)
+        ):
+            continue
+        if relative_path.parts[:2] in (
+            ("cache", "g02"),
+            ("cache", "g03"),
+            ("cache", "g04"),
+            ("sources", "papers"),
+        ):
+            if is_regular_file_path(corpus_path):
+                continue
+        if is_allowed_python_cache(root, relative_path):
+            continue
+        errors.append(
+            "{0}: file is not allowed while active goal is G07".format(relative_text)
+        )
+    return sorted(set(errors))
+
+
+def validate_g07_campaign_status(
+    status_text: str,
+    plan_rows: Sequence[Mapping[str, str]],
+    transfer_card_count: int,
+) -> List[str]:
+    """Validate active or completed G07 lifecycle markers and exact counts."""
+
+    errors: List[str] = []
+    required_markers = (
+        "- Active goal: `G07`",
+        "- G06 state: `COMPLETE_VERIFIED_CLEARED`",
+        "- Journal: `arxiv-reference/journals/G07-progress.md`",
+        "- G07 frozen mechanisms: 20",
+        "- G07 reader lanes: 4",
+        "- G07 external requests: 0",
+    )
+    for marker in required_markers:
+        if marker not in status_text:
+            errors.append("governance/campaign-status.md: missing G07 marker " + marker)
+    complete = "- Completion state: `COMPLETE`" in status_text
+    if complete:
+        for marker in (
+            "- Research state: `G07_COMPLETE_VERIFIED_CLEARED`",
+            "- Validation state: `VERIFIED`",
+            "- Review state: `CLEARED`",
+            "- Recommended next goal: `G08`",
+        ):
+            if marker not in status_text:
+                errors.append("governance/campaign-status.md: missing G07 closure marker " + marker)
+    elif "- Completion state: `IN_PROGRESS`" not in status_text:
+        errors.append("governance/campaign-status.md: G07 must be IN_PROGRESS or COMPLETE")
+    expected_counts = (
+        ("G07 frozen mechanisms", len(plan_rows)),
+        (
+            "G07 terminal dispositions",
+            sum(row.get("terminal_disposition", "") in {
+                "TRANSFER_CREATED",
+                "NO_SURVIVING_INVARIANT",
+                "MODERN_COST_REVERSAL_INVALIDATES",
+                "INSUFFICIENT_EVIDENCE",
+                "DUPLICATE_TRANSFER_MERGED",
+            } for row in plan_rows),
+        ),
+        ("G07 constraint-transfer cards", transfer_card_count),
+    )
+    for label, expected_count in expected_counts:
+        if "| {0} | {1} |".format(label, expected_count) not in status_text:
+            errors.append(
+                "governance/campaign-status.md: missing exact {0} count {1}".format(
+                    label, expected_count
+                )
+            )
+    return errors
+
+
+def validate_g07_review_clearance(status_text: str, review_text: str) -> List[str]:
+    """Require independent zero-severity review before G07 completion."""
+
+    if "- Completion state: `COMPLETE`" not in status_text:
+        return []
+    markers = (
+        "Final verdict: `CLEARED`",
+        "P0 findings: 0",
+        "P1 findings: 0",
+        "P2 findings: 0",
+        "G07 is **CLEARED**.",
+    )
+    return [
+        "governance/reviews/G07-adversarial-review.md: missing completion marker " + marker
+        for marker in markers
+        if marker not in review_text
+    ]
+
+
 def validate_g06_campaign_status(
     status_text: str,
     plan_rows: Sequence[Mapping[str, str]],
@@ -3533,8 +3713,13 @@ def is_g06_owned_worktree_path(changed_path: str) -> bool:
     )
 
 
-def validate_g06_worktree_scope(root: Path) -> List[str]:
-    """Isolate G06-owned changes from unrelated worktree paths."""
+def validate_g06_worktree_scope(
+    root: Path, enforce_scope: bool = True
+) -> List[str]:
+    """Isolate G06-owned changes while the G06 campaign is active."""
+
+    if not enforce_scope:
+        return []
 
     errors: List[str] = []
     try:
@@ -3573,7 +3758,7 @@ def validate_g06_worktree_scope(root: Path) -> List[str]:
 
 
 def run_corpus_contract_checks(root: Path) -> List[str]:
-    """Run the active G00-G06 corpus contract without side effects."""
+    """Run the active G00-G07 corpus contract without side effects."""
 
     if not root.is_dir():
         return ["root: directory does not exist: {0}".format(root)]
@@ -3834,11 +4019,13 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         )
         errors.extend(validate_g02_allowed_artifacts(root))
         errors.extend(validate_g02_cache_git_boundary(root))
-    elif active_goal in {"G03", "G04", "G05", "G06"}:
+    elif active_goal in {"G03", "G04", "G05", "G06", "G07"}:
         is_g04 = active_goal == "G04"
         is_g05 = active_goal == "G05"
         is_g06 = active_goal == "G06"
-        is_g05_or_later = is_g05 or is_g06
+        is_g07 = active_goal == "G07"
+        is_g06_or_later = is_g06 or is_g07
+        is_g05_or_later = is_g05 or is_g06_or_later
         is_post_g03 = is_g04 or is_g05_or_later
         status_text = ""
         status_path = root / "governance/campaign-status.md"
@@ -3850,11 +4037,14 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
         require_complete = "- Completion state: `COMPLETE`" in status_text
 
         active_journal_name = (
-            "G06-progress.md"
+            "G07-progress.md"
+            if is_g07
+            else ("G06-progress.md"
             if is_g06
             else ("G05-progress.md"
             if is_g05
             else ("G04-progress.md" if is_g04 else "G03-progress.md")
+            )
             )
         )
         active_journal_path = root / "journals" / active_journal_name
@@ -3867,11 +4057,14 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                 errors.extend(validate_goal_journal_shape(journal_text, active_goal))
 
         active_packet_name = (
-            "G06-goal-packet.md"
+            "G07-goal-packet.md"
+            if is_g07
+            else ("G06-goal-packet.md"
             if is_g06
             else ("G05-goal-packet.md"
             if is_g05
             else ("G04-goal-packet.md" if is_g04 else "G03-goal-packet.md")
+            )
             )
         )
         active_packet_path = root / "governance" / active_packet_name
@@ -4150,7 +4343,7 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                         )
                     if is_g05:
                         errors.extend(g05_pipeline.validate_later_artifacts_absent(root))
-                    if require_complete or is_g06:
+                    if require_complete or is_g06_or_later:
                         errors.extend(
                             g05_pipeline.validate_completed_reading_rows(g05_plan_rows)
                         )
@@ -4203,6 +4396,7 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
 
                     failure_cards: List[Dict[str, object]] = []
                     failure_cards_by_id: Dict[str, Dict[str, object]] = {}
+                    mechanism_cards_by_id: Mapping[str, Mapping[str, object]] = {}
                     conflict_rows: List[Dict[str, str]] = []
                     try:
                         g06_pipeline = load_g06_pipeline_module()
@@ -4278,16 +4472,17 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                                 set(map(str, paper_page_counts)),
                             )
                         )
+                        g06_require_complete = require_complete if is_g06 else True
                         errors.extend(
                             g06_pipeline.validate_adversarial_plan_rows(
                                 g06_plan_rows,
                                 paper_page_counts,
                                 pattern_source_papers,
                                 failure_cards_by_id,
-                                require_complete,
+                                g06_require_complete,
                             )
                         )
-                        if require_complete:
+                        if g06_require_complete:
                             errors.extend(
                                 g06_pipeline.validate_adversarial_result_checksums(
                                     g06_plan_rows, failure_cards_by_id, source_hashes
@@ -4317,20 +4512,13 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                                         g06_report_text,
                                     )
                                 )
-                        errors.extend(g06_pipeline.validate_later_artifacts_absent(root))
+                        if is_g06:
+                            errors.extend(g06_pipeline.validate_later_artifacts_absent(root))
                     except (OSError, RuntimeError, TypeError, ValueError) as error:
                         errors.append(
                             "cannot load G06 counterexample validators: {0}".format(error)
                         )
 
-                    errors.extend(
-                        validate_g06_campaign_status(
-                            status_text,
-                            g06_plan_rows,
-                            len(failure_cards),
-                            len(conflict_rows),
-                        )
-                    )
                     g06_review_text = ""
                     g06_review_path = root / "governance/reviews/G06-adversarial-review.md"
                     if is_regular_file_path(g06_review_path):
@@ -4339,10 +4527,179 @@ def run_corpus_contract_checks(root: Path) -> List[str]:
                             "governance/reviews/G06-adversarial-review.md",
                         )
                         errors.extend(read_errors)
-                    errors.extend(validate_g06_review_clearance(status_text, g06_review_text))
-                    errors.extend(validate_g06_allowed_artifacts(root, require_complete))
-                    errors.extend(validate_g04_cache_git_boundary(root))
-                    errors.extend(validate_g06_worktree_scope(root))
+                    if is_g06:
+                        errors.extend(
+                            validate_g06_campaign_status(
+                                status_text,
+                                g06_plan_rows,
+                                len(failure_cards),
+                                len(conflict_rows),
+                            )
+                        )
+                        errors.extend(validate_g06_review_clearance(status_text, g06_review_text))
+                        errors.extend(validate_g06_allowed_artifacts(root, require_complete))
+                        errors.extend(validate_g04_cache_git_boundary(root))
+                        errors.extend(
+                            validate_g06_worktree_scope(
+                                root, enforce_scope=not require_complete
+                            )
+                        )
+                    else:
+                        g07_plan_rows: List[Dict[str, str]] = []
+                        transfer_cards: List[Dict[str, object]] = []
+                        try:
+                            g07_pipeline = load_g07_pipeline_module()
+                            g07_plan_path = root / "governance/g07-transfer-plan.tsv"
+                            if is_regular_file_path(g07_plan_path):
+                                g07_plan_rows = g07_pipeline.read_transfer_plan_rows(
+                                    g07_plan_path
+                                )
+                            known_patterns = set(map(str, mechanism_cards_by_id))
+                            pattern_failure_ids: Dict[str, Set[str]] = {
+                                pattern_id: set() for pattern_id in known_patterns
+                            }
+                            for failure_id, failure_card in failure_cards_by_id.items():
+                                for pattern_id in failure_card.get(
+                                    "affected_pattern_ids", []
+                                ):
+                                    pattern_failure_ids.setdefault(
+                                        str(pattern_id), set()
+                                    ).add(str(failure_id))
+                            transfer_dir = root / "evidence/constraint-transfer-cards"
+                            if transfer_dir.is_dir():
+                                for card_path in sorted(transfer_dir.glob("XFER-*.md")):
+                                    try:
+                                        transfer_cards.append(
+                                            g07_pipeline.parse_transfer_card_file(card_path)
+                                        )
+                                    except (OSError, UnicodeError, ValueError) as error:
+                                        errors.append(
+                                            "{0}: cannot parse transfer card: {1}".format(
+                                                card_path.relative_to(root).as_posix(), error
+                                            )
+                                        )
+                            errors.extend(
+                                g07_pipeline.validate_transfer_plan_rows(
+                                    g07_plan_rows, known_patterns, require_complete
+                                )
+                            )
+                            errors.extend(
+                                g07_pipeline.validate_transfer_card_collection(
+                                    transfer_cards,
+                                    known_patterns,
+                                    set(failure_cards_by_id),
+                                    pattern_failure_ids,
+                                )
+                            )
+                            transfer_cards_by_id = {
+                                str(card.get("transfer_id", "")): card
+                                for card in transfer_cards
+                            }
+                            errors.extend(
+                                g07_pipeline.validate_transfer_plan_crosslinks(
+                                    g07_plan_rows,
+                                    transfer_cards_by_id,
+                                    require_complete,
+                                )
+                            )
+                            if require_complete:
+                                mechanism_hashes = {
+                                    pattern_id: g07_pipeline.hash_file_content_exact(
+                                        root
+                                        / "evidence/mechanism-cards"
+                                        / (pattern_id + ".md")
+                                    )
+                                    for pattern_id in {
+                                        row.get("pattern_id", "")
+                                        for row in g07_plan_rows
+                                    }
+                                }
+                                failure_hashes = {
+                                    failure_id: g07_pipeline.hash_file_content_exact(
+                                        root
+                                        / "evidence/failure-cards"
+                                        / (failure_id + ".md")
+                                    )
+                                    for failure_id in failure_cards_by_id
+                                }
+                                errors.extend(
+                                    g07_pipeline.validate_transfer_result_checksums(
+                                        g07_plan_rows,
+                                        transfer_cards_by_id,
+                                        mechanism_hashes,
+                                        failure_hashes,
+                                        pattern_failure_ids,
+                                    )
+                                )
+                            for later_directory in (
+                                root / "synthesis/architecture-candidates",
+                                root / "experiments",
+                            ):
+                                if later_directory.is_dir() and any(
+                                    path.is_file() for path in later_directory.rglob("*")
+                                ):
+                                    errors.append(
+                                        later_directory.relative_to(root).as_posix()
+                                        + ": G07 cannot create later-goal artifacts"
+                                    )
+                            g07_contract_path = root / "governance/g07-constraint-transfer-contract.md"
+                            if is_regular_file_path(g07_contract_path):
+                                g07_contract_text, read_errors = read_text_file_safely(
+                                    g07_contract_path,
+                                    "governance/g07-constraint-transfer-contract.md",
+                                )
+                                errors.extend(read_errors)
+                                expected_header = EXPECTED_TSV_HEADERS[
+                                    "governance/g07-transfer-plan.tsv"
+                                ]
+                                if not read_errors and g07_contract_text.count(expected_header) != 1:
+                                    errors.append(
+                                        "governance/g07-constraint-transfer-contract.md: must contain the exact governance/g07-transfer-plan.tsv header once"
+                                    )
+                            g07_report_path = root / "sources/G07-constraint-transfer-report.md"
+                            if is_regular_file_path(g07_report_path):
+                                g07_report_text, read_errors = read_text_file_safely(
+                                    g07_report_path,
+                                    "sources/G07-constraint-transfer-report.md",
+                                )
+                                errors.extend(read_errors)
+                                if not read_errors:
+                                    errors.extend(
+                                        g07_pipeline.validate_constraint_transfer_report(
+                                            g07_report_text,
+                                            g07_plan_rows,
+                                            transfer_cards_by_id,
+                                            require_complete,
+                                        )
+                                    )
+                        except (OSError, RuntimeError, TypeError, ValueError) as error:
+                            errors.append(
+                                "cannot load G07 constraint-transfer validators: {0}".format(
+                                    error
+                                )
+                            )
+                        errors.extend(
+                            validate_g07_campaign_status(
+                                status_text, g07_plan_rows, len(transfer_cards)
+                            )
+                        )
+                        g07_review_text = ""
+                        g07_review_path = root / "governance/reviews/G07-adversarial-review.md"
+                        if is_regular_file_path(g07_review_path):
+                            g07_review_text, read_errors = read_text_file_safely(
+                                g07_review_path,
+                                "governance/reviews/G07-adversarial-review.md",
+                            )
+                            errors.extend(read_errors)
+                        errors.extend(
+                            validate_g07_review_clearance(status_text, g07_review_text)
+                        )
+                        if "G06 is **CLEARED**." not in g06_review_text:
+                            errors.append(
+                                "governance/reviews/G06-adversarial-review.md: G07 entry requires cleared G06 review"
+                            )
+                        errors.extend(validate_g07_allowed_artifacts(root, require_complete))
+                        errors.extend(validate_g04_cache_git_boundary(root))
             else:
                 errors.extend(validate_g04_campaign_status(status_text, download_rows))
                 review_text = ""

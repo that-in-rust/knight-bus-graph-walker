@@ -1,19 +1,36 @@
 # Arxiv Pattern Foundry Campaign Status
 
-- Active goal: `G06`
+- Active goal: `G07`
 - Goal state: `COMPLETE`
 - G02 state: `COMPLETE_VERIFIED`
 - G03 state: `COMPLETE_VERIFIED_CLEARED`
 - G04 state: `COMPLETE_VERIFIED_CLEARED`
 - G05 state: `COMPLETE_VERIFIED_CLEARED`
-- Implementation statement: Five disjoint read-only G06 lanes inspected all 427 pages of the frozen 25-paper corpus and adversarialized all 67 mechanisms. Independent review rejected the 81-card draft with six P1 and one P2 findings, then rejected the repaired 79-card draft with two P1 source-scope findings. The controller repaired reciprocal links, evidence bases, body locators, field-level provenance, and two semantic duplicate pairs. The third independent pass cleared 79 canonical cards, 174 pointers, all 92 reviewer/checksum-bound plan rows, and zero conflicts with P0=0, P1=0, and P2=0; no external request occurred.
-- Research state: `G06_COMPLETE_VERIFIED_CLEARED`
+- G06 state: `COMPLETE_VERIFIED_CLEARED`
+- Implementation statement: G07 is complete, verified, and independently cleared. It translated exactly 20 decision-relevant G05 mechanisms in four disjoint lanes of five, applied all 24 linked G06 failures, and produced 20 guarded speculative transfer cards with 100 symbolic resource terms. It selected no G08 architecture, ran no G09 experiment, made no external request, and made no performance claim.
+- Research state: `G07_COMPLETE_VERIFIED_CLEARED`
 - Completion state: `COMPLETE`
 - Validation state: `VERIFIED`
 - Review state: `CLEARED`
-- Recommended next goal: `G07`
-- Scope cap: exactly the existing 25 READ_COMPLETE papers, 67 G05 mechanism cards, 47 G05 pattern edges, 92 plan subjects, five disjoint lanes, zero external requests, zero added paper identities, and no explicit token cap
-- Journal: `arxiv-reference/journals/G06-progress.md`
+- Recommended next goal: `G08`
+- Scope cap: exactly 20 frozen G05 mechanisms, four disjoint lanes of five, at most 20 transfer cards, one independent reviewer, zero external requests, zero new papers or repositories, no G08 candidates, and no G09 experiments
+- Journal: `arxiv-reference/journals/G07-progress.md`
+- G07 frozen mechanisms: 20
+- G07 reader lanes: 4
+- G07 external requests: 0
+
+## G07 Verified Completion Counts
+
+| Measure | Count |
+|---|---:|
+| G07 frozen mechanisms | 20 |
+| G07 reader lanes | 4 |
+| Mechanisms per lane | 5 |
+| G07 terminal dispositions | 20 |
+| G07 constraint-transfer cards | 20 |
+| G07 external requests | 0 |
+| G08 architecture candidates created by G07 | 0 |
+| G09 experiments created by G07 | 0 |
 
 ## G06 Verified Completion Counts
 

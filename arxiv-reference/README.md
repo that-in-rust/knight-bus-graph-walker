@@ -21,7 +21,41 @@ Only one campaign goal may be active at a time. A goal must stop at its declared
 outputs and caps. Starting the recommended next goal always requires explicit
 authorization.
 
-## Current G06 Counterexample Corpus
+## Completed G07 Constraint-Transfer Corpus
+
+G07 translates exactly 20 decision-relevant G05 mechanisms through all 24
+linked G06 failures into 20 guarded Knight Bus transfer possibilities. The
+result is a constraint library for later architecture synthesis, not a selected
+architecture and not a performance claim.
+
+The central result is that an algorithm-layout specialization is admissible
+only as a guarded branch with an admission unit, symbolic RAM/I/O/preparation/
+storage/concurrency envelope, crossover condition, exactness boundary,
+reference fallback, receipt counters, calibration debt, and smallest
+falsifier. All 20 cards remain `SPECULATIVE_TRANSFER`; none has been measured
+or reproduced in Knight Bus.
+
+The canonical G07 entry points are:
+
+- `sources/G07-constraint-transfer-report.md` for the synthesis, all 20
+  dispositions, surviving invariant classes, explicit non-transfers, and G08
+  vocabulary;
+- `governance/g07-transfer-plan.tsv` for the frozen four-by-five reading plan,
+  terminal dispositions, reader/reviewer identities, calibration symbols, and
+  result checksums;
+- `evidence/constraint-transfer-cards/` for the 20 canonical guarded transfers;
+- `governance/reviews/G07-adversarial-review.md` for independent semantic and
+  resource-model review;
+- `governance/g07-constraint-transfer-contract.md` for the frozen transfer,
+  claim-label, resource-model, challenge, and falsifier semantics; and
+- `journals/G07-progress.md` for the complete resumable execution history.
+
+G07 creates no G08 architecture candidate and runs no G09 experiment. The
+independent review cleared all 20 cards after 47 bounded findings were repaired
+across six adversarial rounds and a final zero-finding closure verification.
+G08 is the recommended next goal, but it remains separately authorized.
+
+## Frozen G06 Counterexample Corpus
 
 G06 adversarialized the complete frozen G05 evidence corpus without adding a
 paper, making a network request, or beginning architecture synthesis. Five
@@ -48,9 +82,9 @@ The canonical G06 entry points are:
 
 G06 supplies failure envelopes, admission terms, and falsifiers. It does not
 claim portable numeric crossover points or measured Knight Bus performance,
-and it creates no constraint transfer, architecture candidate, experiment,
-implementation, or benchmark. G07 is the recommended next goal, but it remains
-separately authorized.
+and it created no constraint transfer, architecture candidate, experiment,
+implementation, or benchmark. G07 consumed its failure boundaries without
+mutating this frozen corpus.
 
 ## Frozen G05 Input Corpus
 
@@ -83,9 +117,9 @@ Bus RAM or latency delta, whole-process RSS enforcement, compatibility, or a
 customer outcome.
 
 G05 stopped before counterexample extraction, modern constraint transfer,
-architecture synthesis, and experiments. G06 has now completed only the
-counterexample layer; constraint transfer and later synthesis remain separately
-authorized goals.
+architecture synthesis, and experiments. G06 subsequently completed the
+counterexample layer, and G07 completed the speculative constraint-transfer
+layer. Architecture synthesis and experiments remain separately authorized.
 
 ## G00 Empty-Corpus State
 
@@ -104,7 +138,7 @@ architecture candidates, or product performance because G00 created none.
 The G00 closure state, zero decision-yield counts, verification evidence, and
 then-future G01 boundary are recorded in `governance/campaign-status.md` and
 `journals/G00-progress.md`. Later goals supersede that historical handoff; the
-current campaign state is the G06 counterexample corpus described above.
+current campaign state is the G07 constraint-transfer corpus described above.
 
 The G00 requirement closure matrix lives in
 `governance/G00-goal-packet.md`. It separates requirements that apply to the

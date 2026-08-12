@@ -7,6 +7,7 @@ import copy
 import csv
 import importlib.util
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -679,6 +680,31 @@ class ValidateG06CounterexampleContractTests(unittest.TestCase):
 
         self.assertIn(sentinel, errors)
         report_validator.assert_called_once()
+
+    def test_completed_scope_skips_maintenance(self) -> None:
+        """REQ-G06-SCOPE-002: closed G06 does not own later maintenance."""
+
+        validator = load_corpus_validator_module()
+        status_result = subprocess.CompletedProcess(
+            args=["git", "status"],
+            returncode=0,
+            stdout=b" D AGENTS.md\0 M .gitignore\0",
+            stderr=b"",
+        )
+        with mock.patch.object(
+            validator.subprocess, "run", return_value=status_result
+        ):
+            self.assertTrue(
+                validator.validate_g06_worktree_scope(
+                    REFERENCE_ROOT, enforce_scope=True
+                )
+            )
+            self.assertEqual(
+                validator.validate_g06_worktree_scope(
+                    REFERENCE_ROOT, enforce_scope=False
+                ),
+                [],
+            )
 
     def test_failure_envelope_is_canonical(self) -> None:
         """REQ-G06-CARD-001: one complete canonical card validates."""

@@ -4,7 +4,13 @@ Date: 2026-09-20. Status: active. This is a new research goal following the comp
 
 ## Publication Checkpoint
 
-The user requested a commit and push while this research was underway. This publication preserves the research plan and progress journal; it does not mark G1-G7 complete. At checkpoint preparation, the PostgreSQL, DuckDB and adoption evidence drafts had not yet been saved. Those drafts must be collected and integrated into the five-timeline comparison and final recommendation. No implementation or customer adoption has been demonstrated by this research checkpoint.
+The user requested a commit and push while this research was underway. The initial checkpoint preserved the research plan and progress journal. All three evidence drafts arrived during publication and are included in follow-up commits. They still need integration into the five-timeline comparison and final recommendation; G1-G7 are not complete. No implementation or customer adoption has been demonstrated by this research checkpoint.
+
+Available drafts:
+
+- [PostgreSQL extension feasibility](Postgres-Extension-Evidence.md): native deployment, hosted permission gates, resource accounting and graph alternatives.
+- [DuckDB extension feasibility](DuckDB-Extension-Evidence.md): authoring, distribution, platform boundaries, resource ownership and graph alternatives.
+- [OSS adoption precedents](OSS-Adoption-Precedents.md): four sourced cases, proposed activation experiments and limits on adoption claims.
 
 ## Objective
 
@@ -15,9 +21,9 @@ Determine whether an OSS PostgreSQL or DuckDB extension is the best first adopti
 | ID | Required result | State |
 | --- | --- | --- |
 | G1 | Incorporate existing product evidence, seventeen mechanism options, prior narrow Bolt proof and complete lifecycle constraints | In progress |
-| G2 | Verify PostgreSQL extension authoring/distribution, managed-host permission and isolation constraints, relevant competitors and OSS boundaries using primary sources | Assigned |
-| G3 | Verify DuckDB extension authoring/distribution, version/platform and security/resource constraints, relevant competitors and OSS boundaries using primary sources | Assigned |
-| G4 | Evaluate actual adoption precedents and distinguish discovery, installation, activation, retention and revenue | Assigned plus lead synthesis |
+| G2 | Verify PostgreSQL extension authoring/distribution, managed-host permission and isolation constraints, relevant competitors and OSS boundaries using primary sources | Evidence draft saved; explicit gaps remain |
+| G3 | Verify DuckDB extension authoring/distribution, version/platform and security/resource constraints, relevant competitors and OSS boundaries using primary sources | Evidence draft saved; explicit gaps remain |
+| G4 | Evaluate actual adoption precedents and distinguish discovery, installation, activation, retention and revenue | Four-case draft saved; lead synthesis pending |
 | G5 | Compare five plausible GTM timelines with causal steps, user/operator experience, tradeoffs, reversibility and kill criteria | Pending synthesis |
 | G6 | Recommend an initial workload/package/channel and a practical next-quarter plan, with conditional alternatives and measurable adoption tests | Pending synthesis |
 | G7 | Provide source-linked evidence, unresolved questions, skepticism and a completion audit; no unsupported market or performance guarantees | Active |

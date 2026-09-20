@@ -1,10 +1,16 @@
 # Open Source Extension Go To Market Research
 
-Date: 2026-09-20. Status: active. This is a new research goal following the completed and committed [4 GB research](../research_4gb_20260919/README.md).
+Date: 2026-09-20. Status: research synthesis complete; implementation, deployment and customer validation remain unexecuted. This goal follows the completed and committed [4 GB research](../research_4gb_20260919/README.md).
 
-## Publication Checkpoint
+## Start Here
 
-The user requested a commit and push while this research was underway. The initial checkpoint preserved the research plan and progress journal. All three evidence drafts arrived during publication and are included in follow-up commits. They still need integration into the five-timeline comparison and final recommendation; G1-G7 are not complete. No implementation or customer adoption has been demonstrated by this research checkpoint.
+Read [GTM Decision Memo](GTM-Decision-Memo.md) for the recommendation, five causal timelines, twelve-week sequence, adoption model and verification-first experiments. [Lead Evidence and Decision Changes](Lead-Evidence-and-Decision-Changes.md) records new primary-source controls and integration with the prior corpus. [Completion Audit](Completion-Audit.md) maps the full research objective to evidence and preserves its limits.
+
+The recommendation: an independently runnable bounded engine for one repeated dependency-investigation workflow; DuckDB is the leading native-plugin experiment for local SQL users, while PostgreSQL-native needs an eligible operator/sponsor. A concrete product partner or matching structural workload can change the order. This is a researched decision, not proven adoption.
+
+## Earlier Publication Checkpoint
+
+The user requested a commit and push while this research was underway. The initial checkpoint preserved the research plan and progress journal. All three evidence drafts arrived during publication and were included in follow-up commits through `46e59d1`. At that checkpoint G1-G7 were incomplete. The subsequent goal continuation supplied the synthesis and audit linked above. No implementation or customer adoption has been demonstrated by either research stage.
 
 Available drafts:
 
@@ -20,13 +26,13 @@ Determine whether an OSS PostgreSQL or DuckDB extension is the best first adopti
 
 | ID | Required result | State |
 | --- | --- | --- |
-| G1 | Incorporate existing product evidence, seventeen mechanism options, prior narrow Bolt proof and complete lifecycle constraints | In progress |
-| G2 | Verify PostgreSQL extension authoring/distribution, managed-host permission and isolation constraints, relevant competitors and OSS boundaries using primary sources | Evidence draft saved; explicit gaps remain |
-| G3 | Verify DuckDB extension authoring/distribution, version/platform and security/resource constraints, relevant competitors and OSS boundaries using primary sources | Evidence draft saved; explicit gaps remain |
-| G4 | Evaluate actual adoption precedents and distinguish discovery, installation, activation, retention and revenue | Four-case draft saved; lead synthesis pending |
-| G5 | Compare five plausible GTM timelines with causal steps, user/operator experience, tradeoffs, reversibility and kill criteria | Pending synthesis |
-| G6 | Recommend an initial workload/package/channel and a practical next-quarter plan, with conditional alternatives and measurable adoption tests | Pending synthesis |
-| G7 | Provide source-linked evidence, unresolved questions, skepticism and a completion audit; no unsupported market or performance guarantees | Active |
+| G1 | Incorporate existing product evidence, seventeen mechanism options, prior narrow Bolt proof and complete lifecycle constraints | Complete research integration in memo and lead evidence |
+| G2 | Verify PostgreSQL extension authoring/distribution, managed-host permission and isolation constraints, relevant competitors and OSS boundaries using primary sources | Complete feasibility research; exact deployment/implementation/license gates explicitly retained |
+| G3 | Verify DuckDB extension authoring/distribution, version/platform and security/resource constraints, relevant competitors and OSS boundaries using primary sources | Complete feasibility research; exact target API/platform/hosting and execution gates explicitly retained |
+| G4 | Evaluate actual adoption precedents and distinguish discovery, installation, activation, retention and revenue | Complete four-case analysis and synthesis; no Knight Bus adoption claim |
+| G5 | Compare five plausible GTM timelines with causal steps, user/operator experience, tradeoffs, reversibility and kill criteria | Complete: memo Timelines A-E and cross-timeline analysis |
+| G6 | Recommend an initial workload/package/channel and a practical next-quarter plan, with conditional alternatives and measurable adoption tests | Complete: memo Decision Filter, twelve-week sequence and measurement package |
+| G7 | Provide source-linked evidence, unresolved questions, skepticism and a completion audit; no unsupported market or performance guarantees | Complete: reports, challenge/verification sections, final audit and journal |
 
 ## Work Allocation
 

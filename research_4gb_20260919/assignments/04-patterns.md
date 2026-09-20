@@ -1,0 +1,50 @@
+# Reading Assignment: 04-patterns
+
+State: pending. Reading completion must be recorded in the lane evidence document with actual consumed spans; counts/hashes alone do not establish understanding.
+
+| Path | Kind | Lines | Bytes |
+| --- | --- | ---: | ---: |
+| `graph-database-rewrite-references-202606/ASSIGNMENT-MANIFEST.md` | document | 97 | 3934 |
+| `graph-database-rewrite-references-202606/clickhouse-focused-codebase-memory-status.tsv` | supporting-table | 7 | 3358 |
+| `graph-database-rewrite-references-202606/clickhouse-focused-codebase-memory-targets.tsv` | supporting-table | 7 | 2143 |
+| `graph-database-rewrite-references-202606/completion-audit.md` | document | 167 | 7176 |
+| `graph-database-rewrite-references-202606/coverage-spine.md` | document | 91 | 3491 |
+| `graph-database-rewrite-references-202606/desktop-repository-inventory.txt` | document | 911 | 111905 |
+| `graph-database-rewrite-references-202606/gitrefrepo-codebase-memory-status.tsv` | supporting-table | 107 | 52177 |
+| `graph-database-rewrite-references-202606/gitrefrepo-coverage-ledger.tsv` | supporting-table | 107 | 31914 |
+| `graph-database-rewrite-references-202606/graph-database-patterns-1.md` | document | 2600 | 92560 |
+| `graph-database-rewrite-references-202606/graph-database-patterns-2.md` | document | 1951 | 77686 |
+| `graph-database-rewrite-references-202606/graph-database-patterns-3.md` | document | 1603 | 73598 |
+| `graph-database-rewrite-references-202606/graph-database-patterns-4.md` | document | 1741 | 88473 |
+| `graph-database-rewrite-references-202606/graph-database-patterns-5.md` | document | 2020 | 61917 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/graph-database-patterns-1.md` | document | 2480 | 88376 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/graph-database-patterns-2.md` | document | 1951 | 77686 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/meta-graph-database-patterns-1.md` | document | 2015 | 67776 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/meta-graph-database-patterns-2.md` | document | 1951 | 77686 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/meta-graph-database-patterns-3.md` | document | 920 | 32072 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/meta-graph-database-patterns-4.md` | document | 2192 | 88548 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/meta-graph-database-patterns-5.md` | document | 1590 | 47230 |
+| `graph-database-rewrite-references-202606/legacy-worker-output/README.md` | document | 18 | 623 |
+| `graph-database-rewrite-references-202606/meta-graph-database-patterns-1.md` | document | 2015 | 67766 |
+| `graph-database-rewrite-references-202606/meta-graph-database-patterns-2.md` | document | 2246 | 92079 |
+| `graph-database-rewrite-references-202606/meta-graph-database-patterns-3.md` | document | 2309 | 76731 |
+| `graph-database-rewrite-references-202606/meta-graph-database-patterns-4.md` | document | 2192 | 88470 |
+| `graph-database-rewrite-references-202606/meta-graph-database-patterns-5.md` | document | 2042 | 70868 |
+| `graph-database-rewrite-references-202606/progress-journal.md` | document | 556 | 31061 |
+| `graph-database-rewrite-references-202606/repo-coverage-ledger.tsv` | supporting-table | 912 | 227075 |
+| `graph-database-rewrite-references-202606/repo-metadata-browse-ledger.tsv` | supporting-table | 912 | 456494 |
+| `graph-database-rewrite-references-202606/repository-slice-counts.tsv` | supporting-table | 6 | 151 |
+| `graph-database-rewrite-references-202606/supermeta-graph-database-patterns-1.md` | document | 2067 | 70732 |
+| `graph-database-rewrite-references-202606/supermeta-graph-database-patterns-2.md` | document | 2621 | 108791 |
+| `graph-database-rewrite-references-202606/supermeta-graph-database-patterns-3.md` | document | 920 | 32072 |
+| `graph-database-rewrite-references-202606/supermeta-graph-database-patterns-4.md` | document | 1741 | 88473 |
+| `graph-database-rewrite-references-202606/supermeta-graph-database-patterns-5.md` | document | 2160 | 72248 |
+| `graph-database-rewrite-references-202606/supplemental-gap-closure-batch-01.md` | document | 718 | 24247 |
+| `graph-database-rewrite-references-202606/supplemental-gap-closure-batch-02.md` | document | 930 | 31464 |
+| `graph-database-rewrite-references-202606/supplemental-gap-closure-batch-03.md` | document | 820 | 25743 |
+| `graph-database-rewrite-references-202606/supplemental-gap-closure-batch-04.md` | document | 726 | 33446 |
+| `graph-database-rewrite-references-202606/supplemental-gap-closure-batch-05.md` | document | 810 | 31991 |
+| `graph-database-rewrite-references-202606/supplemental-parser-code-intelligence-patterns.md` | document | 2192 | 88548 |
+| `graph-database-rewrite-references-202606/supplemental-storage-rust-systems-patterns.md` | document | 2310 | 76849 |
+| `graph-database-rewrite-references-202606/V003-Goal-Closure-20260707.md` | document | 88 | 3419 |
+| `graph-database-rewrite-references-202606/V004-Goal-Closure-20260707.md` | document | 72 | 3372 |

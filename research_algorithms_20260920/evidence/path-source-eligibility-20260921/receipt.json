@@ -1,0 +1,2982 @@
+{
+  "code_sha256": {
+    "path_source_eligibility.py": "433f7e104d7fa5e712089ec6c264fa8badd58111c2abd8359d6b2c34ec28facc",
+    "test_path_source_eligibility.py": "eabd3aa9ab9ab9cfae9338d3c118f5b24e29552c226e373800824fa4b70eb73d"
+  },
+  "duplicate_edges_removed": 0,
+  "input_sha256": {
+    "docs_PRD03/reference-learning/neo4j-family-dependency-graphs/family-file-edges.tsv": "84065c3f87961c60889b4bbf5ac1a774aa911ec103e942c2d1a05c1b2f5164da",
+    "docs_PRD03/reference-learning/neo4j-family-dependency-graphs/family-file-nodes.tsv": "0ba39215498a05df12747e0819c348b8723c2b17bd0bb5a4d8a25040b1aa40c8"
+  },
+  "kind": "resident eligibility and exact semantics, not timing or RAM measurement",
+  "loops_removed": 6,
+  "nodes": 23972,
+  "profiles": [
+    {
+      "A": 142918,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19596,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 61,
+              "revivals": 0,
+              "states": 19597,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 19596,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19596,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 19596
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19597,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 61,
+              "revivals": 0,
+              "states": 19598,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 19597,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19597,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 19597
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19604,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 61,
+              "revivals": 0,
+              "states": 19605,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 19604,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19604,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5,
+            2325,
+            5789,
+            8608,
+            11363,
+            14008,
+            17617,
+            21122
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 19604
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19628,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 61,
+              "revivals": 0,
+              "states": 19629,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2324,
+              "revivals": 0,
+              "states": 19628,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 19628,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5,
+            607,
+            1363,
+            1898,
+            2325,
+            2657,
+            3843,
+            5789,
+            6953,
+            7722,
+            8393,
+            8499,
+            8608,
+            9841,
+            10339,
+            10873,
+            11363,
+            11685,
+            11904,
+            13115,
+            14008,
+            14710,
+            15896,
+            17213,
+            17617,
+            17972,
+            18744,
+            20355,
+            21122,
+            21624,
+            22279,
+            23008
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 19628
+        }
+      ],
+      "dataset": "family",
+      "degree_one_cycles": 18,
+      "direction": "forward-dependency",
+      "indegree_one": 4394,
+      "ledger_fraction": 0.9702907110948171,
+      "m": 147294,
+      "max_depth": 5,
+      "mode": "unit",
+      "n": 23972,
+      "q": 19596,
+      "sources": [
+        {
+          "file": "CODE_OF_CONDUCT.md",
+          "repo": "cypher-dsl-src",
+          "vertex": 0
+        },
+        {
+          "file": "packages/neo4j-driver-deno/lib/bolt-connection/rediscovery/rediscovery.js",
+          "repo": "neo4j-javascript-driver-src",
+          "vertex": 10917
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/database/Database.java",
+          "repo": "neo4j-src",
+          "vertex": 20254
+        },
+        {
+          "file": "xtask/src/main.rs",
+          "repo": "neo4rs-src",
+          "vertex": 23971
+        }
+      ],
+      "state_fraction": 0.8174536959786417
+    },
+    {
+      "A": 140303,
+      "D": 3272,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 20253
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20253,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            19
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 20253
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 15,
+              "states": 20254,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2325,
+              "revivals": 15,
+              "states": 20254,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 15,
+              "states": 20254,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 15,
+              "states": 20254,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            19,
+            3587,
+            7468,
+            8846,
+            12387,
+            16377,
+            20167,
+            22507
+          ],
+          "k": 8,
+          "r": 15,
+          "requested_k": 8,
+          "states": 20254
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 19,
+              "states": 20261,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2325,
+              "revivals": 19,
+              "states": 20261,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 19,
+              "states": 20261,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 19,
+              "states": 20261,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            19,
+            691,
+            1804,
+            2523,
+            3587,
+            4119,
+            5553,
+            5759,
+            6286,
+            7468,
+            7735,
+            8478,
+            8846,
+            9732,
+            10537,
+            11471,
+            12387,
+            13063,
+            13493,
+            13775,
+            15126,
+            16059,
+            16377,
+            17958,
+            18578,
+            18787,
+            18845,
+            19141,
+            20167,
+            20705,
+            20734,
+            22507
+          ],
+          "k": 32,
+          "r": 19,
+          "requested_k": 32,
+          "states": 20261
+        }
+      ],
+      "dataset": "family",
+      "degree_one_cycles": null,
+      "direction": "forward-dependency",
+      "indegree_one": 4394,
+      "ledger_fraction": 0.9525371026654175,
+      "m": 147294,
+      "max_depth": 51,
+      "mode": "reachability",
+      "n": 23972,
+      "q": 20253,
+      "sources": [
+        {
+          "file": "CODE_OF_CONDUCT.md",
+          "repo": "cypher-dsl-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/database/Database.java",
+          "repo": "neo4j-src",
+          "vertex": 20254
+        },
+        {
+          "file": "community/values/src/main/java/org/neo4j/values/virtual/VirtualNodeValue.java",
+          "repo": "neo4j-src",
+          "vertex": 23296
+        },
+        {
+          "file": "xtask/src/main.rs",
+          "repo": "neo4rs-src",
+          "vertex": 23971
+        }
+      ],
+      "state_fraction": 0.8448606707825796
+    },
+    {
+      "A": 143985,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20663,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 47,
+              "revivals": 0,
+              "states": 20664,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20663,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20663,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 20663
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20664,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 47,
+              "revivals": 0,
+              "states": 20665,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20664,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20664,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            8
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 20664
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20671,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 47,
+              "revivals": 0,
+              "states": 20672,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20671,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20671,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            8,
+            2317,
+            4187,
+            7399,
+            10901,
+            15825,
+            19386,
+            20280
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 20671
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20695,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 47,
+              "revivals": 0,
+              "states": 20696,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20695,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20695,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            8,
+            490,
+            1028,
+            1725,
+            2317,
+            2639,
+            3382,
+            3412,
+            4187,
+            4643,
+            4955,
+            6691,
+            7399,
+            9648,
+            9910,
+            10625,
+            10901,
+            11273,
+            11467,
+            12406,
+            13302,
+            15175,
+            15825,
+            18059,
+            18385,
+            18562,
+            19386,
+            19570,
+            20280,
+            21879,
+            22890,
+            23777
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 20695
+        }
+      ],
+      "dataset": "family",
+      "degree_one_cycles": 21,
+      "direction": "reverse-impact",
+      "indegree_one": 3330,
+      "ledger_fraction": 0.9775347264654365,
+      "m": 147294,
+      "max_depth": 8,
+      "mode": "unit",
+      "n": 23972,
+      "q": 20663,
+      "sources": [
+        {
+          "file": "CODE_OF_CONDUCT.md",
+          "repo": "cypher-dsl-src",
+          "vertex": 0
+        },
+        {
+          "file": "packages/bolt-connection/src/bolt/bolt-protocol-v5x8.transformer.js",
+          "repo": "neo4j-javascript-driver-src",
+          "vertex": 10607
+        },
+        {
+          "file": "community/testing/test-utils/src/main/java/org/neo4j/test/extension/Inject.java",
+          "repo": "neo4j-src",
+          "vertex": 23075
+        },
+        {
+          "file": "xtask/src/main.rs",
+          "repo": "neo4rs-src",
+          "vertex": 23971
+        }
+      ],
+      "state_fraction": 0.8619639579509427
+    },
+    {
+      "A": 135557,
+      "D": 8489,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 20724
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 20724,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 20724
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 7,
+              "states": 20725,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 7,
+              "states": 20725,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 7,
+              "states": 20725,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 7,
+              "states": 20725,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5,
+            3611,
+            4657,
+            9631,
+            12646,
+            15398,
+            18384,
+            22255
+          ],
+          "k": 8,
+          "r": 7,
+          "requested_k": 8,
+          "states": 20725
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 43,
+              "states": 20728,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 43,
+              "states": 20728,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 43,
+              "states": 20728,
+              "target_checks": 23972
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 43,
+              "states": 20728,
+              "target_checks": 23972
+            }
+          ],
+          "cut_children": [
+            5,
+            1352,
+            2013,
+            2655,
+            3611,
+            3887,
+            4657,
+            5040,
+            6398,
+            7112,
+            8106,
+            8837,
+            9631,
+            9779,
+            10991,
+            11828,
+            12646,
+            13482,
+            14550,
+            15398,
+            15541,
+            16091,
+            18039,
+            18384,
+            19030,
+            20197,
+            20842,
+            21650,
+            22255,
+            22648,
+            22960,
+            23161
+          ],
+          "k": 32,
+          "r": 43,
+          "requested_k": 32,
+          "states": 20728
+        }
+      ],
+      "dataset": "family",
+      "degree_one_cycles": null,
+      "direction": "reverse-impact",
+      "indegree_one": 3330,
+      "ledger_fraction": 0.9203158309231876,
+      "m": 147294,
+      "max_depth": 36,
+      "mode": "reachability",
+      "n": 23972,
+      "q": 20724,
+      "sources": [
+        {
+          "file": "CODE_OF_CONDUCT.md",
+          "repo": "cypher-dsl-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/recovery/facade/RecoveryFacade.java",
+          "repo": "neo4j-src",
+          "vertex": 21030
+        },
+        {
+          "file": "community/testing/test-utils/src/main/java/org/neo4j/test/extension/Inject.java",
+          "repo": "neo4j-src",
+          "vertex": 23075
+        },
+        {
+          "file": "xtask/src/main.rs",
+          "repo": "neo4rs-src",
+          "vertex": 23971
+        }
+      ],
+      "state_fraction": 0.8645085933589187
+    },
+    {
+      "A": 83522,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 8987,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 224,
+              "revivals": 0,
+              "states": 8988,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 8987,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 8987,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 8987
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 8988,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 224,
+              "revivals": 0,
+              "states": 8989,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 8988,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 8988,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            15
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 8988
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 8995,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 224,
+              "revivals": 0,
+              "states": 8996,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 8995,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 8995,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            15,
+            3093,
+            4749,
+            5034,
+            5283,
+            8020,
+            8693,
+            9367
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 8995
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9019,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 224,
+              "revivals": 0,
+              "states": 9019,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2323,
+              "revivals": 0,
+              "states": 9019,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 9019,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            15,
+            593,
+            671,
+            799,
+            1753,
+            2069,
+            2498,
+            3093,
+            3355,
+            4006,
+            4249,
+            4749,
+            4823,
+            4874,
+            4938,
+            5034,
+            5283,
+            5511,
+            5891,
+            6460,
+            7544,
+            7731,
+            8020,
+            8030,
+            8359,
+            8693,
+            8941,
+            9169,
+            9367,
+            9961,
+            10062,
+            10332
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 9019
+        }
+      ],
+      "dataset": "neo4j-src",
+      "degree_one_cycles": 0,
+      "direction": "forward-dependency",
+      "indegree_one": 1751,
+      "ledger_fraction": 0.9794659505353395,
+      "m": 85273,
+      "max_depth": 4,
+      "mode": "unit",
+      "n": 10738,
+      "q": 8987,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/codegen/src/main/java/org/neo4j/codegen/bytecode/Catch.java",
+          "repo": "neo4j-src",
+          "vertex": 799
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/database/Database.java",
+          "repo": "neo4j-src",
+          "vertex": 7525
+        },
+        {
+          "file": "packaging/standalone/standalone-community/src/test/java/org/neo4j/assembly/DistributedConfigTest.java",
+          "repo": "neo4j-src",
+          "vertex": 10737
+        }
+      ],
+      "state_fraction": 0.8369342521884895
+    },
+    {
+      "A": 81927,
+      "D": 1721,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 9113
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2326,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 0,
+              "states": 9113,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            12
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 9113
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 4,
+              "states": 9116,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2325,
+              "revivals": 4,
+              "states": 9116,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 190,
+              "revivals": 4,
+              "states": 9116,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 372,
+              "revivals": 4,
+              "states": 9116,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            12,
+            1984,
+            2285,
+            4369,
+            6427,
+            8746,
+            10175,
+            10648
+          ],
+          "k": 8,
+          "r": 4,
+          "requested_k": 8,
+          "states": 9116
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 21,
+              "states": 9120,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2320,
+              "revivals": 21,
+              "states": 9120,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 189,
+              "revivals": 21,
+              "states": 9120,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 367,
+              "revivals": 21,
+              "states": 9120,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            12,
+            304,
+            1114,
+            1252,
+            1984,
+            2285,
+            2585,
+            2876,
+            3210,
+            3616,
+            4369,
+            4897,
+            5082,
+            5412,
+            5466,
+            6120,
+            6228,
+            6427,
+            6537,
+            7518,
+            7765,
+            7775,
+            7857,
+            8304,
+            8746,
+            9153,
+            10020,
+            10175,
+            10350,
+            10359,
+            10473,
+            10648
+          ],
+          "k": 32,
+          "r": 21,
+          "requested_k": 32,
+          "states": 9120
+        }
+      ],
+      "dataset": "neo4j-src",
+      "degree_one_cycles": null,
+      "direction": "forward-dependency",
+      "indegree_one": 1751,
+      "ledger_fraction": 0.9607613195266966,
+      "m": 85273,
+      "max_depth": 51,
+      "mode": "reachability",
+      "n": 10738,
+      "q": 9113,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/database/Database.java",
+          "repo": "neo4j-src",
+          "vertex": 7525
+        },
+        {
+          "file": "community/values/src/main/java/org/neo4j/values/virtual/VirtualNodeValue.java",
+          "repo": "neo4j-src",
+          "vertex": 10567
+        },
+        {
+          "file": "packaging/standalone/standalone-community/src/test/java/org/neo4j/assembly/DistributedConfigTest.java",
+          "repo": "neo4j-src",
+          "vertex": 10737
+        }
+      ],
+      "state_fraction": 0.8486682808716707
+    },
+    {
+      "A": 84129,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9594,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9595,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 9594,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9594,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 9594
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9595,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9596,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 9595,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9595,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            8
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 9595
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9602,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9603,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 9602,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9602,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            8,
+            242,
+            1119,
+            2296,
+            4129,
+            6114,
+            7542,
+            9439
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 9602
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9626,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9627,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1284,
+              "revivals": 0,
+              "states": 9626,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9626,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            8,
+            242,
+            735,
+            889,
+            1119,
+            1455,
+            2296,
+            2540,
+            3448,
+            3666,
+            4129,
+            4166,
+            4537,
+            5403,
+            5506,
+            5799,
+            6025,
+            6114,
+            6634,
+            6733,
+            6816,
+            7021,
+            7542,
+            7553,
+            8433,
+            8810,
+            9439,
+            9882,
+            9902,
+            9994,
+            10206,
+            10345
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 9626
+        }
+      ],
+      "dataset": "neo4j-src",
+      "degree_one_cycles": 5,
+      "direction": "reverse-impact",
+      "indegree_one": 1149,
+      "ledger_fraction": 0.98658426465587,
+      "m": 85273,
+      "max_depth": 4,
+      "mode": "unit",
+      "n": 10738,
+      "q": 9594,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/common/src/test/java/org/neo4j/memory/ThreadSafePeakMemoryTrackerTest.java",
+          "repo": "neo4j-src",
+          "vertex": 1150
+        },
+        {
+          "file": "community/testing/test-utils/src/main/java/org/neo4j/test/extension/Inject.java",
+          "repo": "neo4j-src",
+          "vertex": 10346
+        },
+        {
+          "file": "packaging/standalone/standalone-community/src/test/java/org/neo4j/assembly/DistributedConfigTest.java",
+          "repo": "neo4j-src",
+          "vertex": 10737
+        }
+      ],
+      "state_fraction": 0.8934624697336562
+    },
+    {
+      "A": 79303,
+      "D": 4747,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9515,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 0,
+              "states": 9515,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 0,
+              "states": 9515,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 9515,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 9515
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 1,
+              "states": 9516,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 1,
+              "states": 9516,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 1,
+              "states": 9516,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 1,
+              "states": 9516,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            7
+          ],
+          "k": 1,
+          "r": 1,
+          "requested_k": 1,
+          "states": 9516
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 105,
+              "states": 9519,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1038,
+              "revivals": 105,
+              "states": 9519,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1285,
+              "revivals": 105,
+              "states": 9519,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 105,
+              "states": 9519,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            7,
+            937,
+            2995,
+            3742,
+            6662,
+            7530,
+            8271,
+            8798
+          ],
+          "k": 8,
+          "r": 105,
+          "requested_k": 8,
+          "states": 9519
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 121,
+              "states": 9525,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1036,
+              "revivals": 121,
+              "states": 9525,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1284,
+              "revivals": 121,
+              "states": 9525,
+              "target_checks": 10738
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 121,
+              "states": 9525,
+              "target_checks": 10738
+            }
+          ],
+          "cut_children": [
+            7,
+            522,
+            669,
+            937,
+            1008,
+            1382,
+            1744,
+            1899,
+            2405,
+            2995,
+            3043,
+            3533,
+            3640,
+            3742,
+            4372,
+            4725,
+            5141,
+            5433,
+            5558,
+            5669,
+            6108,
+            6606,
+            6662,
+            6881,
+            7242,
+            7311,
+            7530,
+            8271,
+            8798,
+            9293,
+            9581,
+            9938
+          ],
+          "k": 32,
+          "r": 121,
+          "requested_k": 32,
+          "states": 9525
+        }
+      ],
+      "dataset": "neo4j-src",
+      "degree_one_cycles": null,
+      "direction": "reverse-impact",
+      "indegree_one": 1149,
+      "ledger_fraction": 0.9299895629331676,
+      "m": 85273,
+      "max_depth": 36,
+      "mode": "reachability",
+      "n": 10738,
+      "q": 9515,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-src",
+          "vertex": 0
+        },
+        {
+          "file": "community/kernel/src/main/java/org/neo4j/kernel/recovery/facade/RecoveryFacade.java",
+          "repo": "neo4j-src",
+          "vertex": 8301
+        },
+        {
+          "file": "community/testing/test-utils/src/main/java/org/neo4j/test/extension/Inject.java",
+          "repo": "neo4j-src",
+          "vertex": 10346
+        },
+        {
+          "file": "packaging/standalone/standalone-community/src/test/java/org/neo4j/assembly/DistributedConfigTest.java",
+          "repo": "neo4j-src",
+          "vertex": 10737
+        }
+      ],
+      "state_fraction": 0.886105420003725
+    },
+    {
+      "A": 29737,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4049,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 114,
+              "revivals": 0,
+              "states": 4050,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1873,
+              "revivals": 0,
+              "states": 4049,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4049,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 4049
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4050,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 114,
+              "revivals": 0,
+              "states": 4051,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1873,
+              "revivals": 0,
+              "states": 4050,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4050,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            12
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 4050
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4057,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 114,
+              "revivals": 0,
+              "states": 4058,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1868,
+              "revivals": 0,
+              "states": 4057,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4057,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            12,
+            922,
+            1190,
+            2004,
+            3056,
+            3668,
+            3970,
+            4053
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 4057
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4081,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 114,
+              "revivals": 0,
+              "states": 4081,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1856,
+              "revivals": 0,
+              "states": 4081,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4081,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            12,
+            208,
+            378,
+            589,
+            922,
+            966,
+            1013,
+            1092,
+            1190,
+            1290,
+            1421,
+            1550,
+            2004,
+            2347,
+            2598,
+            2943,
+            3056,
+            3083,
+            3348,
+            3374,
+            3668,
+            3879,
+            3917,
+            3942,
+            3970,
+            3995,
+            4023,
+            4053,
+            4087,
+            4114,
+            4689,
+            4696
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 4081
+        }
+      ],
+      "dataset": "neo4j-gds-src",
+      "degree_one_cycles": 0,
+      "direction": "forward-dependency",
+      "indegree_one": 872,
+      "ledger_fraction": 0.9715116469012381,
+      "m": 30609,
+      "max_depth": 4,
+      "mode": "unit",
+      "n": 4921,
+      "q": 4049,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-gds-src",
+          "vertex": 0
+        },
+        {
+          "file": "proc/common/src/main/java/org/neo4j/gds/MutateNodePropertyListFunction.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 3374
+        },
+        {
+          "file": "procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 3945
+        },
+        {
+          "file": "triplet-graph-builder/src/test/java/org/neo4j/gds/projection/RelationshipPropertyExtractorTest.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 4920
+        }
+      ],
+      "state_fraction": 0.8228002438528754
+    },
+    {
+      "A": 29453,
+      "D": 365,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 8,
+              "reachable_targets": 8,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1873,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 4130
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 8,
+              "reachable_targets": 8,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1873,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4130,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            4744
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 4130
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4131,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 8,
+              "reachable_targets": 8,
+              "revivals": 0,
+              "states": 4131,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1870,
+              "revivals": 0,
+              "states": 4131,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 0,
+              "states": 4131,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            1487,
+            1726,
+            1776,
+            2461,
+            3094,
+            3685,
+            4220,
+            4744
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 4131
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 7,
+              "states": 4135,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 8,
+              "reachable_targets": 8,
+              "revivals": 7,
+              "states": 4135,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1865,
+              "revivals": 7,
+              "states": 4135,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 29,
+              "revivals": 7,
+              "states": 4135,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            18,
+            970,
+            1034,
+            1075,
+            1126,
+            1242,
+            1410,
+            1476,
+            1487,
+            1584,
+            1726,
+            1730,
+            1776,
+            1917,
+            2461,
+            2580,
+            2747,
+            2799,
+            2881,
+            3094,
+            3472,
+            3685,
+            3700,
+            3775,
+            3909,
+            4003,
+            4102,
+            4131,
+            4220,
+            4533,
+            4744,
+            4856
+          ],
+          "k": 32,
+          "r": 7,
+          "requested_k": 32,
+          "states": 4135
+        }
+      ],
+      "dataset": "neo4j-gds-src",
+      "degree_one_cycles": null,
+      "direction": "forward-dependency",
+      "indegree_one": 872,
+      "ledger_fraction": 0.9622333300663204,
+      "m": 30609,
+      "max_depth": 16,
+      "mode": "reachability",
+      "n": 4921,
+      "q": 4130,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-gds-src",
+          "vertex": 0
+        },
+        {
+          "file": "gds-values/src/main/java/org/neo4j/gds/values/Array.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 2274
+        },
+        {
+          "file": "procedures/algorithms-facade/src/main/java/org/neo4j/gds/procedures/algorithms/community/LocalCommunityProcedureFacade.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 3945
+        },
+        {
+          "file": "triplet-graph-builder/src/test/java/org/neo4j/gds/projection/RelationshipPropertyExtractorTest.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 4920
+        }
+      ],
+      "state_fraction": 0.8392603129445235
+    },
+    {
+      "A": 30101,
+      "D": 0,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4413,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2832,
+              "revivals": 0,
+              "states": 4413,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 1359,
+              "revivals": 0,
+              "states": 4414,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4413,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 4413
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4414,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2832,
+              "revivals": 0,
+              "states": 4414,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 1359,
+              "revivals": 0,
+              "states": 4415,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4414,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            133
+          ],
+          "k": 1,
+          "r": 0,
+          "requested_k": 1,
+          "states": 4414
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4421,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2832,
+              "revivals": 0,
+              "states": 4421,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 1359,
+              "revivals": 0,
+              "states": 4422,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4421,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            133,
+            706,
+            1005,
+            1467,
+            2683,
+            4545,
+            4728,
+            4895
+          ],
+          "k": 8,
+          "r": 0,
+          "requested_k": 8,
+          "states": 4421
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4445,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2829,
+              "revivals": 0,
+              "states": 4445,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 1357,
+              "revivals": 0,
+              "states": 4445,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4445,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            59,
+            133,
+            512,
+            631,
+            706,
+            718,
+            1005,
+            1314,
+            1451,
+            1467,
+            1557,
+            1822,
+            1828,
+            1854,
+            1887,
+            1892,
+            2146,
+            2276,
+            2456,
+            2570,
+            2581,
+            2683,
+            2753,
+            2793,
+            4332,
+            4545,
+            4549,
+            4720,
+            4728,
+            4865,
+            4895,
+            4913
+          ],
+          "k": 32,
+          "r": 0,
+          "requested_k": 32,
+          "states": 4445
+        }
+      ],
+      "dataset": "neo4j-gds-src",
+      "degree_one_cycles": 3,
+      "direction": "reverse-impact",
+      "indegree_one": 511,
+      "ledger_fraction": 0.9834035741121893,
+      "m": 30609,
+      "max_depth": 4,
+      "mode": "unit",
+      "n": 4921,
+      "q": 4413,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-gds-src",
+          "vertex": 0
+        },
+        {
+          "file": "core-api/src/main/java/org/neo4j/gds/api/Graph.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 1485
+        },
+        {
+          "file": "gds-values/src/main/java/org/neo4j/gds/values/DoubleArray.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 2276
+        },
+        {
+          "file": "triplet-graph-builder/src/test/java/org/neo4j/gds/projection/RelationshipPropertyExtractorTest.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 4920
+        }
+      ],
+      "state_fraction": 0.8967689494005283
+    },
+    {
+      "A": 29282,
+      "D": 855,
+      "cut_batches": [
+        {
+          "audits": [
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4449,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 16,
+              "reachable_targets": 2832,
+              "revivals": 0,
+              "states": 4449,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4450,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 0,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 0,
+              "states": 4449,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [],
+          "k": 0,
+          "r": 0,
+          "requested_k": 0,
+          "states": 4449
+        },
+        {
+          "audits": [
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 19,
+              "states": 4449,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 16,
+              "reachable_targets": 2832,
+              "revivals": 19,
+              "states": 4449,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 19,
+              "states": 4450,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 1,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 19,
+              "states": 4449,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            5
+          ],
+          "k": 1,
+          "r": 19,
+          "requested_k": 1,
+          "states": 4449
+        },
+        {
+          "audits": [
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 20,
+              "states": 4450,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 16,
+              "reachable_targets": 2828,
+              "revivals": 20,
+              "states": 4450,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 20,
+              "states": 4451,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 8,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 20,
+              "states": 4450,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            5,
+            776,
+            1180,
+            2021,
+            3217,
+            3367,
+            4219,
+            4883
+          ],
+          "k": 8,
+          "r": 20,
+          "requested_k": 8,
+          "states": 4450
+        },
+        {
+          "audits": [
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 30,
+              "states": 4452,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 16,
+              "reachable_targets": 2823,
+              "revivals": 30,
+              "states": 4452,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 30,
+              "states": 4453,
+              "target_checks": 4921
+            },
+            {
+              "cuts": 32,
+              "path_checks": 1,
+              "reachable_targets": 1,
+              "revivals": 30,
+              "states": 4452,
+              "target_checks": 4921
+            }
+          ],
+          "cut_children": [
+            5,
+            244,
+            470,
+            709,
+            776,
+            882,
+            1031,
+            1180,
+            1405,
+            1499,
+            1900,
+            2021,
+            2089,
+            2093,
+            2134,
+            2344,
+            2416,
+            2686,
+            2693,
+            2775,
+            3085,
+            3217,
+            3273,
+            3367,
+            3736,
+            3931,
+            3947,
+            4052,
+            4219,
+            4232,
+            4488,
+            4883
+          ],
+          "k": 32,
+          "r": 30,
+          "requested_k": 32,
+          "states": 4452
+        }
+      ],
+      "dataset": "neo4j-gds-src",
+      "degree_one_cycles": null,
+      "direction": "reverse-impact",
+      "indegree_one": 511,
+      "ledger_fraction": 0.9566467378875494,
+      "m": 30609,
+      "max_depth": 16,
+      "mode": "reachability",
+      "n": 4921,
+      "q": 4449,
+      "sources": [
+        {
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "repo": "neo4j-gds-src",
+          "vertex": 0
+        },
+        {
+          "file": "core-api/src/main/java/org/neo4j/gds/api/Graph.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 1485
+        },
+        {
+          "file": "ml/ml-algo/src/test/java/org/neo4j/gds/ml/metrics/LinkMetricTest.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 2687
+        },
+        {
+          "file": "triplet-graph-builder/src/test/java/org/neo4j/gds/projection/RelationshipPropertyExtractorTest.java",
+          "repo": "neo4j-gds-src",
+          "vertex": 4920
+        }
+      ],
+      "state_fraction": 0.904084535663483
+    }
+  ],
+  "raw_edge_rows": 147300,
+  "simple_edges": 147294
+}

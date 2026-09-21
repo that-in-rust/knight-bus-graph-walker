@@ -1,0 +1,1161 @@
+{
+  "scope": "Native topology,declared constructed or observed two-way starts;logical work only,no timings/RSS",
+  "source_sha256": {
+    "probe_native_community_gate.py": "ffcb79cca6b506a3b03c99021f97488b4f3ac4562b9cb6d50056c889594c41f5",
+    "probe_cached_community_controls.py": "e57a7c397a04ca80d1d6b275f16ebabb4c74f9c9cf96004d415590276befb0cf",
+    "test_cached_community_controls.py": "1a726d4b639f9dec841625dc3b3af0a6402bb4828032c5fa2bf4f1693638459b",
+    "probe_threshold_event_solver.py": "4bcbdf7c172aaabcdd051b41b755f6346e9747577254ec525e7af436777e4b42",
+    "probe_threshold_trace_control.py": "65f2f9a172dd362688320f10eda4bf1e60ac167d4f96c884a9b4b39f66843c49",
+    "probe_single_flip_trace_verifier.py": "fa8b849f634393609a89f1eab42baeae2945d76178440104f1bb80208ca7ef0c",
+    "bench_bounded_seed_similarity.py": "7bfd5b3cfbba9e97f9efa233f235fd8ab38a1cbf05ed5e4638cb3c0e3748bbe3",
+    "test_single_flip_trace_verifier.py": "dc3b1c2b753b27be769803bd5bad10e83640d9bf1ef326724843cefe5560708e"
+  },
+  "sources": [
+    {
+      "dataset": "grqc",
+      "source_sha256": "a254442cdf5d684712578b630c2e0d7543518ab154ef2341cabb607572ce7230",
+      "source_file": "ca-GrQc.txt.gz",
+      "normalization": {
+        "raw_rows": 28980,
+        "self_loop_rows": 12,
+        "duplicate_rows": 14484,
+        "nodes": 5242,
+        "edges": 14484,
+        "memberships": 28968
+      }
+    },
+    {
+      "dataset": "facebook",
+      "source_sha256": "125e84db872eeba443d270c70315c256b0af43a502fcfe51f50621166ad035d7",
+      "source_file": "facebook_combined.txt.gz",
+      "normalization": {
+        "raw_rows": 88234,
+        "self_loop_rows": 0,
+        "duplicate_rows": 0,
+        "nodes": 4039,
+        "edges": 88234,
+        "memberships": 176468
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "source_sha256": "568412aa331e08231a4f0ee61ddcf648230832bdd44ab1607b951bc440ff0d39",
+      "source_file": "karate-club-networkx-3.6.1.json",
+      "projection": "weighted",
+      "normalization": {
+        "nodes": 34,
+        "edges": 78
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "source_sha256": "568412aa331e08231a4f0ee61ddcf648230832bdd44ab1607b951bc440ff0d39",
+      "source_file": "karate-club-networkx-3.6.1.json",
+      "projection": "unit",
+      "normalization": {
+        "nodes": 34,
+        "edges": 78
+      }
+    }
+  ],
+  "counts": {
+    "cases": 18,
+    "two_label_complete": 12,
+    "workflow_complete": 18,
+    "two_label_fresh_destination": 6
+  },
+  "rows": [
+    {
+      "case": "grqc/id_half/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 104840,
+      "initial_labels_sha256": "3b599f81194849e71e348ad46ade596e604e409b86cafa15aa84a4ab22c36f45",
+      "two_label_status": "complete",
+      "two_label_moves": 2221,
+      "two_label_sweeps": 8,
+      "pending_visit": null,
+      "two_label_trace_sha256": "29712e47412bccf72173aba6220c1ed353e3ab212915c9c0a8e80454075d6185",
+      "two_label_labels_sha256": "dfac2c1275684040271bc5b9c710ae533c36fae4812a601678bbe8e1063540b4",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 2229,
+        "search_tree_nodes": 44096,
+        "covered_visits": 41936,
+        "accepted_moves": 2221,
+        "neighbor_affinity_updates": 12859,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 15080,
+        "threshold_update_nodes": 211120
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 41936,
+        "accepted_moves": 2221,
+        "neighbor_affinity_updates": 12859
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 41936,
+        "visited_adjacency_records": 231744,
+        "candidate_scores": 94747,
+        "accepted_moves": 2221,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 2221,
+      "complete_sweeps": 8,
+      "complete_communities": 2,
+      "final_labels_sha256": "dfac2c1275684040271bc5b9c710ae533c36fae4812a601678bbe8e1063540b4",
+      "complete_trace_sha256": "29712e47412bccf72173aba6220c1ed353e3ab212915c9c0a8e80454075d6185",
+      "initial_modularity": "2965273/11818944",
+      "final_modularity": "136965779/209786256",
+      "dataset": "grqc",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "grqc/id_half/gamma1",
+      "gamma": "1",
+      "event_budget": 104840,
+      "initial_labels_sha256": "3b599f81194849e71e348ad46ade596e604e409b86cafa15aa84a4ab22c36f45",
+      "two_label_status": "complete",
+      "two_label_moves": 2440,
+      "two_label_sweeps": 14,
+      "pending_visit": null,
+      "two_label_trace_sha256": "2542d8868da70d569eb12e322b543607b1a32ccb49fdd11357eb5e691bad0657",
+      "two_label_labels_sha256": "756d9889195af254f9411bbb9f62997724601760fc67cf4500af313530fdb45c",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 2454,
+        "search_tree_nodes": 48956,
+        "covered_visits": 73388,
+        "accepted_moves": 2440,
+        "neighbor_affinity_updates": 13660,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 16100,
+        "threshold_update_nodes": 225400
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 73388,
+        "accepted_moves": 2440,
+        "neighbor_affinity_updates": 13660
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 73388,
+        "visited_adjacency_records": 405552,
+        "candidate_scores": 165612,
+        "accepted_moves": 2440,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 2440,
+      "complete_sweeps": 14,
+      "complete_communities": 2,
+      "final_labels_sha256": "756d9889195af254f9411bbb9f62997724601760fc67cf4500af313530fdb45c",
+      "complete_trace_sha256": "2542d8868da70d569eb12e322b543607b1a32ccb49fdd11357eb5e691bad0657",
+      "initial_modularity": "5233/5909472",
+      "final_modularity": "176444087/419572512",
+      "dataset": "grqc",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "grqc/id_half/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 104840,
+      "initial_labels_sha256": "3b599f81194849e71e348ad46ade596e604e409b86cafa15aa84a4ab22c36f45",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        13
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "3b599f81194849e71e348ad46ade596e604e409b86cafa15aa84a4ab22c36f45",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 1,
+        "search_tree_nodes": 14,
+        "covered_visits": 0,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 1,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 31452,
+        "visited_adjacency_records": 173808,
+        "candidate_scores": 91287,
+        "accepted_moves": 4522,
+        "max_active_communities": 344,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 31452,
+        "visited_adjacency_records": 173808,
+        "candidate_scores": 91287,
+        "accepted_moves": 4522,
+        "max_active_communities": 344,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 4522,
+      "complete_sweeps": 6,
+      "complete_communities": 294,
+      "final_labels_sha256": "79431dce2851b6c65ad70ca95b021a6d5212a281ca7e4527faabde2d55040716",
+      "complete_trace_sha256": "82a8e6c4058987721319052c133aef6068364fe17b0b3fce6d3bf37f2d9cca45",
+      "initial_modularity": "-327149/1313216",
+      "final_modularity": "4108349/5484608",
+      "dataset": "grqc",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "grqc/bfs_half/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 104840,
+      "initial_labels_sha256": "75a21307b6e80f493381d8bb45d65ed9918f6502189b4774c45413731e45406c",
+      "two_label_status": "complete",
+      "two_label_moves": 619,
+      "two_label_sweeps": 7,
+      "pending_visit": null,
+      "two_label_trace_sha256": "115686eb6774e5159f6d55885647b87d6b016f98cf4cad7713b69e70f43c6aae",
+      "two_label_labels_sha256": "9a025e975843439e3adbc7ab8f64f23e0ead2fbf6e6991203120745c4b154f45",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 626,
+        "search_tree_nodes": 12449,
+        "covered_visits": 36694,
+        "accepted_moves": 619,
+        "neighbor_affinity_updates": 2525,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 3144,
+        "threshold_update_nodes": 44016
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 36694,
+        "accepted_moves": 619,
+        "neighbor_affinity_updates": 2525
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 36694,
+        "visited_adjacency_records": 202776,
+        "candidate_scores": 79631,
+        "accepted_moves": 619,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 619,
+      "complete_sweeps": 7,
+      "complete_communities": 2,
+      "final_labels_sha256": "9a025e975843439e3adbc7ab8f64f23e0ead2fbf6e6991203120745c4b154f45",
+      "complete_trace_sha256": "115686eb6774e5159f6d55885647b87d6b016f98cf4cad7713b69e70f43c6aae",
+      "initial_modularity": "127676507/209786256",
+      "final_modularity": "569856431/839145024",
+      "dataset": "grqc",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 28968
+      }
+    },
+    {
+      "case": "grqc/bfs_half/gamma1",
+      "gamma": "1",
+      "event_budget": 104840,
+      "initial_labels_sha256": "75a21307b6e80f493381d8bb45d65ed9918f6502189b4774c45413731e45406c",
+      "two_label_status": "complete",
+      "two_label_moves": 747,
+      "two_label_sweeps": 6,
+      "pending_visit": null,
+      "two_label_trace_sha256": "355f0e09e25f432ae61cf75a236ca69958863f7f4d0787d8e99aa623fe0fb609",
+      "two_label_labels_sha256": "23d973b2279f8b3d0d185900a79b5d0c862e78f02e1e16dbec432e79b1a25242",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 753,
+        "search_tree_nodes": 15065,
+        "covered_visits": 31452,
+        "accepted_moves": 747,
+        "neighbor_affinity_updates": 3556,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 4303,
+        "threshold_update_nodes": 60242
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 31452,
+        "accepted_moves": 747,
+        "neighbor_affinity_updates": 3556
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 31452,
+        "visited_adjacency_records": 173808,
+        "candidate_scores": 68677,
+        "accepted_moves": 747,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 747,
+      "complete_sweeps": 6,
+      "complete_communities": 2,
+      "final_labels_sha256": "23d973b2279f8b3d0d185900a79b5d0c862e78f02e1e16dbec432e79b1a25242",
+      "complete_trace_sha256": "355f0e09e25f432ae61cf75a236ca69958863f7f4d0787d8e99aa623fe0fb609",
+      "initial_modularity": "33675347/104893128",
+      "final_modularity": "5566459/13111641",
+      "dataset": "grqc",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 28968
+      }
+    },
+    {
+      "case": "grqc/bfs_half/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 104840,
+      "initial_labels_sha256": "75a21307b6e80f493381d8bb45d65ed9918f6502189b4774c45413731e45406c",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        13
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "75a21307b6e80f493381d8bb45d65ed9918f6502189b4774c45413731e45406c",
+      "tree_metrics": {
+        "vertices": 5242,
+        "edges": 14484,
+        "source_directed_entries": 28968,
+        "event_searches": 1,
+        "search_tree_nodes": 14,
+        "covered_visits": 0,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 16384,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 1,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 52420,
+        "visited_adjacency_records": 289680,
+        "candidate_scores": 139193,
+        "accepted_moves": 3212,
+        "max_active_communities": 171,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 5242,
+        "source_directed_entries": 28968,
+        "scalar_visits": 52420,
+        "visited_adjacency_records": 289680,
+        "candidate_scores": 139193,
+        "accepted_moves": 3212,
+        "max_active_communities": 171,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 3212,
+      "complete_sweeps": 10,
+      "complete_communities": 143,
+      "final_labels_sha256": "f0c5664578a6ce13f0a5d01bf3b934b1db104e67c88d344aa06efa13c34b7c55",
+      "complete_trace_sha256": "f63f53b899c13b6cd5d211928b9f3a0ee293fc222198b67c46ba56433de0bb98",
+      "initial_modularity": "2341627/69928752",
+      "final_modularity": "192382271/279715008",
+      "dataset": "grqc",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 5242,
+        "neighbor_records_scanned": 28968
+      }
+    },
+    {
+      "case": "facebook/id_half/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 80780,
+      "initial_labels_sha256": "2e7e7b0be2ade625c43d2d15c2446255078d6f7912572c527be0282a26b42742",
+      "two_label_status": "complete",
+      "two_label_moves": 121,
+      "two_label_sweeps": 3,
+      "pending_visit": null,
+      "two_label_trace_sha256": "ce7d0476a7c03a10cb0268ae6421955848da18b8a4cf7cc43bbb25cd67d4ef48",
+      "two_label_labels_sha256": "00b485ab967df172c63ac89dbad456ba59dd305164616803740cb3c226d16473",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 124,
+        "search_tree_nodes": 2451,
+        "covered_visits": 12117,
+        "accepted_moves": 121,
+        "neighbor_affinity_updates": 9693,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 9814,
+        "threshold_update_nodes": 127582
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "accepted_moves": 121,
+        "neighbor_affinity_updates": 9693
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "visited_adjacency_records": 529404,
+        "candidate_scores": 25003,
+        "accepted_moves": 121,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 121,
+      "complete_sweeps": 3,
+      "complete_communities": 2,
+      "final_labels_sha256": "00b485ab967df172c63ac89dbad456ba59dd305164616803740cb3c226d16473",
+      "complete_trace_sha256": "ce7d0476a7c03a10cb0268ae6421955848da18b8a4cf7cc43bbb25cd67d4ef48",
+      "initial_modularity": "2552645033/3892619378",
+      "final_modularity": "23056205531/31140955024",
+      "dataset": "facebook",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "facebook/id_half/gamma1",
+      "gamma": "1",
+      "event_budget": 80780,
+      "initial_labels_sha256": "2e7e7b0be2ade625c43d2d15c2446255078d6f7912572c527be0282a26b42742",
+      "two_label_status": "complete",
+      "two_label_moves": 121,
+      "two_label_sweeps": 3,
+      "pending_visit": null,
+      "two_label_trace_sha256": "8da2fb85b3c80641e4943066108c2bd2ac2f7cb0c3df0450675862466c734ffc",
+      "two_label_labels_sha256": "00b485ab967df172c63ac89dbad456ba59dd305164616803740cb3c226d16473",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 124,
+        "search_tree_nodes": 2451,
+        "covered_visits": 12117,
+        "accepted_moves": 121,
+        "neighbor_affinity_updates": 9693,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 9814,
+        "threshold_update_nodes": 127582
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "accepted_moves": 121,
+        "neighbor_affinity_updates": 9693
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "visited_adjacency_records": 529404,
+        "candidate_scores": 25003,
+        "accepted_moves": 121,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 121,
+      "complete_sweeps": 3,
+      "complete_communities": 2,
+      "final_labels_sha256": "00b485ab967df172c63ac89dbad456ba59dd305164616803740cb3c226d16473",
+      "complete_trace_sha256": "8da2fb85b3c80641e4943066108c2bd2ac2f7cb0c3df0450675862466c734ffc",
+      "initial_modularity": "788626788/1946309689",
+      "final_modularity": "7539197823/15570477512",
+      "dataset": "facebook",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "facebook/id_half/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 80780,
+      "initial_labels_sha256": "2e7e7b0be2ade625c43d2d15c2446255078d6f7912572c527be0282a26b42742",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        58
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "2e7e7b0be2ade625c43d2d15c2446255078d6f7912572c527be0282a26b42742",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 1,
+        "search_tree_nodes": 17,
+        "covered_visits": 58,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 59,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 36293,
+        "visited_adjacency_records": 1586935,
+        "candidate_scores": 86448,
+        "accepted_moves": 1686,
+        "max_active_communities": 15,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 36351,
+        "visited_adjacency_records": 1588212,
+        "candidate_scores": 86564,
+        "accepted_moves": 1686,
+        "max_active_communities": 15,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 1686,
+      "complete_sweeps": 9,
+      "complete_communities": 10,
+      "final_labels_sha256": "2645519390dfae2ca9966e276dbd229f47f37850462b538fd70f67805362b526",
+      "complete_trace_sha256": "13d72f0af5cea72c3c39e65f8a7122a48e7cba8cec19f6c4ed48e8c76ff74fb3",
+      "initial_modularity": "601862119/3892619378",
+      "final_modularity": "15129698395/31140955024",
+      "dataset": "facebook",
+      "initial_mode": "id_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 0
+      }
+    },
+    {
+      "case": "facebook/bfs_half/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 80780,
+      "initial_labels_sha256": "0e48bbb786e594fd71976c71539ebdaf87ac846aa422807dcae2903b31f814e7",
+      "two_label_status": "complete",
+      "two_label_moves": 347,
+      "two_label_sweeps": 3,
+      "pending_visit": null,
+      "two_label_trace_sha256": "e795f5e06928e6e406d64b973daf05553981225d9c6da3a521472f4ff0e1c334",
+      "two_label_labels_sha256": "e56059a252db998e3052fa20d2523b6a62b99e55ff26a1bb74a51efd9019cabc",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 350,
+        "search_tree_nodes": 6742,
+        "covered_visits": 12117,
+        "accepted_moves": 347,
+        "neighbor_affinity_updates": 22041,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 22388,
+        "threshold_update_nodes": 291044
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "accepted_moves": 347,
+        "neighbor_affinity_updates": 22041
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "visited_adjacency_records": 529404,
+        "candidate_scores": 25544,
+        "accepted_moves": 347,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 347,
+      "complete_sweeps": 3,
+      "complete_communities": 2,
+      "final_labels_sha256": "e56059a252db998e3052fa20d2523b6a62b99e55ff26a1bb74a51efd9019cabc",
+      "complete_trace_sha256": "e795f5e06928e6e406d64b973daf05553981225d9c6da3a521472f4ff0e1c334",
+      "initial_modularity": "19110528947/31140955024",
+      "final_modularity": "2866630615/3892619378",
+      "dataset": "facebook",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 176468
+      }
+    },
+    {
+      "case": "facebook/bfs_half/gamma1",
+      "gamma": "1",
+      "event_budget": 80780,
+      "initial_labels_sha256": "0e48bbb786e594fd71976c71539ebdaf87ac846aa422807dcae2903b31f814e7",
+      "two_label_status": "complete",
+      "two_label_moves": 328,
+      "two_label_sweeps": 3,
+      "pending_visit": null,
+      "two_label_trace_sha256": "b31368ff866473dba9bf9e018e9b1f66cd9e1168a2316a186e03078a0b4c4e60",
+      "two_label_labels_sha256": "908164fd0241e458e68cfe78235c70a0d847e6a4414f77e3ff9803894f414520",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 331,
+        "search_tree_nodes": 6344,
+        "covered_visits": 12117,
+        "accepted_moves": 328,
+        "neighbor_affinity_updates": 20531,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 20859,
+        "threshold_update_nodes": 271167
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "accepted_moves": 328,
+        "neighbor_affinity_updates": 20531
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 12117,
+        "visited_adjacency_records": 529404,
+        "candidate_scores": 25489,
+        "accepted_moves": 328,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 328,
+      "complete_sweeps": 3,
+      "complete_communities": 2,
+      "final_labels_sha256": "908164fd0241e458e68cfe78235c70a0d847e6a4414f77e3ff9803894f414520",
+      "complete_trace_sha256": "b31368ff866473dba9bf9e018e9b1f66cd9e1168a2316a186e03078a0b4c4e60",
+      "initial_modularity": "5660314455/15570477512",
+      "final_modularity": "926799548/1946309689",
+      "dataset": "facebook",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 176468
+      }
+    },
+    {
+      "case": "facebook/bfs_half/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 80780,
+      "initial_labels_sha256": "0e48bbb786e594fd71976c71539ebdaf87ac846aa422807dcae2903b31f814e7",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        594
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "0e48bbb786e594fd71976c71539ebdaf87ac846aa422807dcae2903b31f814e7",
+      "tree_metrics": {
+        "vertices": 4039,
+        "edges": 88234,
+        "source_directed_entries": 176468,
+        "event_searches": 1,
+        "search_tree_nodes": 17,
+        "covered_visits": 594,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 8192,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 595,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 43835,
+        "visited_adjacency_records": 1925870,
+        "candidate_scores": 102656,
+        "accepted_moves": 1370,
+        "max_active_communities": 10,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 4039,
+        "source_directed_entries": 176468,
+        "scalar_visits": 44429,
+        "visited_adjacency_records": 1941148,
+        "candidate_scores": 103846,
+        "accepted_moves": 1370,
+        "max_active_communities": 10,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 1370,
+      "complete_sweeps": 11,
+      "complete_communities": 7,
+      "final_labels_sha256": "8253ce115e52fc5fb671a67865dd9f8d608160eaa2e5656bb115b4cb6e9833b6",
+      "complete_trace_sha256": "823a59e50c5eea11f49d8896ea28abcd5e9f1f124c377c4db11e555fcd570f69",
+      "initial_modularity": "3530728873/31140955024",
+      "final_modularity": "16356570441/31140955024",
+      "dataset": "facebook",
+      "initial_mode": "bfs_half",
+      "initial_preparation": {
+        "ordered_vertices": 4039,
+        "neighbor_records_scanned": 176468
+      }
+    },
+    {
+      "case": "karate_weighted/club_split/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "complete",
+      "two_label_moves": 1,
+      "two_label_sweeps": 2,
+      "pending_visit": null,
+      "two_label_trace_sha256": "2dcd4cf605d6929afbe81b93e8b0c98b35df6c0afa586c26cfeb988e60fb650c",
+      "two_label_labels_sha256": "0521769905d3b6bdc0c81aca8fd84ce8eb41dad6b4034143b035de376622113f",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 3,
+        "search_tree_nodes": 10,
+        "covered_visits": 68,
+        "accepted_moves": 1,
+        "neighbor_affinity_updates": 5,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 6,
+        "threshold_update_nodes": 42
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "accepted_moves": 1,
+        "neighbor_affinity_updates": 5
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "visited_adjacency_records": 312,
+        "candidate_scores": 162,
+        "accepted_moves": 1,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 1,
+      "complete_sweeps": 2,
+      "complete_communities": 2,
+      "final_labels_sha256": "0521769905d3b6bdc0c81aca8fd84ce8eb41dad6b4034143b035de376622113f",
+      "complete_trace_sha256": "2dcd4cf605d6929afbe81b93e8b0c98b35df6c0afa586c26cfeb988e60fb650c",
+      "initial_modularity": "45649/71148",
+      "final_modularity": "577/882",
+      "dataset": "karate_weighted",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    },
+    {
+      "case": "karate_weighted/club_split/gamma1",
+      "gamma": "1",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "complete",
+      "two_label_moves": 1,
+      "two_label_sweeps": 2,
+      "pending_visit": null,
+      "two_label_trace_sha256": "3228fca0c6d09abeaf1b75e4a3163560b6aaa5d835af5ec42ae769534c39f6db",
+      "two_label_labels_sha256": "0521769905d3b6bdc0c81aca8fd84ce8eb41dad6b4034143b035de376622113f",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 3,
+        "search_tree_nodes": 10,
+        "covered_visits": 68,
+        "accepted_moves": 1,
+        "neighbor_affinity_updates": 5,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 6,
+        "threshold_update_nodes": 42
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "accepted_moves": 1,
+        "neighbor_affinity_updates": 5
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "visited_adjacency_records": 312,
+        "candidate_scores": 162,
+        "accepted_moves": 1,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 1,
+      "complete_sweeps": 2,
+      "complete_communities": 2,
+      "final_labels_sha256": "0521769905d3b6bdc0c81aca8fd84ce8eb41dad6b4034143b035de376622113f",
+      "complete_trace_sha256": "3228fca0c6d09abeaf1b75e4a3163560b6aaa5d835af5ec42ae769534c39f6db",
+      "initial_modularity": "13925/35574",
+      "final_modularity": "178/441",
+      "dataset": "karate_weighted",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    },
+    {
+      "case": "karate_weighted/club_split/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        8
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 1,
+        "search_tree_nodes": 8,
+        "covered_visits": 8,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 9,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 94,
+        "visited_adjacency_records": 412,
+        "candidate_scores": 252,
+        "accepted_moves": 7,
+        "max_active_communities": 5,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 102,
+        "visited_adjacency_records": 468,
+        "candidate_scores": 271,
+        "accepted_moves": 7,
+        "max_active_communities": 5,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 7,
+      "complete_sweeps": 3,
+      "complete_communities": 3,
+      "final_labels_sha256": "78c89483f96f03587eb9499e628c018fdd965e13acdc36bc8e4d854a0e588052",
+      "complete_trace_sha256": "52e721c4408310dc7bd01abbf05904e5d9e236cebb9e3ad05aa385b9449fbd89",
+      "initial_modularity": "10051/71148",
+      "final_modularity": "4523/23716",
+      "dataset": "karate_weighted",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    },
+    {
+      "case": "karate_unit/club_split/gamma1/2",
+      "gamma": "1/2",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "complete",
+      "two_label_moves": 2,
+      "two_label_sweeps": 2,
+      "pending_visit": null,
+      "two_label_trace_sha256": "bc1d3f285562ba9a934936978d71f3a11105be1db01bde33380b3f063cffc8e9",
+      "two_label_labels_sha256": "ee21a610863a4bfff45661340806ec7479d0db8cddce8ab2bb38fe0bbeb48a8a",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 4,
+        "search_tree_nodes": 19,
+        "covered_visits": 68,
+        "accepted_moves": 2,
+        "neighbor_affinity_updates": 7,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 9,
+        "threshold_update_nodes": 63
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "accepted_moves": 2,
+        "neighbor_affinity_updates": 7
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "visited_adjacency_records": 312,
+        "candidate_scores": 162,
+        "accepted_moves": 2,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 2,
+      "complete_sweeps": 2,
+      "complete_communities": 2,
+      "final_labels_sha256": "ee21a610863a4bfff45661340806ec7479d0db8cddce8ab2bb38fe0bbeb48a8a",
+      "complete_trace_sha256": "bc1d3f285562ba9a934936978d71f3a11105be1db01bde33380b3f063cffc8e9",
+      "initial_modularity": "4937/8112",
+      "final_modularity": "97/156",
+      "dataset": "karate_unit",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    },
+    {
+      "case": "karate_unit/club_split/gamma1",
+      "gamma": "1",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "complete",
+      "two_label_moves": 2,
+      "two_label_sweeps": 2,
+      "pending_visit": null,
+      "two_label_trace_sha256": "f94d7ecd3ab95cf8bc9d8090db63e2df539a0c810f328020e9a11b2a47f39adb",
+      "two_label_labels_sha256": "ee21a610863a4bfff45661340806ec7479d0db8cddce8ab2bb38fe0bbeb48a8a",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 4,
+        "search_tree_nodes": 19,
+        "covered_visits": 68,
+        "accepted_moves": 2,
+        "neighbor_affinity_updates": 7,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 9,
+        "threshold_update_nodes": 63
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "accepted_moves": 2,
+        "neighbor_affinity_updates": 7
+      },
+      "fallback_metrics": null,
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 68,
+        "visited_adjacency_records": 312,
+        "candidate_scores": 162,
+        "accepted_moves": 2,
+        "max_active_communities": 2,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 2,
+      "complete_sweeps": 2,
+      "complete_communities": 2,
+      "final_labels_sha256": "ee21a610863a4bfff45661340806ec7479d0db8cddce8ab2bb38fe0bbeb48a8a",
+      "complete_trace_sha256": "f94d7ecd3ab95cf8bc9d8090db63e2df539a0c810f328020e9a11b2a47f39adb",
+      "initial_modularity": "1453/4056",
+      "final_modularity": "29/78",
+      "dataset": "karate_unit",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    },
+    {
+      "case": "karate_unit/club_split/gamma3/2",
+      "gamma": "3/2",
+      "event_budget": 680,
+      "initial_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "two_label_status": "fresh_destination",
+      "two_label_moves": 0,
+      "two_label_sweeps": 1,
+      "pending_visit": [
+        1,
+        2
+      ],
+      "two_label_trace_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "two_label_labels_sha256": "af06b6a068ded3309cd456f2d09b537b0aa0ebc6cafd23eac9bb61fdf94a372d",
+      "tree_metrics": {
+        "vertices": 34,
+        "edges": 78,
+        "source_directed_entries": 156,
+        "event_searches": 1,
+        "search_tree_nodes": 8,
+        "covered_visits": 2,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0,
+        "threshold_tree_cells": 128,
+        "threshold_updates": 0,
+        "threshold_update_nodes": 0
+      },
+      "cached_scalar_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 3,
+        "accepted_moves": 0,
+        "neighbor_affinity_updates": 0
+      },
+      "fallback_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 100,
+        "visited_adjacency_records": 443,
+        "candidate_scores": 262,
+        "accepted_moves": 7,
+        "max_active_communities": 3,
+        "max_zero_heap_records": 0
+      },
+      "general_cold_metrics": {
+        "vertices": 34,
+        "source_directed_entries": 156,
+        "scalar_visits": 102,
+        "visited_adjacency_records": 468,
+        "candidate_scores": 268,
+        "accepted_moves": 7,
+        "max_active_communities": 3,
+        "max_zero_heap_records": 0
+      },
+      "complete_status": "complete",
+      "complete_moves": 7,
+      "complete_sweeps": 3,
+      "complete_communities": 3,
+      "final_labels_sha256": "cf1caabb95bebec881387bd534a534a858598d03f3a37f1b8035c1b3983ee974",
+      "complete_trace_sha256": "8eb6d6837dc9c145be7ecea4beac5b2fd07dc6dcdaec32d52253791cc20dab3d",
+      "initial_modularity": "875/8112",
+      "final_modularity": "373/2028",
+      "dataset": "karate_unit",
+      "initial_mode": "club_split",
+      "initial_preparation": {
+        "supplied_label_records": 34
+      }
+    }
+  ]
+}

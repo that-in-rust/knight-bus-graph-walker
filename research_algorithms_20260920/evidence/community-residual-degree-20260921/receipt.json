@@ -1,0 +1,53 @@
+{
+  "schema": "community-residual-degree-semantic-v1",
+  "date": "2026-09-21",
+  "scope": "Logical weighted sketch and exact-rational modularity-envelope validation; not a physical benchmark",
+  "sources": {
+    "experiments/probe_residual_degree_envelope.py": "307aa12e78822d9d3ed88845ac80b10b745e5d01dd920108f3f0d50b187e10e9",
+    "experiments/test_residual_degree_envelope.py": "974b7b346df33c013e3184e9d9863f2804744822a750230f09579ff241ea8d82",
+    "Communities-Residual-Degree-Review.md": "ac94d76e68d2daf06bdefbb578209a9efdaf99cc2e653d406f60edea2b7f588d"
+  },
+  "test_interpreter": "/Users/amuldotexe/.local/bin/python3.11",
+  "test_flags": ["-B", "-W", "error"],
+  "new_tests": 11,
+  "combined_community_tests": 74,
+  "combined_exit_code": 0,
+  "lead_checks": {
+    "all_four_node_residual_containment_cases": 10935,
+    "seeded_bounded_stream_summaries": 180,
+    "seeded_original_score_containment_cases": 1440,
+    "hub_exact_score_cases": 609,
+    "full_budget_exact_score_partitions": 15,
+    "sketch_seed": 20260921,
+    "score_seed": 4104,
+    "red_stages": ["five missing-module failures", "four missing-builder-function failures"]
+  },
+  "independent_review_lead_replay": {
+    "method": "Enumerate exact rational basic feasible solutions independently of lead implementation",
+    "degree_vectors": 363,
+    "feasible_degree_vectors": 293,
+    "exhaustive_endpoint_pairs": 12073,
+    "additional_rational_endpoint_pairs": 109,
+    "endpoint_comparisons": 24364,
+    "restricted_support_cases": 2,
+    "integer_pairings": 15,
+    "exit_code": 0
+  },
+  "retained_counterexample": {
+    "graphs": ["two disjoint K4 cliques", "K4,4 minus a perfect matching"],
+    "coarse_nodes": 8,
+    "degree_each": 3,
+    "edge_mass_each": 12,
+    "counter_budget": 0,
+    "partition": [0, 0, 0, 0, 1, 1, 1, 1],
+    "gamma": "1",
+    "actual_scores": ["1/2", "-1/2"],
+    "shared_score_interval": ["-1/2", "1/2"]
+  },
+  "limits": [
+    "Tightness concerns unrestricted rational loopless degree completions, not support-constrained or integer completions",
+    "No production optimizer, original-ID lifting, physical RAM cap or runtime comparison",
+    "Known weighted frequent-item and fractional degree-realization primitives are credited",
+    "Native usefulness and scientific contribution separation remain open"
+  ]
+}

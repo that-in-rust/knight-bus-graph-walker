@@ -1,0 +1,7638 @@
+{
+  "scope": "Constructed fixed-grid admission study; exact expanded oracle; no timings/RSS",
+  "source_sha256": {
+    "probe_heterogeneous_band_communities.py": "7bc2c6f336801084aae32a4c146c6e301e233d57ac5360403841865cf6c6e556",
+    "test_heterogeneous_band_communities.py": "38a46224ad2d3babc782711b875c5ed5ac49ebb048e4ad06907ceed6009c8cd1",
+    "probe_heterogeneous_band_evidence.py": "f8d57229f22b09390ccad44a1c7e4666929eb4c379fd845d9c08981b004f927a",
+    "test_certified_warm_communities.py": "54dc4e7aadacf4dbe74cf305246316849d75ec4a466988a941da11ac80968a82",
+    "test_certified_warm_review_contracts.py": "9cead0c6ac0823aed25800370dfb7129eb9502d3284d2ae6062599f70cad3095",
+    "probe_certified_warm_communities.py": "0d0fc967d122d1c4a5d53105f47038134c907db70c92e22760259ad964092b40"
+  },
+  "cases": 150,
+  "admitted": 55,
+  "uniform_admitted": 0,
+  "complete_admitted_labels_checked": 4800,
+  "accepted_moves_checked": 231,
+  "by_scale": {
+    "1/10000": {
+      "cases": 35,
+      "admitted": 35,
+      "refused_same_schedule": 0,
+      "refused_changed_schedule": 0
+    },
+    "1/1000": {
+      "cases": 20,
+      "admitted": 20,
+      "refused_same_schedule": 0,
+      "refused_changed_schedule": 0
+    },
+    "1/100": {
+      "cases": 20,
+      "admitted": 0,
+      "refused_same_schedule": 14,
+      "refused_changed_schedule": 6
+    },
+    "1/20": {
+      "cases": 20,
+      "admitted": 0,
+      "refused_same_schedule": 9,
+      "refused_changed_schedule": 11
+    },
+    "1/10": {
+      "cases": 35,
+      "admitted": 0,
+      "refused_same_schedule": 6,
+      "refused_changed_schedule": 29
+    },
+    "3/20": {
+      "cases": 20,
+      "admitted": 0,
+      "refused_same_schedule": 2,
+      "refused_changed_schedule": 18
+    }
+  },
+  "rows": [
+    {
+      "case": "b16/seed0/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2ce3c85db924d4ea57e891821b7482849bcf7d352b7d554f53c2ebaf782a51df",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "1482657579989/40000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "9660013/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "1482007989/5000000",
+      "minimum_anchor_margin": "49011254581989/20000000",
+      "distinct_mover_degrees": 12
+    },
+    {
+      "case": "b16/seed0/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "0ed0e815a3d7ebae748e4fd16e015d671b842291d7d38177923345401723e33b",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "14847957989/400000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "966013/500"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "6225789/50000",
+      "minimum_anchor_margin": "490110258189/200000",
+      "distinct_mover_degrees": 12
+    },
+    {
+      "case": "b16/seed0/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "43c76d73951f20114ee78472334f8772d23bb6af8d4dfbe4a6668634b26f68b9",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "150617789/4000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=19, r=11"
+    },
+    {
+      "case": "b16/seed0/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "1d242247a5fb928e10883dbf0094bae8479ceb9104d5066eb3d9f54fd482f64f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "6404829/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=13, r=11"
+    },
+    {
+      "case": "b16/seed0/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "c7294165d557221b1027bfd3e43bbaf7f3204071a7b331a189550a9e38da86d3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "1719989/40"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=12"
+    },
+    {
+      "case": "b16/seed0/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "861ec696c9796ca7f4e9a2fa805c3652ed5cab7300a55a774ffdd249e520b98d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "57aa4018b24a512eeed998301950d559ce3dcd7440268087ef263cabb0b5af3d",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          48,
+          "Q",
+          "7355061/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed1/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "e0bac972ad59322ae28f2ddc853c167656417f0ea5be797a00aa24863fe3ccb9",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e471c883b2ee61bfc3172d3307954681dadabe0318ac8860ed901d25200ee83d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "7419300939093/200000000"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "557016200001/50000000"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "5249077999759/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "19319991/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "59645360433/200000000",
+      "minimum_anchor_margin": "24505620845997/10000000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed1/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "7be6606d4c67fa46a90ac31945fdd1f329c98778a7e47e7c0ff43c426a5a2ef8",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e471c883b2ee61bfc3172d3307954681dadabe0318ac8860ed901d25200ee83d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "74841093093/2000000"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "5573870001/500000"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "52650799759/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "1931991/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "285536433/2000000",
+      "minimum_anchor_margin": "245054484597/100000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed1/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "b145cae8262ef1362692451c1bbb38625e97c9f4e996dad6c1ad57b5a95f3345",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e471c883b2ee61bfc3172d3307954681dadabe0318ac8860ed901d25200ee83d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "813218493/20000"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "56109501/5000"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "542509759/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=7, r=11"
+    },
+    {
+      "case": "b16/seed1/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "22777f5619d900baba6b9af48dc0c3397651750f23ff3e995e01e5f28f594efa",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e471c883b2ee61bfc3172d3307954681dadabe0318ac8860ed901d25200ee83d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "44049373/800"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "2310301/200"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "24544959/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=7, r=11"
+    },
+    {
+      "case": "b16/seed1/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "32977653a9742f012d4e5cc75eaca716d5df48218c44d10bdaa286a9f71925fc",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e471c883b2ee61bfc3172d3307954681dadabe0318ac8860ed901d25200ee83d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "14612133/200"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "299088/25"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "7025059/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=7, r=11"
+    },
+    {
+      "case": "b16/seed1/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "d5b61e6f3637b21d4c3d8c8a0b0b27c99846149f59ee5158b5041849342dde44",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "69288671edad3633a8a95b5cbe8d0b6b159cc769e55a1fb60eb4c34ed6357bc1",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          4,
+          "P",
+          "100867/100"
+        ],
+        [
+          1,
+          41,
+          "Q",
+          "93640673/800"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "474121/25"
+        ],
+        [
+          1,
+          59,
+          "Q",
+          "5828623/200"
+        ],
+        [
+          2,
+          36,
+          "P",
+          "280462/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=11"
+    },
+    {
+      "case": "b16/seed2/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2abda817ef044c80d677ba985e10e3aae64196b090bb799ad7f789e6cb6cf634",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "061e32775ca955f23e608af3709e7254451a083ccb277d114473315fb288e3d0",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "92620837243/2500000"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "2228420599933/200000000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "655791445007/25000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "9660011/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "14838309933/50000000",
+      "minimum_anchor_margin": "490112631189901/200000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed2/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "647d113e8f8b347509560defc8cc665f6a768d1d480af07c687d51d1436c7c15",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "061e32775ca955f23e608af3709e7254451a083ccb277d114473315fb288e3d0",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "461735609/12500"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "22331059933/2000000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "6547019507/250000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "966011/500"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "64080933/500000",
+      "minimum_anchor_margin": "4901111118901/2000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed2/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "d162d6c7870399e80aea31a49445232198f9a71d5c762fee6b5b8fbade25bb7d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "061e32775ca955f23e608af3709e7254451a083ccb277d114473315fb288e3d0",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "17921981/500"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "227995933/20000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "64380707/2500"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=16, r=11"
+    },
+    {
+      "case": "b16/seed2/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "b61a567b51233285dd5ece1ec7659d4ef75ee0e12ce00aa15ceab0c89014f93d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "061e32775ca955f23e608af3709e7254451a083ccb277d114473315fb288e3d0",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "123909/4"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "9952733/800"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "2381547/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed2/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "9462316ac12bb19271ee698e1a66ebc7560f6448e0c5b43aa97229bc087fb84d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "2594219df0efdf99321c2a2d876f8717becf2f2d48f71c7edb71e5bc59501942",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "124463/5"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "2748433/200"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "210143/50"
+        ],
+        [
+          2,
+          62,
+          "Q",
+          "459448/25"
+        ],
+        [
+          3,
+          16,
+          "P",
+          "2902203/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed2/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "548d1995b77208552b40df2966b96cb39c8613cee601cecd201adba1298fcce2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "a2d1bb4fbdaf17c4954b119261d52527b45f1b3ea59e37595e7a6906d6adc19b",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          51,
+          "Q",
+          "376131/20"
+        ],
+        [
+          1,
+          56,
+          "Q",
+          "12034597/800"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "356807/200"
+        ],
+        [
+          2,
+          62,
+          "Q",
+          "4390279/200"
+        ],
+        [
+          3,
+          19,
+          "P",
+          "292054/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed3/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "f7c6463069841cff3079a090c4c6c0cdb0b0ea34f77185a0f6af3a3b8d131ddd",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6e3dfefad785a01295089672b0596b1f6c86a87d3379fc874783c85f570641da",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "231599416237/6250000"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "8705462657/781250"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "5249892360683/200000000"
+        ],
+        [
+          2,
+          23,
+          "P",
+          "7352377353/25000000"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "7409356419341/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "19320029/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "7339497369/25000000",
+      "minimum_anchor_margin": "98022521285967/40000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed3/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2cbe0544d2cac418122a03982303edd74e1a349091f70027976c0a0ac50b7329",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6e3dfefad785a01295089672b0596b1f6c86a87d3379fc874783c85f570641da",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "1156705181/31250"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "698401381/62500"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "52732236683/2000000"
+        ],
+        [
+          2,
+          23,
+          "P",
+          "25362603/250000"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "73846641341/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "1932029/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "24074619/250000",
+      "minimum_anchor_margin": "980221728567/400000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed3/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "9f9ca8b5fb6afe029ba8911e440b24d89ac81506e8ee5c54ed067e765d6f958f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "6e3dfefad785a01295089672b0596b1f6c86a87d3379fc874783c85f570641da",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "22875712/625"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "7180456/625"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "550654283/20000"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "195450137/20000"
+        ],
+        [
+          3,
+          23,
+          "P",
+          "120455607/5000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=11"
+    },
+    {
+      "case": "b16/seed3/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "f9d0aae9fc330f578752577179ea3abe2ed4e6739b029a0a9dfba9dcc349a06d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "6e3dfefad785a01295089672b0596b1f6c86a87d3379fc874783c85f570641da",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "869082/25"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "322146/25"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "26174603/800"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "3443097/800"
+        ],
+        [
+          3,
+          23,
+          "P",
+          "3101687/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=11"
+    },
+    {
+      "case": "b16/seed3/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "8a487b5c69d83ea21672db6d02cea9a9d93ff1aecf8a17b59e4a3114b3269550",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "d8a1a9e6d2a461b9906ca1048e58bf09c0b1b480d4aeab991003293c94f1ce10",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "1623251/50"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "731633/50"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "7840343/200"
+        ],
+        [
+          2,
+          63,
+          "Q",
+          "236888/25"
+        ],
+        [
+          3,
+          30,
+          "P",
+          "1694441/200"
+        ],
+        [
+          3,
+          38,
+          "P",
+          "6686"
+        ],
+        [
+          3,
+          58,
+          "Q",
+          "929067/40"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=11"
+    },
+    {
+      "case": "b16/seed3/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "197c5b6ebe603b18bab90ddd1ad77cc1c1f4a6bc56bff79ecd1099a9568c6dfa",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "d8a1a9e6d2a461b9906ca1048e58bf09c0b1b480d4aeab991003293c94f1ce10",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          56,
+          "Q",
+          "754143/25"
+        ],
+        [
+          1,
+          57,
+          "Q",
+          "409499/25"
+        ],
+        [
+          2,
+          16,
+          "P",
+          "36549507/800"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "45183/100"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "13103781/800"
+        ],
+        [
+          2,
+          63,
+          "Q",
+          "213083/25"
+        ],
+        [
+          3,
+          30,
+          "P",
+          "22198899/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=11"
+    },
+    {
+      "case": "b16/seed4/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "6ff56eea85ef63a6d3114357db059df630dc9141d8de9a0864ff1dc3281f0ae1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "18f08faff9df566b6a7ddc773215061acd4e21eae4c119f5e4a3b05ebde7a0cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "7413939459413/200000000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "557325099879/50000000"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "5247091439751/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "1931997/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "11935248221/40000000",
+      "minimum_anchor_margin": "98022474226017/40000000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed4/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2e3f199031b033a6d3827853965b9e9463ccd3398dc534b5fc9b8daa3b6d11ed",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "18f08faff9df566b6a7ddc773215061acd4e21eae4c119f5e4a3b05ebde7a0cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "74304945413/2000000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "5604759879/500000"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "52452143751/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "193197/100"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "57725021/400000",
+      "minimum_anchor_margin": "980217022617/400000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed4/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "3946cf67ac77ac8cc51999071bd69a5a5b27430f1e5a6dc120b15fa251bcfee3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "18f08faff9df566b6a7ddc773215061acd4e21eae4c119f5e4a3b05ebde7a0cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "759604013/20000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "59198379/5000"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "522644151/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed4/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "3d55ecfe03099d610898cbb1a207a54584595993a9af276fc89813f96b818bc1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "94b8b0500ba0b1ff5588106f9322535fc52d0303de07d26359efcc4ffa854bfb",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "33326733/800"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "2927979/200"
+        ],
+        [
+          2,
+          9,
+          "P",
+          "1443727/800"
+        ],
+        [
+          2,
+          59,
+          "Q",
+          "206773/32"
+        ],
+        [
+          3,
+          3,
+          "P",
+          "613904/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed4/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "22107361dfd5b6880030c2072abd98769cc6be8d97a84873d0dfb6b618adca78",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "94b8b0500ba0b1ff5588106f9322535fc52d0303de07d26359efcc4ffa854bfb",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "9250973/200"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "453477/25"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "27729/50"
+        ],
+        [
+          2,
+          9,
+          "P",
+          "92127/8"
+        ],
+        [
+          2,
+          59,
+          "Q",
+          "5467269/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed4/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "55e28d252fbd0f3dbe4e642169c0a849a983490211d87c523bc65b736240dab5",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "94b8b0500ba0b1ff5588106f9322535fc52d0303de07d26359efcc4ffa854bfb",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          46,
+          "Q",
+          "40679877/800"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "4327411/200"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "159997/25"
+        ],
+        [
+          2,
+          9,
+          "P",
+          "2738171/160"
+        ],
+        [
+          2,
+          59,
+          "Q",
+          "17980821/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed5/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "1b90553a705a78f2266b8878cd9cf087dccce963efd07898bb07ac66be1c9821",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "55e322ca3dcc924d4d9cbdcd23c9bd418f876147697342e3c4bc8b4b8c8cb145",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "463295368731/12500000"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "2226598240513/200000000"
+        ],
+        [
+          2,
+          49,
+          "P",
+          "655289940283/25000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "9659987/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "7259305301/25000000",
+      "minimum_anchor_margin": "98022461134023/40000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed5/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4d372fe61429fa1230cf378cd2b1d06278c94abee4963a12849b30dc526a3ef7",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "55e322ca3dcc924d4d9cbdcd23c9bd418f876147697342e3c4bc8b4b8c8cb145",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "1159118589/31250"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "22148824513/2000000"
+        ],
+        [
+          2,
+          49,
+          "P",
+          "6496869283/250000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "965987/500"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "16055801/250000",
+      "minimum_anchor_margin": "980215713423/400000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "b16/seed5/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "14e4d79238cbc78dfee7673fb7248a9fe48d525629b14f4d56317805670bb2ef",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "55e322ca3dcc924d4d9cbdcd23c9bd418f876147697342e3c4bc8b4b8c8cb145",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "93433587/2500"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "209772913/20000"
+        ],
+        [
+          2,
+          49,
+          "P",
+          "59365933/2500"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed5/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "1996e059bb75805e48bf9a6e9aae462e8e73684f6c46eb5531b413ded745e2f4",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "55e322ca3dcc924d4d9cbdcd23c9bd418f876147697342e3c4bc8b4b8c8cb145",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "3862487/100"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "6308593/800"
+        ],
+        [
+          2,
+          49,
+          "P",
+          "1378813/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed5/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "0574ca3a97c53192d3a0caf7b45989cf11841d49a353f77c56e1c56932080843",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "e9d91440f7eb21192dc76b7cf7570091aabf55bee4d81ebe1ecbe2fff1d11721",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "1004712/25"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "926653/200"
+        ],
+        [
+          2,
+          15,
+          "P",
+          "28443/10"
+        ],
+        [
+          2,
+          56,
+          "Q",
+          "2578287/200"
+        ],
+        [
+          3,
+          22,
+          "P",
+          "4146441/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed5/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "79aeabd500a15c5b5d15ac345aec2fd926d2a2db8433a705bdd5095a60f6320a",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "65ff448b0656b9ceb0a65604e080e144b0ca5685ee8f704d81d6b607782c32fe",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          50,
+          "Q",
+          "4175133/100"
+        ],
+        [
+          1,
+          53,
+          "Q",
+          "1105657/800"
+        ],
+        [
+          2,
+          15,
+          "P",
+          "196643/20"
+        ],
+        [
+          2,
+          56,
+          "Q",
+          "11012743/800"
+        ],
+        [
+          3,
+          22,
+          "P",
+          "14386209/800"
+        ],
+        [
+          3,
+          62,
+          "Q",
+          "173151/200"
+        ],
+        [
+          4,
+          32,
+          "P",
+          "878239/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "b16/seed6/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "d50c321123fa5fcfa1150c41809e627434e7966dda46feef3779c52705e11269",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "84e81a5bf3e186788b58e62750c790c4e9f5b9af84e198fec3b1ab321add0577",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          47,
+          "Q",
+          "7407667899029/200000000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "139339432523/12500000"
+        ],
+        [
+          2,
+          31,
+          "P",
+          "262580058051/10000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "2415003/1250"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "7558057471/25000000",
+      "minimum_anchor_margin": "6126408560999/2500000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed6/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "a148b6ee4cef973096a12bb8af196406bc618bb4b3e97009914bd06893900152",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "84e81a5bf3e186788b58e62750c790c4e9f5b9af84e198fec3b1ab321add0577",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          47,
+          "Q",
+          "73677789029/2000000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "1402005773/125000"
+        ],
+        [
+          2,
+          31,
+          "P",
+          "2645155851/100000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "241503/125"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "45930721/250000",
+      "minimum_anchor_margin": "61263956099/25000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "b16/seed6/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "1b4c2bb8c7c831f2f97417a2ec340ffce08a93a7c1cfccc7e9dc11f8c3d604cb",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "84e81a5bf3e186788b58e62750c790c4e9f5b9af84e198fec3b1ab321add0577",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          47,
+          "Q",
+          "696888029/20000"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "14881223/1250"
+        ],
+        [
+          2,
+          31,
+          "P",
+          "28387131/1000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=23, r=11"
+    },
+    {
+      "case": "b16/seed6/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "ddc1e3d32bb7ab18f1c1a9cad1c7aab57676057937321735dcbccf0944fd1d3c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "4f7e032d97e0d076b67e8b6dacc8a5375b0ffdc29f6da11d8f46c0160d0035f9",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          47,
+          "Q",
+          "20783229/800"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "748363/50"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "260379/100"
+        ],
+        [
+          2,
+          31,
+          "P",
+          "2217159/200"
+        ],
+        [
+          2,
+          61,
+          "Q",
+          "87289/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=1, r=11"
+    },
+    {
+      "case": "b16/seed6/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "757c9122e109ed4b9089ce41647a7af12658629398dde76c80e409d1a6f1f0aa",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "4ed28937e0d306f2658a2ff89303ea1a9706f7bd8ecfbca3f2a414238b98d2cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          47,
+          "Q",
+          "2979029/200"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "939797/50"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "331743/50"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "465757/50"
+        ],
+        [
+          2,
+          49,
+          "Q",
+          "49012"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=1, r=11"
+    },
+    {
+      "case": "b16/seed6/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "32fe2a8d03e9037e4ed4f4925de325dbea1c5539f1f94263ab7d9133a06d6792",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "4f7e032d97e0d076b67e8b6dacc8a5375b0ffdc29f6da11d8f46c0160d0035f9",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          31,
+          "P",
+          "64471/10"
+        ],
+        [
+          1,
+          42,
+          "Q",
+          "10076497/800"
+        ],
+        [
+          1,
+          47,
+          "Q",
+          "3066471/800"
+        ],
+        [
+          1,
+          48,
+          "Q",
+          "2264969/100"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "1550179/100"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "689629/50"
+        ],
+        [
+          2,
+          61,
+          "Q",
+          "1011927/50"
+        ],
+        [
+          3,
+          42,
+          "P",
+          "3530409/800"
+        ],
+        [
+          4,
+          1,
+          "Q",
+          "16133/20"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=13"
+    },
+    {
+      "case": "b16/seed7/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "ec3c9581a11a27e6ea053dbebaa8e23182301a44ec15e0291a75b654a0ff2c83",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "1853291339941/50000000"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "446780899879/40000000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "5248771899873/200000000"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "1670737989/5000000"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "1852877400019/50000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "19319999/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "14673080151/50000000",
+      "minimum_anchor_margin": "49011243725997/20000000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "b16/seed7/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "d4c0f2fc534ce015bd0eda40d9995dbc0b6aace520a728c9d00bcf7d89959d54",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "18556883941/500000"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "4575889879/400000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "52620189873/2000000"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "25098789/50000"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "18515490019/500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "1931999/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "47558151/500000",
+      "minimum_anchor_margin": "490109172597/200000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "b16/seed7/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "3ea5ece1772d25ddd1ae4c98aaf0c07fb036c720380b1b03dce24f6baf8f1600",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "187965841/5000"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "56566879/4000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "539448873/20000"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "1090119/500"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "183826519/5000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed7/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "659e2b13695573a35416559d2f7b3e6c137949e754fa92075a54c931cc243481",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "7944721/200"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "4183999/160"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "23932873/800"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "38555/4"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "7116919/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed7/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "269e2cef05daad9dbf440f06fb391446c4ab23c0616f190bdc79f9e20b1e09be",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          41,
+          "Q",
+          "1059653/25"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "1646359/40"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "6719073/200"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "189609/10"
+        ],
+        [
+          2,
+          58,
+          "Q",
+          "852722/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed7/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "d73a292eb21e88669f309bf0aad4ee01cf5a41a069dd1215731867030fe97b4e",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "d3868b517e29e2c7ab6d3c60676dbb95f79ce3dd4ec4718b6747a5d2d7f65d73",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          4,
+          "P",
+          "45287/20"
+        ],
+        [
+          1,
+          41,
+          "Q",
+          "14164829/200"
+        ],
+        [
+          1,
+          52,
+          "Q",
+          "13153311/160"
+        ],
+        [
+          1,
+          58,
+          "Q",
+          "678503/100"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "29857917/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed8/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "718fa2cf16a482d8432c0ad9a431b52d9e65b38bee6364a685aa7e58ccc48f21",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "463343191249/12500000"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "2228076639937/200000000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "327973195001/12500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "9659997/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "3780568789/12500000",
+      "minimum_anchor_margin": "15316015042499/6250000",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "b16/seed8/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "94b196e08682b5ce5048c2adc9420057f3dc4229945f53b4522507abd7a9c0c8",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "580157078/15625"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "22296663937/2000000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "3281257001/125000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "965997/500"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "11559707/62500",
+      "minimum_anchor_margin": "153159254249/62500",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "b16/seed8/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "5b77b1f6f2cf26e54458d1b4b8c71e8c099703d76708c40eaffbba35ef7505e6",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "94390073/2500"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "224556337/20000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "16482538/625"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed8/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "5f7c3431b0a6ee49631822300c2291d43bfc77a8b8451953ff6a9d3e2ac16593",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "4053813/100"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "9264817/800"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "672858/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed8/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4495b6ceab9614ae8dea745fde498aee5434cc8a0888e65d7ab3279a1f890550",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "1100393/25"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "2404477/200"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "1379609/50"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed8/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "32102c4a366d00fd10fdc7222a856bfe74e3d8922d7432eb6a5ea3be44149bf9",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "df4d135925f6c640287c6fe21e678f9e83f5e11dd566f363f70b9123ed2bb46a",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          45,
+          "Q",
+          "4749327/100"
+        ],
+        [
+          1,
+          51,
+          "Q",
+          "9970873/800"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "706752/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=11"
+    },
+    {
+      "case": "b16/seed9/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "f1a638b5440795ddfcf48d917ee2d58068ed6a478993cfe69e96763746daca91",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "97d2c3816365b056ea010d97f64dc0c2b80fb84d948c33c7434285bd94b481cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          39,
+          "Q",
+          "463278972501/12500000"
+        ],
+        [
+          1,
+          43,
+          "Q",
+          "557368999729/50000000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "5246916960591/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "19319981/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "7325552763/25000000",
+      "minimum_anchor_margin": "98022467546037/40000000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "b16/seed9/scale1/1000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "6d20dd441c97a2f2d439cef4f5ee164bf3ce6380d50ae00662adb4f3334fee84",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "97d2c3816365b056ea010d97f64dc0c2b80fb84d948c33c7434285bd94b481cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          39,
+          "Q",
+          "4634834751/125000"
+        ],
+        [
+          1,
+          43,
+          "Q",
+          "5609149729/500000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "52434696591/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "1931981/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "22680513/250000",
+      "minimum_anchor_margin": "980216354637/400000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "b16/seed9/scale1/100",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "42c823715f561e734373066f040d05596ef6269a63c34c49a084e98f1c49e3fc",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "97d2c3816365b056ea010d97f64dc0c2b80fb84d948c33c7434285bd94b481cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          39,
+          "Q",
+          "46552851/1250"
+        ],
+        [
+          1,
+          43,
+          "Q",
+          "59637229/5000"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "520900191/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=8, r=11"
+    },
+    {
+      "case": "b16/seed9/scale1/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "847643279c2a45711767b55065347865e91536dfd09d81c2683e87015fced176",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "97d2c3816365b056ea010d97f64dc0c2b80fb84d948c33c7434285bd94b481cf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          39,
+          "Q",
+          "1898471/50"
+        ],
+        [
+          1,
+          43,
+          "Q",
+          "3015629/200"
+        ],
+        [
+          2,
+          38,
+          "P",
+          "20223711/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=11"
+    },
+    {
+      "case": "b16/seed9/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "c8b581345f3137fcb5fdd7a7c026997c0bac57bf251598e01d63f6a5f0befb78",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "9a84b7ef0664489c5f66365336e2ece2886cc5f751a22bbe3b56f533cd6dfa06",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          39,
+          "Q",
+          "1943919/50"
+        ],
+        [
+          1,
+          43,
+          "Q",
+          "475352/25"
+        ],
+        [
+          2,
+          21,
+          "P",
+          "9512/5"
+        ],
+        [
+          2,
+          32,
+          "P",
+          "77209/50"
+        ],
+        [
+          2,
+          55,
+          "Q",
+          "685171/40"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=11"
+    },
+    {
+      "case": "b16/seed9/scale3/20",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "497244835ca2a6fe5826252132a63d35b5db70f957d617998bd84ba8cbef5bd5",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "4ac6d336bd00c81f9d5d49fc236d2273a8745f9741d5a8ef60a45b1dd31f6f85",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          5,
+          "P",
+          "38111/20"
+        ],
+        [
+          1,
+          39,
+          "Q",
+          "3290249/50"
+        ],
+        [
+          1,
+          55,
+          "Q",
+          "1147023/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=11"
+    },
+    {
+      "case": "b32/seed0/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "fd8d5c4349cb36ddf444fa47619ad8347ffd37f38d23c1138f01888799d2addd",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "660ac62e58b10f662348f2998fc9da9be49362e496101863e8638b5db14dd3c9",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "29832314140089/200000000"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "2307826190081/50000000"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "1055076390021/10000000"
+        ],
+        [
+          2,
+          39,
+          "P",
+          "3797411249/1562500"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "3726753169983/25000000"
+        ],
+        [
+          2,
+          106,
+          "Q",
+          "287627669987/6250000"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "21103889680407/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "19259999/2500"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "58745767443/25000000",
+      "minimum_anchor_margin": "205483515997981/10000000",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "b32/seed0/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "427b83c813f4e528e19593b74144865f1e938e3b70e6b9671ad14d9234462d86",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "660ac62e58b10f662348f2998fc9da9be49362e496101863e8638b5db14dd3c9",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "298918414089/2000000"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "23388869081/500000"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "10589589021/100000"
+        ],
+        [
+          2,
+          39,
+          "P",
+          "77872873/31250"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "37136191983/250000"
+        ],
+        [
+          2,
+          106,
+          "Q",
+          "2838548237/62500"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "212027968407/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "1925999/250"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "421701693/250000",
+      "minimum_anchor_margin": "2054829399781/100000",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "b32/seed0/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "6c7bb6703e8caffba56ea23d412fc255c68a5fc86ec20785fa496c3192cc90a4",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "79ca848d636081a77d9fd5f44c6a18d91b2b2e071974bd421eeed4e21099287d",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "3048711489/20000"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "264949481/5000"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "109778421/1000"
+        ],
+        [
+          2,
+          39,
+          "P",
+          "3884767/1250"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "11174541/2500"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "4028869/100"
+        ],
+        [
+          3,
+          53,
+          "P",
+          "396554683/4000"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "158624001/20000"
+        ],
+        [
+          3,
+          109,
+          "Q",
+          "92037823/625"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed0/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "d1926929e21c59f1803872dad5c5f61b3d5c66580bf5e7b8645da3d6a4cd6d6b",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "79ca848d636081a77d9fd5f44c6a18d91b2b2e071974bd421eeed4e21099287d",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "132531169/800"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "16119961/200"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "5081381/40"
+        ],
+        [
+          2,
+          39,
+          "P",
+          "292247/50"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "3204381/100"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "68373/4"
+        ],
+        [
+          3,
+          53,
+          "P",
+          "11813563/160"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "23969921/800"
+        ],
+        [
+          3,
+          109,
+          "Q",
+          "3494703/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed0/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "a52df550579d2800d1d1bec4619cde088e30c79e173aa474d0f508821bdfdb1f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "947faa2e895e820c0b96953332641368ffc777a228f044931c8c4e897b1f54a0",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "36439929/200"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "2877823/25"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "743028/5"
+        ],
+        [
+          2,
+          39,
+          "P",
+          "463303/50"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "3325647/50"
+        ],
+        [
+          2,
+          109,
+          "Q",
+          "1351003/50"
+        ],
+        [
+          3,
+          27,
+          "P",
+          "2477379/200"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "11538969/200"
+        ],
+        [
+          3,
+          105,
+          "Q",
+          "4540933/50"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed0/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "f12fe126eb1b56e32a47eac8e3b00b73cd1505ec7039ac63a68472275888499d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "f28b76d8a86bc3d22677c43ca7e63d7f0e8fbc63ec990486595368cc0c4009dd",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          97,
+          "Q",
+          "158988441/800"
+        ],
+        [
+          1,
+          98,
+          "Q",
+          "29925369/200"
+        ],
+        [
+          2,
+          17,
+          "P",
+          "238467/25"
+        ],
+        [
+          2,
+          18,
+          "P",
+          "13446641/200"
+        ],
+        [
+          2,
+          100,
+          "Q",
+          "8309277/50"
+        ],
+        [
+          2,
+          117,
+          "Q",
+          "46517463/800"
+        ],
+        [
+          3,
+          27,
+          "P",
+          "33494901/800"
+        ],
+        [
+          3,
+          79,
+          "P",
+          "19958571/800"
+        ],
+        [
+          3,
+          102,
+          "Q",
+          "10083971/100"
+        ],
+        [
+          3,
+          109,
+          "Q",
+          "1733937/100"
+        ],
+        [
+          3,
+          117,
+          "P",
+          "1904981/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed1/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "a78eadda215e6debc82dab78baabe1bc710f1bfdf495300d93a2d42324754eea",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "be0eacc0c9591b6fd308e2a00d7602ed9687fece8e9ef40f248acfd1d3b918a3",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "59653355441/400000"
+        ],
+        [
+          1,
+          100,
+          "Q",
+          "71924769991/1562500"
+        ],
+        [
+          2,
+          26,
+          "P",
+          "5274189980039/50000000"
+        ],
+        [
+          2,
+          62,
+          "P",
+          "24849524081/10000000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "29817650879407/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "77040037/10000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "23351723931/10000000",
+      "minimum_anchor_margin": "410967049129957/20000000",
+      "distinct_mover_degrees": 16
+    },
+    {
+      "case": "b32/seed1/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "28e311c5ce3d0b0800d2bae85adeeb7797fd67018a312c7038a83bbc5d27c6a2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "be0eacc0c9591b6fd308e2a00d7602ed9687fece8e9ef40f248acfd1d3b918a3",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "119341909/800"
+        ],
+        [
+          1,
+          100,
+          "Q",
+          "1422844607/31250"
+        ],
+        [
+          2,
+          26,
+          "P",
+          "52828748039/500000"
+        ],
+        [
+          2,
+          62,
+          "P",
+          "303802481/100000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "297452087407/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "7704037/1000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "154022331/100000",
+      "minimum_anchor_margin": "4109660512957/200000",
+      "distinct_mover_degrees": 16
+    },
+    {
+      "case": "b32/seed1/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "9760ffde1fdba266d7a4e01d0b881c31d2ff208b97b951cedc627c33f3d7035e",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "be0eacc0c9591b6fd308e2a00d7602ed9687fece8e9ef40f248acfd1d3b918a3",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "29923477/200"
+        ],
+        [
+          1,
+          100,
+          "Q",
+          "50653403/1250"
+        ],
+        [
+          2,
+          26,
+          "P",
+          "536972339/5000"
+        ],
+        [
+          2,
+          62,
+          "P",
+          "8568821/1000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "2902078207/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=15, r=23"
+    },
+    {
+      "case": "b32/seed1/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "41f59ac8348f728412f170b8f2d1a12efa40c3e15cb6da38743abdf6a70e6654",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "be0eacc0c9591b6fd308e2a00d7602ed9687fece8e9ef40f248acfd1d3b918a3",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "6062937/40"
+        ],
+        [
+          1,
+          100,
+          "Q",
+          "913123/50"
+        ],
+        [
+          2,
+          26,
+          "P",
+          "23022899/200"
+        ],
+        [
+          2,
+          62,
+          "P",
+          "1326069/40"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "103203967/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=8, r=23"
+    },
+    {
+      "case": "b32/seed1/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "cd9db04b563fc5063b47067fc9d157264e3d1eb6f326ead1c7703de711f377e3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "eb71026288484852210fce93bd3ca7f6a36e4d999dcf3f1afd6b4387e20fd6dc",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "770098/5"
+        ],
+        [
+          1,
+          102,
+          "Q",
+          "229707/40"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "83824/25"
+        ],
+        [
+          2,
+          26,
+          "P",
+          "542296/25"
+        ],
+        [
+          2,
+          100,
+          "Q",
+          "2337688/25"
+        ],
+        [
+          2,
+          127,
+          "Q",
+          "1954444/25"
+        ],
+        [
+          3,
+          34,
+          "P",
+          "2450253/40"
+        ],
+        [
+          3,
+          77,
+          "P",
+          "2532079/200"
+        ],
+        [
+          3,
+          106,
+          "Q",
+          "2320029/200"
+        ],
+        [
+          3,
+          108,
+          "Q",
+          "3248159/40"
+        ],
+        [
+          4,
+          49,
+          "P",
+          "393077/8"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=8, r=23"
+    },
+    {
+      "case": "b32/seed1/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "36b7d1d6addc8a78e042f9d7aa1c168e8388d9c137a8f2d5b4829ff437664a15",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "840ce74c9f58c5b3225e6511625359b8dd947e0bc143e5b6b08ed71ab03bb196",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          98,
+          "Q",
+          "6258681/40"
+        ],
+        [
+          1,
+          118,
+          "Q",
+          "2252652/25"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "5624763/200"
+        ],
+        [
+          2,
+          34,
+          "P",
+          "1810647/160"
+        ],
+        [
+          2,
+          100,
+          "Q",
+          "3299103/50"
+        ],
+        [
+          2,
+          127,
+          "Q",
+          "9451353/100"
+        ],
+        [
+          3,
+          49,
+          "P",
+          "16542161/800"
+        ],
+        [
+          3,
+          77,
+          "P",
+          "14069303/800"
+        ],
+        [
+          3,
+          102,
+          "Q",
+          "70810233/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=25"
+    },
+    {
+      "case": "b32/seed2/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "48b5372f8d75b6d8ea4b830c8566f1a6e6933d4bf75195aca0d101bc94b063be",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "b367b22de8c80c8b5f653b59e3429182d177e7335e431537685b9a31d449aa4f",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "3727953729913/25000000"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "1847075468627/40000000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "82402476331/781250"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "2439769907/1000000"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "18633346711/125000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "576425426361/12500000"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "21086383018533/200000000"
+        ],
+        [
+          3,
+          65,
+          "P",
+          "96843052039/40000000"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "1864060911247/12500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "38520019/5000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "117522509291/50000000",
+      "minimum_anchor_margin": "821934174205867/40000000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed2/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "96ffd073fec0f4aaa0e6b0a05bf65d089a1060d07892209b245874a7605d543c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "b367b22de8c80c8b5f653b59e3429182d177e7335e431537685b9a31d449aa4f",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "37256247913/250000"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "18792547427/400000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "13196399671/125000"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "25861997/10000"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "742556179/5000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "1448526309/31250"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "210277300533/2000000"
+        ],
+        [
+          3,
+          65,
+          "P",
+          "959705239/400000"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "9318264311/62500"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "3852019/500"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "846500291/500000",
+      "minimum_anchor_margin": "8219328620467/400000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed2/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "84b0f3d79b15f7c588c7272b7232cb2c3b9fc420e19c2ebf28ba7e9974a4a4ff",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "b367b22de8c80c8b5f653b59e3429182d177e7335e431537685b9a31d449aa4f",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "370233463/2500"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "220105307/4000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "266328767/2500"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "101264/25"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "571823/4"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "121852497/2500"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "2044118733/20000"
+        ],
+        [
+          3,
+          65,
+          "P",
+          "8724559/4000"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "371914469/2500"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=23"
+    },
+    {
+      "case": "b32/seed2/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "84009975e710b10ec85c68e784531a09e2108098bfdc9dc704e93b105f71333a",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "3af5d162680473e84245ed6bbacf63a270b5bf66136d9689e735cf82f4c775ec",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "14395223/100"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "14525563/160"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "11080027/100"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "52801/5"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "2365247/20"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "5935677/100"
+        ],
+        [
+          3,
+          14,
+          "P",
+          "296849/25"
+        ],
+        [
+          3,
+          65,
+          "P",
+          "1008077/800"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "29453351/200"
+        ],
+        [
+          3,
+          112,
+          "Q",
+          "11120991/800"
+        ],
+        [
+          4,
+          55,
+          "P",
+          "4837183/50"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=23"
+    },
+    {
+      "case": "b32/seed2/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "36f5007ff05a5c1874441667e18e3b5950a11236d7abb70a048f3b2f27923ac1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "248f468283b91faf4c7da42683263c2ff8788c397a0f68708bf385ba6946d571",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "6938711/50"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "1083919/8"
+        ],
+        [
+          1,
+          115,
+          "Q",
+          "703821/40"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "25014887/200"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "2898626/25"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "92536/5"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "437914/5"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "1820559/25"
+        ],
+        [
+          3,
+          14,
+          "P",
+          "348269/5"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "1059901/25"
+        ],
+        [
+          4,
+          20,
+          "P",
+          "582465/8"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=24"
+    },
+    {
+      "case": "b32/seed2/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "6f92a19ddf56134ab21cac171666210a68145d05a103b26483d6a8c865a1ee32",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "248f468283b91faf4c7da42683263c2ff8788c397a0f68708bf385ba6946d571",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          87,
+          "Q",
+          "13359447/100"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "28832451/160"
+        ],
+        [
+          1,
+          115,
+          "Q",
+          "1756257/32"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "127316103/800"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "12118789/100"
+        ],
+        [
+          2,
+          11,
+          "P",
+          "531077/20"
+        ],
+        [
+          2,
+          94,
+          "Q",
+          "1136019/20"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "8619591/100"
+        ],
+        [
+          3,
+          14,
+          "P",
+          "2550813/20"
+        ],
+        [
+          3,
+          103,
+          "Q",
+          "4055019/100"
+        ],
+        [
+          4,
+          20,
+          "P",
+          "9035917/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=24"
+    },
+    {
+      "case": "b32/seed3/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "2a9925836edc80e5200a05aab9fdaebf4477c5a2e9af62a55fc87ddb051efba3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "8b2aee07643eb157026e67c66afa07bad698b4fb46899307c2a1112ba75a34fc",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          110,
+          "Q",
+          "3729101282587/25000000"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "1843217999957/40000000"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "1318621865053/12500000"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "485461860231/200000000"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "29828580060117/200000000"
+        ],
+        [
+          2,
+          117,
+          "Q",
+          "460289243921/10000000"
+        ],
+        [
+          3,
+          60,
+          "P",
+          "4220196592187/40000000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "60002197467/25000000"
+        ],
+        [
+          3,
+          127,
+          "Q",
+          "5964501859721/40000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "15408013/2000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "18939556741/8000000",
+      "minimum_anchor_margin": "821934113681881/40000000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed3/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "e61ffd1960f98ed01b49aef103b29a2e450062b2c798457dc11b948220a08fd1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "8b2aee07643eb157026e67c66afa07bad698b4fb46899307c2a1112ba75a34fc",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          110,
+          "Q",
+          "37371003337/250000"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "18406799957/400000"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "13214624053/125000"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "4923186231/2000000"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "298545006117/2000000"
+        ],
+        [
+          2,
+          117,
+          "Q",
+          "4550174321/100000"
+        ],
+        [
+          3,
+          60,
+          "P",
+          "42347459387/400000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "547344717/250000"
+        ],
+        [
+          3,
+          127,
+          "Q",
+          "59587585721/400000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "1540813/200"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "149035621/80000",
+      "minimum_anchor_margin": "8219322568081/400000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed3/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "2de68935c51f70d63d981ff51fc6a37f98ca3db3aeaaf4ba4d0f8ba5f2eca1f6",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "8b2aee07643eb157026e67c66afa07bad698b4fb46899307c2a1112ba75a34fc",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          110,
+          "Q",
+          "190854581/1250"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "181529957/4000"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "67493414/625"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "56088831/20000"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "3011370717/20000"
+        ],
+        [
+          2,
+          117,
+          "Q",
+          "40229861/1000"
+        ],
+        [
+          3,
+          60,
+          "P",
+          "438024107/4000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "51423/625"
+        ],
+        [
+          3,
+          125,
+          "Q",
+          "58955529/20000"
+        ],
+        [
+          3,
+          127,
+          "Q",
+          "1422103/32"
+        ],
+        [
+          4,
+          125,
+          "P",
+          "2002891701/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=19, r=23"
+    },
+    {
+      "case": "b32/seed3/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "08a02637d7dbe400e71cd96ab39f2f27bcc09c3f992e6ff614f84fae2d1f0e9c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "276f8bac1641492cf07919e9bbb8c86a788a30a70fa3c3d4f59dbc9dc31b343b",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          110,
+          "Q",
+          "8345251/50"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "6809957/160"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "2952254/25"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "3462751/800"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "125063037/800"
+        ],
+        [
+          2,
+          117,
+          "Q",
+          "671909/40"
+        ],
+        [
+          3,
+          60,
+          "P",
+          "20107691/160"
+        ],
+        [
+          3,
+          101,
+          "P",
+          "4686299/100"
+        ],
+        [
+          3,
+          120,
+          "Q",
+          "32421/20"
+        ],
+        [
+          3,
+          125,
+          "Q",
+          "10483393/160"
+        ],
+        [
+          4,
+          120,
+          "P",
+          "20242253/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=16, r=23"
+    },
+    {
+      "case": "b32/seed3/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "03e3d011b4d7d0af6fb9ea82151f9e0c917fd536ca91609b8861244a68632ab8",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "e977ce9e64de58f63389d6a8c5d94353df255a0f789cd4f3b0214a3421b64559",
+      "oracle_sweeps": 6,
+      "oracle_full_moves": [
+        [
+          1,
+          110,
+          "Q",
+          "4617082/25"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "1561457/40"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "6535897/50"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "1246791/200"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "32705877/200"
+        ],
+        [
+          2,
+          120,
+          "Q",
+          "1366984/25"
+        ],
+        [
+          3,
+          24,
+          "P",
+          "423153/10"
+        ],
+        [
+          3,
+          81,
+          "P",
+          "2460823/200"
+        ],
+        [
+          3,
+          125,
+          "Q",
+          "37554709/200"
+        ],
+        [
+          3,
+          127,
+          "Q",
+          "1187111/40"
+        ],
+        [
+          4,
+          77,
+          "P",
+          "471768/25"
+        ],
+        [
+          4,
+          91,
+          "P",
+          "791464/25"
+        ],
+        [
+          5,
+          24,
+          "Q",
+          "1482104/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=1, r=24"
+    },
+    {
+      "case": "b32/seed3/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "b620e27a6e9c329c6fc51b1b8ed0cfabdd4f7969eb5dd168a7a481709ba2b25c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "bcf07e9bca009a1125382e85d0441544e7c7640a5d82a59de034a54a65d4af26",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "P",
+          "1616657/50"
+        ],
+        [
+          1,
+          110,
+          "Q",
+          "7644834/25"
+        ],
+        [
+          1,
+          111,
+          "Q",
+          "110956461/800"
+        ],
+        [
+          1,
+          113,
+          "Q",
+          "1413177/40"
+        ],
+        [
+          1,
+          125,
+          "Q",
+          "313143/800"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "6170566/25"
+        ],
+        [
+          2,
+          24,
+          "P",
+          "8733939/100"
+        ],
+        [
+          2,
+          60,
+          "P",
+          "50830013/800"
+        ],
+        [
+          2,
+          114,
+          "Q",
+          "135927843/800"
+        ],
+        [
+          3,
+          81,
+          "P",
+          "14681633/800"
+        ],
+        [
+          3,
+          120,
+          "Q",
+          "1780711/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=1, r=24"
+    },
+    {
+      "case": "b32/seed4/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "3c76a72ee3e76455513f6da4562cd00e080a58f33885669113528b4f8d43bc1f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "3d1a6a53f780072155065b3a362ce09d9d875bb447a52871a6e7e368f375c0d5",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "3728048777529/25000000"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "1152557627459/25000000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "41162874417/390625"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "96107760157/40000000"
+        ],
+        [
+          2,
+          92,
+          "Q",
+          "29832277759351/200000000"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "1153776047341/25000000"
+        ],
+        [
+          3,
+          37,
+          "P",
+          "527247004507/5000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "3851999/500"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "29169788973/12500000",
+      "minimum_anchor_margin": "164386793688397/8000000",
+      "distinct_mover_degrees": 19
+    },
+    {
+      "case": "b32/seed4/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "52d5a85e3e2a280279ee9ac74420aa2a41c2df302994566ecd2ac3dd8cd9fde1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "3d1a6a53f780072155065b3a362ce09d9d875bb447a52871a6e7e368f375c0d5",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "37265752779/250000"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "11558887709/250000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "13073635719/125000"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "886176157/400000"
+        ],
+        [
+          2,
+          92,
+          "Q",
+          "298914775351/2000000"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "11680729591/250000"
+        ],
+        [
+          3,
+          37,
+          "P",
+          "5265675457/50000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "385199/50"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "95270799/62500",
+      "minimum_anchor_margin": "1643861608837/80000",
+      "distinct_mover_degrees": 19
+    },
+    {
+      "case": "b32/seed4/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "7d96e744e14615aad6659c3a44c5b4c596fa16c1e77a55a0c52bbf25755c88a2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "c2fb0911435ae756aebae3354a7248b33aa7abd31980a7a296f75509b1f029c0",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "185592027/1250"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "29729996/625"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "241776063/2500"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "1371757/4000"
+        ],
+        [
+          2,
+          82,
+          "Q",
+          "17298263/20000"
+        ],
+        [
+          2,
+          92,
+          "Q",
+          "988554073/20000"
+        ],
+        [
+          3,
+          22,
+          "P",
+          "551530839/5000"
+        ],
+        [
+          3,
+          37,
+          "P",
+          "871871/1000"
+        ],
+        [
+          4,
+          3,
+          "Q",
+          "93981742/625"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=23"
+    },
+    {
+      "case": "b32/seed4/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "ffce7656dd7963fde9f1f4ae89a46b152510b5e04f826a8333f807f398c56c9c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "c277c02754b5b60dd9547af21bceb6c74dae2b2e133aa05a93460de3592b0132",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "7292717/50"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "1337241/25"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "6169563/100"
+        ],
+        [
+          2,
+          22,
+          "P",
+          "1353201/50"
+        ],
+        [
+          2,
+          82,
+          "Q",
+          "11073469/800"
+        ],
+        [
+          2,
+          92,
+          "Q",
+          "50089059/800"
+        ],
+        [
+          3,
+          19,
+          "P",
+          "75985533/800"
+        ],
+        [
+          3,
+          125,
+          "Q",
+          "35742851/800"
+        ],
+        [
+          4,
+          82,
+          "P",
+          "14189789/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=23"
+    },
+    {
+      "case": "b32/seed4/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "6f686f684d02fd869482ce02a24bccbdc8bc47471c4c8b1ef948f3f5a46aee48",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "f58c1e442466beca85bddfa6e9da02ee2e9379e5ac7fb0d53454a7bcc632cfa6",
+      "oracle_sweeps": 7,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "3564519/25"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "1522274/25"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "170971/25"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "1953538/25"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "89013/5"
+        ],
+        [
+          2,
+          33,
+          "P",
+          "12139893/200"
+        ],
+        [
+          2,
+          82,
+          "Q",
+          "6040491/200"
+        ],
+        [
+          2,
+          99,
+          "Q",
+          "12221113/200"
+        ],
+        [
+          3,
+          21,
+          "P",
+          "55681/10"
+        ],
+        [
+          3,
+          125,
+          "Q",
+          "8602683/200"
+        ],
+        [
+          4,
+          38,
+          "P",
+          "60928/25"
+        ],
+        [
+          5,
+          2,
+          "Q",
+          "622483/25"
+        ],
+        [
+          5,
+          34,
+          "P",
+          "14420309/200"
+        ],
+        [
+          6,
+          3,
+          "Q",
+          "2909453/50"
+        ],
+        [
+          6,
+          70,
+          "P",
+          "2999221/50"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=23"
+    },
+    {
+      "case": "b32/seed4/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "97c2ada34d2c77f752b377b3913c2f1d86c57d9e16ec35f611715494cfd9539b",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "89c8d5ba295a380bd7a013fd37cb779dbe094eedcf209e94697718d39bdc00e1",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          68,
+          "Q",
+          "3482694/25"
+        ],
+        [
+          1,
+          70,
+          "Q",
+          "3414573/50"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "968256/25"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "8873367/100"
+        ],
+        [
+          2,
+          19,
+          "P",
+          "59139233/800"
+        ],
+        [
+          2,
+          33,
+          "P",
+          "71058071/800"
+        ],
+        [
+          2,
+          82,
+          "Q",
+          "13664169/160"
+        ],
+        [
+          2,
+          125,
+          "Q",
+          "33949347/800"
+        ],
+        [
+          3,
+          21,
+          "P",
+          "3028617/100"
+        ],
+        [
+          4,
+          2,
+          "Q",
+          "303441/20"
+        ],
+        [
+          4,
+          24,
+          "P",
+          "1666239/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=2, r=23"
+    },
+    {
+      "case": "b32/seed5/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "e0e4851eb2dc01724d49cd53cf0a62c543b7a23e180bc8c5bd8c2385c2a0b69f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6c8d048f4660b3306b130b497a9badcbefacb89bda331c561ba1bb89758fde93",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "29816254200947/200000000"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "576108833803/12500000"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "329383340343/3125000"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "31075123631/12500000"
+        ],
+        [
+          2,
+          118,
+          "Q",
+          "1864499151189/12500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "1925999/250"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "466489204257/200000000",
+      "minimum_anchor_margin": "410966985550023/20000000",
+      "distinct_mover_degrees": 17
+    },
+    {
+      "case": "b32/seed5/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "34e4f32b9bf34d6c14eefd7440d30f6380100d352e22d5842e4c67774e97f368",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6c8d048f4660b3306b130b497a9badcbefacb89bda331c561ba1bb89758fde93",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "297312420947/2000000"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "720305741/15625"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "13105773747/125000"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "95268689/31250"
+        ],
+        [
+          2,
+          118,
+          "Q",
+          "4670088141/31250"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "192599/25"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "3025924257/2000000",
+      "minimum_anchor_margin": "4109654155023/200000",
+      "distinct_mover_degrees": 17
+    },
+    {
+      "case": "b32/seed5/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "96d425420e84e39a5fc2b15c4fb4152619087303a259b6f25a519e4b6f6397d7",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6c8d048f4660b3306b130b497a9badcbefacb89bda331c561ba1bb89758fde93",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "2888112947/20000"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "115520531/2500"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "248203719/2500"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "21685987/2500"
+        ],
+        [
+          2,
+          118,
+          "Q",
+          "380679153/2500"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=23"
+    },
+    {
+      "case": "b32/seed5/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "8f9f68a94f875d367a690bacb2aeb9c3dbb77ad8a632c9258c44a4a06b486409",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "6c8d048f4660b3306b130b497a9badcbefacb89bda331c561ba1bb89758fde93",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "100412147/800"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "4669191/100"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "7455139/100"
+        ],
+        [
+          2,
+          47,
+          "P",
+          "3367607/100"
+        ],
+        [
+          2,
+          118,
+          "Q",
+          "16484333/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=23"
+    },
+    {
+      "case": "b32/seed5/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "08893b02b9dbe3b2c395e73318fa420df78e3e33f0e1e73301a08120ee7d6281",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "7d551d8fa9cd853ac9509b61d3f4b632edb52b5a8687a264779e0ee76b05664c",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "20380847/200"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "1182461/25"
+        ],
+        [
+          1,
+          126,
+          "Q",
+          "38056"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "2726457/40"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "962409/50"
+        ],
+        [
+          2,
+          93,
+          "P",
+          "864657/25"
+        ],
+        [
+          2,
+          112,
+          "Q",
+          "1078347/10"
+        ],
+        [
+          3,
+          1,
+          "Q",
+          "7033723/200"
+        ],
+        [
+          3,
+          3,
+          "P",
+          "142452/5"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=23"
+    },
+    {
+      "case": "b32/seed5/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "0ea3cc1f1a3503c78c02e533c809d60ba2c2a25e39971c9871b4e97b77882300",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "70f74c4c6161afaf114dc3c7796073585da9696cb5414087102ed65e02dccd5a",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          101,
+          "Q",
+          "62636523/800"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "4790709/100"
+        ],
+        [
+          1,
+          126,
+          "Q",
+          "1710999/20"
+        ],
+        [
+          2,
+          1,
+          "P",
+          "11801901/160"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "2595459/50"
+        ],
+        [
+          2,
+          93,
+          "P",
+          "10132841/200"
+        ],
+        [
+          2,
+          112,
+          "Q",
+          "174381/2"
+        ],
+        [
+          3,
+          1,
+          "Q",
+          "23770227/800"
+        ],
+        [
+          3,
+          13,
+          "P",
+          "19910577/800"
+        ],
+        [
+          3,
+          99,
+          "P",
+          "21486783/800"
+        ],
+        [
+          3,
+          118,
+          "Q",
+          "4436507/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=23"
+    },
+    {
+      "case": "b32/seed6/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "95d07387d9c30759d9a34028e2b329ea973bb37f5112a0fc0bf66223ccfb9bfb",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "271b07a41c66d1672ebb35475e3d8dd1f7852c585af340a83ca1d8a7b5a156d9",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          93,
+          "Q",
+          "1491274917/10000"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "9230580881177/200000000"
+        ],
+        [
+          2,
+          25,
+          "P",
+          "4219844720243/40000000"
+        ],
+        [
+          2,
+          34,
+          "P",
+          "30570871311/12500000"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "745713659493/5000000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "1848293056581/40000000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "21096218240839/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "1540801/200"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "471203718221/200000000",
+      "minimum_anchor_margin": "410967062765941/20000000",
+      "distinct_mover_degrees": 17
+    },
+    {
+      "case": "b32/seed6/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "bb3a331626bdb24ed894d04df76e4e4d664fddf0d23c230e6d53611d0563b348",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "271b07a41c66d1672ebb35475e3d8dd1f7852c585af340a83ca1d8a7b5a156d9",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          93,
+          "Q",
+          "149118417/1000"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "93483089177/2000000"
+        ],
+        [
+          2,
+          25,
+          "P",
+          "42312272243/400000"
+        ],
+        [
+          2,
+          34,
+          "P",
+          "165324843/62500"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "7463540943/50000"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "18914306181/400000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "211260824839/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "154081/20"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "3497370221/2000000",
+      "minimum_anchor_margin": "4109661876541/200000",
+      "distinct_mover_degrees": 17
+    },
+    {
+      "case": "b32/seed6/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "411e29a6652d92d6181d6387597b7449829dc9858e8ed69b2a07763a13a8d5a1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "271b07a41c66d1672ebb35475e3d8dd1f7852c585af340a83ca1d8a7b5a156d9",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          93,
+          "Q",
+          "14902767/100"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "1052559977/20000"
+        ],
+        [
+          2,
+          25,
+          "P",
+          "434505443/4000"
+        ],
+        [
+          2,
+          34,
+          "P",
+          "11601297/2500"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "37637919/250"
+        ],
+        [
+          2,
+          102,
+          "Q",
+          "232281141/4000"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "2142473239/20000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=23"
+    },
+    {
+      "case": "b32/seed6/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "b18cf3961e9e952b895bad31c8a241823d8d9c6e32127b90cd472cb02256db97",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "ba9cb20ef6d995c3eb1fbfea27834bba8272b4e6c3b1dc8f1abc889a57484a1f",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          93,
+          "Q",
+          "2972487/20"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "63032937/800"
+        ],
+        [
+          1,
+          102,
+          "Q",
+          "458723/160"
+        ],
+        [
+          2,
+          0,
+          "P",
+          "12208001/800"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "105561903/800"
+        ],
+        [
+          2,
+          25,
+          "P",
+          "2912313/160"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "6243977/40"
+        ],
+        [
+          2,
+          107,
+          "Q",
+          "38685503/800"
+        ],
+        [
+          3,
+          12,
+          "P",
+          "2537997/800"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "8537619/800"
+        ],
+        [
+          3,
+          98,
+          "Q",
+          "3579889/800"
+        ],
+        [
+          4,
+          25,
+          "Q",
+          "12092063/800"
+        ],
+        [
+          4,
+          93,
+          "P",
+          "7582707/100"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=23"
+    },
+    {
+      "case": "b32/seed6/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "f8b7f12a3b3f16868297a1b79fe23b19820c6425a01a0bcbc71ea9d16481751a",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "5e28e56731ba04e1f9619d5f6f6261628b0baf1aa4d9a506945f1b26d75a04c7",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          93,
+          "Q",
+          "740601/5"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "22299557/200"
+        ],
+        [
+          1,
+          102,
+          "Q",
+          "2507791/40"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "9869461/200"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "10468611/200"
+        ],
+        [
+          2,
+          25,
+          "P",
+          "1359341/40"
+        ],
+        [
+          2,
+          97,
+          "Q",
+          "815346/5"
+        ],
+        [
+          2,
+          107,
+          "Q",
+          "10125383/200"
+        ],
+        [
+          3,
+          0,
+          "P",
+          "16550789/200"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "3784539/200"
+        ],
+        [
+          3,
+          98,
+          "Q",
+          "2275049/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=23"
+    },
+    {
+      "case": "b32/seed6/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "2ff7f93d398de72d167bb695f451a98696eba8089d873f049820c505a9abf77a",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "0d90ff12c65f392171fc40455f4b8edf3ae1198c9e78ced043966cd821f1b5ae",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          72,
+          "P",
+          "40083413/800"
+        ],
+        [
+          1,
+          93,
+          "Q",
+          "1255452/5"
+        ],
+        [
+          1,
+          94,
+          "Q",
+          "198493491/800"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "1337079/20"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "16227861/160"
+        ],
+        [
+          2,
+          24,
+          "P",
+          "598983/50"
+        ],
+        [
+          2,
+          98,
+          "Q",
+          "99547143/800"
+        ],
+        [
+          2,
+          107,
+          "Q",
+          "42818613/800"
+        ],
+        [
+          3,
+          18,
+          "P",
+          "15393003/800"
+        ],
+        [
+          3,
+          70,
+          "P",
+          "21392921/800"
+        ],
+        [
+          3,
+          102,
+          "Q",
+          "10273403/160"
+        ],
+        [
+          4,
+          72,
+          "Q",
+          "5993877/800"
+        ],
+        [
+          4,
+          84,
+          "P",
+          "2920837/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=23"
+    },
+    {
+      "case": "b32/seed7/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "63062f57a8f4dccc25052de6bbec7f6b28cbcea8c0bb18a00daf3123b1bdbb7d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "75831c0ef2f15b21583a5a2b67fcc01d518acf720324682c75efd1b8d2efbcce",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "5964316064003/40000000"
+        ],
+        [
+          1,
+          99,
+          "Q",
+          "1149327132453/25000000"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "659148401887/6250000"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "59663382479/25000000"
+        ],
+        [
+          2,
+          115,
+          "Q",
+          "29840970059873/200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "77039963/10000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "28715195059/12500000",
+      "minimum_anchor_margin": "205483514635989/10000000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed7/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "f375b9c540c325a400d592aee789b821b7774f3eb9c5b07f616621b5e3d61a42",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "75831c0ef2f15b21583a5a2b67fcc01d518acf720324682c75efd1b8d2efbcce",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "59569006403/400000"
+        ],
+        [
+          1,
+          99,
+          "Q",
+          "11235838203/250000"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "13182117899/125000"
+        ],
+        [
+          2,
+          12,
+          "P",
+          "513463229/250000"
+        ],
+        [
+          2,
+          115,
+          "Q",
+          "299784005873/2000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 5,
+        "sweeps": 3,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "7703963/1000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "145082059/125000",
+      "minimum_anchor_margin": "2054829263589/100000",
+      "distinct_mover_degrees": 18
+    },
+    {
+      "case": "b32/seed7/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "6dec38f771c53545d50ea780f19b5286ca4157d46026cfc5109bcb71bf8fe744",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "698de1822140b0d6bc56768574b3acc59e2ca0185a62d96c9e679721379ffae7",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "588274643/4000"
+        ],
+        [
+          1,
+          99,
+          "Q",
+          "21653757/625"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "263472373/2500"
+        ],
+        [
+          2,
+          27,
+          "P",
+          "82823/100"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "361654417/2500"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=6, r=23"
+    },
+    {
+      "case": "b32/seed7/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "130559fc1920c471a1ff72270bd250b397cf2dafbc73eb8094fc6957d7b2cac1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "5cd2fbee7420beecd9aea4eeae23820af0cc42f4d299dd999d11c52e613cd7b8",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "22212691/160"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "1174861/50"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "10534353/100"
+        ],
+        [
+          2,
+          115,
+          "Q",
+          "67217593/800"
+        ],
+        [
+          3,
+          9,
+          "P",
+          "73416343/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=6, r=23"
+    },
+    {
+      "case": "b32/seed7/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "9fa8b3a7ff429f610f2b34e4b9897db0c92e34420d540780b1a54a1f5ac5efa6",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "fc344b95a8f2247d98e5d1c9006ca24e8569631a85175bad22c77cfa7c0fda5d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "5141207/40"
+        ],
+        [
+          1,
+          105,
+          "Q",
+          "22687/25"
+        ],
+        [
+          1,
+          115,
+          "Q",
+          "3879333/200"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "5194568/25"
+        ],
+        [
+          2,
+          7,
+          "P",
+          "740158/25"
+        ],
+        [
+          2,
+          46,
+          "P",
+          "1734019/200"
+        ],
+        [
+          2,
+          99,
+          "Q",
+          "843759/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=24"
+    },
+    {
+      "case": "b32/seed7/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "c3389d2749b61e0477f57853b084f8730049385d8766de7ea5fdcaacee11a683",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "58200a7de829688f81ae7f4b53df77b09e35ac58fce22a665118d6c3b5542b8c",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          82,
+          "Q",
+          "18916971/160"
+        ],
+        [
+          1,
+          115,
+          "Q",
+          "128681817/800"
+        ],
+        [
+          2,
+          4,
+          "P",
+          "20876639/200"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "14726139/800"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "2041182/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=4, r=23"
+    },
+    {
+      "case": "b32/seed8/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "8ea8d5f7ef6b714cde87f4109ad4eec8fd3d1e741e13d80707931b5dcaa2f019",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "1c6a023368b0f436244e275134bc1940194281ddf8d6d6a92155cd3a47692ddc",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "3727533597523/25000000"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "9207853680233/200000000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "21081323920303/200000000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "480387240157/200000000"
+        ],
+        [
+          2,
+          113,
+          "Q",
+          "29817887640227/200000000"
+        ],
+        [
+          2,
+          122,
+          "Q",
+          "287746495633/6250000"
+        ],
+        [
+          3,
+          26,
+          "P",
+          "2635388857531/25000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "3081599/400"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "29290468831/12500000",
+      "minimum_anchor_margin": "205483508839993/10000000",
+      "distinct_mover_degrees": 16
+    },
+    {
+      "case": "b32/seed8/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "4f6639a2245a1f1f6b42a5e3135a4b6569a6132dc879fc09f51aed8b1937ad8f",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "1c6a023368b0f436244e275134bc1940194281ddf8d6d6a92155cd3a47692ddc",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "37214234773/250000"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "91210368233/2000000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "209771392303/2000000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "4415724157/2000000"
+        ],
+        [
+          2,
+          113,
+          "Q",
+          "297475764227/2000000"
+        ],
+        [
+          2,
+          122,
+          "Q",
+          "5700861641/125000"
+        ],
+        [
+          3,
+          26,
+          "P",
+          "26243760781/250000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 7,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "308159/40"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "25326182/15625",
+      "minimum_anchor_margin": "2054828683993/100000",
+      "distinct_mover_degrees": 16
+    },
+    {
+      "case": "b32/seed8/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "873926121529091e64e7e7adfcb2a323c3d7e79ade38cd89bb134685542d1cf3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "1c6a023368b0f436244e275134bc1940194281ddf8d6d6a92155cd3a47692ddc",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "91508062/625"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "825287033/20000"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "1993529503/20000"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "5342557/20000"
+        ],
+        [
+          2,
+          113,
+          "Q",
+          "2904446627/20000"
+        ],
+        [
+          2,
+          122,
+          "Q",
+          "103203607/2500"
+        ],
+        [
+          3,
+          26,
+          "P",
+          "62856214/625"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed8/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "47ffed32386cd05b43cdcb4d32f6d925cf5ed2bf3ef745494211dac43c2d25f9",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "ea0250a5c6728c8ba51c584a32678ecacfa53be894eea50e7a43211a27b76dbb",
+      "oracle_sweeps": 6,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "3388767/25"
+        ],
+        [
+          1,
+          97,
+          "Q",
+          "17577593/800"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "61219743/800"
+        ],
+        [
+          2,
+          109,
+          "Q",
+          "17705853/800"
+        ],
+        [
+          3,
+          16,
+          "P",
+          "10562/5"
+        ],
+        [
+          3,
+          113,
+          "Q",
+          "21309699/800"
+        ],
+        [
+          4,
+          26,
+          "P",
+          "1619197/20"
+        ],
+        [
+          4,
+          122,
+          "Q",
+          "1107687/50"
+        ],
+        [
+          5,
+          47,
+          "P",
+          "2540269/32"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed8/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "2f79e82b36e7872f88950a8751c45587c0fccc58451af6b98752d3451ea281bf",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "2360f5096e04c6a480f25ad0226d9bf137664d43aa2c12f7700da5f1ca8adf46",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "3049333/25"
+        ],
+        [
+          1,
+          113,
+          "Q",
+          "54161/8"
+        ],
+        [
+          1,
+          127,
+          "Q",
+          "166478/25"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "2508883/40"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "43737/5"
+        ],
+        [
+          2,
+          123,
+          "Q",
+          "1066454/25"
+        ],
+        [
+          3,
+          10,
+          "P",
+          "16927909/200"
+        ],
+        [
+          4,
+          2,
+          "Q",
+          "1594799/40"
+        ],
+        [
+          4,
+          11,
+          "P",
+          "215481/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=24"
+    },
+    {
+      "case": "b32/seed8/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "7b4b57d02f68eb93160d5657a80a97fcee469eebdce844f7e6848486e70c6de4",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "3b8ccb9fe3ef6f6958d29ff6a37bcdf213627d4bc66f79357d4b8bb17db6aa05",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          90,
+          "Q",
+          "5419821/50"
+        ],
+        [
+          1,
+          123,
+          "Q",
+          "1042836/25"
+        ],
+        [
+          1,
+          127,
+          "Q",
+          "1925607/50"
+        ],
+        [
+          2,
+          2,
+          "P",
+          "52446417/800"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "7223007/200"
+        ],
+        [
+          3,
+          2,
+          "Q",
+          "5881911/160"
+        ],
+        [
+          3,
+          10,
+          "P",
+          "11814793/160"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=24"
+    },
+    {
+      "case": "b32/seed9/scale1/10000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "65f484be0119b74ddf41a351375e3d420dbab5a2cdefa6fa550e2d0d84ab2c2a",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "1ae7b3dce97734d62cc9007abf60245019d77ad8ef2252c4ffd1ef51d44a3217",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "29827572799743/200000000"
+        ],
+        [
+          1,
+          90,
+          "Q",
+          "9205453201721/200000000"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "21096451999367/200000000"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "94129424413/40000000"
+        ],
+        [
+          2,
+          93,
+          "Q",
+          "3728300999947/25000000"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "1151828180057/25000000"
+        ],
+        [
+          3,
+          43,
+          "P",
+          "5270305460457/50000000"
+        ],
+        [
+          3,
+          64,
+          "P",
+          "59294455253/25000000"
+        ],
+        [
+          3,
+          114,
+          "Q",
+          "1863426407573/12500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "77039949/10000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "466711463587/200000000",
+      "minimum_anchor_margin": "821933939802001/40000000",
+      "distinct_mover_degrees": 20
+    },
+    {
+      "case": "b32/seed9/scale1/1000",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "2280d606abacdc66a96ceab639f95cf10590d23f1a7c3c0aaa6d3e5e7ceef8a2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "1ae7b3dce97734d62cc9007abf60245019d77ad8ef2252c4ffd1ef51d44a3217",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "298444279743/2000000"
+        ],
+        [
+          1,
+          90,
+          "Q",
+          "90970321721/2000000"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "211284199367/2000000"
+        ],
+        [
+          2,
+          20,
+          "P",
+          "688342813/400000"
+        ],
+        [
+          2,
+          93,
+          "Q",
+          "37290974947/250000"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "11485943057/250000"
+        ],
+        [
+          3,
+          43,
+          "P",
+          "52440296457/500000"
+        ],
+        [
+          3,
+          64,
+          "P",
+          "476570753/250000"
+        ],
+        [
+          3,
+          114,
+          "Q",
+          "18573078323/125000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 9,
+        "sweeps": 4,
+        "mover_records_read": 32,
+        "movers_final_q": 24,
+        "mover_q_degree": "7703949/1000"
+      },
+      "output_labels_checked": 128,
+      "mover_configurations_checked": 384,
+      "minimum_mover_margin": "3048149587/2000000",
+      "minimum_anchor_margin": "8219305180201/400000",
+      "distinct_mover_degrees": 20
+    },
+    {
+      "case": "b32/seed9/scale1/100",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "aa6fce7e5a9a2d47239475f71d92107ac1394d4ff331e15b2356389cfd4bf640",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "06e559eda49ba3b9f8712e09cf64a3edfcd0404f7314956d70311a6ab5631aac",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "3001297743/20000"
+        ],
+        [
+          1,
+          90,
+          "Q",
+          "801283721/20000"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "2144809367/20000"
+        ],
+        [
+          2,
+          21,
+          "P",
+          "1457889/1250"
+        ],
+        [
+          2,
+          93,
+          "Q",
+          "93420532/625"
+        ],
+        [
+          2,
+          110,
+          "Q",
+          "959674113/20000"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "1968249647/20000"
+        ],
+        [
+          3,
+          78,
+          "P",
+          "9944537/20000"
+        ],
+        [
+          3,
+          126,
+          "Q",
+          "749186747/5000"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=14, r=23"
+    },
+    {
+      "case": "b32/seed9/scale1/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "0dd05a53d455c9c95adad5672c5fae82127c27b60baf9b37b55410d9e68e6378",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "b18552a0f3550b4ab944feade55bdaf786fb2c7e7b8d3dba6d89ce6d0b7e57b5",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "123048143/800"
+        ],
+        [
+          1,
+          90,
+          "Q",
+          "12778121/800"
+        ],
+        [
+          2,
+          6,
+          "P",
+          "91474967/800"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "11444581/800"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "14178217/100"
+        ],
+        [
+          2,
+          110,
+          "Q",
+          "8872887/160"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "56255061/800"
+        ],
+        [
+          3,
+          114,
+          "Q",
+          "967209/50"
+        ],
+        [
+          4,
+          43,
+          "P",
+          "15222187/200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=23"
+    },
+    {
+      "case": "b32/seed9/scale1/10",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "b50dd00dc9dfca3bed7ab2c782b05df56580fd406ce3ece9b8491f4f3632d7d6",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "ab8267ee011ddb5b722eb5ccf5f9b6ca59df05b5d6a0e2fe7ff586731f88cc81",
+      "oracle_sweeps": 5,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "31698243/200"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "853549/25"
+        ],
+        [
+          2,
+          10,
+          "P",
+          "5296077/200"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "212827/8"
+        ],
+        [
+          2,
+          90,
+          "Q",
+          "17710061/200"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "1556959/50"
+        ],
+        [
+          3,
+          20,
+          "P",
+          "7106303/200"
+        ],
+        [
+          3,
+          110,
+          "Q",
+          "12919497/200"
+        ],
+        [
+          4,
+          43,
+          "P",
+          "1188299/25"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=24"
+    },
+    {
+      "case": "b32/seed9/scale3/20",
+      "vertices": 128,
+      "edges": 208,
+      "input_sha256": "8c1e1a8688f50eb0a51326804267aac8f1f59df6b2162daff560930e157dbcee",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "7c923dc37590d0aab3e47c96fbd408f7962f531ee730e3c06efc2744533b0380",
+      "oracle_sweeps": 8,
+      "oracle_full_moves": [
+        [
+          1,
+          89,
+          "Q",
+          "130537287/800"
+        ],
+        [
+          1,
+          92,
+          "Q",
+          "1408533/50"
+        ],
+        [
+          2,
+          0,
+          "P",
+          "17456181/800"
+        ],
+        [
+          2,
+          30,
+          "P",
+          "30644459/800"
+        ],
+        [
+          2,
+          90,
+          "Q",
+          "46921749/800"
+        ],
+        [
+          2,
+          105,
+          "Q",
+          "2405193/100"
+        ],
+        [
+          3,
+          10,
+          "P",
+          "49858779/800"
+        ],
+        [
+          3,
+          110,
+          "Q",
+          "59234037/800"
+        ],
+        [
+          4,
+          20,
+          "P",
+          "149963/800"
+        ],
+        [
+          4,
+          126,
+          "Q",
+          "2809323/50"
+        ],
+        [
+          5,
+          48,
+          "P",
+          "47141981/800"
+        ],
+        [
+          6,
+          20,
+          "Q",
+          "54791/160"
+        ],
+        [
+          6,
+          70,
+          "P",
+          "273441/100"
+        ],
+        [
+          6,
+          118,
+          "Q",
+          "1464399/100"
+        ],
+        [
+          7,
+          78,
+          "P",
+          "62222741/800"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=0, r=24"
+    },
+    {
+      "case": "prefix0/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "5b1c9030d8cacd2d57db80b9442fce51a22aabafec7ebeca6c9a34b2fb57999c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "2c8966ecf176ad3704cbd32c2eb516f65354ff07f2ce206382d15e2d8b07a1e9",
+      "oracle_sweeps": 1,
+      "oracle_full_moves": [],
+      "admitted": true,
+      "execution": {
+        "moves": 0,
+        "sweeps": 1,
+        "mover_records_read": 16,
+        "movers_final_q": 0,
+        "mover_q_degree": "0"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 128,
+      "minimum_mover_margin": "183554774271999/32200000000",
+      "minimum_anchor_margin": "13281399336784049953/4147360000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "prefix0/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "db82418dd5440eb8c2eb68e629a3b0a44989d1e2b8f9ee4ec3d311f8c16c82ec",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "d5c2708e8e555235147b31f2c692538fb3e2ccf5f7ac56d8bd91ae9d767f7765",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          3,
+          "Q",
+          "3089441/4025"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=0"
+    },
+    {
+      "case": "prefix1/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "829d3ad7e79d67dcebeab09383bf3ab0904b854d400e1211b1aa4aef31c9bbb6",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "a6d30505eb6aadc31be36c9f6411f124203d30105d381374e45306a4bf51bed9",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "145595631917217/4600000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 2,
+        "mover_q_degree": "3219987/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 176,
+      "minimum_mover_margin": "45875032368961/8050000000",
+      "minimum_anchor_margin": "16786726024984579227/5184200000000",
+      "distinct_mover_degrees": 12
+    },
+    {
+      "case": "prefix1/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "f5400c469551b972ee9fca7029ba52880744a1c3bb552dc3cce7212c20b5ca8e",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "a6d30505eb6aadc31be36c9f6411f124203d30105d381374e45306a4bf51bed9",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          5,
+          "Q",
+          "216174587/32200"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "7893559/920"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "614336507/32200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=1"
+    },
+    {
+      "case": "prefix2/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "21de9c159619fd26fe2bef3fdaf95c7d051aa05d29887baac9638cebd94ba1dd",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "4e1f3ed0c98694bea96a84e104de4be4ad1a12dae7020b360c0b01c058c6e246",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          6,
+          "Q",
+          "1019202114430751/32200000000"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "184610876730321/32200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 4,
+        "mover_q_degree": "6440029/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183601266050541/32200000000",
+      "minimum_anchor_margin": "13688517619691653381/4147360000000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "prefix2/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "05d297f329345fc888434771e0536bb7b3f6517cdfcda1a2f563a829501a783e",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "2601dbe5e5150dd48d7fe399ac58e8f21dca10cc2ee04903c7d7faee1cc714d8",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          6,
+          "Q",
+          "1139526851/32200"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "369892461/32200"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "94221273/8050"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=3"
+    },
+    {
+      "case": "prefix3/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "eaf39dbb00c90fc9815a9b016ac4b4988dc41ae1fb7a306318e564cc94e23e40",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "4e1f3ed0c98694bea96a84e104de4be4ad1a12dae7020b360c0b01c058c6e246",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "25464877036983/805000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 4,
+        "mover_q_degree": "3219991/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "22951135151677/4025000000",
+      "minimum_anchor_margin": "3486935592637464791/1036840000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "prefix3/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4649f9d6869e44bb22f41cede894b997c08005b04caf555b74ed9e974bd64d5b",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "8404b94f74fd9aa4b30082278683c336503bded4437a2313d77ff48870bf3827",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          29,
+          "Q",
+          "5496401/6440"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "47635383/6440"
+        ],
+        [
+          2,
+          15,
+          "Q",
+          "435362433/32200"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=4"
+    },
+    {
+      "case": "prefix4/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "1238a12080704d8e147d79654354c7a59899889fd6f86f4afd772ce893b03cde",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "dc07826a7156646b59932c1e7880a325b2524f1f5e5954e65ad17b10a5ebfc65",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          19,
+          "Q",
+          "1018023720423307/32200000000"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "11498459390919/2012500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 6,
+        "mover_q_degree": "9659989/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183360780978763/32200000000",
+      "minimum_anchor_margin": "14207080059677220309/4147360000000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "prefix4/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "9e33a7c5392451d4b5b771e09c286a79511feccf839cadbc8ac837f860043e3d",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "8f6ff3e25373b366bd93c99340c26c5b5b00d6246f0ecb5f68ac257707453dca",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "140827923/8050"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=5"
+    },
+    {
+      "case": "prefix5/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "88ea3bd2f1278a3fbf6977e80a84570bfe048f750460dbe2d5ee8852e5414ec8",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "16747c2ad4447bf55663e5c571217d134b482fc411a9572b0b6ecf4461afb5d2",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          19,
+          "Q",
+          "1018959768499517/32200000000"
+        ],
+        [
+          1,
+          29,
+          "Q",
+          "46119459218229/8050000000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "145551546160529/4600000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 6,
+        "mover_q_degree": "9659993/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183974805021771/32200000000",
+      "minimum_anchor_margin": "3576719555221388739/1036840000000",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "prefix5/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "6a9f29b9f697752734849627a586d7d3409d7a42a6fb90153f7ee1796bdbe768",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "16747c2ad4447bf55663e5c571217d134b482fc411a9572b0b6ecf4461afb5d2",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          19,
+          "Q",
+          "897149717/32200"
+        ],
+        [
+          1,
+          29,
+          "Q",
+          "29594412/4025"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "114029789/4600"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=5"
+    },
+    {
+      "case": "prefix6/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "456644cfcdd8a8bce19330c0c2d43e9b443a5308ad6203ba586a6a65942a211c",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "180757f09847b27e9b62c99bad00832d5119e17743e302d28cc24ef83a4f9e05",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          29,
+          "Q",
+          "127291200635461/4025000000"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "184870088731609/32200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 8,
+        "mover_q_degree": "1288003/1000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183559722520879/32200000000",
+      "minimum_anchor_margin": "1704481839408866561/518420000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "prefix6/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4dd9fc13468ca98fb47b75600f80f750ace7de1a56e5ac514a70f48a105532ea",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "0a98ab0148fcee06d97fdc36db620ab975931df7b1a59578c367d6ca8f04cd5b",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          29,
+          "Q",
+          "33341341/4025"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "629105749/32200"
+        ],
+        [
+          2,
+          15,
+          "P",
+          "23107503/6440"
+        ],
+        [
+          2,
+          29,
+          "P",
+          "43328308/4025"
+        ],
+        [
+          2,
+          36,
+          "Q",
+          "22845083/4025"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=6, r=6"
+    },
+    {
+      "case": "prefix7/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "6a011b6084df20a5db880cb9fe6ee78046ccd00f84becfb3e9e070e74d77a1b3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d22aa25c9e24ec72516ba2df16c0bc32fb1d0829d9c0589e700bc274d3e0f99d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          29,
+          "Q",
+          "1018543664932219/32200000000"
+        ],
+        [
+          1,
+          31,
+          "Q",
+          "143274002511/25000000"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "127410361225407/4025000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 8,
+        "mover_q_degree": "12880031/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "26245188536021/4600000000",
+      "minimum_anchor_margin": "405163911583397941/129605000000",
+      "distinct_mover_degrees": 11
+    },
+    {
+      "case": "prefix7/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2b2009c19809926746e246820b734cfb3673c5c62de660eedf6398464ffeb9c3",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "d22aa25c9e24ec72516ba2df16c0bc32fb1d0829d9c0589e700bc274d3e0f99d",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          29,
+          "Q",
+          "480978919/32200"
+        ],
+        [
+          1,
+          31,
+          "Q",
+          "229701/25"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "152531847/4025"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=8"
+    },
+    {
+      "case": "prefix8/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "be7beb2ba5cd58397fc8ee729325763d65292bd7a20336934026e7cbcbd5a875",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "afd4d410d7dba75329e52dd4a9f2b6360e43ff839cea7655c90188b0e99399e5",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          31,
+          "Q",
+          "1018662705855439/32200000000"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "184225360343489/32200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 10,
+        "mover_q_degree": "8049989/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "4587431321797/805000000",
+      "minimum_anchor_margin": "192110275733036739/64802500000",
+      "distinct_mover_degrees": 12
+    },
+    {
+      "case": "prefix8/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4fe1e13efeea39c588e24e1b9f5a94d29c97e20eeb99c2fb04989b74c6fd30ed",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "78f2a9c60908a2e99b908429540271730ca111e15e968da8630d3e9b994cd12a",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          31,
+          "Q",
+          "600023059/32200"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "9753467/805"
+        ],
+        [
+          2,
+          33,
+          "Q",
+          "7469521/1288"
+        ],
+        [
+          2,
+          63,
+          "Q",
+          "17927759/1610"
+        ],
+        [
+          3,
+          5,
+          "P",
+          "181185101/8050"
+        ],
+        [
+          3,
+          6,
+          "P",
+          "16393306/4025"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=9"
+    },
+    {
+      "case": "prefix9/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "4d807daa75ad01cf632335f192bb0b60c5447ba9ab3746429075c08e546dd006",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "afd4d410d7dba75329e52dd4a9f2b6360e43ff839cea7655c90188b0e99399e5",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "254776864010161/8050000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 10,
+        "mover_q_degree": "3219999/2000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183684545652253/32200000000",
+      "minimum_anchor_margin": "1453160937851184731/518420000000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "prefix9/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "18bbd2262501608306051b17b85bc0dbf6eaed0ab6d52a779cc3ce0fa8398d89",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "b4b3d450efd7311993f85b6631698b43c6ec26b3674a370358af651e888b4fd6",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          33,
+          "Q",
+          "21272843/6440"
+        ],
+        [
+          1,
+          35,
+          "Q",
+          "26208051/4025"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "512038621/32200"
+        ],
+        [
+          2,
+          63,
+          "Q",
+          "140537561/8050"
+        ],
+        [
+          3,
+          14,
+          "P",
+          "9894399/8050"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=10"
+    },
+    {
+      "case": "prefix10/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "dd862bc19ac0f83e0ce07b360134f290d5a9f54815254a8dae8f079f30773500",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e6c870c7cd9f97d64122a4640591354cce54ddc2affb148b2089c52702d24052",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "145587803823611/4600000000"
+        ],
+        [
+          1,
+          36,
+          "Q",
+          "46000386872361/8050000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "9659993/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "183635974366097/32200000000",
+      "minimum_anchor_margin": "6847462214803388911/2592100000000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "prefix10/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "a121df0a7ed1f98ec1dc18e44992e01bbe54490d391fea8c9d3c3d3428193386",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "7f6e45175a972a0ef9692fe5fb0bce24f4c4de3bdb0d2d474d072a437ab1f796",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "150290531/4600"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "prefix11/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "0d7a10708733b436add297985e48b6ed552bbf4a85b81b04b1d09732e9c89056",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "e6c870c7cd9f97d64122a4640591354cce54ddc2affb148b2089c52702d24052",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "127307093804879/4025000000"
+        ],
+        [
+          1,
+          36,
+          "Q",
+          "5762822163409/1006250000"
+        ],
+        [
+          2,
+          33,
+          "P",
+          "12737510755733/402500000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 3,
+        "sweeps": 3,
+        "mover_records_read": 16,
+        "movers_final_q": 12,
+        "mover_q_degree": "19319979/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "45947415908461/8050000000",
+      "minimum_anchor_margin": "5143505044634421/2073680000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "prefix11/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "8c5da430e04f53e3a32b608f430c7d230e123c4f0533b69e2d01a14f6a04f8dd",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "53a7cde0f391ff5c92d56138156afa605d764c417fbc0d0d6d55ef2850fe9638",
+      "oracle_sweeps": 4,
+      "oracle_full_moves": [
+        [
+          1,
+          35,
+          "Q",
+          "49288874/4025"
+        ],
+        [
+          1,
+          36,
+          "Q",
+          "21150481/4025"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "52263193/32200"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "153754421/8050"
+        ],
+        [
+          2,
+          5,
+          "P",
+          "19641291/8050"
+        ],
+        [
+          2,
+          35,
+          "P",
+          "70444572/4025"
+        ],
+        [
+          3,
+          3,
+          "Q",
+          "21641877/8050"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=11"
+    },
+    {
+      "case": "prefix12/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "fc5a0cee6fff36ae610475d5a8fcf9f1f5d0a1a858199c1445fb77836e10c4c1",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "f7bae2374084231ae206e3110d6c8d276d22b22bb862cbbfb645d9733c81e6fd",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          36,
+          "Q",
+          "203682734875889/6440000000"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "46211158365993/8050000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 14,
+        "mover_q_degree": "22539971/10000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 192,
+      "minimum_mover_margin": "11470532209063/2012500000",
+      "minimum_anchor_margin": "150289130402216079/64802500000",
+      "distinct_mover_degrees": 13
+    },
+    {
+      "case": "prefix12/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "2d873ba8d8b9eb1f92aacb2679a6422c4889492c20d1851e1393848baff3ba32",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "eb995ba262d1ce541077f65013a169aee0a3b1a14500a90b65996b3c404e9780",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          36,
+          "Q",
+          "70219097/6440"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "75437874/4025"
+        ],
+        [
+          2,
+          29,
+          "P",
+          "3825946/575"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=5, r=12"
+    },
+    {
+      "case": "prefix13/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "62609a1e4f12ce1576c88898a0ed2b854982ec877e9b5e42f9fefee60bfa9cc2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "f7bae2374084231ae206e3110d6c8d276d22b22bb862cbbfb645d9733c81e6fd",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          63,
+          "Q",
+          "127379681932983/4025000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 1,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 14,
+        "mover_q_degree": "11269989/5000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 176,
+      "minimum_mover_margin": "22921751077741/4025000000",
+      "minimum_anchor_margin": "2237603872648864393/1036840000000",
+      "distinct_mover_degrees": 14
+    },
+    {
+      "case": "prefix13/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "af104e547126dfbd2cf2f1fda8a37d0b2b5c74f36266e33fc416f5444a220ac2",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "d8278f34094a0905e6dba03d847173e85e52b3c8dddc313aea3ec4a1c4e64daf",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          62,
+          "Q",
+          "277935277/32200"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "37762437/8050"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "64434197/8050"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=14"
+    },
+    {
+      "case": "prefix14/scale1/10000",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "b180e8fce1c900df8925a13073997d61197c0921608e3ef8c7d284bc965c6519",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": true,
+      "oracle_labels_sha256": "066a607beef312377f41ee8b89d595a48ea79169388f93a430e76a63641014a3",
+      "oracle_sweeps": 2,
+      "oracle_full_moves": [
+        [
+          1,
+          62,
+          "Q",
+          "1019514891955907/32200000000"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "184571765083953/32200000000"
+        ]
+      ],
+      "admitted": true,
+      "execution": {
+        "moves": 2,
+        "sweeps": 2,
+        "mover_records_read": 16,
+        "movers_final_q": 16,
+        "mover_q_degree": "5151991/2000"
+      },
+      "output_labels_checked": 64,
+      "mover_configurations_checked": 128,
+      "minimum_mover_margin": "36750489484783/6440000000",
+      "minimum_anchor_margin": "521864139287420787/259210000000",
+      "distinct_mover_degrees": 10
+    },
+    {
+      "case": "prefix14/scale1/10",
+      "vertices": 64,
+      "edges": 104,
+      "input_sha256": "08137069ddcd19e4edbf2e6cc3465de1fff915e2cd76a63d3de02b66d0c50733",
+      "uniform_certificate": "mover anchor affinities and matching weights must be uniform",
+      "same_schedule_as_unperturbed": false,
+      "oracle_labels_sha256": "7363de3c2fd1fc17e337f21948f2eb13c62367420d08ec32db7efedd39807a78",
+      "oracle_sweeps": 3,
+      "oracle_full_moves": [
+        [
+          1,
+          62,
+          "Q",
+          "1451949887/32200"
+        ],
+        [
+          1,
+          63,
+          "Q",
+          "330734493/32200"
+        ],
+        [
+          2,
+          3,
+          "P",
+          "12716549/4025"
+        ]
+      ],
+      "admitted": false,
+      "refusal": "mover gain sign not certified: vertex=3, r=14"
+    }
+  ]
+}

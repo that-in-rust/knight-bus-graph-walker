@@ -1,0 +1,3426 @@
+{
+  "scope": "Exact fixed-candidate score replay; resident fixture/label generator; no physical I/O benchmark",
+  "frozen_native_receipt_sha256": "53dcc226a8b176760a1ccf7ec2d10f2572976feb5e6a4a6cdf9efda93d060b64",
+  "source_sha256": {
+    "probe_quotient_replay_control.py": "c8113cd0db4cadc156d7c8356c770953169f6e47fed0e711a6710fcd6ec10c6f",
+    "test_quotient_replay_control.py": "2c31a41c320425f90adede0c7c9ce8f4da677ee4d6a2972e51da1fbd4e340e73"
+  },
+  "sources": [
+    {
+      "dataset": "grqc",
+      "source_sha256": "a254442cdf5d684712578b630c2e0d7543518ab154ef2341cabb607572ce7230",
+      "source_file": "ca-GrQc.txt.gz",
+      "normalization": {
+        "raw_rows": 28980,
+        "self_loop_rows": 12,
+        "duplicate_rows": 14484,
+        "nodes": 5242,
+        "edges": 14484,
+        "memberships": 28968
+      }
+    },
+    {
+      "dataset": "facebook",
+      "source_sha256": "125e84db872eeba443d270c70315c256b0af43a502fcfe51f50621166ad035d7",
+      "source_file": "facebook_combined.txt.gz",
+      "normalization": {
+        "raw_rows": 88234,
+        "self_loop_rows": 0,
+        "duplicate_rows": 0,
+        "nodes": 4039,
+        "edges": 88234,
+        "memberships": 176468
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "source_sha256": "568412aa331e08231a4f0ee61ddcf648230832bdd44ab1607b951bc440ff0d39",
+      "source_file": "karate-club-networkx-3.6.1.json",
+      "projection": "weighted",
+      "normalization": {
+        "nodes": 34,
+        "edges": 78
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "source_sha256": "568412aa331e08231a4f0ee61ddcf648230832bdd44ab1607b951bc440ff0d39",
+      "source_file": "karate-club-networkx-3.6.1.json",
+      "projection": "unit",
+      "normalization": {
+        "nodes": 34,
+        "edges": 78
+      }
+    }
+  ],
+  "counts": {
+    "rows": 140,
+    "exact_scores_checked": 700,
+    "edge_records": 3703152,
+    "label_pair_checks": 18515760,
+    "winner_name_changes": 0,
+    "strict_quality_improvements": 0
+  },
+  "rows": [
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "167826977/279715008",
+        "sweep": "167826977/279715008",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "84380863/139857504",
+        "sweep": "28190923/46619168",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "260708117/419572512",
+        "sweep": "525850939/839145024",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 695,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "89736367/139857504",
+        "sweep": "563318449/839145024",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 1736,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "94489405/139857504",
+        "sweep": "620689213/839145024",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 3471,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "195143705/279715008",
+        "sweep": "110515853/139857504",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "167826977/279715008",
+        "sweep": "167826977/279715008",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "85464251/139857504",
+        "sweep": "64227379/104893128",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "525248975/839145024",
+        "sweep": "179476223/279715008",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 695,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "538932677/839145024",
+        "sweep": "567303823/839145024",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 1736,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "568654453/839145024",
+        "sweep": "624325021/839145024",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 3471,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "167826977/279715008",
+        "matching": "195143705/279715008",
+        "sweep": "110515853/139857504",
+        "exact_matching": "195143705/279715008",
+        "exact_sweep": "110515853/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "248558429/419572512",
+        "sweep": "248558429/419572512",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "3519929/5909472",
+        "sweep": "250487035/419572512",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "14242775/23309584",
+        "sweep": "257787695/419572512",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 693,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "88701013/139857504",
+        "sweep": "3834825/5827396",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 1733,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "280210397/419572512",
+        "sweep": "4221401/5827396",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 3465,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "32132549/46619168",
+        "sweep": "108589105/139857504",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "248558429/419572512",
+        "sweep": "248558429/419572512",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "31635695/52446564",
+        "sweep": "21111251/34964376",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "28807451/46619168",
+        "sweep": "33196067/52446564",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 693,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "88704757/139857504",
+        "sweep": "23254123/34964376",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 1733,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "280802639/419572512",
+        "sweep": "306475961/419572512",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 3465,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "248558429/419572512",
+        "matching": "32132549/46619168",
+        "sweep": "108589105/139857504",
+        "exact_matching": "32132549/46619168",
+        "exact_sweep": "108589105/139857504"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "81776867/139857504",
+        "sweep": "81776867/139857504",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "164428219/279715008",
+        "sweep": "13739127/23309584",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "28115477/46619168",
+        "sweep": "28254287/46619168",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 695,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "58314179/93238336",
+        "sweep": "180248083/279715008",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 1736,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "184515001/279715008",
+        "sweep": "199060577/279715008",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 3471,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "63515073/93238336",
+        "sweep": "35605761/46619168",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "81776867/139857504",
+        "sweep": "81776867/139857504",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 35,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "55503101/93238336",
+        "sweep": "166723055/279715008",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 174,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "56858799/93238336",
+        "sweep": "58235301/93238336",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 695,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "58368737/93238336",
+        "sweep": "61137353/93238336",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 1736,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "46223963/69928752",
+        "sweep": "67167983/93238336",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "grqc",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 3471,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "81776867/139857504",
+        "matching": "63515073/93238336",
+        "sweep": "35605761/46619168",
+        "exact_matching": "63515073/93238336",
+        "exact_sweep": "35605761/46619168"
+      },
+      "metrics": {
+        "edge_records": 14484,
+        "label_pair_checks": 72420,
+        "retained_edge_records": 0,
+        "degree_records": 1801,
+        "supplied_label_records": 9005,
+        "peak_volume_records": 1801
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "10333030107/15570477512",
+        "sweep": "10333030107/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "1384014964/1946309689",
+        "sweep": "22201189253/31140955024",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 123,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "11430854087/15570477512",
+        "sweep": "11850668403/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 489,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "1440817841/1946309689",
+        "sweep": "1603029243/1946309689",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 1223,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "5782565741/7785238756",
+        "sweep": "13111895139/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 2445,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "11587486123/15570477512",
+        "sweep": "13222009245/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "10333030107/15570477512",
+        "sweep": "10333030107/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "1381178106/1946309689",
+        "sweep": "22172630309/31140955024",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 123,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "22855459223/31140955024",
+        "sweep": "23915286253/31140955024",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 489,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "23040218811/31140955024",
+        "sweep": "25627528503/31140955024",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 1223,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "23132415081/31140955024",
+        "sweep": "13111338061/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 2445,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "10333030107/15570477512",
+        "matching": "11587486123/15570477512",
+        "sweep": "13222009245/15570477512",
+        "exact_matching": "11587486123/15570477512",
+        "exact_sweep": "13222009245/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 570,
+        "supplied_label_records": 2850,
+        "peak_volume_records": 570
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "9615323755/15570477512",
+        "sweep": "9615323755/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "2577322479/3892619378",
+        "sweep": "1290039855/1946309689",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 123,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "10644289775/15570477512",
+        "sweep": "2753912617/3892619378",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 492,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "10753192049/15570477512",
+        "sweep": "5994728749/7785238756",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 1229,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "5395145053/7785238756",
+        "sweep": "3060270217/3892619378",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 2458,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "5406292271/7785238756",
+        "sweep": "12308402747/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "9615323755/15570477512",
+        "sweep": "9615323755/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "10287300801/15570477512",
+        "sweep": "10307146543/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 123,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "5319654071/7785238756",
+        "sweep": "5582869145/7785238756",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 492,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "5373600351/7785238756",
+        "sweep": "2989979159/3892619378",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 1229,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "10791912965/15570477512",
+        "sweep": "12254560129/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 2458,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "9615323755/15570477512",
+        "matching": "5406292271/7785238756",
+        "sweep": "12308402747/15570477512",
+        "exact_matching": "5406292271/7785238756",
+        "exact_sweep": "12308402747/15570477512"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 569,
+        "supplied_label_records": 2845,
+        "peak_volume_records": 569
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "8868991897/15570477512",
+        "sweep": "8868991897/15570477512",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 28,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "19075651355/31140955024",
+        "sweep": "19135294511/31140955024",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 136,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "1229164905/1946309689",
+        "sweep": "10255306613/15570477512",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 542,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "19906087847/31140955024",
+        "sweep": "5601845833/7785238756",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 1354,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "2497438871/3892619378",
+        "sweep": "11439363817/15570477512",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 2708,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "10013039491/15570477512",
+        "sweep": "5757234465/7785238756",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "8868991897/15570477512",
+        "sweep": "8868991897/15570477512",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 28,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "19021377609/31140955024",
+        "sweep": "1190897206/1946309689",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 136,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "19681892391/31140955024",
+        "sweep": "10369344627/15570477512",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 542,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "9945832877/15570477512",
+        "sweep": "5602840761/7785238756",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 1354,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "4994465921/7785238756",
+        "sweep": "5721264513/7785238756",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "facebook",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 2708,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "8868991897/15570477512",
+        "matching": "10013039491/15570477512",
+        "sweep": "5757234465/7785238756",
+        "exact_matching": "10013039491/15570477512",
+        "exact_sweep": "5757234465/7785238756"
+      },
+      "metrics": {
+        "edge_records": 88234,
+        "label_pair_checks": 441170,
+        "retained_edge_records": 0,
+        "degree_records": 589,
+        "supplied_label_records": 2945,
+        "peak_volume_records": 589
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "13753/30492",
+        "sweep": "13753/30492",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "33749/71148",
+        "sweep": "33749/71148",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 3,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "13753/30492",
+        "sweep": "13753/30492",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 7,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "9013/17787",
+        "sweep": "40867/71148",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "3118/5929",
+        "sweep": "130751/213444",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "13753/30492",
+        "sweep": "13753/30492",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "13753/30492",
+        "sweep": "13753/30492",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 3,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "13753/30492",
+        "sweep": "13753/30492",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 7,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "35029/71148",
+        "sweep": "113257/213444",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "13753/30492",
+        "matching": "3118/5929",
+        "sweep": "130751/213444",
+        "exact_matching": "3118/5929",
+        "exact_sweep": "130751/213444"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 9,
+        "supplied_label_records": 45,
+        "peak_volume_records": 9
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "30865/106722",
+        "sweep": "30865/106722",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "30865/106722",
+        "sweep": "30865/106722",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 4,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "30865/106722",
+        "sweep": "30865/106722",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 10,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "1808/4851",
+        "sweep": "14743/35574",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 20,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "21149/53361",
+        "sweep": "6767/15246",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "30865/106722",
+        "sweep": "30865/106722",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "30865/106722",
+        "sweep": "30865/106722",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 4,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "4999/15246",
+        "sweep": "4999/15246",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 10,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "4999/15246",
+        "sweep": "4999/15246",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 20,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "30865/106722",
+        "matching": "21149/53361",
+        "sweep": "6767/15246",
+        "exact_matching": "21149/53361",
+        "exact_sweep": "6767/15246"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 5,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 13,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5689/23716",
+        "sweep": "5689/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "9907/35574",
+        "sweep": "6795/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "5261/23716",
+        "sweep": "5261/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 5,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "16411/71148",
+        "sweep": "16411/71148",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 13,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "16411/71148",
+        "sweep": "16411/71148",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_weighted",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 25,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "5261/23716",
+        "matching": "9907/35574",
+        "sweep": "6795/23716",
+        "exact_matching": "9907/35574",
+        "exact_sweep": "6795/23716"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 11,
+        "supplied_label_records": 55,
+        "peak_volume_records": 11
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "6697/24336",
+        "sweep": "6697/24336",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "1825/6084",
+        "sweep": "1825/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "6697/24336",
+        "sweep": "6697/24336",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 6,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "7411/24336",
+        "sweep": "2375/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "4871/12168",
+        "sweep": "3257/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "forward",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "10423/24336",
+        "sweep": "3257/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "6697/24336",
+        "sweep": "6697/24336",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "6697/24336",
+        "sweep": "6697/24336",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "6697/24336",
+        "sweep": "6697/24336",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 6,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "329/1014",
+        "sweep": "2341/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "3097/8112",
+        "sweep": "847/1872",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1/2",
+      "order": "reverse",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "6697/24336",
+        "matching": "10423/24336",
+        "sweep": "3257/6084",
+        "exact_matching": "10423/24336",
+        "exact_sweep": "3257/6084"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 6,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2887/12168",
+        "sweep": "371/1521",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "1907/6084",
+        "sweep": "1109/3042",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "forward",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "4027/12168",
+        "sweep": "1229/3042",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "2641/12168",
+        "sweep": "2641/12168",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 6,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "307/1352",
+        "sweep": "307/1352",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "269/1014",
+        "sweep": "295/1014",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "1",
+      "order": "reverse",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "2641/12168",
+        "matching": "4027/12168",
+        "sweep": "1229/3042",
+        "exact_matching": "4027/12168",
+        "exact_sweep": "1229/3042"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 6,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1379/8112",
+        "sweep": "1379/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1679/8112",
+        "sweep": "937/4056",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "forward",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "973/4056",
+        "sweep": "553/2028",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 0,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 1,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 2,
+      "previous_winner": "baseline",
+      "replay_winner": "baseline",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1289/8112",
+        "sweep": "1289/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 6,
+      "previous_winner": "matching",
+      "replay_winner": "matching",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "1307/8112",
+        "sweep": "1307/8112",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 14,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "461/2704",
+        "sweep": "465/2704",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    },
+    {
+      "dataset": "karate_unit",
+      "gamma": "3/2",
+      "order": "reverse",
+      "budget": 27,
+      "previous_winner": "sweep",
+      "replay_winner": "sweep",
+      "actual_score_improvement": "0",
+      "exact_scores": {
+        "baseline": "1289/8112",
+        "matching": "973/4056",
+        "sweep": "553/2028",
+        "exact_matching": "973/4056",
+        "exact_sweep": "553/2028"
+      },
+      "metrics": {
+        "edge_records": 78,
+        "label_pair_checks": 390,
+        "retained_edge_records": 0,
+        "degree_records": 13,
+        "supplied_label_records": 65,
+        "peak_volume_records": 13
+      }
+    }
+  ]
+}
